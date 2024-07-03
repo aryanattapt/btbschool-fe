@@ -3,18 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "start:dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start:pro": "next start -p 40000",
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^3.4.4",
+    "axios": "^1.7.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.4"
+    "react-icons": "^5.2.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "daisyui": "^4.12.10",
     "postcss": "^8",
     "tailwindcss": "^3.4.1"
-  }
+  },
+  "description": "BTB School Landing Page",
+  "main": "tailwind.config.js",
+  "author": "BTB School",
+  "license": "ISC"
 }
