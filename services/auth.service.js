@@ -9,7 +9,6 @@ export const isLogin = () => {
 
 export const login = async (payload) => {
     try {
-        console.log("masukl")
         const result = await callInternalAPI('/auth/signin/', 'POST', payload, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
         setCookie(clientID, result.data.token, {
             domain: process.env.NEXT_PUBLIC_BASEURL,
