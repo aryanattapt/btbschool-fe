@@ -18,6 +18,6 @@ export const callInternalAPI = (url, method, requestBody, requestHeader) => new 
         case "DELETE":
             return axiosInstance.delete(url, {params: requestBody, headers: requestHeader}).then((res) => {return resolve(res.data)}).catch((err) => {return reject(err)})
         default:
-            break;
+            return new Promise((resolve, reject) => reject("Unknown method!"));
     }
 });
