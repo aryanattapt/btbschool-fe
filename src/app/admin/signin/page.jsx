@@ -1,6 +1,34 @@
+'use client'
 import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
+import { useEffect, useState } from "react";
+import {
+    isLogin,
+    login,
+} from '../../../../services/auth.service';
+import { redirect } from "next/navigation";
 
 const SignInAdminPage = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    
+    useEffect(() => {
+        if(isLogin()){
+            redirect('/admin')
+        }
+    }, [])
+
+    const loginHandler = () => {
+        login({
+            "username": username,
+            "password": password
+        }).then(res => {
+            redirect('/admin')
+        }).catch(err => {
+            console.log(err);
+            alert("Login Failed")
+        });
+    };
+
     return <>
         <div className="flex flex-col items-center justify-center px-6 lg:h-screen lg:gap-y-12">
             <div className="my-6 flex items-center gap-x-1 lg:my-0">
@@ -15,21 +43,22 @@ const SignInAdminPage = () => {
             </div>
             <Card
             horizontal
-            imgSrc="/images/authentication/login.jpg"
+            imgSrc=""
             imgAlt=""
             className="w-full md:max-w-screen-sm [&>img]:hidden md:[&>img]:w-96 md:[&>img]:p-0 md:[&>*]:w-full md:[&>*]:p-16 lg:[&>img]:block"
             >
                 <h1 className="mb-3 text-2xl font-bold dark:text-white md:text-3xl">
                     Sign in to platform
                 </h1>
-                <form>
+                <div>
                     <div className="mb-4 flex flex-col gap-y-3">
-                    <Label htmlFor="email">Your email</Label>
+                    <Label htmlFor="username">Your Username</Label>
                     <TextInput
-                        id="email"
-                        name="email"
-                        placeholder="name@company.com"
-                        type="email"
+                        id="username"
+                        name="username"
+                        placeholder="Username"
+                        type="text"
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     </div>
                     <div className="mb-6 flex flex-col gap-y-3">
@@ -39,6 +68,7 @@ const SignInAdminPage = () => {
                         name="password"
                         placeholder="••••••••"
                         type="password"
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     </div>
                     <div className="mb-6 flex items-center justify-between">
@@ -54,7 +84,7 @@ const SignInAdminPage = () => {
                     </a>
                     </div>
                     <div className="mb-6">
-                    <Button type="submit" className="w-full lg:w-auto">
+                    <Button type="submit" className="w-full lg:w-auto" onClick={loginHandler}>
                         Login to your account
                     </Button>
                     </div>
@@ -64,7 +94,7 @@ const SignInAdminPage = () => {
                         Create account
                     </a>
                     </p>
-                </form>
+                </div>
             </Card>
         </div>
     </>

@@ -1,6 +1,6 @@
-import CarouselComponents from "./components/carousel";
-import FooterComponent from "./components/footer";
-import NavBar from "./components/navbar";
+import CarouselComponents from "./_components/carousel";
+import FooterComponent from "./_components/footer";
+import NavBar from "./_components/navbar";
 
 const HomePage = () => {
   return <>
