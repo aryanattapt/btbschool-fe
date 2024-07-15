@@ -23,7 +23,10 @@ RUN npm ci --no-audit
 COPY . .  
 
 # Set environment Variable
-ENV NEXT_PUBLIC_INTERNALAPIBASEURL=https://dev.aryanattapt.my.id/api/btbschool
+ENV NEXT_PUBLIC_INTERNALAPIBASEURL="https://dev.aryanattapt.my.id/api/btbschool"
+ENV NEXT_PUBLIC_BASEURL="https://dev.aryanattapt.my.id/"
+ENV NEXT_PUBLIC_CLIENTSESSION="X-CLIENT-SID"
+ENV NEXT_PUBLIC_BASICKEY="Basic YnRic2Nob29sOmJ0YnNjaG9vbA=="
 
 # Expose the port the app will run on  
 EXPOSE 40000
