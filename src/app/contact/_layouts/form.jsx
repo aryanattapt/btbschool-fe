@@ -7,6 +7,7 @@ import {
     Textarea 
 } from "flowbite-react";
 import { useState } from "react";
+import { HiMail } from "react-icons/hi";
 
 const ContactForm = () => {
     const [isLoading, setIsLoading] = useState(null);
@@ -20,25 +21,25 @@ const ContactForm = () => {
                 <TextInput id="firstname" type="text"/>
             </div>
             <div>
-                <div className="mb- block">
+                <div className="mb-2 block">
                     <Label htmlFor="lastname" value="Nama Belakang" />
                 </div>
                 <TextInput id="lastname" type="text"/>
             </div>
             <div>
-                <div className="mb- block">
+                <div className="mb-2 block">
                     <Label htmlFor="phoneno" value="Nomor Telepon" />
                 </div>
                 <TextInput id="phoneno" type="text" addon="+62"/>
             </div>
             <div>
-                <div className="mb- block">
+                <div className="mb-2 block">
                     <Label htmlFor="email" value="Email" />
                 </div>
-                <TextInput id="email" type="email"/>
+                <TextInput icon={HiMail} type="email" />
             </div>
             <div>
-                <div className="mb- block">
+                <div className="mb-2 block">
                     <Label htmlFor="message" value="Pesan" />
                 </div>
                 <Textarea id="message" placeholder="Tuliskan Pesan anda..." required rows={4} />
