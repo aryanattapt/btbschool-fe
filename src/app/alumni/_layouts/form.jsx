@@ -1,6 +1,7 @@
 'use client'
 
 import { 
+    Blockquote,
     Button,
     Checkbox,
     Datepicker,
@@ -19,6 +20,14 @@ const AlumniForm = () => {
 
     return <>
          <div className="max-w-full grid gap-3">
+            <Blockquote>
+                Informasi Alumni
+            </Blockquote>
+            <div>
+                <small className="text-gray-500 dark:text-gray-400">
+                    Sebagai alumni dari sekolah BTB, kami ingin mengenal anda lebih jauh. Silahkan isi formulir berikut ini. Kami menunggu respon kalian.
+                </small>
+            </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="firstname" value="Nama Depan" autoFocus={true} />
@@ -81,7 +90,12 @@ const AlumniForm = () => {
                 <div className="mb-2 block">
                     <Label htmlFor="photoFile" value="Unggah Foto" />
                 </div>
-                <FileInput accept="image/png, image/jpeg" id="photoFile" helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg, .png)"/>
+                <FileInput accept="image/*" id="photoFile" helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg, .png)"/>
+            </div>
+            <div>
+                <small className="text-gray-500 dark:text-gray-400">
+                    Untuk informasi atau pertanyaan lebih lanjut, silahkan kirim email ke alumni@btbschool.org.
+                </small>
             </div>
             <div>
                 <Button type="submit" className="w-full lg:w-auto" disabled={isLoading}>
