@@ -19,7 +19,7 @@ const AlumniForm = () => {
     const [laststudentyear, setLaststudentyear] = useState(new Date());
 
     return <>
-         <div className="max-w-full grid gap-3">
+        <div className="max-w-full grid gap-3">
             <Blockquote>
                 Informasi Alumni
             </Blockquote>
@@ -30,9 +30,9 @@ const AlumniForm = () => {
             </div>
             <div>
                 <div className="mb-2 block">
-                    <Label htmlFor="firstname" value="Nama Depan" autoFocus={true} />
+                    <Label htmlFor="firstname" value="Nama Depan"/>
                 </div>
-                <TextInput id="firstname" type="text"/>
+                <TextInput id="firstname" type="text" autoFocus={true}/>
             </div>
             <div>
                 <div className="mb-2 block">
