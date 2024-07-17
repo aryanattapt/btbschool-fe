@@ -27,8 +27,8 @@ const EducationalBackgroundForm = () => {
             <div className="mb-2 block">
                 <Label htmlFor="nextclass" value="Class to which admission is sought"/>
             </div>
-            <Select id="nextclass" required>
-                <option value="" selected>Select Class</option>
+            <Select id="nextclass" required defaultValue={""}>
+                <option value="">Select Class</option>
                 <option value="nursery">Nursery</option>
             </Select>
         </div>

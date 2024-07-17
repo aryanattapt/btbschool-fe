@@ -40,8 +40,8 @@ const StudentDetailForm = () => {
             <div className="mb-2 block">
                 <Label htmlFor="birthplace" value="Birth Place"/>
             </div>
-            <Select id="birthplace" required>
-                <option value="" selected>Select Birth Place</option>
+            <Select id="birthplace" required defaultValue={""}>
+                <option value="">Select Birth Place</option>
                 <option value="Jakarta">Jakarta</option>
             </Select>
         </div>
@@ -55,8 +55,8 @@ const StudentDetailForm = () => {
             <div className="mb-2 block">
                 <Label htmlFor="religion" value="Religion"/>
             </div>
-            <Select id="religion" required>
-                <option value="" selected>Select Religion</option>
+            <Select id="religion" required defaultValue={""}>
+                <option value="">Select Religion</option>
                 <option value="Islam">Islam</option>
             </Select>
         </div>
