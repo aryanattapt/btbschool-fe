@@ -12,11 +12,16 @@ import {
 const FooterComponent = () => {
   return (
     <>
-      <Footer container className="bg-[#00305E] bg-auto text-white">
+      <Footer container className="bg-[#00305E] bg-auto text-white font-sans">
         <div className="w-full ">
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <Footer.Brand href="/" src="./LogoFooter.png" alt="BTB Logo" />
+              <Footer.Brand
+                href="/"
+                src="./LogoFooter.png"
+                alt="BTB Logo"
+                className="w-5/6"
+              />
             </div>
             <div>
               <div className="grid grid-cols-4 gap-4 justify-items-end">
