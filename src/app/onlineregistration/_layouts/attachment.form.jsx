@@ -8,7 +8,7 @@ import {
 const AttachmentForm = () => {
     return <>
         <div>
-            <HR.Text text="Emergency Contact Information (Other than Parents)"/>
+            <HR.Text text="Upload Attachment"/>
         </div>
         <div>
             <div className="mb-2 block">

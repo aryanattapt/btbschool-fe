@@ -1,5 +1,7 @@
 'use client'
+import SignaturePad from "signature_pad";
 import AttachmentForm from "./attachment.form";
+import DetailOfSiblingForm from "./detailofsibling.form";
 import EducationalBackgroundForm from "./educationalbackgroundform";
 import EmergencyContactForm from "./emergencycontactform";
 import MedicalProblemForm from "./medicalproblem.form";
@@ -18,7 +20,8 @@ const OnlineRegistrationForm = () => {
             <EducationalBackgroundForm/>
             <ParentsInformationForm/>
             <EmergencyContactForm/>
-            {/* Detail Siblings */}
+            <DetailOfSiblingForm/>
+            <SignaturePad/>
 
             {/* Page 2 */}
             {/* Peraturan dan Persyaratan Static Page */}
