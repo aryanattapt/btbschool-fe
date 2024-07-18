@@ -5,7 +5,7 @@ import NavBar from "./_components/navbar";
 const HomePage = () => {
   return (
     <>
-      <div className="flex flex-col px-3 lg:h-screen lg:gap-y-3 font-sans	font-['Poppins']">
+      <div className="flex flex-col lg:h-screen lg:gap-y-3 font-sans	font-['Poppins']">
         <NavBar />
         <CarouselComponents />
         <div className="grid grid-cols-2 gap-2 md:my-[91px]">
