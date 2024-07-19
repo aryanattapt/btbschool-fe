@@ -13,7 +13,7 @@ const CarouselComponents = () => {
         />
         <div className="absolute inset-0 grid h-full w-full place-items-center">
           <div className="text-left md:ml-[50px]">
-            <p className="md:text-[25px] text-white  text-justify	"></p>
+            <p className="md:text-[25px] text-white text-justify"></p>
             <p></p>
             {/* <div className="flex justify-center gap-2">
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
