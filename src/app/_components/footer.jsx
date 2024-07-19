@@ -12,25 +12,23 @@ import {
 const FooterComponent = () => {
   return (
     <>
-      <Footer container className="bg-[#00305E] bg-auto text-white font-sans">
-        <div className="w-full ">
-          <div className="grid grid-cols-2 gap-2">
-            <div>
-              <Footer.Brand
-                href="/"
-                src="./LogoFooter.png"
-                alt="BTB Logo"
-                className="w-5/6"
-              />
+      <Footer container className="bg-[#00305E] text-white font-sans">
+        <div className="w-full  ">
+          <div className="grid grid-cols-2 gap-2 ">
+            <div className="w-[478px] h-[111px] md:my-[50px] md:mx-[174px]">
+              <img src="./LogoFooter.png" alt="logo btb" className="" />
+              {/* <Footer.Brand href="/" src="./LogoFooter.png" alt="BTB Logo" /> */}
             </div>
             <div>
-              <div className="grid grid-cols-4 gap-4 justify-items-end">
-                <div>Test</div>
-                <div>Test02</div>
+              <div className="md:md-text[30px] font-semibold	ml-[75px] md:leading-[64px]">
+                <h1>Our Campuses</h1>
+                <div className="flex flex-wrap">
+                  <div></div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
+          <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6 ">
             <div>
               <Footer.Title title="about" />
               <Footer.LinkGroup col>

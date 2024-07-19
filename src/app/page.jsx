@@ -24,7 +24,7 @@ const HomePage = () => {
           </div>
         </div>
         {/* section */}
-        <div className="flex flex-nowrap md:my-[50px] md:mx-[76px] gap-4">
+        <div className="flex flex-nowrap md:my-[50px] md:mx-[76px] gap-7">
           <div>
             <div className="hover:bg-[#00305E] hover:opacity-75 rounded-[70px]">
               <img
@@ -99,6 +99,59 @@ const HomePage = () => {
               <div className="flex gap-2 justify-center ">
                 <p>Umur 16 - 17</p>
               </div>
+            </div>
+          </div>
+        </div>
+        {/* list News */}
+        <div className="md:my-[50px] md:mx-[76px]">
+          <div className="flex flex-nowrap gap-4">
+            <div className="md:text-[70px] ">
+              <h1>Lastest News</h1>
+            </div>
+            <div className="justify-right"> TEST </div>
+          </div>
+          <div className="grid grid-cols-3 gap-7">
+            <div>
+              <img
+                className="w-[360px] h-[361px]"
+                src="./feedHome1.jpeg"
+                alt="Feed1"
+              />
+            </div>
+            <div>
+              <img
+                className="w-[360px] h-[361px]"
+                src="./feedHome2.jpeg"
+                alt="Feed2"
+              />
+            </div>
+            <div>
+              <img
+                className="w-[360px] h-[361px]"
+                src="./feedHome3.jpeg"
+                alt="Feed3"
+              />
+            </div>
+            <div>
+              <img
+                className="w-[360px] h-[361px]"
+                src="./feedHome4.jpeg"
+                alt="Feed4"
+              />
+            </div>
+            <div>
+              <img
+                className="w-[360px] h-[361px]"
+                src="./feedHome5.jpeg"
+                alt="Feed5"
+              />
+            </div>
+            <div>
+              <img
+                className="w-[360px] h-[361px]"
+                src="./feedHome6.jpeg"
+                alt="Feed6"
+              />
             </div>
           </div>
         </div>
