@@ -29,12 +29,12 @@ const SignInForm = () => {
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type == 'file'){
-            setAlumniPayload(prevState => ({
+            setLoginPaylod(prevState => ({
                 ...prevState,
                 [name]: files
             }));
         } else{
-            setAlumniPayload(prevState => ({
+            setLoginPaylod(prevState => ({
                 ...prevState,
                 [name]: value
             }));

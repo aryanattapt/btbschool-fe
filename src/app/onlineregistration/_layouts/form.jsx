@@ -20,12 +20,12 @@ const OnlineRegistrationForm = () => {
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type == 'file'){
-            setAlumniPayload(prevState => ({
+            setOnlineRegisPayload(prevState => ({
                 ...prevState,
                 [name]: files
             }));
         } else{
-            setAlumniPayload(prevState => ({
+            setOnlineRegisPayload(prevState => ({
                 ...prevState,
                 [name]: value
             }));
