@@ -16,7 +16,31 @@ import { HiMail } from "react-icons/hi";
 
 const AlumniForm = () => {
     const [isLoading, setIsLoading] = useState(null);
-    const [laststudentyear, setLaststudentyear] = useState(new Date());
+    const [alumniPayload, setAlumniPayload] = useState({});
+
+    const formChangeHandler = (e) => {
+        const { name, value, type, files } = e.target;
+        if(type == 'file'){
+            setAlumniPayload(prevState => ({
+                ...prevState,
+                [name]: files
+            }));
+        } else{
+            setAlumniPayload(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
+    };
+
+    const submitHandler = (e) => {
+        setIsLoading(true);
+        console.log(alumniPayload);
+
+        /* Call API in here... */
+        
+        setIsLoading(false);
+    }
 
     return <>
         <div className="max-w-full grid gap-3">
@@ -32,34 +56,34 @@ const AlumniForm = () => {
                 <div className="mb-2 block">
                     <Label htmlFor="firstname" value="Nama Depan"/>
                 </div>
-                <TextInput id="firstname" type="text" autoFocus={true}/>
+                <TextInput id="firstname" name="firstname" type="text" autoFocus={true} onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="lastname" value="Nama Belakang" />
                 </div>
-                <TextInput id="lastname" type="text"/>
+                <TextInput id="lastname" name="lastname" type="text" onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="birthdate" value="Tanggal Lahir" />
                 </div>
-                <Datepicker id="birthdate" language="en-id"/>
+                <Datepicker id="birthdate" name="birthdate" language="en-id" onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="laststudentyear" value="Tahun Terakhir di BTB" />
                 </div>
-                <ReactDatePicker id="laststudentyear" dateFormat={"yyyy"} selected={laststudentyear} onChange={(date) => setLaststudentyear(date)} showYearPicker/>
+                <ReactDatePicker id="laststudentyear" name="laststudentyear" dateFormat={"yyyy"} selected={alumniPayload?.laststudentyear || ''} showYearPicker onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="edukasiOptions" value="Edukasi"/>
                 </div>
                 <div className="flex items-center gap-2" id="edukasiOptions">
-                    <Checkbox id="edukasiOptionSarjana" name="edukasiOptions"/>
+                    <Checkbox id="edukasiOptionSarjana" name="edukasiOptions" onChange={formChangeHandler}/>
                     <Label htmlFor="edukasiOptionSarjana">Sarjana</Label>
-                    <Checkbox id="edukasiOptionPascaSarjana" name="edukasiOptions"/>
+                    <Checkbox id="edukasiOptionPascaSarjana" name="edukasiOptions" onChange={formChangeHandler}/>
                     <Label htmlFor="edukasiOptionPascaSarjana">Pasca Sarjana</Label>
                 </div>
             </div>
@@ -68,9 +92,9 @@ const AlumniForm = () => {
                     <Label htmlFor="statusKerjaOptions" value="Profesi Sekarang"/>
                 </div>
                 <div className="flex items-center gap-2" id="statusKerjaOptions">
-                    <Radio id="statusKerjaOptionIya" name="statusKerjaOptions"/>
+                    <Radio id="statusKerjaOptionIya" name="statusKerjaOptions" onChange={formChangeHandler}/>
                     <Label htmlFor="statusKerjaOptionIya">Ya</Label>
-                    <Radio id="statusKerjaOptionTidak" name="statusKerjaOptions"/>
+                    <Radio id="statusKerjaOptionTidak" name="statusKerjaOptions" onChange={formChangeHandler}/>
                     <Label htmlFor="statusKerjaOptionTidak">Belum Bekerja</Label>
                 </div>
             </div>
@@ -78,19 +102,19 @@ const AlumniForm = () => {
                 <div className="mb-2 block">
                     <Label htmlFor="email" value="Email" />
                 </div>
-                <TextInput icon={HiMail} type="email" />
+                <TextInput icon={HiMail} type="email" id="email" name="email" onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="phoneno" value="Nomor Telepon" />
                 </div>
-                <TextInput id="phoneno" type="text" addon="+62"/>
+                <TextInput id="phoneno" name="phoneno" type="text" addon="+62" onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="photoFile" value="Unggah Foto" />
                 </div>
-                <FileInput accept="image/*" id="photoFile" helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg, .png)"/>
+                <FileInput accept="image/*" id="photoFile" name="photoFile" helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg, .png)" onChange={formChangeHandler}/>
             </div>
             <div>
                 <small className="text-gray-500 dark:text-gray-400">
@@ -98,7 +122,7 @@ const AlumniForm = () => {
                 </small>
             </div>
             <div>
-                <Button type="submit" className="w-full lg:w-auto" disabled={isLoading}>
+                <Button type="submit" className="w-full lg:w-auto" disabled={isLoading} onClick={submitHandler}>
                     {
                         isLoading ? <>
                             <Spinner aria-label="Spinner button example" size="sm" />

@@ -7,16 +7,12 @@ import { login } from "../../../../../services/auth.service";
 
 const SignInForm = () => {
     const [isLoading, setIsLoading] = useState(null);
-    const [username, setUsername] = useState('');    
-    const [password, setPassword] = useState('');
+    const [loginPayload, setLoginPaylod] = useState({});
     const router = useRouter();
 
     const loginHandler = () => {
         setIsLoading(true);
-        login({
-            "username": username,
-            "password": password
-        }).then(_ => {
+        login(loginPayload).then(_ => {
             setIsLoading(false);
             router.push('/admin')
         }).catch(err => {
@@ -28,6 +24,21 @@ const SignInForm = () => {
                 icon: 'error',
             })              
         });
+    };
+
+    const formChangeHandler = (e) => {
+        const { name, value, type, files } = e.target;
+        if(type == 'file'){
+            setAlumniPayload(prevState => ({
+                ...prevState,
+                [name]: files
+            }));
+        } else{
+            setAlumniPayload(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
     };
 
     return <>
@@ -44,11 +55,11 @@ const SignInForm = () => {
                 <div>
                     <div className="mb-4 flex flex-col gap-y-3">
                     <Label htmlFor="username">Your Username</Label>
-                    <TextInput id="username" name="username" placeholder="Username" type="text" onChange={(e) => setUsername(e.target.value)}/>
+                    <TextInput id="username" name="username" placeholder="Username" type="text" onChange={formChangeHandler}/>
                 </div>
                 <div className="mb-6 flex flex-col gap-y-3">
                     <Label htmlFor="password">Your password</Label>
-                    <TextInput id="password" name="password" placeholder="••••••••" type="password" onChange={(e) => setPassword(e.target.value)}/>
+                    <TextInput id="password" name="password" placeholder="••••••••" type="password" onChange={formChangeHandler}/>
                 </div>
                 {/* <div className="mb-6 flex items-center justify-between">
                     <div className="flex items-center gap-x-3">
