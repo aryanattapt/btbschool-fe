@@ -9,7 +9,7 @@ const BTBPeduliPage = () => {
       <NavBar />
       <Banner />
       <Pagging />
-      <h1 className="font-sans text-[#00305E] text-[60px] font-semibold	">
+      <h1 className="mx-[76px] font-sans text-[#00305E] text-[60px] font-semibold">
         BTB CARE
       </h1>
       <div className="flex flex-nowrap ml-[76px] font-sans">
@@ -48,6 +48,70 @@ const BTBPeduliPage = () => {
 
       <div class="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
 
+      <div className="mx-[76px] font-sans">
+        <h2 className="text-[#00305E] text-[50px] my-[35px]">
+          BTB PEDULI LINGKUNGAN
+        </h2>
+        <img
+          src="./btb-peduli2.png"
+          alt="btb-peduli2"
+          className="w-[1124px] mb-[25px]"
+        />
+        <p className="text-[#00305E] text-[30px] mb-[25px]">
+          Bumi kita merupakan warisan yang akan terus diturunkan dari generasi
+          ke generasi.
+        </p>
+        <p className="text-[20px]  mb-[25px]">
+          BTB Peduli berharap untuk menanamkan kepedulian sosial lingkungan yang
+          kuat dan bertanggung jawab dalam pribadi setiap murid, mulai dari
+          kelompok bermain hingga sekolah menengah atas. Program ini termasuk
+          BTB Peduli Lingkungan, Sukarelawan BTB, dan Tangan Penolong BTB
+          ditambah lagi tim khusus bencana alam.
+        </p>
+      </div>
+      <div className="flex flex-nowrap mx-[76px] gap-5 my-[100px]">
+        <div>
+          <h2 className="text-[#00305E] text-[30px] my-[35px]">
+            Melibatkan Semua
+          </h2>
+          <p className="leading-[38px] mr-[25px]">
+            Kegiatan BTB Green Hands melibatkan setiap murid untuk menanam pohon
+            sebagai bagian dari inisiatif global untuk mengurangi efek perubahan
+            iklim dan pemanasan global.
+          </p>
+        </div>
+        <div>
+          <img
+            src="./btb-peduli3.jpeg"
+            alt="btb-peduli3"
+            className="w-[1124px] mb-[25px]"
+          />
+        </div>
+      </div>
+
+      <div class="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
+
+      <div className="mx-[76px] font-sans">
+        <h2 className="text-[#00305E] text-[50px] my-[35px]">
+          BTB PEDULI LINGKUNGAN
+        </h2>
+        <img
+          src="./btb-peduli2.png"
+          alt="btb-peduli2"
+          className="w-[1124px] mb-[25px]"
+        />
+        <p className="text-[#00305E] text-[30px] mb-[25px]">
+          Bumi kita merupakan warisan yang akan terus diturunkan dari generasi
+          ke generasi.
+        </p>
+        <p className="text-[20px]  mb-[25px]">
+          BTB Peduli berharap untuk menanamkan kepedulian sosial lingkungan yang
+          kuat dan bertanggung jawab dalam pribadi setiap murid, mulai dari
+          kelompok bermain hingga sekolah menengah atas. Program ini termasuk
+          BTB Peduli Lingkungan, Sukarelawan BTB, dan Tangan Penolong BTB
+          ditambah lagi tim khusus bencana alam.
+        </p>
+      </div>
       <FooterComponent />
     </>
   );
