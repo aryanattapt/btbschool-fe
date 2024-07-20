@@ -102,13 +102,32 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+        <div class="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
+
         {/* list News */}
         <div className="md:my-[50px] md:mx-[76px]">
-          <div className="flex flex-nowrap gap-4">
+          <div className="grid grid-cols-2">
             <div className="md:text-[70px] ">
               <h1>Lastest News</h1>
             </div>
-            <div className="justify-right"> TEST </div>
+            <div class="join grid grid-cols-2">
+              <button class="join-item btn btn-outline">
+                <svg
+                  class="h-8 w-8 text-white-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+              <button class="join-item btn btn-outline">Next</button>
+            </div>
           </div>
           <div className="grid grid-cols-3 gap-7">
             <div>
