@@ -49,7 +49,7 @@ const OnlineRegistrationForm = () => {
             <EducationalBackgroundForm formChangeHandler={formChangeHandler}/>
             <ParentsInformationForm formChangeHandler={formChangeHandler}/>
             <EmergencyContactForm formChangeHandler={formChangeHandler}/>
-            <DetailOfSiblingForm formChangeHandler={formChangeHandler}/>
+            <DetailOfSiblingForm formChangeHandler={formChangeHandler} name="siblinglist"/>
             <SignaturePad formChangeHandler={formChangeHandler} name="ttd"/>
 
             {/* Page 2 */}
