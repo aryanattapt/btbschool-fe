@@ -8,7 +8,7 @@ import {
     TextInput
 } from "flowbite-react";
 
-const MedicalProblemForm = () => {
+const MedicalProblemForm = ({formChangeHandler}) => {
     return <>
         <div>
             <HR.Text text="Medical Problem"/>
@@ -18,13 +18,13 @@ const MedicalProblemForm = () => {
                 <Label htmlFor="alergicoption" value="Does your child have an allergy to any following?"/>
             </div>
             <div className="flex items-center gap-2" id="alergicoption">
-                <Radio id="foodalergyoption" name="alergicoption" value="a particular food item (e.g. shrim)"/>
+                <Radio id="foodalergyoption" name="alergicoption" value="a particular food item (e.g. shrim)" onChange={formChangeHandler}/>
                 <Label htmlFor="foodalergyoption">a particular food item (e.g. shrim)</Label>
-                <Radio id="insectstringoption" name="alergicoption" value="insect string"/>
+                <Radio id="insectstringoption" name="alergicoption" value="insect string" onChange={formChangeHandler}/>
                 <Label htmlFor="insectstringoption">insect string</Label>
-                <Radio id="penicilinoption" name="alergicoption" value="penicilin"/>
+                <Radio id="penicilinoption" name="alergicoption" value="penicilin" onChange={formChangeHandler}/>
                 <Label htmlFor="penicilinoption">penicilin</Label>
-                <Radio id="otheroption" name="alergicoption" value="other"/>
+                <Radio id="otheroption" name="alergicoption" value="other" onChange={formChangeHandler}/>
                 <Label htmlFor="otheroption">other</Label>
             </div>
         </div>
@@ -32,18 +32,18 @@ const MedicalProblemForm = () => {
             <div className="mb-2 block">
                 <Label htmlFor="natureofallergy" value="Please specify the nature of the allergy (doctor's certificate required)"/>
             </div>
-            <TextInput id="natureofallergy" type="text"/>
+            <TextInput id="natureofallergy" name="natureofallergy" type="text" onChange={formChangeHandler}/>
         </div>
         <div>
             <div className="mb-2 block">
                 <Label htmlFor="limitationofphysical" value="Does your child suffer any limitation on physical activity?"/>
             </div>
             <div className="flex items-center gap-2" id="limitationofphysical">
-                <Radio id="limitationofphysicalno" name="limitationofphysical" value="No"/>
+                <Radio id="limitationofphysicalno" name="limitationofphysical" value="No" onChange={formChangeHandler}/>
                 <Label htmlFor="limitationofphysicalno">No</Label>
-                <Radio id="limitationofphysicalyes" name="limitationofphysical" value="Yes"/>
+                <Radio id="limitationofphysicalyes" name="limitationofphysical" value="Yes" onChange={formChangeHandler}/>
                 <Label htmlFor="limitationofphysicalyes">Yes, please explain</Label>
-                <TextInput id="limitationofphysicalexplain" type="text"/>
+                <TextInput id="limitationofphysicalexplain" type="text" onChange={formChangeHandler}/>
             </div>
         </div>
         <div>
@@ -51,11 +51,11 @@ const MedicalProblemForm = () => {
                 <Label htmlFor="surgeryoperation" value="Has your child had any surgery or operation?"/>
             </div>
             <div className="flex items-center gap-2" id="surgeryoperation">
-                <Radio id="surgeryoperationno" name="surgeryoperation" value="No"/>
+                <Radio id="surgeryoperationno" name="surgeryoperation" value="No" onChange={formChangeHandler}/>
                 <Label htmlFor="surgeryoperationno">No</Label>
-                <Radio id="surgeryoperationyes" name="surgeryoperation" value="Yes"/>
+                <Radio id="surgeryoperationyes" name="surgeryoperation" value="Yes" onChange={formChangeHandler}/>
                 <Label htmlFor="surgeryoperationyes">Yes, please explain</Label>
-                <TextInput id="surgeryoperationexplain" type="text"/>
+                <TextInput id="surgeryoperationexplain" type="text" onChange={formChangeHandler}/>
             </div>
         </div>
         <div>
@@ -63,11 +63,11 @@ const MedicalProblemForm = () => {
                 <Label htmlFor="medicalproblemoptions" value="Has your child had or contracted any of the following medical problem?"/>
             </div>
             <div className="flex items-center gap-2" id="medicalproblemoptions">
-                <Checkbox id="asthmaoptions" name="medicalproblemoptions"/>
+                <Checkbox id="asthmaoptions" name="medicalproblemoptions" onChange={formChangeHandler}/>
                 <Label htmlFor="asthmaoptions">Asthma</Label>
-                <Checkbox id="hivoptions" name="medicalproblemoptions"/>
+                <Checkbox id="hivoptions" name="medicalproblemoptions" onChange={formChangeHandler}/>
                 <Label htmlFor="hivoptions">HIV</Label>
-                <Checkbox id="diabetesoptions" name="medicalproblemoptions"/>
+                <Checkbox id="diabetesoptions" name="medicalproblemoptions" onChange={formChangeHandler}/>
                 <Label htmlFor="diabetesoptions">Diabetes</Label>
             </div>
         </div>
@@ -78,7 +78,7 @@ const MedicalProblemForm = () => {
             <div className="mb-2 block">
                 <Label htmlFor="specificdisability" value="Please explain whether your child has specific disability (emotional, cognitive) that could affect her/his ability to learn"/>
             </div>
-            <TextInput id="specificdisability" type="text"/>
+            <TextInput id="specificdisability" name="specificdisability" type="text" onChange={formChangeHandler}/>
         </div>
     </>
 }

@@ -68,7 +68,7 @@ const AlumniForm = () => {
                 <div className="mb-2 block">
                     <Label htmlFor="birthdate" value="Tanggal Lahir" />
                 </div>
-                <Datepicker id="birthdate" name="birthdate" language="en-id" onChange={formChangeHandler}/>
+                <Datepicker id="birthdate" name="birthdate" language="en-id" onSelect={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">

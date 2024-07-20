@@ -50,13 +50,13 @@ const OnlineRegistrationForm = () => {
             <ParentsInformationForm formChangeHandler={formChangeHandler}/>
             <EmergencyContactForm formChangeHandler={formChangeHandler}/>
             <DetailOfSiblingForm formChangeHandler={formChangeHandler}/>
-            <SignaturePad formChangeHandler={formChangeHandler}/>
+            <SignaturePad formChangeHandler={formChangeHandler} name="ttd"/>
 
             {/* Page 2 */}
             {/* Peraturan dan Persyaratan Static Page */}
 
             {/* Page 3 */}
-            <PersonalHealthInformationForm formChangeHandler={formChangeHandler}/>
+            <PersonalHealthInformationForm currentData={onlineRegisPayload} formChangeHandler={formChangeHandler}/>
             <MedicalProblemForm formChangeHandler={formChangeHandler}/>
             {/* Sign */}
 

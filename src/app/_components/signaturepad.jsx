@@ -1,34 +1,27 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import SignatureCanvas from 'react-signature-canvas';
 
-const SignaturePad = () => {
-    const [sign,setSign] = useState()
-    const [url,setUrl] = useState()
+const SignaturePad = ({formChangeHandler, name}) => {
+    const SignatureCanvasRef = useRef({});
 
-    const handleClear= () =>{
-        sign.clear()
-        setUrl('')
+    const handleClear = () =>{
+        SignatureCanvasRef.current.clear()
     }
-    const handleGenerate= () =>{
-        console.log(sign.getTrimmedCanvas().toDataURL('image/png'));
-        setUrl(sign.getTrimmedCanvas().toDataURL('image/png'))
-    }
+
+    console.log(document.getElementsByName(name));
 
     return(
         <div>
             <div style={{border:"2px solid black",width: 500, height: 200}}>
                 <SignatureCanvas 
-                    canvasProps={{width: 500, height: 200, className: 'sigCanvas'}}
-                    ref={data=>setSign(data)}
+                    willReadFrequently = {true}
+                    canvasProps={{width: 500, height: 200, className: 'sigCanvas', id:`${name}`, name:`${name}`}}
+                    ref={SignatureCanvasRef}
                 />
             </div>
 
             <br></br>
             <button style={{height:"30px",width:"60px"}} onClick={handleClear}>Clear</button>
-            <button  style={{height:"30px",width:"60px"}} onClick={handleGenerate}>Preview  </button>
-
-            <br/><br/>
-            <img src={url} />
         </div>
     )
 }
