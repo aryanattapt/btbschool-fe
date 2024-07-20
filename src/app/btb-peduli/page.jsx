@@ -46,7 +46,7 @@ const BTBPeduliPage = () => {
         </p>
       </div>
 
-      <div class="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
+      <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
 
       <div className="mx-[76px] font-sans">
         <h2 className="text-[#00305E] text-[50px] my-[35px]">
@@ -89,7 +89,7 @@ const BTBPeduliPage = () => {
         </div>
       </div>
 
-      <div class="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
+      <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
 
       <div className="mx-[76px] font-sans">
         <h2 className="text-[#00305E] text-[50px] my-[35px]">
