@@ -50,7 +50,7 @@ const CarouselComponents = () => {
 
       {/* Video Slider */}
       <div className="relative h-96 w-screen">
-        <video autoPlay={true} muted={true} width="100%" height="100%">
+        <video autoPlay={true} muted={true} loop={true} width="100%" height="100%">
           <source src="./testvideo.mp4" type="video/mp4"/>
           Your browser does not support the video tag.
         </video>
