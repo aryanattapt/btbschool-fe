@@ -24,13 +24,33 @@ const OnlineRegistrationForm = () => {
                 ...prevState,
                 [name]: files
             }));
-        } else{
+        } else if(type == 'checkbox'){
+            if(e.target.checked){
+                setOnlineRegisPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], value] : [value  ]
+                }));
+            } else{
+                setOnlineRegisPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name].filter(val => val !== value)
+                }));
+            }
+        }
+        else{
             setOnlineRegisPayload(prevState => ({
                 ...prevState,
                 [name]: value
             }));
         }
     };
+
+    const datePickerHandler = (name, value) => {
+        setOnlineRegisPayload(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
 
     const submitHandler = (e) => {
         setIsLoading(true);
@@ -45,9 +65,9 @@ const OnlineRegistrationForm = () => {
         <div className="max-w-full grid gap-3">
             {/* Page 1 */}
             <SchoolInformationForm formChangeHandler={formChangeHandler}/>
-            <StudentDetailForm formChangeHandler={formChangeHandler}/>
+            <StudentDetailForm formChangeHandler={formChangeHandler} datePickerHandler={datePickerHandler}/>
             <EducationalBackgroundForm formChangeHandler={formChangeHandler}/>
-            <ParentsInformationForm formChangeHandler={formChangeHandler}/>
+            <ParentsInformationForm formChangeHandler={formChangeHandler} datePickerHandler={datePickerHandler}/>
             <EmergencyContactForm formChangeHandler={formChangeHandler}/>
             <DetailOfSiblingForm formChangeHandler={formChangeHandler} name="siblinglist"/>
             <SignaturePad formChangeHandler={formChangeHandler} name="ttd"/>

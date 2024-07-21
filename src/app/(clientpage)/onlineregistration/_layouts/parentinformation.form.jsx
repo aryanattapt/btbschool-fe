@@ -11,7 +11,7 @@ import {
     HiMail 
 } from "react-icons/hi";
 
-const ParentsInformationForm = ({formChangeHandler}) => {
+const ParentsInformationForm = ({formChangeHandler, datePickerHandler}) => {
     return <>
         <div>
             <HR.Text text="Parent / Guardian Information"/>
@@ -35,7 +35,7 @@ const ParentsInformationForm = ({formChangeHandler}) => {
             <div className="mb-2 block">
                 <Label htmlFor="fatherbirthdate" value="Tanggal Lahir" />
             </div>
-            <Datepicker id="fatherbirthdate" name="fatherbirthdate" language="en-id" onSelect={formChangeHandler}/>
+            <Datepicker id="fatherbirthdate" name="fatherbirthdate" language="en-id" onSelectedDateChanged={date => datePickerHandler('fatherbirthdate', date)}/>
         </div>
         <div>
             <div className="mb-2 block">
@@ -82,7 +82,7 @@ const ParentsInformationForm = ({formChangeHandler}) => {
             <div className="mb-2 block">
                 <Label htmlFor="motherbirthdate" value="Tanggal Lahir" />
             </div>
-            <Datepicker id="motherbirthdate" name="motherbirthdate" language="en-id" onSelect={formChangeHandler}/>
+            <Datepicker id="motherbirthdate" name="motherbirthdate" language="en-id" onSelectedDateChanged={date => datePickerHandler('motherbirthdate', date)}/>
         </div>
         <div>
             <div className="mb-2 block">

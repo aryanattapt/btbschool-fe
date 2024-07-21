@@ -73,7 +73,7 @@ const PersonalHealthInformationForm = ({currentData, formChangeHandler}) => {
             <div className="mb-2 block">
                 <Label htmlFor="naturemedication" value="Doctor's Telephone" />
             </div>
-            <TextInput id="naturemedication" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput id="doctorphone" name="doctorphone" type="text" addon="+62" onChange={formChangeHandler}/>
         </div>
         <div>
             <div className="mb-2 block">

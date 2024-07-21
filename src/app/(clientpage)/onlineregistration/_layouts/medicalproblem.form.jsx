@@ -1,5 +1,4 @@
 'use client'
-
 import { 
     Checkbox,
     HR,
@@ -43,7 +42,7 @@ const MedicalProblemForm = ({formChangeHandler}) => {
                 <Label htmlFor="limitationofphysicalno">No</Label>
                 <Radio id="limitationofphysicalyes" name="limitationofphysical" value="Yes" onChange={formChangeHandler}/>
                 <Label htmlFor="limitationofphysicalyes">Yes, please explain</Label>
-                <TextInput id="limitationofphysicalexplain" type="text" onChange={formChangeHandler}/>
+                <TextInput id="limitationofphysicalexplain" name="limitationofphysicalexplain"  type="text" onChange={formChangeHandler}/>
             </div>
         </div>
         <div>
@@ -55,7 +54,7 @@ const MedicalProblemForm = ({formChangeHandler}) => {
                 <Label htmlFor="surgeryoperationno">No</Label>
                 <Radio id="surgeryoperationyes" name="surgeryoperation" value="Yes" onChange={formChangeHandler}/>
                 <Label htmlFor="surgeryoperationyes">Yes, please explain</Label>
-                <TextInput id="surgeryoperationexplain" type="text" onChange={formChangeHandler}/>
+                <TextInput id="surgeryoperationexplain" name="surgeryoperationexplain" type="text" onChange={formChangeHandler}/>
             </div>
         </div>
         <div>
@@ -63,11 +62,11 @@ const MedicalProblemForm = ({formChangeHandler}) => {
                 <Label htmlFor="medicalproblemoptions" value="Has your child had or contracted any of the following medical problem?"/>
             </div>
             <div className="flex items-center gap-2" id="medicalproblemoptions">
-                <Checkbox id="asthmaoptions" name="medicalproblemoptions" onChange={formChangeHandler}/>
+                <Checkbox id="asthmaoptions" name="medicalproblemoptions" value="asthma" onChange={formChangeHandler}/>
                 <Label htmlFor="asthmaoptions">Asthma</Label>
-                <Checkbox id="hivoptions" name="medicalproblemoptions" onChange={formChangeHandler}/>
+                <Checkbox id="hivoptions" name="medicalproblemoptions" value="hiv" onChange={formChangeHandler}/>
                 <Label htmlFor="hivoptions">HIV</Label>
-                <Checkbox id="diabetesoptions" name="medicalproblemoptions" onChange={formChangeHandler}/>
+                <Checkbox id="diabetesoptions" name="medicalproblemoptions" value="diabetes" onChange={formChangeHandler}/>
                 <Label htmlFor="diabetesoptions">Diabetes</Label>
             </div>
         </div>

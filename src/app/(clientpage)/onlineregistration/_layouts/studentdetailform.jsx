@@ -13,7 +13,7 @@ import {
     HiMail 
 } from "react-icons/hi";
 
-const StudentDetailForm = ({formChangeHandler}) => {
+const StudentDetailForm = ({formChangeHandler, datePickerHandler}) => {
     return <>
         <div>
             <HR.Text text="Student Detail"/>
@@ -49,7 +49,7 @@ const StudentDetailForm = ({formChangeHandler}) => {
             <div className="mb-2 block">
                 <Label htmlFor="birthdate" value="Tanggal Lahir" />
             </div>
-            <Datepicker id="birthdate" name="birthdate" language="en-id" onSelect={formChangeHandler}/>
+            <Datepicker id="birthdate" name="birthdate" language="en-id" onSelectedDateChanged={date => datePickerHandler('birthdate', date)}/>
         </div>
         <div>
             <div className="mb-2 block">
