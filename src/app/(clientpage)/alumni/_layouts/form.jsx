@@ -25,7 +25,20 @@ const AlumniForm = () => {
                 ...prevState,
                 [name]: files
             }));
-        } else{
+        } else if(type == 'checkbox'){
+            if(e.target.checked){
+                setAlumniPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], value] : [value  ]
+                }));
+            } else{
+                setAlumniPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name].filter(val => val !== value)
+                }));
+            }
+        }
+        else{
             setAlumniPayload(prevState => ({
                 ...prevState,
                 [name]: value
@@ -40,6 +53,13 @@ const AlumniForm = () => {
         /* Call API in here... */
         
         setIsLoading(false);
+    }
+
+    const datePickerHandler = (name, value) => {
+        setAlumniPayload(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     }
 
     return <>
@@ -68,22 +88,22 @@ const AlumniForm = () => {
                 <div className="mb-2 block">
                     <Label htmlFor="birthdate" value="Tanggal Lahir" />
                 </div>
-                <Datepicker id="birthdate" name="birthdate" language="en-id" onSelect={formChangeHandler}/>
+                <Datepicker id="birthdate" name="birthdate" language="en-id" onSelectedDateChanged={date => datePickerHandler('birthdate', date)} />
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="laststudentyear" value="Tahun Terakhir di BTB" />
                 </div>
-                <ReactDatePicker id="laststudentyear" name="laststudentyear" dateFormat={"yyyy"} selected={alumniPayload?.laststudentyear || ''} showYearPicker onChange={formChangeHandler}/>
+                <ReactDatePicker id="laststudentyear" name="laststudentyear" dateFormat={"yyyy"} selected={alumniPayload?.laststudentyear || ''} showYearPicker onChange={date => datePickerHandler('laststudentyear', date)}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="edukasiOptions" value="Edukasi"/>
                 </div>
                 <div className="flex items-center gap-2" id="edukasiOptions">
-                    <Checkbox id="edukasiOptionSarjana" name="edukasiOptions" onChange={formChangeHandler}/>
+                    <Checkbox id="edukasiOptionSarjana" name="edukasiOptions" value="sarjana" onChange={formChangeHandler}/>
                     <Label htmlFor="edukasiOptionSarjana">Sarjana</Label>
-                    <Checkbox id="edukasiOptionPascaSarjana" name="edukasiOptions" onChange={formChangeHandler}/>
+                    <Checkbox id="edukasiOptionPascaSarjana" name="edukasiOptions" value="pascasarjana" onChange={formChangeHandler}/>
                     <Label htmlFor="edukasiOptionPascaSarjana">Pasca Sarjana</Label>
                 </div>
             </div>
@@ -92,9 +112,9 @@ const AlumniForm = () => {
                     <Label htmlFor="statusKerjaOptions" value="Profesi Sekarang"/>
                 </div>
                 <div className="flex items-center gap-2" id="statusKerjaOptions">
-                    <Radio id="statusKerjaOptionIya" name="statusKerjaOptions" onChange={formChangeHandler}/>
+                    <Radio id="statusKerjaOptionIya" name="statusKerjaOptions" value="kerja" onChange={formChangeHandler}/>
                     <Label htmlFor="statusKerjaOptionIya">Ya</Label>
-                    <Radio id="statusKerjaOptionTidak" name="statusKerjaOptions" onChange={formChangeHandler}/>
+                    <Radio id="statusKerjaOptionTidak" name="statusKerjaOptions" value="belumkerja" onChange={formChangeHandler}/>
                     <Label htmlFor="statusKerjaOptionTidak">Belum Bekerja</Label>
                 </div>
             </div>
