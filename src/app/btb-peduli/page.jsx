@@ -46,7 +46,7 @@ const BTBPeduliPage = () => {
         </p>
       </div>
 
-      <div class="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
+      <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
 
       <div className="mx-[76px] font-sans">
         <h2 className="text-[#00305E] text-[50px] my-[35px]">
@@ -89,28 +89,53 @@ const BTBPeduliPage = () => {
         </div>
       </div>
 
-      <div class="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
+      <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
 
-      <div className="mx-[76px] font-sans">
-        <h2 className="text-[#00305E] text-[50px] my-[35px]">
-          BTB PEDULI LINGKUNGAN
+      <div className=" font-sans">
+        <h2 className="text-[#00305E] text-[50px] my-[35px] mx-[76px]">
+          SUKARELAWAN BTB
         </h2>
+        <div className="flex flex-wrap mb-[25px]">
+          <div>
+            <img
+              src="./btb-peduli4.png"
+              alt="btb-peduli2"
+              className="w-[449px] h-[290px]"
+            />
+          </div>
+          <div>
+            <img
+              src="./btb-peduli5.jpeg"
+              alt="btb-peduli2"
+              className="w-[449px] h-[290px]"
+            />
+          </div>
+          <div>
+            <img
+              src="./btb-peduli6.jpeg"
+              alt="btb-peduli2"
+              className="w-[449px] h-[290px]"
+            />
+          </div>
+        </div>
+
+        <p className="text-[#00305E] text-[30px] mb-[25px] font-semibold mx-[76px]">
+          KOMITMEN UNTUK MELAYANI
+        </p>
+        <p className="text-[20px] mb-[25px] mx-[76px]">
+          Setiap murid BTB diajak untuk berpartisipasi dengan menjadi
+          sukarelawan dalam program yang disesuaikan dengan kelompok umur
+          mereka. Sebagai contoh para murid Kelompok Bermain dan Sekolah Dasar
+          dapat berkontribusi dengan menyiapkan dan membungkus kado, serta
+          mengunjungi panti asuhan. Murid Sekolah Menengah dapat menjadi
+          sukarelawan untuk mengajar anak-anak yang kurang beruntung sedangkan
+          murid Sekolah Menengah Atas dapat mengunjungi panti jompo.
+        </p>
         <img
-          src="./btb-peduli2.png"
-          alt="btb-peduli2"
-          className="w-[1124px] mb-[25px]"
+          src="./btb-peduli7.jpeg"
+          alt="btb-peduli7"
+          className="w-[1460.8px] h-[308px]"
         />
-        <p className="text-[#00305E] text-[30px] mb-[25px]">
-          Bumi kita merupakan warisan yang akan terus diturunkan dari generasi
-          ke generasi.
-        </p>
-        <p className="text-[20px]  mb-[25px]">
-          BTB Peduli berharap untuk menanamkan kepedulian sosial lingkungan yang
-          kuat dan bertanggung jawab dalam pribadi setiap murid, mulai dari
-          kelompok bermain hingga sekolah menengah atas. Program ini termasuk
-          BTB Peduli Lingkungan, Sukarelawan BTB, dan Tangan Penolong BTB
-          ditambah lagi tim khusus bencana alam.
-        </p>
       </div>
       <FooterComponent />
     </>
