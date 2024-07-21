@@ -3,7 +3,7 @@ import { Button, Card, Spinner, Label, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Swal from 'sweetalert2';
-import { login } from "../../../../../services/auth.service";
+import { login } from "../../../../../../services/auth.service";
 
 const SignInForm = () => {
     const [isLoading, setIsLoading] = useState(null);

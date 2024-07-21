@@ -1,5 +1,3 @@
-import FooterComponent from "../_components/footer";
-import NavBar from "../_components/navbar";
 import ContactForm from "./_layouts/form";
 import Banner from "./_layouts/banner";
 import Pagging from "./_layouts/pagging";
@@ -7,7 +5,6 @@ import Pagging from "./_layouts/pagging";
 const ContactPage = () => {
   return (
     <>
-      <NavBar />
       <Banner />
       <Pagging />
       <h1 className="mx-[76px] font-sans text-[#00305E] text-[60px] font-semibold">
@@ -28,8 +25,6 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-
-      <FooterComponent />
     </>
   );
 };

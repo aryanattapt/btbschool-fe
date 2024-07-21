@@ -1,12 +1,9 @@
-import FooterComponent from "../_components/footer";
-import NavBar from "../_components/navbar";
 import Banner from "./_layouts/banner";
 import Pagging from "./_layouts/pagging";
 
 const BTBPeduliPage = () => {
   return (
     <>
-      <NavBar />
       <Banner />
       <Pagging />
       <h1 className="mx-[76px] font-sans text-[#00305E] text-[60px] font-semibold">
@@ -137,7 +134,6 @@ const BTBPeduliPage = () => {
           className="w-[1460.8px] h-[308px]"
         />
       </div>
-      <FooterComponent />
     </>
   );
 };

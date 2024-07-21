@@ -1,12 +1,9 @@
-import CarouselComponents from "./_components/carousel";
-import FooterComponent from "./_components/footer";
-import NavBar from "./_components/navbar";
+import CarouselComponents from "../_components/carousel";
 
 const HomePage = () => {
   return (
     <>
       <div className="flex flex-col lg:h-screen font-sans text-[#00305E]">
-        <NavBar />
         <CarouselComponents />
         <div className="grid grid-cols-2 gap-2 md:my-[50px] md:mx-[76px]">
           <div className="">
@@ -174,7 +171,6 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <FooterComponent />
       </div>
     </>
   );

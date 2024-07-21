@@ -1,5 +1,5 @@
 'use client'
-import { isLogin } from '../../../services/auth.service';
+import { isLogin } from '../../../../services/auth.service';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import NavBar from './_components/navbar';
