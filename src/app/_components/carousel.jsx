@@ -1,11 +1,12 @@
 "use client";
-
-import { Carousel } from "flowbite-react";
+import { 
+  Carousel
+} from "flowbite-react";
 
 const CarouselComponents = () => {
   return (
-    <Carousel slideInterval={2000}>
-      <div className="relative h-screen w-screen">
+    <Carousel slideInterval={5000}>
+      <div className="relative h-96 w-screen">
         <img
           src="./slider1.jpeg"
           alt="penghargaan"
@@ -24,7 +25,7 @@ const CarouselComponents = () => {
         </div>
       </div>
 
-      <div className="relative h-full w-full">
+      <div className="relative h-96 w-screen">
         <img
           src="./slider2.jpeg"
           alt="penghargaan"
@@ -43,6 +44,25 @@ const CarouselComponents = () => {
                 Learn More!
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Video Slider */}
+      <div className="relative h-96 w-screen">
+        <video autoPlay={true} muted={true} width="100%" height="100%">
+          <source src="./testvideo.mp4" type="video/mp4"/>
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 grid h-full w-full place-items-center">
+          <div className="text-left md:ml-[50px]">
+            <p className="md:text-[25px] text-white text-justify"></p>
+            <p></p>
+            {/* <div className="flex justify-center gap-2">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Learn More!
+              </button>
+            </div> */}
           </div>
         </div>
       </div>
