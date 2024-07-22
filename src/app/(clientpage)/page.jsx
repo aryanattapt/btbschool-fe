@@ -5,7 +5,7 @@ const HomePage = () => {
     <>
       <div className="flex flex-col lg:h-screen font-sans text-[#00305E]">
         <CarouselComponents />
-        <div className="grid grid-cols-2 gap-2 md:my-[50px] md:mx-[76px]">
+        <div className="grid grid-cols-2 gap-2 md:my-[50px] md:mx-[76px] sm:grid-cols-1">
           <div className="">
             <p className="font-bold md:text-[30px]">Temukan Kelas:</p>
             <p className="font-extrabold md:text-[70px] md:font-[400] md:leading-[64px]">
@@ -21,18 +21,18 @@ const HomePage = () => {
           </div>
         </div>
         {/* section */}
-        <div className="flex flex-nowrap md:my-[50px] md:mx-[76px] gap-7">
+        <div className="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1 md:my-[50px] md:mx-[76px] gap-7">
           <div>
             <div className="hover:bg-[#00305E] hover:opacity-75 rounded-[70px]">
               <img
                 src="./edulevel1.jpeg"
                 alt="edulevel1"
-                className="object-cover rounded-[70px] w-[272px] h-[270px] "
+                className="object-cover rounded-[70px] md:w-[272px] md:h-[270px] "
               />
             </div>
             <div className="md:my-[10px]">
               <div className="flex gap-2 justify-center">
-                <p className="md:text-[30px] leading-[64px] font-sans text-justify font-semibold	">
+                <p className="md:text-[30px] md:leading-[64px] font-sans text-justify font-semibold	">
                   PAUD - TK
                 </p>
               </div>
@@ -46,12 +46,12 @@ const HomePage = () => {
               <img
                 src="./edulevel2.jpeg"
                 alt="edulevel2"
-                className="object-cover rounded-[70px] w-[272px] h-[270px] "
+                className="object-cover rounded-[70px] md:w-[272px] md:h-[270px] "
               />
             </div>
             <div className="md:my-[10px]">
               <div className="flex gap-2 justify-center">
-                <p className="md:text-[30px] leading-[64px] font-sans text-justify font-semibold	">
+                <p className="md:text-[30px] md:leading-[64px] font-sans text-justify font-semibold	">
                   Sekolah Dasar
                 </p>
               </div>
@@ -65,12 +65,12 @@ const HomePage = () => {
               <img
                 src="./edulevel3.jpeg"
                 alt="edulevel1"
-                className="object-cover rounded-[70px] w-[272px] h-[270px] "
+                className="object-cover rounded-[70px] md:w-[272px] md:h-[270px] "
               />
             </div>
             <div className="md:my-[10px]">
               <div className="flex gap-2 justify-center">
-                <p className="md:text-[30px] leading-[64px] font-sans text-justify font-semibold	">
+                <p className="md:text-[30px] md:leading-[64px] font-sans text-justify font-semibold	">
                   Sekolah Menengah
                 </p>
               </div>
@@ -84,12 +84,12 @@ const HomePage = () => {
               <img
                 src="./edulevel4.jpeg"
                 alt="edulevel1"
-                className="object-cover rounded-[70px] w-[272px] h-[270px] "
+                className="object-cover rounded-[70px] md:w-[272px] md:h-[270px] "
               />
             </div>
             <div className="md:my-[10px]">
               <div className="flex gap-2 justify-center">
-                <p className="md:text-[30px] leading-[64px] font-sans text-justify font-semibold	">
+                <p className="md:text-[30px] md:leading-[64px] font-sans text-justify font-semibold	">
                   SMA
                 </p>
               </div>
@@ -103,11 +103,11 @@ const HomePage = () => {
 
         {/* list News */}
         <div className="md:my-[50px] md:mx-[76px]">
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-2 md:grid-cols-1">
             <div className="md:text-[70px] ">
               <h1>Lastest News</h1>
             </div>
-            <div className="join grid grid-cols-2">
+            <div className="join grid grid-cols-2 md:grid-cols-1">
               <button className="join-item btn btn-outline">
                 <svg
                   className="h-8 w-8 text-white-500"
@@ -129,42 +129,42 @@ const HomePage = () => {
           <div className="grid grid-cols-3 gap-7">
             <div>
               <img
-                className="w-[360px] h-[361px]"
+                className="md:w-[360px] md:h-[361px]"
                 src="./feedHome1.jpeg"
                 alt="Feed1"
               />
             </div>
             <div>
               <img
-                className="w-[360px] h-[361px]"
+                className="md:w-[360px] md:h-[361px]"
                 src="./feedHome2.jpeg"
                 alt="Feed2"
               />
             </div>
             <div>
               <img
-                className="w-[360px] h-[361px]"
+                className="md:w-[360px] md:h-[361px]"
                 src="./feedHome3.jpeg"
                 alt="Feed3"
               />
             </div>
             <div>
               <img
-                className="w-[360px] h-[361px]"
+                className="md:w-[360px] md:h-[361px]"
                 src="./feedHome4.jpeg"
                 alt="Feed4"
               />
             </div>
             <div>
               <img
-                className="w-[360px] h-[361px]"
+                className="md:w-[360px] md:h-[361px]"
                 src="./feedHome5.jpeg"
                 alt="Feed5"
               />
             </div>
             <div>
               <img
-                className="w-[360px] h-[361px]"
+                className="md:w-[360px] md:h-[361px]"
                 src="./feedHome6.jpeg"
                 alt="Feed6"
               />
