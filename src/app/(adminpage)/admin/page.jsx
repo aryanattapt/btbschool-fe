@@ -2,9 +2,8 @@
 import { isLogin } from '../../../../services/auth.service';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import NavBar from './_components/navbar';
-import SideBar from './_components/sidebar';
 import { Spinner } from 'flowbite-react';
+import NavbarSidebarLayout from './_layouts/navigation';
 
 const AdminPage = () => {
     const router = useRouter();
@@ -21,8 +20,9 @@ const AdminPage = () => {
 
     if(isSignIn){
         return <>
-            <NavBar/>
-            <SideBar/>
+            <NavbarSidebarLayout >
+                test
+            </NavbarSidebarLayout>
         </>;
     } else {
         return <>
