@@ -22,7 +22,7 @@ const SignInForm = () => {
                 title: 'Signin Notification!',
                 text: err,
                 icon: 'error',
-            })              
+            });
         });
     };
 

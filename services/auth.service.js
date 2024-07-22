@@ -17,7 +17,10 @@ export const login = (payload) => new Promise(async (resolve, reject) => {
             secure: true,
         });
         return resolve(result.data);
-    } catch (error) {console.log(error); return reject(error.response.data?.message || error.message);}
+    } catch (error) {
+        console.log(error); 
+        return reject(error.response.data?.message || error.message);
+    }
 });
 
 export const logout = () => {

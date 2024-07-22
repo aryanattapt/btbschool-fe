@@ -1,5 +1,5 @@
 'use client'
-import SignaturePad from "@/app/_components/signaturepad";
+import SignaturePad from "../../../_components/signaturepad";
 import AttachmentForm from "./attachment.form";
 import DetailOfSiblingForm from "./detailofsibling.form";
 import EducationalBackgroundForm from "./educationalbackgroundform";

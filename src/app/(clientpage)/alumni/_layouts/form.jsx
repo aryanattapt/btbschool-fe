@@ -1,5 +1,4 @@
 'use client'
-
 import { 
     Blockquote,
     Button,
@@ -8,11 +7,14 @@ import {
     FileInput,
     Label, 
     Radio, 
-    TextInput 
+    TextInput,
+    Spinner,
 } from "flowbite-react";
 import { useState } from "react";
-import ReactDatePicker from "react-datepicker";
 import { HiMail } from "react-icons/hi";
+import { UploadAttachment } from '../../../../../services/attachment.service';
+import { SubmitAlumni } from '../../../../../services/alumni.service';
+import Swal from "sweetalert2";
 
 const AlumniForm = () => {
     const [isLoading, setIsLoading] = useState(null);
@@ -21,15 +23,17 @@ const AlumniForm = () => {
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type == 'file'){
-            setAlumniPayload(prevState => ({
-                ...prevState,
-                [name]: files
-            }));
+            Object.keys(files).map((val) => {
+                setAlumniPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
+                }));
+            });
         } else if(type == 'checkbox'){
             if(e.target.checked){
                 setAlumniPayload(prevState => ({
                     ...prevState,
-                    [name]: prevState[name] ? [...prevState[name], value] : [value  ]
+                    [name]: prevState[name] ? [...prevState[name], value] : [value]
                 }));
             } else{
                 setAlumniPayload(prevState => ({
@@ -41,18 +45,53 @@ const AlumniForm = () => {
         else{
             setAlumniPayload(prevState => ({
                 ...prevState,
-                [name]: value
+                [name]: (name == 'phoneno') ? `+62${value}` : value
             }));
         }
     };
 
     const submitHandler = (e) => {
         setIsLoading(true);
-        console.log(alumniPayload);
+        var formData = new FormData();
+        alumniPayload?.photoFile?.map((val) => {
+            formData.append('photoFile', val);
+        });
 
         /* Call API in here... */
-        
-        setIsLoading(false);
+        UploadAttachment('alumni', formData)
+        .then((res) => {
+            const alumniSubmitPayload = {...alumniPayload};
+            alumniSubmitPayload.attachment = res.data;
+            delete alumniSubmitPayload.photoFile;
+            SubmitAlumni(alumniSubmitPayload)
+            .then(_ => {
+                setIsLoading(false);
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Alumni Submission Notification!',
+                    text: "Success submit Alumni!",
+                    icon: 'info',
+                });
+            })
+            .catch((err) => {
+                setIsLoading(false);
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Alumni Submission Notification!',
+                    text: err,
+                    icon: 'error',
+                });
+            })
+        })
+        .catch((err) => {
+            setIsLoading(false);
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Alumni Submission Notification!',
+                text: err,
+                icon: 'error',
+            });
+        });
     }
 
     const datePickerHandler = (name, value) => {
@@ -94,7 +133,7 @@ const AlumniForm = () => {
                 <div className="mb-2 block">
                     <Label htmlFor="laststudentyear" value="Tahun Terakhir di BTB" />
                 </div>
-                <ReactDatePicker id="laststudentyear" name="laststudentyear" dateFormat={"yyyy"} selected={alumniPayload?.laststudentyear || ''} showYearPicker onChange={date => datePickerHandler('laststudentyear', date)}/>
+                <TextInput id="laststudentyear" name="laststudentyear" type="text" onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
@@ -134,7 +173,7 @@ const AlumniForm = () => {
                 <div className="mb-2 block">
                     <Label htmlFor="photoFile" value="Unggah Foto" />
                 </div>
-                <FileInput accept="image/*" id="photoFile" name="photoFile" helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg, .png)" onChange={formChangeHandler}/>
+                <FileInput multiple={true} accept="image/*" id="photoFile" name="photoFile" helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg, .png)" onChange={formChangeHandler}/>
             </div>
             <div>
                 <small className="text-gray-500 dark:text-gray-400">
