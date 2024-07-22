@@ -15,7 +15,7 @@ const FooterComponent = () => {
       <Footer container className="bg-[#00305E] text-white font-sans">
         <div className="w-full">
           <div className="grid grid-cols-2 gap-2 ">
-            <div className="w-[478px] h-[111px] md:my-[50px] md:mx-[174px]">
+            <div className="md:w-[478px] md:h-[111px] md:my-[50px] md:mx-[174px]">
               <img
                 src="./LogoFooter.png"
                 alt="logo btb"
@@ -26,7 +26,7 @@ const FooterComponent = () => {
                 <div>
                   <span>
                     <svg
-                      class="h-8 w-8 text-white-500"
+                      className="md:h-8 md:w-8 text-white-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -47,12 +47,12 @@ const FooterComponent = () => {
               </div>
             </div>
             <div>
-              <div className="ml-[75px] md:leading-[64px]">
+              <div className="md:ml-[75px] md:leading-[64px]">
                 <h1 className="font-semibold md:text-[30px] ">Our Campuses</h1>
                 <div className="flex flex-wrap md:mb-[30px]">
                   <div className="md:mr-[15px]">
                     <svg
-                      class="h-8 w-8 text-white-500"
+                      className="md:h-8 md:w-8 text-white-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -72,7 +72,7 @@ const FooterComponent = () => {
                     </svg>
                   </div>
                   <div className="md:ml-[15px]">
-                    <p className="leading-[1.5rem] md:text-[20px]">
+                    <p className="md:leading-[1.5rem] md:text-[20px]">
                       Pluit Campus Pluit Timur Blok MM
                       <br></br>
                       (021) 6698888
@@ -82,7 +82,7 @@ const FooterComponent = () => {
                 <div className="flex flex-wrap md:mb-[30px]">
                   <div className="md:mr-[15px]">
                     <svg
-                      class="h-8 w-8 text-white-500"
+                      className="md:h-8 md:w-8 text-white-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -102,7 +102,7 @@ const FooterComponent = () => {
                     </svg>
                   </div>
                   <div className="md:ml-[15px]">
-                    <p className="leading-[1.5rem] md:text-[20px]">
+                    <p className="md:leading-[1.5rem] md:text-[20px]">
                       Taman Pluit Putri, Jakarta Utara
                       <br></br>
                       (021) 6685858
@@ -111,7 +111,7 @@ const FooterComponent = () => {
                 </div>
                 <div className="">
                   <h2 className="md:text-[20px]">Page Navigation</h2>
-                  <div className="grid grid-cols-2 gap-4 sm:mt-3 sm:grid-cols-4 ">
+                  <div className="grid grid-cols-2 md:grid-cols-1 gap-4 md:gap-1 sm:mt-3 sm:grid-cols-1 ">
                     <div>
                       {/* <Footer.Title title="about" /> */}
                       <Footer.LinkGroup col>
@@ -153,7 +153,7 @@ const FooterComponent = () => {
           <Footer.Divider />
           <div className="w-full sm:flex sm:items-center sm:justify-between">
             <Footer.Copyright href="#" by="Flowbite™" year={2022} />
-            <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+            <div className="md:mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
               <Footer.Icon href="#" icon={BsFacebook} />
               <Footer.Icon href="#" icon={BsInstagram} />
               <Footer.Icon href="#" icon={BsTwitter} />

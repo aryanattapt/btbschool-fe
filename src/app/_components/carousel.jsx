@@ -5,13 +5,13 @@ import { Carousel } from "flowbite-react";
 const CarouselComponents = () => {
   return (
     <Carousel slideInterval={2000}>
-      <div className="relative h-screen w-screen">
+      <div className="relative md:h-screen md:w-screen">
         <img
           src="./slider1.jpeg"
           alt="penghargaan"
-          className="h-full w-full object-cover"
+          className="md:h-full md:w-full object-cover"
         />
-        <div className="absolute inset-0 grid h-full w-full place-items-center">
+        <div className="absolute inset-0 grid md:h-full md:w-full place-items-center">
           <div className="text-left md:ml-[50px]">
             <p className="md:text-[25px] text-white text-justify"></p>
             <p></p>
@@ -24,18 +24,18 @@ const CarouselComponents = () => {
         </div>
       </div>
 
-      <div className="relative h-full w-full">
+      <div className="relative md:h-full md:w-full">
         <img
           src="./slider2.jpeg"
           alt="penghargaan"
-          className="h-full w-full object-cover"
+          className="md:h-full md:w-full object-cover"
         />
-        <div className="absolute inset-0 grid h-full w-full place-items-center">
+        <div className="absolute inset-0 grid md:h-full md:w-full place-items-center">
           <div className="text-left md:ml-[50px]">
             <p className="md:text-[25px] text-black font-sans text-justify font-semibold	">
               Bina Tunas Bangsa
             </p>
-            <p className="md:text-[70px] leading-[64px] font-semibold text-white drop-shadow-xl shadow-black">
+            <p className="md:text-[70px] md:leading-[64px] font-semibold text-white drop-shadow-xl shadow-black">
               DATANG DAN BELAJAR <br></br>di Sekolah Terbaik Jakarta
             </p>
             <div className="flex justify-left gap-2">
