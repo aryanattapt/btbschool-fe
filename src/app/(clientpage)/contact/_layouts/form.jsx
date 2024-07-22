@@ -97,7 +97,7 @@ const ContactForm = () => {
         <div>
           <Button
             type="submit"
-            className="w-full lg:w-auto md:w-[200px] bg-[#243F6D]"
+            className="md:w-full lg:w-auto md:w-[200px] bg-[#243F6D]"
             disabled={isLoading}
             onClick={submitHandler}
           >
