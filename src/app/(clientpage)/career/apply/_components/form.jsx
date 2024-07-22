@@ -1,5 +1,4 @@
 'use client'
-
 import { 
     Blockquote, 
     Button, 
@@ -7,39 +6,91 @@ import {
     Label,
     Select,
     Textarea,
-    TextInput
+    TextInput,
+    Spinner
 } from "flowbite-react";
-import { useParams } from "next/navigation";
 import { useState } from "react";
 import { HiMail } from "react-icons/hi";
+import { SubmitCareer } from '../../../../../../services/career.service';
+import { UploadAttachment } from '../../../../../../services/attachment.service';
+import Swal from "sweetalert2";
 
-const CareerApplyForm = () => {
-    const params = useParams();
+const CareerApplyForm = ({params}) => {
     const [isLoading, setIsLoading] = useState(null);
-    const [careerPayload, setCareerPayload] = useState({});
+    const [careerPayload, setCareerPayload] = useState({"careerid": params.id});
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type == 'file'){
+            Object.keys(files).map((val) => {
+                setCareerPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
+                }));
+            });
+        } else if(type == 'checkbox'){
+            if(e.target.checked){
+                setCareerPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], value] : [value]
+                }));
+            } else{
+                setCareerPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name].filter(val => val !== value)
+                }));
+            }
+        }
+        else{
             setCareerPayload(prevState => ({
                 ...prevState,
-                [name]: files
-            }));
-        } else{
-            setCareerPayload(prevState => ({
-                ...prevState,
-                [name]: value
+                [name]: (name == 'phoneno') ? `+62${value}` : value
             }));
         }
     };
 
     const submitHandler = (e) => {
         setIsLoading(true);
-        console.log(careerPayload);
+        var formData = new FormData();
+        careerPayload?.cvFile?.map((val) => {
+            formData.append('cvFile', val);
+        });
 
         /* Call API in here... */
-        
-        setIsLoading(false);
+        UploadAttachment('career', formData)
+        .then((res) => {
+            const careerSubmitPayload = {...careerPayload};
+            careerSubmitPayload.attachment = res.data;
+            delete careerSubmitPayload.cvFile;
+            SubmitCareer(careerSubmitPayload)
+            .then(_ => {
+                setIsLoading(false);
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Alumni Submission Notification!',
+                    text: "Success submit Alumni!",
+                    icon: 'info',
+                });
+            })
+            .catch((err) => {
+                setIsLoading(false);
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Alumni Submission Notification!',
+                    text: err,
+                    icon: 'error',
+                });
+            })
+        })
+        .catch((err) => {
+            setIsLoading(false);
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Alumni Submission Notification!',
+                text: err,
+                icon: 'error',
+            });
+        });
     }
 
     return <>
