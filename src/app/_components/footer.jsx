@@ -26,13 +26,13 @@ const FooterComponent = () => {
                 <div>
                   <span>
                     <svg
-                      className="md:h-8 md:w-8 text-white-500"
+                      className="h-8 w-8 text-white-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />{" "}
                       <polyline points="22,6 12,13 2,6" />
@@ -52,15 +52,15 @@ const FooterComponent = () => {
                 <div className="flex flex-wrap md:mb-[30px]">
                   <div className="md:mr-[15px]">
                     <svg
-                      className="md:h-8 md:w-8 text-white-500"
+                      className="h-8 w-8 text-white-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke="currentColor"
                       fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       {" "}
                       <path stroke="none" d="M0 0h24v24H0z" />{" "}
@@ -82,15 +82,15 @@ const FooterComponent = () => {
                 <div className="flex flex-wrap md:mb-[30px]">
                   <div className="md:mr-[15px]">
                     <svg
-                      className="md:h-8 md:w-8 text-white-500"
+                      className="h-8 w-8 text-white-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke="currentColor"
                       fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       {" "}
                       <path stroke="none" d="M0 0h24v24H0z" />{" "}

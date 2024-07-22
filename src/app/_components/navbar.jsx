@@ -31,9 +31,9 @@ const NavBar = () => {
           Kontak
         </Navbar.Link>
       </Navbar.Collapse>
-      <Navbar.Collapse className="flex-auto md:w-64">
-        <label class="relative inline-flex cursor-pointer items-center">
-          {/* <input type="checkbox" checked class="peer sr-only" /> */}
+      <Navbar.Collapse className="flex-auto w-64">
+        <label className="relative inline-flex cursor-pointer items-center">
+          {/* <input type="checkbox" checked className="peer sr-only" /> */}
           <div>
             <div>
               <label>ID</label>
