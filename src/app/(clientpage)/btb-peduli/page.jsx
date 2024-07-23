@@ -27,7 +27,7 @@ const BTBPeduliPage = () => {
         </div>
       </div>
       <div className="content-center md:mx-[76px] ">
-        <p className="md:text-[20px] md:leading-[38px]">
+        <p className="md:text-[20px] md:leading-[38px] text-black">
           BTB Peduli berharap untuk menanamkan kepedulian sosial lingkungan yang
           kuat dan bertanggung jawab dalam pribadi setiap murid, mulai dari
           kelompok bermain hingga sekolah menengah atas.  Program ini termasuk
@@ -45,8 +45,8 @@ const BTBPeduliPage = () => {
 
       <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
 
-      <div className="md:mx-[76px] font-sans">
-        <h2 className="text-[#00305E] md:text-[50px] md:my-[35px]">
+      <div className="md:mx-[76px] font-sans" id="peduli-lingkungan">
+        <h2 className="text-[#00305E] md:text-[50px] md:my-[35px] font-medium	">
           BTB PEDULI LINGKUNGAN
         </h2>
         <img
@@ -58,7 +58,7 @@ const BTBPeduliPage = () => {
           Bumi kita merupakan warisan yang akan terus diturunkan dari generasi
           ke generasi.
         </p>
-        <p className="md:text-[20px] md:mb-[25px]">
+        <p className="md:text-[20px] md:mb-[25px] text-black">
           BTB Peduli berharap untuk menanamkan kepedulian sosial lingkungan yang
           kuat dan bertanggung jawab dalam pribadi setiap murid, mulai dari
           kelompok bermain hingga sekolah menengah atas. Program ini termasuk
@@ -68,10 +68,10 @@ const BTBPeduliPage = () => {
       </div>
       <div className="flex flex-nowrap md:mx-[76px] gap-5 md:my-[100px]">
         <div>
-          <h2 className="text-[#00305E] md:text-[30px] md:my-[35px]">
+          <h2 className="text-[#00305E] md:text-[30px] md:my-[35px] font-semibold	">
             Melibatkan Semua
           </h2>
-          <p className="md:leading-[38px] md:mr-[25px]">
+          <p className="md:leading-[38px] md:mr-[25px] md:text-[20px] text-black">
             Kegiatan BTB Green Hands melibatkan setiap murid untuk menanam pohon
             sebagai bagian dari inisiatif global untuk mengurangi efek perubahan
             iklim dan pemanasan global.
@@ -88,7 +88,7 @@ const BTBPeduliPage = () => {
 
       <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
 
-      <div className=" font-sans">
+      <div className=" font-sans" id="sukarelawan">
         <h2 className="text-[#00305E] md:text-[50px] md:my-[35px] md:mx-[76px]">
           SUKARELAWAN BTB
         </h2>
@@ -119,7 +119,7 @@ const BTBPeduliPage = () => {
         <p className="text-[#00305E] md:text-[30px] md:mb-[25px] font-semibold md:mx-[76px]">
           KOMITMEN UNTUK MELAYANI
         </p>
-        <p className="md:text-[20px] md:mb-[25px] md:mx-[76px]">
+        <p className="md:text-[20px] md:mb-[25px] md:mx-[76px] text-black">
           Setiap murid BTB diajak untuk berpartisipasi dengan menjadi
           sukarelawan dalam program yang disesuaikan dengan kelompok umur
           mereka. Sebagai contoh para murid Kelompok Bermain dan Sekolah Dasar
