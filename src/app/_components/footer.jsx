@@ -17,7 +17,7 @@ const FooterComponent = () => {
           <div className="grid grid-cols-2 gap-2 ">
             <div className="md:w-[478px] md:h-[111px] md:my-[50px] md:mx-[174px]">
               <img
-                src="./LogoFooter.png"
+                src="/LogoFooter.png"
                 alt="logo btb"
                 className="md:mb-[40px]"
               />

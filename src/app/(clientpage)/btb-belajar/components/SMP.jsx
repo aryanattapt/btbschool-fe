@@ -4,125 +4,179 @@ const SMP = () => {
     <>
       <div className="relative">
         <div className="mt-10 mb-5">
-          <h1 className="text-[35px] font-bold pl-32 text-[#00305E]">SMP</h1>
+            <h1 className="text-[35px] font-bold pl-32 text-[#00305E]">SEKOLAH MENENGAH</h1>
         </div>
         <div className="grid grid-cols-2">
           <div className="h-[350px]">
-            <img
-              src="./paud1.jpg"
-              alt="PAUD"
-              className="h-[350px] w-full object-cover"
-            />
+            <img src="../smp 6.jpg"
+            alt="SMP"
+            className="h-[350px] w-full object-cover" />
           </div>
           <div className="content-center bg-[#EF802B]">
+            <h1 className="pl-5 text-[20px] w-[545px] font-semibold text-[#000000]">
+            Pengalaman Yang Kaya, Pilihan dan Tantangan
+            </h1>
             <div className="p-5 text-left text-[20px] text-[#000000] text-pretty">
-              Kami berkomitmen untuk menyediakan lingkungan yang aman,
-              menyenangkan, dan penuh kasih sayang di mana anak-anak dapat
-              berkembang secara holistik. Dengan pendekatan pembelajaran yang
-              interaktif dan kreatif, kami membantu anak-anak mengembangkan
-              keterampilan sosial, emosional, dan akademik sejak dini.
+            Para murid ditantang untuk mengembangkan pribadi mereka pada tahun transisi yang penting 
+            di sekolah menengah ini, baik di dalam ataupun di luar kelas. 
+            Tujuan dari fase ini adalah untuk memperluas pandangan mereka terhadap diri sendiri untuk 
+            dapat menemukan kemampuan mereka pada subjek berbeda dan melanjutkan eksplorasi 
+            mereka pada dunia di luar lingkungan sekolah.
             </div>
           </div>
         </div>
         <div className="mt-10 mb-5 pl-32">
           <div className="border-b-8 border-[#EF802B] w-[180px]">
-            <h1 className="text-[30px] font-semibold text-[#00305E]">
-              KURIKULUM
-            </h1>
+            <h1 className="text-[30px] font-semibold text-[#00305E]">KURIKULUM</h1>
           </div>
+          <h1 className="text-balance text-[30px] text-[#000000] mt-5">Fokus:</h1>
         </div>
-        <div className="grid grid-cols-2 px-32 mt-5 gap-12">
-          <div className="text-[#000000]">
-            <h1 className="text-balance text-[30px]">Fokus:</h1>
+        <div className="text-[#000000]">
+          <div className="grid grid-cols-2 px-32 gap-12">
             <div className="ml-5">
               <ul className="list-disc">
-                <li>Bahasa Inggris</li>
-                <li>Matematika</li>
-                <li>Pelajaran Terintegrasi</li>
+                <li><strong>Bahasa Inggris</strong>- 
+                  Mengembangkan kemampuan berbahasa secara kreatif meliputi 
+                  mempelajari berbagai literasi dan membina kebiasaan belajar.
+                </li>
+                <li><strong>Bahasa Mandarin</strong>- 
+                  Memberikan kesempatan para murid untuk menguasai bahasa asing.
+                </li>
+                <li>
+                  <strong>Perniagaan</strong> - Memberikan tantangan pada para murid dalam area seperti Ekonomi, 
+                  Akuntansi, dan Bisnis.
+                </li>
+                <li>
+                  <strong>Matematika</strong>- Berperan penting dalam teknologi baru 
+                  dan mengembangkan kemampuan baca tulis para murid. 
+                  Kemampuan ini membantu mereka untuk lebih mengerti dunia.
+                </li>
               </ul>
             </div>
-            <div className="mt-2 text-justify text-pretty">
-              Pada beberapa subjek pelajaran yang saling berkaitan, akan ada
-              penekanan khusus untuk dapat mengintegrasikannya, terutama pada
-              tahun awal pendidikan. Pengajar bahasa asing khusus juga bekerja
-              sama dengan pengajar di kelas untuk mengintegrasikan program
-              pembelajaran dengan efektif.
-            </div>
-          </div>
-          <div className="text-[#000000]">
-            <h1 className="text-balance text-[30px]">Subyek Spesial:</h1>
             <div className="ml-5">
               <ul className="list-disc">
-                <li>Kesenian</li>
-                <li>Perpustakaan</li>
-                <li>Bahasa Mandarin</li>
-                <li>Musik</li>
-                <li>Pendidikan Jasmani</li>
-                <li>Komputer</li>
+                <li>
+                  <strong>Sains</strong> - Keberagaman, kesinambungan, dan konservasi adalah elemen penting pada mata pelajaran ini.
+                </li>
+                <li>
+                  <strong>TIK (Teknologi Informasi dan Komputer)</strong> - Mengenalkan para murid pada bidang teknologi terbaru.
+                </li>
+                <li>
+                  <strong>Pendidikan Jasmani</strong> - Memberikan para murid trik dan strategi untuk 
+                  menghadapi stress, konflik, dan berbagai masalah kesehatan dan gaya hidup.
+                </li>
+                <li>
+                  <strong>Musik, Kemampuan berdialog Bahasa Inggris, Agama, dan Kewarganegaraan</strong> juga merupakan mata pelajaran yang menjadi bagian dalam kurikulum.
+                </li>
               </ul>
             </div>
-            <div className="mt-2 text-justify text-pretty">
-              Para pengajar menggabungkan nilai - nilai dari BTB terhadap
-              perencanaan untuk mencapai cara mengajar yang kritis.
-            </div>
           </div>
         </div>
-        <div className="mt-20 pl-32">
-          <div className="border-b-8 border-[#EF802B] w-[180px]">
-            <h1 className="text-[30px] font-semibold text-[#00305E]">
-              AKTIVITAS
-            </h1>
+        <div className="my-10 bg-slate-300">
+          <div className="flex justify-center items-center py-10 mx-20 text-[#00305E] leading-loose text-[15px] font-semibold">
+            Sertifikasi ‘The Cambridge International General Certificate of Secondary Education’ 
+            (IGCSE) akan diberikan kepada lulusan murid tingkat 10 yang memenuhi kualifikasi dari sertifikat tersebut. 
+            Para murid juga akan mendapatkan raport yang mencakup nilai mereka pada Tingkat 9 dan Tingkat 10.
           </div>
         </div>
-        <div className="h-[305px] pl-32">
-          <div className="flex flex-wrap">
-            <div className="py-10 pr-10 text-justify text-pretty text-[#000000] w-[545px]">
-              Di Bina Tunas Bangsa, kami percaya bahwa kesehatan dan
-              kesejahteraan anak adalah fondasi penting untuk belajar yang
-              optimal. Oleh karena itu, kami menyediakan berbagai kegiatan
-              ekstrakurikuler yang mendukung gaya hidup sehat dan aktif bagi
-              siswa. Program-program ini dirancang untuk mengembangkan kebugaran
-              fisik, keterampilan sosial, dan kebiasaan hidup sehat sejak dini.
-            </div>
-            <div className="h-[305px] w-[518px]">
-              <img
-                src="/paud 3.jpg"
-                alt="PAUD"
-                className="h-[255px] w-full object-cover"
-              />
+        <div className="activity">
+          <div className="mt-10 flex justify-center items-center">
+            <div className="border-b-8 border-[#EF802B] w-[160px]"> 
+              <h1 className="text-[30px] font-semibold text-[#00305E]">AKTIVITAS</h1>
             </div>
           </div>
-        </div>
-        <div className="h-[305px] pl-32 mt-5">
-          <div className="flex flex-wrap">
-            <div className="h-[325px] w-[518px]">
-              <img
-                src="/paud 5.jpg"
-                alt="PAUD"
-                className="h-[305px] w-full object-cover"
-              />
-            </div>
-            <div className="pb-10 pl-10">
-              <h1 className="text-[20px] font-semibold text-[#000000]">
-                PROGRAM KAMI
-              </h1>
-              <div className="pl-3 text-[#000000] w-[545px]">
-                <ul className="list-disc">
-                  <li>Klub Mandarin</li>
-                  <li>Klub Menari</li>
-                  <li>Klub Kesenian</li>
-                  <li>Klub Bercerita</li>
-                  <li>Klub Menari Balet</li>
-                </ul>
-                <div className="pt-1">
-                  Program dan kegiatan setelah sekolah, yang dapat berubah
-                  setiap tahun pelajaran, berfokus untuk mendorong pemikiran dan
-                  mengembangkan kemampuan memecahkan masalah oleh anak - anak.
+          <div className="h-[305px] pl-32 mt-5">
+              <div className="flex flex-wrap">
+                <div className="py-10 pr-10 text-justify text-pretty text-[#000000] w-[545px] leading-loose">
+                Berbagai aktivitas kokurikuler tersedia untuk diikuti oleh anak anda, 
+                kegiatan ini bertujuan untuk mengembangkan minat dan kemampuan mereka di luar ruang kelas.
+                Program dan kegiatan setelah sekolah, yang dapat berubah setiap tahun pelajaran, 
+                berfokus untuk mendorong pemikiran dan mengembangkan kemampuan memecahkan masalah oleh anak - anak.
+                </div>
+                <div className="h-[315px] w-[518px]">
+                  <img src="/smp 7.jpg"
+                  alt="SMP"
+                  className="h-[305px] w-full object-cover" />
                 </div>
               </div>
             </div>
-          </div>
+            <div className="h-[305px] pl-32 mt-10">
+              <div className="flex flex-wrap">
+                <div className="h-[325px] w-[518px]">
+                  <img src="/smp 5.jpg"
+                  alt="PAUD"
+                  className="h-[305px] w-full object-cover" />
+                </div>
+                <div className="pb-10 pl-10">
+                  <h1 className="text-[20px] font-semibold text-[#000000]">PROGRAM KAMI</h1>
+                  <div className="grid grid-cols-2 gap-12">
+                    <div className="pl-3 text-[#000000]">
+                      <ul className="list-disc">
+                        <li>Jurnalistik</li>
+                        <li>HSK (Mandarin)</li>
+                        <li>Paduan Suara</li>
+                        <li>Bola Basket</li>
+                        <li>Futsal</li>
+                        <li>Band Sekolah</li>
+                        <li>Manga</li>
+                        <li>Coding</li>
+                        <li>Taekwondo</li>
+                        <li>Kewirausahaan Anak</li>
+                      </ul>
+                    </div>
+                    <div className="pl-3 text-[#000000]">
+                      <ul className="list-disc">
+                        <li>Board Games</li>
+                        <li>Robotika</li>
+                        <li>Art & Craft</li>
+                        <li>Content Creator</li>
+                        <li>Engineering for Kids</li>
+                        <li>Wushu</li>
+                        <li>Video Editing</li>
+                        <li>Dance</li>
+                        <li>Make X</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
+        <div className="diLuarKelas mb-10">
+          <div className="mt-20 flex justify-end items-center pr-32">
+            <div className="border-b-8 border-[#EF802B] w-[250x]"> 
+              <h1 className="text-[30px] font-semibold text-[#00305E]">DI LUAR RUANGAN</h1>
+            </div>
+          </div>
+          <div className="h-[305px] pl-32 mt-5 pb-10">
+              <div className="flex flex-wrap">
+                <div className="h-[305px] w-[518px]">
+                  <img src="/SMP 4.jpg"
+                  alt="SMP"
+                  className="h-[305px] w-full object-cover" />
+                </div>
+                <div className="pb-10 pl-10">
+                  <h1 className="text-[20px] w-[545px] font-semibold text-[#000000]">
+                  Menyesuaikan usia dan tahapan perkembangan anak dengan pengalaman yang 
+                  sesuai untuk menantang para murid untuk berkembang.
+                  </h1>
+                  <div className="text-[#000000] w-[545px] leading-loose">
+                  Mengembangkan karakter dan kemampuan dari murid. 
+                  Tantangan, inisiatif, kemandirian, kepemimpinan, kerjasama, tanggung jawab, pengambilan resiko, 
+                  hidup berdampingan, dan peduli lingkungan semua didukung dalam karyawisata dari tingkat 6 hingga tingkat 10.
+                  Kegiatan ini mengajak para murid untuk bertualang dari area sekolahan menuju area luar sekolah yang 
+                  sudah dipilih secara khusus untuk menciptakan pengalaman edukatif yang berkesan bersama dengan teman 
+                  sekelas.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-10 flex justify-center items-center">
+              <button type="button" className="w-[250px] focus:outline-none text-white bg-[#00305E] focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                <a href="/contact-us">Contact Us</a> 
+              </button>
+            </div>
+          </div>
       </div>
     </>
   );

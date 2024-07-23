@@ -32,7 +32,7 @@ const AboutUsPage = () => {
         </div>
       </div>
 
-      <div className="text-[35px] font-medium mb-8 text-center text-[#243F6D] border-b">
+      <div className="text-[30px] font-medium mb-8 text-center text-[#243F6D] border-b">
         <ul className="flex flex-nowrap place-content-center">
           <li className="w-[600px]">
             <a
@@ -55,9 +55,10 @@ const AboutUsPage = () => {
       </div>
 
       <div id="visi-misi" className="grid grid-cols-2 text-black m-[30px]">
-        <div className="pl-[50px]">
-          <h2 className="text-[30px] mb-[10px]">Visi</h2>
-          <p className="text-[20px] leading-[35px] ">
+        <div className="pl-[50px] leading-loose">
+          <h2 className="text-[25px] mb-[10px] font-semibold">Visi</h2>
+          <p className="leading-[35px] ">
+          {/* text-[20px]  */}
             Untuk memberikan pendidikan holistik dan membina siswa untuk menjadi
             pemimpin yang dinamis dalam masyarakat global.
           </p>
@@ -67,18 +68,23 @@ const AboutUsPage = () => {
             className="md:h-[370px] md:w-[546px] object-cover"
           />
         </div>
-        <div className="pl-[50px]">
-          <h2 className="text-[30px] mb-[10px]">Misi</h2>
-          <p className="text-[20px] leading-[35px]">
+        <div className="pl-[50px] leading-loose">
+          <h2 className="text-[25px] mb-[10px] font-semibold">Misi</h2>
+          <p className="leading-[35px]">
+          {/* text-[20px] */}
             Menyelenggarakan pendidikan internasional berkualitas yang akan
             mengembangkan kebutuhan individu siswa secara akademis, emosional,
-            fisik dan sosial dengan: - Menanamkan nilai moral dan budi pekerti
-            yang baik kepada siswa agar bertanggung jawab atas tindakannya. -
-            Mengembangkan Profil Pelajar BTB dengan menerapkan praktik
-            pendidikan terbaik dan mempromosikan literasi digital. - Menyediakan
-            lingkungan belajar yang aman dan nyaman di mana rasa hormat,
-            kejujuran, dan penghargaan terhadap perbedaan individu dipupuk.
+            fisik dan sosial dengan: 
           </p>
+          <ul className="list-disc">
+            <li>Menanamkan nilai moral dan budi pekerti
+            yang baik kepada siswa agar bertanggung jawab atas tindakannya.</li>
+            <li>Mengembangkan Profil Pelajar BTB dengan menerapkan praktik
+            pendidikan terbaik dan mempromosikan literasi digital.</li>
+            <li>Menyediakan
+            lingkungan belajar yang aman dan nyaman di mana rasa hormat,
+            kejujuran, dan penghargaan terhadap perbedaan individu dipupuk.</li>
+          </ul>
         </div>
       </div>
 
