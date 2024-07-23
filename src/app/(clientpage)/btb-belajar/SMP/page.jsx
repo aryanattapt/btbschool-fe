@@ -2,7 +2,7 @@ import Banner from "../components/Banner";
 import Pagging from "../components/Pagging";
 import SMP from "../components/SMP";
 
-const TKPage = () => {
+const SMPPage = () => {
   return (
     <>
       <Banner />
@@ -12,4 +12,4 @@ const TKPage = () => {
   );
 };
 
-export default TKPage;
+export default SMPPage;

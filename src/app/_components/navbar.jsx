@@ -6,8 +6,8 @@ const NavBar = () => {
   return (
     <Navbar className="bg-[#00305E] text-white flex">
       <Navbar.Brand href="/" className="flex-auto md:w-64">
-        <div className="md:w-60 md:h-100">
-          <img src="./LogoFooter.png" alt="logo btb" className="" />
+        <div className="md:w-60 md:h-100 ml-28">
+          <img src="/LogoFooter.png" alt="logo btb" className="" />
         </div>
       </Navbar.Brand>
       <Navbar.Collapse className="flex-auto md:w-64">

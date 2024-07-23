@@ -2,7 +2,7 @@
 const BannerLayouts = () => {
   return (
     <>
-      <div className="relative md:h-[528px]">
+      <div className="relative md:h-[405px]">
         <img
           src="./banneraboutus.jpg"
           alt="banneraboutus"

@@ -12,7 +12,7 @@ const Pagging = () => {
           <div className="inline-flex gap-20 text-[20px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
               <ul className="flex flex-wrap -mb-px py-10">
                   <li className="px-10">
-                      <a href="/btb-belajar/TK" className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600" aria-current="page">Paud - TK</a>
+                      <a href="/btb-belajar/TK" className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 active" aria-current="page">Paud - TK</a>
                   </li>
                   <li className="px-10">
                       <a href="/btb-belajar/SD" className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600">Sekolah Dasar</a>
