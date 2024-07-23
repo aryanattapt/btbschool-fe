@@ -9,9 +9,9 @@ export const metadata = {
 export default function ClientLayout({ children }) {
   return (
     <section>
-      <NavBar/>
+      <NavBar />
       {children}
-      <FooterComponent/>
+      <FooterComponent />
     </section>
   );
 }
