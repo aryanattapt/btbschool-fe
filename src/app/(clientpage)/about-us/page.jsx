@@ -15,7 +15,7 @@ const AboutUsPage = () => {
         <div className="grid grid-cols-2">
           <div className="h-[350px]">
             <img
-              src="../aboutus1.jpg"
+              src="../slider2.jpeg"
               alt="PAUD"
               className="h-[350px] w-full object-cover"
             />
@@ -54,24 +54,15 @@ const AboutUsPage = () => {
         </ul>
       </div>
 
-      <div id="visi-misi" className="grid grid-cols-2 text-black m-[30px]">
-        <div className="pl-[50px] leading-loose">
+      <div id="visi-misi" className="grid grid-cols-2 text-black m-[30px] leading-loose">
+        <div className="pl-[50px]">
           <h2 className="text-[25px] mb-[10px] font-semibold">Visi</h2>
-          <p className="leading-[35px] ">
-          {/* text-[20px]  */}
+          <p className="leading-[35px]">
             Untuk memberikan pendidikan holistik dan membina siswa untuk menjadi
             pemimpin yang dinamis dalam masyarakat global.
           </p>
-          <img
-            src="./aboutus2.jpg"
-            alt="aboutus2"
-            className="md:h-[370px] md:w-[546px] object-cover"
-          />
-        </div>
-        <div className="pl-[50px] leading-loose">
-          <h2 className="text-[25px] mb-[10px] font-semibold">Misi</h2>
+          <h2 className="text-[25px] mb-[10px] font-semibold mt-3">Misi</h2>
           <p className="leading-[35px]">
-          {/* text-[20px] */}
             Menyelenggarakan pendidikan internasional berkualitas yang akan
             mengembangkan kebutuhan individu siswa secara akademis, emosional,
             fisik dan sosial dengan: 
@@ -86,72 +77,89 @@ const AboutUsPage = () => {
             kejujuran, dan penghargaan terhadap perbedaan individu dipupuk.</li>
           </ul>
         </div>
+        <div className="pl-[50px]">
+        <img
+            src="./bannercontact.jpeg"
+            alt="aboutus2"
+            className="md:h-[500px] md:w-[546px] object-cover"
+          />
+        </div>
       </div>
-
+      <div className="my-10 bg-[#243F6D]">
+        <div className="flex text-center items-center py-10 mx-40 text-white leading-loose text-[15px] font-semibold">
+          Pengajar BTB mendorong para murid untuk dapat menemukan tempatnya di dunia yang memiliki tantangan 
+          dan peluang tidak terbatas ini. Mereka membimbing para murid untuk berpikir, bertindak, dan menerima 
+          rekannya dan diri mereka sendiri.
+        </div>
+      </div>
       <div
         id="jenjang-pendidikan"
         className="flex flex-wrap m-[20px] place-content-center"
       >
         <div className="md:m-[20px]">
-          <div className="bg-[url('./aboutus3.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center hover:bg-black">
-            <div className="text-left md:ml-[10px] place-content-end">
-              <p className="md:text-[25px] font-sans text-justify font-semibold">
-                PAUD - TK
-              </p>
-              <a
-                href="about-us#jenjang-pendidikan"
-                className="underline place-content-end"
-              >
-                Lihat Kurikulum
-              </a>
+          <div className="bg-[url('./aboutus3.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
+            <div className="h-full hover:bg-[#243F6D] hover:opacity-80">
+              <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
+                <div>
+                <p className="md:text-[35px] text-justify font-bold text-[#FFFFFF]">
+                  PAUD - TK
+                </p>
+                <a href="/btb-belajar/TK" target="_blank" className="opacity-0 font-semibold group-hover:opacity-100 underline transition-opacity duration-300">
+                  Lihat Kurikulum
+                </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="md:m-[20px]">
-          <div className="bg-[url('./aboutus4.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center hover:bg-black">
-            <div className="text-left md:ml-[20px] place-content-end">
-              <p className="md:text-[25px] font-sans text-justify font-semibold">
-                Sekolah Dasar
-              </p>
-              <a
-                href="about-us#jenjang-pendidikan"
-                className="underline place-content-end"
-              >
-                Lihat Kurikulum
-              </a>
+          <div className="bg-[url('./aboutus4.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
+            <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80">
+              <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
+                <div>
+                <p className="md:text-[35px] text-justify font-bold text-[#FFFFFF]">
+                  Sekolah Dasar
+                </p>
+                <a href="/btb-belajar/SD" target="_blank" className="opacity-0 font-semibold group-hover:opacity-100 underline transition-opacity duration-300">
+                  Lihat Kurikulum
+                </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="md:m-[20px]">
-          <div className="bg-[url('./aboutus5.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center hover:bg-black">
-            <div className="text-left md:ml-[50px] place-content-end">
-              <p className="md:text-[25px] font-sans text-justify font-semibold">
-                Sekolah Menengah
-              </p>
-              <a
-                href="about-us#jenjang-pendidikan"
-                className="underline place-content-end"
-              >
-                Lihat Kurikulum
-              </a>
+          <div className="bg-[url('./aboutus5.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
+            <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80">
+              <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
+                <div>
+                <p className="md:text-[35px] text-justify font-bold text-[#FFFFFF]">
+                  Sekolah Menengah
+                </p>
+                <a href="/btb-belajar/SMP" target="_blank" className="opacity-0 font-semibold group-hover:opacity-100 underline transition-opacity duration-300">
+                  Lihat Kurikulum
+                </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="md:m-[20px]">
-          <div className="bg-[url('./aboutus6.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center hover:bg-black">
-            <div className="text-left md:ml-[50px] place-content-end">
-              <p className="md:text-[25px] font-sans text-justify font-semibold">
-                Sekolah Menengah Atas
-              </p>
-              <a
-                href="about-us#jenjang-pendidikan"
-                className="underline place-content-end"
-              >
-                Lihat Kurikulum
-              </a>
+          <div className="bg-[url('./aboutus6.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
+            <div className="h-full hover:bg-[#243F6D] hover:opacity-80">
+              <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
+                <div>
+                  <p className="md:text-[35px] text-justify font-bold text-white">
+                    Sekolah Menengah Atas
+                  </p>
+                  <a href="/btb-belajar/SMA" target="_blank" className="opacity-0 group-hover:opacity-100 font-semibold underline transition-opacity duration-300">
+                    Lihat Kurikulum
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
