@@ -2,144 +2,98 @@
 
 import { Footer } from "flowbite-react";
 import {
-  BsDribbble,
   BsFacebook,
-  BsGithub,
+  BsYoutube,
   BsInstagram,
   BsTwitter,
 } from "react-icons/bs";
+import { MdMailOutline } from "react-icons/md";
+import { FaMapPin } from "react-icons/fa";
 
 const FooterComponent = () => {
   return (
     <>
       <Footer className="bg-[#00305E] text-white font-sans">
         <div className="w-full">
-          <div className="grid grid-cols-2 gap-2 ">
-            <div className="md:w-[478px] md:h-[111px] md:my-[50px] md:mx-[174px]">
+          <div className="grid grid-cols-2 gap-2 md:my-[50px]">
+            <div className="md:w-[478px] md:h-[111px] md:ml-28 md:mt-2">
               <img
                 src="/LogoFooter.png"
                 alt="logo btb"
                 className="md:mb-[40px]"
               />
-              <p className="md:my-[5px] md:text-[20px]">Connect With Us</p>
+              <div className="md:my-[5px] inline-flex">
+                <div className="md:text-[20px] mr-10">Connect With Us</div>
+                <a href="http://www.facebook.com" className="m-2"><BsFacebook/></a>
+                <a href="http://www.instagram.com" className="m-2"><BsInstagram/></a>
+                <a href="http://www.twitter.com" className="m-2"><BsTwitter/></a>
+                <a href="http://www.youtube.com" className="m-2"><BsYoutube/></a>
+              </div>
               <div className="flex flex-nowrap">
                 <div>
-                  <span>
-                    <svg
-                      className="h-8 w-8 text-white-500"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />{" "}
-                      <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                  </span>
-                </div>
-                <div className="md:ml-[15px]">
-                  <p className="md:my-[5px] md:text-[20px]">
-                    admission@btbschool.org
-                  </p>
+                  <a href="mailto:admission@btbschool.org" className="inline-flex underline">
+                    <MdMailOutline className="mt-2"/>
+                    <div className="pb-2 md:ml-[10px] md:text-[20px]">admission@btbschool.org</div>
+                  </a>
                 </div>
               </div>
             </div>
             <div>
-              <div className="md:ml-[75px] md:leading-[64px]">
-                <h1 className="font-semibold md:text-[30px] ">Our Campuses</h1>
-                <div className="flex flex-wrap md:mb-[30px]">
+              <div className="md:ml-[75px]">
+                <h1 className="font-semibold md:text-[30px]">Our Campuses</h1>
+                <div className="flex flex-wrap mt-2">
                   <div className="md:mr-[15px]">
-                    <svg
-                      className="h-8 w-8 text-white-500"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      {" "}
-                      <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                      <line x1="18" y1="6" x2="18" y2="6.01" />{" "}
-                      <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5" />{" "}
-                      <polyline points="10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15" />{" "}
-                      <line x1="9" y1="4" x2="9" y2="17" />{" "}
-                      <line x1="15" y1="15" x2="15" y2="20" />
-                    </svg>
+                    <FaMapPin/>
                   </div>
-                  <div className="md:ml-[15px]">
-                    <p className="md:leading-[1.5rem] md:text-[20px]">
+                  <div className="md:ml-[15px] md:text-[20px]">
+                    <div className="md:leading-[1.5rem]">
                       Pluit Campus Pluit Timur Blok MM
-                      <br></br>
+                    </div>
+                    <div className="mt-2">
                       (021) 6698888
-                    </p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-wrap md:mb-[30px]">
+                <div className="flex flex-wrap md:mb-[30px] md:mt-2">
                   <div className="md:mr-[15px]">
-                    <svg
-                      className="h-8 w-8 text-white-500"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      {" "}
-                      <path stroke="none" d="M0 0h24v24H0z" />{" "}
-                      <line x1="18" y1="6" x2="18" y2="6.01" />{" "}
-                      <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5" />{" "}
-                      <polyline points="10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15" />{" "}
-                      <line x1="9" y1="4" x2="9" y2="17" />{" "}
-                      <line x1="15" y1="15" x2="15" y2="20" />
-                    </svg>
+                    <FaMapPin/>
                   </div>
-                  <div className="md:ml-[15px]">
-                    <p className="md:leading-[1.5rem] md:text-[20px]">
+                  <div className="md:ml-[15px] md:text-[20px]">
+                    <div className="md:leading-[1.5rem]">
                       Taman Pluit Putri, Jakarta Utara
-                      <br></br>
+                    </div>
+                    <div className="mt-2">
                       (021) 6685858
-                    </p>
+                    </div>
                   </div>
                 </div>
                 <div className="">
-                  <h2 className="md:text-[20px]">Page Navigation</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-1 gap-4 md:gap-1 sm:mt-3 sm:grid-cols-1 ">
+                  <h2 className="font-semibold md:text-[30px]">Page Navigation</h2>
+                  <div className="grid grid-cols-2 md:grid-cols-4 sm:mt-3 sm:grid-cols-1">
                     <div>
-                      {/* <Footer.Title title="about" /> */}
                       <Footer.LinkGroup col>
-                        <Footer.Link href="#" className="text-white">
+                        <Footer.Link href="./onlineregistration" className="text-white text-[15px]">
                           Daftar
                         </Footer.Link>
                       </Footer.LinkGroup>
                     </div>
                     <div>
-                      {/* <Footer.Title title="Follow us" /> */}
                       <Footer.LinkGroup col>
-                        <Footer.Link href="#" className="text-white">
+                        <Footer.Link href="./karir" className="text-white text-[15px]">
                           Karir
                         </Footer.Link>
                       </Footer.LinkGroup>
                     </div>
                     <div>
-                      {/* <Footer.Title title="Legal" /> */}
                       <Footer.LinkGroup col>
-                        <Footer.Link href="#" className="text-white">
+                        <Footer.Link href="./alumni" className="text-white text-[15px]">
                           Alumni
                         </Footer.Link>
                       </Footer.LinkGroup>
                     </div>
                     <div>
-                      {/* <Footer.Title title="Legal" /> */}
                       <Footer.LinkGroup col>
-                        <Footer.Link href="./contact" className="text-white">
+                        <Footer.Link href="./contact" className="text-white text-[15px]">
                           Kontak
                         </Footer.Link>
                       </Footer.LinkGroup>
@@ -149,16 +103,16 @@ const FooterComponent = () => {
               </div>
             </div>
           </div>
+          <hr class="h-px my-5 bg-gray-600 border-0" />
 
-          <Footer.Divider />
-          <div className="w-full sm:flex sm:items-center sm:justify-between">
-            <Footer.Copyright href="#" by="Flowbite™" year={2022} />
-            <div className="md:mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+          {/* <Footer.Divider /> */}
+          <div className="w-full sm:flex sm:items-center sm:justify-between px-28 mb-5">
+            <Footer.Copyright href="/" by="Bina Tunas Bangsa™" year={2024} />
+            <div className="flex space-x-6 sm:mt-0 sm:justify-center">
               <Footer.Icon href="#" icon={BsFacebook} />
               <Footer.Icon href="#" icon={BsInstagram} />
               <Footer.Icon href="#" icon={BsTwitter} />
-              <Footer.Icon href="#" icon={BsGithub} />
-              <Footer.Icon href="#" icon={BsDribbble} />
+              <Footer.Icon href="#" icon={BsYoutube} />
             </div>
           </div>
         </div>
