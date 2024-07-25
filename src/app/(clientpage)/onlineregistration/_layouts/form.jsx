@@ -14,7 +14,7 @@ import DraftNoForm from './draft.form';
 import { useState } from "react";
 import { Button, Spinner } from "flowbite-react";
 import { UploadAttachment } from "../../../../../services/attachment.service";
-import { SubmitStudentRegistration } from "../../../../../services/onlineregistration.service";
+import { GetOutstandingStudentRegistration, SubmitStudentRegistration } from "../../../../../services/onlineregistration.service";
 import Swal from "sweetalert2";
 
 const OnlineRegistrationForm = () => {
@@ -67,15 +67,25 @@ const OnlineRegistrationForm = () => {
 
         /* Collect Attachment */
         var formData = new FormData();
-        registrationPayload?.birthcertificateattachment.map((val) => {
-            formData.append('birthcertificate', val);
-        });
-        registrationPayload?.familycardattachment.map((val) => {
-            formData.append('familycardattachment', val);
-        });
-        registrationPayload?.reportcardattachment.map((val) => {
-            formData.append('reportcardattachment', val);
-        });
+        if(registrationPayload.birthcertificateattachment && Array.isArray(registrationPayload.birthcertificateattachment)){
+            registrationPayload.birthcertificateattachment.map((val) => {
+                console.log(val);
+                formData.append('birthcertificate', val);
+            });
+        }  if(registrationPayload.familycardattachment && Array.isArray(registrationPayload.familycardattachment)){
+            registrationPayload.familycardattachment.map((val) => {
+                console.log(val);
+                formData.append('familycardattachment', val);
+            });
+        } if(registrationPayload.reportcardattachment && Array.isArray(registrationPayload.reportcardattachment)){
+            registrationPayload.reportcardattachment.map((val) => {
+                console.log(val);
+                formData.append('reportcardattachment', val);
+            });
+        }
+
+        console.log(registrationPayload);
+        setStateCallBack(false);
 
         /* Call API in here... */
         UploadAttachment('studentregistration', formData)
@@ -86,17 +96,15 @@ const OnlineRegistrationForm = () => {
             delete studentRegistrationPayload.reportcardattachment;
             
             studentRegistrationPayload.attachment = res.data;
-            studentRegistrationPayload._id = studentRegistrationPayload.draftregistrationno;
             studentRegistrationPayload.status = isFinal ? 'send' : 'draft';
-            delete studentRegistrationPayload.draftregistrationno;
             
             SubmitStudentRegistration(studentRegistrationPayload)
-            .then(_ => {
+            .then(res => {
                 setStateCallBack(false);
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Student Submission Notification!',
-                    text: "Success submit student data!",
+                    text: `Success submit student data with no:  ${res.data.registrationCode}`,
                     icon: 'info',
                 });
             })
@@ -129,10 +137,40 @@ const OnlineRegistrationForm = () => {
         submitHandler(false, setIsLoadingSaveAndSend);
     }
 
+    const fetchDraftDataHandler = () => {
+        if(!registrationPayload.registrationcode){
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Student Submission Notification!',
+                text: "Please input registration code",
+                icon: 'error',
+            });
+            return
+        }
+        GetOutstandingStudentRegistration(registrationPayload.registrationcode)
+        .then((res) => {
+            setRegistrationPayload(res.data[0])
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Student Submission Notification!',
+                text: `Success get registration data`,
+                icon: 'info',
+            });
+        })
+        .catch((err) => {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Student Submission Notification!',
+                text: err,
+                icon: 'error',
+            });
+        })
+    }
+
     return <>
         <div className="max-w-full grid gap-3">
             {/* Page Draft Registration No */}
-            <DraftNoForm payload={registrationPayload} formChangeHandler={formChangeHandler}/>
+            <DraftNoForm fetchDraftDataHandler={fetchDraftDataHandler} payload={registrationPayload} formChangeHandler={formChangeHandler}/>
 
             {/* Page 1 */}
             <SchoolInformationForm payload={registrationPayload} formChangeHandler={formChangeHandler}/>
@@ -186,7 +224,6 @@ const OnlineRegistrationForm = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     </>
 }
