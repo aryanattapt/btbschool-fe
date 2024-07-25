@@ -12,7 +12,7 @@ import {
 const FooterComponent = () => {
   return (
     <>
-      <Footer container className="bg-[#00305E] text-white font-sans">
+      <Footer className="bg-[#00305E] text-white font-sans">
         <div className="w-full">
           <div className="grid grid-cols-2 gap-2 ">
             <div className="md:w-[478px] md:h-[111px] md:my-[50px] md:mx-[174px]">
