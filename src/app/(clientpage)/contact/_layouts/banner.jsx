@@ -2,7 +2,7 @@
 const BannerLayouts = () => {
   return (
     <>
-      <div className="relative md:h-[528px]">
+      <div className="relative md:h-[405px]">
         <img
           src="./bannercontact.jpeg"
           alt="bannercontact"

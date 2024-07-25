@@ -4,7 +4,7 @@ import { Navbar } from "flowbite-react";
 
 const NavBar = () => {
   return (
-    <Navbar className="bg-[#00305E] text-white flex">
+    <Navbar className="bg-[#00305E] text-white flex fixed top-0 z-20 start-0 w-full p-4">
       <Navbar.Brand href="/" className="flex-auto md:w-64">
         <div className="md:w-60 md:h-100 ml-28">
           <img src="/LogoFooter.png" alt="logo btb" className="" />
@@ -12,26 +12,25 @@ const NavBar = () => {
       </Navbar.Brand>
       <Navbar.Collapse className="flex-auto md:w-64">
         <Navbar.Link
-          href="#"
-          className="text-white font-sans"
-          //active
+          href="/about-us"
+          className="text-white"
         >
           Tentang Kami
         </Navbar.Link>
-        <Navbar.Link href="#" className="text-white font-sans">
+        <Navbar.Link href="#" className="text-white">
           Daftar
         </Navbar.Link>
-        <Navbar.Link href="#" className="text-white font-sans ">
+        <Navbar.Link href="#" className="text-white">
           Karir
         </Navbar.Link>
-        <Navbar.Link href="./alumni" className="text-white font-sans">
+        <Navbar.Link href="./alumni" className="text-white">
           Alumni
         </Navbar.Link>
-        <Navbar.Link href="./contact" className="text-white font-sans">
+        <Navbar.Link href="./contact" className="text-white">
           Kontak
         </Navbar.Link>
       </Navbar.Collapse>
-      <Navbar.Collapse className="flex-auto w-64">
+      <Navbar.Collapse className="w-64 mr-28">
         <label className="relative inline-flex cursor-pointer items-center">
           {/* <input type="checkbox" checked className="peer sr-only" /> */}
           <div>
