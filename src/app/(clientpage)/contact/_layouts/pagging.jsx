@@ -2,19 +2,38 @@
 const PaggingLayouts = () => {
   return (
     <>
-      <div className="grid grid-cols-2 font-sans text-[#00305E] md:py-10 md:mb-[30px] border-collapse	border border-slate-400">
-        <div className="content-center">
-          <h1 className="md:text-[35px] text-center font-medium">KONTAK</h1>
-        </div>
-        <div className="grid grid-cols-2">
-          <div>
-            <h1 className="md:text-[25px] text-center">Hubungi Kami</h1>
+      <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
+        <div className="inline-flex gap-12">
+          <div className="border-r-2">
+            <div className="pr-10 pl-32">
+              <h1 className="text-[25px] text-center font-semibold py-10">
+                Kontak
+              </h1>
+            </div>
           </div>
-          <div>
-            <h1 className="md:text-[25px] text-center">Lokasi Kami</h1>
+          <div className="inline-flex gap-20 text-[20px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
+            <ul className="flex flex-wrap -mb-px py-10">
+              <li className="px-10">
+                <a
+                  href="/contact#contact"
+                  className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600"
+                  aria-current="page"
+                >
+                  Hubungi Kami
+                </a>
+              </li>
+              <li className="px-10">
+                <a
+                  href="/contact#location"
+                  className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600"
+                >
+                  Lokasi Kami
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
+      </header>
     </>
   );
 };
