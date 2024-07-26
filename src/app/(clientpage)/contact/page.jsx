@@ -10,12 +10,12 @@ const ContactPage = () => {
       <Banner />
       <Pagging />
       <div id="hubungi-kami md:mx-[76px] mx-[10px] ">
-        <h1 className="mt-10 text-[#00305E] md:text-[50px] text-[25px] font-semibold	">
+        <h1 className="mt-10 md:mx-[76px] mx-[0px] text-[#00305E] md:text-[50px] text-[25px] font-semibold	">
           HUBUNGI KAMI
         </h1>
         <div className="md:mx-[76px] text-[#00305E] grid grid-cols-1 md:grid-cols-2 mb-10">
           <div className="md:mr-[70px] mr-[50px]">
-            <p className="md:text-[45px] text-[16px] my-5 text-black">
+            <p className="md:text-[30px] text-[16px] my-5 text-black">
               Ambil langkah awal untuk bergabung bersama kami!
             </p>
             <div className="flex-col">
@@ -23,7 +23,7 @@ const ContactPage = () => {
             </div>
           </div>
           <div>
-            <div className="md:w-[372px] md:h-auto w-[372px] h-auto bg-[#EF802B] rounded-3xl mx-5 mt-8 place-content-center">
+            <div className="md:w-[456px] md:h-auto w-[372px] h-auto bg-[#EF802B] rounded-3xl mx-5 mt-8 place-content-center">
               <div className="text-white pb-10">
                 <div className="header px-5 md:px-15 ">
                   <h1 className="font-bold md:text-[21px] text-[15px] pt-10">
