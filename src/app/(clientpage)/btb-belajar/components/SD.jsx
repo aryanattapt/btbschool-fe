@@ -9,7 +9,7 @@ const SD = () => {
         </div>
         <div className="grid grid-cols-2">
           <div className="h-[350px]">
-            <img src="/sd 1.jpg"
+            <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd 1.jpg"
             alt="PAUD"
             className="h-[350px] w-full object-cover" />
           </div>
@@ -84,7 +84,7 @@ const SD = () => {
                 berfokus untuk mendorong pemikiran dan mengembangkan kemampuan memecahkan masalah oleh anak - anak.
                 </div>
                 <div className="h-[305px] w-[518px]">
-                  <img src="/sd 2.jpg"
+                  <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd 2.jpg"
                   alt="SD"
                   className="h-[255px] w-full object-cover" />
                 </div>
@@ -93,7 +93,7 @@ const SD = () => {
             <div className="h-[305px] pl-32 mt-5">
               <div className="flex flex-wrap">
                 <div className="h-[325px] w-[518px]">
-                  <img src="/sd 4.jpg"
+                  <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd 4.jpg"
                   alt="PAUD"
                   className="h-[305px] w-full object-cover" />
                 </div>
@@ -146,7 +146,7 @@ const SD = () => {
           <div className="h-[305px] pl-32 mt-5 pb-10">
               <div className="flex flex-wrap">
                 <div className="h-[305px] w-[518px]">
-                  <img src="/sd 3.jpg"
+                  <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd 3.jpg"
                   alt="PAUD"
                   className="h-[305px] w-full object-cover" />
                 </div>

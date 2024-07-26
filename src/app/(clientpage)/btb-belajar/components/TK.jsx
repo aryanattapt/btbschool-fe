@@ -12,7 +12,7 @@ const TK = () => {
         <div className="grid grid-cols-2">
           <div className="h-[350px]">
             <img
-              src="../paud1.jpg"
+              src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud1.jpg"
               alt="PAUD"
               className="h-[350px] w-full object-cover"
             />
@@ -87,7 +87,7 @@ const TK = () => {
             </div>
             <div className="h-[305px] w-[518px]">
               <img
-                src="/paud 3.jpg"
+                src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 3.jpg"
                 alt="PAUD"
                 className="h-[255px] w-full object-cover"
               />
@@ -98,7 +98,7 @@ const TK = () => {
           <div className="flex flex-wrap">
             <div className="h-[325px] w-[518px]">
               <img
-                src="/paud 5.jpg"
+                src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 5.jpg"
                 alt="PAUD"
                 className="h-[305px] w-full object-cover"
               />
@@ -134,7 +134,7 @@ const TK = () => {
           <div className="h-[305px] pl-32 mt-5">
               <div className="flex flex-wrap">
                 <div className="h-[305px] w-[518px]">
-                  <img src="/paud 6.jpg"
+                  <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 6.jpg"
                   alt="PAUD"
                   className="h-[305px] w-full object-cover" />
                 </div>

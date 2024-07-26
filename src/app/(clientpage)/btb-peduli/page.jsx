@@ -12,7 +12,7 @@ const BTBPeduliPage = () => {
       <div className="flex flex-nowrap md:ml-[76px] font-sans">
         <div>
           <img
-            src="./btb-peduli1.png"
+            src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli1.png"
             alt="btb-peduli1"
             className="md:w-[519px]"
           />
@@ -50,7 +50,7 @@ const BTBPeduliPage = () => {
           BTB PEDULI LINGKUNGAN
         </h2>
         <img
-          src="./btb-peduli2.png"
+          src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli2.png"
           alt="btb-peduli2"
           className="md:w-[1124px] md:mb-[25px]"
         />
@@ -79,7 +79,7 @@ const BTBPeduliPage = () => {
         </div>
         <div>
           <img
-            src="./btb-peduli3.jpeg"
+            src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli3.jpeg"
             alt="btb-peduli3"
             className="md:w-[1124px] md:mb-[25px]"
           />
@@ -95,21 +95,21 @@ const BTBPeduliPage = () => {
         <div className="flex flex-wrap md:mb-[25px]">
           <div>
             <img
-              src="./btb-peduli4.png"
+              src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli4.png"
               alt="btb-peduli2"
               className="md:w-[449px] md:h-[290px]"
             />
           </div>
           <div>
             <img
-              src="./btb-peduli5.jpeg"
+              src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli5.jpeg"
               alt="btb-peduli2"
               className="md:w-[449px] md:h-[290px]"
             />
           </div>
           <div>
             <img
-              src="./btb-peduli6.jpeg"
+              src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli6.jpeg"
               alt="btb-peduli2"
               className="md:w-[449px] md:h-[290px]"
             />
@@ -129,7 +129,7 @@ const BTBPeduliPage = () => {
           murid Sekolah Menengah Atas dapat mengunjungi panti jompo.
         </p>
         <img
-          src="./btb-peduli7.jpeg"
+          src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli7.jpeg"
           alt="btb-peduli7"
           className="md:w-[1460.8px] md:h-[308px]"
         />

@@ -8,7 +8,7 @@ const SMA = () => {
         </div>
         <div className="grid grid-cols-2">
           <div className="h-[350px]">
-            <img src="../sma 3.jpg"
+            <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/sma 3.jpg"
             alt="SMA"
             className="h-[350px] w-full object-cover" />
           </div>
@@ -97,7 +97,7 @@ const SMA = () => {
                 berfokus untuk mendorong pemikiran dan mengembangkan kemampuan memecahkan masalah oleh anak - anak.
                 </div>
                 <div className="h-[315px] w-[518px]">
-                  <img src="/SMA 4.jpg"
+                  <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA 4.jpg"
                   alt="SMA"
                   className="h-[305px] w-full object-cover" />
                 </div>
@@ -106,7 +106,7 @@ const SMA = () => {
             <div className="h-[305px] pl-32 mt-10">
               <div className="flex flex-wrap">
                 <div className="h-[325px] w-[518px]">
-                  <img src="/smp 5.jpg"
+                  <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp 5.jpg"
                   alt="PAUD"
                   className="h-[305px] w-full object-cover" />
                 </div>
@@ -116,7 +116,7 @@ const SMA = () => {
                     <div className="pl-3 text-[#000000]">
                       <ul className="list-disc">
                         <li>HSK (Mandarin)</li>
-                        <lI>IELTS</lI>
+                        <li>IELTS</li>
                         <li>Paduan Suara</li>
                         <li>Jurnalisme</li>
                         <li>Bola Basket Putra</li>
@@ -154,7 +154,7 @@ const SMA = () => {
           <div className="h-[305px] pl-32 mt-5 pb-10">
               <div className="flex flex-wrap">
                 <div className="h-[305px] w-[518px]">
-                  <img src="/SMA 1.jpg"
+                  <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA 1.jpg"
                   alt="SMA"
                   className="h-[305px] w-full object-cover" />
                 </div>

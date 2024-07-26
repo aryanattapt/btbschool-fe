@@ -8,7 +8,7 @@ const NavBar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Navbar.Brand href="/admin">
-              <img alt="" src="/images/logo.svg" className="mr-3 h-6 sm:h-8" />
+              <img alt="" src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/logo.svg" className="mr-3 h-6 sm:h-8" />
               <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
                 Bina Tunas Bangsa
               </span>

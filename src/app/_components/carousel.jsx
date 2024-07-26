@@ -6,7 +6,7 @@ const CarouselComponents = () => {
     <Carousel slideInterval={5000} className="relative md:h-[100vh] w-full">
   <div className="relative h-full w-full">
     <img
-      src="./slider1.jpg/"
+      src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider1.jpg"
       alt="penghargaan"
       className="h-full w-full object-cover"
     />
@@ -29,7 +29,7 @@ const CarouselComponents = () => {
 
   <div className="relative h-full w-full">
     <img
-      src="./slider2.jpg"
+      src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpg"
       alt="penghargaan"
       className="h-full w-full object-cover"
     />
@@ -52,7 +52,7 @@ const CarouselComponents = () => {
 
   <div className="relative h-full w-full">
     <img
-      src="./slider3.jpg"
+      src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider3.jpg"
       alt="penghargaan"
       className="h-full w-full object-cover"
     />
@@ -81,7 +81,7 @@ const CarouselComponents = () => {
       loop={true}
       className="h-full w-full object-cover"
     >
-      <source src="/slider4.mp4" type="video/mp4" />
+      <source src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider4.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
     <div className="absolute inset-0 grid h-full w-full place-items-center">

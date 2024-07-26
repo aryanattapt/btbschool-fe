@@ -14,7 +14,7 @@ const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
         >
             <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between p-4 border-b border-gray-700">
-                    <img alt="" src="/Logo BTB 1.1-01.png" className="mr-3 h-6 sm:h-8" />
+                    <img alt="" src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/Logo BTB 1.1-01.png" className="mr-3 h-6 sm:h-8" />
                     <button onClick={onClose} className="md:hidden">
                         <HiX size={24} />
                     </button>

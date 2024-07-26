@@ -15,7 +15,7 @@ const AboutUsPage = () => {
         <div className="grid grid-cols-2">
           <div className="h-[350px]">
             <img
-              src="../slider2.jpeg"
+              src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpeg"
               alt="PAUD"
               className="h-[350px] w-full object-cover"
             />
@@ -79,7 +79,7 @@ const AboutUsPage = () => {
         </div>
         <div className="pl-[50px]">
         <img
-            src="./bannercontact.jpeg"
+            src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
             alt="aboutus2"
             className="md:h-[500px] md:w-[546px] object-cover"
           />
@@ -97,7 +97,7 @@ const AboutUsPage = () => {
         className="flex flex-wrap m-[20px] place-content-center"
       >
         <div className="md:m-[20px]">
-          <div className="bg-[url('./aboutus3.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
+          <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus3.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
             <div className="h-full hover:bg-[#243F6D] hover:opacity-80">
               <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
                 <div>
@@ -114,7 +114,7 @@ const AboutUsPage = () => {
         </div>
 
         <div className="md:m-[20px]">
-          <div className="bg-[url('./aboutus4.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
+          <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus4.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
             <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80">
               <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
                 <div>
@@ -131,7 +131,7 @@ const AboutUsPage = () => {
         </div>
 
         <div className="md:m-[20px]">
-          <div className="bg-[url('./aboutus5.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
+          <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus5.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
             <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80">
               <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
                 <div>
@@ -148,7 +148,7 @@ const AboutUsPage = () => {
         </div>
 
         <div className="md:m-[20px]">
-          <div className="bg-[url('./aboutus6.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
+          <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus6.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
             <div className="h-full hover:bg-[#243F6D] hover:opacity-80">
               <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
                 <div>

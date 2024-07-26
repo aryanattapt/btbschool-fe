@@ -18,7 +18,7 @@ const FooterComponent = () => {
           <div className="grid grid-cols-2 gap-2 md:my-[50px]">
             <div className="md:w-[478px] md:h-[111px] md:ml-28 md:mt-2">
               <img
-                src="/LogoFooter.png"
+                src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png"
                 alt="logo btb"
                 className="md:mb-[40px]"
               />
@@ -72,28 +72,28 @@ const FooterComponent = () => {
                   <div className="grid grid-cols-2 md:grid-cols-4 sm:mt-3 sm:grid-cols-1">
                     <div>
                       <Footer.LinkGroup col>
-                        <Footer.Link href="./onlineregistration" className="text-white text-[15px]">
+                        <Footer.Link href="/onlineregistration" className="text-white text-[15px]">
                           Daftar
                         </Footer.Link>
                       </Footer.LinkGroup>
                     </div>
                     <div>
                       <Footer.LinkGroup col>
-                        <Footer.Link href="./karir" className="text-white text-[15px]">
+                        <Footer.Link href="/career" className="text-white text-[15px]">
                           Karir
                         </Footer.Link>
                       </Footer.LinkGroup>
                     </div>
                     <div>
                       <Footer.LinkGroup col>
-                        <Footer.Link href="./alumni" className="text-white text-[15px]">
+                        <Footer.Link href="/alumni" className="text-white text-[15px]">
                           Alumni
                         </Footer.Link>
                       </Footer.LinkGroup>
                     </div>
                     <div>
                       <Footer.LinkGroup col>
-                        <Footer.Link href="./contact" className="text-white text-[15px]">
+                        <Footer.Link href="/contact" className="text-white text-[15px]">
                           Kontak
                         </Footer.Link>
                       </Footer.LinkGroup>
@@ -103,7 +103,7 @@ const FooterComponent = () => {
               </div>
             </div>
           </div>
-          <hr class="h-px my-5 bg-gray-600 border-0" />
+          <hr className="h-px my-5 bg-gray-600 border-0" />
 
           {/* <Footer.Divider /> */}
           <div className="w-full sm:flex sm:items-center sm:justify-between px-28 mb-5">

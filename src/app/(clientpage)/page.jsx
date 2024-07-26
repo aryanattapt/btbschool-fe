@@ -26,7 +26,7 @@ const HomePage = () => {
 
     {/* Section */}
   <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mx-[30px] md:my-[40px]">
-    <div className="bg-[url('./edulevel1.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel1.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
       <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
         <div className="flex items-center justify-center h-full text-white group">
           <a href="/btb-belajar/TK" target="_blank" className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300">
@@ -43,7 +43,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-    <div className="bg-[url('./edulevel2.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel2.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
       <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
         <div className="flex items-center justify-center h-full text-white group">
           <a href="/btb-belajar/SD" target="_blank" className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300">
@@ -60,7 +60,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-    <div className="bg-[url('./edulevel3.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel3.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
       <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
         <div className="flex items-center justify-center h-full text-white group">
           <a href="/btb-belajar/SMP" target="_blank" className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300">
@@ -77,7 +77,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-    <div className="bg-[url('./edulevel4.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel4.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
       <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
         <div className="flex items-center justify-center h-full text-white group">
           <a href="/btb-belajar/SMA" target="_blank" className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300">
@@ -95,7 +95,7 @@ const HomePage = () => {
       </div>
     </div>
   </div>
-  <hr class="h-px mt-32 mb-20 bg-gray-200 border-0 dark:bg-gray-700" />
+  <hr className="h-px mt-32 mb-20 bg-gray-200 border-0 dark:bg-gray-700" />
     <div className="text-[40px] md:text-[70px]">
       <h1>Latest News</h1>
     </div>
@@ -103,42 +103,42 @@ const HomePage = () => {
       <div>
         <img
           className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-          src="./feedHome1.jpeg"
+          src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome1.jpeg"
           alt="Feed1"
         />
       </div>
       <div>
         <img
           className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-          src="./feedHome2.jpeg"
+          src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome2.jpeg"
           alt="Feed2"
         />
       </div>
       <div>
         <img
           className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-          src="./feedHome3.jpeg"
+          src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome3.jpeg"
           alt="Feed3"
         />
       </div>
       <div>
         <img
           className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-          src="./feedHome4.jpeg"
+          src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome4.jpeg"
           alt="Feed4"
         />
       </div>
       <div>
         <img
           className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-          src="./feedHome5.jpeg"
+          src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome5.jpeg"
           alt="Feed5"
         />
       </div>
       <div>
         <img
           className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-          src="./feedHome6.jpeg"
+          src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome6.jpeg"
           alt="Feed6"
         />
       </div>

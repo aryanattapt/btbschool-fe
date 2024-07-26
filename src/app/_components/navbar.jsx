@@ -7,7 +7,7 @@ const NavBar = () => {
     <Navbar className="bg-[#00305E] text-white flex fixed top-0 z-20 start-0 w-full p-4">
       <Navbar.Brand href="/" className="flex-auto md:w-64">
         <div className="md:w-60 md:h-100 ml-28">
-          <img src="/LogoFooter.png" alt="logo btb" className="" />
+          <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png" alt="logo btb" className="" />
         </div>
       </Navbar.Brand>
       <Navbar.Collapse className="flex-auto md:w-64">
@@ -17,16 +17,16 @@ const NavBar = () => {
         >
           Tentang Kami
         </Navbar.Link>
-        <Navbar.Link href="#" className="text-white">
+        <Navbar.Link href="/onlineregistration" className="text-white">
           Daftar
         </Navbar.Link>
-        <Navbar.Link href="#" className="text-white">
+        <Navbar.Link href="/career" className="text-white">
           Karir
         </Navbar.Link>
         <Navbar.Link href="./alumni" className="text-white">
           Alumni
         </Navbar.Link>
-        <Navbar.Link href="./contact" className="text-white">
+        <Navbar.Link href="/contact" className="text-white">
           Kontak
         </Navbar.Link>
       </Navbar.Collapse>

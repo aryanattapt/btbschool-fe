@@ -15,7 +15,7 @@ const SignUpAdminPage = () => {
             </div>
             <Card
                 horizontal
-                imgSrc="/images/authentication/create-account.jpg"
+                imgSrc="https://w6i8.c1.e2-7.dev/assets/btbschool/images/authentication/create-account.jpg"
                 imgAlt=""
                 className="w-full md:max-w-screen-sm [&>img]:hidden md:[&>img]:w-96 md:[&>img]:p-0 md:[&>*]:w-full md:[&>*]:p-16 lg:[&>img]:block"
             >
