@@ -2,7 +2,7 @@
 import { Button, Label, Spinner, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
 import { HiMail } from "react-icons/hi";
-import { SubmitContact } from '../../../../../services/contact.service'
+import { SubmitContact } from "../../../../../services/contact.service";
 import Swal from "sweetalert2";
 
 const ContactForm = () => {
@@ -19,7 +19,7 @@ const ContactForm = () => {
     } else {
       setContactPayload((prevState) => ({
         ...prevState,
-        [name]: (name == 'phoneno') ? `+62${value}` : value,
+        [name]: name == "phoneno" ? `+62${value}` : value,
       }));
     }
   };
@@ -29,23 +29,24 @@ const ContactForm = () => {
 
     /* Call API in here... */
     SubmitContact(contactPayload)
-    .then(_ => {
-      setIsLoading(false);
-      Swal.fire({
-        allowOutsideClick: false,
-        title: 'Contact Submission Notification!',
-        text: "Success send contact",
-        icon: 'success',
-      });
-    }).catch((err) => {
-      setIsLoading(false);
-      Swal.fire({
+      .then((_) => {
+        setIsLoading(false);
+        Swal.fire({
           allowOutsideClick: false,
-          title: 'Contact Submission Notification!',
+          title: "Contact Submission Notification!",
+          text: "Success send contact",
+          icon: "success",
+        });
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        Swal.fire({
+          allowOutsideClick: false,
+          title: "Contact Submission Notification!",
           text: err,
-          icon: 'error',
+          icon: "error",
+        });
       });
-    });
   };
 
   return (
