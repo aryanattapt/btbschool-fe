@@ -9,7 +9,7 @@ const ContactPage = () => {
     <>
       <Banner />
       <Pagging />
-      <div id="hubungi-kami md:mx-[76px] mx-[10px] ">
+      <div id="hubungi-kami" className="md:mx-[76px] mx-[10px]">
         <h1 className="mt-10 md:mx-[76px] mx-[0px] text-[#00305E] md:text-[50px] text-[25px] font-semibold	">
           HUBUNGI KAMI
         </h1>
