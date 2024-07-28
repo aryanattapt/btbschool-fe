@@ -47,8 +47,8 @@ const PdfViewer = ({ url }) => {
         <Document file={url} onLoadSuccess={onLoadSuccess} >
             <HTMLFlipBook
                 width={400}
-                height={200}
-                size="fixed"
+                height={600}
+                size="stretch"
                 maxShadowOpacity={0.5}
                 showCover={true}
                 showPageCorners={true}
