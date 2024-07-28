@@ -112,7 +112,7 @@ const ContactPage = () => {
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7934.134621362215!2d106.79109025869137!3d-6.12164295274717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1deb383b5aad%3A0x88c7848de94ced29!2sBTB%20School%20Pluit%20Timur!5e0!3m2!1sid!2sid!4v1722009912125!5m2!1sid!2sid"
               className="w-[148px] h-[148px] md:w-[548px] md:h-[474px] "
-              allowfullscreen=""
+              allowFullScreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
@@ -124,7 +124,7 @@ const ContactPage = () => {
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.080070999209!2d106.78967467369849!3d-6.119924360009179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1d84049afab9%3A0x79d9dbfb470b13dd!2sBTB%20School!5e0!3m2!1sid!2sid!4v1722008582899!5m2!1sid!2sid"
               className="w-[148px] h-[148px] md:w-[548px] md:h-[474px]"
-              allowfullscreen=""
+              allowFullScreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
