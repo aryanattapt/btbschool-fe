@@ -85,17 +85,14 @@ const AboutUsPage = () => {
           />
         </div>
       </div>
-      <div className="my-10 bg-[#243F6D]">
+      <div id="jenjang-pendidikan" className="my-10 bg-[#243F6D]">
         <div className="flex text-center items-center py-10 mx-40 text-white leading-loose text-[15px] font-semibold">
           Pengajar BTB mendorong para murid untuk dapat menemukan tempatnya di dunia yang memiliki tantangan 
           dan peluang tidak terbatas ini. Mereka membimbing para murid untuk berpikir, bertindak, dan menerima 
           rekannya dan diri mereka sendiri.
         </div>
       </div>
-      <div
-        id="jenjang-pendidikan"
-        className="flex flex-wrap m-[20px] place-content-center"
-      >
+      <div className="flex flex-wrap m-[20px] place-content-center">
         <div className="md:m-[20px]">
           <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus3.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
             <div className="h-full hover:bg-[#243F6D] hover:opacity-80">

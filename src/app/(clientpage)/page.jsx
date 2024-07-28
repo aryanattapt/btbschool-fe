@@ -9,8 +9,8 @@ const HomePage = () => {
   <div className="md:my-[25px] mx-20 md:mx-32 flex-grow">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-[20px] md:my-[32px]">
       <div>
-        <div className="font-semibold md:text-[25px]">Temukan Kelas:</div>
-        <div className="font-bold md:text-[60px]">
+        <div className="md:text-[25px]">Temukan Kelas:</div>
+        <div className="font-semibold md:text-[60px]">
         {/* md:font-[400] md:leading-[64px] */}
           Kualitas Terbaik Setiap Tingkat
         </div>
@@ -19,14 +19,14 @@ const HomePage = () => {
         <p className="md:leading-[25px] md:text-[20px] md:leading-[25px] text-justify leading-loose">
           Di BTB, kami memastikan siswa mendapatkan kualitas terbaik yang
           dibantu dengan menggunakan metode pembelajaran International
-          Baccalaureate
+          Baccalaureate.
         </p>
       </div>
     </div>
 
     {/* Section */}
-  <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mx-[30px] md:my-[40px]">
-    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel1.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
+  <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:my-[40px]">
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel1.jpeg')] w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] bg-cover bg-center rounded-[30px]">
       <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
         <div className="flex items-center justify-center h-full text-white group">
           <a href="/btb-belajar/TK" target="_blank" className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300">
@@ -43,7 +43,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel2.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel2.jpeg')] w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] bg-cover bg-center rounded-[30px]">
       <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
         <div className="flex items-center justify-center h-full text-white group">
           <a href="/btb-belajar/SD" target="_blank" className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300">
@@ -60,7 +60,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel3.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel3.jpeg')] w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] bg-cover bg-center rounded-[30px]">
       <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
         <div className="flex items-center justify-center h-full text-white group">
           <a href="/btb-belajar/SMP" target="_blank" className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300">
@@ -77,7 +77,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel4.jpeg')] w-[200px] h-[200px] md:w-[232px] md:h-[230px] my-[25px] bg-cover bg-center rounded-[30px]">
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel4.jpeg')] w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] bg-cover bg-center rounded-[30px]">
       <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
         <div className="flex items-center justify-center h-full text-white group">
           <a href="/btb-belajar/SMA" target="_blank" className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300">

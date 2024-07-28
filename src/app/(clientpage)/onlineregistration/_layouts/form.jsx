@@ -168,8 +168,12 @@ const OnlineRegistrationForm = () => {
     }
 
     return <>
-        <div className="max-w-full grid gap-3">
+        <div className="max-w-full grid gap-3 mt-20 md:px-32">
             {/* Page Draft Registration No */}
+            <div className="inline-flex flex justify-between">
+                <div className="text-[35px] text-[#00305E] font-bold">Registration Form</div>
+                <div className="text-[35px] text-[#00305E] font-semibold pr-10 md:pr-0">[1/4]</div>
+            </div>
             <DraftNoForm fetchDraftDataHandler={fetchDraftDataHandler} payload={registrationPayload} formChangeHandler={formChangeHandler}/>
 
             {/* Page 1 */}
