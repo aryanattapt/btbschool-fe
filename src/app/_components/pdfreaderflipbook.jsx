@@ -1,6 +1,6 @@
 'use client'
 import HTMLFlipBook from 'react-pageflip';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'; // For PDF annotation styles
 import "react-pdf/dist/esm/Page/TextLayer.css";
@@ -10,59 +10,60 @@ import _ from "lodash";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
-const CustomPage = React.forwardRef(({ pageNumber, width }, ref) => {
+const CustomPage = React.forwardRef(({ pageNumber, width, height }, ref) => {
     return (
       <div ref={ref}>
-        <Page pageNumber={pageNumber} width={width} />
+        <Page pageNumber={pageNumber} width={width} height={height} />
       </div>
     );
 });
 
 const PdfViewer = ({ url }) => {
     const [docRef, setDocRef] = useState()
-    const [numPages, setNumPages] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
     const [pageNumber, setPageNumber] = useState(1);
+    const flipBookRef = React.useRef(null);
 
     const onLoadSuccess = ({ numPages }) => {
-        setNumPages(numPages);
+        setTotalPages(numPages);
     };
 
-    const handlePageChange = (delta) => {
-        setPageNumber((prevPageNumber) => Math.max(1, Math.min(prevPageNumber + delta, numPages)));
-    };
+    const onPage = (e) => {
+        setPageNumber(e.data)
+    }
+
+    const handlePageChange = (direction) => {
+        const newPage = pageNumber + direction;
+        if (newPage >= 1 && newPage <= totalPages) {
+            setPageNumber(newPage);
+            if (flipBookRef.current) {
+                flipBookRef.current.pageFlip().flip(newPage - 1);
+            }
+        }
+    }
+
 
     return (
-        <div style={{ maxWidth: '100%' }}>
-            <Document file={url} onLoadSuccess={onLoadSuccess} >
-                <HTMLFlipBook
-                    width={550}
-                    height={733}
-                    size="stretch"
-                    minWidth={315}
-                    maxWidth={1000}
-                    minHeight={400}
-                    maxHeight={1533}
-                    maxShadowOpacity={0.5}
-                    showCover={true}
-                    showPageCorners={true}
-                    mobileScrollSupport={true}
-                    className="demo-book"
-                >
-                    {
-                        _.times(numPages, (i) => {
-                            return <CustomPage pageNumber={i+1} width={550}/>
-                        })
-                    }
-                </HTMLFlipBook>
-            </Document>
-            <div className="flex flex-wrap gap-2" style={{ marginTop: '100px' }}>
-                <Button color="blue" onClick={() => handlePageChange(-1)} disabled={pageNumber <= 1}>Previous</Button>
-                <Button color="success" onClick={() => handlePageChange(1)} disabled={pageNumber >= numPages}>Next</Button>
-            </div>
-            <p className="text-gray-500 dark:text-gray-400">
-                Page {pageNumber} of {numPages}
-            </p>
-        </div>
+        <Document file={url} onLoadSuccess={onLoadSuccess} >
+            <HTMLFlipBook
+                width={400}
+                height={200}
+                size="fixed"
+                maxShadowOpacity={0.5}
+                showCover={true}
+                showPageCorners={true}
+                mobileScrollSupport={true}
+                className="demo-book"
+                onFlip={onPage}
+                ref={flipBookRef}
+            >
+                {
+                    _.times(totalPages, (i) => {
+                        return <CustomPage key={i} pageNumber={i+1} width={400} height={200}/>
+                    })
+                }
+            </HTMLFlipBook>
+        </Document>
     );
 };
 

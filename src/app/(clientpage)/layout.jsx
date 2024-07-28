@@ -1,5 +1,6 @@
 import FooterComponent from "../_components/footer";
 import NavBar from "../_components/navbar";
+import 'core-js/full/promise/with-resolvers'
 
 export const metadata = {
   title: "Bina Tunas Bangsa School",
