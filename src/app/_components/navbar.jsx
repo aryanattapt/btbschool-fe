@@ -1,25 +1,56 @@
 "use client";
 
 import { Navbar } from "flowbite-react";
+import { useState, useEffect } from "react";
 
 const NavBar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <Navbar className="bg-[#00305E] text-white flex fixed top-0 z-20 start-0 w-full p-4">
+    <Navbar className={`transition-all duration-300 ${isScrolled ? 'bg-[#00305E] bg-opacity-100 text-white' : 'backdrop-filter backdrop-blur-lg bg-opacity-30 text-[#00305E]'} flex fixed top-0 z-20 start-0 w-full p-4`}>
       <Navbar.Brand href="/" className="flex-auto md:w-64">
         <div className="md:w-60 md:h-100 ml-28">
-          <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png" alt="logo btb" className="" />
+          <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png" alt="logo btb" />
         </div>
       </Navbar.Brand>
       <Navbar.Collapse className="flex-auto md:w-64">
-        <Navbar.Link
-          href="/about-us"
-          className="text-white"
-        >
-          Tentang Kami
-        </Navbar.Link>
-        <Navbar.Link href="/onlineregistration" className="text-white">
-          Daftar
-        </Navbar.Link>
+        <div className="relative group transition-all hover:duration-300 hover:border-b-2 hover:border-[#EF802B]">
+          <Navbar.Link href="/about-us" className="text-white">
+            Tentang Kami
+          </Navbar.Link>
+          <ul className="absolute w-40 hidden group-hover:block group-hover:group-hover:block bg-[#00305E] text-white shadow-lg">
+            <li>
+              <a href="/btb-belajar" className="block text-center py-4 hover:bg-gray-700 border-b border-white">
+                Belajar di BTB
+              </a>
+            </li>
+            <li>
+              <a href="/btb-peduli" className="block text-center py-4 hover:bg-gray-700">
+                BTB Peduli
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="relative group hover:border-b-2 hover:border-b hover:border-[#EF802B] px-2">
+          <Navbar.Link href="/onlineregistration" className="text-white">
+            Daftar
+          </Navbar.Link>
+        </div>
         <Navbar.Link href="/career" className="text-white">
           Karir
         </Navbar.Link>

@@ -117,16 +117,19 @@ const DetailOfSiblingForm = ({formChangeHandler, name, payload}) => {
     } 
 
     return <>
-        <div>
+        {/* <div>
             <HR.Text text="Detail Of Sibling"/>
+        </div> */}
+        <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+        Detail Of Sibling
         </div>
         <div className="mb-6">
             <div className="flex flex-col items-center justify-center px-6">
                 <Button type="submit" className="w-full lg:w-auto" onClick={() => agGridRef.api.applyTransaction({add: [{}]})}>Add Row</Button>
             </div>
         </div>
-        <div className="ag-theme-quartz" style={{height: '200px', width: "100%"}}>
-            <AgGridReact name={name} id={name} columnDefs={columnDefs} rowData={payload.siblinglist || []} onGridReady={onGridReady} onCellEditingStopped={onCellEditingStopped}/>
+        <div className="ag-theme-quartz pr-10 md:pr-0" style={{height: '200px', width: "100%"}}>
+            <AgGridReact name={name} id={name} columnDefs={columnDefs} rowData={payload.siblinglist} onGridReady={onGridReady} onCellEditingStopped={onCellEditingStopped}/>
         </div>
     </>
 };
