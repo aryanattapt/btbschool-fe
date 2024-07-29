@@ -81,7 +81,7 @@ const StudentDetailForm = ({formChangeHandler, datePickerHandler, payload}) => {
             <div className="mb-2 block">
                 <Label htmlFor="phoneno" value="Phone No" />
             </div>
-            <TextInput value={payload.phoneno || ''} id="phoneno" name="phoneno" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput value={payload.phoneno || ''} id="phoneno" name="phoneno" type="text" onChange={formChangeHandler}/>
         </div>
         <div>
             <div className="mb-2 block">

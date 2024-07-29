@@ -27,7 +27,7 @@ const EmergencyContactForm = ({formChangeHandler, payload}) => {
             <div className="mb-2 block">
                 <Label htmlFor="emergencycontactphoneno" value="Phone No" />
             </div>
-            <TextInput value={payload.emergencycontactphoneno || ''} id="emergencycontactphoneno" name="emergencycontactphoneno" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput value={payload.emergencycontactphoneno || ''} id="emergencycontactphoneno" name="emergencycontactphoneno" type="text" onChange={formChangeHandler}/>
         </div>
         <div>
             <div className="mb-2 block">

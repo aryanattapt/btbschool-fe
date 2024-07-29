@@ -126,7 +126,7 @@ const DetailOfSiblingForm = ({formChangeHandler, name, payload}) => {
             </div>
         </div>
         <div className="ag-theme-quartz" style={{height: '200px', width: "100%"}}>
-            <AgGridReact name={name} id={name} columnDefs={columnDefs} rowData={payload.siblinglist} onGridReady={onGridReady} onCellEditingStopped={onCellEditingStopped}/>
+            <AgGridReact name={name} id={name} columnDefs={columnDefs} rowData={payload.siblinglist || []} onGridReady={onGridReady} onCellEditingStopped={onCellEditingStopped}/>
         </div>
     </>
 };

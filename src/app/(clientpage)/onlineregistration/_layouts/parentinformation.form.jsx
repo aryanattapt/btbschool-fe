@@ -41,7 +41,7 @@ const ParentsInformationForm = ({formChangeHandler, datePickerHandler, payload})
             <div className="mb-2 block">
                 <Label htmlFor="fatherphoneno" value="Phone No" />
             </div>
-            <TextInput value={payload.fatherphoneno || ''} id="fatherphoneno" name="fatherphoneno" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput value={payload.fatherphoneno || ''} id="fatherphoneno" name="fatherphoneno" type="text" onChange={formChangeHandler}/>
         </div>
         <div>
             <div className="mb-2 block">
@@ -88,7 +88,7 @@ const ParentsInformationForm = ({formChangeHandler, datePickerHandler, payload})
             <div className="mb-2 block">
                 <Label htmlFor="motherphoneno" value="Phone No" />
             </div>
-            <TextInput value={payload.motherphoneno || ''} id="motherphoneno" name="motherphoneno" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput value={payload.motherphoneno || ''} id="motherphoneno" name="motherphoneno" type="text" onChange={formChangeHandler}/>
         </div>
         <div>
             <div className="mb-2 block">
