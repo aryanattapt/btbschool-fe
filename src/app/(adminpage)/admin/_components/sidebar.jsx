@@ -59,9 +59,10 @@ const SideBar = () => {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState("");
     const [isOpen, setIsopen] = useState(false);
-    const [width, setWidth] = useState(window.innerWidth);
+    const [width, setWidth] = useState();
 
     useEffect(() => {
+        setWidth(window.innerWidth)
         window.addEventListener('resize', () => setWidth(window.innerWidth));
         return () => window.removeEventListener('resize', () => setWidth(window.innerWidth));
     }, []);
