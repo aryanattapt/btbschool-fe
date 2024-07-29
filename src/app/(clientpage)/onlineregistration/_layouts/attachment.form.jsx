@@ -7,8 +7,8 @@ import {
 
 const AttachmentForm = ({formChangeHandler}) => {
     return <>
-        <div>
-            <HR.Text text="Upload Attachment"/>
+        <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+            Upload Attachment
         </div>
         <div>
             <div className="mb-2 block">

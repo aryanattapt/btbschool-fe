@@ -18,7 +18,7 @@ const SignaturePad = ({formChangeHandler, name}) => {
     };
 
     return(
-        <div>
+        <div className="pr-10 md:pr-0">
             <div style={{border:"2px solid black", width: 500, height: 200}}>
                 <SignatureCanvas 
                     onEnd = {onEndHandler}
