@@ -1,6 +1,7 @@
 import { Button } from "flowbite-react";
 import CarouselComponents from "../_components/carousel";
 import { FaInstagram } from "react-icons/fa";
+import Script from 'next/script';
 
 const HomePage = () => {
   return <>
@@ -99,7 +100,11 @@ const HomePage = () => {
     <div className="text-[40px] md:text-[70px]">
       <h1>Latest News</h1>
     </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 mt-4">
+
+    <Script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer/>
+    <div className="elfsight-app-ef4327a9-843c-4be1-8b9f-3531ef090037" data-elfsight-app-lazy></div>
+    
+    {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 mt-4">
       <div>
         <img
           className="w-full h-[200px] md:w-[360px] md:h-[361px]"
@@ -147,7 +152,7 @@ const HomePage = () => {
       <button className="inline-block text-white font-sans bg-[#00305E] hover:bg-blue-700 font-medium rounded-full text-md px-10 py-2.5 text-center">
         View More On Instagram
       </button>
-    </div>
+    </div> */}
   </div>
 </div>
 

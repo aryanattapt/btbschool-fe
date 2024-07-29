@@ -19,7 +19,7 @@ const ContactForm = () => {
     } else {
       setContactPayload((prevState) => ({
         ...prevState,
-        [name]: name == "phoneno" ? `+62${value}` : value,
+        [name]: value,
       }));
     }
   };
@@ -83,7 +83,7 @@ const ContactForm = () => {
             id="phoneno"
             name="phoneno"
             type="text"
-            addon="+62"
+
             onChange={formChangeHandler}
           />
         </div>

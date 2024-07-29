@@ -82,7 +82,7 @@ const StudentDetailForm = ({formChangeHandler, datePickerHandler, payload}) => {
             <div className="mb-2 block w-72">
                 <Label htmlFor="phoneno" value="Phone No" />
             </div>
-            <TextInput className="w-full pr-10 md:pr-0" value={payload.phoneno || ''} id="phoneno" name="phoneno" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput className="w-full pr-10 md:pr-0" value={payload.phoneno || ''} id="phoneno" name="phoneno" type="text" onChange={formChangeHandler}/>
         </div>
         <div className="md:inline-flex">
             <div className="mb-2 block w-72">

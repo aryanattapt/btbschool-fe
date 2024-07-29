@@ -44,7 +44,7 @@ const CareerApplyForm = ({params}) => {
         else{
             setCareerPayload(prevState => ({
                 ...prevState,
-                [name]: (name == 'phoneno') ? `+62${value}` : value
+                [name]:  value
             }));
         }
     };
@@ -138,7 +138,7 @@ const CareerApplyForm = ({params}) => {
                 <div className="mb-2 block">
                     <Label htmlFor="phoneno" value="Nomor Telepon" />
                 </div>
-                <TextInput id="phoneno" name="phoneno" type="text" addon="+62" onChange={formChangeHandler}/>
+                <TextInput id="phoneno" name="phoneno" type="text" onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">

@@ -27,12 +27,6 @@ const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
                         <Sidebar.Item href="/admin/homepage" className={"/admin/homepage" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             Home Page
                         </Sidebar.Item>
-                        <Sidebar.Item href="/admin/contact" className={"/admin/contact" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
-                            Contact
-                        </Sidebar.Item>
-                        <Sidebar.Item href="/admin/alumni" className={"/admin/alumni" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
-                            Alumni
-                        </Sidebar.Item>
                         <Sidebar.Item href="/admin/career" className={"/admin/career" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             Career
                         </Sidebar.Item>
@@ -65,9 +59,10 @@ const SideBar = () => {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState("");
     const [isOpen, setIsopen] = useState(false);
-    const [width, setWidth] = useState(window.innerWidth);
+    const [width, setWidth] = useState();
 
     useEffect(() => {
+        setWidth(window.innerWidth)
         window.addEventListener('resize', () => setWidth(window.innerWidth));
         return () => window.removeEventListener('resize', () => setWidth(window.innerWidth));
     }, []);

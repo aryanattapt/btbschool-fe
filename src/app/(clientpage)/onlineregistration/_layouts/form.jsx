@@ -48,7 +48,7 @@ const OnlineRegistrationForm = () => {
         else{
             setRegistrationPayload(prevState => ({
                 ...prevState,
-                [name]: (name == 'phoneno') ? `+62${value}` : value
+                [name]: value
             }));
         }
     };
@@ -100,6 +100,7 @@ const OnlineRegistrationForm = () => {
             
             SubmitStudentRegistration(studentRegistrationPayload)
             .then(res => {
+                setRegistrationPayload({});
                 setStateCallBack(false);
                 Swal.fire({
                     allowOutsideClick: false,
