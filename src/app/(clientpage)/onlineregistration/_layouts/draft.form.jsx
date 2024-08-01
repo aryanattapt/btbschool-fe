@@ -10,7 +10,6 @@ const DraftNoForm = ({formChangeHandler, payload, fetchDraftDataHandler}) => {
     return <>
         <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
             Draft Registration No
-            {/* <HR.Text text="Draft Registration No"/> */}
         </div>
         <div className="md:inline-flex">
             <div className="mb-2 block w-72">

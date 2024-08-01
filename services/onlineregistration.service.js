@@ -12,7 +12,7 @@ export const SubmitStudentRegistration = (registrationPayload) => new Promise(as
 
 export const GetOutstandingStudentRegistration = (registrationcode) => new Promise(async (resolve, reject) => {
     try {
-        const result = await callInternalAPI('/student/registration/outstanding/', 'POST', {
+        const result = await callInternalAPI('/student/registration/draft/', 'POST', {
             "registrationcode": registrationcode
         }, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
         return resolve(result);

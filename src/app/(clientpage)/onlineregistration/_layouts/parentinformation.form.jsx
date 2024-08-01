@@ -35,13 +35,13 @@ const ParentsInformationForm = ({formChangeHandler, datePickerHandler, payload})
             <div className="mb-2 block w-72">
                 <Label htmlFor="fatherbirthdate" value="Tanggal Lahir" />
             </div>
-            <Datepicker className="w-full pr-10 md:pr-0" value={payload.fatherbirthdate || ''} id="fatherbirthdate" name="fatherbirthdate" language="en-id" onSelectedDateChanged={date => datePickerHandler('fatherbirthdate', date)}/>
+            <Datepicker className="w-full pr-10 md:pr-0" value={payload.fatherbirthdate || ''} id="fatherbirthdate" name="fatherbirthdate" language="en-id" showClearButton={false} showTodayButton={false} onSelectedDateChanged={date => datePickerHandler('fatherbirthdate', date)}/>
         </div>
         <div className="md:inline-flex">
             <div className="mb-2 block w-72">
                 <Label htmlFor="fatherphoneno" value="Phone No" />
             </div>
-            <TextInput className="w-full pr-10 md:pr-0" value={payload.fatherphoneno || ''} id="fatherphoneno" name="fatherphoneno" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput className="w-full pr-10 md:pr-0" value={payload.fatherphoneno || ''} id="fatherphoneno" name="fatherphoneno" type="text" onChange={formChangeHandler}/>
         </div>
         <div className="md:inline-flex">
             <div className="mb-2 block w-72">
@@ -82,13 +82,13 @@ const ParentsInformationForm = ({formChangeHandler, datePickerHandler, payload})
             <div className="mb-2 block w-72">
                 <Label htmlFor="motherbirthdate" value="Tanggal Lahir" />
             </div>
-            <Datepicker className="w-full pr-10 md:pr-0" value={payload.motherbirthdate || ''} id="motherbirthdate" name="motherbirthdate" language="en-id" onSelectedDateChanged={date => datePickerHandler('motherbirthdate', date)}/>
+            <Datepicker className="w-full pr-10 md:pr-0" value={payload.motherbirthdate || ''} id="motherbirthdate" name="motherbirthdate" language="en-id" showClearButton={false} showTodayButton={false} onSelectedDateChanged={date => datePickerHandler('motherbirthdate', date)}/>
         </div>
         <div className="md:inline-flex">
             <div className="mb-2 block w-72">
                 <Label htmlFor="motherphoneno" value="Phone No" />
             </div>
-            <TextInput className="w-full pr-10 md:pr-0" value={payload.motherphoneno || ''} id="motherphoneno" name="motherphoneno" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput className="w-full pr-10 md:pr-0" value={payload.motherphoneno || ''} id="motherphoneno" name="motherphoneno" type="text" onChange={formChangeHandler}/>
         </div>
         <div className="md:inline-flex">
             <div className="mb-2 block w-72">

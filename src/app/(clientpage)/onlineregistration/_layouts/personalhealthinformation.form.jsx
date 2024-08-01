@@ -94,7 +94,7 @@ const PersonalHealthInformationForm = ({formChangeHandler, payload}) => {
             <div className="mb-2 block md:w-72">
                 <Label htmlFor="naturemedication" value="Doctor's Telephone" />
             </div>
-            <TextInput className="md:w-full" value={payload.doctorphone || ''} id="doctorphone" name="doctorphone" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput className="md:w-full" value={payload.doctorphone || ''} id="doctorphone" name="doctorphone" type="text" onChange={formChangeHandler}/>
         </div>
         <div className="md:inline-flex">
             <div className="mb-2 block md:w-72">

@@ -48,7 +48,7 @@ const StudentDetailForm = ({formChangeHandler, datePickerHandler, payload}) => {
                     </Select>
                 </div>
                 <div className="w-1/2">
-                    <Datepicker value={payload.birthdate || ''} id="birthdate" name="birthdate" language="en-id" onSelectedDateChanged={date => datePickerHandler('birthdate', date)}/>
+                    <Datepicker value={payload.birthdate || ''} id="birthdate" name="birthdate" language="en-id" showClearButton={false} showTodayButton={false} onSelectedDateChanged={date => datePickerHandler('birthdate', date)}/>
                 </div>
             </div>  
         </div>

@@ -44,13 +44,13 @@ const RecomendedForm = ({formChangeHandler, payload}) => {
             <div className="mb-2 block md:w-72">
                 <Label htmlFor="btbstudentphonehomerec" value="Phone Home" />
             </div>
-            <TextInput className="md:w-full" value={payload.btbstudentphonehomerec || ''} id="btbstudentphonehomerec" name="btbstudentphonehomerec" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput className="md:w-full" value={payload.btbstudentphonehomerec || ''} id="btbstudentphonehomerec" name="btbstudentphonehomerec" type="text" onChange={formChangeHandler}/>
         </div>
         <div className="md:inline-flex">
             <div className="mb-2 block md:w-72">
                 <Label htmlFor="btbstudentphonemobilerec" value="Phone Mobile" />
             </div>
-            <TextInput className="md:w-full" value={payload.btbstudentphonemobilerec || ''} id="btbstudentphonemobilerec" name="btbstudentphonemobilerec" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput className="md:w-full" value={payload.btbstudentphonemobilerec || ''} id="btbstudentphonemobilerec" name="btbstudentphonemobilerec" type="text" onChange={formChangeHandler}/>
         </div>
     </>
 }

@@ -30,7 +30,7 @@ const EmergencyContactForm = ({formChangeHandler, payload}) => {
             <div className="mb-2 block w-72">
                 <Label htmlFor="emergencycontactphoneno" value="Phone No" />
             </div>
-            <TextInput className="w-full pr-10 md:pr-0" value={payload.emergencycontactphoneno || ''} id="emergencycontactphoneno" name="emergencycontactphoneno" type="text" addon="+62" onChange={formChangeHandler}/>
+            <TextInput className="w-full pr-10 md:pr-0" value={payload.emergencycontactphoneno || ''} id="emergencycontactphoneno" name="emergencycontactphoneno" type="text" onChange={formChangeHandler}/>
         </div>
         <div className="md:inline-flex">
             <div className="mb-2 block w-72">
