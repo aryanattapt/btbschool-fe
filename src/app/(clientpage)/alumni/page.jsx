@@ -5,9 +5,9 @@ import Pagging from "./_layouts/pagging";
 const AlumniPage = () => {
   return (
     <>
+      <Banner />
+      <Pagging />
       <div className="flex-col p-12">
-        <Banner />
-        <Pagging />
         <div id="hubungi-kami" className="">
           <h1 className="mt-10 text-[#00305E] md:text-[50px] text-[25px] font-semibold">
             INFORMASI ALUMNI

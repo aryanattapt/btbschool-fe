@@ -3,71 +3,62 @@ import { Carousel } from "flowbite-react";
 
 const CarouselComponents = () => {
   return (
-    <Carousel slideInterval={5000} className="relative md:h-[100vh] w-full">
+  <Carousel slideInterval={12000} className="relative md:h-[100vh] w-full">
   <div className="relative h-full w-full">
-    <img
-      src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider1.jpg"
-      alt="penghargaan"
-      className="h-full w-full object-cover"
-    />
-    <div className="absolute inset-0 grid h-full w-full place-items-center">
-      <div className="text-left ml-[50px]">
-        <p className="text-[20px] md:text-[25px] text-black font-sans text-justify font-semibold">
-          Bina Tunas Bangsa
-        </p>
-        <p className="text-[40px] my-2 md:text-[70px] leading-[44px] md:leading-[64px] font-semibold text-white drop-shadow-xl shadow-black">
-          DATANG DAN BELAJAR <br></br>di Sekolah Terbaik Jakarta
-        </p>
-        <div className="flex justify-left gap-2">
-          <button className="bg-[#EF802B] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Learn More!
-          </button>
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider1.jpg')] bg-cover absolute inset-0">    
+      <div className="grid place-items-center h-full w-full bg-black bg-opacity-30"> 
+        <div className="ml-[50px] text-left">
+          <p className="text-[20px] md:text-[25px] text-white text-justify font-semibold">
+            Bina Tunas Bangsa
+          </p>
+          <p className="text-[40px] my-2 md:text-[70px] leading-[44px] md:leading-[64px] font-semibold text-white drop-shadow-xl shadow-black">
+            DATANG DAN BELAJAR <br></br>di Sekolah Terbaik Jakarta
+          </p>
+          <div className="flex justify-left gap-2">
+            <button className="bg-[#EF802B] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Learn More!
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div className="relative h-full w-full">
-    <img
-      src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpg"
-      alt="penghargaan"
-      className="h-full w-full object-cover"
-    />
-    <div className="absolute inset-0 grid h-full w-full place-items-center">
-      <div className="text-left ml-[50px]">
-        <p className="text-[20px] my-2 md:text-[25px] text-black font-sans text-justify font-semibold">
-          Bina Tunas Bangsa
-        </p>
-        <p className="text-[40px] md:text-[70px] leading-[44px] md:leading-[64px] font-semibold text-white drop-shadow-xl shadow-black">
-          DATANG DAN BELAJAR <br></br>di Sekolah Terbaik Jakarta
-        </p>
-        <div className="flex justify-left gap-2">
-          <button className="bg-[#EF802B] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Learn More!
-          </button>
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpg')] bg-cover absolute inset-0">    
+      <div className="grid place-items-center h-full w-full bg-black bg-opacity-30"> 
+        <div className="ml-[50px] text-left">
+          <p className="text-[20px] md:text-[25px] text-white text-justify font-semibold">
+            Bina Tunas Bangsa
+          </p>
+          <p className="text-[40px] my-2 md:text-[70px] leading-[44px] md:leading-[64px] font-semibold text-white drop-shadow-xl shadow-black">
+            DATANG DAN BELAJAR <br></br>di Sekolah Terbaik Jakarta
+          </p>
+          <div className="flex justify-left gap-2">
+            <button className="bg-[#EF802B] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Learn More!
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div className="relative h-full w-full">
-    <img
-      src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider3.jpg"
-      alt="penghargaan"
-      className="h-full w-full object-cover"
-    />
-    <div className="absolute inset-0 grid h-full w-full place-items-center">
-      <div className="text-left ml-[50px]">
-        <p className="text-[20px] md:text-[25px] text-black font-sans text-justify font-semibold">
-          Bina Tunas Bangsa
-        </p>
-        <p className="text-[40px] my-2 md:text-[70px] leading-[44px] md:leading-[64px] font-semibold text-white drop-shadow-xl shadow-black">
-          DATANG DAN BELAJAR <br></br>di Sekolah Terbaik Jakarta
-        </p>
-        <div className="flex justify-left gap-2">
-          <button className="bg-[#EF802B] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Learn More!
-          </button>
+    <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider3.jpg')] bg-cover absolute inset-0">    
+      <div className="grid place-items-center h-full w-full bg-black bg-opacity-30"> 
+        <div className="ml-[50px] text-left">
+          <p className="text-[20px] md:text-[25px] text-white text-justify font-semibold">
+            Bina Tunas Bangsa
+          </p>
+          <p className="text-[40px] my-2 md:text-[70px] leading-[44px] md:leading-[64px] font-semibold text-white drop-shadow-xl shadow-black">
+            DATANG DAN BELAJAR <br></br>di Sekolah Terbaik Jakarta
+          </p>
+          <div className="flex justify-left gap-2">
+            <button className="bg-[#EF802B] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Learn More!
+            </button>
+          </div>
         </div>
       </div>
     </div>
