@@ -114,7 +114,7 @@ const OnlineRegistrationForm = () => {
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Student Submission Notification!',
-                    text: err,
+                    html: err,
                     icon: 'error',
                 });
             })
@@ -124,20 +124,20 @@ const OnlineRegistrationForm = () => {
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Student Submission Notification!',
-                text: err,
+                html: err,
                 icon: 'error',
             });
         });
     }
 
     const saveAndSendHandler = (e) => {
-        // submitHandler(true, setIsLoading);
-        setIsLoading(true)
+        submitHandler(true, setIsLoading);
+        // setIsLoading(true)
     }
 
     const saveAsDraftHandler = (e) => {
-        // submitHandler(false, setIsLoading);
-        setIsLoading(true)
+        submitHandler(false, setIsLoading);
+        // setIsLoading(true)
     }
 
     const fetchDraftDataHandler = () => {

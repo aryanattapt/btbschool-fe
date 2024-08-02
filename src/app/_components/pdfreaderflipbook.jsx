@@ -18,7 +18,7 @@ const CustomPage = React.forwardRef(({ pageNumber, width, height }, ref) => {
     );
 });
 
-const PdfViewer = ({ url }) => {
+const PdfViewer = ({ url, height, width }) => {
     const [docRef, setDocRef] = useState()
     const [totalPages, setTotalPages] = useState(0);
     const [pageNumber, setPageNumber] = useState(1);
@@ -46,8 +46,8 @@ const PdfViewer = ({ url }) => {
     return (
         <Document file={url} onLoadSuccess={onLoadSuccess} >
             <HTMLFlipBook
-                width={400}
-                height={600}
+                width={width}
+                height={height}
                 size="stretch"
                 maxShadowOpacity={0.5}
                 showCover={true}

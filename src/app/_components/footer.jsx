@@ -47,7 +47,7 @@ const FooterComponent = () => {
                   </a>
                 </div>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 md:mt-[15px]">
+              {/* <div className="grid grid-cols-2 md:grid-cols-4 md:mt-[15px]">
                 <div>
                   <button className="w-[54.21px] bg-[#EF802B] h-[54.21px] rotate-[43.31deg]">
                     <FaCalendar className="size-6 rotate-0" />
@@ -68,7 +68,31 @@ const FooterComponent = () => {
                     <FaQuestion className="size-6 rotate-0" />
                   </button>
                 </div>
-              </div>
+              </div> */}
+
+          <div className="grid grid-cols-2 md:grid-cols-4 md:mt-[15px] gap-4">
+            <div className="flex justify-center items-center">
+              <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                <FaCalendar className="text-white text-xl -rotate-45" />
+              </button>
+            </div>
+            <div className="flex justify-center items-center">
+              <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                <FaQuestion className="text-white text-xl -rotate-45" />
+              </button>
+            </div>
+            <div className="flex justify-center items-center">
+              <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                <FaPhoneAlt className="text-white text-xl -rotate-45" />
+              </button>
+            </div>
+            <div className="flex justify-center items-center">
+              <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                <FaQuestion className="text-white text-xl -rotate-45" />
+              </button>
+            </div>
+          </div>
+
             </div>
             <div>
               <div className="md:ml-[75px] ml-[15px]">
