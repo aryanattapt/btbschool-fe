@@ -5,7 +5,6 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'; // For PDF annotation styles
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import 'core-js/full/promise/with-resolvers';
-import { Button } from 'flowbite-react';
 import _ from "lodash";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -31,17 +30,6 @@ const PdfViewer = ({ url, height, width }) => {
     const onPage = (e) => {
         setPageNumber(e.data)
     }
-
-    const handlePageChange = (direction) => {
-        const newPage = pageNumber + direction;
-        if (newPage >= 1 && newPage <= totalPages) {
-            setPageNumber(newPage);
-            if (flipBookRef.current) {
-                flipBookRef.current.pageFlip().flip(newPage - 1);
-            }
-        }
-    }
-
 
     return (
         <Document file={url} onLoadSuccess={onLoadSuccess} >
