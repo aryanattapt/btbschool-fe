@@ -9,7 +9,12 @@ import { useEffect, useState } from "react";
 import { GetBTBInstagramFeed } from "../../../services/instagram.service";
 import { useRouter } from "next/navigation";
 
+import {useLanguageStore} from '../../../store/language.store';
+import {HomePagePayload} from '../../../data';
+
 const HomePage = () => {
+  const [homePagePayload, setHomePagePayload] = useState(HomePagePayload)
+  const { language } = useLanguageStore();
   const router = useRouter();
   const [instagramFeed, setInstagramFeed] = useState([]);
 
@@ -134,7 +139,7 @@ const HomePage = () => {
           </div>
           <hr className="h-px mt-32 mb-20 bg-gray-200 border-0 dark:bg-gray-700" />
           <div className="text-[40px] md:text-[70px]">
-            <h1>Latest News</h1>
+            <h1>{homePagePayload[language].instagramtitle}</h1>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 mt-4">

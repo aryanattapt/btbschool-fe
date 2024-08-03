@@ -25,7 +25,8 @@
     "react-pageflip": "^2.0.3",
     "react-pdf": "^9.1.0",
     "react-signature-canvas": "^1.0.6",
-    "sweetalert2": "^11.12.2"
+    "sweetalert2": "^11.12.2",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/node": "20.14.11",
