@@ -1,5 +1,12 @@
 "use client";
+import {useLanguageStore} from '../../../../../store/language.store';
+import {BTBPeduliPayload} from '../../../../../data';
+import { useState } from 'react';
+
 const Pagging = () => {
+  const [btbPeduliData, setBTBPeduliData] = useState(BTBPeduliPayload);
+  const { language } = useLanguageStore();
+
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
@@ -7,7 +14,8 @@ const Pagging = () => {
           <div className="border-r-2">
             <div className="pr-20 pl-32">
               <h1 className="text-[35px] text-center font-semibold py-10">
-                BTB Peduli
+                {/* BTB Peduli */}
+                {btbPeduliData[language].btbpedulititle}
               </h1>
             </div>
           </div>
@@ -19,7 +27,8 @@ const Pagging = () => {
                   className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600"
                   aria-current="page"
                 >
-                  Peduli Lingkungan
+                  {/* Peduli Lingkungan */}
+                  {btbPeduliData[language].pedulilingkungantitle}
                 </a>
               </li>
               <li className="px-20">
@@ -27,7 +36,8 @@ const Pagging = () => {
                   href="/btb-peduli#sukarelawan"
                   className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600"
                 >
-                  Sukarelawan
+                  {/* Sukarelawan */}
+                  {btbPeduliData[language].sukarelawantitle}
                 </a>
               </li>
             </ul>

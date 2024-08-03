@@ -1,4 +1,4 @@
-import {
+/* import {
   RxCorp,
   RxDesktop,
   RxPencil2,
@@ -6,8 +6,10 @@ import {
   RxRocket,
   RxAccessibility,
 } from "react-icons/rx";
+ */
+import {BTBBelajarPayload} from '../../../../../data';
 
-export const ServiceData = [
+/* export const ServiceData = [
   {
     backgroundImage:
       "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud1.jpg",
@@ -44,4 +46,8 @@ export const ServiceData = [
     backgroundImage:
       "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud1.jpg",
   },
-];
+]; */
+
+export const albumimage = BTBBelajarPayload.albumimage.map((val) => {
+  return {"backgroundImage": val}
+})
