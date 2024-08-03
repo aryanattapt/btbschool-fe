@@ -1,5 +1,6 @@
 import FooterComponent from "../_components/footer";
 import NavBar from "../_components/navbar";
+import FloatingButtons from "../_components/floatingbutton";
 import 'core-js/full/promise/with-resolvers'
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function ClientLayout({ children }) {
       <NavBar />
       <main className="flex-grow">{children}</main>
       <FooterComponent />
+      <FloatingButtons/>
     </div>
   );
 }
