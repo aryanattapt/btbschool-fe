@@ -9,7 +9,12 @@ import { useEffect, useState } from "react";
 import { GetBTBInstagramFeed } from "../../../services/instagram.service";
 import { useRouter } from "next/navigation";
 
+import {useLanguageStore} from '../../../store/language.store';
+import {HomePagePayload} from '../../../data';
+
 const HomePage = () => {
+  const [homePagePayload, setHomePagePayload] = useState(HomePagePayload)
+  const { language } = useLanguageStore();
   const router = useRouter();
   const [instagramFeed, setInstagramFeed] = useState([]);
 
@@ -30,17 +35,15 @@ const HomePage = () => {
         <div className="md:my-[25px] mx-20 md:mx-32 flex-grow">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-[20px] md:my-[32px]">
             <div>
-              <div className="md:text-[25px]">Temukan Kelas:</div>
+              <div className="md:text-[25px]">{homePagePayload[language].grade.smalltitle}</div>
               <div className="font-semibold md:text-[60px]">
                 {/* md:font-[400] md:leading-[64px] */}
-                Kualitas Terbaik Setiap Tingkat
+                {homePagePayload[language].grade.title}
               </div>
             </div>
             <div className="place-content-center">
               <p className="md:leading-[25px] md:text-[20px] md:leading-[25px] text-justify leading-loose">
-                Di BTB, kami memastikan siswa mendapatkan kualitas terbaik yang
-                dibantu dengan menggunakan metode pembelajaran International
-                Baccalaureate.
+              {homePagePayload[language].grade.desc}
               </p>
             </div>
           </div>
@@ -63,7 +66,7 @@ const HomePage = () => {
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
                   <p className="md:text-[25px] leading-tight text-justify font-semibold">
-                    PAUD - TK
+                  {homePagePayload[language].grade.tktext}
                   </p>
                 </div>
               </div>
@@ -84,7 +87,7 @@ const HomePage = () => {
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
                   <p className="md:text-[25px] leading-tight text-justify font-semibold">
-                    Sekolah Dasar
+                  {homePagePayload[language].grade.sdtext}
                   </p>
                 </div>
               </div>
@@ -105,7 +108,7 @@ const HomePage = () => {
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
                   <p className="md:text-[25px] leading-tight text-justify font-semibold">
-                    SMP
+                  {homePagePayload[language].grade.smptext}
                   </p>
                 </div>
               </div>
@@ -126,7 +129,7 @@ const HomePage = () => {
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
                   <p className="md:text-[25px] leading-tight text-justify font-semibold">
-                    SMA
+                  {homePagePayload[language].grade.smatext}
                   </p>
                 </div>
               </div>
@@ -134,7 +137,7 @@ const HomePage = () => {
           </div>
           <hr className="h-px mt-32 mb-20 bg-gray-200 border-0 dark:bg-gray-700" />
           <div className="text-[40px] md:text-[70px]">
-            <h1>Latest News</h1>
+            <h1>{homePagePayload[language].instagramtitle}</h1>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 mt-4">

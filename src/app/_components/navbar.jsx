@@ -2,8 +2,13 @@
 
 import { Navbar } from "flowbite-react";
 import { useState, useEffect } from "react";
+import {useLanguageStore} from '../../../store/language.store';
+import {NavbarPayload} from '../../../data';
 
 const NavBar = () => {
+  const [navBarPayload, setNavBarPayload] = useState(NavbarPayload);
+  const { language } = useLanguageStore();
+  const setLanguage = useLanguageStore((state) => state.setLanguage);
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +26,10 @@ const NavBar = () => {
     };
   }, []);
 
+  const languageChangeHandler = (e) => {
+    setLanguage(e.target.checked ? "EN" : "ID");
+  }
+
   return (
     <Navbar className={`transition-all duration-1000 ${isScrolled ? 'bg-[#00305E] bg-opacity-100 text-white' : 'bg-gradient-to-b from-[#091531] via-[#00305E] via-20% bg-opacity-0 text-[#00305E]'} fixed flex top-0 z-20 w-full p-4`}>
       <div className="flex justify-between w-full p-2">
@@ -32,7 +41,7 @@ const NavBar = () => {
           </Navbar.Brand>
         {/* </div> */}
         <div className="grid items-center mr-28">
-          <div className={`transition-all duration-1000 ${isScrolled ? 'hidden' : 'pt-2 inline-flex justify-end mb-2 text-white'}`}>
+          <div className={`transition-all duration-1000 ${isScrolled ? 'pt-2 inline-flex justify-end mb-2 text-white' : 'pt-2 inline-flex justify-end mb-2 text-white'}`}>
               <label className="relative inline-flex cursor-pointer items-center px-4">
                   <div>
                       <div>
@@ -42,6 +51,7 @@ const NavBar = () => {
                             type="checkbox"
                             role="switch"
                             id="flexSwitchCheckDefault"
+                            onChange={languageChangeHandler}
                         />
                         <label className="text-sm">EN</label>
                       </div>
@@ -52,48 +62,26 @@ const NavBar = () => {
               </button>
           </div>
           <Navbar.Collapse className="flex-auto md:w-full">
-            <div className="relative group transition-all hover:duration-300">
-              <Navbar.Link href="/btb-belajar" className="text-white">
-                Belajar Di BTB
-              </Navbar.Link>
-              <ul className="absolute w-52 hidden group-hover:block group-hover:group-hover:block bg-[#00305E] text-white shadow-lg">
-                <li>
-                  <a href="/btb-belajar/tk" className="block text-center py-4 hover:bg-gray-700 border-b border-slate-600">
-                    TK / PAUD
-                  </a>
-                </li>
-                <li>
-                  <a href="/btb-belajar/sd" className="block text-center py-4 hover:bg-gray-700 border-b border-slate-600">
-                    Sekolah Dasar
-                  </a>
-                </li>
-                <li>
-                  <a href="/btb-belajar/smp" className="block text-center py-4 hover:bg-gray-700 border-b border-slate-600">
-                    Sekolah Menengah
-                  </a>
-                </li>
-                <li>
-                  <a href="/btb-belajar/sma" className="block text-center py-4 hover:bg-gray-700 border-b border-slate-600">
-                    Sekolah Menengah Atas
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <Navbar.Link href="/about-us" className="text-white">
-              Tentang Kami
-            </Navbar.Link>
-            <Navbar.Link href="/career" className="text-white">
-              Karir
-            </Navbar.Link>
-            <Navbar.Link href="./alumni" className="text-white">
-              Alumni
-            </Navbar.Link>
-            <Navbar.Link href="/contact" className="text-white">
-              Kontak
-            </Navbar.Link>
-            <Navbar.Link href="/onlineregistration" className="text-white">
-              Daftar
-            </Navbar.Link>
+          {
+              navBarPayload[language].navbarlink.map((val, idx) => {
+                if(val.submenu){
+                return <div className="relative group transition-all hover:duration-300" key={idx}>
+                    <Navbar.Link href={val.url} className="text-white">{val.content}</Navbar.Link>  
+                    <ul className="absolute w-52 hidden group-hover:block group-hover:group-hover:block bg-[#00305E] text-white shadow-lg">
+                    {
+                      val.submenu.map((val2, idx2) => {
+                      return <li key={idx2}>
+                        <a href={val2.url} className="block text-center py-4 hover:bg-gray-700 border-b border-slate-600">{val2.content}</a>
+                      </li>
+                      })
+                    }
+                    </ul>
+                  </div>
+                } else{
+                  return <Navbar.Link href={val.url} key={idx} className="text-white">{val.content}</Navbar.Link>
+                }
+              })
+            }
           </Navbar.Collapse>
         </div>
       </div>
