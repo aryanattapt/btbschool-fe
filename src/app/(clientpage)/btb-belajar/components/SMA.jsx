@@ -150,7 +150,10 @@ const SMA = () => {
                   className="h-[305px] w-full object-cover" />
                 </div>
                 <div className="pb-10 pl-10">
-                  <h1 className="text-[20px] font-semibold text-[#000000]">PROGRAM KAMI</h1>
+                  <h1 className="text-[20px] font-semibold text-[#000000]">
+                     {/* PROGRAM KAMI */}
+                     {btbBelajarData[language]["sma"].programs.title}
+                  </h1>
                   <div className="grid grid-cols-2 gap-12">
                     <div className="pl-3 text-[#000000]">
                       <ul className="list-disc">

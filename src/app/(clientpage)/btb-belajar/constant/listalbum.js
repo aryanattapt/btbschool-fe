@@ -48,6 +48,6 @@ import {BTBBelajarPayload} from '../../../../../data';
   },
 ]; */
 
-export const albumimage = BTBBelajarPayload.albumimage.map((val) => {
+export const ServiceData = BTBBelajarPayload.albumimage.map((val) => {
   return {"backgroundImage": val}
 })

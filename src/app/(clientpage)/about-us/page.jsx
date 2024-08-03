@@ -1,7 +1,13 @@
+'use client'
 import Banner from "./components/banner";
 import Pagging from "./components/pagging";
+import {useLanguageStore} from '../../../../store/language.store';
+import {AboutUsPayload} from '../../../../data';
+import { useState } from "react";
 
 const AboutUsPage = () => {
+  const [aboutUsData, setAboutUsData] = useState(AboutUsPayload);
+  const { language } = useLanguageStore();
   return (
     <>
       <Banner />
@@ -9,24 +15,27 @@ const AboutUsPage = () => {
       <div className="relative" id="pengenalan">
         <div className="mt-10 mb-5">
           <h1 className="text-[35px] font-bold pl-32 text-[#00305E]">
-            PENGENALAN
+            {/* PENGENALAN */}
+            {aboutUsData[language].title}
           </h1>
         </div>
         <div className="grid grid-cols-2">
           <div className="h-[350px]">
             <img
-              src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpeg"
+              // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpeg"
+              src = {`${AboutUsPayload.image1}`}
               alt="PAUD"
               className="h-[350px] w-full object-cover"
             />
           </div>
           <div className="content-center bg-[#EF802B]">
             <div className="p-5 text-left text-[20px] text-[#000000] text-pretty">
-              BTB memberikan edukasi yang dilengkapi dengan segala aspek penting
+              {/* BTB memberikan edukasi yang dilengkapi dengan segala aspek penting
               untuk membentuk individu terbaik. Lulusan sekolah kami merupakan
               generasi muda yang bukan hanya mengerti pentingnya menjadi warga
               global, tapi juga generasi muda yang dapat menggunakan ilmunya di
-              dunia.
+              dunia. */}
+              {aboutUsData[language].desc}
             </div>
           </div>
         </div>
@@ -34,7 +43,20 @@ const AboutUsPage = () => {
 
       <div className="text-[30px] font-medium mb-8 text-center text-[#243F6D] border-b">
         <ul className="flex flex-nowrap place-content-center">
-          <li className="w-[600px]">
+          {
+            aboutUsData[language].paging.map((val, idx) => {
+              return <li className="w-[600px]" key={idx}>
+              <a
+                href={`${val.url}`}
+                className="inline-block py-8 border-b-8 border-[#EF802B] active rounded-t-lg hover:border-[#EF802B]"
+              >
+                {val.content}
+              </a>
+            </li>
+            })
+          }
+
+          {/* <li className="w-[600px]">
             <a
               href="about-us#visi-misi"
               className="inline-block py-8 border-b-8 border-[#EF802B] active rounded-t-lg hover:border-[#EF802B]"
@@ -50,36 +72,52 @@ const AboutUsPage = () => {
             >
               JENJANG PENDIDIKAN
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
 
       <div id="visi-misi" className="grid grid-cols-2 text-black m-[30px] leading-loose">
         <div className="pl-[50px]">
-          <h2 className="text-[25px] mb-[10px] font-semibold">Visi</h2>
+          <h2 className="text-[25px] mb-[10px] font-semibold">
+            {/* Visi */}
+            {aboutUsData[language].visimisi.titlevisi}
+          </h2>
           <p className="leading-[35px]">
-            Untuk memberikan pendidikan holistik dan membina siswa untuk menjadi
-            pemimpin yang dinamis dalam masyarakat global.
+            {/* Untuk memberikan pendidikan holistik dan membina siswa untuk menjadi
+            pemimpin yang dinamis dalam masyarakat global. */}
+            {aboutUsData[language].visimisi.descvisi}
           </p>
-          <h2 className="text-[25px] mb-[10px] font-semibold mt-3">Misi</h2>
+          <h2 className="text-[25px] mb-[10px] font-semibold mt-3">
+            {/* Misi */}
+            {aboutUsData[language].visimisi.titlemisi}
+          </h2>
           <p className="leading-[35px]">
-            Menyelenggarakan pendidikan internasional berkualitas yang akan
+            {/* Menyelenggarakan pendidikan internasional berkualitas yang akan
             mengembangkan kebutuhan individu siswa secara akademis, emosional,
-            fisik dan sosial dengan: 
+            fisik dan sosial dengan:  */}
+            {aboutUsData[language].visimisi.descmisi}
           </p>
           <ul className="list-disc">
-            <li>Menanamkan nilai moral dan budi pekerti
+            {
+              aboutUsData[language].visimisi.misilist.map((val, idx) => {
+                return <li key={idx}>
+                  {val}
+                </li>
+              })
+            }
+            {/* <li>Menanamkan nilai moral dan budi pekerti
             yang baik kepada siswa agar bertanggung jawab atas tindakannya.</li>
             <li>Mengembangkan Profil Pelajar BTB dengan menerapkan praktik
             pendidikan terbaik dan mempromosikan literasi digital.</li>
             <li>Menyediakan
             lingkungan belajar yang aman dan nyaman di mana rasa hormat,
-            kejujuran, dan penghargaan terhadap perbedaan individu dipupuk.</li>
+            kejujuran, dan penghargaan terhadap perbedaan individu dipupuk.</li> */}
           </ul>
         </div>
         <div className="pl-[50px]">
         <img
-            src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
+            // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
+            src = {`${AboutUsPayload.image2}`}
             alt="aboutus2"
             className="md:h-[500px] md:w-[546px] object-cover"
           />
@@ -87,13 +125,35 @@ const AboutUsPage = () => {
       </div>
       <div id="jenjang-pendidikan" className="my-10 bg-[#243F6D]">
         <div className="flex text-center items-center py-10 mx-40 text-white leading-loose text-[15px] font-semibold">
-          Pengajar BTB mendorong para murid untuk dapat menemukan tempatnya di dunia yang memiliki tantangan 
+          {/* Pengajar BTB mendorong para murid untuk dapat menemukan tempatnya di dunia yang memiliki tantangan 
           dan peluang tidak terbatas ini. Mereka membimbing para murid untuk berpikir, bertindak, dan menerima 
-          rekannya dan diri mereka sendiri.
+          rekannya dan diri mereka sendiri. */}
+          {aboutUsData[language].smallparagraph}
         </div>
       </div>
       <div className="flex flex-wrap m-[20px] place-content-center">
-        <div className="md:m-[20px]">
+        {aboutUsData[language].gradelists.map((val, idx) => {
+            return <div className="md:m-[20px]" key={idx}>
+              <div className='md:h-[346px] md:w-[552px] bg-cover bg-center' style={{ backgroundImage: `url(${val.image})` }}>
+                <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80">
+                  <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
+                    <div>
+                    <p className="md:text-[35px] text-justify font-bold text-[#FFFFFF]">
+                      {/* Sekolah Dasar */}
+                      {val.title}
+                    </p>
+                    <a href={`${val.url}`} target="_blank" className="opacity-0 font-semibold group-hover:opacity-100 underline transition-opacity duration-300">
+                      {/* Lihat Kurikulum */}
+                      {val.buttoncontent}
+                    </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        })}
+
+        {/* <div className="md:m-[20px]">
           <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus3.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
             <div className="h-full hover:bg-[#243F6D] hover:opacity-80">
               <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
@@ -159,7 +219,8 @@ const AboutUsPage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+
       </div>
     </>
   );

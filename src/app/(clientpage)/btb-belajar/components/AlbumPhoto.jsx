@@ -28,8 +28,8 @@ const AlbumPhoto = () => {
           modules={{ FreeMode, Pagination }}
           className=""
         >
-          {ServiceData.map((item) => (
-            <SwiperSlide key={item.title}>
+          {ServiceData.map((item, idx) => (
+            <SwiperSlide key={idx}>
               <div className="flex flex-col gap-6 mb-20 group relative shadow-lg px-6 py-8 h-[250px] w-[215px] lg:h-[400px] lg:w-[350px] overflow-hidden cursor-pointer">
                 <div
                   className=" bg-center"

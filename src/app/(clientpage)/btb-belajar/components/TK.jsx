@@ -1,38 +1,45 @@
 "use client";
-import { Button } from "flowbite-react";
-import { Carousel } from "flowbite-react";
+import {useLanguageStore} from '../../../../../store/language.store';
+import {BTBBelajarPayload} from '../../../../../data';
+import { useState } from 'react';
 
 const TK = () => {
+  const [btbBelajarData, setBtbBelajarData] = useState(BTBBelajarPayload);
+  const { language } = useLanguageStore();
   return (
     <>
       <div className="relative">
         <div className="mt-10 mb-5">
           <h1 className="text-[35px] font-bold pl-32 text-[#00305E]">
-            PAUD - TK
+            {/* PAUD - TK */}
+            {btbBelajarData[language].tk.title}
           </h1>
         </div>
         <div className="grid grid-cols-2">
           <div className="h-[350px]">
             <img
-              src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud1.jpg"
+              // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud1.jpg"
+              src = {`${btbBelajarData.image13}`}
               alt="PAUD"
               className="h-[350px] w-full object-cover"
             />
           </div>
           <div className="content-center bg-[#EF802B]">
             <div className="p-5 text-left text-[20px] text-[#000000] text-pretty">
-              Kami berkomitmen untuk menyediakan lingkungan yang aman,
+              {/* Kami berkomitmen untuk menyediakan lingkungan yang aman,
               menyenangkan, dan penuh kasih sayang di mana anak-anak dapat
               berkembang secara holistik. Dengan pendekatan pembelajaran yang
               interaktif dan kreatif, kami membantu anak-anak mengembangkan
-              keterampilan sosial, emosional, dan akademik sejak dini.
+              keterampilan sosial, emosional, dan akademik sejak dini. */}
+              {btbBelajarData[language].tk.introduction.paragraph}
             </div>
           </div>
         </div>
         <div className="mt-10 mb-5 pl-32">
           <div className="border-b-8 border-[#EF802B] w-[180px]">
             <h1 className="text-[30px] font-semibold text-[#00305E]">
-              KURIKULUM
+              {/* KURIKULUM */}
+              {btbBelajarData[language].tk.curriculum.title}
             </h1>
           </div>
         </div>
@@ -41,57 +48,72 @@ const TK = () => {
             <h1 className="text-balance text-[30px]">Fokus:</h1>
             <div className="ml-5">
               <ul className="list-disc">
-                <li>Bahasa Inggris</li>
+                {/* <li>Bahasa Inggris</li>
                 <li>Matematika</li>
-                <li>Pelajaran Terintegrasi</li>
+                <li>Pelajaran Terintegrasi</li> */}
+                 {btbBelajarData[language].tk.curriculum.components1.map((val, idx) => {
+                      return <li key={idx}>
+                      {val}
+                    </li> 
+                  })}
               </ul>
             </div>
             <div className="mt-2 text-justify text-pretty">
-              Pada beberapa subjek pelajaran yang saling berkaitan, akan ada
+              {/* Pada beberapa subjek pelajaran yang saling berkaitan, akan ada
               penekanan khusus untuk dapat mengintegrasikannya, terutama pada
               tahun awal pendidikan. Pengajar bahasa asing khusus juga bekerja
               sama dengan pengajar di kelas untuk mengintegrasikan program
-              pembelajaran dengan efektif.
+              pembelajaran dengan efektif. */}
+              {btbBelajarData[language].tk.curriculum.desc1}
             </div>
           </div>
           <div className="text-[#000000]">
             <h1 className="text-balance text-[30px]">Subyek Spesial:</h1>
             <div className="ml-5">
               <ul className="list-disc">
-                <li>Kesenian</li>
+                {/* <li>Kesenian</li>
                 <li>Perpustakaan</li>
                 <li>Bahasa Mandarin</li>
                 <li>Musik</li>
                 <li>Pendidikan Jasmani</li>
-                <li>Komputer</li>
+                <li>Komputer</li> */}
+                {btbBelajarData[language].tk.curriculum.components2.map((val, idx) => {
+                      return <li key={idx}>
+                      {val}
+                    </li> 
+                  })}
               </ul>
             </div>
             <div className="mt-2 text-justify text-pretty">
-              Para pengajar menggabungkan nilai - nilai dari BTB terhadap
-              perencanaan untuk mencapai cara mengajar yang kritis.
+              {/* Para pengajar menggabungkan nilai - nilai dari BTB terhadap
+              perencanaan untuk mencapai cara mengajar yang kritis. */}
+              {btbBelajarData[language].tk.curriculum.desc2}
             </div>
           </div>
         </div>
         <div className="mt-20 flex justify-center items-center">
           <div className="border-b-8 border-[#EF802B] w-[160px]">
             <h1 className="text-[30px] font-semibold text-[#00305E]">
-              AKTIVITAS
+              {/* AKTIVITAS */}
+              {btbBelajarData[language].tk.activity.title}
             </h1>
           </div>
         </div>
         <div className="h-[305px] pl-32 mt-5">
           <div className="flex flex-wrap">
             <div className="py-10 pr-10 text-justify text-pretty text-[#000000] w-[545px]">
-              Di Bina Tunas Bangsa, kami percaya bahwa kesehatan dan
+              {/* Di Bina Tunas Bangsa, kami percaya bahwa kesehatan dan
               kesejahteraan anak adalah fondasi penting untuk belajar yang
               optimal. Oleh karena itu, kami menyediakan berbagai kegiatan
               ekstrakurikuler yang mendukung gaya hidup sehat dan aktif bagi
               siswa. Program-program ini dirancang untuk mengembangkan kebugaran
-              fisik, keterampilan sosial, dan kebiasaan hidup sehat sejak dini.
+              fisik, keterampilan sosial, dan kebiasaan hidup sehat sejak dini. */}
+              {btbBelajarData[language].tk.activity.content}
             </div>
             <div className="h-[305px] w-[518px]">
               <img
-                src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 3.jpg"
+                // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 3.jpg"
+                src = {`${btbBelajarData.image14}`}
                 alt="PAUD"
                 className="h-[255px] w-full object-cover"
               />
@@ -102,27 +124,35 @@ const TK = () => {
           <div className="flex flex-wrap">
             <div className="h-[325px] w-[518px]">
               <img
-                src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 5.jpg"
+                // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 5.jpg"
+                src = {`${btbBelajarData.image15}`}
                 alt="PAUD"
                 className="h-[305px] w-full object-cover"
               />
             </div>
             <div className="pb-10 pl-10">
               <h1 className="text-[20px] font-semibold text-[#000000]">
-                PROGRAM KAMI
+                {/* PROGRAM KAMI */}
+                {btbBelajarData[language].tk.programs.title}
               </h1>
               <div className="pl-3 text-[#000000] w-[545px]">
                 <ul className="list-disc">
-                  <li>Klub Mandarin</li>
+                  {/* <li>Klub Mandarin</li>
                   <li>Klub Menari</li>
                   <li>Klub Kesenian</li>
                   <li>Klub Bercerita</li>
-                  <li>Klub Menari Balet</li>
+                  <li>Klub Menari Balet</li> */}
+                  {btbBelajarData[language].tk.programs.list1.map((val, idx) => {
+                      return <li key={idx}>
+                      {val}
+                    </li> 
+                  })}
                 </ul>
                 <div className="pt-1">
-                  Program dan kegiatan setelah sekolah, yang dapat berubah
+                  {/* Program dan kegiatan setelah sekolah, yang dapat berubah
                   setiap tahun pelajaran, berfokus untuk mendorong pemikiran dan
-                  mengembangkan kemampuan memecahkan masalah oleh anak - anak.
+                  mengembangkan kemampuan memecahkan masalah oleh anak - anak. */}
+                  {btbBelajarData[language].tk.programs.desc}
                 </div>
               </div>
             </div>
@@ -133,7 +163,8 @@ const TK = () => {
         <div className="mt-20 flex justify-end items-center pr-32">
           <div className="border-b-8 border-[#EF802B] w-[250x]">
             <h1 className="text-[30px] font-semibold text-[#00305E]">
-              DI LUAR RUANGAN
+              {/* DI LUAR RUANGAN */}
+              {btbBelajarData[language].tk.outdoor.title}
             </h1>
           </div>
         </div>
@@ -141,23 +172,26 @@ const TK = () => {
           <div className="flex flex-wrap">
             <div className="h-[305px] w-[518px]">
               <img
-                src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 6.jpg"
+                // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 6.jpg"
+                src = {`${btbBelajarData.image16}`}
                 alt="PAUD"
                 className="h-[305px] w-full object-cover"
               />
             </div>
             <div className="pb-10 pl-10">
               <h1 className="text-[20px] w-[545px] font-semibold text-[#000000]">
-                Dibentuk untuk mengembangkan karakter dan kemampuan para murid.
-                Didukung dalam bentuk karyawisata yang diadakan setiap semester.
+                {/* Dibentuk untuk mengembangkan karakter dan kemampuan para murid.
+                Didukung dalam bentuk karyawisata yang diadakan setiap semester. */}
+                {btbBelajarData[language].tk.outdoor.text}
               </h1>
               <div className="text-[#000000] w-[545px] leading-loose">
-                Program ini berjalan sesuai dengan nilai sekolah terhadap ‘Fase
+                {/* Program ini berjalan sesuai dengan nilai sekolah terhadap ‘Fase
                 Pembelajaran’, menyesuaikan usia dan tahapan perkembangan anak
                 dengan pengalaman yang sesuai untuk menantang para murid untuk
                 berkembang. Acara karyawisata ini merupakan bagian wajib dalam
                 kurikulum dengan biaya yang sudah termasuk dalam struktur
-                pembayaran uang sekolah.
+                pembayaran uang sekolah. */}
+                {btbBelajarData[language].tk.outdoor.paragraph}
               </div>
             </div>
           </div>
