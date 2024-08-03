@@ -3,10 +3,10 @@
 import { Navbar } from "flowbite-react";
 import { useState, useEffect } from "react";
 import {useLanguageStore} from '../../../store/language.store';
-import {HomePagePayload} from '../../../data';
+import {NavbarPayload} from '../../../data';
 
 const NavBar = () => {
-  const [homePageData, setHomePageData] = useState(HomePagePayload);
+  const [navBarPayload, setNavBarPayload] = useState(NavbarPayload);
   const { language } = useLanguageStore();
   const setLanguage = useLanguageStore((state) => state.setLanguage);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -63,7 +63,7 @@ const NavBar = () => {
           </div>
           <Navbar.Collapse className="flex-auto md:w-full">
           {
-              homePageData[language].navbarlink.map((val, idx) => {
+              navBarPayload[language].navbarlink.map((val, idx) => {
                 if(val.submenu){
                 return <div className="relative group transition-all hover:duration-300" key={idx}>
                     <Navbar.Link href={val.url} className="text-white">{val.content}</Navbar.Link>  

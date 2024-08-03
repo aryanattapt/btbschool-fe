@@ -35,17 +35,15 @@ const HomePage = () => {
         <div className="md:my-[25px] mx-20 md:mx-32 flex-grow">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-[20px] md:my-[32px]">
             <div>
-              <div className="md:text-[25px]">Temukan Kelas:</div>
+              <div className="md:text-[25px]">{homePagePayload[language].grade.smalltitle}</div>
               <div className="font-semibold md:text-[60px]">
                 {/* md:font-[400] md:leading-[64px] */}
-                Kualitas Terbaik Setiap Tingkat
+                {homePagePayload[language].grade.title}
               </div>
             </div>
             <div className="place-content-center">
               <p className="md:leading-[25px] md:text-[20px] md:leading-[25px] text-justify leading-loose">
-                Di BTB, kami memastikan siswa mendapatkan kualitas terbaik yang
-                dibantu dengan menggunakan metode pembelajaran International
-                Baccalaureate.
+              {homePagePayload[language].grade.desc}
               </p>
             </div>
           </div>
@@ -68,7 +66,7 @@ const HomePage = () => {
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
                   <p className="md:text-[25px] leading-tight text-justify font-semibold">
-                    PAUD - TK
+                  {homePagePayload[language].grade.tktext}
                   </p>
                 </div>
               </div>
@@ -89,7 +87,7 @@ const HomePage = () => {
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
                   <p className="md:text-[25px] leading-tight text-justify font-semibold">
-                    Sekolah Dasar
+                  {homePagePayload[language].grade.sdtext}
                   </p>
                 </div>
               </div>
@@ -110,7 +108,7 @@ const HomePage = () => {
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
                   <p className="md:text-[25px] leading-tight text-justify font-semibold">
-                    SMP
+                  {homePagePayload[language].grade.smptext}
                   </p>
                 </div>
               </div>
@@ -131,7 +129,7 @@ const HomePage = () => {
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
                   <p className="md:text-[25px] leading-tight text-justify font-semibold">
-                    SMA
+                  {homePagePayload[language].grade.smatext}
                   </p>
                 </div>
               </div>
