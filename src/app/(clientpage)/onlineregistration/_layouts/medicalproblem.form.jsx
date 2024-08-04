@@ -77,127 +77,127 @@ const MedicalProblemForm = ({formChangeHandler, payload}) => {
             </div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-4" id="medicalproblemoptions">
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'asthma'} id="asthmaoptions" name="medicalproblemoptions" value="asthma" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('asthma')} id="asthmaoptions" name="medicalproblemoptions" value="asthma" onChange={formChangeHandler}/>
                     <Label htmlFor="asthmaoptions">Asthma</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'eczema'} id="eczemaoptions" name="medicalproblemoptions" value="eczema" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('eczema')} id="eczemaoptions" name="medicalproblemoptions" value="eczema" onChange={formChangeHandler}/>
                     <Label htmlFor="eczemaoptions">Eczema</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'convulsions'} id="convulsionsoptions" name="medicalproblemoptions" value="convulsions" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('convulsions')} id="convulsionsoptions" name="medicalproblemoptions" value="convulsions" onChange={formChangeHandler}/>
                     <Label htmlFor="convulsionsoptions">Convulsions</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'chicken pox'} id="chickenpoxoptions" name="medicalproblemoptions" value="chicken pox" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('chicken pox')} id="chickenpoxoptions" name="medicalproblemoptions" value="chicken pox" onChange={formChangeHandler}/>
                     <Label htmlFor="chickenpoxoptions">Chicken pox</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'german measles'} id="germanmeaslesoptions" name="medicalproblemoptions" value="german measles" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('german measles')} id="germanmeaslesoptions" name="medicalproblemoptions" value="german measles" onChange={formChangeHandler}/>
                     <Label htmlFor="germanmeaslesoptions">German measles</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'heart problems'} id="heartproblemsoptions" name="medicalproblemoptions" value="heart problems" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('heart problems')} id="heartproblemsoptions" name="medicalproblemoptions" value="heart problems" onChange={formChangeHandler}/>
                     <Label htmlFor="heartproblemsoptions">Heart problems</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'tuberculosis'} id="tuberculosisoptions" name="medicalproblemoptions" value="tuberculosis" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('tuberculosis')} id="tuberculosisoptions" name="medicalproblemoptions" value="tuberculosis" onChange={formChangeHandler}/>
                     <Label htmlFor="tuberculosisoptions">Tuberculosis</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'scarlet fever'} id="scarletfeveroptions" name="medicalproblemoptions" value="scarlet fever" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('scarlet fever')} id="scarletfeveroptions" name="medicalproblemoptions" value="scarlet fever" onChange={formChangeHandler}/>
                     <Label htmlFor="scarletfeveroptions">Scarlet fever</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'mumps'} id="mumpsoptions" name="medicalproblemoptions" value="mumps" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('mumps')} id="mumpsoptions" name="medicalproblemoptions" value="mumps" onChange={formChangeHandler}/>
                     <Label htmlFor="mumpsoptions">Mumps</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'epilepsy'} id="epilepsyoptions" name="medicalproblemoptions" value="epilepsy" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('epilepsy')} id="epilepsyoptions" name="medicalproblemoptions" value="epilepsy" onChange={formChangeHandler}/>
                     <Label htmlFor="epilepsyoptions">Epilepsy</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'measles'} id="measlesoptions" name="medicalproblemoptions" value="measles" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('measles')} id="measlesoptions" name="medicalproblemoptions" value="measles" onChange={formChangeHandler}/>
                     <Label htmlFor="measlesoptions">Measles</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'diabetes'} id="diabetesoptions" name="medicalproblemoptions" value="diabetes" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('diabetes')} id="diabetesoptions" name="medicalproblemoptions" value="diabetes" onChange={formChangeHandler}/>
                     <Label htmlFor="diabetesoptions">Diabetes</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'nightmares'} id="nightmaresoptions" name="medicalproblemoptions" value="nightmares" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('nightmares')} id="nightmaresoptions" name="medicalproblemoptions" value="nightmares" onChange={formChangeHandler}/>
                     <Label htmlFor="nightmaresoptions">Nightmares</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'nosebleeds'} id="nosebleedsoptions" name="medicalproblemoptions" value="nosebleeds" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('nosebleeds')} id="nosebleedsoptions" name="medicalproblemoptions" value="nosebleeds" onChange={formChangeHandler}/>
                     <Label htmlFor="nosebleedsoptions">Nosebleeds</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'hiv'} id="hivoptions" name="medicalproblemoptions" value="hiv" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('hiv')} id="hivoptions" name="medicalproblemoptions" value="hiv" onChange={formChangeHandler}/>
                     <Label htmlFor="hivoptions">HIV</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'autism'} id="autismoptions" name="medicalproblemoptions" value="autism" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('autism')} id="autismoptions" name="medicalproblemoptions" value="autism" onChange={formChangeHandler}/>
                     <Label htmlFor="autismoptions">Autism</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'whooping cough'} id="whoopingcoughoptions" name="medicalproblemoptions" value="whooping cough" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('whooping cough')} id="whoopingcoughoptions" name="medicalproblemoptions" value="whooping cough" onChange={formChangeHandler}/>
                     <Label htmlFor="whoopingcoughoptions">Whooping cough</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'rheumatic fever'} id="rheumaticfeveroptions" name="medicalproblemoptions" value="rheumatic fever" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('rheumatic fever')} id="rheumaticfeveroptions" name="medicalproblemoptions" value="rheumatic fever" onChange={formChangeHandler}/>
                     <Label htmlFor="rheumaticfeveroptions">Rheumatic fever</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'visual/eye'} id="visualeyeoptions" name="medicalproblemoptions" value="visual/eye" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('visual/eye')} id="visualeyeoptions" name="medicalproblemoptions" value="visual/eye" onChange={formChangeHandler}/>
                     <Label htmlFor="visualeyeoptions">Visual/ Eye</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'kidney/urinary infection'} id="kidneyurinaryinfectionoptions" name="medicalproblemoptions" value="kidney/urinary infection" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('kidney/urinary infection')} id="kidneyurinaryinfectionoptions" name="medicalproblemoptions" value="kidney/urinary infection" onChange={formChangeHandler}/>
                     <Label htmlFor="kidneyurinaryinfectionoptions">Kidney/ Urinary infection</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'frequent headaches'} id="frequentheadachesoptions" name="medicalproblemoptions" value="frequent headaches" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('frequent headaches')} id="frequentheadachesoptions" name="medicalproblemoptions" value="frequent headaches" onChange={formChangeHandler}/>
                     <Label htmlFor="frequentheadachesoptions">Frequent headaches</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'hearing difficulties'} id="hearingdifficultiesoptions" name="medicalproblemoptions" value="hearing difficulties" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('hearing difficulties')} id="hearingdifficultiesoptions" name="medicalproblemoptions" value="hearing difficulties" onChange={formChangeHandler}/>
                     <Label htmlFor="hearingdifficultiesoptions">Hearing difficulties</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'persistent ear infections'} id="persistentearinfectionsoptions" name="medicalproblemoptions" value="persistent ear infections" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('persistent ear infections')} id="persistentearinfectionsoptions" name="medicalproblemoptions" value="persistent ear infections" onChange={formChangeHandler}/>
                     <Label htmlFor="persistentearinfectionsoptions">Persistent ear infections</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'persistent chest infections'} id="persistentchestinfectionsoptions" name="medicalproblemoptions" value="persistent chest infections" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('persistent chest infections')} id="persistentchestinfectionsoptions" name="medicalproblemoptions" value="persistent chest infections" onChange={formChangeHandler}/>
                     <Label htmlFor="persistentchestinfectionsoptions">Persistent chest infections</Label>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions === 'attention deficit syndrome'} id="attentiondeficitsyndromeoptions" name="medicalproblemoptions" value="attention deficit syndrome" onChange={formChangeHandler}/>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('attention deficit syndrome')} id="attentiondeficitsyndromeoptions" name="medicalproblemoptions" value="attention deficit syndrome" onChange={formChangeHandler}/>
                     <Label htmlFor="attentiondeficitsyndromeoptions">Attention Deficit Syndrome (ADT)</Label>
                 </div>
             </div>

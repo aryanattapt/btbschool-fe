@@ -25,7 +25,7 @@ const OnlineRegistrationForm = () => {
   let [pageNo, setPageNo] = useState(0);
   const [haveRegisCode, setHaveRegiscode] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [registrationPayload, setRegistrationPayload] = useState({});
+  const [registrationPayload, setRegistrationPayload] = useState({medicalproblemoptions: []});
 
   const formChangeHandler = (e) => {
     const { name, value, type, files } = e.target;
@@ -147,12 +147,14 @@ const OnlineRegistrationForm = () => {
   };
 
   const saveAndSendHandler = (e) => {
-    submitHandler(true, setIsLoading);
+    console.log(registrationPayload);
+    // submitHandler(true, setIsLoading);
     // setIsLoading(true)
   };
 
   const saveAsDraftHandler = (e) => {
-    submitHandler(false, setIsLoading);
+    console.log(registrationPayload);
+    // submitHandler(false, setIsLoading);
     // setIsLoading(true)
   };
 

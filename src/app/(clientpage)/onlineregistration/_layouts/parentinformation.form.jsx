@@ -147,9 +147,80 @@ const ParentsInformationForm = ({
           <Label htmlFor="divorcedfather">Divorced</Label>
         </div>
       </div>
+        <div className="md:inline-flex">
+          <div className="mb-2 block w-72">
+            <Label htmlFor="fatheroccupation" value="father occupation" />
+          </div>
+          <TextInput
+            className="w-full pr-10 md:pr-0"
+            value={payload.fatheroccupation || ""}
+            type="text"
+            id="fatheroccupation"
+            name="fatheroccupation"
+            onChange={formChangeHandler}
+          />
+        </div>
+
+        <div className="md:inline-flex">
+          <div className="mb-2 block w-72">
+            <Label htmlFor="fathercompanyname" value="Company Name" />
+          </div>
+          <TextInput
+            className="w-full pr-10 md:pr-0"
+            value={payload.fathercompanyname || ""}
+            type="text"
+            id="fathercompanyname"
+            name="fathercompanyname"
+            onChange={formChangeHandler}
+          />
+        </div>
+
+        <div className="md:inline-flex">
+          <div className="mb-2 block w-72">
+            <Label htmlFor="fatherbusinessAddress" value="Business Address" />
+          </div>
+          <TextInput
+            className="w-full pr-10 md:pr-0"
+            value={payload.fatherbusinessAddress || ""}
+            type="text"
+            id="fatherbusinessAddress"
+            name="fatherbusinessAddress"
+            onChange={formChangeHandler}
+          />
+        </div>
+
+        <div className="md:inline-flex">
+          <div className="mb-2 block w-72">
+            <Label htmlFor="fathertelephone" value="Telp" />
+          </div>
+          <TextInput
+            className="w-full pr-10 md:pr-0"
+            value={payload.fathertelephone || ""}
+            type="text"
+            id="fathertelephone"
+            name="fathertelephone"
+            onChange={formChangeHandler}
+          />
+        </div>
+
+        <div className="md:inline-flex">
+          <div className="mb-2 block w-72">
+            <Label htmlFor="fatherfax" value="father fax" />
+          </div>
+          <TextInput
+            className="w-full pr-10 md:pr-0"
+            value={payload.fatherfax || ""}
+            type="text"
+            id="fatherfax"
+            name="fatherfax"
+            onChange={formChangeHandler}
+          />
+        </div>
+
       <div>
         <HR />
       </div>
+      
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="mothername" value="Mother's Name" />
@@ -278,6 +349,76 @@ const ParentsInformationForm = ({
           <Label htmlFor="divorcedmother">Divorced</Label>
         </div>
       </div>
+      <div className="md:inline-flex">
+  <div className="mb-2 block w-72">
+    <Label htmlFor="motheroccupation" value="mother occupation" />
+  </div>
+  <TextInput
+    className="w-full pr-10 md:pr-0"
+    value={payload.motheroccupation || ""}
+    type="text"
+    id="motheroccupation"
+    name="motheroccupation"
+    onChange={formChangeHandler}
+  />
+</div>
+
+<div className="md:inline-flex">
+  <div className="mb-2 block w-72">
+    <Label htmlFor="mothercompanyname" value="Company Name" />
+  </div>
+  <TextInput
+    className="w-full pr-10 md:pr-0"
+    value={payload.mothercompanyname || ""}
+    type="text"
+    id="mothercompanyname"
+    name="mothercompanyname"
+    onChange={formChangeHandler}
+  />
+</div>
+
+<div className="md:inline-flex">
+  <div className="mb-2 block w-72">
+    <Label htmlFor="motherbusinessAddress" value="Business Address" />
+  </div>
+  <TextInput
+    className="w-full pr-10 md:pr-0"
+    value={payload.motherbusinessAddress || ""}
+    type="text"
+    id="motherbusinessAddress"
+    name="motherbusinessAddress"
+    onChange={formChangeHandler}
+  />
+</div>
+
+<div className="md:inline-flex">
+  <div className="mb-2 block w-72">
+    <Label htmlFor="mothertelephone" value="Telp" />
+  </div>
+  <TextInput
+    className="w-full pr-10 md:pr-0"
+    value={payload.mothertelephone || ""}
+    type="text"
+    id="mothertelephone"
+    name="mothertelephone"
+    onChange={formChangeHandler}
+  />
+</div>
+
+<div className="md:inline-flex">
+  <div className="mb-2 block w-72">
+    <Label htmlFor="motherfax" value="mother fax" />
+  </div>
+  <TextInput
+    className="w-full pr-10 md:pr-0"
+    value={payload.motherfax || ""}
+    type="text"
+    id="motherfax"
+    name="motherfax"
+    onChange={formChangeHandler}
+  />
+</div>
+
     </>
   );
 };
