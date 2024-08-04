@@ -19,7 +19,8 @@ const FooterComponent = () => {
           <div className="grid grid-cols-2 gap-2 md:my-[50px]">
             <div className="md:w-[478px] md:h-[111px] md:ml-28 md:mt-2">
               <img
-                src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png"
+                // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png"
+                src={footerPayload[language].logourl}
                 alt="logo btb"
                 className="md:mb-[40px] mb-[20px]"
               />

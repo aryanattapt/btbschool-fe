@@ -46,8 +46,8 @@ const SD = () => {
             <div className="grid grid-cols-2 px-32 gap-12">
               <div className="ml-5">
                 <ul className="list-disc">
-                  {btbBelajarData[language]["sd"].kurikulumlist1.map((val) => {
-                    return <li><strong>{val.title}</strong>
+                  {btbBelajarData[language]["sd"].kurikulumlist1.map((val, idx) => {
+                    return <li key={idx}><strong>{val.title}</strong>
                       {val.content}
                     </li>
                   })}
@@ -71,8 +71,8 @@ const SD = () => {
               </div>
               <div className="ml-5">
                 <ul className="list-disc">
-                  {btbBelajarData[language]["sd"].kurikulumlist2.map((val) => {
-                    return <li><strong>{val.title}</strong>
+                  {btbBelajarData[language]["sd"].kurikulumlist2.map((val, idx) => {
+                    return <li key={idx}><strong>{val.title}</strong>
                       {val.content}
                     </li>
                   })}
@@ -134,8 +134,8 @@ const SD = () => {
                   <div className="grid grid-cols-2 gap-12">
                     <div className="pl-3 text-[#000000]">
                       <ul className="list-disc">
-                      {btbBelajarData[language]["sd"].programlist1.map((val) => {
-                        return <li>{val}</li>
+                      {btbBelajarData[language]["sd"].programlist1.map((val, idx) => {
+                        return <li key={idx}>{val}</li>
                       })}
                         {/* <li>Bola Basket</li>
                         <li>Futsal</li>
@@ -165,8 +165,8 @@ const SD = () => {
                         <li>Art & Craft</li>
                         <li>Make X</li>
                         <li>Video Editing</li> */}
-                         {btbBelajarData[language]["sd"].programlist2.map((val) => {
-                        return <li>{val}</li>
+                         {btbBelajarData[language]["sd"].programlist2.map((val, idx) => {
+                        return <li key={idx}>{val}</li>
                       })}
                       </ul>
                     </div>

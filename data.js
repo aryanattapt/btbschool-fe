@@ -28,261 +28,280 @@ export const BTBBelajarPayload = {
 	"image14": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 3.jpg",
 	"image15": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 5.jpg",
 	"image16": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 6.jpg",
+
 	"EN": {
-		"tk": {
-		"title": "Early Childhood - Kindergarten",
-		"introduction": {
-			"title": "Rich Experiences, Choices, and Challenges",
-			"paragraph": "We are committed to providing a safe, enjoyable, and nurturing environment where children can develop holistically. With an interactive and creative learning approach, we help children develop social, emotional, and academic skills from an early age."
-		},
-		"curriculum": {
-			"title": "CURRICULUM",
-			"subtitle": "Focus:",
-			"paragraph": "The IBDP curriculum qualifies in understanding these core values. This curriculum consists of core values and six subject groups. Comprising three main components, these core values aim to broaden students' learning experiences and challenge them to use their knowledge and skills.",
-			"components1": [
-			"English",
-			"Mathematics",
-			"Integrated Studies"
-			],
-			"components2": [
-			"Arts",
-			"Library",
-			"Mandarin",
-			"Music",
-			"Physical Education",
-			"Computers"
-			],
-			"desc1": "In some interrelated subjects, there will be a special emphasis on integrating them, especially in the early years of education. Specialized foreign language teachers also work with classroom teachers to effectively integrate the learning program.",
-			"desc2": "Teachers integrate BTB values into planning to achieve critical teaching methods."
-		},
-		"activity": {
-			"title": "Activities",
-			"content": "At Bina Tunas Bangsa, we believe that a child's health and well-being are crucial for optimal learning. Therefore, we offer a variety of extracurricular activities that support a healthy and active lifestyle for students. These programs are designed to develop physical fitness, social skills, and healthy habits from an early age."
-		},
-		"programs": {
-			"title": "OUR PROGRAMS",
-			"desc": "Programs and after-school activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children.",
-			"list1": [
-			"Mandarin Club",
-			"Dance Club",
-			"Arts Club",
-			"Storytelling Club",
-			"Ballet Dance Club"
+		"paging":  {
+			"title": "Learn At BTB",
+			"url": [
+				{"title": "Early Childhood - Kindergarten", "url": "/btb-belajar/TK"},
+				{"title": "Elementary School", "url": "/btb-belajar/SD"},
+				{"title": "Junior High School", "url": "/btb-belajar/SMP"},
+				{"title": "Senior High School", "url": "/btb-belajar/SMA"},
 			]
 		},
-		"outdoor": {
-			"title": "OUTDOOR ACTIVITIES",
-			"text": "Designed to develop students' character and abilities. Supported in the form of field trips held each semester.",
-			"paragraph": "This program aligns with the school's values on ‘Learning Stages’, adjusting the child’s age and developmental stages with experiences that challenge them to grow. Field trips are a mandatory part of the curriculum, with costs included in the tuition fee structure."
-		}
+		"tk": {
+			"title": "Early Childhood - Kindergarten",
+			"introduction": {
+				"title": "Rich Experiences, Choices, and Challenges",
+				"paragraph": "We are committed to providing a safe, enjoyable, and nurturing environment where children can develop holistically. With an interactive and creative learning approach, we help children develop social, emotional, and academic skills from an early age."
+			},
+			"curriculum": {
+				"title": "CURRICULUM",
+				"subtitle": "Focus:",
+				"paragraph": "The IBDP curriculum qualifies in understanding these core values. This curriculum consists of core values and six subject groups. Comprising three main components, these core values aim to broaden students' learning experiences and challenge them to use their knowledge and skills.",
+				"components1": [
+				"English",
+				"Mathematics",
+				"Integrated Studies"
+				],
+				"components2": [
+				"Arts",
+				"Library",
+				"Mandarin",
+				"Music",
+				"Physical Education",
+				"Computers"
+				],
+				"desc1": "In some interrelated subjects, there will be a special emphasis on integrating them, especially in the early years of education. Specialized foreign language teachers also work with classroom teachers to effectively integrate the learning program.",
+				"desc2": "Teachers integrate BTB values into planning to achieve critical teaching methods."
+			},
+			"activity": {
+				"title": "Activities",
+				"content": "At Bina Tunas Bangsa, we believe that a child's health and well-being are crucial for optimal learning. Therefore, we offer a variety of extracurricular activities that support a healthy and active lifestyle for students. These programs are designed to develop physical fitness, social skills, and healthy habits from an early age."
+			},
+			"programs": {
+				"title": "OUR PROGRAMS",
+				"desc": "Programs and after-school activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children.",
+				"list1": [
+				"Mandarin Club",
+				"Dance Club",
+				"Arts Club",
+				"Storytelling Club",
+				"Ballet Dance Club"
+				]
+			},
+			"outdoor": {
+				"title": "OUTDOOR ACTIVITIES",
+				"text": "Designed to develop students' character and abilities. Supported in the form of field trips held each semester.",
+				"paragraph": "This program aligns with the school's values on ‘Learning Stages’, adjusting the child’s age and developmental stages with experiences that challenge them to grow. Field trips are a mandatory part of the curriculum, with costs included in the tuition fee structure."
+			}
 		},
 		"smp": {
-		"title": "MIDDLE SCHOOL",
-		"introduction": {
-			"title": "Rich Experiences, Choices, and Challenges",
-			"paragraph": "Students are challenged to develop their personalities during this crucial transition year in middle school, both inside and outside the classroom. The goal of this phase is to broaden their view of themselves to discover their abilities in different subjects and continue their exploration of the world beyond the school environment."
-		},
-		"curriculum": {
-			"title": "CURRICULUM",
-			"subtitle": "Focus:",
-			"paragraph": "The IBDP curriculum qualifies in understanding these core values. This curriculum consists of core values and six subject groups. Comprising three main components, these core values aim to broaden students' learning experiences and challenge them to use their knowledge and skills.",
-			"components1": [
-			{
-				"title": "English",
-				"description": " - Develops language skills creatively, including studying various literacies and fostering learning habits."
+			"title": "MIDDLE SCHOOL",
+			"introduction": {
+				"title": "Rich Experiences, Choices, and Challenges",
+				"paragraph": "Students are challenged to develop their personalities during this crucial transition year in middle school, both inside and outside the classroom. The goal of this phase is to broaden their view of themselves to discover their abilities in different subjects and continue their exploration of the world beyond the school environment."
 			},
-			{
-				"title": "Mandarin",
-				"description": " - Provides students with the opportunity to master a foreign language."
+			"curriculum": {
+				"title": "CURRICULUM",
+				"subtitle": "Focus:",
+				"paragraph": "The IBDP curriculum qualifies in understanding these core values. This curriculum consists of core values and six subject groups. Comprising three main components, these core values aim to broaden students' learning experiences and challenge them to use their knowledge and skills.",
+				"components1": [
+				{
+					"title": "English",
+					"description": " - Develops language skills creatively, including studying various literacies and fostering learning habits."
+				},
+				{
+					"title": "Mandarin",
+					"description": " - Provides students with the opportunity to master a foreign language."
+				},
+				{
+					"title": "Business",
+					"description": " - Challenges students in areas such as Economics, Accounting, and Business."
+				},
+				{
+					"title": "Mathematics",
+					"description": " - Plays an important role in new technology and develops students' literacy skills. This ability helps them better understand the world."
+				}
+				],
+				"components2": [
+				{
+					"title": "Science",
+					"description": " - Diversity, continuity, and conservation are important elements of this subject."
+				},
+				{
+					"title": "ICT (Information and Communication Technology)",
+					"description": " - Introduces students to the latest technology fields."
+				},
+				{
+					"title": "Physical Education",
+					"description": " - Provides students with tricks and strategies to handle stress, conflict, and various health and lifestyle issues."
+				},
+				{
+					"title": "Music, English Language Skills, Religion, and Citizenship",
+					"description": " - Also part of the curriculum."
+				}
+				],
+				"certification": "The 'Cambridge International General Certificate of Secondary Education' (IGCSE) certification will be awarded to 10th-grade graduates who meet the certificate qualifications. Students will also receive a report card covering their grades in Grades 9 and 10."
 			},
-			{
-				"title": "Business",
-				"description": " - Challenges students in areas such as Economics, Accounting, and Business."
+			"activity": {
+				"title": "Activities",
+				"content": "Various co-curricular activities are available for your child to participate in, aimed at developing their interests and skills outside the classroom. After-school programs and activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children."
 			},
-			{
-				"title": "Mathematics",
-				"description": " - Plays an important role in new technology and develops students' literacy skills. This ability helps them better understand the world."
+			"programs": {
+				"title": "OUR PROGRAMS",
+				"desc": "Various co-curricular activities are available for your child to participate in, aimed at developing their interests and skills outside the classroom. After-school programs and activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children.",
+				"list1": [
+				"Journalism",
+				"HSK (Mandarin)",
+				"Choir",
+				"Basketball",
+				"Futsal",
+				"School Band",
+				"Manga",
+				"Coding",
+				"Taekwondo",
+				"Children's Entrepreneurship"
+				],
+				"list2": [
+				"Board Games",
+				"Robotics",
+				"Art & Craft",
+				"Content Creator",
+				"Engineering for Kids",
+				"Wushu",
+				"Video Editing",
+				"Dance",
+				"Make X"
+				]
+			},
+			"outdoor": {
+				"title": "OUTDOOR ACTIVITIES",
+				"text": "Adjusts the child's age and developmental stages with experiences that challenge students to grow.",
+				"paragraph": "Develops students' character and abilities. Challenges, initiative, independence, leadership, cooperation, responsibility, risk-taking, co-existence, and environmental care are all supported in field trips from Grades 11 and 12. These activities invite students to venture from the school area to specially selected areas outside the school to create memorable educational experiences with their classmates."
 			}
-			],
-			"components2": [
-			{
-				"title": "Science",
-				"description": " - Diversity, continuity, and conservation are important elements of this subject."
-			},
-			{
-				"title": "ICT (Information and Communication Technology)",
-				"description": " - Introduces students to the latest technology fields."
-			},
-			{
-				"title": "Physical Education",
-				"description": " - Provides students with tricks and strategies to handle stress, conflict, and various health and lifestyle issues."
-			},
-			{
-				"title": "Music, English Language Skills, Religion, and Citizenship",
-				"description": " - Also part of the curriculum."
-			}
-			],
-			"certification": "The 'Cambridge International General Certificate of Secondary Education' (IGCSE) certification will be awarded to 10th-grade graduates who meet the certificate qualifications. Students will also receive a report card covering their grades in Grades 9 and 10."
-		},
-		"activity": {
-			"title": "Activities",
-			"content": "Various co-curricular activities are available for your child to participate in, aimed at developing their interests and skills outside the classroom. After-school programs and activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children."
-		},
-		"programs": {
-			"title": "OUR PROGRAMS",
-			"desc": "Various co-curricular activities are available for your child to participate in, aimed at developing their interests and skills outside the classroom. After-school programs and activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children.",
-			"list1": [
-			"Journalism",
-			"HSK (Mandarin)",
-			"Choir",
-			"Basketball",
-			"Futsal",
-			"School Band",
-			"Manga",
-			"Coding",
-			"Taekwondo",
-			"Children's Entrepreneurship"
-			],
-			"list2": [
-			"Board Games",
-			"Robotics",
-			"Art & Craft",
-			"Content Creator",
-			"Engineering for Kids",
-			"Wushu",
-			"Video Editing",
-			"Dance",
-			"Make X"
-			]
-		},
-		"outdoor": {
-			"title": "OUTDOOR ACTIVITIES",
-			"text": "Adjusts the child's age and developmental stages with experiences that challenge students to grow.",
-			"paragraph": "Develops students' character and abilities. Challenges, initiative, independence, leadership, cooperation, responsibility, risk-taking, co-existence, and environmental care are all supported in field trips from Grades 11 and 12. These activities invite students to venture from the school area to specially selected areas outside the school to create memorable educational experiences with their classmates."
-		}
 		},
 		"sma": {
-		"title": "HIGH SCHOOL",
-		"introduction": {
-			"title": "Mastering Skills for Their Future",
-			"paragraph": "At this educational level, your child will continue their educational journey through a learning phase that motivates them to discover and realize the best within themselves and others."
-		},
-		"curriculum": {
-			"title": "CURRICULUM",
-			"subtitle": "The International Baccalaureate (IB) Diploma Programme (DP)",
-			"paragraph": "The IBDP curriculum qualifies in understanding these core values. This curriculum consists of core values and six subject groups. Comprising three main components, these core values aim to broaden students' learning experiences and challenge them to use their knowledge and skills.",
-			"components": [
-			{
-				"title": "Theory of Knowledge",
-				"description": "where students understand the foundations of knowledge, so they comprehend the knowledge they are studying."
+			"title": "HIGH SCHOOL",
+			"introduction": {
+				"title": "Mastering Skills for Their Future",
+				"paragraph": "At this educational level, your child will continue their educational journey through a learning phase that motivates them to discover and realize the best within themselves and others."
 			},
-			{
-				"title": "Extended Essay",
-				"description": "an independent research project written personally and completed in a 4,000-word paper."
+			"curriculum": {
+				"title": "CURRICULUM",
+				"subtitle": "The International Baccalaureate (IB) Diploma Programme (DP)",
+				"paragraph": "The IBDP curriculum qualifies in understanding these core values. This curriculum consists of core values and six subject groups. Comprising three main components, these core values aim to broaden students' learning experiences and challenge them to use their knowledge and skills.",
+				"components": [
+				{
+					"title": "Theory of Knowledge",
+					"description": "where students understand the foundations of knowledge, so they comprehend the knowledge they are studying."
+				},
+				{
+					"title": "Extended Essay",
+					"description": "an independent research project written personally and completed in a 4,000-word paper."
+				},
+				{
+					"title": "Creativity, Activity, and Service",
+					"description": "where students complete a project related to these three concepts."
+				}
+				],
+				"subjectGroups": [
+				"Language and Literature",
+				"Language Acquisition",
+				"Individuals and Societies",
+				"Sciences",
+				"Mathematics",
+				"The Arts"
+				]
 			},
-			{
-				"title": "Creativity, Activity, and Service",
-				"description": "where students complete a project related to these three concepts."
+			"activities": "In the last two years of this school, each student is challenged to master various skills needed according to their chosen path. They are encouraged to take full responsibility for their learning, focusing on developing the skills necessary for success and expertise in their six chosen areas.",
+			"programs": {
+				"title": "OUR PROGRAMS",
+				"desc": "Various co-curricular activities are available for your child to participate in, aimed at developing their interests and skills outside the classroom. After-school programs and activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children.",
+				"list1": [
+				"HSK (Mandarin)",
+				"IELTS",
+				"Choir",
+				"Journalism",
+				"Boys' Basketball",
+				"Girls' Basketball",
+				"Boys' Futsal",
+				"Girls' Futsal",
+				"School Band",
+				"Manga"
+				],
+				"list2": [
+				"Coding",
+				"Taekwondo",
+				"Children's Entrepreneurship",
+				"Board Games",
+				"Art & Craft",
+				"Wushu",
+				"Video Editing",
+				"Dance",
+				"Make X"
+				]
+			},
+			"outdoor": {
+				"title": "OUTDOOR ACTIVITIES",
+				"text": "Adjusts the child's age and developmental stages with experiences that challenge students to grow.",
+				"paragraph": "Develops students' character and abilities. Challenges, initiative, independence, leadership, cooperation, responsibility, risk-taking, co-existence, and environmental care are all supported in field trips from Grades 11 and 12. These activities invite students to venture from the school area to specially selected areas outside the school to create memorable educational experiences with their classmates."
 			}
-			],
-			"subjectGroups": [
-			"Language and Literature",
-			"Language Acquisition",
-			"Individuals and Societies",
-			"Sciences",
-			"Mathematics",
-			"The Arts"
-			]
-		},
-		"activities": "In the last two years of this school, each student is challenged to master various skills needed according to their chosen path. They are encouraged to take full responsibility for their learning, focusing on developing the skills necessary for success and expertise in their six chosen areas.",
-		"programs": {
-			"title": "OUR PROGRAMS",
-			"desc": "Various co-curricular activities are available for your child to participate in, aimed at developing their interests and skills outside the classroom. After-school programs and activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children.",
-			"list1": [
-			"HSK (Mandarin)",
-			"IELTS",
-			"Choir",
-			"Journalism",
-			"Boys' Basketball",
-			"Girls' Basketball",
-			"Boys' Futsal",
-			"Girls' Futsal",
-			"School Band",
-			"Manga"
-			],
-			"list2": [
-			"Coding",
-			"Taekwondo",
-			"Children's Entrepreneurship",
-			"Board Games",
-			"Art & Craft",
-			"Wushu",
-			"Video Editing",
-			"Dance",
-			"Make X"
-			]
-		},
-		"outdoor": {
-			"title": "OUTDOOR ACTIVITIES",
-			"text": "Adjusts the child's age and developmental stages with experiences that challenge students to grow.",
-			"paragraph": "Develops students' character and abilities. Challenges, initiative, independence, leadership, cooperation, responsibility, risk-taking, co-existence, and environmental care are all supported in field trips from Grades 11 and 12. These activities invite students to venture from the school area to specially selected areas outside the school to create memorable educational experiences with their classmates."
-		}
 		},
 		"sd": {
-		"title": "Elementary School",
-		"text1": "Fun Fundamentals",
-		"text2": "Your child will continue their educational journey through a learning phase that motivates them to discover and realize the best within themselves and others.",
-		"text3": "Curriculum",
-		"text4": "Focus:",
-		"kurikulumlist1": [
-			{"title": "English", "content": "- Develops language skills creatively, including studying various literacies and fostering learning habits."},
-			{"title": "Mandarin", "content": "- Provides students with the opportunity to master a foreign language."},
-			{"title": "Mathematics", "content": "- Provides students with the opportunity to master a foreign language."},
-			{"title": "Integrated Studies", "content": "- Develops various skills including critical thinking, confidence, independence, and cooperation to encourage lifelong learning."}
-		],
-		"kurikulumlist2": [
-			{"title": "Science", "content": "- Diversity, continuity, and conservation are important elements of this subject."},
-			{"title": "ICT (Information and Communication Technology)", "content": "- Introduces students to the latest technology fields."},
-			{"title": "Physical Education", "content": "- Provides students with tricks and strategies to handle stress, conflict, and various health and lifestyle issues."},
-			{"title": "Music, English Language Skills, Religion, and Citizenship", "content": " - Also part of the curriculum."}
-		],
-		"text5": "ACTIVITIES",
-		"text6": "Various co-curricular activities are available for your child to participate in, aimed at developing their interests and skills outside the classroom. After-school programs and activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children.",
-		"text7": "OUR PROGRAMS",
-		"programlist1": [
-			"Basketball",
-			"Futsal",
-			"Soccer",
-			"HSK (Mandarin) Club",
-			"Vocal Class",
-			"Arts Performance",
-			"Creative Writing",
-			"Multimedia Arts",
-			"Reading Literacy",
-			"Manga",
-			"Engineering For Kids",
-			"Wushu"
-		],
-		"programlist2": [
-			"Coding",
-			"Taekwondo",
-			"STEM",
-			"Math Monkey",
-			"Science Experiments",
-			"Children's Entrepreneurship",
-			"Robotics",
-			"Content Creator",
-			"Board Games",
-			"Art & Craft",
-			"Make X",
-			"Video Editing"
-		],
-		"text8": "OUTDOOR ACTIVITIES",
-		"text9": "Adjusts the child's age and developmental stages with experiences that challenge students to grow.",
-		"text10": "Develops students' character and abilities. Challenges, initiative, independence, leadership, cooperation, responsibility, risk-taking, co-existence, and environmental care are all supported in field trips from Grades 1 to 5. These activities invite students to venture from the school area to specially selected areas outside the school to create memorable educational experiences with their classmates."
+			"title": "Elementary School",
+			"text1": "Fun Fundamentals",
+			"text2": "Your child will continue their educational journey through a learning phase that motivates them to discover and realize the best within themselves and others.",
+			"text3": "Curriculum",
+			"text4": "Focus:",
+			"kurikulumlist1": [
+				{"title": "English", "content": "- Develops language skills creatively, including studying various literacies and fostering learning habits."},
+				{"title": "Mandarin", "content": "- Provides students with the opportunity to master a foreign language."},
+				{"title": "Mathematics", "content": "- Provides students with the opportunity to master a foreign language."},
+				{"title": "Integrated Studies", "content": "- Develops various skills including critical thinking, confidence, independence, and cooperation to encourage lifelong learning."}
+			],
+			"kurikulumlist2": [
+				{"title": "Science", "content": "- Diversity, continuity, and conservation are important elements of this subject."},
+				{"title": "ICT (Information and Communication Technology)", "content": "- Introduces students to the latest technology fields."},
+				{"title": "Physical Education", "content": "- Provides students with tricks and strategies to handle stress, conflict, and various health and lifestyle issues."},
+				{"title": "Music, English Language Skills, Religion, and Citizenship", "content": " - Also part of the curriculum."}
+			],
+			"text5": "ACTIVITIES",
+			"text6": "Various co-curricular activities are available for your child to participate in, aimed at developing their interests and skills outside the classroom. After-school programs and activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children.",
+			"text7": "OUR PROGRAMS",
+			"programlist1": [
+				"Basketball",
+				"Futsal",
+				"Soccer",
+				"HSK (Mandarin) Club",
+				"Vocal Class",
+				"Arts Performance",
+				"Creative Writing",
+				"Multimedia Arts",
+				"Reading Literacy",
+				"Manga",
+				"Engineering For Kids",
+				"Wushu"
+			],
+			"programlist2": [
+				"Coding",
+				"Taekwondo",
+				"STEM",
+				"Math Monkey",
+				"Science Experiments",
+				"Children's Entrepreneurship",
+				"Robotics",
+				"Content Creator",
+				"Board Games",
+				"Art & Craft",
+				"Make X",
+				"Video Editing"
+			],
+			"text8": "OUTDOOR ACTIVITIES",
+			"text9": "Adjusts the child's age and developmental stages with experiences that challenge students to grow.",
+			"text10": "Develops students' character and abilities. Challenges, initiative, independence, leadership, cooperation, responsibility, risk-taking, co-existence, and environmental care are all supported in field trips from Grades 1 to 5. These activities invite students to venture from the school area to specially selected areas outside the school to create memorable educational experiences with their classmates."
 		}
   	},
 	"ID": {
+		"paging":  {
+			"title": "Belajar di BTB",
+			"url": [
+				{"title": "Paud - TK", "url": "/btb-belajar/TK"},
+				{"title": "SD", "url": "/btb-belajar/SD"},
+				{"title": "SMP", "url": "/btb-belajar/SMP"},
+				{"title": "SMA", "url": "/btb-belajar/SMA"},
+			]
+		},
 		"tk": {
 			"title": "PAUD - TK",
 			"introduction": {
@@ -579,6 +598,7 @@ export const BTBPeduliPayload = {
 
 export const NavbarPayload = {
 	"EN": {
+		"logourl": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LOGOBTB-EN.png",
 		"navbarlink": [
 			{
 				"content": "Learn At BTB",
@@ -625,6 +645,7 @@ export const NavbarPayload = {
 		]
 	},
 	"ID": {
+		"logourl": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png",
 		"navbarlink": [
 			{
 				"content": "Belajar di BTB",
@@ -689,6 +710,7 @@ export const FooterPayload = {
 		}
 	],
 	"ID": {
+		"logourl": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png",
 		"connecttitle": "Hubungi Kami",
 		"schooltitle": "Sekolah Kami",
 		"pagenavtitle": "Navigasi Halaman",
@@ -712,6 +734,7 @@ export const FooterPayload = {
 		]
 	},
 	"EN": {
+		"logourl": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LOGOBTB-EN.png",
 		"connecttitle": "Contact Us",
 		"schooltitle": "Our School",
 		"pagenavtitle": "Page Navigation",
@@ -845,6 +868,14 @@ export const AboutUsPayload = {
 	"image5": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus5.jpg",
 	"image6": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus6.jpg",
 	"ID": {
+		"pagingHeader":  {
+			"title": "Tentang Kami",
+			"url": [
+				{"title": "Pengenalan", "url": "/about-us#pengenalan"},
+				{"title": "Visi Misi", "url": "/about-us#visi-misi"},
+				{"title": "Jenjang Pendidikan", "url": "/about-us#jenjang-pendidikan"},
+			]
+		},
 		"title": "Pengenalan",
 		"desc": "BTB memberikan edukasi yang dilengkapi dengan segala aspek penting untuk membentuk individu terbaik. Lulusan sekolah kami merupakan generasi muda yang bukan hanya mengerti pentingnya menjadi warga global, tapi juga generasi muda yang dapat menggunakan ilmunya di dunia.",
 		"paging": [
@@ -877,6 +908,14 @@ export const AboutUsPayload = {
 		]
 	},
 	"EN": {
+		"pagingHeader": {
+			"title": "About Us",
+			"url": [
+				{"title": "Introduction", "url": "/about-us#pengenalan"},
+				{"title": "Vision and Mission", "url": "/about-us#visi-misi"},
+				{"title": "Educational Levels", "url": "/about-us#jenjang-pendidikan"},
+			]
+		},
 		"title": "Introduction",
 		"desc": "BTB provides education equipped with all essential aspects to shape the best individuals. Our school graduates are young people who not only understand the importance of being global citizens but also can apply their knowledge in the world.",
 		"paging": [

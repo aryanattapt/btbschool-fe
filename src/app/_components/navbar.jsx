@@ -36,7 +36,7 @@ const NavBar = () => {
         {/* <div className="grid justify-items-start w-1/4"> */}
           <Navbar.Brand href="/" className="md:w-50 flex-auto">
             <div className="md:w-[400px] md:h-[75px] ml-28">
-              <img src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png" alt="logo btb" />
+              <img src={`${NavbarPayload[language].logourl}`} alt="logo btb" />
             </div>
           </Navbar.Brand>
         {/* </div> */}
