@@ -53,9 +53,6 @@ const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
                         <Sidebar.Item href="/admin/calendar" className={"/admin/calendar" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             Calendar
                         </Sidebar.Item>
-                        <Sidebar.Item href="/admin/eregistration" className={"/admin/eregistration" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
-                            E-Registration
-                        </Sidebar.Item>
                         <Sidebar.Collapse label="Registration">
                             <Sidebar.Item href="/admin/registration/all" className={"/admin/registration/all" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                                 All

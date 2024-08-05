@@ -13,7 +13,7 @@ const ARDTermAndCondition = ({ data }) => {
 					pihak sekolah sebagai berikut :{" "}
 				</p>
 				<div className="py-4 px-8 leading-5">
-					<ol class="list-decimal">
+					<ol className="list-decimal">
 						<li>
 							Siswa / siswi diharapkan untuk setiap saat mengerti dan mematuhi
 							peraturan dan ketetapan yang terdapat pada handbook.
@@ -30,7 +30,7 @@ const ARDTermAndCondition = ({ data }) => {
 						</li>
 						<li>
 							<div className="pl-12">
-								<ul class="list-disc">
+								<ul className="list-disc">
 									<li>
 										<p className="font-bold">School Fee per term :</p>
 										<p>
@@ -41,7 +41,7 @@ const ARDTermAndCondition = ({ data }) => {
 										</p>
 									</li>
 								</ul>
-								<ul class="list-disc">
+								<ul className="list-disc">
 									<li>
 										<p className="font-bold">
 											School Fee per bulan (dengan menggunakan BRI Auto Debit) :

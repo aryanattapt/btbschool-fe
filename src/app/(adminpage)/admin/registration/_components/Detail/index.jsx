@@ -7,22 +7,44 @@ import ARDHealthForm from "./HealthForm";
 import ARDRecommended from "./Recommended";
 import ARDRegistrationForm from "./RegistrationForm";
 import ARDTermAndCondition from "./TermAndCondition";
+import { useParams } from 'next/navigation'
+import { GetDetailStudentRegistration } from "../../../../../../../services/onlineregistration.service";
+import Swal from "sweetalert2";
 
 const AdminRegistrationDetailContent = () => {
+	const params = useParams()
 	const [activeSection, setActiveSection] = useState("");
 	const [data, setData] = useState();
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			setLoading(true);
-			setTimeout(() => {
-				setActiveSection("Registration Form");
-				setData(tempDatas[0]);
-				setLoading(false);
-			}, 100);
-		};
-		fetchData();
+		// const fetchData = async () => {
+		// 	setLoading(true);
+		// 	setTimeout(() => {
+		// 		setActiveSection("Registration Form");
+		// 		setData(tempDatas[0]);
+		// 		setLoading(false);
+		// 	}, 100);
+		// };
+		// fetchData();
+
+		setLoading(true);
+		GetDetailStudentRegistration(params.id)
+		.then((res) => {
+			setData(res.data[0]);
+			setActiveSection("Registration Form");
+			setLoading(false);
+		})
+		.catch((err) => {
+			setActiveSection("Registration Form");
+			setLoading(false);
+			Swal.fire({
+				allowOutsideClick: false,
+				title: "Error Notification!",
+				text: err,
+				icon: "error",
+			});
+		});
 	}, []);
 
 	const onDownloadPdf = () => {

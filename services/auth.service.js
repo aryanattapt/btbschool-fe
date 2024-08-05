@@ -30,7 +30,7 @@ export const logout = () => {
 
 export const checkSession = () => new Promise(async (resolve, reject) => {
     try {
-        const result = await callInternalAPI('/auth/validate/', 'POST', {}, {"Authorization": `Bearer ${getCookie(clientID)}`});
+        const result = await callInternalAPI('/auth/validate/', 'POST', {}, {"Authorization": `Bearer ${getCookie(process.env.NEXT_PUBLIC_CLIENTSESSION)}`});
         return resolve(result.data);
     } catch (error) {return reject(error.response.data?.message || error.message);}
 });

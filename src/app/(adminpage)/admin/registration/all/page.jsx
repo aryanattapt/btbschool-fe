@@ -1,12 +1,16 @@
 "use client";
+import { useEffect, useState } from "react";
 import { tempDatas } from "../../../../../settings/tempAdminRegistration";
 import NavbarSidebarLayout from "../../_layouts/navigation";
 import AdminRegistrationHeader from "../_components/Header";
 import AdminRegistrationMainContent from "../_components/MainContent";
 import AdminRegistrationTableSection from "../_components/Table";
 import RegistrationTableActionBtn from "../_components/Table/actionBtn";
+import { GetAllStudentRegistration } from "../../../../../../services/onlineregistration.service";
+import Swal from "sweetalert2";
 
 const AdminRegistrationAllPage = () => {
+	const [payload, setPayload] = useState([]);
 	const colDef = [
 		{ headerName: "No", valueGetter: (p) => p.node.rowIndex + 1, width: 80 },
 		{ headerName: "Registration Code", field: "registrationcode" },
@@ -18,7 +22,7 @@ const AdminRegistrationAllPage = () => {
 		},
 		{ headerName: "Phone", field: "phoneno" },
 		{ headerName: "Submit Date", field: "registereddate" },
-		{ headerName: "Admission", field: "fathername" },
+		{ headerName: "Admission", field: "admision.firstname" },
 		{
 			headerName: "Action",
 			cellStyle: () => ({
@@ -29,6 +33,21 @@ const AdminRegistrationAllPage = () => {
 			cellRenderer: (p) => RegistrationTableActionBtn(p.data),
 		},
 	];
+
+	useEffect(() => {
+		GetAllStudentRegistration()
+		.then((res) => {
+			setPayload(res.data)
+		})
+		.catch((err) => {
+			Swal.fire({
+				allowOutsideClick: false,
+				title: "Error Notification!",
+				text: err,
+				icon: "error",
+			});
+		});
+	}, [])
 
 	return (
 		<NavbarSidebarLayout>
@@ -44,7 +63,7 @@ const AdminRegistrationAllPage = () => {
 						</>
 					}
 				>
-					<AdminRegistrationTableSection colDef={colDef} datas={tempDatas} />
+					<AdminRegistrationTableSection colDef={colDef} datas={payload} />
 				</AdminRegistrationMainContent>
 			</div>
 		</NavbarSidebarLayout>

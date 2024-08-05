@@ -16,7 +16,7 @@ import { useState } from "react";
 import { Button, Label, Radio, Spinner } from "flowbite-react";
 import { UploadAttachment } from "../../../../../services/attachment.service";
 import {
-  GetOutstandingStudentRegistration,
+  GetDraftStudentRegistration,
   SubmitStudentRegistration,
 } from "../../../../../services/onlineregistration.service";
 import Swal from "sweetalert2";
@@ -100,23 +100,25 @@ const OnlineRegistrationForm = () => {
       });
     }
 
-    console.log(registrationPayload);
     setStateCallBack(false);
-
+    
     /* Call API in here... */
     UploadAttachment("studentregistration", formData)
-      .then((res) => {
-        const studentRegistrationPayload = { ...registrationPayload };
-        delete studentRegistrationPayload.birthcertificateattachment;
-        delete studentRegistrationPayload.familycardattachment;
-        delete studentRegistrationPayload.reportcardattachment;
-
+    .then((res) => {
+      const studentRegistrationPayload = { ...registrationPayload };
+      delete studentRegistrationPayload.birthcertificateattachment;
+      delete studentRegistrationPayload.familycardattachment;
+      delete studentRegistrationPayload.reportcardattachment;
+      
+      if(res.data){
         studentRegistrationPayload.attachment = res.data;
-        studentRegistrationPayload.status = isFinal ? "send" : "draft";
-
+      }
+      studentRegistrationPayload.status = isFinal ? "send" : "draft";
+      
+      console.log(registrationPayload);
         SubmitStudentRegistration(studentRegistrationPayload)
           .then((res) => {
-            setRegistrationPayload({});
+            // setRegistrationPayload({});
             setStateCallBack(false);
             Swal.fire({
               allowOutsideClick: false,
@@ -148,13 +150,13 @@ const OnlineRegistrationForm = () => {
 
   const saveAndSendHandler = (e) => {
     console.log(registrationPayload);
-    // submitHandler(true, setIsLoading);
+    submitHandler(true, setIsLoading);
     // setIsLoading(true)
   };
 
   const saveAsDraftHandler = (e) => {
     console.log(registrationPayload);
-    // submitHandler(false, setIsLoading);
+    submitHandler(false, setIsLoading);
     // setIsLoading(true)
   };
 
@@ -168,7 +170,7 @@ const OnlineRegistrationForm = () => {
       });
       return;
     }
-    GetOutstandingStudentRegistration(registrationPayload.registrationcode)
+    GetDraftStudentRegistration(registrationPayload.registrationcode)
       .then((res) => {
         setRegistrationPayload(res.data[0]);
         Swal.fire({
@@ -189,7 +191,7 @@ const OnlineRegistrationForm = () => {
   };
 
   const setNextPage = () => {
-    if (haveRegisCode == "true" && !registrationPayload.registrationCode) {
+    if (haveRegisCode == "true" && !registrationPayload.registrationcode) {
       Swal.fire({
         allowOutsideClick: false,
         title: "Student Submission Notification!",
