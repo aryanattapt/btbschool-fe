@@ -5,21 +5,35 @@ import { useRouter } from 'next/navigation';
 import { isLogin, logout } from "../../../../../services/auth.service";
 import { HiMenu, HiX } from 'react-icons/hi';
 
+const customTheme = {
+  "root": {
+    "base": "h-full",
+    "collapsed": {
+      "on": "w-16",
+      "off": "w-64"
+    },
+    "inner": "h-screen overflow-y-auto overflow-x-hidden rounded bg-gray-50 px-3 py-4 dark:bg-gray-800"
+  },
+
+};
+
+
 const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
     return (
         <Sidebar
+        theme={customTheme}
             id="default-sidebar"
             aria-label="Sidebar with multi-level dropdown example"
-            className={`fixed top-0 left-0 z-30 h-full bg-gray-800 text-white md:relative md:w-64 ${isOpen ? 'block' : 'hidden'} md:block`}
+            className={`fixed top-0 left-0 z-30 text-white md:relative md:w-64 ${isOpen ? 'block' : 'hidden'} md:block`}
         >
-            <div className="flex flex-col h-full">
+            <div className="h-full flex flex-col ">
                 <div className="flex items-center justify-between p-4 border-b border-gray-700">
                     <img alt="" src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/Logo BTB 1.1-01.png" className="mr-3 h-6 sm:h-8" />
                     <button onClick={onClose} className="md:hidden">
                         <HiX size={24} />
                     </button>
                 </div>
-                <Sidebar.Items>
+                <Sidebar.Items className='h-full flex flex-col justify-between' >
                     <Sidebar.ItemGroup>
                         <Sidebar.Item href="/admin" className={"/admin" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             Welcome
@@ -42,6 +56,14 @@ const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
                         <Sidebar.Item href="/admin/eregistration" className={"/admin/eregistration" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             E-Registration
                         </Sidebar.Item>
+                        <Sidebar.Collapse label="Registration">
+                            <Sidebar.Item href="/admin/registration/all" className={"/admin/registration/all" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                                All
+                            </Sidebar.Item>
+                            <Sidebar.Item href="/admin/registration/outstanding" className={"/admin/registration/outstanding" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                                Outstanding
+                            </Sidebar.Item>
+                        </Sidebar.Collapse>
                     </Sidebar.ItemGroup>
                     <Sidebar.ItemGroup>
                         <Sidebar.Item href="#" onClick={logoutHandler}>

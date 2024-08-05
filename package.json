@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^3.4.4",
     "ag-grid-community": "^32.0.2",
     "ag-grid-react": "^32.0.2",
     "axios": "^1.7.2",
@@ -25,6 +26,7 @@
     "react-pageflip": "^2.0.3",
     "react-pdf": "^9.1.0",
     "react-signature-canvas": "^1.0.6",
+    "react-to-pdf": "^1.0.1",
     "sweetalert2": "^11.12.2",
     "swiper": "^11.1.9",
     "zustand": "^4.5.4"
