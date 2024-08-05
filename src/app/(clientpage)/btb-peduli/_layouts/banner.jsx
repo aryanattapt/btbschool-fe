@@ -10,7 +10,7 @@ const BannerLayouts = () => {
 
   return (
     <>
-      <div className="relative md:h-[475px]">
+      <div className="w-100% md:h-[475px]">
         <img
           src={`${btbPeduliData.bannerimage}`}
           alt="bannerbtbpeduli"
