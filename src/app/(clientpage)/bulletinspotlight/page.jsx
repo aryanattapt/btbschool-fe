@@ -3,9 +3,13 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { Modal } from 'flowbite-react';
 import PDFReaderFlipBook from '../../_components/pdfreaderflipbook';
 import PDFThumbnail from './_components/pdfpreview';
+import Banner from './_components/Banner';
+import Pagging from './_components/Pagging';
+import {BulletinSpotlightPayload} from '../../../../data';
+import {useLanguageStore} from '../../../../store/language.store';
 
 const FlipbookModal = ({ url, isOpen, setIsOpen }) => {
-    const modalStyle = useMemo(() => ({ height: "550px", width: "800px" }), []);
+    const modalStyle = useMemo(() => ({ height: "450px", width: "800px"}), []);
     return (
         <Modal show={isOpen} dismissible size="4xl" onClose={() => setIsOpen(false)}>
             <Modal.Body>
@@ -23,19 +27,33 @@ const BulletinSpotlightPage = () => {
     const memoizedPdfUrl = useMemo(() => pdfUrl, [pdfUrl]);
     const openModal = useCallback(() => setIsModalOpen(true), []);
     const closeModal = useCallback(() => setIsModalOpen(false), []);
+    const [bulletinSpotlightData, setBulletinSpotlightData] = useState(BulletinSpotlightPayload);
+    const { language } = useLanguageStore();
 
     return (
-        <div className="flex flex-col items-center md:my-[200px] gap-2">
-            <FlipbookModal 
-                isOpen={isModalOpen} 
-                setIsOpen={closeModal} 
-                url={memoizedPdfUrl}
-            />
-            <PDFThumbnail 
-                file={memoizedPdfUrl} 
-                onClick={openModal} 
-            />
+        <>
+        <Banner />
+        <Pagging />
+        <div className="mt-10 mb-5 pl-32 text-[#00305E]">
+            <h1 className="text-[35px] font-bold">
+                {bulletinSpotlightData[language].title}
+            </h1>
+            <div className="text-[30px]">
+                {bulletinSpotlightData[language].desc}
+            </div>
+            <div className="flex flex-col items-center gap-2">
+                <FlipbookModal 
+                    isOpen={isModalOpen} 
+                    setIsOpen={closeModal} 
+                    url={memoizedPdfUrl}
+                />
+                <PDFThumbnail 
+                    file={memoizedPdfUrl} 
+                    onClick={openModal} 
+                />
+            </div>
         </div>
+        </>
     );
 };
 
