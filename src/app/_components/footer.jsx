@@ -99,7 +99,6 @@ const FooterComponent = () => {
               </button>
             </div>
           </div>
-
             </div>
             <div>
               <div className="md:ml-[75px] ml-[15px]">
@@ -125,14 +124,14 @@ const FooterComponent = () => {
                   <h2 className="font-semibold md:text-[30px] text-[15px]">
                   {footerPayload[language].pagenavtitle}
                   </h2>
-                  <div className="grid grid-cols-2 md:grid-cols-4 sm:mt-3 sm:grid-cols-1">
+                  <div className="grid grid-cols-2 md:grid-cols-4 sm:mt-3 sm:grid-cols-1 mr-20">
                     {
                       footerPayload[language].url.map((val, idx) => {
                         return <div key={idx}>
                           <Footer.LinkGroup col>
                             <Footer.Link
                               href={`${val.url}`}
-                              className="text-white text-[12px] md:text-[15px]"
+                              className="text-white text-[12px] md:text-[15px] md:mr-4"
                             >
                               {val.content}
                             </Footer.Link>

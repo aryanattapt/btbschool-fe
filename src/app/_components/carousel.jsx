@@ -18,7 +18,7 @@ const CarouselComponents = () => {
             return <div className="relative h-full w-full" key={idx}>
               <div className={`bg-cover absolute inset-0`} style={{ backgroundImage: `url(${val.url})` }}>    
                 <div className="grid place-items-center h-full w-full bg-black bg-opacity-30"> 
-                  <div className="ml-[50px] text-left">
+                  <div className="mx-32 text-left">
                     <p className="text-[20px] md:text-[25px] text-white text-justify font-semibold">
                       {temp.title}
                     </p>
@@ -26,9 +26,11 @@ const CarouselComponents = () => {
                       {temp.content}
                     </p>
                     <div className="flex justify-left gap-2">
-                      <button className="bg-[#EF802B] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        {temp.buttondesc}
-                      </button>
+                      <a href="/#findClass">
+                        <button className="bg-[#EF802B] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                          {temp.buttondesc}
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -40,12 +42,12 @@ const CarouselComponents = () => {
                   <source src={`${val.url}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                <div className="absolute inset-0 grid h-full w-full place-items-center">
+                {/* <div className="absolute inset-0 grid h-full w-full place-items-center">
                   <div className="text-left ml-[50px]">
                     <p className="text-[20px] my-2 md:text-[25px] text-white text-justify">{temp.title}</p>
                     <p>{temp.content}</p>
                   </div>
-                </div>
+                </div> */}
               </div>
           }
         })

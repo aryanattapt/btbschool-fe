@@ -66,7 +66,7 @@ export const BTBBelajarPayload = {
 				"desc2": "Teachers integrate BTB values into planning to achieve critical teaching methods."
 			},
 			"activity": {
-				"title": "Activities",
+				"title": "ACTIVITIES",
 				"content": "At Bina Tunas Bangsa, we believe that a child's health and well-being are crucial for optimal learning. Therefore, we offer a variety of extracurricular activities that support a healthy and active lifestyle for students. These programs are designed to develop physical fitness, social skills, and healthy habits from an early age."
 			},
 			"programs": {
@@ -135,7 +135,7 @@ export const BTBBelajarPayload = {
 				"certification": "The 'Cambridge International General Certificate of Secondary Education' (IGCSE) certification will be awarded to 10th-grade graduates who meet the certificate qualifications. Students will also receive a report card covering their grades in Grades 9 and 10."
 			},
 			"activity": {
-				"title": "Activities",
+				"title": "ACTIVITIES",
 				"content": "Various co-curricular activities are available for your child to participate in, aimed at developing their interests and skills outside the classroom. After-school programs and activities, which may change each academic year, focus on encouraging thinking and developing problem-solving abilities in children."
 			},
 			"programs": {
@@ -329,7 +329,7 @@ export const BTBBelajarPayload = {
 			  "desc2": "Para pengajar menggabungkan nilai - nilai dari BTB terhadap perencanaan untuk mencapai cara mengajar yang kritis."
 			},
 			"activity": {
-				"title": "Aktivitas",
+				"title": "AKTIVITAS",
 				"content": "Di Bina Tunas Bangsa, kami percaya bahwa kesehatan dan kesejahteraan anak adalah fondasi penting untuk belajar yang optimal. Oleh karena itu, kami menyediakan berbagai kegiatan ekstrakurikuler yang mendukung gaya hidup sehat dan aktif bagi siswa. Program-program ini dirancang untuk mengembangkan kebugaran fisik, keterampilan sosial, dan kebiasaan hidup sehat sejak dini."
 			},
 			"programs": {
@@ -398,7 +398,7 @@ export const BTBBelajarPayload = {
 			  "sertifikasi": "Sertifikasi ‘The Cambridge International General Certificate of Secondary Education’ (IGCSE) akan diberikan kepada lulusan murid tingkat 10 yang memenuhi kualifikasi dari sertifikat tersebut. Para murid juga akan mendapatkan raport yang mencakup nilai mereka pada Tingkat 9 dan Tingkat 10.",
 			},
 			"activity": {
-				"title": "Aktivitas",
+				"title": "AKTIVITAS",
 				"content": "Berbagai aktivitas kokurikuler tersedia untuk diikuti oleh anak anda, kegiatan ini bertujuan untuk mengembangkan minat dan kemampuan mereka di luar ruang kelas.Program dan kegiatan setelah sekolah, yang dapat berubah setiap tahun pelajaran, berfokus untuk mendorong pemikiran dan mengembangkan kemampuan memecahkan masalah oleh anak - anak."
 			},
 			"programs": {
@@ -769,7 +769,7 @@ export const  HomePagePayload = {
 					"language": "ID",
 					"title": "Bina Tunas Bangsa",
 					"content": "DATANG DAN BELAJAR di Sekolah Terbaik Jakarta",
-					"buttondesc": "Pelajari lebih lanjut!"
+					"buttondesc": "Pelajari Lebih Lanjut!"
 				},
 				{
 					"language": "EN",
@@ -787,7 +787,7 @@ export const  HomePagePayload = {
 					"language": "ID",
 					"title": "Bina Tunas Bangsa",
 					"content": "DATANG DAN BELAJAR di Sekolah Terbaik Jakarta",
-					"buttondesc": "Pelajari lebih lanjut!"
+					"buttondesc": "Pelajari Lebih Lanjut!"
 				},
 				{
 					"language": "EN",
@@ -805,7 +805,7 @@ export const  HomePagePayload = {
 					"language": "ID",
 					"title": "Bina Tunas Bangsa",
 					"content": "DATANG DAN BELAJAR di Sekolah Terbaik Jakarta",
-					"buttondesc": "Pelajari lebih lanjut!"
+					"buttondesc": "Pelajari Lebih Lanjut!"
 				},
 				{
 					"language": "EN",
@@ -823,7 +823,7 @@ export const  HomePagePayload = {
 					"language": "ID",
 					"title": "Bina Tunas Bangsa",
 					"content": "DATANG DAN BELAJAR di Sekolah Terbaik Jakarta",
-					"buttondesc": "Pelajari lebih lanjut!"
+					"buttondesc": "Pelajari Lebih Lanjut!"
 				},
 				{
 					"language": "EN",

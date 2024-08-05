@@ -9,12 +9,12 @@ const ContactPage = () => {
     <>
       <Banner />
       <Pagging />
-      <div id="hubungi-kami" className="md:mx-[76px] mx-[10px]">
-        <h1 className="mt-10 md:mx-[76px] mx-[0px] text-[#00305E] md:text-[50px] text-[25px] font-semibold	">
+      <div id="hubungi-kami" className="md:mx-32 mx-[20px]">
+        <h1 className="mt-10 text-[#00305E] md:text-[50px] text-[25px] font-semibold	">
           HUBUNGI KAMI
         </h1>
-        <div className="md:mx-[76px] text-[#00305E] grid grid-cols-1 md:grid-cols-2 mb-10">
-          <div className="md:mr-[70px] mr-[50px]">
+        <div className="text-[#00305E] grid grid-cols-1 md:grid-cols-2 mb-10">
+          <div>
             <p className="md:text-[30px] text-[16px] my-5 text-black">
               Ambil langkah awal untuk bergabung bersama kami!
             </p>
@@ -23,7 +23,7 @@ const ContactPage = () => {
             </div>
           </div>
           <div>
-            <div className="md:w-[456px] md:h-auto w-[372px] h-auto bg-[#EF802B] rounded-3xl mx-5 mt-8 place-content-center">
+            <div className="md:h-auto w-[372px] h-auto bg-[#EF802B] rounded-3xl mx-5 mt-8 place-content-end">
               <div className="text-white pb-10">
                 <div className="header px-5 md:px-15 ">
                   <h1 className="font-bold md:text-[21px] text-[15px] pt-10">
@@ -101,12 +101,12 @@ const ContactPage = () => {
       <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
 
       <div id="lokasi-kami" className="md:m-[60px] m-[8px]">
-        <h1 className="text-[#00305E] md:text-[50px] text-[25px] font-semibold	">
+        <h1 className="text-[#00305E] md:text-[50px] text-[25px] font-semibold">
           LOKASI KAMI
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 place-items-center">
           <div>
-            <h3 className="md:text-[35px] text-[18px] text-black font-medium	">
+            <h3 className="md:text-[35px] text-[18px] text-black font-medium">
               BTB School Pluit Timur
             </h3>
             <iframe

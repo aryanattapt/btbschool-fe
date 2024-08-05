@@ -36,7 +36,7 @@ const TK = () => {
           </div>
         </div>
         <div className="mt-10 mb-5 pl-32">
-          <div className="border-b-8 border-[#EF802B] w-[180px]">
+          <div className="border-b-8 border-[#EF802B] w-fit">
             <h1 className="text-[30px] font-semibold text-[#00305E]">
               {/* KURIKULUM */}
               {btbBelajarData[language].tk.curriculum.title}
@@ -92,7 +92,7 @@ const TK = () => {
           </div>
         </div>
         <div className="mt-20 flex justify-center items-center">
-          <div className="border-b-8 border-[#EF802B] w-[160px]">
+          <div className="border-b-8 border-[#EF802B] w-fit">
             <h1 className="text-[30px] font-semibold text-[#00305E]">
               {/* AKTIVITAS */}
               {btbBelajarData[language].tk.activity.title}
@@ -161,7 +161,7 @@ const TK = () => {
       </div>
       <div className="diLuarKelas mb-10">
         <div className="mt-20 flex justify-end items-center pr-32">
-          <div className="border-b-8 border-[#EF802B] w-[250x]">
+          <div className="border-b-8 border-[#EF802B] w-fit">
             <h1 className="text-[30px] font-semibold text-[#00305E]">
               {/* DI LUAR RUANGAN */}
               {btbBelajarData[language].tk.outdoor.title}

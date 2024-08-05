@@ -17,19 +17,19 @@ const SMP = () => {
             </h1>
         </div>
         <div className="grid grid-cols-2">
-          <div className="h-[350px]">
+          <div className="md:h-[350px]">
             <img 
             // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp 6.jpg"
             src = {`${btbBelajarData.image9}`}
             alt="SMP"
-            className="h-[350px] w-full object-cover" />
+            className="md:h-[350px] w-full object-cover" />
           </div>
           <div className="content-center bg-[#EF802B]">
-            <h1 className="pl-5 text-[20px] w-[545px] font-semibold text-[#000000]">
+            <h1 className="pl-5 text-[20px] font-semibold text-[#000000]">
             {/* Pengalaman Yang Kaya, Pilihan dan Tantangan */}
             {btbBelajarData[language].smp.introduction.title}
             </h1>
-            <div className="p-5 text-left text-[20px] text-[#000000] text-pretty">
+            <div className="md:p-5 p-10 text-left text-[20px] text-[#000000] text-pretty">
             {/* Para murid ditantang untuk mengembangkan pribadi mereka pada tahun transisi yang penting 
             di sekolah menengah ini, baik di dalam ataupun di luar kelas. 
             Tujuan dari fase ini adalah untuk memperluas pandangan mereka terhadap diri sendiri untuk 
@@ -40,7 +40,7 @@ const SMP = () => {
           </div>
         </div>
         <div className="mt-10 mb-5 pl-32">
-          <div className="border-b-8 border-[#EF802B] w-[180px]">
+          <div className="border-b-8 border-[#EF802B] w-fit">
             <h1 className="text-[30px] font-semibold text-[#00305E]">
               {/* KURIKULUM */}
               {btbBelajarData[language].smp.curriculum.title}
@@ -56,7 +56,7 @@ const SMP = () => {
             <div className="ml-5">
               <ul className="list-disc">
               {btbBelajarData[language].smp.curriculum.components1.map((val) => {
-                  return <li><strong>{val.title}</strong>- 
+                  return <li><strong>{val.title}</strong> 
                   {val.description}
                 </li> 
               })}
@@ -94,7 +94,7 @@ const SMP = () => {
                   <strong>Musik, Kemampuan berdialog Bahasa Inggris, Agama, dan Kewarganegaraan</strong> juga merupakan mata pelajaran yang menjadi bagian dalam kurikulum.
                 </li> */}
                 {btbBelajarData[language].smp.curriculum.components2.map((val) => {
-                  return <li><strong>{val.title}</strong>- 
+                  return <li><strong>{val.title}</strong>
                   {val.description}
                 </li> 
               })}
@@ -112,7 +112,7 @@ const SMP = () => {
         </div>
         <div className="activity">
           <div className="mt-10 flex justify-center items-center">
-            <div className="border-b-8 border-[#EF802B] w-[160px]"> 
+            <div className="border-b-8 border-[#EF802B] w-fit"> 
               <h1 className="text-[30px] font-semibold text-[#00305E]">
                 {/* AKTIVITAS */}
                 {btbBelajarData[language].smp.activity.title}
@@ -196,7 +196,7 @@ const SMP = () => {
         </div>
         <div className="diLuarKelas mb-10">
           <div className="mt-20 flex justify-end items-center pr-32">
-            <div className="border-b-8 border-[#EF802B] w-[250x]"> 
+            <div className="border-b-8 border-[#EF802B] w-fit"> 
               <h1 className="text-[30px] font-semibold text-[#00305E]">
                  {/* DI LUAR RUANGAN */}
                  {btbBelajarData[language].smp.outdoor.title}

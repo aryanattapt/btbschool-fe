@@ -32,7 +32,7 @@ const HomePage = () => {
     <>
       <div className="min-h-screen flex flex-col text-[#00305E]">
         <CarouselComponents />
-        <div className="md:my-[25px] mx-20 md:mx-32 flex-grow">
+        <div className="md:my-[25px] mx-20 md:mx-32 flex-grow" id="findClass">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-[20px] md:my-[32px]">
             <div>
               <div className="md:text-[25px]">{homePagePayload[language].grade.smalltitle}</div>

@@ -32,7 +32,7 @@ const FloatingButtons = () => {
 
   return (
     <div 
-      className={`fixed bottom-10 left-10 flex flex-col items-center space-y-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      className={`fixed bottom-5 left-10 flex flex-col items-center space-y-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
     >
       <div className="relative group flex items-center">
