@@ -40,3 +40,13 @@ export const UpsertCareer = (payload) => new Promise(async (resolve, reject) => 
         return reject(error.response.data?.message || error.message);
     }
 })
+
+export const GetActiveCareerList = () => new Promise(async (resolve, reject) => {
+    try {
+        const res = await callInternalAPI('/career/active/', 'POST', {}, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
+        return resolve(res.data);
+    } catch (error) {
+        console.log(error); 
+        return reject(error.response.data?.message || error.message);
+    }
+})
