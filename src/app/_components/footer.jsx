@@ -4,8 +4,8 @@ import { Footer } from "flowbite-react";
 import { BsFacebook, BsYoutube, BsInstagram, BsTwitter } from "react-icons/bs";
 import { MdMailOutline } from "react-icons/md";
 import { FaMapPin, FaCalendar, FaQuestion, FaPhoneAlt } from "react-icons/fa";
-import {useLanguageStore} from '../../../store/language.store';
-import {FooterPayload} from '../../../data';
+import { useLanguageStore } from "../../../store/language.store";
+import { FooterPayload } from "../../../data";
 import { useState } from "react";
 
 const FooterComponent = () => {
@@ -77,37 +77,37 @@ const FooterComponent = () => {
                 </div>
               </div> */}
 
-          <div className="grid grid-cols-2 md:grid-cols-4 md:mt-[15px] gap-4">
-            <div className="flex justify-center items-center">
-              <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
-                <FaCalendar className="text-white text-xl -rotate-45" />
-              </button>
-            </div>
-            <div className="flex justify-center items-center">
-              <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
-                <FaQuestion className="text-white text-xl -rotate-45" />
-              </button>
-            </div>
-            <div className="flex justify-center items-center">
-              <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
-                <FaPhoneAlt className="text-white text-xl -rotate-45" />
-              </button>
-            </div>
-            <div className="flex justify-center items-center">
-              <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
-                <FaQuestion className="text-white text-xl -rotate-45" />
-              </button>
-            </div>
-          </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 md:mt-[15px] gap-4">
+                <div className="flex justify-center items-center mt-2">
+                  <button className="w-[44.21px] h-[44.21px] md:w-[54.21px] md:h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                    <FaCalendar className="text-white text-xl -rotate-45" />
+                  </button>
+                </div>
+                <div className="flex justify-center items-center mt-2">
+                  <button className="w-[44.21px] h-[44.21px] md:w-[54.21px] md:h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                    <FaQuestion className="text-white text-xl -rotate-45" />
+                  </button>
+                </div>
+                <div className="flex justify-center items-center mt-2">
+                  <button className="w-[44.21px] h-[44.21px] md:w-[54.21px] md:h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                    <FaPhoneAlt className="text-white text-xl -rotate-45" />
+                  </button>
+                </div>
+                <div className="flex justify-center items-center mt-2">
+                  <button className="w-[44.21px] h-[44.21px] md:w-[54.21px] md:h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                    <FaQuestion className="text-white text-xl -rotate-45" />
+                  </button>
+                </div>
+              </div>
             </div>
             <div>
               <div className="md:ml-[75px] ml-[15px]">
                 <h1 className="font-semibold md:text-[30px] text-[20px]">
                   {footerPayload[language].schooltitle}
                 </h1>
-                {
-                  footerPayload.location.map((val, idx) => {
-                    return <div className="flex flex-wrap mt-2 md:mt-2" key={idx}>
+                {footerPayload.location.map((val, idx) => {
+                  return (
+                    <div className="flex flex-wrap mt-2 md:mt-2" key={idx}>
                       <div className="md:mr-[15px] mr-[0px]">
                         <FaMapPin />
                       </div>
@@ -118,27 +118,27 @@ const FooterComponent = () => {
                         <div className="mt-[0.5px] md:mt-2">{val.phoneno}</div>
                       </div>
                     </div>
-                  })
-                }
+                  );
+                })}
                 <div className="">
                   <h2 className="font-semibold md:text-[30px] text-[15px]">
-                  {footerPayload[language].pagenavtitle}
+                    {footerPayload[language].pagenavtitle}
                   </h2>
                   <div className="grid grid-cols-2 md:grid-cols-4 sm:mt-3 sm:grid-cols-1 mr-20">
-                    {
-                      footerPayload[language].url.map((val, idx) => {
-                        return <div key={idx}>
+                    {footerPayload[language].url.map((val, idx) => {
+                      return (
+                        <div key={idx}>
                           <Footer.LinkGroup col>
                             <Footer.Link
                               href={`${val.url}`}
-                              className="text-white text-[12px] md:text-[15px] md:mr-4"
+                              className="text-white text-[10px] md:text-[15px] md:mr-4"
                             >
                               {val.content}
                             </Footer.Link>
                           </Footer.LinkGroup>
                         </div>
-                      })
-                    }
+                      );
+                    })}
 
                     {/* <div>
                       <Footer.LinkGroup col>
@@ -180,7 +180,6 @@ const FooterComponent = () => {
                         </Footer.Link>
                       </Footer.LinkGroup>
                     </div> */}
-
                   </div>
                 </div>
               </div>
@@ -192,10 +191,16 @@ const FooterComponent = () => {
           <div className="w-full sm:flex sm:items-center sm:justify-between px-28 mb-5">
             <Footer.Copyright href="/" by="Bina Tunas Bangsa™" year={2024} />
             <div className="flex space-x-6 sm:mt-0 sm:justify-center">
-              <Footer.Icon href={`${footerPayload.facebook}`} icon={BsFacebook} />
-              <Footer.Icon href={`${footerPayload.instagram}`}  icon={BsInstagram} />
-              <Footer.Icon href={`${footerPayload.twitter}`}  icon={BsTwitter} />
-              <Footer.Icon href={`${footerPayload.youtube}`}  icon={BsYoutube} />
+              <Footer.Icon
+                href={`${footerPayload.facebook}`}
+                icon={BsFacebook}
+              />
+              <Footer.Icon
+                href={`${footerPayload.instagram}`}
+                icon={BsInstagram}
+              />
+              <Footer.Icon href={`${footerPayload.twitter}`} icon={BsTwitter} />
+              <Footer.Icon href={`${footerPayload.youtube}`} icon={BsYoutube} />
             </div>
           </div>
         </div>
