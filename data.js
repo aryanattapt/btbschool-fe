@@ -876,15 +876,15 @@ export const AboutUsPayload = {
 				{"title": "Jenjang Pendidikan", "url": "/about-us#jenjang-pendidikan"},
 			]
 		},
-		"title": "Pengenalan",
+		"title": "PENGENALAN",
 		"desc": "BTB memberikan edukasi yang dilengkapi dengan segala aspek penting untuk membentuk individu terbaik. Lulusan sekolah kami merupakan generasi muda yang bukan hanya mengerti pentingnya menjadi warga global, tapi juga generasi muda yang dapat menggunakan ilmunya di dunia.",
 		"paging": [
 			{
-				"content": "Visi Misi",
+				"content": "VISI MISI",
 				"url": "about-us#visi-misi"
 			},
 			{
-				"content": "Jenjang Pendidikan",
+				"content": "JENJANG PENDIDIKAN",
 				"url": "about-us#jenjang-pendidikan"
 			}
 		],
@@ -916,15 +916,15 @@ export const AboutUsPayload = {
 				{"title": "Educational Levels", "url": "/about-us#jenjang-pendidikan"},
 			]
 		},
-		"title": "Introduction",
+		"title": "INTRODUCTION",
 		"desc": "BTB provides education equipped with all essential aspects to shape the best individuals. Our school graduates are young people who not only understand the importance of being global citizens but also can apply their knowledge in the world.",
 		"paging": [
 			{
-				"content": "Vision and Mission",
+				"content": "VISSION AND MISSION",
 				"url": "about-us#vision-mission"
 			},
 			{
-				"content": "Educational Levels",
+				"content": "EDUCATIONAL LEVELS",
 				"url": "about-us#educational-levels"
 			}
 		],
@@ -946,5 +946,55 @@ export const AboutUsPayload = {
 			{"title": "Junior High School", "buttoncontent": "View Curriculum", "url": "/btb-belajar/SMP", "image": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus5.jpg"},
 			{"title": "Senior High School", "buttoncontent": "View Curriculum", "url": "/btb-belajar/SMA", "image": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus6.jpg"}
 		]
-	}	
+	}
+}
+
+export const BulletinSpotlightPayload = {
+	"bannerImage": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpeg",
+	"ID": {
+		"pagingHeader":  {
+			"title": "Sorotan Buletin",
+			"url": [
+				{"title": "Tampilkan Sorotan", "url": "/bulletinspotlight"},
+			]
+		},
+		"title": "SOROTAN",
+		"desc": "Publikasi Resmi Dari BTB",
+	},
+	"EN": {
+		"pagingHeader": {
+			"title": "Bulletin Spotlight",
+			"url": [
+				{"title": "Show Spotlight", "url": "/bulletinspotlight"},
+			]
+		},
+		"title": "SPOTLIGHT",
+		"desc": "Official Publication From BTB",
+	}
+}
+
+export const CalendarAcademicPayload = {
+	"bannerImage": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpeg",
+	"ID": {
+		"pagingHeader":  {
+			"title": "Kalender Akademis",
+			"url": [
+				{"title": "PAUD", "url": "/calendar-academic/TK"},
+				{"title": "SD", "url": "/calendar-academic/SD"},
+				{"title": "SMP", "url": "/calendar-academic/SMP"},
+				{"title": "SMA", "url": "/calendar-academic/SMA"},
+			]
+		},
+	},
+	"EN": {
+		"pagingHeader": {
+			"title": "ACADEMIC CALENDAR",
+			"url": [
+				{"title": "Early Childhood - Kindergarten", "url": "/calendar-academic/TK"},
+				{"title": "Elementary School", "url": "/calendar-academic/SD"},
+				{"title": "Junior High School", "url": "/calendar-academic/SMP"},
+				{"title": "Senior High School", "url": "/calendar-academic/SMA"},
+			]
+		},
+	}
 }

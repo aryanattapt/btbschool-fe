@@ -13,16 +13,14 @@ const AboutUsPage = () => {
       <Banner />
       <Pagging />
       <div className="relative" id="pengenalan">
-        <div className="mt-10 mb-5">
-          <h1 className="text-[35px] font-bold pl-32 text-[#00305E]">
-            {/* PENGENALAN */}
+        <div className="mt-10 mb-5 md:pl-32 text-[#00305E] sm:justify-center">
+          <h1 className="md:text-[35px] text-[30px] font-semibold">
             {aboutUsData[language].title}
           </h1>
         </div>
         <div className="grid grid-cols-2">
           <div className="h-[350px]">
             <img
-              // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpeg"
               src = {`${AboutUsPayload.image1}`}
               alt="PAUD"
               className="h-[350px] w-full object-cover"
@@ -30,18 +28,12 @@ const AboutUsPage = () => {
           </div>
           <div className="content-center bg-[#EF802B]">
             <div className="p-5 text-left text-[20px] text-[#000000] text-pretty">
-              {/* BTB memberikan edukasi yang dilengkapi dengan segala aspek penting
-              untuk membentuk individu terbaik. Lulusan sekolah kami merupakan
-              generasi muda yang bukan hanya mengerti pentingnya menjadi warga
-              global, tapi juga generasi muda yang dapat menggunakan ilmunya di
-              dunia. */}
               {aboutUsData[language].desc}
             </div>
           </div>
         </div>
       </div>
-
-      <div className="text-[30px] font-medium mb-8 text-center text-[#243F6D] border-b">
+      <div className="text-[30px] font-medium mb-8 mt-10 text-center text-[#243F6D]">
         <ul className="flex flex-nowrap place-content-center">
           {
             aboutUsData[language].paging.map((val, idx) => {
@@ -55,29 +47,11 @@ const AboutUsPage = () => {
             </li>
             })
           }
-
-          {/* <li className="w-[600px]">
-            <a
-              href="about-us#visi-misi"
-              className="inline-block py-8 border-b-8 border-[#EF802B] active rounded-t-lg hover:border-[#EF802B]"
-            >
-              VISI MISI
-            </a>
-          </li>
-          <li className="w-[600px]">
-            <a
-              href="about-us#jenjang-pendidikan"
-              className="inline-block  py-8 border-b-8 border-transparant rounded-t-lg hover:border-[#EF802B] dark:text-blue-500 dark:border-blue-500"
-              //   aria-current="page"
-            >
-              JENJANG PENDIDIKAN
-            </a>
-          </li> */}
         </ul>
       </div>
 
-      <div id="visi-misi" className="grid grid-cols-2 text-black m-[30px] leading-loose">
-        <div className="pl-[50px]">
+      <div id="visi-misi" className="md:mx-32 grid grid-cols-2 text-black leading-loose">
+        <div>
           <h2 className="text-[25px] mb-[10px] font-semibold">
             {/* Visi */}
             {aboutUsData[language].visimisi.titlevisi}

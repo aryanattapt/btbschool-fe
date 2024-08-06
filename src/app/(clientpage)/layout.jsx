@@ -10,9 +10,9 @@ export const metadata = {
 
 export default function ClientLayout({ children }) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen sm:w-100%">
       <NavBar />
-      <main className="flex-grow w-full">{children}</main>
+      <main className="flex-grow">{children}</main>
       <FooterComponent />
       <FloatingButtons/>
     </div>
