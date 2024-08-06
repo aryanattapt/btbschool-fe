@@ -36,18 +36,18 @@ const AdminRegistrationAllPage = () => {
 
 	useEffect(() => {
 		GetAllStudentRegistration()
-		.then((res) => {
-			setPayload(res.data)
-		})
-		.catch((err) => {
-			Swal.fire({
-				allowOutsideClick: false,
-				title: "Error Notification!",
-				text: err,
-				icon: "error",
+			.then((res) => {
+				setPayload(res.data);
+			})
+			.catch((err) => {
+				Swal.fire({
+					allowOutsideClick: false,
+					title: "Error Notification!",
+					text: err,
+					icon: "error",
+				});
 			});
-		});
-	}, [])
+	}, []);
 
 	return (
 		<NavbarSidebarLayout>
@@ -58,7 +58,7 @@ const AdminRegistrationAllPage = () => {
 						<>
 							Total data :{" "}
 							<span className="font-bold" style={{ color: "#3f4b56" }}>
-								312 records
+								{payload.length} records
 							</span>
 						</>
 					}

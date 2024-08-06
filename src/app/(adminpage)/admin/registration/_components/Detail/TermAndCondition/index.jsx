@@ -6,7 +6,7 @@ const ARDTermAndCondition = ({ data }) => {
 	return (
 		<div>
 			<ARDContentTitle title={"Peraturan dan Persyaratan BTB School"} />
-			<div className="text-[#424a57] text-xs">
+			<div className="mt-6 text-[#424a57] text-xs">
 				<p>
 					Dalam melengkapi formulir pendaftaran, calon siswa / siswi dan
 					orangtua menyetujui peraturan dan persyaratan yang diberikan oleh

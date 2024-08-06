@@ -8,11 +8,14 @@ import RegistrationTableActionBtn from "../_components/Table/actionBtn";
 import { FaCheck } from "react-icons/fa";
 import { Button } from "flowbite-react";
 import { tempDatas } from "../../../../../settings/tempAdminRegistration";
-import { ApproveOutstandingStudentRegistration, GetOutstandingStudentRegistration } from "../../../../../../services/onlineregistration.service";
+import {
+	ApproveOutstandingStudentRegistration,
+	GetOutstandingStudentRegistration,
+} from "../../../../../../services/onlineregistration.service";
 import Swal from "sweetalert2";
 
 const AdminRegistrationOutstandingPage = () => {
-	const [payload, setPayload] = useState([])
+	const [payload, setPayload] = useState([]);
 	const colDef = [
 		{ headerName: "No", valueGetter: (p) => p.node.rowIndex + 1, width: 80 },
 		{ headerName: "Registration Code", field: "registrationcode" },
@@ -32,7 +35,12 @@ const AdminRegistrationOutstandingPage = () => {
 				alignItems: "center",
 			}),
 			cellRenderer: (p) => (
-				<Button size="xs" className="text-white" color={"success"} onClick={(e) => ApproveHandler(p.data)}>
+				<Button
+					size="xs"
+					className="text-white"
+					color={"success"}
+					onClick={(e) => ApproveHandler(p.data)}
+				>
 					<FaCheck className="mr-2 h-4 w-4" />
 					<p>Approve</p>
 				</Button>
@@ -51,38 +59,38 @@ const AdminRegistrationOutstandingPage = () => {
 
 	const ApproveHandler = (data) => {
 		ApproveOutstandingStudentRegistration(data._id)
-		.then(_ => {
-			getOutstandingData();
-			Swal.fire({
-				allowOutsideClick: false,
-				title: "Approve Notification!",
-				text: "Success Approve Data",
-				icon: "success",
+			.then((_) => {
+				getOutstandingData();
+				Swal.fire({
+					allowOutsideClick: false,
+					title: "Approve Notification!",
+					text: "Success Approve Data",
+					icon: "success",
+				});
+			})
+			.catch((err) => {
+				Swal.fire({
+					allowOutsideClick: false,
+					title: "Error Notification!",
+					text: err,
+					icon: "error",
+				});
 			});
-		})
-		.catch((err) => {
-			Swal.fire({
-				allowOutsideClick: false,
-				title: "Error Notification!",
-				text: err,
-				icon: "error",
-			});
-		});
-	}
+	};
 
 	const getOutstandingData = () => {
 		GetOutstandingStudentRegistration()
-		.then((res) => {
-			setPayload(res.data)
-		})
-		.catch((err) => {
-			setPayload([])
-		});
-	}
+			.then((res) => {
+				setPayload(res.data);
+			})
+			.catch((err) => {
+				setPayload([]);
+			});
+	};
 
 	useEffect(() => {
 		getOutstandingData();
-	}, [])
+	}, []);
 
 	return (
 		<NavbarSidebarLayout>
@@ -93,7 +101,7 @@ const AdminRegistrationOutstandingPage = () => {
 						<>
 							Total data :{" "}
 							<span className="font-bold" style={{ color: "#3f4b56" }}>
-								312 records
+								{payload.length} records
 							</span>
 						</>
 					}

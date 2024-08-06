@@ -1,5 +1,4 @@
-import Image from "next/image";
-import React from "react";
+import { dateShortDisplay } from "../../../../../../../../utils/date";
 import ARDSignatureDisplay from "../../SignatureDisplay";
 
 const ARDParentSignature = ({ data }) => {
@@ -9,7 +8,9 @@ const ARDParentSignature = ({ data }) => {
 				<p className="text-[#424a57]">Parent Signature : </p>
 				<ARDSignatureDisplay src={data?.ttd} />
 			</div>
-			<p className="text-[#424a57]">Date : {data?.registereddate}</p>
+			<p className="text-[#424a57]">
+				Date : {dateShortDisplay(data?.registereddate)}
+			</p>
 		</div>
 	);
 };

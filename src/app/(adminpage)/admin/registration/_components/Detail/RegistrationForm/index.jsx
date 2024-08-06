@@ -1,12 +1,11 @@
-import ARDStudentDetailsTable from "./Table/StudentDetails";
-import ARDParentsGuardianDetailsTable from "./Table/ParentsGuardianDetails";
+import ARDContentTitle from "../ContentTitle";
+import ARDAttachment from "./Attachment";
+import ARDParentSignature from "./Signature";
 import ARDEducationBackgroundTable from "./Table/EducationBackground";
 import ARDEmergencyContactTable from "./Table/EmergencyContact";
+import ARDParentsGuardianDetailsTable from "./Table/ParentsGuardianDetails";
 import ARDSiblingDetailsTable from "./Table/SiblingDetails";
-import ARDParentSignature from "./Signature";
-import ARDAttachment from "./Attachment";
-import ARDContentTitle from "../ContentTitle";
-import Image from "next/image";
+import ARDStudentDetailsTable from "./Table/StudentDetails";
 
 const ARDRegistrationForm = ({ data }) => {
 	return (

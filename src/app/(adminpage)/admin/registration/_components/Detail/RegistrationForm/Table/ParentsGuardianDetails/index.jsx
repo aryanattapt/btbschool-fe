@@ -1,30 +1,35 @@
 import React from "react";
 import ARDTableRow from "../Row";
 import ARDRegistrationFormTableTemplate from "../TableTemplate";
+import { dateDetailDisplay } from "../../../../../../../../../utils/date";
 
 const ARDParentsGuardianDetailsTable = ({ data }) => {
 	const fatherSkeleton = {
 		"Father's Name": data?.fathername,
-		"Place & Date of Birth": `${data?.fatherbirthplace}, ${data?.fatherbirthdate}`,
+		"Place & Date of Birth": `${data?.fatherbirthplace}, ${dateDetailDisplay(
+			data?.fatherbirthdate
+		)}`,
 		Mobile: data?.fatherphoneno,
 		Email: data?.fatheremail,
 		"Marital Status": data?.fathermaritalstatus,
 		Occupation: data?.fatheroccupation,
 		"Company Name": data?.fathercompanyname,
-		"Bussiness Address": data?.fatherbusinessaddress,
+		"Bussiness Address": data?.fatherbusinessAddress,
 		Telp: data?.fathertelephone,
 		Fax: data?.fatherfax,
 	};
 
 	const motherSkeleton = {
 		"Mother's Name": data?.mothername,
-		"Place & Date of Birth": `${data?.motherbirthplace}, ${data?.motherbirthdate}`,
+		"Place & Date of Birth": `${data?.motherbirthplace}, ${dateDetailDisplay(
+			data?.motherbirthdate
+		)}`,
 		Mobile: data?.motherphoneno,
 		Email: data?.motheremail,
 		"Marital Status": data?.mothermaritalstatus,
 		Occupation: data?.motheroccupation,
 		"Company Name": data?.mothercompanyname,
-		"Bussiness Address": data?.motherbusinessaddress,
+		"Bussiness Address": data?.motherbusinessAddress,
 		Telp: data?.mothertelephone,
 		Fax: data?.motherfax,
 	};

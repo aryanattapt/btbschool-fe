@@ -1,13 +1,16 @@
 import React from "react";
 import ARDTableRow from "../Row";
 import ARDRegistrationFormTableTemplate from "../TableTemplate";
+import { dateDetailDisplay } from "../../../../../../../../../utils/date";
 
 const ARDStudentDetailsTable = ({ data }) => {
 	const skeleton = {
 		"First Name": data?.firstname,
 		"Middle Name": data?.middlename,
 		"Last Name": data?.lastname,
-		"Place & Date of Birth": `${data?.birthplace}, ${data?.birthdate}`,
+		"Place & Date of Birth": `${data?.birthplace}, ${dateDetailDisplay(
+			data?.birthdate
+		)}`,
 		Nationality: data?.nationality,
 		Religion: data?.religion,
 		Gender: data?.gender,
