@@ -13,6 +13,11 @@ import {
 } from 'next/navigation'
 import { useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
+import {
+    GetAllCareer,
+    UpsertCareer
+} from '../../../../../../services/career.service'
+import Swal from "sweetalert2";
 
 const CareerFormPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -28,8 +33,22 @@ const CareerFormPage = () => {
         }));
 
         if(id){
+            fetchCareer(id)
         }
     }, [])
+
+    const fetchCareer = (id) => {
+        GetAllCareer({"_id": id})
+        .then(res => setPayload(res[0]))
+        .catch((err) => {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Error Notification!',
+                text: err,
+                icon: 'error',
+            });
+        })
+    }
 
     const datePickerHandler = (name, value) => {
         setPayload(prevState => ({
@@ -69,12 +88,25 @@ const CareerFormPage = () => {
     };
 
     const submitHandler = (e) => {
-        console.log(`Masuk Submit Handler`);
         if(id == null) {delete payload._id}
         console.log(payload);
         setIsLoading(true);
 
         /* Call API in here... */
+        UpsertCareer(payload)
+        .then(() => {
+            setIsLoading(false); 
+            window.location.href = '/admin/career'
+        })
+        .catch((err) => {
+            setIsLoading(false); 
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Error Notification!',
+                text: err,
+                icon: 'error',
+            });
+        })
     }
 
     return <>

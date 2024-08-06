@@ -35,9 +35,14 @@ const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
                 </div>
                 <Sidebar.Items className='h-full flex flex-col justify-between' >
                     <Sidebar.ItemGroup>
-                        <Sidebar.Item href="/admin/career" className={"/admin/career" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
-                            Career
-                        </Sidebar.Item>
+                        <Sidebar.Collapse label="Career">
+                            <Sidebar.Item href="/admin/career" className={"/admin/career" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                                Career
+                            </Sidebar.Item>
+                            <Sidebar.Item href="/admin/career/applicant" className={"/admin/career/applicant" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                                Applicant
+                            </Sidebar.Item>
+                        </Sidebar.Collapse>
                         <Sidebar.Item href="/admin/bulletinspotlight" className={"/admin/bulletinspotlight" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             Bulletin
                         </Sidebar.Item>
