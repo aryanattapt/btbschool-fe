@@ -54,7 +54,7 @@ const NavBar = () => {
                 : "pt-2 inline-flex justify-end mb-2 text-white"
             }`}
           >
-            <label className="relative inline-flex cursor-pointer items-center px-4">
+            <label className="relative inline-flex cursor-pointer items-center md:px-4 px-2">
               <div>
                 <div>
                   <label className="text-sm">ID</label>
