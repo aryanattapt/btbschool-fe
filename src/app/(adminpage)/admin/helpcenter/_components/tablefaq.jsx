@@ -21,7 +21,7 @@ const TableFAQHelpCenter = ({payload, deleteHandler}) => {
                             </Table.Cell>
                             <Table.Cell>
                                 <div className="flex flex-wrap gap-2">
-                                    <Button color="warning" onClick={() => window.location.href = '/admin/helpcenter/faqform?id=' + val._id} className="mr-4">Delete</Button>
+                                    <Button color="warning" onClick={() => window.location.href = '/admin/helpcenter/faqform?id=' + val._id} className="mr-4">Edit</Button>
                                     <Button color="failure" onClick={() => deleteHandler(val._id)} className="mr-4">Delete</Button>
                                 </div>
                             </Table.Cell>

@@ -20,7 +20,7 @@ const TableCalenderAcademic = ({payload, deleteHandler}) => {
                             <Table.Cell>{val.activity}</Table.Cell>
                             <Table.Cell>
                                 <div className="flex flex-wrap gap-2">
-                                    <Button color="warning" onClick={() => window.location.href = '/admin/calenderacademic/form?id=' + val._id} className="mr-4">Delete</Button>
+                                    <Button color="warning" onClick={() => window.location.href = '/admin/calenderacademic/form?id=' + val._id} className="mr-4">Edit</Button>
                                     <Button color="failure" onClick={() => deleteHandler(val._id)} className="mr-4">Delete</Button>
                                 </div>
                             </Table.Cell>
