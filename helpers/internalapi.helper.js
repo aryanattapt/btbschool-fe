@@ -16,7 +16,7 @@ export const callInternalAPI = (url, method, requestBody, requestHeader) => new 
         case "PATCH":
             return axiosInstance.patch(url, requestBody, {headers: requestHeader}).then((res) => {return resolve(res.data)}).catch((err) => {return reject(err)})
         case "DELETE":
-            return axiosInstance.delete(url, {params: requestBody, headers: requestHeader}).then((res) => {return resolve(res.data)}).catch((err) => {return reject(err)})
+            return axiosInstance.delete(url, {data: requestBody, headers: requestHeader}).then((res) => {return resolve(res.data)}).catch((err) => {return reject(err)})
         default:
             return reject('unknown http method!');
     }

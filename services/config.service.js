@@ -19,3 +19,13 @@ export const GetConfig = (type, payload) => new Promise(async (resolve, reject) 
         return reject(error.response.data?.message || error.message);
     }
 });
+
+export const DeleteConfig = (type, payload) => new Promise(async (resolve, reject) => {
+    try {
+        await callInternalAPI(`/config/${type}/`, 'DELETE', {"data": payload}, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
+        return resolve(true);
+    } catch (error) {
+        console.log(error); 
+        return reject(error.response.data?.message || error.message);
+    }
+});

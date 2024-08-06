@@ -1,18 +1,32 @@
 'use client'
-import { Table } from 'flowbite-react';
+import { Button, Table } from 'flowbite-react';
 import NavbarSidebarLayout from '../_layouts/navigation';
 import { useEffect, useState } from 'react';
 import {
     GetConfig
 } from '../../../../../services/config.service';
 import Swal from 'sweetalert2';
+import TableFAQHelpCenter from './_components/tablefaq';
+import AdminHeader from '../_components/header';
 
 const HelpCenterPage = () => {
     const [payload, setPayload] = useState([]);
 
     useEffect(() => {
+        fetchConfig()
+    }, [])
+
+    const fetchConfig = () => {
         GetConfig('faq', {})
         .then(res => setPayload(res))
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+
+    const DeleteHandler = (id) => {
+        DeleteConfig('bulletinspotlight', [{"_id": id}])
+        .then(() => fetchConfig())
         .catch((err) => {
             Swal.fire({
                 allowOutsideClick: false,
@@ -21,37 +35,16 @@ const HelpCenterPage = () => {
                 icon: 'error',
             });
         })
-    }, [])
+    }
 
     return <>
         <NavbarSidebarLayout >
-            <div className="overflow-x-auto">
-                <Table hoverable>
-                    <Table.Head>
-                        <Table.HeadCell>Question</Table.HeadCell>
-                        <Table.HeadCell>Answer</Table.HeadCell>
-                        <Table.HeadCell><span className="sr-only">Edit</span></Table.HeadCell>
-                    </Table.Head>
-                    <Table.Body className="divide-y">
-                        {
-                            payload.map((val, idx) => {
-                                return <Table.Row key={idx} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {val.question}
-                                    </Table.Cell>
-                                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {val.answer}
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                    <a href={`http://localhost:3000/admin/helpcenter/faqform?id=${val._id}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
-                                        Edit
-                                    </a>
-                                    </Table.Cell>
-                                </Table.Row>
-                            })
-                        }
-                    </Table.Body>
-                </Table>
+            <div className="mt-4">
+                <AdminHeader title="FAQ Help Center Manager"/>
+                <div className="p-4 border border-gray-300 border-t-0">
+                    <Button color="success" onClick={() => window.location.href = '/admin/helpcenter/faqform'} className="mb-4">Add FAQ</Button>
+                    <TableFAQHelpCenter payload={payload} deleteHandler={DeleteHandler}/>  
+                </div>
             </div>
         </NavbarSidebarLayout>
     </>

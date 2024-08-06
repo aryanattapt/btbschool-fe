@@ -35,22 +35,16 @@ const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
                 </div>
                 <Sidebar.Items className='h-full flex flex-col justify-between' >
                     <Sidebar.ItemGroup>
-                        <Sidebar.Item href="/admin" className={"/admin" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
-                            Welcome
-                        </Sidebar.Item>
-                        <Sidebar.Item href="/admin/homepage" className={"/admin/homepage" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
-                            Home Page
-                        </Sidebar.Item>
                         <Sidebar.Item href="/admin/career" className={"/admin/career" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             Career
                         </Sidebar.Item>
-                        <Sidebar.Item href="/admin/bulletin" className={"/admin/bulletin" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                        <Sidebar.Item href="/admin/bulletinspotlight" className={"/admin/bulletinspotlight" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             Bulletin
                         </Sidebar.Item>
                         <Sidebar.Item href="/admin/helpcenter" className={"/admin/helpcenter" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
-                            Help Center
+                            FAQ Help Center
                         </Sidebar.Item>
-                        <Sidebar.Item href="/admin/calendar" className={"/admin/calendar" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                        <Sidebar.Item href="/admin/calenderacademic" className={"/admin/calenderacademic" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             Calendar
                         </Sidebar.Item>
                         <Sidebar.Collapse label="Registration">

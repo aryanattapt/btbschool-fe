@@ -1,19 +1,33 @@
 'use client'
-import { Table } from 'flowbite-react';
+import { Button, Table } from 'flowbite-react';
 import NavbarSidebarLayout from '../_layouts/navigation';
 import { useEffect, useState } from 'react';
 import {
+    DeleteConfig,
     GetConfig
 } from '../../../../../services/config.service';
 import Swal from 'sweetalert2';
-import moment from 'moment';
+import AdminHeader from '../_components/header';
+import TableCalenderAcademic from './_components/table'
 
 const CalenderAcademicPage = () => {
     const [payload, setPayload] = useState([]);
 
     useEffect(() => {
+        fetchConfig()
+    }, [])
+
+    const fetchConfig = () => {
         GetConfig('calenderacademic', {})
         .then(res => setPayload(res))
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+
+    const DeleteHandler = (id) => {
+        DeleteConfig('calenderacademic', [{"_id": id}])
+        .then(() => fetchConfig())
         .catch((err) => {
             Swal.fire({
                 allowOutsideClick: false,
@@ -22,35 +36,16 @@ const CalenderAcademicPage = () => {
                 icon: 'error',
             });
         })
-    }, [])
+    }
 
     return <>
         <NavbarSidebarLayout >
-            <div className="overflow-x-auto">
-                <Table hoverable>
-                    <Table.Head>
-                        <Table.HeadCell>Date</Table.HeadCell>
-                        <Table.HeadCell>Activity</Table.HeadCell>
-                        <Table.HeadCell><span className="sr-only">Edit</span></Table.HeadCell>
-                    </Table.Head>
-                    <Table.Body className="divide-y">
-                        {
-                            payload.map((val, idx) => {
-                                return <Table.Row key={idx} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                    {moment(val.date).format("DD MMMM YYYY")}
-                                    </Table.Cell>
-                                    <Table.Cell>{val.activity}</Table.Cell>
-                                    <Table.Cell>
-                                    <a href={`http://localhost:3000/admin/calenderacademic/form?id=${val._id}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
-                                        Edit
-                                    </a>
-                                    </Table.Cell>
-                                </Table.Row>
-                            })
-                        }
-                    </Table.Body>
-                </Table>
+            <div className="mt-4">
+                <AdminHeader title="Calender Academic Manager"/>
+                <div className="p-4 border border-gray-300 border-t-0">
+                    <Button color="success" onClick={() => window.location.href = '/admin/calenderacademic/form'} className="mb-4">Add Calender</Button>
+                    <TableCalenderAcademic payload={payload} deleteHandler={DeleteHandler}/>  
+                </div>
             </div>
         </NavbarSidebarLayout>
     </>
