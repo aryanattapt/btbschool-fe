@@ -13,8 +13,8 @@ const ContactPage = () => {
         <h1 className="mt-10 text-[#00305E] md:text-[50px] text-[25px] font-semibold	">
           HUBUNGI KAMI
         </h1>
-        <div className="text-[#00305E] grid grid-cols-1 md:grid-cols-2 mb-10">
-          <div>
+        <div className="text-[#00305E] grid grid-cols-1 md:grid-cols-3 mb-10">
+          <div className="col-span-2">
             <p className="md:text-[30px] text-[16px] my-5 text-black">
               Ambil langkah awal untuk bergabung bersama kami!
             </p>
@@ -23,10 +23,10 @@ const ContactPage = () => {
             </div>
           </div>
           <div>
-            <div className="md:h-auto w-[372px] h-auto bg-[#EF802B] rounded-3xl mx-5 mt-8 place-content-end">
+          <div className="md:h-screen h-screen bg-[#EF802B] rounded-3xl mx-5 place-content-center">
               <div className="text-white pb-10">
                 <div className="header px-5 md:px-15 ">
-                  <h1 className="font-bold md:text-[21px] text-[15px] pt-10">
+                  <h1 className="font-bold md:text-[31px] text-[15px] pt-10">
                     BTB SCHOOL PLUIT TIMUR
                   </h1>
                   <div className="address mt-2 leading-loose md:text-[20px] text-[13px]">
@@ -38,7 +38,7 @@ const ContactPage = () => {
                     </div>
                     <div className="ml-4">
                       <p className="md:text-[20px] text-[13px]">
-                        (021)669 8888
+                        021-669-8888
                       </p>
                     </div>
                   </div>
@@ -47,13 +47,15 @@ const ContactPage = () => {
                       <AiOutlineWhatsApp className="md:size-6" />
                     </div>
                     <div className="ml-4">
-                      <p className="md:text-[20px] text-[13px]">085695333888</p>
+                      <a href="https://wa.me/085695333888" className="md:text-[20px] text-[13px]">
+                        085695333888
+                      </a>
                     </div>
                   </div>
                 </div>
                 <div className="header px-5 md:px-15">
-                  <h1 className="font-bold md:text-[21px] pt-10">
-                    BTB School Pluit Putri
+                  <h1 className="font-bold md:text-[31px] pt-10">
+                    BTB SCHOOL PLUIT PUTRI
                   </h1>
                   <div className="address mt-2 leading-loose md:text-[20px] text-[13px]">
                     Jl.Pluit Timur Blok MM
@@ -64,7 +66,7 @@ const ContactPage = () => {
                     </div>
                     <div className="ml-4">
                       <p className="md:text-[20px] text-[13px]">
-                        (021)669 8888
+                        021-669-8888
                       </p>
                     </div>
                   </div>
@@ -73,7 +75,9 @@ const ContactPage = () => {
                       <AiOutlineWhatsApp className="md:size-6" />
                     </div>
                     <div className="ml-4">
-                      <p className="md:text-[20px] text-[13px]">085695333888</p>
+                      <a href="https://wa.me/085695333888" className="md:text-[20px] text-[13px]">
+                        085695333888
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -114,7 +118,7 @@ const ContactPage = () => {
               className="w-[148px] h-[148px] md:w-[548px] md:h-[474px] "
               allowFullScreen=""
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
           <div className="ml-[1px] md:ml-[30px] mt-6 md:mt-0">
@@ -126,7 +130,7 @@ const ContactPage = () => {
               className="w-[148px] h-[148px] md:w-[548px] md:h-[474px]"
               allowFullScreen=""
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
         </div>

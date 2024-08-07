@@ -11,7 +11,7 @@ const Pagging = () => {
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
-        <div className="inline-flex gap-12">
+        <div className="inline-flex md:gap-9 gap-12">
           <div className="border-r-2">
             <div className="pr-10 pl-32">
               <h1 className="text-[25px] text-center font-semibold py-10">{btbBelajarData[language].paging.title}</h1>
