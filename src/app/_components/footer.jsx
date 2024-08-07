@@ -101,7 +101,7 @@ const FooterComponent = () => {
               </div>
             </div>
             <div>
-              <div className="md:ml-[75px] ml-[15px]">
+              <div className="md:ml-[75px] mx-[15px]">
                 <h1 className="font-semibold md:text-[30px] text-[20px]">
                   {footerPayload[language].schooltitle}
                 </h1>
@@ -120,11 +120,11 @@ const FooterComponent = () => {
                     </div>
                   );
                 })}
-                <div className="">
+                <div className="md:py-0 py-4">
                   <h2 className="font-semibold md:text-[30px] text-[15px]">
                     {footerPayload[language].pagenavtitle}
                   </h2>
-                  <div className="grid grid-cols-2 md:grid-cols-4 sm:mt-3 sm:grid-cols-1 mr-20">
+                  <div className="grid grid-cols-1 md:grid-cols-4 sm:mt-3 sm:grid-cols-1 mr-20">
                     {footerPayload[language].url.map((val, idx) => {
                       return (
                         <div key={idx}>

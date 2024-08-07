@@ -23,7 +23,7 @@ const ContactPage = () => {
             </div>
           </div>
           <div>
-          <div className="md:h-screen h-screen bg-[#EF802B] rounded-3xl mx-5 place-content-center">
+            <div className="md:h-screen h-auto bg-[#EF802B] rounded-3xl mx-5 py-4 md:py-0 place-content-center">
               <div className="text-white pb-10">
                 <div className="header px-5 md:px-15 ">
                   <h1 className="font-bold md:text-[31px] text-[15px] pt-10">
@@ -37,9 +37,7 @@ const ContactPage = () => {
                       <HiPhone className="md:size-6" />
                     </div>
                     <div className="ml-4">
-                      <p className="md:text-[20px] text-[13px]">
-                        021-669-8888
-                      </p>
+                      <p className="md:text-[20px] text-[13px]">021-669-8888</p>
                     </div>
                   </div>
                   <div className="flex flex-nowrap md:mt-2">
@@ -47,7 +45,10 @@ const ContactPage = () => {
                       <AiOutlineWhatsApp className="md:size-6" />
                     </div>
                     <div className="ml-4">
-                      <a href="https://wa.me/085695333888" className="md:text-[20px] text-[13px]">
+                      <a
+                        href="https://wa.me/085695333888"
+                        className="md:text-[20px] text-[13px]"
+                      >
                         085695333888
                       </a>
                     </div>
@@ -65,9 +66,7 @@ const ContactPage = () => {
                       <HiPhone className="md:size-6" />
                     </div>
                     <div className="ml-4">
-                      <p className="md:text-[20px] text-[13px]">
-                        021-669-8888
-                      </p>
+                      <p className="md:text-[20px] text-[13px]">021-669-8888</p>
                     </div>
                   </div>
                   <div className="flex flex-nowrap md:mt-2">
@@ -75,7 +74,10 @@ const ContactPage = () => {
                       <AiOutlineWhatsApp className="md:size-6" />
                     </div>
                     <div className="ml-4">
-                      <a href="https://wa.me/085695333888" className="md:text-[20px] text-[13px]">
+                      <a
+                        href="https://wa.me/085695333888"
+                        className="md:text-[20px] text-[13px]"
+                      >
                         085695333888
                       </a>
                     </div>

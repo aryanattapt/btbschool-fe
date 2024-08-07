@@ -10,13 +10,9 @@ const AlbumPhoto = () => {
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-5 ">
-        {ServiceData.map((item) => (
-          <div className="m-4 md:m-5">
-            <img
-              src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud1.jpg"
-              alt={item}
-              className=""
-            />
+        {ServiceData.map((item, idx) => (
+          <div key={idx} className="m-4 md:m-5">
+            <img src={item.backgroundImage} alt={item} className="" />
           </div>
         ))}
       </div>
