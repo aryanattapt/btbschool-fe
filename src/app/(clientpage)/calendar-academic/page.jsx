@@ -1,3 +1,5 @@
+'use client'
+import { useEffect, useState } from "react";
 import Banner from "./components/banner";
 import Pagging from "./components/pagging";
 
