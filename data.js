@@ -31,7 +31,7 @@ export const BTBBelajarPayload = {
 
 	"EN": {
 		"paging":  {
-			"title": "Learn At BTB",
+			"title": "LEARN AT BTB",
 			"url": [
 				{"title": "Early Childhood - Kindergarten", "url": "/btb-belajar/TK"},
 				{"title": "Elementary School", "url": "/btb-belajar/SD"},
@@ -294,7 +294,7 @@ export const BTBBelajarPayload = {
   	},
 	"ID": {
 		"paging":  {
-			"title": "Belajar di BTB",
+			"title": "BELAJAR DI BTB",
 			"url": [
 				{"title": "Paud - TK", "url": "/btb-belajar/TK"},
 				{"title": "SD", "url": "/btb-belajar/SD"},
@@ -869,7 +869,7 @@ export const AboutUsPayload = {
 	"image6": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus6.jpg",
 	"ID": {
 		"pagingHeader":  {
-			"title": "Tentang Kami",
+			"title": "TENTANG KAMI",
 			"url": [
 				{"title": "Pengenalan", "url": "/about-us#pengenalan"},
 				{"title": "Visi Misi", "url": "/about-us#visi-misi"},
@@ -909,7 +909,7 @@ export const AboutUsPayload = {
 	},
 	"EN": {
 		"pagingHeader": {
-			"title": "About Us",
+			"title": "ABOUT US",
 			"url": [
 				{"title": "Introduction", "url": "/about-us#pengenalan"},
 				{"title": "Vision and Mission", "url": "/about-us#visi-misi"},
@@ -953,7 +953,7 @@ export const BulletinSpotlightPayload = {
 	"bannerImage": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpeg",
 	"ID": {
 		"pagingHeader":  {
-			"title": "Sorotan Buletin",
+			"title": "SOROTAN BULETIN",
 			"url": [
 				{"title": "Tampilkan Sorotan", "url": "/bulletinspotlight"},
 			]
@@ -963,7 +963,7 @@ export const BulletinSpotlightPayload = {
 	},
 	"EN": {
 		"pagingHeader": {
-			"title": "Bulletin Spotlight",
+			"title": "BULLETIN SPOTLIGHT",
 			"url": [
 				{"title": "Show Spotlight", "url": "/bulletinspotlight"},
 			]
@@ -977,7 +977,7 @@ export const CalendarAcademicPayload = {
 	"bannerImage": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/slider2.jpeg",
 	"ID": {
 		"pagingHeader":  {
-			"title": "Kalender Akademis",
+			"title": "KALENDER AKADEMIS",
 			"url": [
 				{"title": "PAUD", "url": "/calendar-academic/TK"},
 				{"title": "SD", "url": "/calendar-academic/SD"},
