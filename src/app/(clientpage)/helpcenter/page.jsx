@@ -11,7 +11,10 @@ const HelpCenterPage = () => {
 
     useEffect(() => {
         GetConfig('faq', {})
-        .then(res => setPayload(res))
+        .then(res => {
+            console.log(res);
+            setPayload(res);
+        })
         .catch((err) => {
             console.log(err);
         })
