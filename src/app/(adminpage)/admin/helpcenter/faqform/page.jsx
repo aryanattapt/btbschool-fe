@@ -8,7 +8,7 @@ import {
 import { 
     useSearchParams 
 } from 'next/navigation'
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
 import {
     GetConfig,
@@ -16,7 +16,7 @@ import {
 } from '../../../../../../services/config.service';
 import Swal from "sweetalert2";
 
-const FAQForm = () => {
+const FAQ = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams()
@@ -137,6 +137,12 @@ const FAQForm = () => {
             </div>
         </NavbarSidebarLayout>
     </>
+}
+
+const FAQForm = () => {
+    return <Suspense>
+        <FAQ/>
+    </Suspense>
 }
 
 export default FAQForm;

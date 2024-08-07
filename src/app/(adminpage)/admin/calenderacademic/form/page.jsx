@@ -9,7 +9,7 @@ import {
 import { 
     useSearchParams 
 } from 'next/navigation'
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
 import {
     GetConfig,
@@ -17,7 +17,7 @@ import {
 } from '../../../../../../services/config.service';
 import Swal from "sweetalert2";
 
-const CalenderAcademicAddPage = () => {
+const CalenderAcademicAdd = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams()
@@ -145,6 +145,12 @@ const CalenderAcademicAddPage = () => {
             </div>
         </NavbarSidebarLayout>
     </>
+}
+
+const CalenderAcademicAddPage = () => {
+    return <Suspense>
+        <CalenderAcademicAdd/>
+    </Suspense>
 }
 
 export default CalenderAcademicAddPage;

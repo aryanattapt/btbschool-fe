@@ -11,7 +11,7 @@ import {
 import { 
     useSearchParams 
 } from 'next/navigation'
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
 import {
     GetAllCareer,
@@ -19,7 +19,7 @@ import {
 } from '../../../../../../services/career.service'
 import Swal from "sweetalert2";
 
-const CareerFormPage = () => {
+const CareerForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams()
@@ -216,6 +216,12 @@ const CareerFormPage = () => {
             </div>
         </NavbarSidebarLayout>
     </>
+}
+
+const CareerFormPage = () => {
+    return <Suspense>
+        <CareerForm/>
+    </Suspense>
 }
 
 export default CareerFormPage;

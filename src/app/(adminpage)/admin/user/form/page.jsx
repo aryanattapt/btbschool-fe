@@ -11,7 +11,7 @@ import {
 import { 
     useSearchParams 
 } from 'next/navigation'
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
 import { HiOutlineMail } from "react-icons/hi";
 
@@ -153,4 +153,10 @@ const UserForm = () => {
     </>
 }
 
-export default UserForm;
+const UserFormPage = () => {
+    return <Suspense>
+        <UserForm/>
+    </Suspense>
+}
+
+export default UserFormPage;

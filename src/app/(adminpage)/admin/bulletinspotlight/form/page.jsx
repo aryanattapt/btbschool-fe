@@ -9,7 +9,7 @@ import {
 import { 
     useSearchParams 
 } from 'next/navigation'
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
 import {
     GetConfig,
@@ -20,7 +20,7 @@ import {
 } from '../../../../../../services/attachment.service';
 import Swal from "sweetalert2";
 
-const BulletinSpotlightFormPage = () => {
+const BulletinSpotlightForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams()
@@ -161,6 +161,12 @@ const BulletinSpotlightFormPage = () => {
             </div>
         </NavbarSidebarLayout>
     </>
+}
+
+const BulletinSpotlightFormPage = () => {
+    return <Suspense>
+        <BulletinSpotlightForm/>
+    </Suspense>
 }
 
 export default BulletinSpotlightFormPage;
