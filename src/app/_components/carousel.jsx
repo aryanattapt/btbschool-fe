@@ -9,7 +9,10 @@ const CarouselComponents = () => {
   const { language } = useLanguageStore();
 
   return (
-    <Carousel slideInterval={12000} className="relative md:h-[100vh] w-full">
+    <Carousel
+      slideInterval={12000}
+      className="relative md:h-[100vh] w-full h-[400px]"
+    >
       {homePageData.carousel.map((val, idx) => {
         const temp = val.texts.find((val) => val.language == language);
         if (val.type == "IMAGE") {
@@ -21,10 +24,10 @@ const CarouselComponents = () => {
               >
                 <div className="grid place-items-center h-full w-full bg-black bg-opacity-30">
                   <div className="mx-32 text-left">
-                    <p className="text-[10px] md:text-[25px] text-white text-justify font-semibold">
+                    <p className="text-[15px] md:text-[25px] text-white text-justify font-semibold">
                       {temp.title}
                     </p>
-                    <p className="text-[20px] my-2 md:text-[70px] leading-[44px] md:leading-[64px] font-semibold text-white drop-shadow-xl shadow-black">
+                    <p className="text-[20px] my-2 md:text-[70px] leading-[24px] md:leading-[64px] font-semibold text-white drop-shadow-xl shadow-black">
                       {temp.content}
                     </p>
                     <div className="flex justify-left gap-2">
