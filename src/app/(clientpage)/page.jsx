@@ -145,7 +145,7 @@ const HomePage = () => {
                   instagramFeed.map((val, idx) => {
                       return <div key={idx}>
                         <img
-                            className="h-[200px] md:w-[360px] md:h-[360px]"
+                            className="h-[200px] md:w-[360px] md:h-[360px] object-cover"
                             src = {`${val.thumbnail_url || val.media_url}`}
                             alt = {`${val.caption}`}
                             onClick={() => router.push(val.permalink)}
@@ -154,74 +154,11 @@ const HomePage = () => {
                   })
               }
           </div>
-
           <div className="m-10 flex justify-center">
               <button className="inline-block text-white font-sans bg-[#00305E] hover:bg-blue-700 font-medium rounded-full text-md px-10 py-2.5 text-center" onClick={() => router.push('https://www.instagram.com/btb_school/')}>
                   View More On Instagram
               </button>
           </div>
-
-          {/* <Script
-            src="https://static.elfsight.com/platform/platform.js"
-            data-use-service-core
-            defer
-          />
-          <div
-            className="elfsight-app-ef4327a9-843c-4be1-8b9f-3531ef090037"
-            data-elfsight-app-lazy
-          ></div> */}
-
-
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 mt-4">
-                <div>
-                  <img
-                    className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-                    src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome1.jpeg"
-                    alt="Feed1"
-                  />
-                </div>
-                <div>
-                  <img
-                    className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-                    src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome2.jpeg"
-                    alt="Feed2"
-                  />
-                </div>
-                <div>
-                  <img
-                    className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-                    src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome3.jpeg"
-                    alt="Feed3"
-                  />
-                </div>
-                <div>
-                  <img
-                    className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-                    src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome4.jpeg"
-                    alt="Feed4"
-                  />
-                </div>
-                <div>
-                  <img
-                    className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-                    src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome5.jpeg"
-                    alt="Feed5"
-                  />
-                </div>
-                <div>
-                  <img
-                    className="w-full h-[200px] md:w-[360px] md:h-[361px]"
-                    src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/feedHome6.jpeg"
-                    alt="Feed6"
-                  />
-                </div>
-              </div>
-              <div className="m-10 flex justify-center">
-                <button className="inline-block text-white font-sans bg-[#00305E] hover:bg-blue-700 font-medium rounded-full text-md px-10 py-2.5 text-center">
-                  View More On Instagram
-                </button>
-              </div> 
-          */}
         </div>
       </div>
     </>

@@ -842,7 +842,7 @@ export const  HomePagePayload = {
 			"desc": "Di BTB, kami memastikan siswa mendapatkan kualitas terbaik yang dibantu dengan menggunakan metode pembelajaran International Baccalaureate.",
 			"tktext": "PAUD - TK",
 			"sdtext": "Sekolah Dasar",
-			"smptext": "Sekolah Menegah Pertama",
+			"smptext": "Sekolah Menengah Pertama",
 			"smatext": "Sekolah Menengah Atas",
 		}
 	},
@@ -979,12 +979,13 @@ export const CalendarAcademicPayload = {
 		"pagingHeader":  {
 			"title": "KALENDER AKADEMIS",
 			"url": [
-				{"title": "PAUD", "url": "/calendar-academic/TK"},
+				{"title": "PAUD - TK", "url": "/calendar-academic/TK"},
 				{"title": "SD", "url": "/calendar-academic/SD"},
 				{"title": "SMP", "url": "/calendar-academic/SMP"},
 				{"title": "SMA", "url": "/calendar-academic/SMA"},
 			]
 		},
+		"buttonAction": "Tampilkan Penuh Kalender",
 	},
 	"EN": {
 		"pagingHeader": {
@@ -996,5 +997,6 @@ export const CalendarAcademicPayload = {
 				{"title": "Senior High School", "url": "/calendar-academic/SMA"},
 			]
 		},
+		"buttonAction": "Show Full Calendar",
 	}
 }
