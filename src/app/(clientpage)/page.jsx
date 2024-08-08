@@ -65,7 +65,7 @@ const HomePage = () => {
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
-                  <p className="md:text-[25px] leading-tight text-justify font-semibold">
+                  <p className="md:text-[20px] leading-tight text-center font-semibold">
                   {homePagePayload[language].grade.tktext}
                   </p>
                 </div>
@@ -86,7 +86,7 @@ const HomePage = () => {
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
-                  <p className="md:text-[25px] leading-tight text-justify font-semibold">
+                  <p className="md:text-[20px] leading-tight text-center font-semibold">
                   {homePagePayload[language].grade.sdtext}
                   </p>
                 </div>
@@ -107,7 +107,7 @@ const HomePage = () => {
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
-                  <p className="md:text-[25px] leading-tight text-justify font-semibold">
+                  <p className="md:text-[20px] leading-tight text-center font-semibold">
                   {homePagePayload[language].grade.smptext}
                   </p>
                 </div>
@@ -128,7 +128,7 @@ const HomePage = () => {
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
                   {/* md:leading-[64px] */}
-                  <p className="md:text-[25px] leading-tight text-justify font-semibold">
+                  <p className="md:text-[20px] leading-tight text-center font-semibold">
                   {homePagePayload[language].grade.smatext}
                   </p>
                 </div>

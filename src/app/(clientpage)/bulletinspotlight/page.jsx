@@ -1,5 +1,4 @@
 'use client'
-// import { useEffect, useState } from 'react';
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { Modal } from 'flowbite-react';
 import PDFReaderFlipBook from '../../_components/pdfreaderflipbook';
@@ -9,6 +8,7 @@ import Pagging from './_components/Pagging';
 import {BulletinSpotlightPayload} from '../../../../data';
 import {useLanguageStore} from '../../../../store/language.store';
 import { GetConfig } from '../../../../services/config.service';
+import Swal from 'sweetalert2';
 
 
 const FlipbookModal = ({ url, isOpen, setIsOpen }) => {
@@ -26,8 +26,6 @@ const FlipbookModal = ({ url, isOpen, setIsOpen }) => {
 
 const BulletinSpotlightPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [pdfUrl, setPdfUrl] = useState('https://w6i8.c1.e2-7.dev/uploads/btbschool/pdf/E-Spotlight Term 4 SY. 2023-2024_2.pdf');
-    const memoizedPdfUrl = useMemo(() => pdfUrl, [pdfUrl]);
     const openModal = useCallback(() => setIsModalOpen(true), []);
     const closeModal = useCallback(() => setIsModalOpen(false), []);
     const [bulletinSpotlightData, setBulletinSpotlightData] = useState(BulletinSpotlightPayload);
@@ -66,10 +64,10 @@ const BulletinSpotlightPage = () => {
                             <FlipbookModal 
                                 isOpen={isModalOpen} 
                                 setIsOpen={closeModal} 
-                                url={val.attachments}
+                                url={val.attachment[0].fileURL}
                             />
                             <PDFThumbnail 
-                                file={val.attachments} 
+                                file={val.attachment[0].fileURL} 
                                 onClick={openModal} 
                             />
                         </div>
