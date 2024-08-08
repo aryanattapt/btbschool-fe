@@ -979,10 +979,7 @@ export const CalendarAcademicPayload = {
 		"pagingHeader":  {
 			"title": "KALENDER AKADEMIS",
 			"url": [
-				{"title": "PAUD - TK", "url": "/calendar-academic/TK"},
-				{"title": "SD", "url": "/calendar-academic/SD"},
-				{"title": "SMP", "url": "/calendar-academic/SMP"},
-				{"title": "SMA", "url": "/calendar-academic/SMA"},
+				{"title": "Kalender", "url": "/calendar-academic"},
 			]
 		},
 		"buttonAction": "Tampilkan Penuh Kalender",
@@ -991,10 +988,7 @@ export const CalendarAcademicPayload = {
 		"pagingHeader": {
 			"title": "ACADEMIC CALENDAR",
 			"url": [
-				{"title": "Early Childhood - Kindergarten", "url": "/calendar-academic/TK"},
-				{"title": "Elementary School", "url": "/calendar-academic/SD"},
-				{"title": "Junior High School", "url": "/calendar-academic/SMP"},
-				{"title": "Senior High School", "url": "/calendar-academic/SMA"},
+				{"title": "Calendar", "url": "/calendar-academic"},
 			]
 		},
 		"buttonAction": "Show Full Calendar",
