@@ -12,21 +12,25 @@ import SchoolInformationForm from "./schoolinformationform";
 import StudentDetailForm from "./studentdetailform";
 import DraftNoForm from "./draft.form";
 import RulesRegistration from "./rulesregitration";
-import { useState } from "react";
-import { Button, Label, Radio, Spinner } from "flowbite-react";
+import { useEffect, useState } from "react";
+import { Button, Label, Radio, Spinner, TextInput } from "flowbite-react";
 import { UploadAttachment } from "../../../../../services/attachment.service";
+import { GetCountry } from '../../../../../services/country.service'
 import {
   GetDraftStudentRegistration,
   SubmitStudentRegistration,
 } from "../../../../../services/onlineregistration.service";
 import Swal from "sweetalert2";
+import _ from "lodash";
+import { HiMail } from "react-icons/hi";
 
 const OnlineRegistrationForm = () => {
   let [pageNo, setPageNo] = useState(0);
   const [haveRegisCode, setHaveRegiscode] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [registrationPayload, setRegistrationPayload] = useState({medicalproblemoptions: []});
-
+  const [nationalityPayload, setNationalityPayload] = useState([]);
+  
   const formChangeHandler = (e) => {
     const { name, value, type, files } = e.target;
     if (type == "file") {
@@ -118,7 +122,7 @@ const OnlineRegistrationForm = () => {
       console.log(registrationPayload);
         SubmitStudentRegistration(studentRegistrationPayload)
           .then((res) => {
-            // setRegistrationPayload({});
+            setRegistrationPayload({});
             setStateCallBack(false);
             Swal.fire({
               allowOutsideClick: false,
@@ -160,8 +164,24 @@ const OnlineRegistrationForm = () => {
     // setIsLoading(true)
   };
 
+  const [registrationCode, setRegistrationCode] = useState('');
+  const [isPasteRegistrationCode, setIsPasteRegistrationCode] = useState(false);
+  const onChangeRegistrationCode = (e) => {
+    if(!isPasteRegistrationCode){
+      setRegistrationCode(e.target.value);
+    } else{
+      console.log(`on paste regis code detected in on change`);
+    }
+  }
+
+  const onPasteRegistrationCode = (e) => { 
+    setIsPasteRegistrationCode(true); 
+    setRegistrationCode(e.clipboardData.getData('Text'));
+    setTimeout(() => setIsPasteRegistrationCode(false), 5);
+  };
+
   const fetchDraftDataHandler = () => {
-    if (!registrationPayload.registrationcode) {
+    if (!registrationCode) {
       Swal.fire({
         allowOutsideClick: false,
         title: "Student Submission Notification!",
@@ -170,34 +190,46 @@ const OnlineRegistrationForm = () => {
       });
       return;
     }
-    GetDraftStudentRegistration(registrationPayload.registrationcode)
-      .then((res) => {
-        setRegistrationPayload(res.data[0]);
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Student Submission Notification!",
-          text: `Success get registration data`,
-          icon: "info",
+
+    if(registrationPayload.registrationcode == registrationCode){
+      console.log(`tidak perlu fetch ulang regis code karena data sama`);
+      setPageNo(++pageNo);
+    } else{
+      console.log(`fetch/refetch regis code`);
+      GetDraftStudentRegistration(registrationCode)
+        .then((res) => {
+          setRegistrationPayload(res.data[0]);
+          setRegistrationCode(res.data[0].registrationcode);
+          setPageNo(pageNo + 1);
+          Swal.fire({
+            allowOutsideClick: false,
+            title: "Student Submission Notification!",
+            text: `Success get registration data`,
+            icon: "info",
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            allowOutsideClick: false,
+            title: "Student Submission Notification!",
+            text: err,
+            icon: "error",
+          });
         });
-      })
-      .catch((err) => {
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Student Submission Notification!",
-          text: err,
-          icon: "error",
-        });
-      });
+    }
   };
 
   const setNextPage = () => {
-    if (haveRegisCode == "true" && !registrationPayload.registrationcode) {
+    console.log(registrationCode);
+    if (haveRegisCode == "true" && !registrationCode && pageNo == 0) {
       Swal.fire({
         allowOutsideClick: false,
         title: "Student Submission Notification!",
         text: "Please input registration code if you choose option yes. Otherwise please choose no!",
         icon: "warning",
       });
+    } else if (haveRegisCode == "true" && registrationCode && pageNo == 0) {
+      fetchDraftDataHandler();
     } else {
       setPageNo(pageNo + 1);
     }
@@ -206,6 +238,15 @@ const OnlineRegistrationForm = () => {
   const setPrevPage = () => {
     setPageNo(pageNo - 1);
   };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await GetCountry();
+        setNationalityPayload(res);
+      } catch (error) {console.log(error);}
+    })();
+  }, []);
 
   return (
     <>
@@ -222,6 +263,17 @@ const OnlineRegistrationForm = () => {
         {/* Page 0 */}
         {pageNo == 0 ? (
           <>
+            {/* Email Form */}
+            <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+              Email
+            </div>
+            <div className="md:inline-flex">
+                <div className="mb-2 block w-72">
+                    <Label htmlFor="mainEmail" value="Email"/>
+                </div>
+                <TextInput className="md:w-full pr-10 md:pr-0" id="mainEmail" name="mainEmail" type="email" icon={HiMail} autoFocus={true} onChange={formChangeHandler} value={registrationPayload.mainEmail || ''}/>
+            </div>
+
             {/* Form Opsi Punya Regis Code atau tidak */}
             <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
               Have you registered before or already have registration code?
@@ -254,9 +306,9 @@ const OnlineRegistrationForm = () => {
             {/* Page Draft Registration No */}
             {haveRegisCode == "true" ? (
               <DraftNoForm
-                fetchDraftDataHandler={fetchDraftDataHandler}
-                payload={registrationPayload}
-                formChangeHandler={formChangeHandler}
+                onChange={onChangeRegistrationCode}
+                onPaste={onPasteRegistrationCode}
+                registrationcode={registrationCode}
               />
             ) : (
               <></>
@@ -274,6 +326,7 @@ const OnlineRegistrationForm = () => {
               formChangeHandler={formChangeHandler}
             />
             <StudentDetailForm
+              nationalityPayload = {nationalityPayload}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               datePickerHandler={datePickerHandler}
@@ -295,11 +348,6 @@ const OnlineRegistrationForm = () => {
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               name="siblinglist"
-            />
-            <SignaturePad
-              payload={registrationPayload}
-              formChangeHandler={formChangeHandler}
-              name="ttd"
             />
           </>
         ) : (
@@ -342,6 +390,11 @@ const OnlineRegistrationForm = () => {
               formChangeHandler={formChangeHandler}
             />
             <AttachmentForm formChangeHandler={formChangeHandler} />
+            <SignaturePad
+              payload={registrationPayload}
+              formChangeHandler={formChangeHandler}
+              name="ttd"
+            />
           </>
         ) : (
           <></>

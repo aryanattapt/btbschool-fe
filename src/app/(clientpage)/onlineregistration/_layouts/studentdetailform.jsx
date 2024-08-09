@@ -12,6 +12,7 @@ import {
 import { HiMail } from "react-icons/hi";
 
 const StudentDetailForm = ({
+  nationalityPayload,
   formChangeHandler,
   datePickerHandler,
   payload,
@@ -69,7 +70,15 @@ const StudentDetailForm = ({
         </div>
         <div className="inline-flex w-full pr-10 md:pr-0">
           <div className="w-1/2 pr-2">
-            <Select
+            <TextInput
+            className="w-full pr-10 md:pr-0"
+            value={payload.birthplace || ""}
+            id="birthplace"
+            name="birthplace"
+            type="text"
+            onChange={formChangeHandler}
+          />
+            {/* <Select
               value={payload.birthplace || ""}
               id="birthplace"
               name="birthplace"
@@ -108,7 +117,7 @@ const StudentDetailForm = ({
               <option value="sumatera barat">Sumatera Barat</option>
               <option value="sumatera selatan">Sumatera Selatan</option>
               <option value="sumatera utara">Sumatera Utara</option>
-            </Select>
+            </Select> */}
           </div>
           <div className="w-1/2">
             <Datepicker
@@ -129,7 +138,21 @@ const StudentDetailForm = ({
         <div className="mb-2 block w-72">
           <Label htmlFor="nationality" value="Nationality" />
         </div>
-        <TextInput
+        <Select
+          className="w-full pr-10 md:pr-0"
+          value={payload.nationality || ""}
+          id="nationality"
+          name="nationality"
+          required
+          onChange={formChangeHandler}>
+            <option key="default" value="">Select Nationality</option>
+            {
+              nationalityPayload.map((val, idx) => {
+                return <option key={idx} value={`${val}`}>{val}</option>
+              })
+            }
+        </Select>
+        {/* <TextInput
           className="w-full pr-10 md:pr-0"
           value={payload.nationality || ""}
           id="nationality"
@@ -137,7 +160,7 @@ const StudentDetailForm = ({
           type="text"
           onChange={formChangeHandler}
           required
-        />
+        /> */}
       </div>
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">

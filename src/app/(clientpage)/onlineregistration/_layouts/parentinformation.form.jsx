@@ -36,7 +36,15 @@ const ParentsInformationForm = ({
         <div className="mb-2 block w-72">
           <Label htmlFor="fatherbirthplace" value="Birth Place" />
         </div>
-        <Select
+          <TextInput
+            className="w-full pr-10 md:pr-0"
+            value={payload.fatherbirthplace || ""}
+            id="fatherbirthplace"
+            name="fatherbirthplace"
+            type="text"
+            onChange={formChangeHandler}
+          />
+        {/* <Select
           className="w-full pr-10 md:pr-0"
           value={payload.fatherbirthplace || ""}
           id="fatherbirthplace"
@@ -75,7 +83,7 @@ const ParentsInformationForm = ({
           <option value="sumatera barat">Sumatera Barat</option>
           <option value="sumatera selatan">Sumatera Selatan</option>
           <option value="sumatera utara">Sumatera Utara</option>
-        </Select>
+        </Select> */}
       </div>
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
@@ -203,7 +211,7 @@ const ParentsInformationForm = ({
           />
         </div>
 
-        <div className="md:inline-flex">
+        {/* <div className="md:inline-flex">
           <div className="mb-2 block w-72">
             <Label htmlFor="fatherfax" value="father fax" />
           </div>
@@ -215,7 +223,7 @@ const ParentsInformationForm = ({
             name="fatherfax"
             onChange={formChangeHandler}
           />
-        </div>
+        </div> */}
 
       <div>
         <HR />
@@ -238,7 +246,15 @@ const ParentsInformationForm = ({
         <div className="mb-2 block w-72">
           <Label htmlFor="motherbirthplace" value="Birth Place" />
         </div>
-        <Select
+          <TextInput
+            className="w-full pr-10 md:pr-0"
+            value={payload.motherbirthplace || ""}
+            id="motherbirthplace"
+            name="motherbirthplace"
+            type="text"
+            onChange={formChangeHandler}
+          />
+        {/* <Select
           className="w-full pr-10 md:pr-0"
           value={payload.motherbirthplace || ""}
           id="motherbirthplace"
@@ -277,7 +293,7 @@ const ParentsInformationForm = ({
           <option value="sumatera barat">Sumatera Barat</option>
           <option value="sumatera selatan">Sumatera Selatan</option>
           <option value="sumatera utara">Sumatera Utara</option>
-        </Select>
+        </Select> */}
       </div>
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
@@ -405,7 +421,7 @@ const ParentsInformationForm = ({
   />
 </div>
 
-<div className="md:inline-flex">
+{/* <div className="md:inline-flex">
   <div className="mb-2 block w-72">
     <Label htmlFor="motherfax" value="mother fax" />
   </div>
@@ -417,7 +433,7 @@ const ParentsInformationForm = ({
     name="motherfax"
     onChange={formChangeHandler}
   />
-</div>
+</div> */}
 
     </>
   );

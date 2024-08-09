@@ -29,7 +29,7 @@ const SignaturePad = ({formChangeHandler, name}) => {
             </div>
 
             <br></br>
-            <button style={{height:"30px",width:"60px", backgroundColor:"black"}} onClick={handleClear}>Clear</button>
+            <button style={{height:"30px",width:"60px", backgroundColor:"#00305E", color: "white"}} onClick={handleClear}>Clear</button>
         </div>
     )
 }
