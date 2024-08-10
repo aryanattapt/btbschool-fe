@@ -27,7 +27,7 @@ const BTBPeduliPage = () => {
           />
         </div>
         <div className="bg-[#EF802B] w-full h-fit md:h-[363px] h-[163px] content-center">
-          <p className="text-center	md:text-[25px] md:leading-[38px] text-[15px] p-5 md:p-0">
+          <p className="text-center	md:text-[25px] md:leading-[38px] text-[15px] p-5 md:p-5">
             {btbPeduliData[language].text1}
           </p>
         </div>

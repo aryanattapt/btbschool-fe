@@ -1,7 +1,6 @@
 import Banner from "../components/Banner";
 import Pagging from "../components/Pagging";
 import TK from "../components/TK";
-import AlbumPhoto from "../components/AlbumPhoto";
 
 const TKPage = () => {
   return (
@@ -9,7 +8,6 @@ const TKPage = () => {
       <Banner />
       <Pagging />
       <TK />
-      <AlbumPhoto />
     </>
   );
 };
