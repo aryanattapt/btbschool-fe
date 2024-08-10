@@ -4,6 +4,8 @@ import { useState } from "react";
 import { HiMail } from "react-icons/hi";
 import { SubmitContact } from "../../../../../services/contact.service";
 import Swal from "sweetalert2";
+import { ContactUsPayLoad } from "../../../../../data";
+import { useLanguageStore } from "../../../../../store/language.store";
 
 const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(null);
@@ -49,12 +51,18 @@ const ContactForm = () => {
       });
   };
 
+  const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
+  const { language } = useLanguageStore();
+
   return (
     <>
       <div className="max-w-full grid gap-3">
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="firstname" value="Nama Depan" />
+            <Label
+              htmlFor="firstname"
+              value={`${contactUsData[language].form.fieldFirstName}`}
+            />
           </div>
           <TextInput
             id="firstname"
@@ -66,7 +74,10 @@ const ContactForm = () => {
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="lastname" value="Nama Belakang" />
+            <Label
+              htmlFor="lastname"
+              value={`${contactUsData[language].form.fieldLastName}`}
+            />
           </div>
           <TextInput
             id="lastname"
@@ -77,19 +88,24 @@ const ContactForm = () => {
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="phoneno" value="Nomor Telepon" />
+            <Label
+              htmlFor="phoneno"
+              value={`${contactUsData[language].form.fieldPhone}`}
+            />
           </div>
           <TextInput
             id="phoneno"
             name="phoneno"
             type="text"
-
             onChange={formChangeHandler}
           />
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="email" value="Email" />
+            <Label
+              htmlFor="email"
+              value={`${contactUsData[language].form.fieldEmail}`}
+            />
           </div>
           <TextInput
             icon={HiMail}
@@ -101,12 +117,15 @@ const ContactForm = () => {
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="message" value="Pesan" />
+            <Label
+              htmlFor="message"
+              value={`${contactUsData[language].form.fieldMessage}`}
+            />
           </div>
           <Textarea
             id="message"
             name="message"
-            placeholder="Tuliskan Pesan anda..."
+            placeholder={`${contactUsData[language].form.placeHolderMessage}`}
             required
             rows={4}
             onChange={formChangeHandler}

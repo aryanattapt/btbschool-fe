@@ -110,24 +110,28 @@ const AboutUsPage = () => {
             <div className="md:m-[20px] m-[20px]" key={idx}>
               <a href={`${val.url}`} target="_blank">
                 <div
-                  className="md:h-[346px] md:w-[552px] h-[230px] w-[330px] bg-cover bg-center rounded-xl"
-                  style={{ backgroundImage: `url(${val.image})` }}
+                  className="md:h-[346px] md:w-[552px] h-[230px] w-[330px] bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(${val.image})`,
+                    borderRadius: `50px`,
+                  }}
                 >
-                  <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80">
+                  <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80 rounded-[50px]">
                     <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
                       <div>
                         <p className="md:text-[35px] text-justify font-bold text-[#FFFFFF]">
                           {/* Sekolah Dasar */}
                           {val.title}
                         </p>
-                        <a
+                        {/* <a
                           href={`${val.url}`}
                           target="_blank"
                           className="opacity-0 font-semibold group-hover:opacity-100 underline transition-opacity duration-300"
-                        >
-                          {/* Lihat Kurikulum */}
-                          {val.buttoncontent}
-                        </a>
+                        > */}
+                        {/* Lihat Kurikulum */}
+                        {/* {val.buttoncontent}
+                        </a> */}
+                        <p className="underline">{val.buttoncontent}</p>
                       </div>
                     </div>
                   </div>
