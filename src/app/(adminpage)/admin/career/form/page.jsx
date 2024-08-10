@@ -18,6 +18,7 @@ import {
     UpsertCareer
 } from '../../../../../../services/career.service'
 import Swal from "sweetalert2";
+import CustomEditor from '../../../../_components/customformeditor';
 
 const CareerForm = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -59,6 +60,7 @@ const CareerForm = () => {
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
+        console.log(value);
         if(type == 'file'){
             Object.keys(files).map((val) => {
                 setPayload(prevState => ({
@@ -145,13 +147,15 @@ const CareerForm = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="jobsummary" value="Job Summary" />
                     </div>
-                    <Textarea value={payload.jobsummary || ''} id="jobsummary" name="jobsummary" required rows={4} onChange={formChangeHandler}/>
+                    {/* <Textarea value={payload.jobsummary || ''} id="jobsummary" name="jobsummary" required rows={4} onChange={formChangeHandler}/> */}
+                    <CustomEditor name='jobsummary' onChange={formChangeHandler} value={payload.jobsummary || ''} />
                 </div>
                 <div>
                     <div className="mb-2 block">
                         <Label htmlFor="responsibilites" value="Responsibilites" />
                     </div>
-                    <Textarea value={payload.responsibilites || ''} id="responsibilites" name="responsibilites" required rows={4} onChange={formChangeHandler}/>
+                    {/* <Textarea value={payload.responsibilites || '} id="responsibilites" name="responsibilites" required rows={4} onChange={formChangeHandler}/> */}
+                    <CustomEditor name='responsibilites' onChange={formChangeHandler} value={payload.responsibilites || ''} />
                 </div>
                 <div>
                     <div className="mb-2 block">
@@ -195,7 +199,8 @@ const CareerForm = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="requirement" value="Requirement" />
                     </div>
-                    <Textarea value={payload.requirement || ''} id="requirement" name="requirement" required rows={4} onChange={formChangeHandler}/>
+                    {/* <Textarea value={payload.requirement || ''} id="requirement" name="requirement" required rows={4} onChange={formChangeHandler}/> */}
+                    <CustomEditor name='requirement' onChange={formChangeHandler} value={payload.requirement || ''} />
                 </div>
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">

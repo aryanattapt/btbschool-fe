@@ -29,7 +29,7 @@ const DetailCareer = () => {
 	}, []);
 
 	const onApply = () => {
-		router.push(`./apply/${data?._id}`);
+		router.push(`/career/apply/${data?._id}`);
 	};
 
 	return (
@@ -68,7 +68,8 @@ const DetailCareer = () => {
 						<div className="flex flex-col w-full">
 							<h1 className="w-full text-2xl tracking-wide">Job Summary</h1>
 							<div className="bg-[#646464] h-[1px] w-full my-3" />
-							<p>{data?.jobsummary}</p>
+							{/* <p>{data?.jobsummary}</p> */}
+							<div dangerouslySetInnerHTML={{__html: data?.jobsummary}}></div>
 						</div>
 					</CareerPaperContainer>
 					<CareerPaperContainer>
@@ -77,14 +78,15 @@ const DetailCareer = () => {
 								Responsibilities
 							</h1>
 							<div className="bg-[#646464] h-[1px] w-full my-3" />
-							<p>{data?.responsibilites}</p>
+							{/* <p>{data?.responsibilites}</p> */}
+							<div dangerouslySetInnerHTML={{__html: data?.responsibilites}}></div>
 						</div>
 					</CareerPaperContainer>
 					<CareerPaperContainer>
 						<div className="flex flex-col w-full">
 							<h1 className="w-full text-2xl tracking-wide">Requirement</h1>
 							<div className="bg-[#646464] h-[1px] w-full my-3" />
-							<p>{data?.requirement}</p>
+							<div dangerouslySetInnerHTML={{__html: data?.requirement}}></div>
 						</div>
 					</CareerPaperContainer>
 				</div>
