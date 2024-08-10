@@ -8,7 +8,7 @@ import CarouselComponents from "../_components/carousel";
 import { useEffect, useState } from "react";
 import { GetBTBInstagramFeed } from "../../../services/instagram.service";
 import { useRouter } from "next/navigation";
-
+import { FaInstagram } from "react-icons/fa";
 import {useLanguageStore} from '../../../store/language.store';
 import {HomePagePayload} from '../../../data';
 
@@ -32,24 +32,23 @@ const HomePage = () => {
     <>
       <div className="min-h-screen flex flex-col text-[#00305E]">
         <CarouselComponents />
-        <div className="md:my-[25px] mx-20 md:mx-32 flex-grow" id="findClass">
+        <div className="md:my-[25px] mx-10 md:mx-32 flex-grow" id="findClass">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-[20px] md:my-[32px]">
             <div>
-              <div className="md:text-[25px]">{homePagePayload[language].grade.smalltitle}</div>
-              <div className="font-semibold md:text-[60px]">
-                {/* md:font-[400] md:leading-[64px] */}
+              <div className="text-[20px] md:text-[25px]">{homePagePayload[language].grade.smalltitle}</div>
+              <div className="font-semibold text-[25px] md:text-[60px]">
                 {homePagePayload[language].grade.title}
               </div>
             </div>
             <div className="place-content-center">
-              <p className="md:leading-[25px] md:text-[20px] md:leading-[25px] text-justify leading-loose">
+              <p className="md:leading-[25px] md:text-[20px] md:text-justify md:leading-loose">
               {homePagePayload[language].grade.desc}
               </p>
             </div>
           </div>
 
           {/* Section */}
-          <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:my-[40px]">
+          <div className="grid place-items-center gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:my-[40px]">
             <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel1.jpeg')] w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] bg-cover bg-center rounded-[30px]">
               <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
                 <div className="flex items-center justify-center h-full text-white group">
@@ -64,7 +63,6 @@ const HomePage = () => {
               </div>
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
-                  {/* md:leading-[64px] */}
                   <p className="md:text-[20px] leading-tight text-center font-semibold">
                   {homePagePayload[language].grade.tktext}
                   </p>
@@ -85,7 +83,6 @@ const HomePage = () => {
               </div>
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
-                  {/* md:leading-[64px] */}
                   <p className="md:text-[20px] leading-tight text-center font-semibold">
                   {homePagePayload[language].grade.sdtext}
                   </p>
@@ -106,7 +103,6 @@ const HomePage = () => {
               </div>
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
-                  {/* md:leading-[64px] */}
                   <p className="md:text-[20px] leading-tight text-center font-semibold">
                   {homePagePayload[language].grade.smptext}
                   </p>
@@ -127,7 +123,6 @@ const HomePage = () => {
               </div>
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
-                  {/* md:leading-[64px] */}
                   <p className="md:text-[20px] leading-tight text-center font-semibold">
                   {homePagePayload[language].grade.smatext}
                   </p>
@@ -135,17 +130,17 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <hr className="h-px mt-32 mb-20 bg-gray-200 border-0 dark:bg-gray-700" />
-          <div className="text-[40px] md:text-[70px]">
+          <hr className="h-px mt-10 md:mt-32 md:mb-20 mb-10 bg-gray-200 border-0 dark:bg-gray-700" />
+
+          <div className="text-[40px] md:text-[70px] text-center">
             <h1>{homePagePayload[language].instagramtitle}</h1>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 mt-4">
+          <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 mt-4">
               {
                   instagramFeed.map((val, idx) => {
                       return <div key={idx}>
                         <img
-                            className="h-[200px] md:w-[360px] md:h-[360px] object-cover"
+                            className="h-[300px] h-[300px] md:w-[360px] md:h-[360px] object-cover"
                             src = {`${val.thumbnail_url || val.media_url}`}
                             alt = {`${val.caption}`}
                             onClick={() => router.push(val.permalink)}
@@ -155,8 +150,8 @@ const HomePage = () => {
               }
           </div>
           <div className="m-10 flex justify-center">
-              <button className="inline-block text-white font-sans bg-[#00305E] hover:bg-blue-700 font-medium rounded-full text-md px-10 py-2.5 text-center" onClick={() => router.push('https://www.instagram.com/btb_school/')}>
-                  View More On Instagram
+              <button className="bg-[#00305E] flex items-center text-white hover:bg-blue-700 font-medium md:rounded-full rounded text-sm md:text-md md:px-10 px-5 py-2.5 text-center" onClick={() => router.push('https://www.instagram.com/btb_school/')}>
+                <FaInstagram className="text-white mr-2"/>View More On Instagram
               </button>
           </div>
         </div>

@@ -10,21 +10,29 @@ const NavBar = () => {
   const { language } = useLanguageStore();
   const setLanguage = useLanguageStore((state) => state.setLanguage);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState(true); 
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+      if (currentScrollY > 0) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [lastScrollY]);
 
   const languageChangeHandler = (e) => {
     setLanguage(e.target.checked ? "EN" : "ID");
@@ -36,17 +44,16 @@ const NavBar = () => {
         isScrolled
           ? "bg-[#00305E] bg-opacity-100 text-white"
           : "bg-gradient-to-b from-[#091531] via-[#00305E] via-20% bg-opacity-0 text-[#00305E]"
-      } fixed flex top-0 z-20 md:w-full w-full p-4`}
+      } fixed top-0 z-20 w-full p-4 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
     >
       <div className="flex justify-between w-full p-2">
-        {/* <div className="grid justify-items-start w-1/4"> */}
-
         <Navbar.Brand href="/" className="">
-          <div className="md:w-[400px] md:h-[75px] w-[200px] mh-[45px]  ml-1 md:ml-25">
+          <div className="md:w-[400px] md:h-[75px] w-[200px] mh-[45px] ml-5 md:ml-28">
             <img src={`${NavbarPayload[language].logourl}`} alt="logo btb" />
           </div>
         </Navbar.Brand>
-        {/* </div> */}
         <div className="md:grid items-center md:mr-28">
           <div
             className={`transition-all duration-1000 ${
@@ -70,6 +77,7 @@ const NavBar = () => {
                 </div>
               </div>
             </label>
+            <div className="h-7 md:w-0.5 bg-slate-400 mr-2"></div>
             <button className="text-white font-sans bg-[#EF802B] hover:bg-blue-700 font-medium rounded-full text-sm px-5 py-1.5 text-center w-[70px] login-button-lg hidden md:block">
               Login
             </button>
@@ -82,16 +90,16 @@ const NavBar = () => {
                     className="relative group transition-all hover:duration-300"
                     key={idx}
                   >
-                    <Navbar.Link href={val.url} className="text-white">
+                    <Navbar.Link href={val.url} className="text-white hover:bg-[#EF802B]">
                       {val.content}
                     </Navbar.Link>
-                    <ul className="absolute w-52 hidden group-hover:block group-hover:group-hover:block bg-[#00305E] text-white shadow-lg">
+                    <ul className="absolute w-56 hidden group-hover:block group-hover:group-hover:block bg-[#EF802B] text-white shadow-lg">
                       {val.submenu.map((val2, idx2) => {
                         return (
                           <li key={idx2}>
                             <a
                               href={val2.url}
-                              className="block text-center py-4 hover:bg-gray-700 border-b border-slate-600"
+                              className="block text-center py-4 hover:bg-orange-400 border-b border-slate-600"
                             >
                               {val2.content}
                             </a>

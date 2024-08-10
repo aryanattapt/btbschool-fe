@@ -602,7 +602,7 @@ export const NavbarPayload = {
 		"navbarlink": [
 			{
 				"content": "Learn At BTB",
-				"url": "#",
+				"url": "/btb-belajar",
 				"submenu": [
 					{
 						"content": "Kindergarden",
@@ -623,6 +623,20 @@ export const NavbarPayload = {
 				]
 			},
 			{
+				"content": "BTB World",
+					"url": "#",
+					"submenu": [
+						{
+							"content": "Bulletin Spotlight",
+							"url": "/bulletinspotlight"
+						},
+						{
+							"content": "School Calendar",
+							"url": "/calendar-academic"
+						}
+					]
+			},
+			{
 				"content": "About Us",
 				"url": "/about-us"
 			},
@@ -633,6 +647,10 @@ export const NavbarPayload = {
 			{
 				"content": "Alumni",
 				"url": "/alumni"
+			},
+			{
+				"content": "BTB Care",
+				"url": "/btb-peduli"
 			},
 			{
 				"content": "Contact",
@@ -652,22 +670,36 @@ export const NavbarPayload = {
 				"url": "#",
 				"submenu": [
 					{
-						"content": "TK",
+						"content": "PAUD - TK",
 						"url": "/btb-belajar/TK"
 					},
 					{
-						"content": "SD",
+						"content": "Sekolah Dasar",
 						"url": "/btb-belajar/SD"
 					},
 					{
-						"content": "SMP",
+						"content": "Sekolah Menengah Pertama",
 						"url": "/btb-belajar/SMP"
 					},
 					{
-						"content": "SMA",
+						"content": "Sekolah Menengah Atas",
 						"url": "/btb-belajar/SMA"
 					}
 				]
+			},
+			{
+				"content": "Dunia BTB",
+					"url": "#",
+					"submenu": [
+						{
+							"content": "Sorotan Buletin",
+							"url": "/bulletinspotlight"
+						},
+						{
+							"content": "Kalender Akademis",
+							"url": "/calendar-academic"
+						}
+					]
 			},
 			{
 				"content": "Tentang Kami",
@@ -680,6 +712,10 @@ export const NavbarPayload = {
 			{
 				"content": "Alumni",
 				"url": "/alumni"
+			},
+			{
+				"content": "BTB Peduli",
+				"url": "/btb-peduli"
 			},
 			{
 				"content": "Kontak",
@@ -842,7 +878,7 @@ export const  HomePagePayload = {
 			"desc": "Di BTB, kami memastikan siswa mendapatkan kualitas terbaik yang dibantu dengan menggunakan metode pembelajaran International Baccalaureate.",
 			"tktext": "PAUD - TK",
 			"sdtext": "Sekolah Dasar",
-			"smptext": "Sekolah Menengah Pertama",
+			"smptext": "Sekolah Menengah",
 			"smatext": "Sekolah Menengah Atas",
 		}
 	},

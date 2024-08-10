@@ -23,7 +23,7 @@ const CarouselComponents = () => {
                 style={{ backgroundImage: `url(${val.url})` }}
               >
                 <div className="grid place-items-center h-full w-full bg-black bg-opacity-30">
-                  <div className="mx-32 text-left">
+                  <div className="mx-14 md:mx-32 text-left">
                     <p className="text-[15px] md:text-[25px] text-white text-justify font-semibold">
                       {temp.title}
                     </p>
@@ -31,7 +31,7 @@ const CarouselComponents = () => {
                       {temp.content}
                     </p>
                     <div className="flex justify-left gap-2">
-                      <a href="/#findClass">
+                      <a href="/#findClass" className="text-[10px] md:text-[16px]">
                         <button className="bg-[#EF802B] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                           {temp.buttondesc}
                         </button>
