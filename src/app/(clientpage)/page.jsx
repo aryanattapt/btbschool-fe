@@ -131,8 +131,7 @@ const HomePage = () => {
             </div>
           </div>
           <hr className="h-px mt-10 md:mt-32 md:mb-20 mb-10 bg-gray-200 border-0 dark:bg-gray-700" />
-
-          <div className="text-[40px] md:text-[70px] text-center">
+          <div className="text-[25px] md:text-[60px] md:text-start text-center">
             <h1>{homePagePayload[language].instagramtitle}</h1>
           </div>
           <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 mt-4">

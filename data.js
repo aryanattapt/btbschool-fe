@@ -734,15 +734,17 @@ export const FooterPayload = {
 	"instagram": "",
 	"youtube": "",
 	"twitter": "",
-	"email": "admission@btbschool.org",
+	"email": "info@btbschool.org",
 	"location": [
 		{
 			"address": "Pluit Campus Pluit Timur Blok MM",
-			"phoneno": "(021) 6698888"
+			"phoneno": "085695333888",
+			"phoneno2": "081296333888"
 		},
 		{
 			"address": "Taman Pluit Putri, Jakarta Utara",
-			"phoneno": "(021) 6685858"
+			"phoneno": "085195333888",
+			"phoneno2": "085776333888"
 		}
 	],
 	"ID": {
