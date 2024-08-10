@@ -5,8 +5,8 @@ const PaggingLayouts = () => {
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
         <div className="inline-flex md:gap-9 gap-12">
           <div className="border-r-2">
-            <div className="pr-10 pl-10 md:pl-32">
-              <h1 className="md:text-[25px] text-center font-semibold py-10">
+            <div className="pr-10 pl-10 md:pl-32 md:pr-10">
+              <h1 className="md:text-[25px] text-[25px] text-center font-semibold py-10 md:py-10">
                 KONTAK
               </h1>
             </div>
@@ -22,7 +22,7 @@ const PaggingLayouts = () => {
                   Hubungi Kami
                 </a>
               </li>
-              <li className="px-[10px]">
+              <li className="px-[10px] md:px-[100px]  ">
                 <a
                   href="/contact#lokasi-kami"
                   className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600"
