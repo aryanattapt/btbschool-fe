@@ -62,9 +62,9 @@ body {
 }
 
 ul {
-  list-style-type: circle;
+  list-style-type: none;
 }
 
 ol {
-  list-style-type: decimal;
+  list-style-type: none;
 }

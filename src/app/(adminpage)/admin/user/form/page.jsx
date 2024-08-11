@@ -14,6 +14,12 @@ import {
 import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
 import { HiOutlineMail } from "react-icons/hi";
+import {
+    getAllUsers,
+    insertUser,
+    updateUser
+} from '../../../../../../services/user.service'
+import Swal from "sweetalert2";
 
 const UserForm = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +35,15 @@ const UserForm = () => {
         }));
 
         if(id){
+            getAllUsers({"_id": id})
+            .then(res => {
+                const data = res[0];
+                delete data.password
+                setPayload(data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
         }
     }, [])
 
@@ -41,6 +56,7 @@ const UserForm = () => {
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
+        console.log(value);
         if(type == 'file'){
             Object.keys(files).map((val) => {
                 setPayload(prevState => ({
@@ -71,11 +87,54 @@ const UserForm = () => {
 
     const submitHandler = (e) => {
         console.log(`Masuk Submit Handler`);
-        if(id == null) {delete payload._id}
-        console.log(payload);
         setIsLoading(true);
+        if(id == null) {delete payload._id}
+        if(!payload.password) {delete payload.password}
+        const finalData = {...payload, "isactive": payload.isactive === "true"}
 
         /* Call API in here... */
+        if(id){
+            updateUser(finalData)
+            .then(res => {
+                setIsLoading(false);
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: `Success submit data`,
+                    icon: 'info',
+                });
+            })
+            .catch((err) => {
+                setIsLoading(false);
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: err,
+                    icon: 'error',
+                });
+            })
+        } else{
+            insertUser(finalData)
+            .then(res => {
+                setPayload({});
+                setIsLoading(false);
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: `Success submit data`,
+                    icon: 'info',
+                });
+            })
+            .catch((err) => {
+                setIsLoading(false);
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: err,
+                    icon: 'error',
+                });
+            })
+        }
     }
 
     return <>
@@ -126,9 +185,9 @@ const UserForm = () => {
                         <Label htmlFor="isactive" value="Active"/>
                     </div>
                     <div>
-                        <Radio checked={payload.isactive == 'active'} id="isactivetrue" name="isactive" value="active" onChange={formChangeHandler}/>
+                        <Radio checked={payload.isactive?.toString() == 'true'} id="isactivetrue" name="isactive" value="true" onChange={formChangeHandler}/>
                         <Label htmlFor="isactivetrue">Active</Label>
-                        <Radio checked={payload.isactive == 'inactive'} id="isactivefalse" name="isactive" value="inactive" onChange={formChangeHandler}/>
+                        <Radio checked={payload.isactive?.toString() == 'false'} id="isactivefalse" name="isactive" value="false" onChange={formChangeHandler}/>
                         <Label htmlFor="isactivefalse">Inactive</Label>
                     </div>
                 </div>
