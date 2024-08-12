@@ -10,12 +10,12 @@ const SMA = () => {
     <>
       <div className="relative">
         <div className="mt-10 mb-5">
-            <h1 className="text-[35px] font-bold pl-32 text-[#00305E]">
+            <h1 className="text-[35px] font-bold px-10 md:pl-32 text-[#00305E]">
               {/* SEKOLAH MENENGAH ATAS */}
               {btbBelajarData[language]["sma"].title}
             </h1>
         </div>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="h-[350px]">
             <img 
             // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/sma 3.jpg"
@@ -24,18 +24,18 @@ const SMA = () => {
             className="h-[350px] w-full object-cover" />
           </div>
           <div className="content-center bg-[#EF802B]">
-            <h1 className="pl-5 text-[20px] w-[545px] font-semibold text-[#000000]">
+            <h1 className="mt-5 md:mt-0 pl-5 text-[20px] md:w-[545px] font-semibold text-[#000000]">
             {/* Menguasai Teknik Bagi Masa Depan Mereka */}
             {btbBelajarData[language]["sma"].introduction.title}
             </h1>
-            <div className="p-5 text-left text-[20px] text-[#000000] text-pretty">
+            <div className="px-5 pb-5 md:p-5 text-left text-[18px] md:text-[16px] text-[#000000] text-pretty">
             {/* Di jenjang pendidikan ini anak anda akan melanjutkan perjalanan edukatifnya melalui fase 
             pembelajaran yang memotivasi mereka untuk menemukan dan menyadari hal terbaik yang ada pada dirinya dan orang lain. */}
             {btbBelajarData[language]["sma"].introduction.paragraph}
             </div>
           </div>
         </div>
-        <div className="mt-10 mb-5 pl-32">
+        <div className="mt-10 mb-5 px-10 md:pl-32">
           <div className="border-b-8 border-[#EF802B] w-fit">
             <h1 className="text-[30px] font-semibold text-[#00305E]">
               {/* KURIKULUM */}
@@ -47,17 +47,17 @@ const SMA = () => {
             {btbBelajarData[language]["sma"].curriculum.subtitle}
           </h1>
         </div>
-        <div className="text-[#000000] px-32">
+        <div className="text-[#000000] px-10 md:px-32 text-[18px] md:text-[16px]">
           <div className="my-5">
             {/* Kurikulum IBDP memiliki kualifikasi terhadap pemahaman nilai pokok ini. Kurikulum ini terbentuk dari nilai pokok dan enam kelompok mata pelajaran.
             Terbentuk dari tiga komponen utama, nilai pokok ini bertujuan untuk memperluas pengalaman belajar para murid dan menantang mereka untuk menggunakan pengetahuan dan kemampuan mereka. */}
             {btbBelajarData[language]["sma"].curriculum.paragraph}
           </div>
-          <div className="grid grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="ml-5">
               <ul className="list-disc">
               {btbBelajarData[language]["sma"].curriculum.components.map((val, idx) => {
-                  return <li key={idx}><strong>{val.title}</strong>
+                  return <li key={idx}><strong>{val.title} </strong>
                     {val.description}
                   </li>
                 })}
@@ -104,8 +104,8 @@ const SMA = () => {
           </div>
         </div>
         <div className="my-10 bg-slate-300">
-          <div className="flex justify-center text-justify items-center py-10 mx-20 text-[#00305E] leading-loose text-[15px] font-semibold">
-            <p className="text-center">
+          <div className="flex justify-center text-justify items-center py-10 mx-10 md:mx-20 text-[#00305E] md:leading-loose text-[18px] md:text-[16px] font-semibold">
+            <p >
               {/* Pada dua tahun terakhir mereka di sekolah ini, masing - masing murid ditantang untuk menguasai 
             berbagai kemampuan yang dibutuhkan sesuai dengan jalan pilihan mereka. Mereka didorong untuk mengambil 
             tanggung jawab penuh terhadap pembelajaran mereka, termasuk fokus untuk pengembangan kemampuan yang 
@@ -122,34 +122,35 @@ const SMA = () => {
               </h1>
             </div>
           </div>
-          <div className="h-[305px] pl-32 mt-5">
+          <div className="md:h-[305px] px-10 md:pl-32 md:mt-5">
               <div className="flex flex-wrap">
-                <div className="py-10 pr-10 text-justify text-pretty text-[#000000] w-[545px] leading-loose">
+                <div className="py-10 md:pr-10 text-justify text-pretty text-[#000000] md:w-[545px] md:leading-loose">
                 {/* Berbagai aktivitas kokurikuler tersedia untuk diikuti oleh anak anda, 
                 kegiatan ini bertujuan untuk mengembangkan minat dan kemampuan mereka di luar ruang kelas.
                 Program dan kegiatan setelah sekolah, yang dapat berubah setiap tahun pelajaran, 
                 berfokus untuk mendorong pemikiran dan mengembangkan kemampuan memecahkan masalah oleh anak - anak. */}
                 {btbBelajarData[language]["sma"].programs.desc}
                 </div>
-                <div className="h-[315px] w-[518px]">
+                
+                <div className="md:h-[305px] md:w-[518px]">
                   <img 
                   // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA 4.jpg"
                   src = {`${btbBelajarData.image6}`}
                   alt="SMA"
-                  className="h-[305px] w-full object-cover" />
+                  className="md:h-[305px] w-full object-cover" />
                 </div>
               </div>
             </div>
-            <div className="h-[305px] pl-32 mt-10">
+            <div className="md:h-[305px] px-10 md:pl-32 mt-10">
               <div className="flex flex-wrap">
-                <div className="h-[325px] w-[518px]">
+                <div className="md:h-[305px] w-[518px]">
                   <img 
                   // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp 5.jpg"
                   src = {`${btbBelajarData.image7}`}
                   alt="PAUD"
                   className="h-[305px] w-full object-cover" />
                 </div>
-                <div className="pb-10 pl-10">
+                <div className="md:pb-10 md:pl-10 mt-5 md:mt-0">
                   <h1 className="text-[20px] font-semibold text-[#000000]">
                      {/* PROGRAM KAMI */}
                      {btbBelajarData[language]["sma"].programs.title}
@@ -194,7 +195,7 @@ const SMA = () => {
             </div>
         </div>
         <div className="diLuarKelas mb-10">
-          <div className="mt-20 flex justify-end items-center pr-32">
+          <div className="mt-20 flex justify-end items-center pr-10 md:pr-32">
             <div className="border-b-8 border-[#EF802B] w-fit"> 
               <h1 className="text-[30px] font-semibold text-[#00305E]">
                 {/* DI LUAR RUANGAN */}
@@ -202,7 +203,7 @@ const SMA = () => {
                 </h1>
             </div>
           </div>
-          <div className="h-[305px] pl-32 mt-5 pb-10">
+          <div className="md:h-[305px] px-10 md:pl-32 mt-5">
               <div className="flex flex-wrap">
                 <div className="h-[305px] w-[518px]">
                   <img 
@@ -211,13 +212,13 @@ const SMA = () => {
                   alt="SMA"
                   className="h-[305px] w-full object-cover" />
                 </div>
-                <div className="pb-10 pl-10">
-                  <h1 className="text-[20px] w-[545px] font-semibold text-[#000000]">
+                <div className="md:pb-10 md:pl-10">
+                  <h1 className="text-[20px] md:w-[545px] font-semibold text-[#000000]">
                   {/* Menyesuaikan usia dan tahapan perkembangan anak dengan pengalaman yang 
                   sesuai untuk menantang para murid untuk berkembang. */}
                   {btbBelajarData[language]["sma"].outdoor.text}
                   </h1>
-                  <div className="text-[#000000] w-[545px] leading-loose">
+                  <div className="text-[#000000] text-[18px] md:text-[16px] md:w-[545px] md:leading-loose">
                   {/* Mengembangkan karakter dan kemampuan dari murid. 
                   Tantangan, inisiatif, kemandirian, kepemimpinan, kerjasama, tanggung jawab, pengambilan resiko, 
                   hidup berdampingan, dan peduli lingkungan semua didukung dalam karyawisata dari tingkat 11 dan tingkat 12.
