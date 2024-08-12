@@ -51,7 +51,7 @@ const BulletinSpotlightPage = () => {
         <>
             <Banner />
             <Pagging />
-            <div className="mt-10 mb-5 pl-32 text-[#00305E]">
+            <div className="mt-10 mb-5 px-10 md:pl-32 text-[#00305E]">
                 <FlipbookModal
                     url={pdfUrl} // Pass the URL to FlipbookModal
                     isOpen={isModalOpen}

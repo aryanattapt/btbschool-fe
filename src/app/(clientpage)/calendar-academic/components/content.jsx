@@ -5,7 +5,7 @@ const Content = ({payload}) => {
     };
 
     return <>
-        <div className="mx-10 md:mx-32 mt-10 mb-5 grid grid-cols-2 gap-2 md:gap-12">
+        <div className="mx-10 md:mx-32 mt-10 mb-5 grid grid-cols-2 gap-2 md:gap-1">
             <div>
                 <div className="py-2 px-5 text-[20px] text-white bg-[#00305E]">
                     Date
