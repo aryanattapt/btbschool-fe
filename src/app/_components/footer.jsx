@@ -27,7 +27,7 @@ const FooterComponent = () => {
                 <div className="text-[20px] md:text-[30px] font-semibold md:mr-10 mr-4 ">
                   {footerPayload[language].connecttitle}
                 </div>
-                <div className="inline-flex mt-2">
+                {/* <div className="inline-flex mt-2">
                 <a href={`${footerPayload.facebook}`} className="mr-2">
                   <BsFacebook />
                 </a>
@@ -40,7 +40,7 @@ const FooterComponent = () => {
                 <a href={`${footerPayload.youtube}`} className="mx-2">
                   <BsYoutube />
                 </a>
-                </div>
+                </div> */}
               </div>
               <div className="text-center md:text-left">
                 <div>
@@ -139,6 +139,19 @@ const FooterComponent = () => {
           {/* <Footer.Divider /> */}
           <div className="w-full flex items-center justify-between px-10 md:px-32 mb-5">
             <Footer.Copyright href="/" by="Bina Tunas Bangsa™" year={2024} />
+            <div className="flex space-x-6 sm:mt-0 sm:justify-center">
+              <Footer.Icon
+                href={`${footerPayload.facebook}`}
+                icon={BsFacebook}
+              />
+              <Footer.Icon
+                href={`${footerPayload.instagram}`}
+                icon={BsInstagram}
+              />
+              <Footer.Icon href={`${footerPayload.twitter}`} icon={BsTwitter} />
+              <Footer.Icon href={`${footerPayload.youtube}`} icon={BsYoutube} />
+            </div>
+
           </div>
         </div>
       </Footer>

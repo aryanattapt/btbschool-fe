@@ -13,7 +13,7 @@ const Pagging = () => {
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
         <div className="inline-flex gap-12">
           <div className="border-r-2">
-            <div className="pr-10 pl-32">
+            <div className="px-10 md:pl-32">
               <h1 className="text-[25px] text-center font-semibold py-10">
                 {bulletinSpotlightData[language].pagingHeader.title}
               </h1>

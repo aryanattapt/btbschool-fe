@@ -94,7 +94,7 @@ const TK = () => {
               <img
                 src = {`${btbBelajarData.image15}`}
                 alt="PAUD"
-                className="h-[305px] w-full object-cover"
+                className="h-[325px] w-full object-cover"
               />
             </div>
             <div className="md:pb-10 md:pl-10">
@@ -116,11 +116,56 @@ const TK = () => {
             </div>
           </div>
         </div>
-        <div className="md:mb-10 flex flex-col justify-end">
+        <div className="diLuarKelas">
+          <div className="mt-20 flex justify-end items-center pr-10 md:pr-32">
+            <div className="border-b-8 border-[#EF802B] w-fit">
+              <h1 className="text-[30px] font-semibold text-[#00305E]">
+                {/* DI LUAR RUANGAN */}
+                {btbBelajarData[language].tk.outdoor.title}
+              </h1>
+            </div>
+          </div>
+          <div className="md:h-[305px] px-10 md:pl-32 mt-5">
+            <div className="flex flex-wrap">
+              <div className="md:h-[305px] w-[518px]">
+                <img
+                  // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 6.jpg"
+                  src = {`${btbBelajarData.image16}`}
+                  alt="PAUD"
+                  className="md:h-[305px] w-full object-cover"
+                />
+              </div>
+              <div className="md:pl-10">
+                <h1 className="text-[20px] md:w-[545px] font-semibold text-[#000000]">
+                  {/* Dibentuk untuk mengembangkan karakter dan kemampuan para murid.
+                  Didukung dalam bentuk karyawisata yang diadakan setiap semester. */}
+                  {btbBelajarData[language].tk.outdoor.text}
+                </h1>
+                <div className="text-[#000000] md:w-[545px] md:leading-loose">
+                  {/* Program ini berjalan sesuai dengan nilai sekolah terhadap ‘Fase
+                  Pembelajaran’, menyesuaikan usia dan tahapan perkembangan anak
+                  dengan pengalaman yang sesuai untuk menantang para murid untuk
+                  berkembang. Acara karyawisata ini merupakan bagian wajib dalam
+                  kurikulum dengan biaya yang sudah termasuk dalam struktur
+                  pembayaran uang sekolah. */}
+                  {btbBelajarData[language].tk.outdoor.paragraph}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="my-5 md:mt-10 flex justify-center items-center">
+            <button
+              type="button"
+              className="w-[250px] focus:outline-none text-white bg-[#00305E] focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+              <a href="/contact-us">Contact Us</a>
+            </button>
+          </div>
+        </div>
+        {/* <div className="diluarKelas md:mb-10 flex flex-col justify-end">
           <div className="mt-20 flex justify-end items-center px-10 md:px-32">
             <div className="border-b-8 border-[#EF802B]">
               <h1 className="text-[30px] font-semibold text-[#00305E]">
-                {/* DI LUAR RUANGAN */}
                 {btbBelajarData[language].tk.outdoor.title}
               </h1>
             </div>
@@ -152,7 +197,7 @@ const TK = () => {
               <a href="/contact-us">Contact Us</a>
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
