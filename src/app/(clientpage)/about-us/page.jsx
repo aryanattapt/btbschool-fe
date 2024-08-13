@@ -33,7 +33,7 @@ const AboutUsPage = () => {
           </div>
         </div>
       </div>
-      <div className="text-[30px] font-medium mb-8 mt-10 text-center text-[#243F6D] px-3 md:px-0">
+      <div className="text-[17px] md:text-[30px] font-medium mb-8 mt-10 text-center text-[#243F6D] px-2 md:px-0 ">
         <ul className="flex flex-nowrap place-content-center">
           {aboutUsData[language].paging.map((val, idx) => {
             return (
@@ -104,13 +104,13 @@ const AboutUsPage = () => {
           {aboutUsData[language].smallparagraph}
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 m-[20px] place-content-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-[20px] place-content-center">
         {aboutUsData[language].gradelists.map((val, idx) => {
           return (
             <div className="md:m-[20px] m-[20px]" key={idx}>
               <a href={`${val.url}`} target="_blank">
                 <div
-                  className="md:h-[346px] md:w-[552px] h-[230px] w-[330px] bg-cover bg-center"
+                  className="md:h-[346px] md:w-[552px] h-[230px] w-[330px] lg:h-[230px] lg:w-[430px] bg-cover bg-center"
                   style={{
                     backgroundImage: `url(${val.image})`,
                     borderRadius: `50px`,

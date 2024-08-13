@@ -21,7 +21,7 @@ const FooterComponent = () => {
               <img
                 src={footerPayload[language].logourl}
                 alt="logo btb"
-                className="md:mb-[40px] mb-[20px]"
+                className="md:mb-[40px] mb-[20px] md:w-auto md:h-auto lg:w-[80%] lg:h-auto"
               />
               <div className="md:my-[5px] my-[5px] text-center md:text-left">
                 <div className="text-[20px] md:text-[30px] font-semibold md:mr-10 mr-4 ">
@@ -56,26 +56,26 @@ const FooterComponent = () => {
                 </div>
               </div>
               <div className="md:py-0 py-4 text-center md:text-left md:mt-5">
-                  <h2 className="font-semibold md:text-[30px] text-[20px]">
-                    {footerPayload[language].pagenavtitle}
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-4 sm:mt-3 sm:grid-cols-1 md:mr-10">
-                    {footerPayload[language].url.map((val, idx) => {
-                      return (
-                        <div key={idx}>
-                          <Footer.LinkGroup col>
-                            <Footer.Link
-                              href={`${val.url}`}
-                              className="text-white text-[15px] md:text-[15px] md:mt-0 mt-2 underline"
-                            >
-                              {val.content}
-                            </Footer.Link>
-                          </Footer.LinkGroup>
-                        </div>
-                      );
-                    })}
-                  </div>
+                <h2 className="font-semibold md:text-[30px] text-[20px]">
+                  {footerPayload[language].pagenavtitle}
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-4 sm:mt-3 sm:grid-cols-1 md:mr-10">
+                  {footerPayload[language].url.map((val, idx) => {
+                    return (
+                      <div key={idx}>
+                        <Footer.LinkGroup col>
+                          <Footer.Link
+                            href={`${val.url}`}
+                            className="text-white text-[15px] md:text-[15px] md:mt-0 mt-2 underline"
+                          >
+                            {val.content}
+                          </Footer.Link>
+                        </Footer.LinkGroup>
+                      </div>
+                    );
+                  })}
                 </div>
+              </div>
             </div>
             <div>
               <div>
@@ -86,7 +86,7 @@ const FooterComponent = () => {
                   return (
                     <div className="flex flex-wrap mt-2 md:mt-2" key={idx}>
                       <div className="md:mr-[15px] mr-2">
-                        <FaMapPin/>
+                        <FaMapPin />
                       </div>
                       <div className="md:text-[20px] text-[15px] md:text-left text-center">
                         <div className="md:leading-[1.5rem] font-semibold flex md:text-left">
@@ -151,7 +151,6 @@ const FooterComponent = () => {
               <Footer.Icon href={`${footerPayload.twitter}`} icon={BsTwitter} />
               <Footer.Icon href={`${footerPayload.youtube}`} icon={BsYoutube} />
             </div>
-
           </div>
         </div>
       </Footer>

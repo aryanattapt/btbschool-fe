@@ -12,17 +12,17 @@ const PaggingLayouts = () => {
         <div className="inline-flex md:gap-9 gap-7">
           <div className="border-r-2">
             <div className="pr-10 pl-10 md:pl-32 md:pr-32 place-items-center">
-              <h1 className="md:text-[25px] text-[25px] text-center font-semibold py-10 md:py-10">
+              <h1 className="md:text-[25px] text-[20px] text-center font-semibold py-10 md:py-10">
                 {contactUsData[language].pagingHeader.title}
               </h1>
             </div>
           </div>
-          <div className="inline-flex gap-20 md:text-[20px] text-[15px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
+          <div className="inline-flex gap-20 md:text-[20px] text-[15px] lg:text-[20px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
             <ul className="flex flex-wrap py-10 md:py-10">
               {contactUsData[language].pagingHeader.url.map((val, idx) => {
                 return (
                   <li
-                    className="px-[3px] md:px-[150px] py-3
+                    className="px-[3px] md:px-[150px] lg:pr-[2px] py-3
                    md:py-0"
                     key={idx}
                   >
