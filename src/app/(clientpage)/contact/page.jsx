@@ -16,12 +16,12 @@ const ContactPage = () => {
       <Banner />
       <Pagging />
       <div id="hubungi-kami" className="md:mx-32 mx-[20px]">
-        <h1 className="mt-10 text-[#00305E] md:text-[50px] text-[25px] font-semibold	">
+        <h1 className="mt-10 text-[#00305E] md:text-[50px] lg:text-[40px] text-[25px] font-semibold	">
           {contactUsData[language].title}
         </h1>
         <div className="text-[#00305E] grid grid-cols-1 md:grid-cols-3 mb-10">
           <div className="col-span-2">
-            <p className="md:text-[30px] text-[16px] my-5 text-black">
+            <p className="md:text-[30px] text-[16px] lg:text-[25px] my-5 text-black">
               {contactUsData[language].desc}
             </p>
             <div className="flex-col">
@@ -29,15 +29,15 @@ const ContactPage = () => {
             </div>
           </div>
           <div className="md:mt-0 mt-5">
-            <div className="md:h-screen h-auto bg-[#EF802B] rounded-3xl mx-5 py-4 md:py-0 place-content-center">
+            <div className="md:h-screen h-auto lg:h-auto lg:w-auto bg-[#EF802B] rounded-3xl mx-5 lg:mx-2 py-4 md:py-0 lg:py-0 place-content-center">
               <div className="text-white pb-10">
                 {contactUsData[language].schoolList.map((val, idx) => {
                   return (
                     <div className="header px-5 md:px-15" key={idx}>
-                      <h1 className="font-bold md:text-[31px] text-[15px] pt-10">
+                      <h1 className="font-bold md:text-[31px] text-[15px] lg:text-[20px] pt-10">
                         {val.title}
                       </h1>
-                      <div className="address mt-2 leading-loose md:text-[20px] text-[13px]">
+                      <div className="address mt-2 leading-loose md:text-[20px] text-[13px] lg:text-[21px]">
                         {val.address}
                       </div>
                       <div className="flex flex-nowrap">
@@ -45,7 +45,7 @@ const ContactPage = () => {
                           <HiPhone className="md:size-6" />
                         </div>
                         <div className="ml-4">
-                          <p className="md:text-[20px] text-[13px]">
+                          <p className="md:text-[20px] text-[13px] lg:">
                             {val.phoneNumber}
                           </p>
                         </div>
@@ -75,7 +75,7 @@ const ContactPage = () => {
                       <HiMail className="md:size-6" />
                     </div>
                     <div className="ml-4">
-                      <p className="md:text-[20px] text-[13px]">
+                      <p className="md:text-[20px] text-[13px] lg:text-[17px]">
                         {contactUsData[language].email}
                       </p>
                     </div>
@@ -90,19 +90,19 @@ const ContactPage = () => {
       <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
 
       <div id="lokasi-kami" className="md:m-[60px] m-[8px]">
-        <h1 className="text-[#00305E] md:text-[50px] text-[25px] font-semibold">
+        <h1 className="text-[#00305E] md:text-[50px] text-[25px] lg:text-[40px] font-semibold">
           {contactUsData[language].titleLocation}
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 place-items-center">
           {contactUsData[language].mapList.map((val, idx) => {
             return (
               <div key={idx} className="py-5 md:py-0">
-                <h3 className="md:text-[35px] text-[18px] text-black font-medium">
+                <h3 className="md:text-[35px] text-[18px] lg:text-[20px] text-black font-medium">
                   {val.title}
                 </h3>
                 <iframe
                   src={`${val.mapEmbed}`}
-                  className="w-[248px] h-[248px] md:w-[548px] md:h-[474px] "
+                  className="w-[248px] h-[248px] md:w-[548px] md:h-[474px] lg:w-[348px] lg:h-[348px]"
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

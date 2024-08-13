@@ -27,7 +27,7 @@ const BTBPeduliPage = () => {
           />
         </div>
         <div className="bg-[#EF802B] w-full h-fit md:h-[363px] h-[163px] content-center">
-          <p className="text-center	md:text-[25px] md:leading-[38px] text-[15px] p-5 md:p-5">
+          <p className="text-center	md:text-[25px] md:leading-[38px] text-[15px] lg:text-[20px] p-5 md:p-5">
             {btbPeduliData[language].text1}
           </p>
         </div>
@@ -53,7 +53,7 @@ const BTBPeduliPage = () => {
         <img
           src={`${btbPeduliData.btbpedulilingkunganimage1}`}
           alt="btb-peduli2"
-          className="md:w-[1460.8px] md:h-[308px] md:mb-[25px] mb-[10px]"
+          className="md:w-[1460.8px] md:h-[308px] md:mb-[25px] mb-[10px] lg:h-auto"
         />
         <p className="text-[#00305E] md:text-[30px] md:mb-[25px] text-[20px] mb-[15px]">
           {btbPeduliData[language].text4}
@@ -76,7 +76,7 @@ const BTBPeduliPage = () => {
           <img
             src={`${btbPeduliData.btbpedulilingkunganimage2}`}
             alt="btb-peduli3"
-            className="md:w-[1124px] md:mb-[25px] mb-[5px]"
+            className="md:w-[1124px] md:mb-[25px] mb-[5px] lg:mb-[10px]"
           />
         </div>
       </div>
@@ -92,21 +92,21 @@ const BTBPeduliPage = () => {
             <img
               src={`${btbPeduliData.sukarelawanbtbimage1}`}
               alt="btb-peduli2"
-              className="md:w-fit md:h-[290px] py-2"
+              className="md:w-fit md:h-[290px] py-2 lg:h-auto"
             />
           </div>
           <div>
             <img
               src={`${btbPeduliData.sukarelawanbtbimage2}`}
               alt="btb-peduli2"
-              className="md:w-fit md:h-[290px] py-2"
+              className="md:w-fit md:h-[290px] py-2 lg:h-auto"
             />
           </div>
           <div>
             <img
               src={`${btbPeduliData.sukarelawanbtbimage3}`}
               alt="btb-peduli2"
-              className="md:w-fit md:h-[290px] py-2"
+              className="md:w-fit md:h-[290px] py-2 lg:h-auto"
             />
           </div>
         </div>
@@ -121,7 +121,7 @@ const BTBPeduliPage = () => {
         <img
           src={`${btbPeduliData.sukarelawanbtbimage4}`}
           alt="btb-peduli7"
-          className="md:w-[1460.8px] md:h-[308px]"
+          className="md:w-[1460.8px] md:h-[308px] lg:h-auto"
         />
       </div>
     </>

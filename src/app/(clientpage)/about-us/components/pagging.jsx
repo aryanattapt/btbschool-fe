@@ -11,7 +11,7 @@ const Pagging = () => {
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
         <div className="inline-flex md:gap-9 gap-5">
           <div className="border-r-2">
-            <div className="pr-10 pl-10 md:pl-32">
+            <div className="pr-10 pl-10 md:pl-32 lg:pl-20">
               <h1 className="text-[25px] text-center font-semibold py-10 place-items-center">
                 {/* Tentang Kami */}
                 {aboutUsData[language].pagingHeader.title}
