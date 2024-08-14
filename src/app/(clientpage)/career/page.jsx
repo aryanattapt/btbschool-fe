@@ -32,8 +32,8 @@ const CareerPage = () => {
 		<div>
 			<CareerHeroSection>
 				<div className="absolute top-0 h-full flex flex-col justify-center px-32">
-					<h3 className="text-6xl">BEKERJA BERSAMA KAMI</h3>
-					<h5 className="text-2xl mt-8">
+					<h3 className="md:text-4xl lg:text-6xl">BEKERJA BERSAMA KAMI</h3>
+					<h5 className="md:text-lg lg:text-2xl mt-8">
 						Mulai karir impianmu di Sekolah Terbaik Jakarta
 					</h5>
 				</div>

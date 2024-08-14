@@ -1,9 +1,15 @@
 import moment from "moment";
 
 export const dateDetailDisplay = (date) => {
-	return moment(date).format("DD MMMM YYYY");
+	if (date) {
+		return moment(date).format("DD MMMM YYYY");
+	}
+	return "";
 };
 
 export const dateShortDisplay = (date) => {
-	return moment(date).format("DD/MM/yyy");
+	if (date) {
+		return moment(date).format("DD/MM/yyy");
+	}
+	return "";
 };

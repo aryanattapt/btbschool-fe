@@ -1,15 +1,14 @@
 "use client";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { GetDetailStudentRegistration } from "../../../../../../../services/onlineregistration.service";
 import LoadingModal from "../../../../../../components/LoadingModal";
-import { tempDatas } from "../../../../../../settings/tempAdminRegistration";
 import ARDHeaderAction from "./HeaderAction";
 import ARDHealthForm from "./HealthForm";
 import ARDRecommended from "./Recommended";
 import ARDRegistrationForm from "./RegistrationForm";
 import ARDTermAndCondition from "./TermAndCondition";
-import { useParams } from "next/navigation";
-import { GetDetailStudentRegistration } from "../../../../../../../services/onlineregistration.service";
-import Swal from "sweetalert2";
 
 const AdminRegistrationDetailContent = () => {
 	const params = useParams();

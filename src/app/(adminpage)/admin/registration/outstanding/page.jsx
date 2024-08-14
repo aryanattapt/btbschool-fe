@@ -1,20 +1,22 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { Button } from "flowbite-react";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import {
+	ApproveOutstandingStudentRegistration,
+	GetOutstandingStudentRegistration,
+} from "../../../../../../services/onlineregistration.service";
+import useExportExcel from "../../../../../hooks/useExportExcel";
 import NavbarSidebarLayout from "../../_layouts/navigation";
 import AdminRegistrationHeader from "../_components/Header";
 import AdminRegistrationMainContent from "../_components/MainContent";
 import AdminRegistrationTableSection from "../_components/Table";
 import RegistrationTableActionBtn from "../_components/Table/actionBtn";
 import { FaCheck } from "react-icons/fa";
-import { Button } from "flowbite-react";
-import { tempDatas } from "../../../../../settings/tempAdminRegistration";
-import {
-	ApproveOutstandingStudentRegistration,
-	GetOutstandingStudentRegistration,
-} from "../../../../../../services/onlineregistration.service";
-import Swal from "sweetalert2";
+import { admRegisManagerExportObjectBuilder } from "../../../../../utils/admin/registration/export";
 
 const AdminRegistrationOutstandingPage = () => {
+	const onExportExcel = useExportExcel();
 	const [payload, setPayload] = useState([]);
 	const colDef = [
 		{ headerName: "No", valueGetter: (p) => p.node.rowIndex + 1, width: 80 },
@@ -92,11 +94,19 @@ const AdminRegistrationOutstandingPage = () => {
 		getOutstandingData();
 	}, []);
 
+	const onClickExport = () => {
+		onExportExcel(
+			{ Sheet1: admRegisManagerExportObjectBuilder(payload) },
+			"Outstanding Data registrasi"
+		);
+	};
+
 	return (
 		<NavbarSidebarLayout>
 			<div>
 				<AdminRegistrationHeader />
 				<AdminRegistrationMainContent
+					onExportAll={onClickExport}
 					title={
 						<>
 							Total data :{" "}

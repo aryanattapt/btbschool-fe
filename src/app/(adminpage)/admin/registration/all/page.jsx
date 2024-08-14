@@ -1,15 +1,18 @@
 "use client";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { tempDatas } from "../../../../../settings/tempAdminRegistration";
+import Swal from "sweetalert2";
+import { GetAllStudentRegistration } from "../../../../../../services/onlineregistration.service";
+import useExportExcel from "../../../../../hooks/useExportExcel";
+import { admRegisManagerExportObjectBuilder } from "../../../../../utils/admin/registration/export";
 import NavbarSidebarLayout from "../../_layouts/navigation";
 import AdminRegistrationHeader from "../_components/Header";
 import AdminRegistrationMainContent from "../_components/MainContent";
 import AdminRegistrationTableSection from "../_components/Table";
 import RegistrationTableActionBtn from "../_components/Table/actionBtn";
-import { GetAllStudentRegistration } from "../../../../../../services/onlineregistration.service";
-import Swal from "sweetalert2";
 
 const AdminRegistrationAllPage = () => {
+	const onExportExcel = useExportExcel();
 	const [payload, setPayload] = useState([]);
 	const colDef = [
 		{ headerName: "No", valueGetter: (p) => p.node.rowIndex + 1, width: 80 },
@@ -23,6 +26,7 @@ const AdminRegistrationAllPage = () => {
 		{ headerName: "Phone", field: "phoneno" },
 		{ headerName: "Submit Date", field: "registereddate" },
 		{ headerName: "Admission", field: "admision.firstname" },
+		{ headerName: "Status", field: "status" },
 		{
 			headerName: "Action",
 			cellStyle: () => ({
@@ -33,6 +37,13 @@ const AdminRegistrationAllPage = () => {
 			cellRenderer: (p) => RegistrationTableActionBtn(p.data),
 		},
 	];
+
+	const onClickExport = () => {
+		onExportExcel(
+			{ Sheet1: admRegisManagerExportObjectBuilder(payload) },
+			"Data registrasi all"
+		);
+	};
 
 	useEffect(() => {
 		GetAllStudentRegistration()
@@ -54,6 +65,7 @@ const AdminRegistrationAllPage = () => {
 			<div>
 				<AdminRegistrationHeader />
 				<AdminRegistrationMainContent
+					onExportAll={onClickExport}
 					title={
 						<>
 							Total data :{" "}

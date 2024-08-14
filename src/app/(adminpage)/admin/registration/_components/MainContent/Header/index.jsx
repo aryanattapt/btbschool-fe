@@ -15,6 +15,7 @@ const AdminRegistrationMainContentHeader = ({ title, onExportAll }) => {
 				</Button>
 				<Button
 					className="px-2"
+					onClick={onExportAll}
 					size="xs"
 					style={{
 						background: "#95b65d",
@@ -24,7 +25,7 @@ const AdminRegistrationMainContentHeader = ({ title, onExportAll }) => {
 						},
 					}}
 				>
-					<FaFile onClick={onExportAll} className="mr-2 h-4 w-4" />
+					<FaFile className="mr-2 h-4 w-4" />
 					Export All
 				</Button>
 			</div>
