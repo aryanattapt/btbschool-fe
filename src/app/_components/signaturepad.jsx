@@ -1,17 +1,21 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import SignatureCanvas from 'react-signature-canvas';
 
-const SignaturePad = ({formChangeHandler, name}) => {
+const SignaturePad = ({formChangeHandler, name, value}) => {
     const SignatureCanvasRef = useRef({});
     const handleClear = () => {
         SignatureCanvasRef.current.clear()
     }
 
+    useEffect(() => {
+        SignatureCanvasRef.current.fromDataURL(value);
+    }, []);
+
     const onEndHandler = () => {
         formChangeHandler({
             "target": {
                 "name": name,
-                "value": SignatureCanvasRef.current.getTrimmedCanvas().toDataURL('image/png'), 
+                "value": SignatureCanvasRef.current.getCanvas().toDataURL('image/png'), 
                 "type": "signaturepad"
             }
         });

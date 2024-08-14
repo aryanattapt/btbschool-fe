@@ -391,8 +391,8 @@ const OnlineRegistrationForm = () => {
             />
             <AttachmentForm formChangeHandler={formChangeHandler} />
             <SignaturePad
-              payload={registrationPayload}
               formChangeHandler={formChangeHandler}
+              value={registrationPayload.ttd || ''}
               name="ttd"
             />
           </>

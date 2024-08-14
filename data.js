@@ -1,5 +1,3 @@
-import { title } from "process";
-
 export const BTBBelajarPayload = {
   bannerimage:
     "https://w6i8.c1.e2-7.dev/assets/btbschool/images/belajarDiBtb.jpg",
@@ -773,6 +771,10 @@ export const NavbarPayload = {
             content: "School Calendar",
             url: "/calendar-academic",
           },
+          {
+            content: "Help",
+            url: "/help",
+          },
         ],
       },
       {
@@ -837,6 +839,10 @@ export const NavbarPayload = {
           {
             content: "Kalender Akademis",
             url: "/calendar-academic",
+          },
+          {
+            content: "Bantuan",
+            url: "/help",
           },
         ],
       },
