@@ -10,24 +10,15 @@ const Banner = () => {
 
   return (
     <>
-      {/* <div className="relative md:h-[475px]">
-        <img
-          // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/belajarDiBtb.jpg"
-          src = {`${btbBelajarData.bannerimage}`}
-          alt="/belajarDiBtb.jpg"
-          className="md:h-full md:w-full object-cover"
-        />
-      </div> */}
-
       <Carousel
         slideInterval={12000}
-        className="relative md:h-[100vh] w-full h-[400px]"
+        className="relative h-[400px] md:h-[600px] lg:h-[1000px] xl:h-[100vh] w-full"
       >
         {btbBelajarData.albumimage.map((val, idx) => {
           return (
             <div className="relative h-full w-full" key={idx}>
               <div
-                className={`bg-cover absolute inset-0`}
+                className="bg-cover absolute inset-0"
                 style={{ backgroundImage: `url(${val})` }}
               ></div>
             </div>
