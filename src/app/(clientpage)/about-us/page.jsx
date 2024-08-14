@@ -52,7 +52,7 @@ const AboutUsPage = () => {
 
       <div
         id="visi-misi"
-        className="md:mx-32 mx-10 grid md:grid-cols-2 grid-cols-1 text-black leading-loose"
+        className="md:mx-32 mx-10 grid md:grid-cols-1 grid-cols-1 xl:grid-cols-2 lg:grid-cols-1 text-black leading-loose"
       >
         <div>
           <h2 className="md:text-[25px] text-[25px] mb-[10px] font-semibold">
@@ -87,7 +87,7 @@ const AboutUsPage = () => {
             kejujuran, dan penghargaan terhadap perbedaan individu dipupuk.</li> */}
           </ul>
         </div>
-        <div className="pl-[0px] md:pl-[50px] py-5 md:py-0">
+        <div className="pl-[0px] md:pl-[50px] py-5 md:py-5 xl:py-0">
           <img
             // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
             src={`${AboutUsPayload.image2}`}
@@ -104,13 +104,13 @@ const AboutUsPage = () => {
           {aboutUsData[language].smallparagraph}
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-[20px] place-content-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 m-[20px] place-content-center">
         {aboutUsData[language].gradelists.map((val, idx) => {
           return (
             <div className="md:m-[20px] m-[20px]" key={idx}>
               <a href={`${val.url}`} target="_blank">
                 <div
-                  className="md:h-[346px] md:w-[552px] h-[230px] w-[330px] lg:h-[230px] lg:w-[430px] bg-cover bg-center"
+                  className="xl:h-[346px] xl:w-[552px] md:h-[230px] md:w-[330px] h-[230px] w-[330px] lg:h-[230px] lg:w-[430px] bg-cover bg-center"
                   style={{
                     backgroundImage: `url(${val.image})`,
                     borderRadius: `50px`,

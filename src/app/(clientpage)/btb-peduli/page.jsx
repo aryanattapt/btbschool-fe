@@ -62,13 +62,13 @@ const BTBPeduliPage = () => {
         className="md:mx-32 mx-5 md:py-0 py-9 font-sans"
         id="peduli-lingkungan"
       >
-        <h2 className="text-[#00305E] md:text-[50px] md:my-[35px] text-[25px] my-[5px] font-semibold">
+        <h2 className="text-[#00305E] xl:text-[50px] xl:my-[35px] md:text-[35px] text-[25px] my-[5px] font-semibold">
           {btbPeduliData[language].pedulilingkungantitle}
         </h2>
         <img
           src={`${btbPeduliData.btbpedulilingkunganimage1}`}
           alt="btb-peduli2"
-          className="md:w-[1460.8px] md:h-[308px] md:mb-[25px] mb-[10px] lg:h-auto"
+          className="xl:w-[1460.8px] xl:h-[308px] md:w-screen md:h-auto md:mb-[25px] mb-[10px] lg:h-auto"
         />
         <p className="text-[#00305E] md:text-[30px] md:mb-[25px] text-[20px] mb-[15px]">
           {btbPeduliData[language].text4}
@@ -77,7 +77,7 @@ const BTBPeduliPage = () => {
           {btbPeduliData[language].text5}
         </p>
       </div>
-      <div className="md:mx-32 grid grid-cols-1 md:grid-cols-2 gap-5 md:my-[100px] mx-5">
+      <div className="md:mx-32 grid grid-cols-1 xl:grid-cols-2 md:grid-cols-1 gap-5 xl:my-[100px] mx-5">
         <div>
           <h2 className="text-[#00305E] md:text-[30px] md:my-[35px] font-semibold	text-[25px] my-[5px]">
             {/* Melibatkan Semua */}
@@ -91,7 +91,7 @@ const BTBPeduliPage = () => {
           <img
             src={`${btbPeduliData.btbpedulilingkunganimage2}`}
             alt="btb-peduli3"
-            className="md:w-[1124px] md:mb-[25px] mb-[5px] lg:mb-[10px]"
+            className="xl:w-[1124px] xl:mb-[25px] md:w-auto mb-[5px] lg:mb-[10px]"
           />
         </div>
       </div>
@@ -140,41 +140,41 @@ const BTBPeduliPage = () => {
         />
       </div> */}
 
-    <div id="sukarelawan" class="flex flex-col items-center">
-      <h2 className="text-[#00305E] text-[25px] md:text-[50px] font-semibold mx-5 my-5 md:mx-32 md:my-[35px] mb-5">
-        {btbPeduliData[language].sukarelawantitle}
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 mb-5">
+      <div id="sukarelawan" class="flex flex-col items-center">
+        <h2 className="text-[#00305E] text-[25px] md:text-[50px] font-semibold mx-5 my-5 md:mx-32 md:my-[35px] mb-5">
+          {btbPeduliData[language].sukarelawantitle}
+        </h2>
+        <div className="grid grid-cols-1 xl:grid-cols-3 md:grid-cols-1 gap-2 md:gap-4 mb-5">
+          <img
+            src={`${btbPeduliData.sukarelawanbtbimage1}`}
+            alt="btb-peduli2"
+            className="w-full xl:h-[290px] md:h-auto object-cover mb-4"
+          />
+          <img
+            src={`${btbPeduliData.sukarelawanbtbimage2}`}
+            alt="btb-peduli2"
+            className="w-full xl:h-[290px] md:h-auto object-cover mb-4"
+          />
+          <img
+            src={`${btbPeduliData.sukarelawanbtbimage3}`}
+            alt="btb-peduli2"
+            className="w-full xl:h-[290px] md:h-auto object-cover mb-4"
+          />
+        </div>
+        <div className="mx-10 md:mx-32 mt-5 md:mt-20 mb-5">
+          <p className="text-[#00305E] text-[15px] sm:text-center md:text-[30px] font-semibold md:mb-[25px] mb-[5px]">
+            {btbPeduliData[language].text8}
+          </p>
+          <p className="text-black text-[15px] md:text-[20px] mb-[5px] md:mb-[25px]">
+            {btbPeduliData[language].text9}
+          </p>
+        </div>
         <img
-          src={`${btbPeduliData.sukarelawanbtbimage1}`}
-          alt="btb-peduli2"
-          className="w-full md:h-[290px] object-cover mb-4"
-        />
-        <img
-          src={`${btbPeduliData.sukarelawanbtbimage2}`}
-          alt="btb-peduli2"
-          className="w-full md:h-[290px] object-cover mb-4"
-        />
-        <img
-          src={`${btbPeduliData.sukarelawanbtbimage3}`}
-          alt="btb-peduli2"
-          className="w-full md:h-[290px] object-cover mb-4"
+          src={`${btbPeduliData.sukarelawanbtbimage4}`}
+          alt="btb-peduli7"
+          className="w-full xl:w-[1460.8px] xl:h-[308px] object-cover mb-5"
         />
       </div>
-      <div className="mx-10 md:mx-32 mt-5 md:mt-20 mb-5">
-        <p className="text-[#00305E] text-[15px] sm:text-center md:text-[30px] font-semibold md:mb-[25px] mb-[5px]">
-          {btbPeduliData[language].text8}
-        </p>
-        <p className="text-black text-[15px] md:text-[20px] mb-[5px] md:mb-[25px]">
-          {btbPeduliData[language].text9}
-        </p>
-      </div>
-      <img
-        src={`${btbPeduliData.sukarelawanbtbimage4}`}
-        alt="btb-peduli7"
-        className="w-full md:w-[1460.8px] md:h-[308px] object-cover mb-5"
-      />
-    </div> 
     </>
   );
 };

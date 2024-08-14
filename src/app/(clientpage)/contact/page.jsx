@@ -41,7 +41,10 @@ const ContactPage = () => {
                   </div>
                   <div className="flex items-center mt-2">
                     <AiOutlineWhatsApp className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                    <a href={val.hrefwa} className="ml-2 text-sm md:text-base lg:text-lg">
+                    <a
+                      href={val.hrefwa}
+                      className="ml-2 text-sm md:text-base lg:text-lg"
+                    >
                       {val.waNumber}
                     </a>
                   </div>
@@ -76,7 +79,10 @@ const ContactPage = () => {
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 place-items-center">
             {contactUsData[language].mapList.map((val, idx) => (
-              <div key={idx} className="py-4 md:py-6 flex flex-col items-center">
+              <div
+                key={idx}
+                className="py-4 md:py-6 flex flex-col items-center"
+              >
                 <h3 className="text-xl md:text-2xl lg:text-3xl text-black font-medium mb-4">
                   {val.title}
                 </h3>
