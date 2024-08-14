@@ -15,101 +15,81 @@ const ContactPage = () => {
     <>
       <Banner />
       <Pagging />
-      <div id="hubungi-kami" className="md:mx-32 mx-[20px]">
-        <h1 className="mt-10 text-[#00305E] md:text-[50px] lg:text-[40px] text-[25px] font-semibold	">
+      <div id="hubungi-kami" className="mx-4 md:mx-16 lg:mx-32">
+        <h1 className="mt-10 text-[#00305E] text-2xl md:text-4xl lg:text-5xl font-semibold">
           {contactUsData[language].title}
         </h1>
-        <div className="text-[#00305E] grid grid-cols-1 md:grid-cols-3 mb-10">
-          <div className="col-span-2">
-            <p className="md:text-[30px] text-[16px] lg:text-[25px] my-5 text-black">
-              {contactUsData[language].desc}
-            </p>
-            <div className="flex-col">
-              <ContactForm />
-            </div>
-          </div>
-          <div className="md:mt-0 mt-5">
-            <div className="md:h-screen h-auto lg:h-auto lg:w-auto bg-[#EF802B] rounded-3xl mx-5 lg:mx-2 py-4 md:py-0 lg:py-0 place-content-center">
-              <div className="text-white pb-10">
-                {contactUsData[language].schoolList.map((val, idx) => {
-                  return (
-                    <div className="header px-5 md:px-15" key={idx}>
-                      <h1 className="font-bold md:text-[31px] text-[15px] lg:text-[20px] pt-10">
-                        {val.title}
-                      </h1>
-                      <div className="address mt-2 leading-loose md:text-[20px] text-[13px] lg:text-[21px]">
-                        {val.address}
-                      </div>
-                      <div className="flex flex-nowrap">
-                        <div>
-                          <HiPhone className="md:size-6" />
-                        </div>
-                        <div className="ml-4">
-                          <p className="md:text-[20px] text-[13px] lg:">
-                            {val.phoneNumber}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex flex-nowrap md:mt-2">
-                        <div>
-                          <AiOutlineWhatsApp className="md:size-6" />
-                        </div>
-                        <div className="ml-4">
-                          <a
-                            href={val.hrefwa}
-                            className="md:text-[20px] text-[13px]"
-                          >
-                            {val.waNumber}
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-
-                <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
-
-                <div className="header px-5 md:px-15">
-                  <div className="flex flex-nowrap md:mt-2">
-                    <div>
-                      <HiMail className="md:size-6" />
-                    </div>
-                    <div className="ml-4">
-                      <p className="md:text-[20px] text-[13px] lg:text-[17px]">
-                        {contactUsData[language].email}
-                      </p>
-                    </div>
+        <div className="text-[#00305E] grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+          <div
+            id="box"
+            className="flex-1 bg-[#00305E] rounded-3xl py-4 md:py-6 lg:py-8 flex flex-col justify-between"
+          >
+            <div className="text-white">
+              {contactUsData[language].schoolList.map((val, idx) => (
+                <div className="px-4 md:px-6 lg:px-8" key={idx}>
+                  <h1 className="font-bold text-lg md:text-xl lg:text-2xl pt-4 md:pt-6 lg:pt-8">
+                    {val.title}
+                  </h1>
+                  <div className="mt-2 text-sm md:text-base lg:text-lg leading-relaxed">
+                    {val.address}
                   </div>
+                  <div className="flex items-center mt-2">
+                    <HiPhone className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                    <p className="ml-2 text-sm md:text-base lg:text-lg">
+                      {val.phoneNumber}
+                    </p>
+                  </div>
+                  <div className="flex items-center mt-2">
+                    <AiOutlineWhatsApp className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                    <a href={val.hrefwa} className="ml-2 text-sm md:text-base lg:text-lg">
+                      {val.waNumber}
+                    </a>
+                  </div>
+                </div>
+              ))}
+              <div className="py-3 flex items-center text-sm text-gray-800 border-t border-gray-200 dark:text-white dark:border-neutral-600"></div>
+              <div className="px-4 md:px-6 lg:px-8">
+                <div className="flex items-center mt-2">
+                  <HiMail className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                  <p className="ml-2 text-sm md:text-base lg:text-lg">
+                    {contactUsData[language].email}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
+          <div className="col-span-2 flex flex-col">
+            <p className="text-lg md:text-2xl lg:text-3xl my-5 text-black">
+              {contactUsData[language].desc}
+            </p>
+            <div className="flex-1">
+              <ContactForm />
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
+        <div className="py-3 flex items-center text-sm text-gray-800 border-t border-gray-200 dark:text-white dark:border-neutral-600"></div>
 
-      <div id="lokasi-kami" className="md:m-[60px] m-[8px]">
-        <h1 className="text-[#00305E] md:text-[50px] text-[25px] lg:text-[40px] font-semibold">
-          {contactUsData[language].titleLocation}
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 place-items-center">
-          {contactUsData[language].mapList.map((val, idx) => {
-            return (
-              <div key={idx} className="py-5 md:py-0">
-                <h3 className="md:text-[35px] text-[18px] lg:text-[20px] text-black font-medium">
+        <div id="lokasi-kami" className="mx-4 md:mx-8 lg:mx-16">
+          <h1 className="text-[#00305E] text-2xl md:text-4xl lg:text-5xl font-semibold text-center mb-8">
+            {contactUsData[language].titleLocation}
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 place-items-center">
+            {contactUsData[language].mapList.map((val, idx) => (
+              <div key={idx} className="py-4 md:py-6 flex flex-col items-center">
+                <h3 className="text-xl md:text-2xl lg:text-3xl text-black font-medium mb-4">
                   {val.title}
                 </h3>
                 <iframe
-                  src={`${val.mapEmbed}`}
-                  className="w-[248px] h-[248px] md:w-[548px] md:h-[474px] lg:w-[348px] lg:h-[348px]"
-                  allowFullScreen=""
+                  src={val.mapEmbed}
+                  className="w-full max-w-md h-56 md:w-full md:h-64 lg:w-96 lg:h-80"
+                  allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </>
