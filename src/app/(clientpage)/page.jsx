@@ -50,7 +50,7 @@ const HomePage = () => {
           </div>
 
           {/* Section */}
-          <div className="grid place-items-center gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 md:my-[40px]">
+          <div className="grid place-items-center gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 md:my-[40px]">
             <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel1.jpeg')] w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] lg:w-[240px] lg:h-[240px] bg-cover bg-center rounded-[30px]">
               <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
                 <div className="flex items-center justify-center h-full text-white group">
@@ -141,7 +141,7 @@ const HomePage = () => {
               return (
                 <div key={idx}>
                   <img
-                    className="h-[300px] h-[300px] md:w-[360px] md:h-[360px] lg:w-[230px] lg:h-[230px] object-cover"
+                    className="h-[300px] h-[300px] md:w-[230px] md:h-[230px]  xl:w-[360px] xl:h-[360px] lg:w-[230px] lg:h-[230px] object-cover"
                     src={`${val.thumbnail_url || val.media_url}`}
                     alt={`${val.caption}`}
                     onClick={() => router.push(val.permalink)}
