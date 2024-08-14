@@ -50,7 +50,7 @@ const NavBar = () => {
     >
       <div className="flex justify-between w-full p-2">
         <Navbar.Brand href="/" className="">
-          <div className="md:w-[400px] md:h-[75px] w-[200px] mh-[45px] ml-5 md:ml-28">
+          <div className="w-[400px] md:w-[400px] lg:w-[300px] xl:w-[400px] md:h-[75px] w-[200px] mh-[45px] ml-5 md:ml-28 lg:ml-10 xl:ml-28">
             <img src={`${NavbarPayload[language].logourl}`} alt="logo btb" />
           </div>
         </Navbar.Brand>
