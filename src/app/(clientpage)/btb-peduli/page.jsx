@@ -18,7 +18,7 @@ const BTBPeduliPage = () => {
           {btbPeduliData[language].btbpedulititle}
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2">
         <div>
           <img
             src={`${btbPeduliData.btbcaremage}`}
@@ -31,7 +31,22 @@ const BTBPeduliPage = () => {
             {btbPeduliData[language].text1}
           </p>
         </div>
+      </div> */}
+      <div className="flex flex-col md:flex-row items-center justify-center">
+        <div className="flex-1 flex justify-center items-center p-4">
+          <img
+            src={`${btbPeduliData.btbcaremage}`}
+            alt="btb-peduli1"
+            className="w-full h-auto max-w-md md:max-w-lg"
+          />
+        </div>
+        <div className="bg-[#EF802B] flex-1 flex items-center justify-center p-6 md:p-8">
+          <p className="text-center text-base md:text-xl md:leading-7 text-white">
+            {btbPeduliData[language].text1}
+          </p>
+        </div>
       </div>
+
       <div className="text-justify md:mx-32 mt-5">
         <p className="md:text-[20px] md:leading-[38px] text-black text-[15px] p-5 md:p-0">
           {btbPeduliData[language].text2}
@@ -83,7 +98,7 @@ const BTBPeduliPage = () => {
 
       <div className="py-3 flex items-center text-sm text-gray-800 after:flex-1 after:border-t after:border-gray-200 after:mx-6 dark:text-white dark:after:border-neutral-600"></div>
 
-      <div id="sukarelawan">
+      {/* <div id="sukarelawan">
         <h2 className="md:mx-32 text-[#00305E] md:text-[50px] md:my-[35px] text-[25px] mx-5 my-5 font-semibold">
           {btbPeduliData[language].sukarelawantitle}
         </h2>
@@ -123,7 +138,43 @@ const BTBPeduliPage = () => {
           alt="btb-peduli7"
           className="md:w-[1460.8px] md:h-[308px] lg:h-auto"
         />
+      </div> */}
+
+    <div id="sukarelawan" class="flex flex-col items-center">
+      <h2 className="text-[#00305E] text-[25px] md:text-[50px] font-semibold mx-5 my-5 md:mx-32 md:my-[35px] mb-5">
+        {btbPeduliData[language].sukarelawantitle}
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 mb-5">
+        <img
+          src={`${btbPeduliData.sukarelawanbtbimage1}`}
+          alt="btb-peduli2"
+          className="w-full md:h-[290px] object-cover mb-4"
+        />
+        <img
+          src={`${btbPeduliData.sukarelawanbtbimage2}`}
+          alt="btb-peduli2"
+          className="w-full md:h-[290px] object-cover mb-4"
+        />
+        <img
+          src={`${btbPeduliData.sukarelawanbtbimage3}`}
+          alt="btb-peduli2"
+          className="w-full md:h-[290px] object-cover mb-4"
+        />
       </div>
+      <div className="mx-10 md:mx-32 mt-5 md:mt-20 mb-5">
+        <p className="text-[#00305E] text-[15px] sm:text-center md:text-[30px] font-semibold md:mb-[25px] mb-[5px]">
+          {btbPeduliData[language].text8}
+        </p>
+        <p className="text-black text-[15px] md:text-[20px] mb-[5px] md:mb-[25px]">
+          {btbPeduliData[language].text9}
+        </p>
+      </div>
+      <img
+        src={`${btbPeduliData.sukarelawanbtbimage4}`}
+        alt="btb-peduli7"
+        className="w-full md:w-[1460.8px] md:h-[308px] object-cover mb-5"
+      />
+    </div> 
     </>
   );
 };

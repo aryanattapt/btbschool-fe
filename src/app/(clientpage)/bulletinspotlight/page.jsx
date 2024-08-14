@@ -20,18 +20,40 @@ const BulletinSpotlightPage = () => {
 
     const closeModal = useCallback(() => setIsModalOpen(false), []);
 
+    // const FlipbookModal = ({ url, isOpen, setIsOpen }) => {
+    //     const modalStyle = useMemo(() => ({ height: "570px", width: "800px" }), []);
+    //     return (
+    //         <Modal show={isOpen} dismissible size="4xl" onClose={() => setIsOpen(false)}>
+    //             <Modal.Body>
+    //                 <div style={modalStyle} className='overflow-hidden'>
+    //                     <PDFReaderFlipBook url={url} width={400} height={700} />
+    //                 </div>
+    //             </Modal.Body>
+    //         </Modal>
+    //     );
+    // };
+
     const FlipbookModal = ({ url, isOpen, setIsOpen }) => {
-        const modalStyle = useMemo(() => ({ height: "570px", width: "800px" }), []);
         return (
-            <Modal show={isOpen} dismissible size="4xl" onClose={() => setIsOpen(false)}>
+            <Modal
+                show={isOpen}
+                dismissible
+                size="4xl"
+                onClose={() => setIsOpen(false)}
+                className="modal-custom mx-auto"
+            >
                 <Modal.Body>
-                    <div style={modalStyle} className='overflow-hidden'>
-                        <PDFReaderFlipBook url={url} width={400} height={700} />
+                    <div className="relative w-full h-full overflow-hidden">
+                        <PDFReaderFlipBook
+                            url={url}
+                            width={550}
+                            height={733}
+                        />
                     </div>
                 </Modal.Body>
             </Modal>
         );
-    };
+    };    
 
     useEffect(() => {
         GetConfig('bulletinspotlight', {}).then(res => {

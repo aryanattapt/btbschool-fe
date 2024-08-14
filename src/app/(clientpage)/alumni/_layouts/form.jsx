@@ -225,7 +225,7 @@ const AlumniForm = () => {
             <Label htmlFor="photoFile" value="Unggah Foto" />
           </div>
           <FileInput
-            multiple={true}
+            multiple={false}
             accept="image/*"
             id="photoFile"
             name="photoFile"
