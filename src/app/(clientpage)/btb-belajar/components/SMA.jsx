@@ -28,7 +28,7 @@ const SMA = () => {
             {/* Menguasai Teknik Bagi Masa Depan Mereka */}
             {btbBelajarData[language]["sma"].introduction.title}
             </h1>
-            <div className="px-5 pb-5 md:p-5 text-left text-[18px] md:text-[16px] text-[#000000] text-pretty">
+            <div className="px-5 pb-5 md:p-5 text-left text-[20px] text-[#000000] text-pretty">
             {/* Di jenjang pendidikan ini anak anda akan melanjutkan perjalanan edukatifnya melalui fase 
             pembelajaran yang memotivasi mereka untuk menemukan dan menyadari hal terbaik yang ada pada dirinya dan orang lain. */}
             {btbBelajarData[language]["sma"].introduction.paragraph}
@@ -47,7 +47,7 @@ const SMA = () => {
             {btbBelajarData[language]["sma"].curriculum.subtitle}
           </h1>
         </div>
-        <div className="text-[#000000] px-10 md:px-32 text-[18px] md:text-[16px]">
+        <div className="text-[#000000] px-10 md:px-32 md:text-[16px] lg:text-[25px] xl:text-[18px]">
           <div className="my-5">
             {/* Kurikulum IBDP memiliki kualifikasi terhadap pemahaman nilai pokok ini. Kurikulum ini terbentuk dari nilai pokok dan enam kelompok mata pelajaran.
             Terbentuk dari tiga komponen utama, nilai pokok ini bertujuan untuk memperluas pengalaman belajar para murid dan menantang mereka untuk menggunakan pengetahuan dan kemampuan mereka. */}
@@ -104,7 +104,7 @@ const SMA = () => {
           </div>
         </div>
         <div className="my-10 bg-slate-300">
-          <div className="flex justify-center text-justify items-center py-10 mx-10 md:mx-20 text-[#00305E] md:leading-loose text-[18px] md:text-[16px] font-semibold">
+          <div className="flex justify-center text-justify items-center py-10 mx-10 md:mx-20 text-[#00305E] xl:leading-loose md:text-[16px] lg:text-[25px] xl:text-[18px] font-semibold">
             <p >
               {/* Pada dua tahun terakhir mereka di sekolah ini, masing - masing murid ditantang untuk menguasai 
             berbagai kemampuan yang dibutuhkan sesuai dengan jalan pilihan mereka. Mereka didorong untuk mengambil 
@@ -114,85 +114,70 @@ const SMA = () => {
             </p>
           </div>
         </div>
-        <div className="activity">
-          <div className="mt-10 flex justify-center items-center">
-            <div className="border-b-8 border-[#EF802B] w-fit"> 
-              <h1 className="text-[30px] font-semibold text-[#00305E]">
-                {btbBelajarData[language]["sma"].programs.title}
-              </h1>
+        <div className="mt-10 flex justify-center items-center">
+          <div className="border-b-8 border-[#EF802B] w-fit"> 
+            <h1 className="text-[30px] font-semibold text-[#00305E]">
+              {btbBelajarData[language]["sma"].programs.title}
+            </h1>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-5 md:text-[16px] lg:text-[25px] xl:text-[18px]">
+          <div className="flex">
+            <div className="flex flex-wrap content-center justify-center h-full">
+              <div className="md:text-[16px] lg:text-[25px] xl:text-[18px] pr-0 lg:pr-10
+                lg:text-justify xl:text-left text-balance text-pretty text-[#000000] xl:leading-loose">
+              {btbBelajarData[language]["sma"].programs.desc}
+              </div>
             </div>
           </div>
-          <div className="md:h-[305px] px-10 md:pl-32 md:mt-5">
-              <div className="flex flex-wrap">
-                <div className="py-10 md:pr-10 text-justify text-pretty text-[#000000] md:w-[545px] md:leading-loose">
-                {/* Berbagai aktivitas kokurikuler tersedia untuk diikuti oleh anak anda, 
-                kegiatan ini bertujuan untuk mengembangkan minat dan kemampuan mereka di luar ruang kelas.
-                Program dan kegiatan setelah sekolah, yang dapat berubah setiap tahun pelajaran, 
-                berfokus untuk mendorong pemikiran dan mengembangkan kemampuan memecahkan masalah oleh anak - anak. */}
-                {btbBelajarData[language]["sma"].programs.desc}
+          <div className='flex'>
+            <div className="w-full h-full">
+              <img 
+              src = {`${btbBelajarData.image6}`}
+              alt="SMP"
+              className="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+        {/* program kami */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-10 md:text-[16px] lg:text-[25px] xl:text-[18px]">
+          <div className='flex'>
+            <div className="w-full h-full">
+              <img 
+              src = {`${btbBelajarData.image7}`}
+              alt="SMP"
+              className="w-full h-full object-cover" />
+            </div>
+          </div>
+          <div className="flex">
+            <div className="flex flex-wrap content-center justify-center h-full">
+              <div className="md:text-[16px] lg:text-[25px] xl:text-[18px] pl-10 lg:pl-10
+                text-left text-balance text-[#000000]">
+                  <div>
+                <h1 className="font-semibold text-[#000000]">
+                  {/* PROGRAM KAMI */}
+                  {btbBelajarData[language]["sma"].programs.title}
+                </h1>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <ul className="list-disc">
+                    {btbBelajarData[language]["sma"].programs.list1.map((val, idx) => {
+                      return <li key={idx}>{val}</li>
+                    })}
+                  </ul>
                 </div>
-                
-                <div className="md:h-[305px] md:w-[518px]">
-                  <img 
-                  // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA 4.jpg"
-                  src = {`${btbBelajarData.image6}`}
-                  alt="SMA"
-                  className="md:h-[305px] w-full object-cover" />
+                <div>
+                  <ul className="list-disc">
+                    {btbBelajarData[language]["sma"].programs.list2.map((val, idx) => {
+                        return <li key={idx}>{val}</li>
+                    })}
+                  </ul>
                 </div>
               </div>
-            </div>
-            <div className="md:h-[305px] px-10 md:pl-32 mt-10">
-              <div className="flex flex-wrap">
-                <div className="md:h-[305px] w-[518px]">
-                  <img 
-                  // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp 5.jpg"
-                  src = {`${btbBelajarData.image7}`}
-                  alt="PAUD"
-                  className="h-[305px] w-full object-cover" />
-                </div>
-                <div className="md:pb-10 md:pl-10 mt-5 md:mt-0">
-                  <h1 className="text-[20px] font-semibold text-[#000000]">
-                     {/* PROGRAM KAMI */}
-                     {btbBelajarData[language]["sma"].programs.title}
-                  </h1>
-                  <div className="grid grid-cols-2 gap-12">
-                    <div className="pl-3 text-[#000000]">
-                      <ul className="list-disc">
-                      {btbBelajarData[language]["sma"].programs.list1.map((val, idx) => {
-                          return <li key={idx}>{val}</li>
-                      })}
-                        {/* <li>HSK (Mandarin)</li>
-                        <li>IELTS</li>
-                        <li>Paduan Suara</li>
-                        <li>Jurnalisme</li>
-                        <li>Bola Basket Putra</li>
-                        <li>Bola Basket Putri</li>
-                        <li>Futsal Putra</li>
-                        <li>Futsal Putri</li>
-                        <li>Band Sekolah</li>
-                        <li>Manga</li> */}
-                      </ul>
-                    </div>
-                    <div className="pl-3 text-[#000000]">
-                      <ul className="list-disc">
-                      {btbBelajarData[language]["sma"].programs.list2.map((val, idx) => {
-                          return <li key={idx}>{val}</li>
-                      })}
-                        {/* <li>Coding</li>
-                        <li>Taekwondo</li>
-                        <li>Kewirausahaan Anak</li>
-                        <li>Board Games</li>
-                        <li>Art & Craft</li>
-                        <li>Wushu</li>
-                        <li>Video Editing</li>
-                        <li>Dance</li>
-                        <li>Make X</li> */}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
+          </div>
         </div>
         <div className="diLuarKelas mb-10">
           <div className="mt-10 md:mt-20 flex justify-end items-center pr-10 md:pr-32">
@@ -203,38 +188,35 @@ const SMA = () => {
               </h1>
             </div>
           </div>
-          <div className="md:h-[305px] px-10 md:pl-32 mt-5">
-              <div className="flex flex-wrap">
-                <div className="h-[305px] w-[518px]">
-                  <img 
-                  src = {`${btbBelajarData.image8}`}
-                  alt="SMP"
-                  className="h-[305px] w-full object-cover" />
-                </div>
-                <div className="md:pl-10">
-                  <h1 className="text-[20px] md:w-[545px] text-justify text-pretty font-semibold text-[#000000]">
-                  {/* Menyesuaikan usia dan tahapan perkembangan anak dengan pengalaman yang 
-                  sesuai untuk menantang para murid untuk berkembang. */}
-                  {btbBelajarData[language]["sma"].outdoor.text}
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-10">
+            <div className='flex'>
+              <div className="w-full h-full">
+                <img 
+                src = {`${btbBelajarData.image8}`}
+                alt="SMP"
+                className="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div className="flex">
+              <div className="flex flex-wrap content-center justify-center h-full">
+                <div className="md:text-[16px] lg:text-[25px] xl:text-[18px] pl-0 xl:pl-5
+                  text-justify md:text-left lg:text-left xl:text-left">
+                    <div>
+                  <h1 className="font-semibold lg:text-[30px] xl:text-[20px]">
+                    {btbBelajarData[language]["sma"].outdoor.text}
                   </h1>
-                  <div className="text-[18px] md:text-[16px] text-justify text-[#000000] md:w-[545px] md:leading-loose">
-                  {/* Mengembangkan karakter dan kemampuan dari murid. 
-                  Tantangan, inisiatif, kemandirian, kepemimpinan, kerjasama, tanggung jawab, pengambilan resiko, 
-                  hidup berdampingan, dan peduli lingkungan semua didukung dalam karyawisata dari tingkat 6 hingga tingkat 10.
-                  Kegiatan ini mengajak para murid untuk bertualang dari area sekolahan menuju area luar sekolah yang 
-                  sudah dipilih secara khusus untuk menciptakan pengalaman edukatif yang berkesan bersama dengan teman 
-                  sekelas. */}
-                  {btbBelajarData[language]["sma"].outdoor.paragraph}
-                  </div>
+                </div>
+                <div>{btbBelajarData[language]["sma"].outdoor.paragraph}</div>
                 </div>
               </div>
             </div>
-            <div className="my-10 flex justify-center items-center">
-              <button type="button" className="w-[250px] focus:outline-none text-white bg-[#00305E] focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                <a href="/contact-us">Contact Us</a> 
-              </button>
-            </div>
           </div>
+          <div className="my-10 flex justify-center items-center">
+            <button type="button" className="w-[250px] focus:outline-none text-white bg-[#00305E] focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+              <a href="/contact-us">Contact Us</a> 
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
