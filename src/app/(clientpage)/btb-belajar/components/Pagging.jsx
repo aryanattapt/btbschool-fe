@@ -11,9 +11,9 @@ const Pagging = () => {
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
-        <div className="inline-flex gap-9 xl:gap-11 md:gap-8 lg:gap-10">
+        <div className="inline-flex gap-9 md:gap-5 lg:gap-11">
           <div className="border-r-2">
-            <div className="pr-10 pl-10 xl:pl-32 md:pl-10">
+            <div className="px-10 md:px-10 lg:px-32 xl:px-32">
               <h1 className="text-[25px] text-center font-semibold py-10">
                 {btbBelajarData[language].paging.title}
               </h1>
@@ -23,7 +23,7 @@ const Pagging = () => {
             <ul className="flex flex-wrap -mb-px md:py-10">
               {btbBelajarData[language].paging.url.map((val, idx) => {
                 return (
-                  <li className="px-10 md:px-5 lg:px-15 xl:px-10" key={idx}>
+                  <li className="md:px-5 px-10" key={idx}>
                     <a
                       href={`${val.url}`}
                       className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 active"

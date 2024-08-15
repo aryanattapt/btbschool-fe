@@ -12,6 +12,7 @@ const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +39,9 @@ const NavBar = () => {
     setLanguage(e.target.checked ? "EN" : "ID");
   };
 
+  // const toggleMenuHandler = () => {
+  //   setIsMenuOpen(!isMenuOpen);
+  // };
   return (
     <Navbar
       className={`transition-all duration-1000 ${
@@ -45,12 +49,12 @@ const NavBar = () => {
           ? "bg-[#00305E] bg-opacity-100 text-white"
           : "bg-gradient-to-b from-[#091531] via-[#00305E] via-20% bg-opacity-0 text-[#00305E]"
       } fixed top-0 z-20 w-full p-4 ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
+        isVisible ? "translate-y-0" : "md:-translate-y-full"
       }`}
     >
       <div className="flex justify-between w-full p-2">
-        <Navbar.Brand href="/" className="">
-          <div className="w-[400px] md:w-[400px] lg:w-[300px] xl:w-[400px] md:h-[75px] w-[200px] mh-[45px] ml-5 md:ml-28 lg:ml-10 xl:ml-28">
+        <Navbar.Brand href="/" className="hidden block">
+          <div className="w-[200px] md:w-[200px] lg:w-[300px] xl:w-[400px] md:h-[75px] w-[200px] mh-[45px] ml-5 md:ml-0 lg:ml-10 xl:ml-28">
             <img src={`${NavbarPayload[language].logourl}`} alt="logo btb" />
           </div>
         </Navbar.Brand>
