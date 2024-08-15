@@ -1,7 +1,7 @@
 "use client";
-import {useLanguageStore} from '../../../../../store/language.store';
-import {BTBBelajarPayload} from '../../../../../data';
-import { useState } from 'react';
+import { useLanguageStore } from "../../../../../store/language.store";
+import { BTBBelajarPayload } from "../../../../../data";
+import { useState } from "react";
 
 const TK = () => {
   const [btbBelajarData, setBtbBelajarData] = useState(BTBBelajarPayload);
@@ -16,10 +16,11 @@ const TK = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex">
-            <img 
-            src = {`${btbBelajarData.image13}`}
-            alt="PAUD"
-            className="h-full w-full object-cover" />
+            <img
+              src={`${btbBelajarData.image13}`}
+              alt="PAUD"
+              className="h-full w-full object-cover"
+            />
           </div>
           <div className="content-center bg-[#EF802B] p-5">
             <div className="text-center md:text-center lg:text-center xl:text-justify text-[20px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty">
@@ -40,11 +41,11 @@ const TK = () => {
             <h1 className="text-balance text-[30px]">Fokus:</h1>
             <div className="ml-5">
               <ul className="list-disc">
-                 {btbBelajarData[language].tk.curriculum.components1.map((val, idx) => {
-                      return <li key={idx}>
-                      {val}
-                    </li> 
-                  })}
+                {btbBelajarData[language].tk.curriculum.components1.map(
+                  (val, idx) => {
+                    return <li key={idx}>{val}</li>;
+                  }
+                )}
               </ul>
             </div>
             <div className="mt-2 text-pretty">
@@ -55,11 +56,11 @@ const TK = () => {
             <h1 className="text-balance text-[30px]">Subyek Spesial:</h1>
             <div className="ml-5">
               <ul className="list-disc">
-                {btbBelajarData[language].tk.curriculum.components2.map((val, idx) => {
-                      return <li key={idx}>
-                      {val}
-                    </li> 
-                  })}
+                {btbBelajarData[language].tk.curriculum.components2.map(
+                  (val, idx) => {
+                    return <li key={idx}>{val}</li>;
+                  }
+                )}
               </ul>
             </div>
             <div className="mt-2 text-left text-pretty text-balance">
@@ -77,53 +78,61 @@ const TK = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-5 text-[16px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
           <div className="flex">
             <div className="flex flex-wrap content-center justify-center h-full">
-              <div className="pr-0 lg:pr-10
-                text-left text-balance text-[#000000] xl:leading-loose">
-              {btbBelajarData[language].tk.activity.content}
+              <div
+                className="pr-0 lg:pr-10
+                text-left text-balance text-[#000000] xl:leading-loose"
+              >
+                {btbBelajarData[language].tk.activity.content}
               </div>
             </div>
           </div>
-          <div className='flex'>
+          <div className="flex">
             <div className="w-full h-full">
-              <img 
-              src = {`${btbBelajarData.image14}`}
-              alt="SMP"
-              className="w-full h-full object-cover" />
+              <img
+                src={`${btbBelajarData.image14}`}
+                alt="SMP"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
         {/* PROGRAM KAMI */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-10 text-[16px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
-          <div className='flex'>
+          <div className="flex">
             <div className="w-full h-full">
-              <img 
-              src = {`${btbBelajarData.image15}`}
-              alt="SMP"
-              className="w-full h-full object-cover" />
+              <img
+                src={`${btbBelajarData.image15}`}
+                alt="SMP"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
           <div className="flex">
             <div className="flex flex-wrap content-center justify-center h-full">
-              <div className="pl-5 lg:pl-10
-                text-left text-balance text-[#000000]">
-                  <div>
-                <h1 className="font-semibold text-[#000000]">
-                  {/* PROGRAM KAMI */}
-                  {btbBelajarData[language].tk.programs.title}
-                </h1>
-              </div>
-              <div className="grid grid-cols-1 gap-8">
+              <div
+                className="pl-5 lg:pl-10
+                text-left text-balance text-[#000000]"
+              >
                 <div>
-                  <ul className="list-disc">
-                    {btbBelajarData[language].tk.programs.list1.map((val, idx) => {
-                      return <li key={idx}>{val}</li>
-                    })}
-                  </ul>
-                  <div className="pt-1">
-                    {btbBelajarData[language].tk.programs.desc}
+                  <h1 className="font-semibold text-[#000000]">
+                    {/* PROGRAM KAMI */}
+                    {btbBelajarData[language].tk.programs.title}
+                  </h1>
+                </div>
+                <div className="grid grid-cols-1 gap-8">
+                  <div>
+                    <ul className="list-disc">
+                      {btbBelajarData[language].tk.programs.list1.map(
+                        (val, idx) => {
+                          return <li key={idx}>{val}</li>;
+                        }
+                      )}
+                    </ul>
+                    <div className="pt-1">
+                      {btbBelajarData[language].tk.programs.desc}
+                    </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
@@ -139,12 +148,13 @@ const TK = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-10 text-[16px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
-            <div className='flex'>
+            <div className="flex">
               <div className="w-full h-full">
-                <img 
-                src = {`${btbBelajarData.image16}`}
-                alt="SMP"
-                className="w-full h-full object-cover" />
+                <img
+                  src={`${btbBelajarData.image16}`}
+                  alt="SMP"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             <div className="flex">
@@ -155,7 +165,7 @@ const TK = () => {
                       {btbBelajarData[language].tk.outdoor.text}
                     </h1>
                   </div>
-                  <div className='text-justify'>
+                  <div className="text-justify">
                     {btbBelajarData[language].tk.outdoor.paragraph}
                   </div>
                 </div>
@@ -163,8 +173,11 @@ const TK = () => {
             </div>
           </div>
           <div className="my-10 flex justify-center items-center">
-            <button type="button" className="md:text-[16px] lg:text-[25px] xl:text-[20px] w-[250px] md:w-[250px] lg:w-[350px] xl:w-[250px] focus:outline-none text-white bg-[#00305E] focus:ring-4 focus:ring-red-300 rounded-lg text-sm px-5 py-2.5 md:py-2.5 lg:py-5 xl:py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-              <a href="/contact-us">Contact Us</a> 
+            <button
+              type="button"
+              className="md:text-[16px] lg:text-[25px] xl:text-[20px] w-[250px] md:w-[250px] lg:w-[350px] xl:w-[250px] focus:outline-none text-white bg-[#00305E] focus:ring-4 focus:ring-red-300 rounded-lg text-sm px-5 py-2.5 md:py-2.5 lg:py-5 xl:py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+              <a href="/contact-us">Contact Us</a>
             </button>
           </div>
         </div>

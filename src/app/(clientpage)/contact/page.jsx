@@ -77,7 +77,7 @@ const ContactPage = () => {
           <h1 className="text-[#00305E] text-2xl md:text-4xl lg:text-5xl font-semibold text-center mb-8">
             {contactUsData[language].titleLocation}
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 place-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8  place-items-center">
             {contactUsData[language].mapList.map((val, idx) => (
               <div
                 key={idx}
@@ -88,7 +88,7 @@ const ContactPage = () => {
                 </h3>
                 <iframe
                   src={val.mapEmbed}
-                  className="w-full max-w-md h-56 md:w-full md:h-64 lg:w-96 lg:h-80"
+                  className="w-full max-w-md h-56 md:w-full md:h-64 lg:w-86 lg:h-70"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
