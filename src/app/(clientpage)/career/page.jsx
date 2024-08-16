@@ -31,9 +31,11 @@ const CareerPage = () => {
 	return (
 		<div>
 			<CareerHeroSection>
-				<div className="absolute top-0 h-full flex flex-col justify-center px-32">
-					<h3 className="md:text-4xl lg:text-6xl">BEKERJA BERSAMA KAMI</h3>
-					<h5 className="md:text-lg lg:text-2xl mt-8">
+				<div className="absolute top-0 h-full flex flex-col justify-center sm:px-16 px-32">
+					<h3 className="text-white sm:text-4xl sm:font-bold md:text-4xl lg:text-6xl">
+						BEKERJA BERSAMA KAMI
+					</h3>
+					<h5 className="text-white sm:text-lg md:text-lg lg:text-2xl mt-8">
 						Mulai karir impianmu di Sekolah Terbaik Jakarta
 					</h5>
 				</div>

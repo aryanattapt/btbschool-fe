@@ -15,32 +15,34 @@ const CareerList = ({ datas }) => {
 	};
 
 	return (
-		<div className="flex flex-col mt-10 gap-8 w-[55%] text-[#00305E]">
+		<div className="flex flex-col mt-10 gap-8 w-[90%] lg:w-[70%] text-[#00305E]">
 			{datas?.length > 0 ? (
 				<>
 					{datas.map((res) => (
-						<CareerPaperContainer
-							key={res._id}
-							className="w-full flex  bg-white px-20 py-8 border border-gray-200 drop-shadow-lg rounded-lg"
-						>
-							<div className="min-w-[35%]">
+						<CareerPaperContainer key={res._id} classes={"justify-between"}>
+							<div className="min-w-[35%] lg:min-w-[25%]">
 								<h3 className="font-bold text-lg">{res.jobtitlename}</h3>
 								<p>{res?.location}</p>
 							</div>
-							<div className="grid grid-cols-12 gap-12">
+							<div className="hidden md:grid grid-cols-12 sm:gap-4 gap-12">
 								<div className="col-span-4 flex items-center">
-									<IoPersonCircle className="text-3xl mr-2" />
+									<IoPersonCircle className="hidden xl:block text-[30px] mr-2" />
 									<p>{res?.experienced}</p>
 								</div>
 								<div className="col-span-6 flex items-center">
-									<FiHome className="text-3xl mr-2" />
+									<FiHome className="hidden xl:block text-[30px] mr-2" />
 									<p>{res?.jobtype}</p>
 								</div>
-								<div className="col-span-2 flex items-center">
+								<div className="col-span-2 flex items-center justify-end">
 									<BtnPrimary onClick={() => onClickDetail(res)}>
 										Detail
 									</BtnPrimary>
 								</div>
+							</div>
+							<div className="md:hidden ml-auto flex items-center">
+								<BtnPrimary onClick={() => onClickDetail(res)}>
+									Detail
+								</BtnPrimary>
 							</div>
 						</CareerPaperContainer>
 					))}

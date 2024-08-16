@@ -35,15 +35,17 @@ const DetailCareer = () => {
 	return (
 		<div>
 			<CareerHeroSection>
-				<div className="absolute top-0 h-full w-full flex items-end justify-between px-32 py-20">
+				<div className="text-white absolute top-0 h-full w-full flex items-end justify-between p-4 sm:p-16 lg:px-32 lg:py-20">
 					<div>
-						<h3 className="text-6xl">{data?.jobtitlename}</h3>
-						<h5 className="text-2xl my-6">
-							{data?.experienced} <span className="mx-8">|</span>{" "}
+						<h3 className="text-2xl md:text-3xl lg:text-6xl">
+							{data?.jobtitlename}
+						</h3>
+						<h5 className="text-lg md:text-xl lg:text-2xl my-6">
+							{data?.experienced} <span className="mx-2 lg:mx-6">|</span>{" "}
 							{data?.jobcategory}
 						</h5>
 						<div
-							className="flex items-center text-xl w-fit px-4 py-2 rounded-lg "
+							className="flex items-center text-lg lg:text-xl w-fit px-4 py-2 rounded-lg "
 							style={{ border: "1px solid #5C9EDE" }}
 						>
 							<FiHome className="mr-2" />
@@ -51,25 +53,24 @@ const DetailCareer = () => {
 						</div>
 					</div>
 					<div
-						className="p-6 rounded-xl min-w-72"
+						className="p-6 rounded-xl min-w-52 lg:min-w-72"
 						style={{ background: "rgba(0, 48, 94, 0.68)" }}
 					>
-						<h5 className="text-2xl font-semibold">Apply Now</h5>
-						<h6 className="my-4 mb-5">Grow with us</h6>
+						<h5 className="text-xl lg:text-2xl font-semibold">Apply Now</h5>
+						<h6 className="text-sm my-4 mb-5">Grow with us</h6>
 						<BtnPrimary onClick={onApply} fullSized>
 							Apply Now
 						</BtnPrimary>
 					</div>
 				</div>
 			</CareerHeroSection>
-			<div className="grid grid-cols-12 gap-12 px-32 text-[#646464] my-12">
-				<div className="col-span-8 flex flex-col gap-8">
+			<div className="grid grid-cols-12 md:gap-12 px-4 lg:px-32 text-[#646464] my-12">
+				<div className="col-span-12 md:col-span-7 lg:col-span-8 flex flex-col gap-8">
 					<CareerPaperContainer>
 						<div className="flex flex-col w-full">
 							<h1 className="w-full text-2xl tracking-wide">Job Summary</h1>
 							<div className="bg-[#646464] h-[1px] w-full my-3" />
-							{/* <p>{data?.jobsummary}</p> */}
-							<div dangerouslySetInnerHTML={{__html: data?.jobsummary}}></div>
+							<div dangerouslySetInnerHTML={{ __html: data?.jobsummary }}></div>
 						</div>
 					</CareerPaperContainer>
 					<CareerPaperContainer>
@@ -78,19 +79,22 @@ const DetailCareer = () => {
 								Responsibilities
 							</h1>
 							<div className="bg-[#646464] h-[1px] w-full my-3" />
-							{/* <p>{data?.responsibilites}</p> */}
-							<div dangerouslySetInnerHTML={{__html: data?.responsibilites}}></div>
+							<div
+								dangerouslySetInnerHTML={{ __html: data?.responsibilites }}
+							></div>
 						</div>
 					</CareerPaperContainer>
 					<CareerPaperContainer>
 						<div className="flex flex-col w-full">
 							<h1 className="w-full text-2xl tracking-wide">Requirement</h1>
 							<div className="bg-[#646464] h-[1px] w-full my-3" />
-							<div dangerouslySetInnerHTML={{__html: data?.requirement}}></div>
+							<div
+								dangerouslySetInnerHTML={{ __html: data?.requirement }}
+							></div>
 						</div>
 					</CareerPaperContainer>
 				</div>
-				<div className="col-span-4">
+				<div className="col-span-12 mt-8 md:mt-0 md:col-span-5 lg:col-span-4">
 					<CareerPaperContainer classes={"flex-col"}>
 						<DetailInformationRow
 							label={"Apply Before"}
@@ -119,9 +123,9 @@ const DetailCareer = () => {
 
 const DetailInformationRow = ({ label, value }) => {
 	return (
-		<div className="mb-6">
+		<div className="mb-2 lg:mb-6">
 			<h3 className="text-lg font-semibold tracking-wide">{label}</h3>
-			<p className="mt-2">{value}</p>
+			<p className="lg:mt-2">{value}</p>
 		</div>
 	);
 };
