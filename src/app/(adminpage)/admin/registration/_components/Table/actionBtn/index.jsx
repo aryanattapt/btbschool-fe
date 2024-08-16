@@ -13,6 +13,7 @@ const RegistrationTableActionBtn = (data) => {
 	const pathname = usePathname();
 	const onExportExcel = useExportExcel();
 
+	const [isReadyToExport, setIsReadyToExport] = useState(false);
 	const [exportPdf, setExportPdf] = useState(false);
 	const pdfRef = useRef();
 
@@ -32,31 +33,33 @@ const RegistrationTableActionBtn = (data) => {
 	};
 
 	useEffect(() => {
-		if (exportPdf) {
-			setTimeout(() => {
-				pdfRef.current.click();
-			}, 2000);
+		if (isReadyToExport) {
+			pdfRef.current.click();
 		}
-	}, [exportPdf]);
+	}, [isReadyToExport]);
 
 	return (
 		<div className="flex gap-2">
-			{exportPdf && (
-				<BlobProvider document={<ARDExportPdf data={data} />}>
-					{({ blob, url, loading, error }) => {
-						return <a ref={pdfRef} href={url} download={"document.pdf"} />;
-					}}
-				</BlobProvider>
-			)}
-			<Button
-				size="xs"
-				className="text-white"
-				style={{ background: "#3fbae5" }}
-				onClick={onClickExportPdf}
-			>
-				<IoMdDownload className="mr-2 h-4 w-4" />
-				<p>PDF</p>
-			</Button>
+			<div>
+				{exportPdf && (
+					<BlobProvider document={<ARDExportPdf data={data} />}>
+						{({ blob, url, loading, error }) => {
+							if (!url) return setIsReadyToExport(false);
+							if (url) setIsReadyToExport(true);
+							return <a ref={pdfRef} href={url} download={"document.pdf"} />;
+						}}
+					</BlobProvider>
+				)}
+				<Button
+					size="xs"
+					className="text-white"
+					style={{ background: "#3fbae5" }}
+					onClick={onClickExportPdf}
+				>
+					<IoMdDownload className="mr-2 h-4 w-4" />
+					<p>PDF</p>
+				</Button>
+			</div>
 			<Button
 				size="xs"
 				className="text-white"
@@ -72,7 +75,7 @@ const RegistrationTableActionBtn = (data) => {
 					<p>Approve</p>
 				</Button>
 			)}
-			<Link href={`./detail/${data["_id"]}`}>
+			<Link href={`/admin/registration/detail/${data["_id"]}`}>
 				<Button size={"xs"} color="dark">
 					Detail
 				</Button>

@@ -1,7 +1,13 @@
+import { BlobProvider } from "@react-pdf/renderer";
 import { Button } from "flowbite-react";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import ARDExportPdf from "../../ExportPDF";
 
-const ARDHeaderAction = ({ onDownload, onClick, active }) => {
+const ARDHeaderAction = ({ data, onClick, active }) => {
+	const [isReadyToExport, setIsReadyToExport] = useState(false);
+	const [exportPdf, setExportPdf] = useState(false);
+	const pdfRef = useRef();
+
 	const list = [
 		"Registration Form",
 		"Peraturan dan Persyaratan",
@@ -17,6 +23,20 @@ const ARDHeaderAction = ({ onDownload, onClick, active }) => {
 			background: "white",
 		},
 	};
+
+	const onClickExportPdf = () => {
+		if (!exportPdf) {
+			setExportPdf(true);
+		} else {
+			pdfRef.current.click();
+		}
+	};
+
+	useEffect(() => {
+		if (isReadyToExport) {
+			pdfRef.current.click();
+		}
+	}, [isReadyToExport]);
 
 	return (
 		<div>
@@ -38,14 +58,27 @@ const ARDHeaderAction = ({ onDownload, onClick, active }) => {
 					</div>
 				))}
 			</div>
-			<Button
-				className="mt-4"
-				size={"xs"}
-				color={"warning"}
-				onClick={onDownload}
-			>
-				Download
-			</Button>
+			<div>
+				{exportPdf && (
+					<BlobProvider
+						document={<ARDExportPdf data={data} selected={active} />}
+					>
+						{({ blob, url, loading, error }) => {
+							if (!url) return setIsReadyToExport(false);
+							if (url) setIsReadyToExport(true);
+							return <a ref={pdfRef} href={url} download={"document.pdf"} />;
+						}}
+					</BlobProvider>
+				)}
+				<Button
+					className="mt-4"
+					size={"xs"}
+					color={"warning"}
+					onClick={onClickExportPdf}
+				>
+					Download
+				</Button>
+			</div>
 		</div>
 	);
 };
