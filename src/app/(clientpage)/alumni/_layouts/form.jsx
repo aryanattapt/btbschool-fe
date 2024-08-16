@@ -1,6 +1,5 @@
 "use client";
 import {
-  Blockquote,
   Button,
   Checkbox,
   Datepicker,
@@ -9,42 +8,53 @@ import {
   Radio,
   TextInput,
   Spinner,
+  Textarea,
 } from "flowbite-react";
 import { useState } from "react";
 import { HiMail } from "react-icons/hi";
 import { UploadAttachment } from "../../../../../services/attachment.service";
 import { SubmitAlumni } from "../../../../../services/alumni.service";
 import Swal from "sweetalert2";
+import moment from 'moment';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+const convertPhoneNumberToInternational = (phoneNumber) => {
+    phoneNumber = phoneNumber.toString();
+    if (phoneNumber.startsWith('0')) {
+        return '+62' + phoneNumber.slice(1);
+    }
+    return phoneNumber;
+}
 
 const AlumniForm = () => {
-  const [isLoading, setIsLoading] = useState(null);
-  const [alumniPayload, setAlumniPayload] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [alumniPayload, setAlumniPayload] = useState({edukasiOptions: []});
 
   const formChangeHandler = (e) => {
-    const { name, value, type, files } = e.target;
-    if (type == "file") {
-      Object.keys(files).map((val) => {
-        setAlumniPayload((prevState) => ({
+    const { name, value, type, files, checked } = e.target;
+    
+    if(name === 'phoneno'){
+      setAlumniPayload(prevState => ({
+        ...prevState,
+        [name]: convertPhoneNumberToInternational(value),
+      }));
+    } else if (type === "file") {
+      Object.keys(files).map(val => {
+        setAlumniPayload(prevState => ({
           ...prevState,
-          [name]: prevState[name]
-            ? [...prevState[name], files[val]]
-            : [files[val]],
+          [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]],
         }));
       });
-    } else if (type == "checkbox") {
-      if (e.target.checked) {
-        setAlumniPayload((prevState) => ({
-          ...prevState,
-          [name]: prevState[name] ? [...prevState[name], value] : [value],
-        }));
-      } else {
-        setAlumniPayload((prevState) => ({
-          ...prevState,
-          [name]: prevState[name].filter((val) => val !== value),
-        }));
-      }
+    } else if (type === "checkbox") {
+      setAlumniPayload(prevState => ({
+        ...prevState,
+        [name]: checked
+          ? [...prevState[name], value]
+          : prevState[name].filter(val => val !== value),
+      }));
     } else {
-      setAlumniPayload((prevState) => ({
+      setAlumniPayload(prevState => ({
         ...prevState,
         [name]: value,
       }));
@@ -54,49 +64,33 @@ const AlumniForm = () => {
   const submitHandler = (e) => {
     setIsLoading(true);
     var formData = new FormData();
-    alumniPayload?.photoFile?.map((val) => {
+    alumniPayload?.photoFile?.map(val => {
       formData.append("photoFile", val);
     });
 
-    /* Call API in here... */
-    UploadAttachment("alumni", formData)
-      .then((res) => {
-        const alumniSubmitPayload = { ...alumniPayload };
-        alumniSubmitPayload.attachment = res.data;
-        delete alumniSubmitPayload.photoFile;
-        SubmitAlumni(alumniSubmitPayload)
-          .then((_) => {
-            setIsLoading(false);
-            Swal.fire({
-              allowOutsideClick: false,
-              title: "Alumni Submission Notification!",
-              text: "Success submit Alumni!",
-              icon: "info",
-            });
-          })
-          .catch((err) => {
-            setIsLoading(false);
-            Swal.fire({
-              allowOutsideClick: false,
-              title: "Alumni Submission Notification!",
-              text: err,
-              icon: "error",
-            });
-          });
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Alumni Submission Notification!",
-          text: err,
-          icon: "error",
-        });
+    SubmitAlumni({...alumniPayload, "attachment": [{"file": ""}]})
+    .then(() => {
+      setIsLoading(false);
+      Swal.fire({
+        allowOutsideClick: false,
+        title: "Alumni Submission Notification!",
+        text: "Success submit Alumni!",
+        icon: "info",
       });
+    })
+    .catch(err => {
+      setIsLoading(false);
+      Swal.fire({
+        allowOutsideClick: false,
+        title: "Alumni Submission Notification!",
+        text: err,
+        icon: "error",
+      });
+    });
   };
 
   const datePickerHandler = (name, value) => {
-    setAlumniPayload((prevState) => ({
+    setAlumniPayload(prevState => ({
       ...prevState,
       [name]: value,
     }));
@@ -108,7 +102,7 @@ const AlumniForm = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3">
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="firstname" value="Nama Depan" />
+              <Label htmlFor="firstname" value="First Name" />
             </div>
             <TextInput
               id="firstname"
@@ -116,92 +110,149 @@ const AlumniForm = () => {
               type="text"
               autoFocus={true}
               onChange={formChangeHandler}
+              value={alumniPayload.firstname || ''}
             />
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="lastname" value="Nama Belakang" />
+              <Label htmlFor="lastname" value="Last Name" />
             </div>
             <TextInput
               id="lastname"
               name="lastname"
               type="text"
               onChange={formChangeHandler}
+              value={alumniPayload.lastname || ''}
             />
           </div>
         </div>
 
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="birthdate" value="Tanggal Lahir" />
+            <Label htmlFor="birthdate" value="Birth Date" />
           </div>
           <Datepicker
             id="birthdate"
             name="birthdate"
             language="en-id"
-            onSelectedDateChanged={(date) =>
-              datePickerHandler("birthdate", date)
-            }
+            value={alumniPayload.birthdate || ''}
+            onSelectedDateChanged={(date) => datePickerHandler("birthdate", date)}
           />
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="laststudentyear" value="Tahun Terakhir di BTB" />
+            <Label htmlFor="laststudentyear" value="Last Year at BTB" />
+          </div>
+           <DatePicker
+            selected={alumniPayload?.laststudentyear || ''}
+            onChange={(date) => datePickerHandler('laststudentyear', date ? moment(date).format("yyyy") : "")}
+            dateFormat="yyyy"
+            showYearPicker
+          />
+        </div>
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="edukasiOptions" value="Education" />
+          </div>
+          <div className="flex items-center gap-2" id="edukasiOptions">
+            <Checkbox
+              checked={alumniPayload.edukasiOptions.includes('undergraduate')}
+              id="edukasiOptionUnderGraduate"
+              name="edukasiOptions"
+              value="undergraduate"
+              onChange={formChangeHandler}
+            />
+            <Label htmlFor="edukasiOptionUnderGraduate">Undergraduate</Label>
+            <Checkbox
+              checked={alumniPayload.edukasiOptions.includes('postgraduate')}
+              id="edukasiOptionPostgraduate"
+              name="edukasiOptions"
+              value="postgraduate"
+              onChange={formChangeHandler}
+            />
+            <Label htmlFor="edukasiOptionPostgraduate">Postgraduate</Label>
+          </div>
+        </div>
+        {
+          alumniPayload.edukasiOptions.includes('undergraduate') && 
+          <div className="mb-2 block">
+            <Label htmlFor="undergraduateuniversityname" value="Undergraduate University Name" />
+            <TextInput
+              value={alumniPayload.undergraduateuniversityname || ''}
+              type="text"
+              id="undergraduateuniversityname"
+              name="undergraduateuniversityname"
+              onChange={formChangeHandler}
+            />
+          </div>
+        }
+        {
+          alumniPayload.edukasiOptions.includes('postgraduate') &&
+          <div className="mb-2 block">
+            <Label htmlFor="postgraduateuniversityname" value="Postgraduate University Name" />
+            <TextInput
+              value={alumniPayload.postgraduateuniversityname || ''}
+              type="text"
+              id="postgraduateuniversityname"
+              name="postgraduateuniversityname"
+              onChange={formChangeHandler}
+            />
+          </div>
+        }
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="statusKerjaOptions" value="Working Status" />
+          </div>
+          <div className="flex items-center gap-2" id="statusKerjaOptions">
+            <Radio
+              checked={alumniPayload.statusKerjaOptions === 'work'}
+              id="statusKerjaOptionWork"
+              name="statusKerjaOptions"
+              value="work"
+              onChange={formChangeHandler}
+            />
+            <Label htmlFor="statusKerjaOptionWork">Work</Label>
+            <Radio
+              checked={alumniPayload.statusKerjaOptions === 'notwork'}
+              id="statusKerjaOptionNotWork"
+              name="statusKerjaOptions"
+              value="notwork"
+              onChange={formChangeHandler}
+            />
+            <Label htmlFor="statusKerjaOptionNotWork">Not Work</Label>
+          </div>
+        </div>
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="professionname" value="Profession Name" />
           </div>
           <TextInput
-            id="laststudentyear"
-            name="laststudentyear"
+            value={alumniPayload.professionname || ''}
             type="text"
+            id="professionname"
+            name="professionname"
             onChange={formChangeHandler}
           />
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="edukasiOptions" value="Edukasi" />
+            <Label htmlFor="currentlocation" value="Current Location" />
           </div>
-          <div className="flex items-center gap-2" id="edukasiOptions">
-            <Checkbox
-              id="edukasiOptionSarjana"
-              name="edukasiOptions"
-              value="sarjana"
-              onChange={formChangeHandler}
-            />
-            <Label htmlFor="edukasiOptionSarjana">Sarjana</Label>
-            <Checkbox
-              id="edukasiOptionPascaSarjana"
-              name="edukasiOptions"
-              value="pascasarjana"
-              onChange={formChangeHandler}
-            />
-            <Label htmlFor="edukasiOptionPascaSarjana">Pasca Sarjana</Label>
-          </div>
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="statusKerjaOptions" value="Profesi Sekarang" />
-          </div>
-          <div className="flex items-center gap-2" id="statusKerjaOptions">
-            <Radio
-              id="statusKerjaOptionIya"
-              name="statusKerjaOptions"
-              value="kerja"
-              onChange={formChangeHandler}
-            />
-            <Label htmlFor="statusKerjaOptionIya">Ya</Label>
-            <Radio
-              id="statusKerjaOptionTidak"
-              name="statusKerjaOptions"
-              value="belumkerja"
-              onChange={formChangeHandler}
-            />
-            <Label htmlFor="statusKerjaOptionTidak">Belum Bekerja</Label>
-          </div>
+          <Textarea
+            rows={4}
+            value={alumniPayload.currentlocation || ''}
+            type="text"
+            id="currentlocation"
+            name="currentlocation"
+            onChange={formChangeHandler}
+          />
         </div>
         <div>
           <div className="mb-2 block">
             <Label htmlFor="email" value="Email" />
           </div>
           <TextInput
+            value={alumniPayload.email || ''}
             icon={HiMail}
             type="email"
             id="email"
@@ -211,9 +262,10 @@ const AlumniForm = () => {
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="phoneno" value="Nomor Telepon" />
+            <Label htmlFor="phoneno" value="Phone No" />
           </div>
           <TextInput
+            value={alumniPayload.phoneno || ''}
             id="phoneno"
             name="phoneno"
             type="text"

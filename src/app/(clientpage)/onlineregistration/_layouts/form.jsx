@@ -263,17 +263,6 @@ const OnlineRegistrationForm = () => {
         {/* Page 0 */}
         {pageNo == 0 ? (
           <>
-            {/* Email Form */}
-            <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-              Email
-            </div>
-            <div className="md:inline-flex">
-                <div className="mb-2 block w-72">
-                    <Label htmlFor="mainEmail" value="Email"/>
-                </div>
-                <TextInput className="md:w-full pr-10 md:pr-0" id="mainEmail" name="mainEmail" type="email" icon={HiMail} autoFocus={true} onChange={formChangeHandler} value={registrationPayload.mainEmail || ''}/>
-            </div>
-
             {/* Form Opsi Punya Regis Code atau tidak */}
             <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
               Have you registered before or already have registration code?
@@ -304,15 +293,28 @@ const OnlineRegistrationForm = () => {
             </div>
 
             {/* Page Draft Registration No */}
-            {haveRegisCode == "true" ? (
-              <DraftNoForm
-                onChange={onChangeRegistrationCode}
-                onPaste={onPasteRegistrationCode}
-                registrationcode={registrationCode}
-              />
-            ) : (
-              <></>
-            )}
+            {
+              haveRegisCode == "true" ? (
+                <DraftNoForm
+                  onChange={onChangeRegistrationCode}
+                  onPaste={onPasteRegistrationCode}
+                  registrationcode={registrationCode}
+                />
+              ) : haveRegisCode == "false" ? (
+                <>
+                  {/* Email Form */}
+                  <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                    Email
+                  </div>
+                  <div className="md:inline-flex">
+                      <div className="mb-2 block w-72">
+                          <Label htmlFor="mainEmail" value="Email"/>
+                      </div>
+                      <TextInput className="md:w-full pr-10 md:pr-0" id="mainEmail" name="mainEmail" type="email" icon={HiMail} autoFocus={true} onChange={formChangeHandler} value={registrationPayload.mainEmail || ''}/>
+                  </div>
+                </>
+              ) : <></>
+            }
           </>
         ) : (
           <></>
