@@ -8,9 +8,20 @@ const ARDAttachment = ({ attachments }) => {
 		"Copy of Report Card From Previous School": "reportcardattachment",
 	};
 
+	console.log({ attachments });
+
 	const findAttachment = (key) => {
 		const attachment = attachments?.find((x) => x?.type === key);
-		if (attachment) return attachment?.fileName;
+		if (attachment)
+			return (
+				<a
+					className="text-blue-500 hover:text-blue-800"
+					href={attachment?.fileURL}
+					target="_blank"
+				>
+					{attachment?.fileName}
+				</a>
+			);
 		else return "";
 	};
 

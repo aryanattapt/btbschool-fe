@@ -21,7 +21,6 @@ const AdminRegistrationDetailContent = () => {
 		GetDetailStudentRegistration(params.id)
 			.then((res) => {
 				setData(res.data[0]);
-				console.log({ res });
 				setActiveSection("Registration Form");
 				setLoading(false);
 			})
@@ -37,14 +36,10 @@ const AdminRegistrationDetailContent = () => {
 			});
 	}, []);
 
-	const onDownloadPdf = () => {
-		console.log("download");
-	};
-
 	return (
 		<div>
 			<ARDHeaderAction
-				onDownload={onDownloadPdf}
+				data={data}
 				onClick={setActiveSection}
 				active={activeSection}
 			/>

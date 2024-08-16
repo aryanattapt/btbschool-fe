@@ -1,32 +1,24 @@
-import React from "react";
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import { Document } from "@react-pdf/renderer";
 import ARDExportHealthForm from "./HealthForm";
 import ARDExportRecommended from "./Recommended";
 import ARDExportRegistrationForm from "./RegistrationForm";
 import ARDExportTermAndCondition from "./TermAndCondition";
 
-const styles = StyleSheet.create({
-	page: {
-		flexDirection: "row",
-	},
-	section: {
-		margin: 10,
-		padding: 10,
-		flexGrow: 1,
-		backgroundColor: "black",
-	},
-	child: {
-		backgroundColor: "red",
-	},
-});
-
-const ARDExportPdf = ({ data }) => {
+const ARDExportPdf = ({ data, selected = "All" }) => {
 	return (
 		<Document>
-			<ARDExportRegistrationForm data={data} />
-			<ARDExportTermAndCondition data={data} />
-			<ARDExportHealthForm data={data} />
-			<ARDExportRecommended data={data} />
+			{(selected === "All" || selected === "Registration Form") && (
+				<ARDExportRegistrationForm data={data} />
+			)}
+			{(selected === "All" || selected === "Peraturan dan Persyaratan") && (
+				<ARDExportTermAndCondition data={data} />
+			)}
+			{(selected === "All" || selected === "Health Form") && (
+				<ARDExportHealthForm data={data} />
+			)}
+			{(selected === "All" || selected === "Recommended") && (
+				<ARDExportRecommended data={data} />
+			)}
 		</Document>
 	);
 };
