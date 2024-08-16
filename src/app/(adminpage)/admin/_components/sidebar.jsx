@@ -52,6 +52,9 @@ const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
                         <Sidebar.Item href="/admin/calenderacademic" className={"/admin/calenderacademic" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             Calendar
                         </Sidebar.Item>
+                        <Sidebar.Item href="/admin/alumni" className={"/admin/alumni" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                            Alumni
+                        </Sidebar.Item>
                         <Sidebar.Item href="/admin/user" className={"/admin/user" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                             User
                         </Sidebar.Item>
