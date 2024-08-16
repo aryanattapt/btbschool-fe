@@ -82,9 +82,24 @@ const NavBar = () => {
               </div>
             </label>
             <div className="h-7 md:w-0.5 bg-slate-400 mr-2"></div>
-            <button className="text-white font-sans bg-[#EF802B] hover:bg-blue-700 font-medium rounded-full text-sm px-5 py-1.5 text-center w-[70px] login-button-lg hidden md:block">
-              Login
-            </button>
+            <div className="relative inline-block group">
+              <ul className="hidden md:block list-none bg-[#EF802B] text-white font-sans font-medium rounded-full text-sm px-5 py-1.5 text-center cursor-pointer">
+                <li className="relative group">
+                  Login
+                  <ul className="absolute left-0 hidden group-hover:block bg-white text-black mt-2 min-w-[160px] shadow-lg rounded-lg z-10 flex flex-col">
+                    <li>
+                      <a href="#login" className="block px-4 py-2 hover:bg-gray-200 text-center">Login</a>
+                    </li>
+                    <li>
+                      <a href="#signup" className="block px-4 py-2 hover:bg-gray-200 text-center">Sign Up</a>
+                    </li>
+                    <li>
+                      <a href="#settings" className="block px-4 py-2 hover:bg-gray-200 text-center">Settings</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
           <Navbar.Collapse className="flex-auto md:w-full large-nav md:block hidden">
             {navBarPayload[language].navbarlink.map((val, idx) => {
@@ -94,7 +109,7 @@ const NavBar = () => {
                     className="relative group transition-all hover:duration-300"
                     key={idx}
                   >
-                    <Navbar.Link href={val.url} className="text-white hover:bg-[#EF802B]">
+                    <Navbar.Link href={val.url} className="text-white hover:bg-[#EF802B] md:hover:text-[#EF802B]">
                       {val.content}
                     </Navbar.Link>
                     <ul className="absolute w-56 hidden group-hover:block group-hover:group-hover:block bg-[#EF802B] text-white shadow-lg">
@@ -115,7 +130,7 @@ const NavBar = () => {
                 );
               } else {
                 return (
-                  <Navbar.Link href={val.url} key={idx} className="text-white">
+                  <Navbar.Link href={val.url} key={idx} className="text-white md:hover:text-[#EF802B]">
                     {val.content}
                   </Navbar.Link>
                 );
@@ -140,9 +155,27 @@ const NavBar = () => {
                 </div>
               </div>
             </label>
-            <button className="text-white font-sans bg-[#EF802B] hover:bg-blue-700 font-medium rounded-full text-sm px-5 py-1.5 text-center w-[70px]">
+            {/* <button className="text-white font-sans bg-[#EF802B] hover:bg-blue-700 font-medium rounded-full text-sm px-5 py-1.5 text-center w-[70px]">
               Login
-            </button>
+            </button> */}
+            <div className="relative inline-block group sm:block md:hidden">
+              <ul className="list-none bg-[#EF802B] text-white font-sans font-medium rounded-full text-sm px-5 py-1.5 text-center cursor-pointer">
+                <li className="relative group-hover:opacity-100 rounded-full">
+                  Login
+                  <ul className="absolute left-0 hidden group-hover:block bg-white text-black mt-2 min-w-[160px] shadow-lg rounded-lg z-10 flex">
+                    <li className="flex-1">
+                      <a href="#login" className="block px-4 py-2 hover:bg-gray-200 text-center">Login</a>
+                    </li>
+                    <li className="flex-1">
+                      <a href="#signup" className="block px-4 py-2 hover:bg-gray-200 text-center">Sign Up</a>
+                    </li>
+                    <li className="flex-1">
+                      <a href="#settings" className="block px-4 py-2 hover:bg-gray-200 text-center">Settings</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
             {navBarPayload[language].navbarlink.map((val, idx) => {
               if (val.submenu) {
                 return (
