@@ -5,6 +5,13 @@ const SignaturePad = ({formChangeHandler, name, value}) => {
     const SignatureCanvasRef = useRef({});
     const handleClear = () => {
         SignatureCanvasRef.current.clear()
+        formChangeHandler({
+            "target": {
+                "name": name,
+                "value": "", 
+                "type": "signaturepad"
+            }
+        });
     }
 
     useEffect(() => {
