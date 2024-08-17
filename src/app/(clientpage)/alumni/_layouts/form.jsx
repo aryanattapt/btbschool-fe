@@ -18,14 +18,9 @@ import Swal from "sweetalert2";
 import moment from 'moment';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-const convertPhoneNumberToInternational = (phoneNumber) => {
-    phoneNumber = phoneNumber.toString();
-    if (phoneNumber.startsWith('0')) {
-        return '+62' + phoneNumber.slice(1);
-    }
-    return phoneNumber;
-}
+import {
+  convertPhoneNumberToInternational
+} from "../../../../../helpers/string.helper";
 
 const AlumniForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -68,25 +63,41 @@ const AlumniForm = () => {
       formData.append("photoFile", val);
     });
 
-    SubmitAlumni({...alumniPayload, "attachment": [{"file": ""}]})
-    .then(() => {
-      setIsLoading(false);
-      Swal.fire({
-        allowOutsideClick: false,
-        title: "Alumni Submission Notification!",
-        text: "Success submit Alumni!",
-        icon: "info",
-      });
+    UploadAttachment("alumni", formData)
+    .then((res) => {
+      const alumniSubmitPayload = { ...alumniPayload };
+      alumniSubmitPayload.attachment = res.data;
+      delete alumniSubmitPayload.photoFile;
+      SubmitAlumni(alumniSubmitPayload)
+        .then((_) => {
+          setIsLoading(false);
+          Swal.fire({
+            allowOutsideClick: false,
+            title: "Alumni Submission Notification!",
+            text: "Success submit Alumni!",
+            icon: "info",
+          });
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          Swal.fire({
+            allowOutsideClick: false,
+            title: "Alumni Submission Notification!",
+            html: err,
+            icon: "error",
+          });
+        });
     })
-    .catch(err => {
+    .catch((err) => {
       setIsLoading(false);
       Swal.fire({
         allowOutsideClick: false,
         title: "Alumni Submission Notification!",
-        text: err,
+        html: err,
         icon: "error",
       });
     });
+
   };
 
   const datePickerHandler = (name, value) => {

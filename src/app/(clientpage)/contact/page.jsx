@@ -50,11 +50,11 @@ const ContactPage = () => {
                   </div>
                 </div>
               ))}
-              <div className="py-3 flex items-center text-sm text-gray-800 border-t border-gray-200 dark:text-white dark:border-neutral-600"></div>
-              <div className="px-4 md:px-6 lg:px-8">
+              {/* <div className="py-3 flex items-center text-sm text-gray-800 border-t border-gray-200 dark:text-white dark:border-neutral-600"></div> */}
+              <div className="px-4 md:px-6 lg:px-8 mt-12">
                 <div className="flex items-center mt-2">
                   <HiMail className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                  <p className="ml-2 text-sm md:text-base lg:text-lg">
+                  <p className="ml-2 text-sm md:text-base lg:text-lg" onClick={() => window.location.href = "mailto:" + contactUsData[language]?.email} >
                     {contactUsData[language].email}
                   </p>
                 </div>

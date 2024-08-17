@@ -6,6 +6,9 @@ import { SubmitContact } from "../../../../../services/contact.service";
 import Swal from "sweetalert2";
 import { ContactUsPayLoad } from "../../../../../data";
 import { useLanguageStore } from "../../../../../store/language.store";
+import {
+  convertPhoneNumberToInternational
+} from "../../../../../helpers/string.helper";
 
 const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(null);
@@ -13,7 +16,12 @@ const ContactForm = () => {
 
   const formChangeHandler = (e) => {
     const { name, value, type, files } = e.target;
-    if (type == "file") {
+    if(name === 'phoneno'){
+      setContactPayload(prevState => ({
+        ...prevState,
+        [name]: convertPhoneNumberToInternational(value),
+      }));
+    } else if (type == "file") {
       setContactPayload((prevState) => ({
         ...prevState,
         [name]: files,
@@ -45,7 +53,7 @@ const ContactForm = () => {
         Swal.fire({
           allowOutsideClick: false,
           title: "Contact Submission Notification!",
-          text: err,
+          html: err,
           icon: "error",
         });
       });
@@ -69,6 +77,7 @@ const ContactForm = () => {
             name="firstname"
             type="text"
             autoFocus={true}
+            value={contactPayload.firstname || ''}
             onChange={formChangeHandler}
           />
         </div>
@@ -83,6 +92,7 @@ const ContactForm = () => {
             id="lastname"
             name="lastname"
             type="text"
+            value={contactPayload.lastname || ''}
             onChange={formChangeHandler}
           />
         </div>
@@ -97,6 +107,7 @@ const ContactForm = () => {
             id="phoneno"
             name="phoneno"
             type="text"
+            value={contactPayload.phoneno || ''}
             onChange={formChangeHandler}
           />
         </div>
@@ -112,6 +123,7 @@ const ContactForm = () => {
             type="email"
             id="email"
             name="email"
+            value={contactPayload.email || ''}
             onChange={formChangeHandler}
           />
         </div>
@@ -128,6 +140,7 @@ const ContactForm = () => {
             placeholder={`${contactUsData[language].form.placeHolderMessage}`}
             required
             rows={4}
+            value={contactPayload.message || ''}
             onChange={formChangeHandler}
           />
         </div>
