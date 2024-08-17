@@ -113,7 +113,12 @@ const CalenderAcademicAdd = () => {
 
     return <>
         <NavbarSidebarLayout >
-            <div>
+            <div className="max-w-full grid gap-3 md:px-8">
+                <div className="inline-flex flex justify-between">
+                    <div className="text-[35px] text-[#00305E] font-bold">
+                        Calender Academic Form
+                    </div>
+                </div>
                 <div>
                     <div className="mb-2 block">
                         <Label htmlFor="date" value="Tanggal" />

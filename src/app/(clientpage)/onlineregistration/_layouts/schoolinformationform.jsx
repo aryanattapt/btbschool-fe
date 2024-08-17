@@ -6,7 +6,7 @@ import {
 } from "flowbite-react";
 import moment from "moment";
 
-const SchoolInformationForm = ({formChangeHandler, payload}) => {
+const SchoolInformationForm = ({formChangeHandler, payload, yearPayload}) => {
     return <>
         <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
             School Information
@@ -18,8 +18,13 @@ const SchoolInformationForm = ({formChangeHandler, payload}) => {
             <div className="w-full pr-10 md:pr-0">
                 <Select id="schoolyear" name="schoolyear" required value={payload.schoolyear || ''} onChange={formChangeHandler}>
                     <option value="">Select School Year</option>
-                    <option value={`${moment().add("-1", "years").format("yyyy")}-${moment().format("yyyy")}`}>{moment().add("-1", "years").format("yyyy")}-{moment().format("yyyy")}</option>
-                    <option value={`${moment().format("yyyy")}-${moment().add("1", "years").format("yyyy")}`}>{moment().format("yyyy")}-{moment().add("1", "years").format("yyyy")}</option>
+                    {/* <option value={`${moment().add("-1", "years").format("yyyy")}-${moment().format("yyyy")}`}>{moment().add("-1", "years").format("yyyy")}-{moment().format("yyyy")}</option>
+                    <option value={`${moment().format("yyyy")}-${moment().add("1", "years").format("yyyy")}`}>{moment().format("yyyy")}-{moment().add("1", "years").format("yyyy")}</option> */}
+                    {
+                        yearPayload?.map((val, idx) => {
+                            return <option key={idx} value={`${val.startYear}-${val.endYear}`}>{`${val.startYear}-${val.endYear}`}</option>
+                        })
+                    }
                 </Select>
             </div>
         </div>

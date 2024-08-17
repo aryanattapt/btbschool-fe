@@ -105,7 +105,12 @@ const FAQ = () => {
 
     return <>
         <NavbarSidebarLayout >
-            <div>
+            <div className="max-w-full grid gap-3 md:px-8">
+                <div className="inline-flex flex justify-between">
+                    <div className="text-[35px] text-[#00305E] font-bold">
+                        F.A.Q Form
+                    </div>
+                </div>
                 <div>
                     <div className="mb-2 block">
                         <Label htmlFor="question" value="Question"/>

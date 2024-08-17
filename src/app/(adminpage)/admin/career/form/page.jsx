@@ -113,7 +113,12 @@ const CareerForm = () => {
 
     return <>
         <NavbarSidebarLayout >
-            <div>
+            <div className="max-w-full grid gap-3 md:px-8">
+                <div className="inline-flex flex justify-between">
+                    <div className="text-[35px] text-[#00305E] font-bold">
+                        Career Form
+                    </div>
+                </div>
                 <div>
                     <div className="mb-2 block">
                         <Label htmlFor="jobtitlename" value="Job Title Name"/>
@@ -124,9 +129,9 @@ const CareerForm = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="experienced" value="Experience"/>
                     </div>
-                    <div>
+                    <div className="flex flex-wrap gap-2">
                         <Radio checked={payload.experienced == 'experienced'} id="experienced" name="experienced" value="experienced" onChange={formChangeHandler}/>
-                        <Label htmlFor="experienced">Experienced</Label>
+                        <Label htmlFor="experienced" className="mr-4">Experienced</Label>
                         <Radio checked={payload.experienced == 'freshgraduate'} id="freshgraduate" name="experienced" value="freshgraduate" onChange={formChangeHandler}/>
                         <Label htmlFor="freshgraduate">Fresh Graduate</Label>
                     </div>
@@ -167,32 +172,32 @@ const CareerForm = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="jobtype" value="Job Type"/>
                     </div>
-                    <div>
+                    <div className="flex flex-wrap gap-2">
                         <Radio checked={payload.jobtype == 'Full time, Permanent'} id="jobtimefulltime" name="jobtype" value="Full time, Permanent" onChange={formChangeHandler}/>
-                        <Label htmlFor="jobtimefulltime">Full time, Permanent</Label>
+                        <Label htmlFor="jobtimefulltime" className="mr-4">Full time, Permanent</Label>
                         <Radio checked={payload.jobtype == 'Contract'} id="jobtimecontract" name="jobtype" value="Contract" onChange={formChangeHandler}/>
-                        <Label htmlFor="jobtimecontract">Contract</Label>
+                        <Label htmlFor="jobtimecontract" className="mr-4">Contract</Label>
                         <Radio checked={payload.jobtype == 'Outsourcing'} id="jobtimeoutsourcing" name="jobtype" value="Outsourcing" onChange={formChangeHandler}/>
-                        <Label htmlFor="jobtimeoutsourcing">Outsourcing</Label>
+                        <Label htmlFor="jobtimeoutsourcing" className="mr-4">Outsourcing</Label>
                     </div>
                 </div>
                 <div>
                     <div className="mb-2 block">
                         <Label htmlFor="experiencelevel" value="Experience Level"/>
                     </div>
-                    <div>
+                    <div className="flex flex-wrap gap-2">
                         <Radio checked={payload.experiencelevel == 'All'} id="experiencelevelAll" name="experiencelevel" value="All" onChange={formChangeHandler}/>
-                        <Label htmlFor="experiencelevelAll">All</Label>
+                        <Label htmlFor="experiencelevelAll" className="mr-4">All</Label>
                         <Radio checked={payload.experiencelevel == 'S3'} id="experiencelevelS3" name="experiencelevel" value="S3" onChange={formChangeHandler}/>
-                        <Label htmlFor="experiencelevelS3">S3</Label>
+                        <Label htmlFor="experiencelevelS3" className="mr-4">S3</Label>
                         <Radio checked={payload.experiencelevel == 'S2'} id="experiencelevelS2" name="experiencelevel" value="S2" onChange={formChangeHandler}/>
-                        <Label htmlFor="experiencelevelS2">S2</Label>
+                        <Label htmlFor="experiencelevelS2" className="mr-4">S2</Label>
                         <Radio checked={payload.experiencelevel == 'S1'} id="experiencelevelS1" name="experiencelevel" value="S1" onChange={formChangeHandler}/>
-                        <Label htmlFor="experiencelevelS1">S1</Label>
+                        <Label htmlFor="experiencelevelS1" className="mr-4">S1</Label>
                         <Radio checked={payload.experiencelevel == 'SMA'} id="experiencelevelSMA" name="experiencelevel" value="SMA" onChange={formChangeHandler}/>
-                        <Label htmlFor="experiencelevelSMA">SMA</Label>
+                        <Label htmlFor="experiencelevelSMA" className="mr-4">SMA</Label>
                         <Radio checked={payload.experiencelevel == 'SMP'} id="experiencelevelSMP" name="experiencelevel" value="SMP" onChange={formChangeHandler}/>
-                        <Label htmlFor="experiencelevelSMP">SMP</Label>
+                        <Label htmlFor="experiencelevelSMP" className="mr-4">SMP</Label>
                     </div>
                 </div>
                 <div>

@@ -65,6 +65,9 @@ const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
                             <Sidebar.Item href="/admin/registration/outstanding" className={"/admin/registration/outstanding" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                                 Outstanding
                             </Sidebar.Item>
+                            <Sidebar.Item href="/admin/registration/yearmanager" className={"/admin/registration/yearmanager" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                                Year Manager
+                            </Sidebar.Item>
                         </Sidebar.Collapse>
                     </Sidebar.ItemGroup>
                     <Sidebar.ItemGroup>

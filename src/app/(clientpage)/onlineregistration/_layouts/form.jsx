@@ -26,6 +26,7 @@ import { HiMail } from "react-icons/hi";
 import {
   convertPhoneNumberToInternational
 } from "../../../../../helpers/string.helper";
+import { GetConfig } from "../../../../../services/config.service";
 
 const OnlineRegistrationForm = () => {
   let [pageNo, setPageNo] = useState(0);
@@ -33,6 +34,7 @@ const OnlineRegistrationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [registrationPayload, setRegistrationPayload] = useState({medicalproblemoptions: []});
   const [nationalityPayload, setNationalityPayload] = useState([]);
+  const [yearPayload, setYearPayload] = useState([]);
   
   const formChangeHandler = (e) => {
     const { name, value, type, files } = e.target;
@@ -250,9 +252,14 @@ const OnlineRegistrationForm = () => {
 
   useEffect(() => {
     (async () => {
+      const collectedPromise = [];
+      collectedPromise.push(GetCountry());
+      collectedPromise.push(GetConfig('onlineregisyear', {}))
+
       try {
-        const res = await GetCountry();
-        setNationalityPayload(res);
+        const [country, year] = await Promise.all(collectedPromise);
+        setNationalityPayload(country);
+        setYearPayload(year)
       } catch (error) {console.log(error);}
     })();
   }, []);
@@ -333,6 +340,7 @@ const OnlineRegistrationForm = () => {
         {pageNo == 1 ? (
           <>
             <SchoolInformationForm
+              yearPayload={yearPayload}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
             />
