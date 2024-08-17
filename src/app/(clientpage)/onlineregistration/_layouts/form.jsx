@@ -23,6 +23,9 @@ import {
 import Swal from "sweetalert2";
 import _ from "lodash";
 import { HiMail } from "react-icons/hi";
+import {
+  convertPhoneNumberToInternational
+} from "../../../../../helpers/string.helper";
 
 const OnlineRegistrationForm = () => {
   let [pageNo, setPageNo] = useState(0);
@@ -33,7 +36,13 @@ const OnlineRegistrationForm = () => {
   
   const formChangeHandler = (e) => {
     const { name, value, type, files } = e.target;
-    if (type == "file") {
+    if(name.includes("phone") || name.includes("telephone")){
+      console.log(`convert phone format ${name}`);
+      setRegistrationPayload(prevState => ({
+        ...prevState,
+        [name]: convertPhoneNumberToInternational(value),
+      }));
+    } else if (type == "file") {
       Object.keys(files).map((val) => {
         setRegistrationPayload((prevState) => ({
           ...prevState,
