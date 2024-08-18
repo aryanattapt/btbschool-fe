@@ -9,19 +9,25 @@ import {
     TextInput,
     Spinner
 } from "flowbite-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HiMail } from "react-icons/hi";
 import { SubmitCareer } from '../../../../../../services/career.service';
 import { UploadAttachment } from '../../../../../../services/attachment.service';
 import Swal from "sweetalert2";
+import {
+    convertPhoneNumberToInternational
+  } from "../../../../../../helpers/string.helper";
 import Recaptcha from '../../../../_components/recaptcha';
 import {
   ValidateGoogleRecaptcha
 } from '../../../../../../services/googlerecaptcha.service'
+import { GetCountry } from '../../../../../../services/country.service'
 
 const CareerApplyForm = ({params}) => {
     const [isLoading, setIsLoading] = useState(null);
     const [careerPayload, setCareerPayload] = useState({"careerid": params.id});
+
+    const [nationalityPayload, setNationalityPayload] = useState([]);
 
     /* State google recaptcha */
     const [captchaValue, setCaptchaValue] = useState(null);
@@ -30,7 +36,15 @@ const CareerApplyForm = ({params}) => {
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
-        if(type == 'file'){
+        console.log(name);
+        console.log(convertPhoneNumberToInternational(value));
+        if(name === 'phoneno'){
+            console.log('masuk');
+            setCareerPayload(prevState => ({
+                ...prevState,
+                [name]: convertPhoneNumberToInternational(value),
+            }));
+        } else if(type == 'file'){
             Object.keys(files).map((val) => {
                 setCareerPayload(prevState => ({
                     ...prevState,
@@ -57,6 +71,18 @@ const CareerApplyForm = ({params}) => {
             }));
         }
     };
+
+    useEffect(() => {
+        (async () => {
+            const collectedPromise = [];
+            collectedPromise.push(GetCountry());
+
+            try {
+                const [country] = await Promise.all(collectedPromise);
+                setNationalityPayload(country);
+            } catch (error) {console.log(error);}
+        })();
+    }, []);
 
     const submitHandler = async (e) => {
         setIsLoading(true);
@@ -118,46 +144,50 @@ const CareerApplyForm = ({params}) => {
                 <div className="mb-2 block">
                     <Label htmlFor="firstname" value="Nama Depan"/>
                 </div>
-                <TextInput id="firstname" name="firstname" type="text" autoFocus={true} onChange={formChangeHandler}/>
+                <TextInput id="firstname" name="firstname" type="text" value={careerPayload.firstname || ''} autoFocus={true} onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="lastname" value="Nama Belakang" />
                 </div>
-                <TextInput id="lastname" name="lastname" type="text" onChange={formChangeHandler}/>
+                <TextInput id="lastname" name="lastname" type="text" value={careerPayload.lastname || ''} onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="additionalInfo" value="Informasi Tambahan" />
                 </div>
-                <Textarea id="additionalInfo" name="additionalInfo" required rows={4} onChange={formChangeHandler} />
+                <Textarea id="additionalInfo" name="additionalInfo" value={careerPayload.additionalInfo || ''} required rows={4} onChange={formChangeHandler} />
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="email" value="Email" />
                 </div>
-                <TextInput icon={HiMail} type="email" id="email" name="email" onChange={formChangeHandler}/>
+                <TextInput icon={HiMail} type="email" id="email" name="email" value={careerPayload.email || ''} onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="phoneno" value="Nomor Telepon" />
                 </div>
-                <TextInput id="phoneno" name="phoneno" type="text" onChange={formChangeHandler}/>
+                <TextInput id="phoneno" name="phoneno" type="text" value={careerPayload.phoneno || ''} onChange={formChangeHandler}/>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="country" value="Negara"/>
                 </div>
-                <Select id="country" name="country" required defaultValue={""} onChange={formChangeHandler}>
+                <Select id="country" name="country" required value={careerPayload.country || ''} onChange={formChangeHandler}>
                     <option value="">Select Country</option>
-                    <option value="ID">Indonesia</option>
+                    {
+                        nationalityPayload.map((val, idx) => {
+                            return <option key={idx} value={`${val}`}>{val}</option>
+                        })
+                    }
                 </Select>
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="currentaddress" value="Lokasi Sekarang" />
                 </div>
-                <Textarea id="currentaddress" name="currentaddress" required rows={4} onChange={formChangeHandler} />
+                <Textarea id="currentaddress" name="currentaddress" required rows={4} value={careerPayload.currentaddress || ''} onChange={formChangeHandler} />
             </div>
             <div>
                 <div className="mb-2 block">
