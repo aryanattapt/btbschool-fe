@@ -1,6 +1,6 @@
 "use client";
 import { Button, Label, Spinner, TextInput, Textarea } from "flowbite-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { HiMail } from "react-icons/hi";
 import { SubmitContact } from "../../../../../services/contact.service";
 import Swal from "sweetalert2";
@@ -9,6 +9,10 @@ import { useLanguageStore } from "../../../../../store/language.store";
 import {
   convertPhoneNumberToInternational
 } from "../../../../../helpers/string.helper";
+import Recaptcha from '../../../_components/recaptcha';
+import {
+  ValidateGoogleRecaptcha
+} from '../../../../../services/googlerecaptcha.service'
 
 const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(null);
@@ -34,33 +38,40 @@ const ContactForm = () => {
     }
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     setIsLoading(true);
+    try {
+        if (!isRecaptchaValidated) {
+            await ValidateGoogleRecaptcha(captchaValue);
+            setIsRecaptchaValidated(true);
+        }
 
-    /* Call API in here... */
-    SubmitContact(contactPayload)
-      .then((_) => {
-        setIsLoading(false);
+        await SubmitContact(contactPayload);
         Swal.fire({
-          allowOutsideClick: false,
-          title: "Contact Submission Notification!",
-          text: "Success send contact",
-          icon: "success",
+            allowOutsideClick: false,
+            title: "Contact Submission Notification!",
+            text: "Success send contact",
+            icon: "success",
         });
-      })
-      .catch((err) => {
-        setIsLoading(false);
+    } catch (err) {
         Swal.fire({
-          allowOutsideClick: false,
-          title: "Contact Submission Notification!",
-          html: err,
-          icon: "error",
+            allowOutsideClick: false,
+            title: "Contact Submission Notification!",
+            html: err || "An error occurred",
+            icon: "error",
         });
-      });
+    } finally {
+        setIsLoading(false);
+    }
   };
 
   const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
   const { language } = useLanguageStore();
+
+  /* State google recaptcha */
+  const [captchaValue, setCaptchaValue] = useState(null);
+  const [isRecaptchaValidated, setIsRecaptchaValidated] = useState(false);
+  const captchaRef = useRef();
 
   return (
     <>
@@ -142,6 +153,13 @@ const ContactForm = () => {
             rows={4}
             value={contactPayload.message || ''}
             onChange={formChangeHandler}
+          />
+        </div>
+        <div>
+          <Recaptcha
+            recaptchaRef={captchaRef}
+            handleRecaptchaChange={(value) => setCaptchaValue(value)}
+            handleRecaptchaExpired={() => {setCaptchaValue(null); setIsRecaptchaValidated(false)}}
           />
         </div>
         <div>

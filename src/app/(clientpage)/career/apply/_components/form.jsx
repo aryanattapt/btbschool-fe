@@ -9,15 +9,24 @@ import {
     TextInput,
     Spinner
 } from "flowbite-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { HiMail } from "react-icons/hi";
 import { SubmitCareer } from '../../../../../../services/career.service';
 import { UploadAttachment } from '../../../../../../services/attachment.service';
 import Swal from "sweetalert2";
+import Recaptcha from '../../../../_components/recaptcha';
+import {
+  ValidateGoogleRecaptcha
+} from '../../../../../../services/googlerecaptcha.service'
 
 const CareerApplyForm = ({params}) => {
     const [isLoading, setIsLoading] = useState(null);
     const [careerPayload, setCareerPayload] = useState({"careerid": params.id});
+
+    /* State google recaptcha */
+    const [captchaValue, setCaptchaValue] = useState(null);
+    const [isRecaptchaValidated, setIsRecaptchaValidated] = useState(false);
+    const captchaRef = useRef();
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
@@ -49,49 +58,44 @@ const CareerApplyForm = ({params}) => {
         }
     };
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         setIsLoading(true);
-        var formData = new FormData();
-        careerPayload?.cvFile?.map((val) => {
-            formData.append('cvFile', val);
-        });
+        
+        try {
+            if (!isRecaptchaValidated) {
+                await ValidateGoogleRecaptcha(captchaValue);
+                setIsRecaptchaValidated(true);
+            }
+            
+            const formData = new FormData();
+            careerPayload?.cvFile?.forEach((val) => {
+                formData.append('cvFile', val);
+            });
 
-        /* Call API in here... */
-        UploadAttachment('career', formData)
-        .then((res) => {
-            const careerSubmitPayload = {...careerPayload};
+            const res = await UploadAttachment('career', formData);
+            const careerSubmitPayload = { ...careerPayload };
             careerSubmitPayload.attachment = res.data;
             delete careerSubmitPayload.cvFile;
-            SubmitCareer(careerSubmitPayload)
-            .then(_ => {
-                setIsLoading(false);
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Alumni Submission Notification!',
-                    text: "Success submit Alumni!",
-                    icon: 'info',
-                });
-            })
-            .catch((err) => {
-                setIsLoading(false);
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Alumni Submission Notification!',
-                    text: err,
-                    icon: 'error',
-                });
-            })
-        })
-        .catch((err) => {
-            setIsLoading(false);
+    
+            await SubmitCareer(careerSubmitPayload);
+    
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Alumni Submission Notification!',
-                text: err,
+                text: "Success submit Alumni!",
+                icon: 'info',
+            });
+        } catch (err) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Alumni Submission Notification!',
+                text: err || 'An error occurred',
                 icon: 'error',
             });
-        });
-    }
+        } finally {
+            setIsLoading(false);
+        }
+    };    
 
     return <>
         <div className="max-w-full grid gap-3">
@@ -160,6 +164,13 @@ const CareerApplyForm = ({params}) => {
                     <Label htmlFor="cvFile" value="Unggah CV" />
                 </div>
                 <FileInput accept=".pdf" id="cvFile" name="cvFile" helperText="Ukuran Maksimum 2MB. Format PDF" onChange={formChangeHandler}/>
+            </div>
+            <div>
+                <Recaptcha
+                    recaptchaRef={captchaRef}
+                    handleRecaptchaChange={(value) => setCaptchaValue(value)}
+                    handleRecaptchaExpired={() => {setCaptchaValue(null); setIsRecaptchaValidated(false)}}
+                />
             </div>
             <div>
                 <Button type="submit" className="w-full lg:w-auto" disabled={isLoading} onClick={submitHandler}>

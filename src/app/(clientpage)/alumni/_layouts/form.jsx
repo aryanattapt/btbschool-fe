@@ -10,7 +10,7 @@ import {
   Spinner,
   Textarea,
 } from "flowbite-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { HiMail } from "react-icons/hi";
 import { UploadAttachment } from "../../../../../services/attachment.service";
 import { SubmitAlumni } from "../../../../../services/alumni.service";
@@ -21,10 +21,19 @@ import "react-datepicker/dist/react-datepicker.css";
 import {
   convertPhoneNumberToInternational
 } from "../../../../../helpers/string.helper";
+import Recaptcha from '../../../_components/recaptcha';
+import {
+  ValidateGoogleRecaptcha
+} from '../../../../../services/googlerecaptcha.service'
 
 const AlumniForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [alumniPayload, setAlumniPayload] = useState({edukasiOptions: []});
+
+  /* State google recaptcha */
+  const [captchaValue, setCaptchaValue] = useState(null);
+  const [isRecaptchaValidated, setIsRecaptchaValidated] = useState(false);
+  const captchaRef = useRef();
 
   const formChangeHandler = (e) => {
     const { name, value, type, files, checked } = e.target;
@@ -56,48 +65,45 @@ const AlumniForm = () => {
     }
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     setIsLoading(true);
-    var formData = new FormData();
-    alumniPayload?.photoFile?.map(val => {
-      formData.append("photoFile", val);
-    });
+    try {
+        if (!isRecaptchaValidated) {
+            await ValidateGoogleRecaptcha(captchaValue);
+            setIsRecaptchaValidated(true);
+        }
 
-    UploadAttachment("alumni", formData)
-    .then((res) => {
-      const alumniSubmitPayload = { ...alumniPayload };
-      alumniSubmitPayload.attachment = res.data;
-      delete alumniSubmitPayload.photoFile;
-      SubmitAlumni(alumniSubmitPayload)
-        .then((_) => {
-          setIsLoading(false);
-          Swal.fire({
+        const formData = new FormData();
+        alumniPayload?.photoFile?.forEach(val => {
+            formData.append("photoFile", val);
+        });
+
+        const res = await UploadAttachment("alumni", formData);
+
+        const alumniSubmitPayload = { ...alumniPayload };
+        alumniSubmitPayload.attachment = res.data;
+        delete alumniSubmitPayload.photoFile;
+
+        await SubmitAlumni(alumniSubmitPayload);
+
+        Swal.fire({
             allowOutsideClick: false,
             title: "Alumni Submission Notification!",
             text: "Success submit Alumni!",
             icon: "info",
-          });
-        })
-        .catch((err) => {
-          setIsLoading(false);
-          Swal.fire({
+        });
+
+    } catch (err) {
+        // Error handling
+        Swal.fire({
             allowOutsideClick: false,
             title: "Alumni Submission Notification!",
-            html: err,
+            html: err || "An error occurred",
             icon: "error",
-          });
         });
-    })
-    .catch((err) => {
-      setIsLoading(false);
-      Swal.fire({
-        allowOutsideClick: false,
-        title: "Alumni Submission Notification!",
-        html: err,
-        icon: "error",
-      });
-    });
-
+    } finally {
+        setIsLoading(false);
+    }
   };
 
   const datePickerHandler = (name, value) => {
@@ -294,6 +300,13 @@ const AlumniForm = () => {
             name="photoFile"
             helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg, .png)"
             onChange={formChangeHandler}
+          />
+        </div>
+        <div>
+          <Recaptcha
+            recaptchaRef={captchaRef}
+            handleRecaptchaChange={(value) => setCaptchaValue(value)}
+            handleRecaptchaExpired={() => {setCaptchaValue(null); setIsRecaptchaValidated(false)}}
           />
         </div>
         <div>
