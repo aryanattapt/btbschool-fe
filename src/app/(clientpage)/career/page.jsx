@@ -7,12 +7,14 @@ import CareerList from "./_components/CareerList";
 import CareerHeroSection from "./_components/HeroSection";
 
 const CareerPage = () => {
-	const [datas, setDatas] = useState([]);
+	const [rawDatas, setRawDatas] = useState([]);
+	const [displayDatas, setDisplayDatas] = useState([]);
 
 	const fetchData = () => {
 		GetActiveCareerList()
 			.then((res) => {
-				setDatas(res);
+				setRawDatas(res);
+				setDisplayDatas(res);
 			})
 			.catch((err) => {
 				Swal.fire({
@@ -22,6 +24,34 @@ const CareerPage = () => {
 					icon: "error",
 				});
 			});
+	};
+
+	const onFilter = (jobcategory, jobtitle) => {
+		if (jobcategory === "Semua Bagian") {
+			if (jobtitle) {
+				setDisplayDatas([
+					...rawDatas.filter((x) =>
+						x.jobtitlename.toLowerCase().includes(jobtitle.toLowerCase())
+					),
+				]);
+			} else {
+				setDisplayDatas([...rawDatas]);
+			}
+		} else {
+			if (jobtitle) {
+				setDisplayDatas([
+					...rawDatas.filter(
+						(x) =>
+							x.jobcategory === jobcategory &&
+							x.jobtitlename.toLowerCase().includes(jobtitle.toLowerCase())
+					),
+				]);
+			} else {
+				setDisplayDatas([
+					...rawDatas.filter((x) => x.jobcategory === jobcategory),
+				]);
+			}
+		}
 	};
 
 	useEffect(() => {
@@ -41,8 +71,8 @@ const CareerPage = () => {
 				</div>
 			</CareerHeroSection>
 			<div className="relative flex flex-col py-12 items-center justify-center">
-				<CareerFilter />
-				<CareerList datas={datas} />
+				<CareerFilter rawDatas={rawDatas} onFilter={onFilter} />
+				<CareerList datas={displayDatas} />
 			</div>
 		</div>
 	);
