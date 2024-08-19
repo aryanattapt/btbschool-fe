@@ -59,7 +59,7 @@ const FooterComponent = () => {
                 <h2 className="font-semibold md:text-[30px] text-[20px]">
                   {footerPayload[language].pagenavtitle}
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 sm:mt-3 sm:grid-cols-1 md:mr-10">
+                <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 sm:mt-3 sm:grid-cols-1 md:mr-10">
                   {footerPayload[language].url.map((val, idx) => {
                     return (
                       <div key={idx}>
@@ -99,11 +99,13 @@ const FooterComponent = () => {
                           <a href={`https://wa.me/${val.phoneno}`}>
                             {val.phoneno}
                           </a>
-                        </div>
-                        <div className="mt-2 md:text-left">
+                          &nbsp;/&nbsp;
                           <a href={`https://wa.me/${val.phoneno2}`}>
                             {val.phoneno2}
                           </a>
+                        </div>
+                        <div className="mt-2 md:text-left">
+                          
                         </div>
                       </div>
                     </div>

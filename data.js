@@ -1205,7 +1205,7 @@ export const CalendarAcademicPayload = {
       title: "KALENDER AKADEMIS",
       url: [{ title: "Kalender", url: "/calendar-academic" }],
     },
-    buttonAction: "Tampilkan Penuh Kalender",
+    buttonAction: "Unduh Kalender Akademis",
     "tableHeader": [
       "Tanggal",
       "Aktivitas"
@@ -1216,7 +1216,7 @@ export const CalendarAcademicPayload = {
       title: "ACADEMIC CALENDAR",
       url: [{ title: "Calendar", url: "/calendar-academic" }],
     },
-    buttonAction: "Show Full Calendar",
+    buttonAction: "Download Calendar Academic",
     "tableHeader": [
       "Date",
       "Activity"
