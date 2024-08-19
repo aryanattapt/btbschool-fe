@@ -1206,6 +1206,10 @@ export const CalendarAcademicPayload = {
       url: [{ title: "Kalender", url: "/calendar-academic" }],
     },
     buttonAction: "Tampilkan Penuh Kalender",
+    "tableHeader": [
+      "Tanggal",
+      "Aktivitas"
+    ]
   },
   EN: {
     pagingHeader: {
@@ -1213,6 +1217,10 @@ export const CalendarAcademicPayload = {
       url: [{ title: "Calendar", url: "/calendar-academic" }],
     },
     buttonAction: "Show Full Calendar",
+    "tableHeader": [
+      "Date",
+      "Activity"
+    ]
   },
 };
 
