@@ -102,7 +102,7 @@ const DetailCareer = () => {
 						/>
 						<DetailInformationRow
 							label={"Posted On"}
-							value={"01 Februari 2024"}
+							value={moment(data?.registereddate).format("DD MMMM YYYY")}
 						/>
 						<DetailInformationRow label={"Job Type"} value={data?.jobtype} />
 						<DetailInformationRow
