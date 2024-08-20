@@ -27,31 +27,16 @@ const CareerPage = () => {
 	};
 
 	const onFilter = (jobcategory, jobtitle) => {
-		if (jobcategory === "Semua Bagian") {
-			if (jobtitle) {
-				setDisplayDatas([
-					...rawDatas.filter((x) =>
-						x.jobtitlename.toLowerCase().includes(jobtitle.toLowerCase())
-					),
-				]);
-			} else {
-				setDisplayDatas([...rawDatas]);
-			}
-		} else {
-			if (jobtitle) {
-				setDisplayDatas([
-					...rawDatas.filter(
-						(x) =>
-							x.jobcategory === jobcategory &&
-							x.jobtitlename.toLowerCase().includes(jobtitle.toLowerCase())
-					),
-				]);
-			} else {
-				setDisplayDatas([
-					...rawDatas.filter((x) => x.jobcategory === jobcategory),
-				]);
-			}
+		let container = [...rawDatas];
+		if (jobcategory !== "Semua Bagian") {
+			container = container.filter((x) => x.jobcategory === jobcategory);
 		}
+		if (jobtitle) {
+			container = container.filter((x) =>
+				x.jobtitlename.toLowerCase().includes(jobtitle.toLowerCase())
+			);
+		}
+		setDisplayDatas([...container]);
 	};
 
 	useEffect(() => {
