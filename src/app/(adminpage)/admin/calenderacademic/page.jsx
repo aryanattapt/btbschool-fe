@@ -19,7 +19,7 @@ const CalenderAcademicPage = () => {
 
     const fetchConfig = () => {
         GetConfig('calenderacademic', {})
-        .then(res => setPayload(res))
+        .then(res => {setPayload(res)})
         .catch((err) => {
             console.log(err);
         })

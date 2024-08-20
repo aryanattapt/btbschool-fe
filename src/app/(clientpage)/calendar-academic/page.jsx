@@ -30,7 +30,7 @@ const CalendarAcademicPage = () => {
   return <>
     <Banner />
     <Pagging />
-    <Content payload={payload} content={calendarAcademicData[language]}/>
+    <Content payload={payload} content={calendarAcademicData[language]} language={language}/>
     <div className='my-10 flex justify-center'>
       <button className='bg-[#EF802B] p-3 rounded text-white flex items-center'>
         <FaDownload className="text-white mr-2"/> 

@@ -1,4 +1,4 @@
-const Content = ({payload, content}) => {
+const Content = ({payload, content, language}) => {
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: 'long', year: 'numeric' };
         return new Intl.DateTimeFormat('en-GB', options).format(new Date(dateString));
@@ -16,7 +16,7 @@ const Content = ({payload, content}) => {
                             {
                                 payload.map((val, idx) => (
                                     <div key={idx} className={`py-2 px-5 border-b ${idx % 2 === 0 ? 'bg-slate-200' : 'bg-slate-400'} hover:bg-slate-100 text-black`}>
-                                        <p>{idxHeader % 2 === 0 ? formatDate(val.date) : val.activity}</p>
+                                        <p>{idxHeader % 2 === 0 ? formatDate(val.date) : val[language].activity}</p>
                                     </div>
                                 ))
                             }
