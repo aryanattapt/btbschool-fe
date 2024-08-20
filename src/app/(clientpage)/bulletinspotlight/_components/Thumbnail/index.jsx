@@ -5,6 +5,8 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import BulletinFlipBook from "../FlipBook";
 import { Modal } from "flowbite-react";
+import { IoMdDownload } from "react-icons/io";
+import BtnPrimary from "../../../../../components/Button/Primary";
 
 const BulletinThumnail = ({ data }) => {
 	// const [isHover, setIsHover] = useState(false);
@@ -52,9 +54,22 @@ const BulletinThumnail = ({ data }) => {
 					</Document>
 				</div>
 			</div>
+			<div className="flex justify-center item mt-2">
+				<a href={data?.attachment?.[0]?.fileURL} download={data?.bulletintitle}>
+					<BtnPrimary>
+						<p>Download</p>
+						<IoMdDownload className="ml-2 mt-1" />
+					</BtnPrimary>
+				</a>
+			</div>
 
 			<Modal
 				show={isModalOpen}
+				// theme={{
+				// 	content: {
+				// 		base: "relative h-full w-full p-0 md:h-auto",
+				// 	},
+				// }}
 				dismissible
 				size="4xl"
 				className="p-0 modal-custom mx-auto"

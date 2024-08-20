@@ -43,7 +43,6 @@ const BulletinSpotlightPage = () => {
 		// setPayload(tempDatas);
 		GetConfig("bulletinspotlight", {})
 			.then((res) => {
-				console.log(res);
 				setPayload(res);
 			})
 			.catch((err) => {
