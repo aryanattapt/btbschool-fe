@@ -33,7 +33,15 @@ const CareerPage = () => {
 		}
 		if (jobtitle) {
 			container = container.filter((x) =>
-				x.jobtitlename.toLowerCase().includes(jobtitle.toLowerCase())
+				x.jobtitlename.toLowerCase().includes(jobtitle.toLowerCase()) ||
+				x.jobsummary.toLowerCase().includes(jobtitle.toLowerCase()) ||
+				x.jobcategory.toLowerCase().includes(jobtitle.toLowerCase()) ||
+				x.experiencelevel.toLowerCase().includes(jobtitle.toLowerCase()) ||
+				x.experienced.toLowerCase().includes(jobtitle.toLowerCase()) ||
+				x.jobtype.toLowerCase().includes(jobtitle.toLowerCase()) ||
+				x.location.toLowerCase().includes(jobtitle.toLowerCase()) ||
+				x.requirement.toLowerCase().includes(jobtitle.toLowerCase()) ||
+				x.responsibilites.toLowerCase().includes(jobtitle.toLowerCase())
 			);
 		}
 		setDisplayDatas([...container]);
