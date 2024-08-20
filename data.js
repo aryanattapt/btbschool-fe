@@ -1224,6 +1224,25 @@ export const CalendarAcademicPayload = {
   },
 };
 
+export const HelpPayload = {
+  ID:{
+    banner: {
+      title: "F.A.Q",
+      title2: "Informasi Pendaftaran"
+    },
+    mainTitle: "Pertanyaan Yang Sering Diajukan",
+    secondTitle: "Informasi Pendaftaran",
+  },
+  EN:{
+    banner: {
+      title: "F.A.Q",
+      title2: "Registration Information"
+    },
+    mainTitle: "Frequently Asked Questions",
+    secondTitle: "Registration Information",
+  },
+};
+
 export const ContactUsPayLoad = {
   bannerImage:
     "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
