@@ -21,6 +21,7 @@ const BulletinSpotlightPage = () => {
         GetConfig('bulletinspotlight', {})
         .then(res => setPayload(res))
         .catch((err) => {
+            setPayload([])
             console.log(err);
         })
     }

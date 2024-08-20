@@ -19,6 +19,7 @@ const CareerPage = () => {
         GetAllCareer({})
         .then(res => setPayload(res))
         .catch((err) => {
+            setPayload([])
             console.log(err);
         })
     }

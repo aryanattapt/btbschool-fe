@@ -84,12 +84,7 @@ const FAQ = () => {
         .then(res => {
             setPayload({});
             setIsLoading(false);
-            Swal.fire({
-                allowOutsideClick: false,
-                title: 'Submit Notification!',
-                text: `Success submit data`,
-                icon: 'info',
-            });
+            window.location.href = '/admin/helpcenter'
         })
         .catch((err) => {
             setIsLoading(false);

@@ -20,6 +20,7 @@ const YearManagerPage = () => {
         GetConfig('onlineregisyear', {})
         .then(res => setPayload(res))
         .catch((err) => {
+            setPayload([])
             console.log(err);
         })
     }

@@ -21,6 +21,7 @@ const CalenderAcademicPage = () => {
         GetConfig('calenderacademic', {})
         .then(res => {setPayload(res)})
         .catch((err) => {
+            setPayload([])
             console.log(err);
         })
     }

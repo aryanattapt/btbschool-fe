@@ -40,6 +40,7 @@ const OnlineRegistrationYearManagerForm = () => {
         GetConfig('onlineregisyear', {"_id": id})
         .then(res => setPayload(res[0]))
         .catch((err) => {
+            setPayload([])
             console.log(err);
         })
     }

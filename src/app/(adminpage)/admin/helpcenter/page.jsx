@@ -20,6 +20,7 @@ const HelpCenterPage = () => {
         GetConfig('faq', {})
         .then(res => setPayload(res))
         .catch((err) => {
+            setPayload([])
             console.log(err);
         })
     }
