@@ -3,7 +3,8 @@
 import { Footer } from "flowbite-react";
 import { BsFacebook, BsYoutube, BsInstagram, BsTwitter } from "react-icons/bs";
 import { MdMailOutline } from "react-icons/md";
-import { FaMapPin, FaCalendar, FaQuestion, FaPhoneAlt } from "react-icons/fa";
+import { FaMapPin, FaCalendar, FaBook, FaQuestion, FaPhoneAlt } from "react-icons/fa";
+import { MdAppRegistration } from "react-icons/md";
 import { useLanguageStore } from "../../../store/language.store";
 import { FooterPayload } from "../../../data";
 import { useState } from "react";
@@ -113,27 +114,35 @@ const FooterComponent = () => {
                 })}
                 <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 md:mt-[15px] md:gap-6 xl:gap-0">
                   <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
-                    <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
-                      <FaCalendar className="text-white text-xl -rotate-45" />
-                    </button>
+                    <a href="/calendar-academic">
+                      <button title="Calendar" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                        <FaCalendar className="text-white text-xl -rotate-45" />
+                      </button>
+                    </a>
                     <div className="text-center mt-4 md:hidden">Calendar</div>
                   </div>
                   <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
-                    <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
-                      <FaQuestion className="text-white text-xl -rotate-45" />
-                    </button>
-                    <div className="text-center mt-4 md:hidden">FAQ</div>
+                    <a href="/bulletinspotlight">
+                      <button title="Bulletin" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                        <FaQuestion className="text-white text-xl -rotate-45" />
+                      </button>
+                    </a>
+                    <div className="text-center mt-4 md:hidden">Bulletin</div>
                   </div>
                   <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
-                    <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex flex-col justify-center items-center transform rotate-45">
-                      <FaPhoneAlt className="text-white text-xl -rotate-45" />
-                    </button>
-                    <div className="text-center mt-4 md:hidden">Phone</div>
+                    <a href="/onlineregistration">
+                      <button title="Registration" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                        <MdAppRegistration className="text-white text-xl -rotate-45" />
+                      </button>
+                    </a>
+                    <div className="text-center mt-4 md:hidden">Registration</div>
                   </div>
                   <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
-                    <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
-                      <FaQuestion className="text-white text-xl -rotate-45" />
-                    </button>
+                    <a href="/help">
+                      <button title="FAQ" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex flex-col justify-center items-center transform rotate-45">
+                        <FaQuestion className="text-white text-xl -rotate-45" />
+                      </button>
+                    </a>
                     <div className="text-center mt-4 md:hidden">FAQ</div>
                   </div>
                 </div>
