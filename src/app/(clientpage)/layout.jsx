@@ -1,5 +1,5 @@
 import FooterComponent from "../_components/footer";
-import NavBar from "../_components/navbar";
+import NavBar from "../_components/navbarapt";
 import FloatingButtons from "../_components/floatingbutton";
 import 'core-js/full/promise/with-resolvers'
 
