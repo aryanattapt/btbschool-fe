@@ -60,8 +60,8 @@ const BulletinSpotlightPage = () => {
 			<Banner />
 			<Pagging />
 			<div className="px-10 py-12 lg:py-20 lg:px-32 grid md:grid-cols-2 md:gap-24 lg:grid-cols-3 lg:gap-32">
-				{payload.map((res) => (
-					<BulletinThumnail data={res} />
+				{payload.map((res, idx) => (
+					<BulletinThumnail data={res} key={idx}/>
 				))}
 			</div>
 			{/* <div className="mt-10 mb-5 px-10 md:pl-32 text-[#00305E]">
