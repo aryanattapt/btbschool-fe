@@ -46,7 +46,7 @@ const RegistrationTableActionBtn = (data) => {
 						{({ blob, url, loading, error }) => {
 							if (!url) return setIsReadyToExport(false);
 							if (url) setIsReadyToExport(true);
-							return <a ref={pdfRef} href={url} download={"document.pdf"} />;
+							return <a ref={pdfRef} href={url} download={`Registration-Form - ${data?.firstname} -${data?.registrationcode}.pdf`} />;
 						}}
 					</BlobProvider>
 				)}
