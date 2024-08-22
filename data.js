@@ -782,6 +782,7 @@ export const BTBPeduliPayload = {
 };
 
 export const NavbarPayload = {
+  "genericlogourl": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png",
   EN: {
     logourl: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LOGOBTB-EN.png",
     navbarlink: [
@@ -1112,11 +1113,11 @@ export const AboutUsPayload = {
     paging: [
       {
         content: "VISI MISI",
-        url: "about-us#visi-misi",
+        url: "#visi-misi",
       },
       {
         content: "JENJANG PENDIDIKAN",
-        url: "about-us#jenjang-pendidikan",
+        url: "#jenjang-pendidikan",
       },
     ],
     visimisi: {

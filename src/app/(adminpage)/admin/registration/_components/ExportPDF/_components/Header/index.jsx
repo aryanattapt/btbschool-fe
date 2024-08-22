@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Text, View } from "@react-pdf/renderer";
 import React from "react";
+import {NavbarPayload} from '../../../../../../../../../data'
 
 const styles = StyleSheet.create({
 	titleSection: {
@@ -17,9 +18,10 @@ const ARDExportPDFHeader = ({ title, subtitle }) => {
 	return (
 		<>
 			<Image
-				src={
-					"https://w6i8.c1.e2-7.dev/assets/btbschool/images/Logo BTB 1.1-01.png"
-				}
+				// src={
+				// 	"https://w6i8.c1.e2-7.dev/assets/btbschool/images/Logo BTB 1.1-01.png"
+				// }
+				src={NavbarPayload.genericlogourl}
 			/>
 			<View style={styles.titleSection}>
 				<Text style={styles.title}>{title}</Text>

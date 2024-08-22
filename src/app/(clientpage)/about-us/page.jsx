@@ -104,33 +104,21 @@ const AboutUsPage = () => {
           {aboutUsData[language].smallparagraph}
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 m-[20px] place-content-center">
-        {aboutUsData[language].gradelists.map((val, idx) => {
-          return (
-            <div className="md:m-[20px] m-[20px]" key={idx}>
-              <a href={`${val.url}`} target="_blank">
+      <div className="flex items-center justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5 p-5">
+          {aboutUsData[language].gradelists.map((val, idx) => (
+            <div className="m-5" key={idx}>
+              <a href={`${val.url}`} target="_blank" rel="noopener noreferrer">
                 <div
-                  className="xl:h-[346px] xl:w-[552px] md:h-[230px] md:w-[330px] h-[230px] w-[330px] lg:h-[230px] lg:w-[430px] bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url(${val.image})`,
-                    borderRadius: `50px`,
-                  }}
+                  className="xl:h-[346px] xl:w-[552px] md:h-[230px] md:w-[330px] h-[230px] w-[330px] lg:h-[230px] lg:w-[430px] bg-cover bg-center rounded-[50px]"
+                  style={{ backgroundImage: `url(${val.image})` }}
                 >
                   <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80 rounded-[50px]">
                     <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
                       <div>
                         <p className="md:text-[35px] text-justify font-bold text-[#FFFFFF]">
-                          {/* Sekolah Dasar */}
                           {val.title}
                         </p>
-                        {/* <a
-                          href={`${val.url}`}
-                          target="_blank"
-                          className="opacity-0 font-semibold group-hover:opacity-100 underline transition-opacity duration-300"
-                        > */}
-                        {/* Lihat Kurikulum */}
-                        {/* {val.buttoncontent}
-                        </a> */}
                         <p className="underline">{val.buttoncontent}</p>
                       </div>
                     </div>
@@ -138,76 +126,8 @@ const AboutUsPage = () => {
                 </div>
               </a>
             </div>
-          );
-        })}
-
-        {/* <div className="md:m-[20px]">
-          <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus3.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
-            <div className="h-full hover:bg-[#243F6D] hover:opacity-80">
-              <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
-                <div>
-                <p className="md:text-[35px] text-justify font-bold text-[#FFFFFF]">
-                  PAUD - TK
-                </p>
-                <a href="/btb-belajar/TK" target="_blank" className="opacity-0 font-semibold group-hover:opacity-100 underline transition-opacity duration-300">
-                  Lihat Kurikulum
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-
-        <div className="md:m-[20px]">
-          <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus4.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
-            <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80">
-              <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
-                <div>
-                <p className="md:text-[35px] text-justify font-bold text-[#FFFFFF]">
-                  Sekolah Dasar
-                </p>
-                <a href="/btb-belajar/SD" target="_blank" className="opacity-0 font-semibold group-hover:opacity-100 underline transition-opacity duration-300">
-                  Lihat Kurikulum
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="md:m-[20px]">
-          <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus5.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
-            <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80">
-              <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
-                <div>
-                <p className="md:text-[35px] text-justify font-bold text-[#FFFFFF]">
-                  Sekolah Menengah
-                </p>
-                <a href="/btb-belajar/SMP" target="_blank" className="opacity-0 font-semibold group-hover:opacity-100 underline transition-opacity duration-300">
-                  Lihat Kurikulum
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="md:m-[20px]">
-          <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/aboutus6.jpg')] md:h-[346px] md:w-[552px] bg-cover bg-center">
-            <div className="h-full hover:bg-[#243F6D] hover:opacity-80">
-              <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
-                <div>
-                  <p className="md:text-[35px] text-justify font-bold text-white">
-                    Sekolah Menengah Atas
-                  </p>
-                  <a href="/btb-belajar/SMA" target="_blank" className="opacity-0 group-hover:opacity-100 font-semibold underline transition-opacity duration-300">
-                    Lihat Kurikulum
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   );

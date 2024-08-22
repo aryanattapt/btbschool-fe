@@ -9,6 +9,7 @@ import ARDHealthForm from "./HealthForm";
 import ARDRecommended from "./Recommended";
 import ARDRegistrationForm from "./RegistrationForm";
 import ARDTermAndCondition from "./TermAndCondition";
+import {NavbarPayload} from '../../../../../../../data'
 
 const AdminRegistrationDetailContent = () => {
 	const params = useParams();
@@ -47,8 +48,9 @@ const AdminRegistrationDetailContent = () => {
 				<div className="flex flex-col items-center">
 					<img
 						alt=""
-						src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/Logo BTB 1.1-01.png"
-						className="h-32 w-fit"
+						// src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/Logo BTB 1.1-01.png"
+						src={NavbarPayload.genericlogourl}
+						className="h-36 w-fit"
 					/>
 				</div>
 				{data && (
