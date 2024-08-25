@@ -846,10 +846,6 @@ export const NavbarPayload = {
         content: "Contact",
         url: "/contact",
       },
-      {
-        content: "Registration",
-        url: "/onlineregistration",
-      },
     ],
   },
   ID: {
@@ -915,17 +911,13 @@ export const NavbarPayload = {
         content: "Kontak",
         url: "/contact",
       },
-      {
-        content: "Registrasi",
-        url: "/onlineregistration",
-      },
     ],
   },
 };
 
 export const FooterPayload = {
   facebook: "",
-  instagram: "",
+  instagram: "https://www.instagram.com/btb_school/",
   youtube: "",
   twitter: "",
   email: "info@btbschool.org",

@@ -217,7 +217,7 @@ const NavBar = () => {
                             {val.content}
                             </a>
                             {val.submenu && (
-                            <ul className="absolute hidden group-hover:block bg-[#EF802B] text-white mt-2 min-w-[160px] shadow-lg rounded-lg">
+                            <ul className="text-center absolute hidden group-hover:block bg-[#EF802B] text-white mt-0 min-w-[260px] shadow-lg rounded-lg">
                                 {val.submenu.map((val2, idx2) => (
                                 <li key={idx2}>
                                     <a href={val2.url} className="block px-4 py-2 hover:bg-orange-400">
