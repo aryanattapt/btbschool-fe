@@ -46,9 +46,6 @@ const NavBar = () => {
 
   return (
     <nav
-    //   ${
-    //     (isScrolled && !isMenuOpen) ? "bg-[#00305E]" : "bg-gradient-to-b from-[#091531] via-[#00305E] text-[#00305E]"
-    //   } 
       className={`transition-transform text-white duration-500 ease-in-out 
       ${getGradientSetup()}
       fixed top-0 w-full p-4 ${
@@ -134,7 +131,7 @@ const NavBar = () => {
                                     <IoIosArrowDown />
                                 </div>
                             ) : (
-                                <a className="text-white hover:text-[#EF802B] py-2 px-6 block text-md font-medium">
+                                <a href={val.url} className="text-white hover:text-[#EF802B] py-2 px-6 block text-md font-medium">
                                     {val.content}
                                 </a>
                             )}

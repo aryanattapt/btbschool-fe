@@ -85,7 +85,7 @@ const ContactPage = () => {
                 </h3>
                 <iframe
                   src={val.mapEmbed}
-                  className="w-full h-100 md:w-full md:h-64 lg:w-86 lg:h-70"
+                  className="w-full h-500 md:w-full md:h-64 lg:w-86 lg:h-70"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

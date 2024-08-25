@@ -13,17 +13,17 @@ const AboutUsPage = () => {
       <Banner />
       <Pagging />
       <div className="relative" id="pengenalan">
-        <div className="mt-10 mb-5 md:pl-32 text-[#00305E] sm:justify-center">
+        <div className="mt-10 mb-5 pl-10 md:pl-32 text-[#00305E] sm:justify-center">
           <h1 className="md:text-[35px] text-[30px] font-semibold">
             {aboutUsData[language].title}
           </h1>
         </div>
-        <div className="grid grid-cols-2">
-          <div className="h-[350px]">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div>
             <img
               src={`${AboutUsPayload.image1}`}
               alt="PAUD"
-              className="h-[350px] w-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
           <div className="content-center bg-[#EF802B]">
@@ -33,11 +33,11 @@ const AboutUsPage = () => {
           </div>
         </div>
       </div>
-      <div className="text-[17px] md:text-[30px] font-medium mb-8 mt-10 text-center text-[#243F6D] px-2 md:px-0 ">
+      <div className="text-[15px] md:text-[30px] font-medium mb-8 mt-10 text-center text-[#243F6D] px-2 md:px-0 ">
         <ul className="flex flex-nowrap place-content-center">
           {aboutUsData[language].paging.map((val, idx) => {
             return (
-              <li className="w-[600px]" key={idx}>
+              <li className="w-full" key={idx}>
                 <a
                   href={`${val.url}`}
                   className="inline-block py-8 border-b-8 border-[#EF802B] active rounded-t-lg hover:border-[#EF802B]"
