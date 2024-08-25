@@ -19,7 +19,7 @@ const ContactPage = () => {
         <h1 className="mt-10 text-[#00305E] text-2xl md:text-4xl lg:text-5xl font-semibold">
           {contactUsData[language].title}
         </h1>
-        <div className="text-[#00305E] grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        <div className="mt-4 text-[#00305E] grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
           <div
             id="box"
             className="flex-1 bg-[#00305E] rounded-3xl py-4 md:py-6 lg:py-8 flex flex-col justify-between"
@@ -73,22 +73,19 @@ const ContactPage = () => {
 
         <div className="py-3 flex items-center text-sm text-gray-800 border-t border-gray-200 dark:text-white dark:border-neutral-600"></div>
 
-        <div id="lokasi-kami" className="mx-4 md:mx-8 lg:mx-16">
-          <h1 className="text-[#00305E] text-2xl md:text-4xl lg:text-5xl font-semibold text-center mb-8">
+        <div id="lokasi-kami" className="">
+          <h1 className="text-[#00305E] text-2xl md:text-4xl lg:text-5xl font-semibold mb-8">
             {contactUsData[language].titleLocation}
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8  place-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5">
             {contactUsData[language].mapList.map((val, idx) => (
-              <div
-                key={idx}
-                className="py-4 md:py-6 flex flex-col items-center"
-              >
+              <div key={idx} className="py-4 md:py-6 flex flex-col items-center">
                 <h3 className="text-xl md:text-2xl lg:text-3xl text-black font-medium mb-4">
                   {val.title}
                 </h3>
                 <iframe
                   src={val.mapEmbed}
-                  className="w-full max-w-md h-56 md:w-full md:h-64 lg:w-86 lg:h-70"
+                  className="w-full h-100 md:w-full md:h-64 lg:w-86 lg:h-70"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

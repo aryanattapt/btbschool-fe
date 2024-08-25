@@ -141,10 +141,10 @@ const HomePage = () => {
               return (
                 <div key={idx}>
                   <img
-                    className="h-[300px] h-[300px] md:w-[230px] md:h-[230px]  xl:w-[360px] xl:h-[360px] lg:w-[230px] lg:h-[230px] object-cover"
+                    className="cursor-pointer h-[300px] h-[300px] md:w-[230px] md:h-[230px]  xl:w-[360px] xl:h-[360px] lg:w-[230px] lg:h-[230px] object-cover"
                     src={`${val.thumbnail_url || val.media_url}`}
                     alt={`${val.caption}`}
-                    onClick={() => router.push(val.permalink)}
+                    onClick={() => window.open(val.permalink)}
                   />
                 </div>
               );

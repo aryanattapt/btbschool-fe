@@ -3,7 +3,7 @@
 import { Footer } from "flowbite-react";
 import { BsFacebook, BsYoutube, BsInstagram, BsTwitter } from "react-icons/bs";
 import { MdMailOutline } from "react-icons/md";
-import { FaMapPin, FaCalendar, FaBook, FaQuestion, FaPhoneAlt } from "react-icons/fa";
+import { FaMapPin, FaCalendar, FaBook, FaQuestion, FaWhatsapp } from "react-icons/fa";
 import { MdAppRegistration } from "react-icons/md";
 import { useLanguageStore } from "../../../store/language.store";
 import { FooterPayload } from "../../../data";
@@ -28,20 +28,6 @@ const FooterComponent = () => {
                 <div className="text-[20px] md:text-[30px] font-semibold md:mr-10 mr-4 ">
                   {footerPayload[language].connecttitle}
                 </div>
-                {/* <div className="inline-flex mt-2">
-                <a href={`${footerPayload.facebook}`} className="mr-2">
-                  <BsFacebook />
-                </a>
-                <a href={`${footerPayload.instagram}`} className="mx-2">
-                  <BsInstagram />
-                </a>
-                <a href={`${footerPayload.twitter}`} className="mx-2">
-                  <BsTwitter />
-                </a>
-                <a href={`${footerPayload.youtube}`} className="mx-2">
-                  <BsYoutube />
-                </a>
-                </div> */}
               </div>
               <div className="text-center md:text-left">
                 <div>
@@ -60,18 +46,15 @@ const FooterComponent = () => {
                 <h2 className="font-semibold md:text-[30px] text-[20px]">
                   {footerPayload[language].pagenavtitle}
                 </h2>
-                <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 sm:mt-3 sm:grid-cols-1 md:mr-10">
+                <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 sm:mt-3 sm:grid-cols-1 md:mr-10 gap-0">
                   {footerPayload[language].url.map((val, idx) => {
                     return (
                       <div key={idx}>
-                        <Footer.LinkGroup col>
-                          <Footer.Link
-                            href={`${val.url}`}
-                            className="text-white text-[15px] md:text-[15px] md:mt-4 xl:mt-0 mt-2 underline"
+                          <a href={`${val.url}`}
+                            className="text-white text-[15px] underline"
                           >
                             {val.content}
-                          </Footer.Link>
-                        </Footer.LinkGroup>
+                          </a>
                       </div>
                     );
                   })}
@@ -79,16 +62,13 @@ const FooterComponent = () => {
               </div>
             </div>
             <div>
-              <div>
-                <h1 className="font-semibold md:text-[30px] text-[20px] md:text-left text-center">
-                  {footerPayload[language].schooltitle}
-                </h1>
-                {footerPayload.location.map((val, idx) => {
-                  return (
-                    <div
-                      className="flex flex-wrap mt-2 md:mt-0 xl:mt-2"
-                      key={idx}
-                    >
+              <h1 className="font-semibold md:text-[30px] text-[20px] md:text-left text-center">
+                {footerPayload[language].schooltitle}
+              </h1>
+              {footerPayload.location.map((val, idx) => {
+                return (
+                  <div key={idx}>
+                    <div className="flex flex-wrap mt-2 md:mt-0 xl:mt-2">
                       <div className="md:mr-1 mr-2 xl:mr-[15px]">
                         <FaMapPin />
                       </div>
@@ -96,74 +76,76 @@ const FooterComponent = () => {
                         <div className="xl:leading-[1.5rem] font-semibold flex xl:text-left">
                           {val.address}
                         </div>
-                        <div className="mt-2 md:text-left">
-                          <a href={`https://wa.me/${val.phoneno}`}>
-                            {val.phoneno}
-                          </a>
-                          &nbsp;/&nbsp;
-                          <a href={`https://wa.me/${val.phoneno2}`}>
-                            {val.phoneno2}
-                          </a>
-                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap mt-2 md:mt-0 xl:mt-2">
+                      <div className="mt-1 md:mr-1 mr-2 xl:mr-[15px]">
+                        <FaWhatsapp />
+                      </div>
+                      <div className="xl:text-[20px] md:text-[18px] text-[15px] md:text-left">
+                        <a href={`https://wa.me/${val.phoneno}`}>
+                          {val.phoneno}
+                        </a>
+                        &nbsp;/&nbsp;
+                        <a href={`https://wa.me/${val.phoneno2}`}>
+                          {val.phoneno2}
+                        </a>
                         <div className="mt-2 md:text-left">
                           
                         </div>
                       </div>
                     </div>
-                  );
-                })}
-                <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 md:mt-[15px] md:gap-6 xl:gap-0">
-                  <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
-                    <a href="/calendar-academic">
-                      <button title="Calendar" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
-                        <FaCalendar className="text-white text-xl -rotate-45" />
-                      </button>
-                    </a>
-                    <div className="text-center mt-4 md:hidden">Calendar</div>
                   </div>
-                  <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
-                    <a href="/bulletinspotlight">
-                      <button title="Bulletin" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
-                        <FaQuestion className="text-white text-xl -rotate-45" />
-                      </button>
-                    </a>
-                    <div className="text-center mt-4 md:hidden">Bulletin</div>
-                  </div>
-                  <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
-                    <a href="/onlineregistration">
-                      <button title="Registration" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
-                        <MdAppRegistration className="text-white text-xl -rotate-45" />
-                      </button>
-                    </a>
-                    <div className="text-center mt-4 md:hidden">Registration</div>
-                  </div>
-                  <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
-                    <a href="/help">
-                      <button title="FAQ" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex flex-col justify-center items-center transform rotate-45">
-                        <FaQuestion className="text-white text-xl -rotate-45" />
-                      </button>
-                    </a>
-                    <div className="text-center mt-4 md:hidden">FAQ</div>
-                  </div>
+                );
+              })}
+              <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 md:mt-[15px] md:gap-6 xl:gap-0">
+                <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
+                  <a href="/calendar-academic">
+                    <button title="Calendar" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                      <FaCalendar className="text-white text-xl -rotate-45" />
+                    </button>
+                  </a>
+                  <div className="text-center mt-4 md:hidden">Calendar</div>
+                </div>
+                <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
+                  <a href="/bulletinspotlight">
+                    <button title="Bulletin" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                      <FaQuestion className="text-white text-xl -rotate-45" />
+                    </button>
+                  </a>
+                  <div className="text-center mt-4 md:hidden">Bulletin</div>
+                </div>
+                <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
+                  <a href="/onlineregistration">
+                    <button title="Registration" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                      <MdAppRegistration className="text-white text-xl -rotate-45" />
+                    </button>
+                  </a>
+                  <div className="text-center mt-4 md:hidden">Registration</div>
+                </div>
+                <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
+                  <a href="/help">
+                    <button title="FAQ" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex flex-col justify-center items-center transform rotate-45">
+                      <FaQuestion className="text-white text-xl -rotate-45" />
+                    </button>
+                  </a>
+                  <div className="text-center mt-4 md:hidden">FAQ</div>
                 </div>
               </div>
             </div>
+
           </div>
           <hr className="h-px my-5 bg-gray-600 border-0" />
           {/* <Footer.Divider /> */}
           <div className="w-full flex items-center justify-between px-10 md:px-32 mb-5">
             <Footer.Copyright href="/" by="Bina Tunas Bangsa™" year={2024} />
             <div className="flex space-x-6 sm:mt-0 sm:justify-center">
-              <Footer.Icon
-                href={`${footerPayload.facebook}`}
-                icon={BsFacebook}
-              />
-              <Footer.Icon
-                href={`${footerPayload.instagram}`}
-                icon={BsInstagram}
-              />
-              <Footer.Icon href={`${footerPayload.twitter}`} icon={BsTwitter} />
-              <Footer.Icon href={`${footerPayload.youtube}`} icon={BsYoutube} />
+              <a href={footerPayload.instagram} target="_blank">
+                <BsInstagram />
+              </a>
+              <a href={footerPayload.youtube} target="_blank">
+                <BsYoutube />
+              </a>
             </div>
           </div>
         </div>
