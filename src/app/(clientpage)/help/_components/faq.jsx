@@ -2,7 +2,7 @@ const { Accordion } = require("flowbite-react");
 
 const FAQ = ({ payload }) => {
   return (
-    <Accordion>
+    <Accordion collapseAll>
       {payload.map((val, idx) => {
         console.log(val);
         return (

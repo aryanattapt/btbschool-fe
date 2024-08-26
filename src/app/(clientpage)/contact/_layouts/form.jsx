@@ -39,8 +39,8 @@ const ContactForm = () => {
   };
 
   const submitHandler = async (e) => {
-    setIsLoading(true);
     try {
+        setIsLoading(true);
         if (!isRecaptchaValidated) {
             await ValidateGoogleRecaptcha(captchaValue);
             setIsRecaptchaValidated(true);
@@ -53,6 +53,9 @@ const ContactForm = () => {
             text: "Success send contact",
             icon: "success",
         });
+
+        setContactPayload({});
+        captchaRef.current.reset();
     } catch (err) {
         Swal.fire({
             allowOutsideClick: false,
@@ -88,7 +91,7 @@ const ContactForm = () => {
             name="firstname"
             type="text"
             autoFocus={true}
-            value={contactPayload.firstname || ''}
+            value={contactPayload?.firstname || ''}
             onChange={formChangeHandler}
           />
         </div>
@@ -103,7 +106,7 @@ const ContactForm = () => {
             id="lastname"
             name="lastname"
             type="text"
-            value={contactPayload.lastname || ''}
+            value={contactPayload?.lastname || ''}
             onChange={formChangeHandler}
           />
         </div>
@@ -118,7 +121,7 @@ const ContactForm = () => {
             id="phoneno"
             name="phoneno"
             type="text"
-            value={contactPayload.phoneno || ''}
+            value={contactPayload?.phoneno || ''}
             onChange={formChangeHandler}
           />
         </div>
@@ -134,7 +137,7 @@ const ContactForm = () => {
             type="email"
             id="email"
             name="email"
-            value={contactPayload.email || ''}
+            value={contactPayload?.email || ''}
             onChange={formChangeHandler}
           />
         </div>
@@ -151,7 +154,7 @@ const ContactForm = () => {
             placeholder={`${contactUsData[language].form.placeHolderMessage}`}
             required
             rows={4}
-            value={contactPayload.message || ''}
+            value={contactPayload?.message || ''}
             onChange={formChangeHandler}
           />
         </div>

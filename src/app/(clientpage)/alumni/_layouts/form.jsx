@@ -27,6 +27,7 @@ import {
 } from '../../../../../services/googlerecaptcha.service'
 
 const AlumniForm = () => {
+  const attachmentRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [alumniPayload, setAlumniPayload] = useState({edukasiOptions: []});
 
@@ -66,8 +67,8 @@ const AlumniForm = () => {
   };
 
   const submitHandler = async (e) => {
-    setIsLoading(true);
     try {
+        setIsLoading(true);
         if (!isRecaptchaValidated) {
             await ValidateGoogleRecaptcha(captchaValue);
             setIsRecaptchaValidated(true);
@@ -93,6 +94,9 @@ const AlumniForm = () => {
             icon: "info",
         });
 
+        setAlumniPayload({});
+        captchaRef.current.reset();
+        attachmentRef.current.value = '';
     } catch (err) {
         // Error handling
         Swal.fire({
@@ -127,7 +131,7 @@ const AlumniForm = () => {
               type="text"
               autoFocus={true}
               onChange={formChangeHandler}
-              value={alumniPayload.firstname || ''}
+              value={alumniPayload?.firstname || ''}
             />
           </div>
           <div>
@@ -139,7 +143,7 @@ const AlumniForm = () => {
               name="lastname"
               type="text"
               onChange={formChangeHandler}
-              value={alumniPayload.lastname || ''}
+              value={alumniPayload?.lastname || ''}
             />
           </div>
         </div>
@@ -152,7 +156,7 @@ const AlumniForm = () => {
             id="birthdate"
             name="birthdate"
             language="en-id"
-            value={alumniPayload.birthdate || ''}
+            value={alumniPayload?.birthdate || ''}
             onSelectedDateChanged={(date) => datePickerHandler("birthdate", date)}
           />
         </div>
@@ -173,7 +177,7 @@ const AlumniForm = () => {
           </div>
           <div className="flex items-center gap-2" id="edukasiOptions">
             <Checkbox
-              checked={alumniPayload.edukasiOptions.includes('undergraduate')}
+              checked={alumniPayload?.edukasiOptions?.includes('undergraduate')}
               id="edukasiOptionUnderGraduate"
               name="edukasiOptions"
               value="undergraduate"
@@ -181,7 +185,7 @@ const AlumniForm = () => {
             />
             <Label htmlFor="edukasiOptionUnderGraduate">Undergraduate</Label>
             <Checkbox
-              checked={alumniPayload.edukasiOptions.includes('postgraduate')}
+              checked={alumniPayload?.edukasiOptions?.includes('postgraduate')}
               id="edukasiOptionPostgraduate"
               name="edukasiOptions"
               value="postgraduate"
@@ -191,11 +195,11 @@ const AlumniForm = () => {
           </div>
         </div>
         {
-          alumniPayload.edukasiOptions.includes('undergraduate') && 
+          alumniPayload?.edukasiOptions?.includes('undergraduate') && 
           <div className="mb-2 block">
             <Label htmlFor="undergraduateuniversityname" value="Undergraduate University Name" />
             <TextInput
-              value={alumniPayload.undergraduateuniversityname || ''}
+              value={alumniPayload?.undergraduateuniversityname || ''}
               type="text"
               id="undergraduateuniversityname"
               name="undergraduateuniversityname"
@@ -204,11 +208,11 @@ const AlumniForm = () => {
           </div>
         }
         {
-          alumniPayload.edukasiOptions.includes('postgraduate') &&
+          alumniPayload?.edukasiOptions?.includes('postgraduate') &&
           <div className="mb-2 block">
             <Label htmlFor="postgraduateuniversityname" value="Postgraduate University Name" />
             <TextInput
-              value={alumniPayload.postgraduateuniversityname || ''}
+              value={alumniPayload?.postgraduateuniversityname || ''}
               type="text"
               id="postgraduateuniversityname"
               name="postgraduateuniversityname"
@@ -222,7 +226,7 @@ const AlumniForm = () => {
           </div>
           <div className="flex items-center gap-2" id="statusKerjaOptions">
             <Radio
-              checked={alumniPayload.statusKerjaOptions === 'work'}
+              checked={alumniPayload?.statusKerjaOptions === 'work'}
               id="statusKerjaOptionWork"
               name="statusKerjaOptions"
               value="work"
@@ -230,7 +234,7 @@ const AlumniForm = () => {
             />
             <Label htmlFor="statusKerjaOptionWork">Work</Label>
             <Radio
-              checked={alumniPayload.statusKerjaOptions === 'notwork'}
+              checked={alumniPayload?.statusKerjaOptions === 'notwork'}
               id="statusKerjaOptionNotWork"
               name="statusKerjaOptions"
               value="notwork"
@@ -244,7 +248,7 @@ const AlumniForm = () => {
             <Label htmlFor="professionname" value="Profession Name" />
           </div>
           <TextInput
-            value={alumniPayload.professionname || ''}
+            value={alumniPayload?.professionname || ''}
             type="text"
             id="professionname"
             name="professionname"
@@ -257,7 +261,7 @@ const AlumniForm = () => {
           </div>
           <Textarea
             rows={4}
-            value={alumniPayload.currentlocation || ''}
+            value={alumniPayload?.currentlocation || ''}
             type="text"
             id="currentlocation"
             name="currentlocation"
@@ -269,7 +273,7 @@ const AlumniForm = () => {
             <Label htmlFor="email" value="Email" />
           </div>
           <TextInput
-            value={alumniPayload.email || ''}
+            value={alumniPayload?.email || ''}
             icon={HiMail}
             type="email"
             id="email"
@@ -282,7 +286,7 @@ const AlumniForm = () => {
             <Label htmlFor="phoneno" value="Phone No" />
           </div>
           <TextInput
-            value={alumniPayload.phoneno || ''}
+            value={alumniPayload?.phoneno || ''}
             id="phoneno"
             name="phoneno"
             type="text"
@@ -300,6 +304,7 @@ const AlumniForm = () => {
             name="photoFile"
             helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg, .png)"
             onChange={formChangeHandler}
+            ref={attachmentRef}
           />
         </div>
         <div>
