@@ -250,7 +250,7 @@ const StudentDetailForm = ({
           onChange={formChangeHandler}
         />
       </div>
-      <div className="md:inline-flex">
+      {/* <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label
             htmlFor="musicinstrument"
@@ -265,7 +265,7 @@ const StudentDetailForm = ({
           type="text"
           onChange={formChangeHandler}
         />
-      </div>
+      </div> */}
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="languagespoken" value="Language(s) Spoken at Home" />

@@ -197,8 +197,13 @@ const MedicalProblemForm = ({formChangeHandler, payload}) => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Checkbox checked={payload.medicalproblemoptions?.includes('attention deficit syndrome')} id="attentiondeficitsyndromeoptions" name="medicalproblemoptions" value="attention deficit syndrome" onChange={formChangeHandler}/>
-                    <Label htmlFor="attentiondeficitsyndromeoptions">Attention Deficit Syndrome (ADT)</Label>
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('Attention Deficit Disorder (ADD)')} id="attentiondeficitsyndromeoptions" name="medicalproblemoptions" value="Attention Deficit Disorder (ADD)" onChange={formChangeHandler}/>
+                    <Label htmlFor="attentiondeficitsyndromeoptions">Attention Deficit Disorder (ADD)</Label>
+                </div>
+
+                <div className="flex items-center gap-2">
+                    <Checkbox checked={payload.medicalproblemoptions?.includes('Attention Deficit Hyperactivity Disorder (ADHD)')} id="attentiondeficitsyndromeoptions" name="medicalproblemoptions" value="Attention Deficit Hyperactivity Disorder (ADHD)" onChange={formChangeHandler}/>
+                    <Label htmlFor="attentiondeficitsyndromeoptions">Attention Deficit Hyperactivity Disorder (ADHD)</Label>
                 </div>
             </div>
         </div>

@@ -27,6 +27,7 @@ import {
   convertPhoneNumberToInternational
 } from "../../../../../helpers/string.helper";
 import { GetConfig } from "../../../../../services/config.service";
+import moment from "moment";
 
 const OnlineRegistrationForm = () => {
   let [pageNo, setPageNo] = useState(0);
@@ -76,7 +77,7 @@ const OnlineRegistrationForm = () => {
   const datePickerHandler = (name, value) => {
     setRegistrationPayload((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: moment(value).format("DD MMMM YYYY"),
     }));
   };
 
@@ -138,9 +139,12 @@ const OnlineRegistrationForm = () => {
             Swal.fire({
               allowOutsideClick: false,
               title: "Student Submission Notification!",
-              text: `Success submit student data with no:  ${res.data.registrationCode}`,
+              text: `Success submit student data with no:  ${res.data.registrationCode}. Form will be reloaded in 5 seconds!`,
               icon: "info",
             });
+            setTimeout(() => {
+              window.location.href = '/onlineregistration';
+            }, 5000);
           })
           .catch((err) => {
             setStateCallBack(false);
@@ -232,6 +236,10 @@ const OnlineRegistrationForm = () => {
 
   const setNextPage = () => {
     console.log(registrationCode);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
     if (haveRegisCode == "true" && !registrationCode && pageNo == 0) {
       Swal.fire({
         allowOutsideClick: false,
@@ -323,7 +331,7 @@ const OnlineRegistrationForm = () => {
                     Email
                   </div>
                   <div className="md:inline-flex">
-                      <div className="mb-2 block w-72">
+                      <div className="mb-2 block w-32">
                           <Label htmlFor="mainEmail" value="Email"/>
                       </div>
                       <TextInput className="md:w-full pr-10 md:pr-0" id="mainEmail" name="mainEmail" type="email" icon={HiMail} autoFocus={true} onChange={formChangeHandler} value={registrationPayload.mainEmail || ''}/>
