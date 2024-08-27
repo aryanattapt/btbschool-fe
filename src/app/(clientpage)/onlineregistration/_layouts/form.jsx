@@ -28,6 +28,10 @@ import {
 } from "../../../../../helpers/string.helper";
 import { GetConfig } from "../../../../../services/config.service";
 import moment from "moment";
+import {
+  useEmailValidator,
+  usePhoneNumberValidator
+} from '../../../../hooks/useFormValidator'
 
 const OnlineRegistrationForm = () => {
   let [pageNo, setPageNo] = useState(0);
@@ -39,6 +43,7 @@ const OnlineRegistrationForm = () => {
   
   const formChangeHandler = (e) => {
     const { name, value, type, files } = e.target;
+    onChangeHookForValidation(e);
     if(name.includes("phone") || name.includes("telephone")){
       console.log(`convert phone format ${name}`);
       setRegistrationPayload(prevState => ({
@@ -50,8 +55,8 @@ const OnlineRegistrationForm = () => {
         setRegistrationPayload((prevState) => ({
           ...prevState,
           [name]: prevState[name]
-            ? [...prevState[name], files[val]]
-            : [files[val]],
+          ? [...prevState[name], files[val]]
+          : [files[val]],
         }));
       });
     } else if (type == "checkbox") {
@@ -234,23 +239,96 @@ const OnlineRegistrationForm = () => {
     }
   };
 
+  /* Custom Hook */
+  const {error: mainEmailError, handleChange: handleChangeMainEmail} = useEmailValidator(true, 'Email', registrationPayload.mainEmail);
+  const {error: phonenoError, handleChange: handleChangePhoneno} = usePhoneNumberValidator(true, "Phone No", registrationPayload.phoneno);
+  const {error: emailError, handleChange: handleChangeEmail} = useEmailValidator(true, 'Email', registrationPayload.email);
+  const onChangeHookForValidation = (e) => {
+    const { name, value, type } = e.target;
+    if(name == 'mainEmail'){
+      handleChangeMainEmail({"target": {"value": value}});
+    } if(name == 'phoneno'){
+      handleChangePhoneno({"target": {"value": value}});
+    } if(name == 'email'){
+      handleChangeEmail({"target": {"value": value}});
+    }
+  }
+
   const setNextPage = () => {
-    console.log(registrationCode);
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-    if (haveRegisCode == "true" && !registrationCode && pageNo == 0) {
-      Swal.fire({
-        allowOutsideClick: false,
-        title: "Student Submission Notification!",
-        text: "Please input registration code if you choose option yes. Otherwise please choose no!",
-        icon: "warning",
-      });
-    } else if (haveRegisCode == "true" && registrationCode && pageNo == 0) {
-      fetchDraftDataHandler();
+    if(pageNo == 0){
+      if (haveRegisCode == "true" && !registrationCode) {
+        Swal.fire({
+          allowOutsideClick: false,
+          title: "Student Submission Notification!",
+          text: "Please input registration code if you choose option yes. Otherwise please choose no!",
+          icon: "warning",
+        });
+      } else if (haveRegisCode == "true" && registrationCode) {
+        fetchDraftDataHandler();
+      } else if (haveRegisCode == "false" && mainEmailError) {
+        Swal.fire({
+          allowOutsideClick: false,
+          title: "Student Submission Notification!",
+          text: mainEmailError,
+          icon: "warning",
+        });
+      } else {
+        setPageNo(pageNo + 1);
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }
+    } else if(pageNo == 1){
+      console.log(phonenoError);
+      if(!registrationPayload.firstname){
+        Swal.fire({
+          allowOutsideClick: false,
+          title: "Student Submission Notification!",
+          text: "First Name is required!",
+          icon: "warning",
+        });
+      } else if(!registrationPayload.birthdate){
+        Swal.fire({
+          allowOutsideClick: false,
+          title: "Student Submission Notification!",
+          text: "Birth Date is required!",
+          icon: "warning",
+        });
+      } else if(!registrationPayload.address){
+        Swal.fire({
+          allowOutsideClick: false,
+          title: "Student Submission Notification!",
+          text: "Address is required!",
+          icon: "warning",
+        });
+      } else if (phonenoError){
+        Swal.fire({
+          allowOutsideClick: false,
+          title: "Student Submission Notification!",
+          text: phonenoError,
+          icon: "warning",
+        });
+      } else if(emailError){
+        Swal.fire({
+          allowOutsideClick: false,
+          title: "Student Submission Notification!",
+          text: emailError,
+          icon: "warning",
+        });
+      } else {
+        setPageNo(pageNo + 1);
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }
     } else {
       setPageNo(pageNo + 1);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     }
   };
 
