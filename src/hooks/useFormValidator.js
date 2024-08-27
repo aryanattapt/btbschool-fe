@@ -35,13 +35,10 @@ export function usePhoneNumberValidator(isRequired = null, fieldName = '', initi
   
     const validatePhoneNumber = (phoneNumberToValidate, isRequired) => {
         if(isRequired && !phoneNumberToValidate){
-            console.log(`1`);
             setError(fieldName + ' is mandatory');
         } else if (phoneNumberToValidate && !e164Regex.test(phoneNumberToValidate)) {
-            console.log(`2`);
             setError('Invalid phone number format. Must be in E.164 format for field: ' + fieldName);
         } else {
-            console.log(`3`);
             setError('');
         }
     };

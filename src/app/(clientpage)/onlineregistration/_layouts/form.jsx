@@ -280,7 +280,6 @@ const OnlineRegistrationForm = () => {
         });
       }
     } else if(pageNo == 1){
-      console.log(phonenoError);
       if(!registrationPayload.firstname){
         Swal.fire({
           allowOutsideClick: false,
