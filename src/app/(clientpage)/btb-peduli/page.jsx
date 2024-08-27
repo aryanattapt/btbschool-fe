@@ -140,7 +140,7 @@ const BTBPeduliPage = () => {
         />
       </div> */}
 
-      <div id="sukarelawan" class="flex flex-col items-center">
+      <div id="sukarelawan" className="flex flex-col items-center">
         <h2 className="text-[#00305E] text-[25px] md:text-[50px] font-semibold mx-5 my-5 md:mx-32 md:my-[35px] mb-5">
           {btbPeduliData[language].sukarelawantitle}
         </h2>

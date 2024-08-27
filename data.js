@@ -782,7 +782,8 @@ export const BTBPeduliPayload = {
 };
 
 export const NavbarPayload = {
-  "genericlogourl": "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png",
+  genericlogourl:
+    "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png",
   EN: {
     logourl: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LOGOBTB-EN.png",
     navbarlink: [
@@ -1095,9 +1096,24 @@ export const AboutUsPayload = {
     pagingHeader: {
       title: "TENTANG KAMI",
       url: [
-        { title: "Pengenalan", url: "/about-us#pengenalan" },
-        { title: "Visi Misi", url: "/about-us#visi-misi" },
-        { title: "Jenjang Pendidikan", url: "/about-us#jenjang-pendidikan" },
+        {
+          title: "Pengenalan",
+          url: "#pengenalan",
+          id: "pengenalan-tab",
+          control: "pengenalan",
+        },
+        {
+          title: "Visi Misi",
+          url: "#visi-misi",
+          id: "visi-misi-tab",
+          control: "visi-mis",
+        },
+        {
+          title: "Jenjang Pendidikan",
+          url: "#jenjang-pendidikan",
+          id: "jenjang-pendidikan-tab",
+          control: "jenjang-pendidikan",
+        },
       ],
     },
     title: "PENGENALAN",

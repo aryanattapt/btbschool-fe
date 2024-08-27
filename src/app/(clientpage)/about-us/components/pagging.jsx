@@ -19,14 +19,29 @@ const Pagging = () => {
             </div>
           </div>
           <div className="inline-flex gap-20 text-[15px] md:text-[20px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
-            <ul className="flex flex-wrap -mb-px py-8 md:py-10">
+            <ul
+              className="flex flex-wrap -mb-px py-8 md:py-10"
+              id="default-tab"
+              data-tabs-toggle="#default-tab-content"
+              role="tablist"
+            >
               {aboutUsData[language].pagingHeader.url.map((val, idx) => {
                 return (
-                  <li className="px-10 py-1 md:px-3 xl:px-20" key={idx}>
+                  <li
+                    className="px-4 py-1 md:px-3 xl:px-20 sm:px-10 sm:py-1 lg:px-10 lg:py-1"
+                    key={idx}
+                    role="presentation"
+                  >
                     <a
-                      href={`${val.url}`}
+                      // href={`${val.url}`}
                       className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 active"
                       aria-current="page"
+                      id={`${val.id}`}
+                      data-tabs-target={`${val.url}`}
+                      type="button"
+                      role="tab"
+                      aria-controls="profile"
+                      aria-selected="false"
                     >
                       {val.title}
                     </a>
