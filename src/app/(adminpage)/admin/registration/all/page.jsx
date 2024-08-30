@@ -39,10 +39,14 @@ const AdminRegistrationAllPage = () => {
 	];
 
 	const onClickExport = () => {
-		onExportExcel(
-			{ Sheet1: admRegisManagerExportObjectBuilder(payload) },
-			"Data registrasi all"
-		);
+		if (payload.length > 0) {
+			onExportExcel(
+				{ Sheet1: admRegisManagerExportObjectBuilder(payload) },
+				"Data registrasi all"
+			);
+		} else {
+			Swal.fire("Error!", "Data not found, can't export to Excel", "error");
+		}
 	};
 
 	useEffect(() => {

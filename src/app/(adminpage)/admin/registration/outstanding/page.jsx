@@ -95,10 +95,14 @@ const AdminRegistrationOutstandingPage = () => {
 	}, []);
 
 	const onClickExport = () => {
-		onExportExcel(
-			{ Sheet1: admRegisManagerExportObjectBuilder(payload) },
-			"Outstanding Data registrasi"
-		);
+		if (payload.length > 0) {
+			onExportExcel(
+				{ Sheet1: admRegisManagerExportObjectBuilder(payload) },
+				"Outstanding Data registrasi"
+			);
+		} else {
+			Swal.fire("Error!", "Data not found, can't export to Excel", "error");
+		}
 	};
 
 	return (

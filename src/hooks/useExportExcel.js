@@ -50,13 +50,15 @@ const useExportExcel = () => {
 		ws.getCell(cellPos).value = value;
 	};
 
-	const temp = {
-		Sheet1: [
-			{
-				Header: "",
-			},
-		],
-	};
+	// example rawdata, dynamic table export
+	// const temp = {
+	// 	Sheet1: [
+	// 		[
+	// 			{ "Header 1": "masookkk", "Header 2": "get in" },
+	// 			{ "Header 1": "in", "Header 4": "incomming" },
+	// 		],
+	// 	],
+	// };
 
 	const onExportExcel = async (rawData, filename) => {
 		const today = moment(new Date()).format("DD-MMM-YYYY");
@@ -66,17 +68,39 @@ const useExportExcel = () => {
 			const worksheet = workbook.addWorksheet(sheet);
 
 			// Set up columns header
-			Object.keys(datas[0]).forEach((res, index) => {
-				generateHeaders(worksheet, res, index);
-			});
+			// Object.keys(datas[0]).forEach((res, index) => {
+			// 	generateHeaders(worksheet, res, index);
+			// });
 
-			// Set data columns
-			datas.forEach((data, rowIndex) => {
-				const keys = Object.keys(data);
-				keys.forEach((key, colIndex) => {
-					generateRowDatas(worksheet, data[key], colIndex, rowIndex);
+			let tempCol = 0;
+
+			datas[0].forEach((data) => {
+				Object.keys(data).forEach((res) => {
+					generateHeaders(worksheet, res, tempCol);
+					tempCol += 1;
 				});
 			});
+			tempCol = 0;
+
+			// // Set data columns
+			// datas.forEach((data, rowIndex) => {
+			// 	const keys = Object.keys(data);
+			// 	keys.forEach((key, colIndex) => {
+			// 		generateRowDatas(worksheet, data[key], colIndex, rowIndex);
+			// 	});
+			// });
+
+			datas.forEach((itemDatas, rowIndex) => {
+				itemDatas.forEach((item) => {
+					Object.keys(item).forEach((key) => {
+						generateRowDatas(worksheet, item[key], tempCol, rowIndex);
+						tempCol += 1;
+					});
+				});
+				tempCol = 0;
+			});
+
+			tempCol = 0;
 
 			worksheet.columns.forEach((column, i) => {
 				let maxLength = 0;
