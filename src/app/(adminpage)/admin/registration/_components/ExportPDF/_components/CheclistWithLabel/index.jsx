@@ -10,6 +10,7 @@ const ARDExportCheckListWithLabel = ({ label, styles, checked = false }) => {
 				flexDirection: "row",
 				marginTop: 8,
 				alignItems: "center",
+				maxWidth: 150,
 				...styles,
 			}}
 		>

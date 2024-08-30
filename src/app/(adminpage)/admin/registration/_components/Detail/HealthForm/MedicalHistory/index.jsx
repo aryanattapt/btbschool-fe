@@ -45,7 +45,8 @@ const ARDHealthFormMedicalHistory = ({ data }) => {
 			"Hearing difficulties",
 			"Persisten ear infections",
 			"Persisten chest infections",
-			"Attention Deficit Syndrome (ADT)",
+			"Attention Deficit Disorder (ADD)",
+			"Attention Deficit Hyperactivity Disorder (ADHD)"
 		],
 	];
 
