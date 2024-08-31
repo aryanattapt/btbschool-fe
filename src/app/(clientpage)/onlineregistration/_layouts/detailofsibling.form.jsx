@@ -94,19 +94,21 @@ const columnDefs = [
 ];
 
 const DetailOfSiblingForm = ({formChangeHandler, name, payload}) => {
-    const agGridRef = useRef({
+    /* const agGridRef = useRef({
         api: undefined,
         columnApi: undefined,
-    });
+    }); */
 
-    const onGridReady = (params) => {
+    const agGridRef = useRef();
+
+    /* const onGridReady = (params) => {
         agGridRef.api = params.api;
         agGridRef.columnApi = params.columnApi;
-    };
+    }; */
 
     const onCellEditingStopped = () => {
         let gridData = [];
-        agGridRef.api.forEachNode(node => gridData.push(node.data));
+        agGridRef.current.api.forEachNode(node => gridData.push(node.data));
         formChangeHandler({
             "target": {
                 "name": name,
@@ -116,6 +118,31 @@ const DetailOfSiblingForm = ({formChangeHandler, name, payload}) => {
         });
     } 
 
+    const onCellKeyDown = (params) => {
+        if (params.event.key === 'Enter') {
+            params.event.preventDefault();
+            const api = agGridRef.current.api;
+            const focusedCell = api.getFocusedCell();
+            
+            if (focusedCell) {
+                const { rowIndex, column } = focusedCell;
+                const allColumns = api.getAllGridColumns();
+                const columnIndex = allColumns.indexOf(column);
+                const nextColumnIndex = columnIndex + 1;
+                const nextRowIndex = rowIndex + 1;
+
+                // Check if next column index is within bounds
+                if (nextColumnIndex < allColumns.length) {
+                    // Move to the next cell in the same row
+                    api.setFocusedCell(rowIndex, allColumns[nextColumnIndex].colId);
+                } else if (nextRowIndex < api.getDisplayedRowCount()) {
+                    // Move to the first cell of the next row
+                    api.setFocusedCell(nextRowIndex, allColumns[0].colId);
+                }
+            }
+        }
+    };
+    
     return <>
         {/* <div>
             <HR.Text text="Detail Of Sibling"/>
@@ -125,11 +152,15 @@ const DetailOfSiblingForm = ({formChangeHandler, name, payload}) => {
         </div>
         <div className="mb-6">
             <div className="flex flex-col items-center justify-center px-6">
-                <Button type="submit" className="w-full lg:w-auto" onClick={() => agGridRef.api.applyTransaction({add: [{}]})}>Add Row</Button>
+                <Button type="submit" className="w-full lg:w-auto" onClick={() => agGridRef.current.api.applyTransaction({add: [{}]})}>Add Row</Button>
             </div>
         </div>
         <div className="ag-theme-quartz pr-10 md:pr-0" style={{height: '200px', width: "100%"}}>
-            <AgGridReact name={name} id={name} columnDefs={columnDefs} rowData={payload.siblinglist || []} onGridReady={onGridReady} onCellEditingStopped={onCellEditingStopped}/>
+            <AgGridReact name={name} id={name} columnDefs={columnDefs} rowData={payload.siblinglist || []} 
+                /* onGridReady={onGridReady}  */
+                ref={agGridRef}
+                onCellKeyDown={onCellKeyDown}
+                onCellEditingStopped={onCellEditingStopped}/>
         </div>
     </>
 };
