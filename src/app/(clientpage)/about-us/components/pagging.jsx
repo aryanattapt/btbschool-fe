@@ -1,78 +1,69 @@
 "use client";
-import { useLanguageStore } from "../../../../../store/language.store";
-import { AboutUsPayload } from "../../../../../data";
-import { useState } from "react";
 
-const Pagging = () => {
-  const [aboutUsData, setAboutUsData] = useState(AboutUsPayload);
-  const { language } = useLanguageStore();
+const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
-        <div className="inline-flex md:gap-4 xl:gap-9 gap-0">
+        <div className="inline-flex gap-9 md:gap-11">
           <div className="border-r-2">
-            <div className="pr-10 pl-10 md:pl-15 xl:pl-32 lg:pl-20">
-              <h1 className="text-[15px] md:text-[25px] text-center font-semibold py-10 place-items-center">
-                {/* Tentang Kami */}
-                {aboutUsData[language].pagingHeader.title}
+            <div className="lg:pr-10 lg:pl-10 md:pr-20 md:pl-32 sm:pr-5 sm:pl-5 pr-5 pl-5">
+              <h1 className="text-[25px] md:text-[25px] text-center font-semibold lg:py-8 md:py-10 sm:py-5 py-5">
+                <a
+                  href="/about-us"
+                  className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
+                    activeTab === "pengenalan" ? "bg-white" : "bg-white"
+                  }`}
+                  onClick={() => setActiveTab("pengenalan")}
+                >
+                  {aboutUsData[language].pagingHeader.title}
+                </a>
               </h1>
             </div>
           </div>
-          <div className="inline-flex gap-20 text-[15px] md:text-[20px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
-            <ul
-              className="flex flex-wrap -mb-px py-8 md:py-10"
-              id="default-tab"
-              data-tabs-toggle="#default-tab-content"
-              role="tablist"
-            >
-              {aboutUsData[language].pagingHeader.url.map((val, idx) => {
-                return (
-                  <li
-                    className="px-4 py-1 md:px-3 xl:px-20 sm:px-10 sm:py-1 lg:px-10 lg:py-1"
-                    key={idx}
-                    role="presentation"
-                  >
-                    <a
-                      // href={`${val.url}`}
-                      className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 active"
-                      aria-current="page"
-                      id={`${val.id}`}
-                      data-tabs-target={`${val.url}`}
-                      type="button"
-                      role="tab"
-                      aria-controls="profile"
-                      aria-selected="false"
-                    >
-                      {val.title}
-                    </a>
-                  </li>
-                );
-              })}
-              {/* <li className="px-10">
+          <div className="inline-flex gap-9 sm:gap-5 md:gap-20 text-[20px] md:text-[20px] text-left text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
+            <ul className="flex flex-wrap -mb-px py-8 md:py-10">
+              <li className="sm:px-8 md:px-20 lg:px-10 xl:px-20 px-5">
                 <a
                   href="/about-us#pengenalan"
-                  className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600"
-                  aria-current="page"
+                  className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
+                    activeTab === "pengenalan"
+                      ? "bg-white text-black underline"
+                      : "bg-white"
+                  }`}
+                  onClick={() => setActiveTab("pengenalan")}
                 >
-                  Pengenalan
+                  {/* Pengenalan */}
+                  {aboutUsData[language].pagingHeader.url[0].title}
                 </a>
               </li>
-              <li className="px-10">
+              <li className="md:px-20 sm:px-8 px-5 lg:px-10 xl:px-20">
                 <a
                   href="/about-us#visi-misi"
-                  className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600"
+                  className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
+                    activeTab === "visi-misi"
+                      ? "bg-white text-black underline"
+                      : "bg-white"
+                  }`}
+                  onClick={() => setActiveTab("visi-misi")}
                 >
-                  Visi Misi
+                  {/* Visi Misi */}
+                  {aboutUsData[language].pagingHeader.url[1].title}
                 </a>
               </li>
-              <li className="px-10">
+              <li className="sm:px-8 md:px-20 px-5 lg:px-10 xl:px-20">
                 <a
                   href="/about-us#jenjang-pendidikan"
-                  className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600"
+                  className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
+                    activeTab === "jenjang-pendidikan"
+                      ? "bg-white text-black underline"
+                      : "bg-white"
+                  }`}
+                  onClick={() => setActiveTab("jenjang-pendidikan")}
                 >
-                  Jenjang Penddikan
+                  {/* Jenjang Pendidikan */}
+                  {aboutUsData[language].pagingHeader.url[2].title}
                 </a>
-              </li> */}
+              </li>
             </ul>
           </div>
         </div>

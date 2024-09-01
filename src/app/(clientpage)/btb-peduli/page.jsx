@@ -15,7 +15,7 @@ const BTBPeduliPage = () => {
   return (
     <>
       <Banner />
-      <Pagging 
+      <Pagging
         btbPeduliData={btbPeduliData}
         language={language}
         activeTab={activeTab}
@@ -23,7 +23,9 @@ const BTBPeduliPage = () => {
       />
 
       {activeTab === "introduction" && <Introduction data={btbPeduliData} />}
-      {activeTab === "peduli-lingkungan" && <PeduliLingkungan data={btbPeduliData} />}
+      {activeTab === "peduli-lingkungan" && (
+        <PeduliLingkungan data={btbPeduliData} />
+      )}
       {activeTab === "sukarelawan" && <Sukarelawan data={btbPeduliData} />}
     </>
   );
