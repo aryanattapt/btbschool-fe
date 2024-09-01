@@ -2,10 +2,11 @@
 import { useEffect, useState } from 'react';
 import { FaCalendar, FaBook, FaQuestion } from 'react-icons/fa';
 import { MdAppRegistration } from "react-icons/md";
+import { FaPlus, FaTimes } from "react-icons/fa";
 
 const FloatingButtons = () => {
   const [isVisible, setIsVisible] = useState(false);
-
+  const [isExpanded, setIsExpanded] = useState(false);
   const checkVisibility = () => {
     const footer = document.querySelector('footer');
     if (footer) {
@@ -31,42 +32,98 @@ const FloatingButtons = () => {
     return () => window.removeEventListener('scroll', checkVisibility);
   }, []);
 
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <div 
       className={`fixed bottom-5 right-10 flex flex-col items-center space-y-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
     >
-      <div className="relative group flex items-center">
-        <a href="/calendar-academic">
-          <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
-            <FaCalendar className="text-white text-xl -rotate-45" />
-          </button>
-        </a>
-        <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Calendar</span>
+      {/* Main toggle button */}
+      <div className="md:hidden">
+        <button 
+          onClick={toggleExpand} 
+          className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110"
+        >
+          {isExpanded ? (
+            <FaTimes className="text-white text-xl -rotate-45" />
+          ) : (
+            <FaPlus className="text-white text-xl -rotate-45" />
+          )}
+        </button>
       </div>
-      <div className="relative group flex items-center">
-          <a href="/bulletinspotlight">
-          <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
-            <FaBook className="text-white text-xl -rotate-45" />
-          </button>
-        </a>
-        <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Bulletin</span>
+      {isExpanded && (
+      <div className="flex flex-col items-center space-y-4">
+        <div className="relative group flex items-center">
+          <a href="/calendar-academic">
+            <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
+              <FaCalendar className="text-white text-xl -rotate-45" />
+            </button>
+          </a>
+          <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Calendar</span>
+        </div>
+        <div className="relative group flex items-center">
+            <a href="/bulletinspotlight">
+            <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
+              <FaBook className="text-white text-xl -rotate-45" />
+            </button>
+          </a>
+          <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Bulletin</span>
+        </div>
+        <div className="relative group flex items-center">
+          <a href="/onlineregistration">
+            <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
+              <MdAppRegistration className="text-white text-xl -rotate-45" />
+            </button>
+          </a>
+          <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Registration</span>
+        </div>
+        <div className="relative group flex items-center">
+          <a href="/help">
+            <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
+              <FaQuestion className="text-white text-xl -rotate-45" />
+            </button>
+          </a>
+          <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">FAQ</span>
+        </div>
       </div>
-      <div className="relative group flex items-center">
-        <a href="/onlineregistration">
-          <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
-            <MdAppRegistration className="text-white text-xl -rotate-45" />
-          </button>
-        </a>
-        <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Registration</span>
-      </div>
-      <div className="relative group flex items-center">
-        <a href="/help">
-          <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
-            <FaQuestion className="text-white text-xl -rotate-45" />
-          </button>
-        </a>
-        <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">FAQ</span>
+    )}
+    
+      <div className="hidden md:flex flex-col items-center space-y-4">
+        <div className="relative group flex items-center">
+          <a href="/calendar-academic">
+            <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
+              <FaCalendar className="text-white text-xl -rotate-45" />
+            </button>
+          </a>
+          <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Calendar</span>
+        </div>
+        <div className="relative group flex items-center">
+            <a href="/bulletinspotlight">
+            <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
+              <FaBook className="text-white text-xl -rotate-45" />
+            </button>
+          </a>
+          <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Bulletin</span>
+        </div>
+        <div className="relative group flex items-center">
+          <a href="/onlineregistration">
+            <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
+              <MdAppRegistration className="text-white text-xl -rotate-45" />
+            </button>
+          </a>
+          <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Registration</span>
+        </div>
+        <div className="relative group flex items-center">
+          <a href="/help">
+            <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">
+              <FaQuestion className="text-white text-xl -rotate-45" />
+            </button>
+          </a>
+          <span className="absolute right-full mr-4 text-white bg-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">FAQ</span>
+        </div>
       </div>
     </div>
   );
