@@ -189,15 +189,15 @@ const NavBar = () => {
                     <ul className="hidden md:block list-none hover:text-[#EF802B] text-white font-sans font-medium rounded-full text-sm px-5 py-1.5 text-center cursor-pointer">
                         <li className="relative group">
                         Quick Link
-                        <ul className="absolute left-0 hidden group-hover:block bg-white text-black mt-2 min-w-[160px] shadow-lg rounded-lg z-10 flex flex-col">
+                        <ul className="absolute right-0 -left-full hidden group-hover:block bg-[#EF802B] text-white min-w-[160px] shadow-lg rounded-lg z-10 flex flex-col">
                             <li>
-                            <a href="#login" className="block px-4 py-2 hover:bg-gray-200 text-center">Login</a>
+                            <a href="#login" className="block px-4 py-2 hover:bg-orange-400">Login</a>
                             </li>
                             <li>
-                            <a href="#signup" className="block px-4 py-2 hover:bg-gray-200 text-center">Sign Up</a>
+                            <a href="#signup" className="block px-4 py-2 hover:bg-orange-400">Sign Up</a>
                             </li>
                             <li>
-                            <a href="#settings" className="block px-4 py-2 hover:bg-gray-200 text-center">Settings</a>
+                            <a href="#settings" className="block px-4 py-2 hover:bg-orange-400">Settings</a>
                             </li>
                         </ul>
                         </li>
