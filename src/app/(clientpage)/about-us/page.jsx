@@ -4,166 +4,30 @@ import Pagging from "./components/pagging";
 import { useLanguageStore } from "../../../../store/language.store";
 import { AboutUsPayload } from "../../../../data";
 import { useState } from "react";
-import { Button, Tabs } from "flowbite-react";
+import Pengenalan from "./components/pengenalan";
+import VisiMisi from "./components/visi-misi";
+import JenjangPendidikan from "./components/jenjang-pendidikan";
 
 const AboutUsPage = () => {
   const [aboutUsData, setAboutUsData] = useState(AboutUsPayload);
   const { language } = useLanguageStore();
+  const [activeTab, setActiveTab] = useState("pengenalan");
 
-  // useEffect(() => {
-  //   GetConfig("faq", {})
-  //     .then((res) => {
-  //       console.log(res);
-  //       setPayload(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
   return (
     <>
       <Banner />
-      {/* <Pagging /> */}
-      {/* <header className="flex flex-row items-center justify-between text-[#00305E] border-b">
-        <div className="inline-flex ">
-          <div className="border-r-0  ">
-            <div className="pr-10 pl-10 md:pl-15 xl:pl-32 lg:pl-20">
-              <h1 className="text-[15px] md:text-[25px] text-center font-semibold py-10 place-items-center">
-                {aboutUsData[language].pagingHeader.title}
-              </h1>
-            </div>
-          </div>
-        </div>
-      </header> */}
-      <Tabs
-        aria-label="Tabs with underline"
-        variant="underline"
-        className="place-content-center	"
-      >
-        <Tabs.Item
-          title={aboutUsData[language].pagingHeader.title}
-          disabled
-        ></Tabs.Item>
-        <Tabs.Item
-          title={aboutUsData[language].pagingHeader.url[0].title}
-          active
-        >
-          {/* <div className="p-4 rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold text-[#00305E] text-center mb-6">
-              {helpData[language].mainTitle}
-            </h1>
-            <FAQ payload={payload} />
-          </div> */}
-          <div
-            className="relative"
-            id="pengenalan"
-            role="tabpanel"
-            aria-labelledby="pengenalan-tab"
-          >
-            <div className="mt-10 mb-5 pl-10 md:pl-32 text-[#00305E] sm:justify-center">
-              <h1 className="md:text-[35px] text-[30px] font-semibold">
-                {aboutUsData[language].title}
-              </h1>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2">
-              <div>
-                <img
-                  src={`${AboutUsPayload.image1}`}
-                  alt="PAUD"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="content-center bg-[#EF802B]">
-                <div className="p-5 text-left text-[14px] md:text-[20px] text-[#000000] text-pretty">
-                  {aboutUsData[language].desc}
-                </div>
-              </div>
-            </div>
-          </div>
-        </Tabs.Item>
-        <Tabs.Item title={aboutUsData[language].pagingHeader.url[1].title}>
-          <div
-            id="visi-misi"
-            className="md:mx-32 mx-10 grid md:grid-cols-1 grid-cols-1 xl:grid-cols-2 lg:grid-cols-1 text-black leading-loose"
-            role="tabpanel"
-            aria-labelledby="visimisi-tab"
-          >
-            <div>
-              <h2 className="md:text-[25px] text-[25px] mb-[10px] font-semibold">
-                {/* Visi */}
-                {aboutUsData[language].visimisi.titlevisi}
-              </h2>
-              <p className="leading-[35px]">
-                {/* Untuk memberikan pendidikan holistik dan membina siswa untuk menjadi
-            pemimpin yang dinamis dalam masyarakat global. */}
-                {aboutUsData[language].visimisi.descvisi}
-              </p>
-              <h2 className="text-[25px] mb-[10px] font-semibold mt-3">
-                {/* Misi */}
-                {aboutUsData[language].visimisi.titlemisi}
-              </h2>
-              <p className="leading-[35px]">
-                {/* Menyelenggarakan pendidikan internasional berkualitas yang akan
-            mengembangkan kebutuhan individu siswa secara akademis, emosional,
-            fisik dan sosial dengan:  */}
-                {aboutUsData[language].visimisi.descmisi}
-              </p>
-              <ul className="list-disc">
-                {aboutUsData[language].visimisi.misilist.map((val, idx) => {
-                  return <li key={idx}>{val}</li>;
-                })}
-                {/* <li>Menanamkan nilai moral dan budi pekerti
-            yang baik kepada siswa agar bertanggung jawab atas tindakannya.</li>
-            <li>Mengembangkan Profil Pelajar BTB dengan menerapkan praktik
-            pendidikan terbaik dan mempromosikan literasi digital.</li>
-            <li>Menyediakan
-            lingkungan belajar yang aman dan nyaman di mana rasa hormat,
-            kejujuran, dan penghargaan terhadap perbedaan individu dipupuk.</li> */}
-              </ul>
-            </div>
-            <div className="pl-[0px] md:pl-[50px] py-5 md:py-5 xl:py-0">
-              <img
-                // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
-                src={`${AboutUsPayload.image2}`}
-                alt="aboutus2"
-                className="md:h-[500px] md:w-[546px] px-4 object-cover"
-              />
-            </div>
-          </div>
-        </Tabs.Item>
-        <Tabs.Item title={aboutUsData[language].pagingHeader.url[2].title}>
-          {/* <InformasiPendaftaran /> */}
-          <div className="flex items-center justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5 p-5">
-              {aboutUsData[language].gradelists.map((val, idx) => (
-                <div className="m-5" key={idx}>
-                  <a
-                    href={`${val.url}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <div
-                      className="xl:h-[346px] xl:w-[552px] md:h-[230px] md:w-[330px] h-[130px] w-[230px] lg:h-[230px] lg:w-[430px] sm:w-[130px] sm:h-[230px] bg-cover bg-center rounded-[50px]"
-                      style={{ backgroundImage: `url(${val.image})` }}
-                    >
-                      <div className="h-full bg-black bg-opacity-50 hover:bg-[#243F6D] hover:opacity-80 rounded-[50px]">
-                        <div className="flex items-end justify-start pl-10 pb-10 hover:pb-20 h-full text-white group">
-                          <div>
-                            <p className="md:text-[35px] text-justify font-bold text-[#FFFFFF]">
-                              {val.title}
-                            </p>
-                            <p className="underline">{val.buttoncontent}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Tabs.Item>
-      </Tabs>
+      <Pagging
+        aboutUsData={aboutUsData}
+        language={language}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
+
+      {activeTab === "pengenalan" && <Pengenalan data={aboutUsData} />}
+      {activeTab === "visi-misi" && <VisiMisi data={aboutUsData} />}
+      {activeTab === "jenjang-pendidikan" && (
+        <JenjangPendidikan data={aboutUsData} />
+      )}
 
       <div>
         <div className="my-8 md:my-10 bg-[#243F6D]">
