@@ -1318,17 +1318,35 @@ export const ContactUsPayLoad = {
     schoolList: [
       {
         title: "BTB SCHOOL PLUIT TIMUR",
+        subtitle: "Nursery - Grade 8",
         address: "Jl. Pluit Timur Blok MM",
-        phoneNumber: "081296333888",
-        waNumber: "085695333888",
-        hrefwa: "https://wa.me/085695333888",
+        phoneNumber: "(+62) 216698888",
+        waList: [
+          {
+            waNumber: "(+62) 856 95 333 888",
+            hrefwa: "https://wa.me/085695333888",
+          },
+          {
+            waNumber: "(+62) 812 96 333 888",
+            hrefwa: "https://wa.me/081296333888",
+          },
+        ],
       },
       {
         title: "BTB SCHOOL PLUIT PUTRI",
-        address: "Jl.Pluit Timur Blok MM",
-        phoneNumber: "085776333888",
-        waNumber: "085195333888",
-        hrefwa: "https://wa.me/085195333888",
+        subtitle: "Grade 9 - Grade 12",
+        address: "Jl. Taman Pluit Putri",
+        phoneNumber: "(+62) 216685858",
+        waList: [
+          {
+            waNumber: "(+62) 851 95 333 888",
+            hrefwa: "https://wa.me/085195333888",
+          },
+          {
+            waNumber: "(+62) 857 76 333 888",
+            hrefwa: "https://wa.me/085776333888",
+          },
+        ],
       },
     ],
     titleLocation: "LOKASI KAMI",
@@ -1369,15 +1387,31 @@ export const ContactUsPayLoad = {
         title: "BTB SCHOOL PLUIT TIMUR",
         address: "Jl. Pluit Timur Blok MM",
         phoneNumber: "081296333888",
-        waNumber: "085695333888",
-        hrefwa: "https://wa.me/085695333888",
+        waList: [
+          {
+            waNumber: "(+62) 856 95 333 888",
+            hrefwa: "https://wa.me/085695333888",
+          },
+          {
+            waNumber: "(+62) 812 96 333 888",
+            hrefwa: "https://wa.me/081296333888",
+          },
+        ],
       },
       {
         title: "BTB SCHOOL PLUIT PUTRI",
         address: "Jl.Pluit Timur Blok MM",
         phoneNumber: "085776333888",
-        waNumber: "085195333888",
-        hrefwa: "https://wa.me/085195333888",
+        waList: [
+          {
+            waNumber: "(+62) 851 95 333 888",
+            hrefwa: "https://wa.me/085195333888",
+          },
+          {
+            waNumber: "(+62) 857 76 333 888",
+            hrefwa: "https://wa.me/085776333888",
+          },
+        ],
       },
     ],
     titleLocation: "OUR LOCATION",
