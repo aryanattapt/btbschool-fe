@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { useLanguageStore } from "../../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../../store/language.store"; */
 
-const VisiMisiPage = ({ data }) => {
-  const { language } = useLanguageStore();
+const VisiMisiPage = ({ data, language }) => {
+  /* const { language } = useLanguageStore(); */
 
   return (
     <>

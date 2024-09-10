@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { useLanguageStore } from "../../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../../store/language.store"; */
 
-const JenjangPendidikanPage = ({ data }) => {
-  const { language } = useLanguageStore();
+const JenjangPendidikanPage = ({ data, language }) => {
+  /* const { language } = useLanguageStore(); */
 
   return (
     <>

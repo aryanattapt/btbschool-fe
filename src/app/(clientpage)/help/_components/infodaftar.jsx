@@ -3,14 +3,16 @@ const { Button } = require("flowbite-react")
 import { useState } from "react";
 import { ContactUsPayLoad } from "../../../../../data";
 import { HelpPayload } from "../../../../../data";
-import { useLanguageStore } from "../../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../../store/language.store"; */
 import { HiMail, HiPhone } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
+import useLanguage from "../../../../hooks/useLanguage";
 
 const InformasiPendaftaran = () => {
     const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
     const [helpData, setHelpData] = useState(HelpPayload);
-    const { language } = useLanguageStore();
+    /* const { language } = useLanguageStore(); */
+    const {language} = useLanguage();
 
     return <div className="p-4">
         <h1 className="text-2xl font-bold text-[#00305E] text-center mb-6">

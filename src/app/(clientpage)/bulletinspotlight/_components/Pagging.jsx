@@ -1,14 +1,16 @@
 "use client";
 
-import { useLanguageStore } from "../../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../../store/language.store"; */
 import { BulletinSpotlightPayload } from "../../../../../data";
 import { useState } from "react";
+import useLanguage from "../../../../hooks/useLanguage";
 
 const Pagging = () => {
 	const [bulletinSpotlightData, setBulletinSpotlightData] = useState(
 		BulletinSpotlightPayload
 	);
-	const { language } = useLanguageStore();
+	/* const { language } = useLanguageStore(); */
+	const {language} = useLanguage();
 
 	return (
 		<>

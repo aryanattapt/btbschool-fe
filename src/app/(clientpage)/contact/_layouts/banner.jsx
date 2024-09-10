@@ -1,11 +1,11 @@
 "use client";
 import { ContactUsPayLoad } from "../../../../../data";
-import { useLanguageStore } from "../../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../../store/language.store"; */
 import { useState } from "react";
 
 const BannerLayouts = () => {
   const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
   return (
     <>
       <div className="relative h-[475px] w-full">

@@ -25,10 +25,10 @@ const AboutUsPage = () => {
         setActiveTab={setActiveTab}
       />
 
-      {activeTab === "pengenalan" && <Pengenalan data={aboutUsData} />}
-      {activeTab === "visi-misi" && <VisiMisi data={aboutUsData} />}
+      {activeTab === "pengenalan" && <Pengenalan data={aboutUsData} language={language} />}
+      {activeTab === "visi-misi" && <VisiMisi data={aboutUsData} language={language} />}
       {activeTab === "jenjang-pendidikan" && (
-        <JenjangPendidikan data={aboutUsData} />
+        <JenjangPendidikan data={aboutUsData} language={language}/>
       )}
 
       <div>

@@ -1,12 +1,14 @@
 "use client";
 
-import { useLanguageStore } from "../../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../../store/language.store"; */
+import useLanguage from '../../../../hooks/useLanguage';
 import { BTBBelajarPayload } from "../../../../../data";
 import { useState } from "react";
 
 const Pagging = () => {
   const [btbBelajarData, setBtbBelajarData] = useState(BTBBelajarPayload);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
 
   return (
     <>
