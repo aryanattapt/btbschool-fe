@@ -5,13 +5,15 @@ import BannerHelpCenter from "./_components/banner";
 import InformasiPendaftaran from "./_components/infodaftar";
 import FAQ from "./_components/faq";
 import { GetConfig } from "../../../../services/config.service";
-import {useLanguageStore} from '../../../../store/language.store';
+/* import {useLanguageStore} from '../../../../store/language.store'; */
 import {HelpPayload} from '../../../../data';
+import useLanguage from '../../../hooks/useLanguage';
 
 const HelpCenterPage = () => {
   const [payload, setPayload] = useState([]);
   const [helpData, setHelpData] = useState(HelpPayload);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
 
   useEffect(() => {
     GetConfig("faq", {})

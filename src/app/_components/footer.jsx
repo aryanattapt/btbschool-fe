@@ -5,13 +5,15 @@ import { BsFacebook, BsYoutube, BsInstagram, BsTwitter } from "react-icons/bs";
 import { MdMailOutline } from "react-icons/md";
 import { FaMapPin, FaCalendar, FaBook, FaQuestion, FaWhatsapp } from "react-icons/fa";
 import { MdAppRegistration } from "react-icons/md";
-import { useLanguageStore } from "../../../store/language.store";
+/* import { useLanguageStore } from "../../../store/language.store"; */
 import { FooterPayload } from "../../../data";
 import { useState } from "react";
+import useLanguage from "../../hooks/useLanguage";
 
 const FooterComponent = () => {
   const [footerPayload, setFooterPayload] = useState(FooterPayload);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
 
   return (
     <>

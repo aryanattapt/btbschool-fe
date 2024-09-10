@@ -9,12 +9,14 @@ import { useEffect, useState } from "react";
 import { GetBTBInstagramFeed } from "../../../services/instagram.service";
 import { useRouter } from "next/navigation";
 import { FaInstagram } from "react-icons/fa";
-import { useLanguageStore } from "../../../store/language.store";
+/* import { useLanguageStore } from "../../../store/language.store"; */
 import { HomePagePayload } from "../../../data";
+import useLanguage from "../../hooks/useLanguage";
 
 const HomePage = () => {
   const [homePagePayload, setHomePagePayload] = useState(HomePagePayload);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
   const router = useRouter();
   const [instagramFeed, setInstagramFeed] = useState([]);
 

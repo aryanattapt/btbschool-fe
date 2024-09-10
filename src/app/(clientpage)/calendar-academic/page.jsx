@@ -6,12 +6,14 @@ import Content from "./components/content";
 import { GetConfig } from '../../../../services/config.service';
 import { FaDownload } from "react-icons/fa";
 import {CalendarAcademicPayload} from '../../../../data';
-import {useLanguageStore} from '../../../../store/language.store';
+/* import {useLanguageStore} from '../../../../store/language.store'; */
+import useLanguage from '../../../hooks/useLanguage';
 
 const CalendarAcademicPage = () => {
   const [payload, setPayload] = useState([])
   const [calendarAcademicData, setCalendarAcademicData] = useState(CalendarAcademicPayload);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
 
   useEffect(() => {
     GetConfig('calenderacademic', {}).then(res => {

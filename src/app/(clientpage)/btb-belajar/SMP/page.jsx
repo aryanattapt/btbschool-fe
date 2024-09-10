@@ -3,13 +3,16 @@ import Banner from "../components/Banner";
 import Pagging from "../components/Pagging";
 import SMP from "../components/SMP";
 import { useState } from "react";
-import { useLanguageStore } from "../../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../../store/language.store"; */
 import { BTBBelajarPayload } from "../../../../../data";
 import { Carousel } from "flowbite-react";
+import useLanguage from "../../../../hooks/useLanguage";
 
 const SMPPage = () => {
   const [btbBelajarData, setBtbBelajarData] = useState(BTBBelajarPayload);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
+
   return (
     <>
       {/* <Banner /> */}

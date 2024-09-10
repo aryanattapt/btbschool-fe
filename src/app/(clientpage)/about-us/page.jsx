@@ -1,7 +1,8 @@
 "use client";
 import Banner from "./components/banner";
 import Pagging from "./components/pagging";
-import { useLanguageStore } from "../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../store/language.store"; */
+import useLanguage from '../../../hooks/useLanguage';
 import { AboutUsPayload } from "../../../../data";
 import { useState } from "react";
 import Pengenalan from "./components/pengenalan";
@@ -10,7 +11,8 @@ import JenjangPendidikan from "./components/jenjang-pendidikan";
 
 const AboutUsPage = () => {
   const [aboutUsData, setAboutUsData] = useState(AboutUsPayload);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
   const [activeTab, setActiveTab] = useState("pengenalan");
 
   return (

@@ -3,13 +3,16 @@ import Banner from "../components/Banner";
 import Pagging from "../components/Pagging";
 import SD from "../components/SD";
 import { useState } from "react";
-import { useLanguageStore } from "../../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../../store/language.store"; */
+import useLanguage from '../../../../hooks/useLanguage';
 import { BTBBelajarPayload } from "../../../../../data";
 import { Carousel } from "flowbite-react";
 
 const SDPage = () => {
   const [btbBelajarData, setBtbBelajarData] = useState(BTBBelajarPayload);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
+
   return (
     <>
       {/* <Banner /> */}

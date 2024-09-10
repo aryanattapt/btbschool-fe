@@ -1,12 +1,14 @@
 "use client";
 import { useState } from "react";
 import { Carousel } from "flowbite-react";
-import { useLanguageStore } from "../../../store/language.store";
+/* import { useLanguageStore } from "../../../store/language.store"; */
 import { HomePagePayload } from "../../../data";
+import useLanguage from "../../hooks/useLanguage";
 
 const CarouselComponents = () => {
   const [homePageData, setHomePageData] = useState(HomePagePayload);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
 
   return (
     <Carousel

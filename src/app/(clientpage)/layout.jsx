@@ -2,6 +2,7 @@ import FooterComponent from "../_components/footer";
 import NavBar from "../_components/navbarapt";
 import FloatingButtons from "../_components/floatingbutton";
 import 'core-js/full/promise/with-resolvers'
+import { LanguageProvider } from "../../context/language.context";
 
 export const metadata = {
   title: "Bina Tunas Bangsa School",
@@ -10,11 +11,13 @@ export const metadata = {
 
 export default function ClientLayout({ children }) {
   return (
-    <div className="flex flex-col min-h-screen sm:w-100%">
-      <NavBar />
-      <main className="flex-grow">{children}</main>
-      <FooterComponent />
-      <FloatingButtons/>
-    </div>
+    <LanguageProvider>
+      <div className="flex flex-col min-h-screen sm:w-100%">
+        <NavBar />
+        <main className="flex-grow">{children}</main>
+        <FooterComponent />
+        <FloatingButtons/>
+      </div>
+    </LanguageProvider>
   );
 }

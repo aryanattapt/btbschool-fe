@@ -5,12 +5,14 @@ import Pagging from "./_layouts/pagging";
 import { HiPhone, HiMail } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { ContactUsPayLoad } from "../../../../data";
-import { useLanguageStore } from "../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../store/language.store"; */
+import useLanguage from '../../../hooks/useLanguage';
 import { useState } from "react";
 
 const ContactPage = () => {
   const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
   return (
     <>
       <Banner />

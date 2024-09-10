@@ -1,13 +1,15 @@
 'use client'
 import { useState, useEffect } from "react";
-import { useLanguageStore } from "../../../store/language.store";
+/* import { useLanguageStore } from "../../../store/language.store"; */
+import useLanguage from '../../hooks/useLanguage'
 import { NavbarPayload } from "../../../data";
 import { IoIosArrowDown } from "react-icons/io";
 
 const NavBar = () => {
   const [navBarPayload, setNavBarPayload] = useState(NavbarPayload);
-  const { language } = useLanguageStore();
-  const setLanguage = useLanguageStore((state) => state.setLanguage);
+  /* const { language } = useLanguageStore();
+  const setLanguage = useLanguageStore((state) => state.setLanguage); */
+  const {language, changeLanguage} = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true); 
@@ -28,7 +30,8 @@ const NavBar = () => {
   }, [lastScrollY]);
 
   const languageChangeHandler = (e) => {
-    setLanguage(e.target.checked ? "EN" : "ID");
+    /* setLanguage(e.target.checked ? "EN" : "ID"); */
+    changeLanguage(e.target.checked ? "EN" : "ID");
   };
 
   const getGradientSetup = () => {
