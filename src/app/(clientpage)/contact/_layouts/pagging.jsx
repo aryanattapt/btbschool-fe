@@ -1,11 +1,13 @@
 "use client";
 import { ContactUsPayLoad } from "../../../../../data";
-import { useLanguageStore } from "../../../../../store/language.store";
+/* import { useLanguageStore } from "../../../../../store/language.store"; */
 import { useState } from "react";
+import useLanguage from "../../../../hooks/useLanguage";
 
 const PaggingLayouts = () => {
   const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
-  const { language } = useLanguageStore();
+  /* const { language } = useLanguageStore(); */
+  const {language} = useLanguage();
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">

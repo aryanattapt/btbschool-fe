@@ -81,7 +81,7 @@ const ContactPage = () => {
             <p className="text-lg sm:text-lg md:text-xl lg:text-3xl my-5 text-black">
               {contactUsData[language].desc}
             </p>
-            <div className="flex-1">{/* <ContactForm /> */}</div>
+            <div className="flex-1"><ContactForm /></div>
           </div>
         </div>
 
