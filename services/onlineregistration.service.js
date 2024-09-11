@@ -11,6 +11,16 @@ export const SubmitStudentRegistration = (registrationPayload) => new Promise(as
     }
 });
 
+export const ValidateStudentRegistration = (registrationPayload) => new Promise(async (resolve, reject) => {
+    try {
+        const result = await callInternalAPI('/student/registration/validate/', 'POST', registrationPayload, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
+        return resolve(result);
+    } catch (error) {
+        console.log(error); 
+        return reject(error.response.data?.error || error.response.data?.message || error.message);
+    }
+});
+
 export const GetDraftStudentRegistration = (registrationcode) => new Promise(async (resolve, reject) => {
     try {
         const result = await callInternalAPI('/student/registration/draft/', 'POST', {

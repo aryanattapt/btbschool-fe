@@ -19,6 +19,7 @@ import { GetCountry } from '../../../../../services/country.service'
 import {
   GetDraftStudentRegistration,
   SubmitStudentRegistration,
+  ValidateStudentRegistration,
 } from "../../../../../services/onlineregistration.service";
 import Swal from "sweetalert2";
 import _ from "lodash";
@@ -40,6 +41,7 @@ const OnlineRegistrationForm = () => {
   const [registrationPayload, setRegistrationPayload] = useState({medicalproblemoptions: []});
   const [nationalityPayload, setNationalityPayload] = useState([]);
   const [yearPayload, setYearPayload] = useState([]);
+  const [errorPayload, setErrorPayload] = useState({});
   
   const formChangeHandler = (e) => {
     const { name, value, type, files } = e.target;
@@ -86,102 +88,102 @@ const OnlineRegistrationForm = () => {
     }));
   };
 
-  const submitHandler = (isFinal, setStateCallBack) => {
-    console.log(`Masuk Submit Handler`);
-    console.log(registrationPayload);
-    setStateCallBack(true);
+  const findMinPage = (data) => {
+    let minPage = Infinity; 
+    for (const key in data) {
+        if (data[key].page < minPage) {
+            minPage = data[key].page;
+        }
+    }
+    return minPage;
+  }
 
-    /* Collect Attachment */
-    var formData = new FormData();
-    if (
-      registrationPayload.birthcertificateattachment &&
-      Array.isArray(registrationPayload.birthcertificateattachment)
-    ) {
-      registrationPayload.birthcertificateattachment.map((val) => {
-        console.log(val);
-        formData.append("birthcertificate", val);
-      });
-    }
-    if (
-      registrationPayload.familycardattachment &&
-      Array.isArray(registrationPayload.familycardattachment)
-    ) {
-      registrationPayload.familycardattachment.map((val) => {
-        console.log(val);
-        formData.append("familycardattachment", val);
-      });
-    }
-    if (
-      registrationPayload.reportcardattachment &&
-      Array.isArray(registrationPayload.reportcardattachment)
-    ) {
-      registrationPayload.reportcardattachment.map((val) => {
-        console.log(val);
-        formData.append("reportcardattachment", val);
-      });
-    }
+  const submitHandler = async (isFinal, setStateCallBack) => {
+      try {
+          console.log(`Masuk Submit Handler`);
+          console.log(registrationPayload);
+          setStateCallBack(true);
 
-    setStateCallBack(false);
-    
-    /* Call API in here... */
-    UploadAttachment("studentregistration", formData)
-    .then((res) => {
-      const studentRegistrationPayload = { ...registrationPayload };
-      delete studentRegistrationPayload.birthcertificateattachment;
-      delete studentRegistrationPayload.familycardattachment;
-      delete studentRegistrationPayload.reportcardattachment;
-      
-      if(res.data){
-        studentRegistrationPayload.attachment = res.data;
-      }
-      studentRegistrationPayload.status = isFinal ? "send" : "draft";
-      
-      console.log(registrationPayload);
-        SubmitStudentRegistration(studentRegistrationPayload)
-          .then((res) => {
-            setRegistrationPayload({});
-            setStateCallBack(false);
-            Swal.fire({
+          /* Collect Attachment */
+          const formData = new FormData();
+          if (registrationPayload.birthcertificateattachment && Array.isArray(registrationPayload.birthcertificateattachment)) {
+              registrationPayload.birthcertificateattachment.forEach(val => {
+                  console.log(val);
+                  formData.append("birthcertificate", val);
+              });
+          }
+          if (registrationPayload.familycardattachment && Array.isArray(registrationPayload.familycardattachment)) {
+              registrationPayload.familycardattachment.forEach(val => {
+                  console.log(val);
+                  formData.append("familycardattachment", val);
+              });
+          }
+          if (registrationPayload.reportcardattachment && Array.isArray(registrationPayload.reportcardattachment)) {
+              registrationPayload.reportcardattachment.forEach(val => {
+                  console.log(val);
+                  formData.append("reportcardattachment", val);
+              });
+          }
+
+          if(isFinal){
+            try {
+              await ValidateStudentRegistration(registrationPayload);
+            } catch (error) {
+              Swal.fire({
+                  allowOutsideClick: false,
+                  title: "Student Submission Notification!",
+                  text: `Please Validate your data submission`,
+                  icon: "info",
+              });
+              setErrorPayload(error);
+              setStateCallBack(false);
+              setPageNo(findMinPage(error));
+              return;
+            }
+          }
+
+          /* Call API */
+          const res = await UploadAttachment("studentregistration", formData);
+          const studentRegistrationPayload = { ...registrationPayload };
+          delete studentRegistrationPayload.birthcertificateattachment;
+          delete studentRegistrationPayload.familycardattachment;
+          delete studentRegistrationPayload.reportcardattachment;
+
+          if (res.data) {
+              studentRegistrationPayload.attachment = res.data;
+          }
+          studentRegistrationPayload.status = isFinal ? "send" : "draft";
+          const submitRes = await SubmitStudentRegistration(studentRegistrationPayload);
+          setRegistrationPayload({});
+          setStateCallBack(false);
+          
+          Swal.fire({
               allowOutsideClick: false,
               title: "Student Submission Notification!",
-              text: `Success submit student data with no:  ${res.data.registrationCode}. Form will be reloaded in 5 seconds!`,
+              text: `Success submit student data with no: ${submitRes.data.registrationCode}. Form will be reloaded in 5 seconds!`,
               icon: "info",
-            });
-            setTimeout(() => {
+          });
+          
+          setTimeout(() => {
               window.location.href = '/onlineregistration';
-            }, 5000);
-          })
-          .catch((err) => {
-            setStateCallBack(false);
-            Swal.fire({
+          }, 5000);
+      } catch (err) {
+          setStateCallBack(false);
+          Swal.fire({
               allowOutsideClick: false,
               title: "Student Submission Notification!",
-              html: err,
+              html: err.message || err,
               icon: "error",
-            });
           });
-      })
-      .catch((err) => {
-        setStateCallBack(false);
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Student Submission Notification!",
-          html: err,
-          icon: "error",
-        });
-      });
+      }
   };
 
   const saveAndSendHandler = (e) => {
-    console.log(registrationPayload);
     submitHandler(true, setIsLoading);
-    // setIsLoading(true)
   };
 
   const saveAsDraftHandler = (e) => {
-    console.log(registrationPayload);
     submitHandler(false, setIsLoading);
-    // setIsLoading(true)
   };
 
   const [registrationCode, setRegistrationCode] = useState('');
@@ -428,30 +430,36 @@ const OnlineRegistrationForm = () => {
               yearPayload={yearPayload}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
+              errorPayload={errorPayload}
             />
             <StudentDetailForm
               nationalityPayload = {nationalityPayload}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               datePickerHandler={datePickerHandler}
+              errorPayload={errorPayload}
             />
             <EducationalBackgroundForm
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
+              errorPayload={errorPayload}
             />
             <ParentsInformationForm
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               datePickerHandler={datePickerHandler}
+              errorPayload={errorPayload}
             />
             <EmergencyContactForm
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
+              errorPayload={errorPayload}
             />
             <DetailOfSiblingForm
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               name="siblinglist"
+              errorPayload={errorPayload}
             />
           </>
         ) : (
@@ -476,10 +484,12 @@ const OnlineRegistrationForm = () => {
             <PersonalHealthInformationForm
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
+              errorPayload={errorPayload}
             />
             <MedicalProblemForm
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
+              errorPayload={errorPayload}
             />
           </>
         ) : (
@@ -492,6 +502,7 @@ const OnlineRegistrationForm = () => {
             <RecomendedForm
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
+              errorPayload={errorPayload}
             />
             <AttachmentForm formChangeHandler={formChangeHandler} />
             <SignaturePad

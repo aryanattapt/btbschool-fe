@@ -16,6 +16,7 @@ const StudentDetailForm = ({
   formChangeHandler,
   datePickerHandler,
   payload,
+  errorPayload,
 }) => {
   return (
     <>
@@ -35,6 +36,12 @@ const StudentDetailForm = ({
           autoFocus={true}
           onChange={formChangeHandler}
           required
+          color={errorPayload?.firstname ? "failure" : undefined}
+          helperText={
+            errorPayload?.firstname && (
+              <span className="font-medium text-red-600">{errorPayload.firstname.message}</span>
+            )
+          }
         />
       </div>
       <div className="md:inline-flex">
@@ -48,6 +55,12 @@ const StudentDetailForm = ({
           name="middlename"
           type="text"
           onChange={formChangeHandler}
+          color={errorPayload?.middlename ? "failure" : undefined}
+          helperText={
+            errorPayload?.middlename && (
+              <span className="font-medium text-red-600">{errorPayload.middlename.message}</span>
+            )
+          }
         />
       </div>
       <div className="md:inline-flex">
@@ -62,6 +75,12 @@ const StudentDetailForm = ({
           type="text"
           onChange={formChangeHandler}
           required
+          color={errorPayload?.lastname ? "failure" : undefined}
+          helperText={
+            errorPayload?.lastname && (
+              <span className="font-medium text-red-600">{errorPayload.lastname.message}</span>
+            )
+          }
         />
       </div>
       <div className="md:inline-flex">
@@ -71,53 +90,19 @@ const StudentDetailForm = ({
         <div className="inline-flex w-full pr-10 md:pr-0">
           <div className="w-1/2 pr-2">
             <TextInput
-            className="w-full pr-10 md:pr-0"
-            value={payload.birthplace || ""}
-            id="birthplace"
-            name="birthplace"
-            type="text"
-            onChange={formChangeHandler}
-          />
-            {/* <Select
+              className="w-full pr-10 md:pr-0"
               value={payload.birthplace || ""}
               id="birthplace"
               name="birthplace"
-              required
+              type="text"
               onChange={formChangeHandler}
-            >
-              <option value="">Select Birth Place</option>
-              <option value="aceh">Aceh</option>
-              <option value="bali">Bali</option>
-              <option value="banten">Banten</option>
-              <option value="bengkulu">Bengkulu</option>
-              <option value="gorontalo">Gorontalo</option>
-              <option value="jakarta">Jakarta</option>
-              <option value="jambi">Jambi</option>
-              <option value="jawa barat">Jawa Barat</option>
-              <option value="jawa tengah">Jawa Tengah</option>
-              <option value="jawa timur">Jawa Timur</option>
-              <option value="kalimantan barat">Kalimantan Barat</option>
-              <option value="kalimantan tengah">Kalimantan Tengah</option>
-              <option value="kalimantan selatan">Kalimantan Selatan</option>
-              <option value="kalimantan timur">Kalimantan Timur</option>
-              <option value="kepulauan bangka belitung">Kepulauan Bangka Belitung</option>
-              <option value="kepulauan riau">Kepulauan Riau</option>
-              <option value="maluku">Maluku</option>
-              <option value="maluku utara">Maluku Utara</option>
-              <option value="nusa tenggara barat">Nusa Tenggara Barat</option>
-              <option value="nusa tenggara timur">Nusa Tenggara Timur</option>
-              <option value="papua">Papua</option>
-              <option value="papua barat">Papua Barat</option>
-              <option value="riau">Riau</option>
-              <option value="sulawesi barat">Sulawesi Barat</option>
-              <option value="sulawesi selatan">Sulawesi Selatan</option>
-              <option value="sulawesi tengah">Sulawesi Tengah</option>
-              <option value="sulawesi tenggara">Sulawesi Tenggara</option>
-              <option value="sulawesi utara">Sulawesi Utara</option>
-              <option value="sumatera barat">Sumatera Barat</option>
-              <option value="sumatera selatan">Sumatera Selatan</option>
-              <option value="sumatera utara">Sumatera Utara</option>
-            </Select> */}
+              color={errorPayload?.birthplace ? "failure" : undefined}
+              helperText={
+                errorPayload?.birthplace && (
+                  <span className="font-medium text-red-600">{errorPayload.birthplace.message}</span>
+                )
+              }
+            />
           </div>
           <div className="w-1/2">
             <Datepicker
@@ -129,6 +114,12 @@ const StudentDetailForm = ({
               showTodayButton={false}
               onSelectedDateChanged={(date) =>
                 datePickerHandler("birthdate", date)
+              }
+              color={errorPayload?.birthdate ? "failure" : undefined}
+              helperText={
+                errorPayload?.birthdate && (
+                  <span className="font-medium text-red-600">{errorPayload.birthdate.message}</span>
+                )
               }
             />
           </div>
@@ -144,23 +135,17 @@ const StudentDetailForm = ({
           id="nationality"
           name="nationality"
           required
-          onChange={formChangeHandler}>
-            <option key="default" value="">Select Nationality</option>
-            {
-              nationalityPayload.map((val, idx) => {
-                return <option key={idx} value={`${val}`}>{val}</option>
-              })
-            }
-        </Select>
-        {/* <TextInput
-          className="w-full pr-10 md:pr-0"
-          value={payload.nationality || ""}
-          id="nationality"
-          name="nationality"
-          type="text"
           onChange={formChangeHandler}
-          required
-        /> */}
+          color={errorPayload?.nationality ? "failure" : undefined}
+        >
+          <option key="default" value="">Select Nationality</option>
+          {nationalityPayload.map((val, idx) => (
+            <option key={idx} value={val}>{val}</option>
+          ))}
+        </Select>
+        {errorPayload?.nationality && (
+          <span className="font-medium text-red-600">{errorPayload.nationality.message}</span>
+        )}
       </div>
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
@@ -173,6 +158,7 @@ const StudentDetailForm = ({
           name="religion"
           required
           onChange={formChangeHandler}
+          color={errorPayload?.religion ? "failure" : undefined}
         >
           <option value="">Select Religion</option>
           <option value="Islam">Islam</option>
@@ -182,6 +168,9 @@ const StudentDetailForm = ({
           <option value="Hindu">Hindu</option>
           <option value="Konghucu">Konghucu</option>
         </Select>
+        {errorPayload?.religion && (
+          <span className="font-medium text-red-600">{errorPayload.religion.message}</span>
+        )}
       </div>
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
@@ -192,22 +181,27 @@ const StudentDetailForm = ({
           id="gender"
         >
           <Radio
-            checked={payload.gender == "male"}
+            checked={payload.gender === "male"}
             id="genderMale"
             name="gender"
             value="male"
             onChange={formChangeHandler}
+            color={errorPayload?.gender ? "failure" : undefined}
           />
           <Label htmlFor="genderMale">Male</Label>
           <Radio
-            checked={payload.gender == "female"}
+            checked={payload.gender === "female"}
             id="genderFemale"
             name="gender"
             value="female"
             onChange={formChangeHandler}
+            color={errorPayload?.gender ? "failure" : undefined}
           />
           <Label htmlFor="genderFemale">Female</Label>
         </div>
+        {errorPayload?.gender && (
+          <span className="font-medium text-red-600">{errorPayload.gender.message}</span>
+        )}
       </div>
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
@@ -221,6 +215,12 @@ const StudentDetailForm = ({
           required
           rows={4}
           onChange={formChangeHandler}
+          color={errorPayload?.address ? "failure" : undefined}
+          helperText={
+            errorPayload?.address && (
+              <span className="font-medium text-red-600">{errorPayload.address.message}</span>
+            )
+          }
         />
       </div>
       <div className="md:inline-flex">
@@ -234,6 +234,12 @@ const StudentDetailForm = ({
           name="phoneno"
           type="text"
           onChange={formChangeHandler}
+          color={errorPayload?.phoneno ? "failure" : undefined}
+          helperText={
+            errorPayload?.phoneno && (
+              <span className="font-medium text-red-600">{errorPayload.phoneno.message}</span>
+            )
+          }
         />
       </div>
       <div className="md:inline-flex">
@@ -248,24 +254,14 @@ const StudentDetailForm = ({
           name="email"
           type="email"
           onChange={formChangeHandler}
+          color={errorPayload?.email ? "failure" : undefined}
+          helperText={
+            errorPayload?.email && (
+              <span className="font-medium text-red-600">{errorPayload.email.message}</span>
+            )
+          }
         />
       </div>
-      {/* <div className="md:inline-flex">
-        <div className="mb-2 block w-72">
-          <Label
-            htmlFor="musicinstrument"
-            value="Musical Instrument the Child Can Play"
-          />
-        </div>
-        <TextInput
-          className="w-full pr-10 md:pr-0"
-          value={payload.musicinstrument || ""}
-          id="musicinstrument"
-          name="musicinstrument"
-          type="text"
-          onChange={formChangeHandler}
-        />
-      </div> */}
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="languagespoken" value="Language(s) Spoken at Home" />
@@ -277,6 +273,12 @@ const StudentDetailForm = ({
           name="languagespoken"
           type="text"
           onChange={formChangeHandler}
+          color={errorPayload?.languagespoken ? "failure" : undefined}
+          helperText={
+            errorPayload?.languagespoken && (
+              <span className="font-medium text-red-600">{errorPayload.languagespoken.message}</span>
+            )
+          }
         />
       </div>
     </>

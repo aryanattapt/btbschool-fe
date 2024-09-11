@@ -93,7 +93,7 @@ const columnDefs = [
     },
 ];
 
-const DetailOfSiblingForm = ({formChangeHandler, name, payload}) => {
+const DetailOfSiblingForm = ({formChangeHandler, name, payload, errorPayload}) => {
     /* const agGridRef = useRef({
         api: undefined,
         columnApi: undefined,
@@ -162,6 +162,9 @@ const DetailOfSiblingForm = ({formChangeHandler, name, payload}) => {
                 onCellKeyDown={onCellKeyDown}
                 onCellEditingStopped={onCellEditingStopped}/>
         </div>
+        {errorPayload[name] && (
+            <span className="text-red-600 mt-1 text-sm">{errorPayload[name].message}</span>
+        )}
     </>
 };
 

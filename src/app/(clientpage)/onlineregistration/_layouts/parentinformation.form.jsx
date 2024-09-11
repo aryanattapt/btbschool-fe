@@ -1,10 +1,10 @@
 "use client";
+
 import {
   Datepicker,
   HR,
   Label,
   Radio,
-  Select,
   TextInput,
 } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
@@ -12,13 +12,16 @@ import { HiMail } from "react-icons/hi";
 const ParentsInformationForm = ({
   formChangeHandler,
   datePickerHandler,
-  payload,
+  payload = {}, // Ensure payload is always defined
+  errorPayload = {}, // Ensure errorPayload is always defined
 }) => {
   return (
     <>
       <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
         Parent / Guardian Information
       </div>
+
+      {/* Father Information */}
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="fathername" value="Father's Name" />
@@ -30,61 +33,27 @@ const ParentsInformationForm = ({
           name="fathername"
           type="text"
           onChange={formChangeHandler}
+          color={errorPayload?.fathername ? "failure" : undefined}
+          helperText={errorPayload?.fathername && <span className="font-medium text-red-600">{errorPayload.fathername.message}</span>}
         />
       </div>
+
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="fatherbirthplace" value="Birth Place" />
         </div>
-          <TextInput
-            className="w-full pr-10 md:pr-0"
-            value={payload.fatherbirthplace || ""}
-            id="fatherbirthplace"
-            name="fatherbirthplace"
-            type="text"
-            onChange={formChangeHandler}
-          />
-        {/* <Select
+        <TextInput
           className="w-full pr-10 md:pr-0"
           value={payload.fatherbirthplace || ""}
           id="fatherbirthplace"
           name="fatherbirthplace"
+          type="text"
           onChange={formChangeHandler}
-        >
-          <option value="">Select Birth Place</option>
-          <option value="aceh">Aceh</option>
-          <option value="bali">Bali</option>
-          <option value="banten">Banten</option>
-          <option value="bengkulu">Bengkulu</option>
-          <option value="gorontalo">Gorontalo</option>
-          <option value="jakarta">Jakarta</option>
-          <option value="jambi">Jambi</option>
-          <option value="jawa barat">Jawa Barat</option>
-          <option value="jawa tengah">Jawa Tengah</option>
-          <option value="jawa timur">Jawa Timur</option>
-          <option value="kalimantan barat">Kalimantan Barat</option>
-          <option value="kalimantan tengah">Kalimantan Tengah</option>
-          <option value="kalimantan selatan">Kalimantan Selatan</option>
-          <option value="kalimantan timur">Kalimantan Timur</option>
-          <option value="kepulauan bangka belitung">Kepulauan Bangka Belitung</option>
-          <option value="kepulauan riau">Kepulauan Riau</option>
-          <option value="maluku">Maluku</option>
-          <option value="maluku utara">Maluku Utara</option>
-          <option value="nusa tenggara barat">Nusa Tenggara Barat</option>
-          <option value="nusa tenggara timur">Nusa Tenggara Timur</option>
-          <option value="papua">Papua</option>
-          <option value="papua barat">Papua Barat</option>
-          <option value="riau">Riau</option>
-          <option value="sulawesi barat">Sulawesi Barat</option>
-          <option value="sulawesi selatan">Sulawesi Selatan</option>
-          <option value="sulawesi tengah">Sulawesi Tengah</option>
-          <option value="sulawesi tenggara">Sulawesi Tenggara</option>
-          <option value="sulawesi utara">Sulawesi Utara</option>
-          <option value="sumatera barat">Sumatera Barat</option>
-          <option value="sumatera selatan">Sumatera Selatan</option>
-          <option value="sumatera utara">Sumatera Utara</option>
-        </Select> */}
+          color={errorPayload?.fatherbirthplace ? "failure" : undefined}
+          helperText={errorPayload?.fatherbirthplace && <span className="font-medium text-red-600">{errorPayload.fatherbirthplace.message}</span>}
+        />
       </div>
+
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="fatherbirthdate" value="Birth Date" />
@@ -97,11 +66,12 @@ const ParentsInformationForm = ({
           language="en-id"
           showClearButton={false}
           showTodayButton={false}
-          onSelectedDateChanged={(date) =>
-            datePickerHandler("fatherbirthdate", date)
-          }
+          onSelectedDateChanged={(date) => datePickerHandler("fatherbirthdate", date)}
+          color={errorPayload?.fatherbirthdate ? "failure" : undefined}
+          helperText={errorPayload?.fatherbirthdate && <span className="font-medium text-red-600">{errorPayload.fatherbirthdate.message}</span>}
         />
       </div>
+
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="fatherphoneno" value="Phone No" />
@@ -113,8 +83,11 @@ const ParentsInformationForm = ({
           name="fatherphoneno"
           type="text"
           onChange={formChangeHandler}
+          color={errorPayload?.fatherphoneno ? "failure" : undefined}
+          helperText={errorPayload?.fatherphoneno && <span className="font-medium text-red-600">{errorPayload.fatherphoneno.message}</span>}
         />
       </div>
+
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="fatheremail" value="Email" />
@@ -127,18 +100,18 @@ const ParentsInformationForm = ({
           id="fatheremail"
           name="fatheremail"
           onChange={formChangeHandler}
+          color={errorPayload?.fatheremail ? "failure" : undefined}
+          helperText={errorPayload?.fatheremail && <span className="font-medium text-red-600">{errorPayload.fatheremail.message}</span>}
         />
       </div>
+
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="fathermaritalstatus" value="Marital Status" />
         </div>
-        <div
-          className="w-full pr-10 md:pr-0 flex items-center gap-2"
-          id="fathermaritalstatus"
-        >
+        <div className="w-full pr-10 md:pr-0 flex items-center gap-2">
           <Radio
-            checked={payload.fathermaritalstatus == "Married"}
+            checked={payload.fathermaritalstatus === "Married"}
             id="marriedfather"
             name="fathermaritalstatus"
             value="Married"
@@ -146,7 +119,7 @@ const ParentsInformationForm = ({
           />
           <Label htmlFor="marriedfather">Married</Label>
           <Radio
-            checked={payload.fathermaritalstatus == "Divorced"}
+            checked={payload.fathermaritalstatus === "Divorced"}
             id="divorcedfather"
             name="fathermaritalstatus"
             value="Divorced"
@@ -154,81 +127,79 @@ const ParentsInformationForm = ({
           />
           <Label htmlFor="divorcedfather">Divorced</Label>
         </div>
+        {errorPayload?.fathermaritalstatus && (
+            <span className="font-medium text-red-600">{errorPayload.fathermaritalstatus.message}</span>
+        )}
       </div>
-        <div className="md:inline-flex">
-          <div className="mb-2 block w-72">
-            <Label htmlFor="fatheroccupation" value="father occupation" />
-          </div>
-          <TextInput
-            className="w-full pr-10 md:pr-0"
-            value={payload.fatheroccupation || ""}
-            type="text"
-            id="fatheroccupation"
-            name="fatheroccupation"
-            onChange={formChangeHandler}
-          />
+
+      {/* Father Occupation Details */}
+      <div className="md:inline-flex">
+        <div className="mb-2 block w-72">
+          <Label htmlFor="fatheroccupation" value="Father's Occupation" />
         </div>
-
-        <div className="md:inline-flex">
-          <div className="mb-2 block w-72">
-            <Label htmlFor="fathercompanyname" value="Company Name" />
-          </div>
-          <TextInput
-            className="w-full pr-10 md:pr-0"
-            value={payload.fathercompanyname || ""}
-            type="text"
-            id="fathercompanyname"
-            name="fathercompanyname"
-            onChange={formChangeHandler}
-          />
-        </div>
-
-        <div className="md:inline-flex">
-          <div className="mb-2 block w-72">
-            <Label htmlFor="fatherbusinessAddress" value="Business Address" />
-          </div>
-          <TextInput
-            className="w-full pr-10 md:pr-0"
-            value={payload.fatherbusinessAddress || ""}
-            type="text"
-            id="fatherbusinessAddress"
-            name="fatherbusinessAddress"
-            onChange={formChangeHandler}
-          />
-        </div>
-
-        <div className="md:inline-flex">
-          <div className="mb-2 block w-72">
-            <Label htmlFor="fathertelephone" value="Telp" />
-          </div>
-          <TextInput
-            className="w-full pr-10 md:pr-0"
-            value={payload.fathertelephone || ""}
-            type="text"
-            id="fathertelephone"
-            name="fathertelephone"
-            onChange={formChangeHandler}
-          />
-        </div>
-
-        {/* <div className="md:inline-flex">
-          <div className="mb-2 block w-72">
-            <Label htmlFor="fatherfax" value="father fax" />
-          </div>
-          <TextInput
-            className="w-full pr-10 md:pr-0"
-            value={payload.fatherfax || ""}
-            type="text"
-            id="fatherfax"
-            name="fatherfax"
-            onChange={formChangeHandler}
-          />
-        </div> */}
-
-      <div>
-        <HR />
+        <TextInput
+          className="w-full pr-10 md:pr-0"
+          value={payload.fatheroccupation || ""}
+          type="text"
+          id="fatheroccupation"
+          name="fatheroccupation"
+          onChange={formChangeHandler}
+          color={errorPayload?.fatheroccupation ? "failure" : undefined}
+          helperText={errorPayload?.fatheroccupation && <span className="font-medium text-red-600">{errorPayload.fatheroccupation.message}</span>}
+        />
       </div>
-      
+
+      <div className="md:inline-flex">
+        <div className="mb-2 block w-72">
+          <Label htmlFor="fathercompanyname" value="Company Name" />
+        </div>
+        <TextInput
+          className="w-full pr-10 md:pr-0"
+          value={payload.fathercompanyname || ""}
+          type="text"
+          id="fathercompanyname"
+          name="fathercompanyname"
+          onChange={formChangeHandler}
+          color={errorPayload?.fathercompanyname ? "failure" : undefined}
+          helperText={errorPayload?.fathercompanyname && <span className="font-medium text-red-600">{errorPayload.fathercompanyname.message}</span>}
+        />
+      </div>
+
+      <div className="md:inline-flex">
+        <div className="mb-2 block w-72">
+          <Label htmlFor="fatherbusinessAddress" value="Business Address" />
+        </div>
+        <TextInput
+          className="w-full pr-10 md:pr-0"
+          value={payload.fatherbusinessAddress || ""}
+          type="text"
+          id="fatherbusinessAddress"
+          name="fatherbusinessAddress"
+          onChange={formChangeHandler}
+          color={errorPayload?.fatherbusinessAddress ? "failure" : undefined}
+          helperText={errorPayload?.fatherbusinessAddress && <span className="font-medium text-red-600">{errorPayload.fatherbusinessAddress.message}</span>}
+        />
+      </div>
+
+      <div className="md:inline-flex">
+        <div className="mb-2 block w-72">
+          <Label htmlFor="fathertelephone" value="Telp" />
+        </div>
+        <TextInput
+          className="w-full pr-10 md:pr-0"
+          value={payload.fathertelephone || ""}
+          type="text"
+          id="fathertelephone"
+          name="fathertelephone"
+          onChange={formChangeHandler}
+          color={errorPayload?.fathertelephone ? "failure" : undefined}
+          helperText={errorPayload?.fathertelephone && <span className="font-medium text-red-600">{errorPayload.fathertelephone.message}</span>}
+        />
+      </div>
+
+      <HR />
+
+      {/* Mother Information */}
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="mothername" value="Mother's Name" />
@@ -240,61 +211,27 @@ const ParentsInformationForm = ({
           name="mothername"
           type="text"
           onChange={formChangeHandler}
+          color={errorPayload?.mothername ? "failure" : undefined}
+          helperText={errorPayload?.mothername && <span className="font-medium text-red-600">{errorPayload.mothername.message}</span>}
         />
       </div>
+
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="motherbirthplace" value="Birth Place" />
         </div>
-          <TextInput
-            className="w-full pr-10 md:pr-0"
-            value={payload.motherbirthplace || ""}
-            id="motherbirthplace"
-            name="motherbirthplace"
-            type="text"
-            onChange={formChangeHandler}
-          />
-        {/* <Select
+        <TextInput
           className="w-full pr-10 md:pr-0"
           value={payload.motherbirthplace || ""}
           id="motherbirthplace"
           name="motherbirthplace"
+          type="text"
           onChange={formChangeHandler}
-        >
-          <option value="">Select Birth Place</option>
-          <option value="aceh">Aceh</option>
-          <option value="bali">Bali</option>
-          <option value="banten">Banten</option>
-          <option value="bengkulu">Bengkulu</option>
-          <option value="gorontalo">Gorontalo</option>
-          <option value="jakarta">Jakarta</option>
-          <option value="jambi">Jambi</option>
-          <option value="jawa barat">Jawa Barat</option>
-          <option value="jawa tengah">Jawa Tengah</option>
-          <option value="jawa timur">Jawa Timur</option>
-          <option value="kalimantan barat">Kalimantan Barat</option>
-          <option value="kalimantan tengah">Kalimantan Tengah</option>
-          <option value="kalimantan selatan">Kalimantan Selatan</option>
-          <option value="kalimantan timur">Kalimantan Timur</option>
-          <option value="kepulauan bangka belitung">Kepulauan Bangka Belitung</option>
-          <option value="kepulauan riau">Kepulauan Riau</option>
-          <option value="maluku">Maluku</option>
-          <option value="maluku utara">Maluku Utara</option>
-          <option value="nusa tenggara barat">Nusa Tenggara Barat</option>
-          <option value="nusa tenggara timur">Nusa Tenggara Timur</option>
-          <option value="papua">Papua</option>
-          <option value="papua barat">Papua Barat</option>
-          <option value="riau">Riau</option>
-          <option value="sulawesi barat">Sulawesi Barat</option>
-          <option value="sulawesi selatan">Sulawesi Selatan</option>
-          <option value="sulawesi tengah">Sulawesi Tengah</option>
-          <option value="sulawesi tenggara">Sulawesi Tenggara</option>
-          <option value="sulawesi utara">Sulawesi Utara</option>
-          <option value="sumatera barat">Sumatera Barat</option>
-          <option value="sumatera selatan">Sumatera Selatan</option>
-          <option value="sumatera utara">Sumatera Utara</option>
-        </Select> */}
+          color={errorPayload?.motherbirthplace ? "failure" : undefined}
+          helperText={errorPayload?.motherbirthplace && <span className="font-medium text-red-600">{errorPayload.motherbirthplace.message}</span>}
+        />
       </div>
+
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="motherbirthdate" value="Birth Date" />
@@ -307,11 +244,12 @@ const ParentsInformationForm = ({
           language="en-id"
           showClearButton={false}
           showTodayButton={false}
-          onSelectedDateChanged={(date) =>
-            datePickerHandler("motherbirthdate", date)
-          }
+          onSelectedDateChanged={(date) => datePickerHandler("motherbirthdate", date)}
+          color={errorPayload?.motherbirthdate ? "failure" : undefined}
+          helperText={errorPayload?.motherbirthdate && <span className="font-medium text-red-600">{errorPayload.motherbirthdate.message}</span>}
         />
       </div>
+
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="motherphoneno" value="Phone No" />
@@ -323,8 +261,11 @@ const ParentsInformationForm = ({
           name="motherphoneno"
           type="text"
           onChange={formChangeHandler}
+          color={errorPayload?.motherphoneno ? "failure" : undefined}
+          helperText={errorPayload?.motherphoneno && <span className="font-medium text-red-600">{errorPayload.motherphoneno.message}</span>}
         />
       </div>
+
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="motheremail" value="Email" />
@@ -333,22 +274,22 @@ const ParentsInformationForm = ({
           className="w-full pr-10 md:pr-0"
           value={payload.motheremail || ""}
           icon={HiMail}
+          type="email"
           id="motheremail"
           name="motheremail"
-          type="email"
           onChange={formChangeHandler}
+          color={errorPayload?.motheremail ? "failure" : undefined}
+          helperText={errorPayload?.motheremail && <span className="font-medium text-red-600">{errorPayload.motheremail.message}</span>}
         />
       </div>
+
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
           <Label htmlFor="mothermaritalstatus" value="Marital Status" />
         </div>
-        <div
-          className="w-full pr-10 md:pr-0 flex items-center gap-2"
-          id="mothermaritalstatus"
-        >
+        <div className="w-full pr-10 md:pr-0 flex items-center gap-2">
           <Radio
-            checked={payload.mothermaritalstatus == "Married"}
+            checked={payload.mothermaritalstatus === "Married"}
             id="marriedmother"
             name="mothermaritalstatus"
             value="Married"
@@ -356,7 +297,7 @@ const ParentsInformationForm = ({
           />
           <Label htmlFor="marriedmother">Married</Label>
           <Radio
-            checked={payload.mothermaritalstatus == "Divorced"}
+            checked={payload.mothermaritalstatus === "Divorced"}
             id="divorcedmother"
             name="mothermaritalstatus"
             value="Divorced"
@@ -364,77 +305,75 @@ const ParentsInformationForm = ({
           />
           <Label htmlFor="divorcedmother">Divorced</Label>
         </div>
+        {errorPayload?.mothermaritalstatus && (
+            <span className="font-medium text-red-600">{errorPayload.mothermaritalstatus.message}</span>
+        )}
       </div>
+
+      {/* Mother Occupation Details */}
       <div className="md:inline-flex">
-  <div className="mb-2 block w-72">
-    <Label htmlFor="motheroccupation" value="mother occupation" />
-  </div>
-  <TextInput
-    className="w-full pr-10 md:pr-0"
-    value={payload.motheroccupation || ""}
-    type="text"
-    id="motheroccupation"
-    name="motheroccupation"
-    onChange={formChangeHandler}
-  />
-</div>
+        <div className="mb-2 block w-72">
+          <Label htmlFor="motheroccupation" value="Mother's Occupation" />
+        </div>
+        <TextInput
+          className="w-full pr-10 md:pr-0"
+          value={payload.motheroccupation || ""}
+          type="text"
+          id="motheroccupation"
+          name="motheroccupation"
+          onChange={formChangeHandler}
+          color={errorPayload?.motheroccupation ? "failure" : undefined}
+          helperText={errorPayload?.motheroccupation && <span className="font-medium text-red-600">{errorPayload.motheroccupation.message}</span>}
+        />
+      </div>
 
-<div className="md:inline-flex">
-  <div className="mb-2 block w-72">
-    <Label htmlFor="mothercompanyname" value="Company Name" />
-  </div>
-  <TextInput
-    className="w-full pr-10 md:pr-0"
-    value={payload.mothercompanyname || ""}
-    type="text"
-    id="mothercompanyname"
-    name="mothercompanyname"
-    onChange={formChangeHandler}
-  />
-</div>
+      <div className="md:inline-flex">
+        <div className="mb-2 block w-72">
+          <Label htmlFor="mothercompanyname" value="Company Name" />
+        </div>
+        <TextInput
+          className="w-full pr-10 md:pr-0"
+          value={payload.mothercompanyname || ""}
+          type="text"
+          id="mothercompanyname"
+          name="mothercompanyname"
+          onChange={formChangeHandler}
+          color={errorPayload?.mothercompanyname ? "failure" : undefined}
+          helperText={errorPayload?.mothercompanyname && <span className="font-medium text-red-600">{errorPayload.mothercompanyname.message}</span>}
+        />
+      </div>
 
-<div className="md:inline-flex">
-  <div className="mb-2 block w-72">
-    <Label htmlFor="motherbusinessAddress" value="Business Address" />
-  </div>
-  <TextInput
-    className="w-full pr-10 md:pr-0"
-    value={payload.motherbusinessAddress || ""}
-    type="text"
-    id="motherbusinessAddress"
-    name="motherbusinessAddress"
-    onChange={formChangeHandler}
-  />
-</div>
+      <div className="md:inline-flex">
+        <div className="mb-2 block w-72">
+          <Label htmlFor="motherbusinessAddress" value="Business Address" />
+        </div>
+        <TextInput
+          className="w-full pr-10 md:pr-0"
+          value={payload.motherbusinessAddress || ""}
+          type="text"
+          id="motherbusinessAddress"
+          name="motherbusinessAddress"
+          onChange={formChangeHandler}
+          color={errorPayload?.motherbusinessAddress ? "failure" : undefined}
+          helperText={errorPayload?.motherbusinessAddress && <span className="font-medium text-red-600">{errorPayload.motherbusinessAddress.message}</span>}
+        />
+      </div>
 
-<div className="md:inline-flex">
-  <div className="mb-2 block w-72">
-    <Label htmlFor="mothertelephone" value="Telp" />
-  </div>
-  <TextInput
-    className="w-full pr-10 md:pr-0"
-    value={payload.mothertelephone || ""}
-    type="text"
-    id="mothertelephone"
-    name="mothertelephone"
-    onChange={formChangeHandler}
-  />
-</div>
-
-{/* <div className="md:inline-flex">
-  <div className="mb-2 block w-72">
-    <Label htmlFor="motherfax" value="mother fax" />
-  </div>
-  <TextInput
-    className="w-full pr-10 md:pr-0"
-    value={payload.motherfax || ""}
-    type="text"
-    id="motherfax"
-    name="motherfax"
-    onChange={formChangeHandler}
-  />
-</div> */}
-
+      <div className="md:inline-flex">
+        <div className="mb-2 block w-72">
+          <Label htmlFor="mothertelephone" value="Telp" />
+        </div>
+        <TextInput
+          className="w-full pr-10 md:pr-0"
+          value={payload.mothertelephone || ""}
+          type="text"
+          id="mothertelephone"
+          name="mothertelephone"
+          onChange={formChangeHandler}
+          color={errorPayload?.mothertelephone ? "failure" : undefined}
+          helperText={errorPayload?.mothertelephone && <span className="font-medium text-red-600">{errorPayload.mothertelephone.message}</span>}
+        />
+      </div>
     </>
   );
 };
