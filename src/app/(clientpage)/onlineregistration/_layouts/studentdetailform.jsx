@@ -1,8 +1,6 @@
 "use client";
-
 import {
   Datepicker,
-  HR,
   Label,
   Radio,
   Select,
@@ -10,6 +8,44 @@ import {
   TextInput,
 } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
+import AgGridTableForm from "./aggrid.form";
+
+const columnDefs = [
+  {
+      width: "100vw",
+      filter: false,
+      sortable: false,
+      resizable: false,
+      suppressHeaderMenuButton: true,
+      suppressMovable: true,
+      enableRowGroup: false,
+      suppressAutoSize: true,
+      suppressSizeToFit: true,
+      headerName: 'No',
+      colId: 'rownumber',
+      headerClass: 'cell-center',
+      cellStyle: { textAlign: 'right' },
+      valueGetter: 'node.rowIndex + 1',
+      valueFormatter: 'node?.rowPinned ? "" : x',
+      editable: false,
+  },
+  {
+      headerName: "Language",
+      field: "language",
+      filter: false,
+      sortable: false,
+      resizable: false,
+      suppressHeaderMenuButton: true,
+      suppressMovable: true,
+      enableRowGroup: false,
+      suppressAutoSize: true,
+      suppressSizeToFit: true,
+      headerClass: 'cell-center',
+      cellStyle: { textAlign: 'left' },
+      width: "800vw",
+      editable: true
+  },
+];
 
 const StudentDetailForm = ({
   nationalityPayload,
@@ -266,20 +302,12 @@ const StudentDetailForm = ({
         <div className="mb-2 block w-72">
           <Label htmlFor="languagespoken" value="Language(s) Spoken at Home" />
         </div>
-        <TextInput
-          className="w-full pr-10 md:pr-0"
-          value={payload.languagespoken || ""}
-          id="languagespoken"
-          name="languagespoken"
-          type="text"
-          onChange={formChangeHandler}
-          color={errorPayload?.languagespoken ? "failure" : undefined}
-          helperText={
-            errorPayload?.languagespoken && (
-              <span className="font-medium text-red-600">{errorPayload.languagespoken.message}</span>
-            )
-          }
-        />
+        <div className="ag-theme-quartz pr-10 md:pr-0" style={{height: '200px', width: "100%"}}>
+            <AgGridTableForm name="languagespoken" formChangeHandler={formChangeHandler} payload={payload.languagespoken || []} columnDefs={columnDefs}/>
+        </div>
+        {errorPayload["languagespoken"] && (
+            <span className="text-red-600 mt-1 text-sm">{errorPayload["languagespoken"].message}</span>
+        )}
       </div>
     </>
   );

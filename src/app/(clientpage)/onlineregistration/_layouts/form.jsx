@@ -461,6 +461,11 @@ const OnlineRegistrationForm = () => {
               name="siblinglist"
               errorPayload={errorPayload}
             />
+            <SignaturePad
+              formChangeHandler={formChangeHandler}
+              value={registrationPayload.ttdpage1 || ''}
+              name="ttdpage1"
+            />
           </>
         ) : (
           <></>
@@ -472,6 +477,11 @@ const OnlineRegistrationForm = () => {
             <RulesRegistration
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
+            />
+            <SignaturePad
+              formChangeHandler={formChangeHandler}
+              value={registrationPayload.ttdpage2 || ''}
+              name="ttdpage2"
             />
           </>
         ) : (
@@ -491,6 +501,11 @@ const OnlineRegistrationForm = () => {
               formChangeHandler={formChangeHandler}
               errorPayload={errorPayload}
             />
+            <SignaturePad
+              formChangeHandler={formChangeHandler}
+              value={registrationPayload.ttdpage3 || ''}
+              name="ttdpage3"
+            />
           </>
         ) : (
           <></>
@@ -507,8 +522,8 @@ const OnlineRegistrationForm = () => {
             <AttachmentForm formChangeHandler={formChangeHandler} />
             <SignaturePad
               formChangeHandler={formChangeHandler}
-              value={registrationPayload.ttd || ''}
-              name="ttd"
+              value={registrationPayload.ttdpage4 || ''}
+              name="ttdpage4"
             />
           </>
         ) : (
