@@ -3,8 +3,9 @@ import { AgGridReact } from "ag-grid-react";
 import { useRef, useState } from "react";
 import "ag-grid-community/styles/ag-grid.min.css";
 import "ag-grid-community/styles/ag-theme-quartz.min.css";
+import { Button } from "flowbite-react";
 
-const AgGridTable = ({formChangeHandler, name, payload}) => {
+const AgGridTable = ({formChangeHandler, name, payload, columnDefs}) => {
     /* const agGridRef = useRef({
         api: undefined,
         columnApi: undefined,
@@ -54,11 +55,18 @@ const AgGridTable = ({formChangeHandler, name, payload}) => {
         }
     };
 
-    return <AgGridReact name={name} id={name} columnDefs={columnDefs} rowData={payload || []} 
-        /* onGridReady={onGridReady}  */
-        ref={agGridRef}
-        onCellKeyDown={onCellKeyDown}
-        onCellEditingStopped={onCellEditingStopped}/>
+    return <>
+        <div className="mb-6">
+            <div className="flex flex-col items-center justify-center px-6">
+                <Button type="submit" className="w-full lg:w-auto" onClick={() => agGridRef.current.api.applyTransaction({add: [{}]})}>Add Row</Button>
+            </div>
+        </div>
+        <AgGridReact name={name} id={name} columnDefs={columnDefs} rowData={payload || []} 
+            /* onGridReady={onGridReady}  */
+            ref={agGridRef}
+            onCellKeyDown={onCellKeyDown}
+            onCellEditingStopped={onCellEditingStopped}/>
+    </>
 };
 
 export default AgGridTable;
