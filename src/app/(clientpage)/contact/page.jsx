@@ -6,13 +6,13 @@ import { HiPhone, HiMail } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { ContactUsPayLoad } from "../../../../data";
 /* import { useLanguageStore } from "../../../../store/language.store"; */
-import useLanguage from '../../../hooks/useLanguage';
+import useLanguage from "../../../hooks/useLanguage";
 import { useState } from "react";
 
 const ContactPage = () => {
   const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
   /* const { language } = useLanguageStore(); */
-  const {language} = useLanguage();
+  const { language } = useLanguage();
   return (
     <>
       <Banner />
@@ -81,7 +81,7 @@ const ContactPage = () => {
             <p className="text-lg sm:text-lg md:text-xl lg:text-3xl my-5 text-black">
               {contactUsData[language].desc}
             </p>
-            <div className="flex-1"><ContactForm /></div>
+            {/* <div className="flex-1"><ContactForm /></div> */}
           </div>
         </div>
 
