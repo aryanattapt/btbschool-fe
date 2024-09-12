@@ -737,10 +737,13 @@ export const BTBPeduliPayload = {
     "https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli6.jpeg",
   sukarelawanbtbimage4:
     "https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli7.jpeg",
+  tanganpenolongimage1:
+    "https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli7.jpeg",
   EN: {
     btbpedulititle: "BTB Care",
     pedulilingkungantitle: "BTB Care for the Environment",
     sukarelawantitle: "BTB Volunteers",
+    tanganpenolongtitle: "BTB Environment",
     text1:
       "BTB Care is a community program from BTB School aimed at bringing people together, inspiring change, and making a positive impact on many lives. It is BTB's way of giving back to the community.",
     text2:
@@ -757,11 +760,19 @@ export const BTBPeduliPayload = {
     text8: "COMMITMENT TO SERVE",
     text9:
       "Every BTB student is invited to participate by volunteering in programs tailored to their age group. For example, preschool and elementary students can contribute by preparing and wrapping gifts, as well as visiting orphanages. Middle school students can volunteer to teach underprivileged children, while high school students can visit nursing homes.",
+    text10: "Together we can help more",
+    text11:
+      "Located on the Pacific Ring of Fire, Indonesia is often hit by natural disasters such as earthquakes, volcanic eruptions, droughts, floods, and landslides. Therefore, the BTB family has united to provide disaster response assistance to help disaster-affected areas in a timely manner. Among them, we have sent basic food assistance to residents affected by the Palu-Donggala earthquake, the Lombok earthquake, and the Banten tsunami.",
+    text12:
+      "At BTB, we feel a responsibility to address social issues. Therefore, we participate in disaster relief by working with nationally and internationally recognized organizations.",
+    text13:
+      "We support organizations that build safe, secure, and healthy homes/schools for the less fortunate in various villages and hamlets. In 2019, BTB Peduli worked with Happy Hearts Indonesia to rebuild SD Wali Ate, an elementary school in East Nusa Tenggara. Our students helped with the final construction phase of their school building, as well as the handover transition to Wali Ate teachers and students.",
   },
   ID: {
     btbpedulititle: "BTB Peduli",
     pedulilingkungantitle: "BTB Peduli Lingkungan",
     sukarelawantitle: "Sukarelawan BTB",
+    tanganpenolongtitle: "BTB Tangan Penolong",
     text1:
       "BTB Peduli adalah program komunitas dari sekolah BTB yang bertujuan menyatukan semua orang, menginspirasi perubahan, dan memberikan dampak positif bagi hidup orang banyak, hal ini merupakan cara BTB untuk memberikan kembali kepada masyarakat.",
     text2:
@@ -778,6 +789,13 @@ export const BTBPeduliPayload = {
     text8: "KOMITMEN UNTUK MELAYANI",
     text9:
       "Setiap murid BTB diajak untuk berpartisipasi dengan menjadi sukarelawan dalam program yang disesuaikan dengan kelompok umur mereka. Sebagai contoh para murid Kelompok Bermain dan Sekolah Dasar dapat berkontribusi dengan menyiapkan dan membungkus kado, serta mengunjungi panti asuhan. Murid Sekolah Menengah dapat menjadi sukarelawan untuk mengajar anak-anak yang kurang beruntung sedangkan murid Sekolah Menengah Atas dapat mengunjungi panti jompo.",
+    text10: "Bersama kita bisa menolong lebih banyak",
+    text11:
+      "Terletak di Cincin Api Pasifik, Indonesia kerap rentan terhadap bencana alam seperti gempa bumi, letusan gunung berapi, kekeringan, banjir, maupun tanah longsor. Karena itu, keluarga BTB bersatu dalam memberikan bantuan tanggap bencana untuk membantu daerah yang terkena dampak secara tepat waktu. Antara lain, kami telah mengirimkan sembako untuk warga yang terdampak gempa Palu-Donggala, gempa Lombok, dan tsunami Banten.",
+    text12:
+      "Di BTB, kami merasa bertanggung jawab untuk mengatasi berbagai masalah sosial. Karena itu, kami turut serta membantu dalam bantuan tanggap bencana alam dengan bekerja sama dengan organisasi yang diakui secara nasional dan internasional.",
+    text13:
+      "Kami mendukung organisasi yang membangun rumah/sekolah yang aman, terjamin, dan sehat untuk mereka yang kurang beruntung di berbagai kampung ataupun desa. Pada tahun 2019, BTB Peduli bekerja sama dengan Happy Hearts Indonesia untuk membangun kembali SD Wali Ate, sebuah sekolah dasar di Nusa Tenggara Timur. Siswa kami turut membantu tahap konstruksi akhir daripada gedung sekolah mereka, dan juga dalam transisi serah terima kepada guru dan siswa Wali Ate.",
   },
 };
 

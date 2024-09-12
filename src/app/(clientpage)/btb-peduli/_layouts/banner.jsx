@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-i/* mport {useLanguageStore} from '../../../../../store/language.store'; */
-import {BTBPeduliPayload} from '../../../../../data';
+/* import {useLanguageStore} from '../../../../../store/language.store'; */
+import { BTBPeduliPayload } from "../../../../../data";
 
 const BannerLayouts = () => {
   const [btbPeduliData, setBTBPeduliData] = useState(BTBPeduliPayload);
