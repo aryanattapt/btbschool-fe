@@ -30,26 +30,23 @@ const BulletinFlipBook = ({ url }) => {
 	useEffect(() => {
 		const handleResize = () => {
 			const width = window.innerWidth;
-			// if (width < 768) {
-			// 	setSize({
-			// 		width: width - 80,
-			// 		height: (width - 80) * 1.414,
-			// 	});
-			// 	setDeviceType("mobile");
+			// if (width >= 1024) {
+			// 	setDeviceType("lg");
 			// } else if (width >= 768 && width < 1024) {
-			// 	setDeviceType("tablet");
+			// 	setDeviceType("md");
+			// } else if (width >= 400 && width <= 768) {
+			// 	setDeviceType("sm");
 			// } else {
-			// 	setDeviceType("desktop");
+			// 	setDeviceType("xs");
 			// }
-
 			if (width >= 1024) {
-				setDeviceType("lg")
-            } else if (width > 768 && width < 1024) {
-                setDeviceType("md")
-            } else if (width >= 400 && width <=768) {
-                setDeviceType("sm")				
-            } else{
-				setDeviceType("xs")		
+				setDeviceType("lg");
+			} else if (width >= 700 && width < 1024) {
+				setDeviceType("md");
+			} else if (width >= 500 && width < 700) {
+				setDeviceType("sm");
+			} else {
+				setDeviceType("xs");
 			}
 		};
 
@@ -68,27 +65,16 @@ const BulletinFlipBook = ({ url }) => {
 	};
 
 	const getWidth = () => {
-		console.log(deviceType);
-		// if (deviceType === "mobile") return 360;
-		// if (deviceType === "mobile") return size.width;
-		// else if (deviceType === "tablet") return 380;
-		// return 400;
-
-		if(deviceType == "lg") return 400;
+		if (deviceType == "lg") return 400;
 		else if (deviceType === "md") return 350;
-		else if (deviceType === "sm") return 330;
+		else if (deviceType === "sm") return 440;
 		else if (deviceType === "xs") return 300;
 	};
 
 	const getHeight = () => {
-		// if (deviceType === "mobile") return 160;
-		// if (deviceType === "mobile") return size.height;
-		// else if (deviceType === "tablet") return 180;
-		// return 200;
-
-		if(deviceType == "lg") return 160;
+		if (deviceType == "lg") return 160;
 		else if (deviceType === "md") return 200;
-		else if (deviceType === "sm") return 200;
+		else if (deviceType === "sm") return 300;
 		else if (deviceType === "xs") return 160;
 	};
 

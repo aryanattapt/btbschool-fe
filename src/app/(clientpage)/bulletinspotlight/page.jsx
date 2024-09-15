@@ -59,29 +59,13 @@ const BulletinSpotlightPage = () => {
 		<>
 			<Banner />
 			<Pagging />
-			<div className="px-10 py-12 lg:py-20 lg:px-32 grid md:grid-cols-2 md:gap-24 lg:grid-cols-3 lg:gap-32">
+			<div className="px-10 py-12 sm:grid sm:grid-cols-2 sm:gap-y-12 sm:gap-x-6 md:gap-12 lg:py-20 lg:px-16 lg:grid-cols-4 lg:gap-8">
 				{payload.map((res, idx) => (
-					<BulletinThumnail data={res} key={idx}/>
-				))}
-			</div>
-			{/* <div className="mt-10 mb-5 px-10 md:pl-32 text-[#00305E]">
-				<FlipbookModal
-					url={pdfUrl} // Pass the URL to FlipbookModal
-					isOpen={isModalOpen}
-					setIsOpen={closeModal}
-				/>
-				{payload.map((val, idx) => (
-					<div key={idx}>
-						<div className="text-[30px]">{val.bulletintitle}</div>
-						<div className="flex flex-col items-center gap-2">
-							<PDFThumbnail
-								file={val.attachment[0].fileURL}
-								onClick={() => openModal(val.attachment[0].fileURL)} // Pass the URL to openModal
-							/>
-						</div>
+					<div className={`${idx === 1 && "mt-12 sm:mt-0"}`}>
+						<BulletinThumnail data={res} key={idx} />
 					</div>
 				))}
-			</div> */}
+			</div>
 		</>
 	);
 };
