@@ -1,7 +1,6 @@
 "use client";
 import Banner from "./_layouts/banner";
 import Pagging from "./_layouts/pagging";
-/* import { useLanguageStore } from "../../../../store/language.store"; */
 import { BTBPeduliPayload } from "../../../../data";
 import useLanguage from "../../../hooks/useLanguage";
 import { useState } from "react";
@@ -12,7 +11,6 @@ import TanganPenolong from "./_layouts/tangan-penolong";
 
 const BTBPeduliPage = () => {
   const [btbPeduliData, setBtbPeduliData] = useState(BTBPeduliPayload);
-  /* const { language } = useLanguageStore(); */
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState("introduction");
   return (

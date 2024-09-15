@@ -1,5 +1,6 @@
 import FooterComponent from "../_components/footer";
 import NavBar from "../_components/navbarapt";
+import Popup from "../_components/popup";
 import FloatingButtons from "../_components/floatingbutton";
 import 'core-js/full/promise/with-resolvers'
 import { LanguageProvider } from "../../context/language.context";
@@ -14,6 +15,7 @@ export default function ClientLayout({ children }) {
     <LanguageProvider>
       <div className="flex flex-col min-h-screen sm:w-100%">
         <NavBar />
+        <Popup />
         <main className="flex-grow">{children}</main>
         <FooterComponent />
         <FloatingButtons/>
