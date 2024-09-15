@@ -33,7 +33,7 @@ const AboutUsPage = () => {
 
       <div>
         <div className="my-8 md:my-10 bg-[#243F6D]">
-          <div className="flex text-center items-center md:py-10 py-5 md:mx-40 mx-10 text-white leading-loose text-[15px] font-semibold">
+          <div className="flex text-center items-center md:py-10 py-5 md:mx-40 mx-10 text-white leading-loose text-[12px] font-semibold">
             {/* Pengajar BTB mendorong para murid untuk dapat menemukan tempatnya di dunia yang memiliki tantangan 
           dan peluang tidak terbatas ini. Mereka membimbing para murid untuk berpikir, bertindak, dan menerima 
           rekannya dan diri mereka sendiri. */}

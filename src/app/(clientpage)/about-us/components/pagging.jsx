@@ -5,9 +5,9 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
         <div className="inline-flex gap-9 md:gap-11">
-          <div className="border-r-2">
+          <div className="border-r-2 flex items-center justify-center">
             <div className="lg:pr-10 lg:pl-10 md:pr-20 md:pl-32 sm:pr-5 sm:pl-5 pr-5 pl-5">
-              <h1 className="text-[25px] md:text-[25px] text-center font-semibold lg:py-8 md:py-10 sm:py-5 py-5">
+              <h1 className="text-[25px] md:text-[25px] text-center font-semibold">
                 <a
                   href="/about-us"
                   className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${

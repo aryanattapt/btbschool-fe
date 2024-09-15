@@ -9,26 +9,26 @@ const VisiMisiPage = ({ data, language }) => {
     <>
       <div className="md:mx-32 mx-10 grid md:grid-cols-1 grid-cols-1 xl:grid-cols-2 lg:grid-cols-1 text-black leading-loose">
         <div>
-          <h2 className="md:text-[25px] text-[25px] mb-[10px] font-semibold">
+          <h2 className="md:text-[25px] text-[22px] mb-[10px] font-semibold">
             {/* Visi */}
             {data[language].visimisi.titlevisi}
           </h2>
-          <p className="leading-[35px]">
+          <p className="text-[13px] md:text-[16px] leading-[35px]">
             {/* Untuk memberikan pendidikan holistik dan membina siswa untuk menjadi
             pemimpin yang dinamis dalam masyarakat global. */}
             {data[language].visimisi.descvisi}
           </p>
-          <h2 className="text-[25px] mb-[10px] font-semibold mt-3">
+          <h2 className="md:text-[25px] text-[22px] mb-[10px] font-semibold mt-3">
             {/* Misi */}
             {data[language].visimisi.titlemisi}
           </h2>
-          <p className="leading-[35px]">
+          <p className="text-[13px] md:text-[16px] leading-[35px]">
             {/* Menyelenggarakan pendidikan internasional berkualitas yang akan
             mengembangkan kebutuhan individu siswa secara akademis, emosional,
             fisik dan sosial dengan:  */}
             {data[language].visimisi.descmisi}
           </p>
-          <ul className="list-disc">
+          <ul className="list-disc text-[13px] md:text-[16px]">
             {data[language].visimisi.misilist.map((val, idx) => {
               return <li key={idx}>{val}</li>;
             })}

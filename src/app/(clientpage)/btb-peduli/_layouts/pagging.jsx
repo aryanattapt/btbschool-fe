@@ -22,9 +22,9 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
               </h1>
             </div>
           </div>
-          <div className="inline-flex gap-30 sm:gap-5 md:gap-20 lg:gap-20 text-[20px] md:text-[20px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
+          <div className="inline-flex text-[20px] md:text-[20px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
             <ul className="flex flex-wrap -mb-px py-8 md:py-10">
-              <li className="px-5 sm:px-5 md:px-20 lg:px-4">
+              <li className="px-10 sm:px-5 md:px-20 lg:px-4">
                 <a
                   href="/btb-peduli#peduli-lingkungan"
                   className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
@@ -38,7 +38,7 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                   {btbPeduliData[language].pedulilingkungantitle}
                 </a>
               </li>
-              <li className="px-8 md:px-20">
+              <li className="px-10 sm:px-5 md:px-20 lg:px-4">
                 <a
                   href="/btb-peduli#sukarelawan"
                   className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
@@ -52,7 +52,7 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                   {btbPeduliData[language].sukarelawantitle}
                 </a>
               </li>
-              <li className="px-8 md:px-20">
+              <li className="px-10 sm:px-5 md:px-20 lg:px-4">
                 <a
                   href="/btb-peduli#tangan-penolong"
                   className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
