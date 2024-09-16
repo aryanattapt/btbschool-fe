@@ -29,10 +29,10 @@ const Popup = () => {
         </div>
         <div className='mt-2'>
             <button
-            className="backdrop-blur-lg bg-white/30 text-black font-semibold px-4 py-2 rounded hover:bg-blue-700"
+            className="backdrop-blur-lg bg-white/30 text-black font-semibold px-4 py-2 rounded hover:bg-[#EF802B]"
             onClick={closePopup}
             >
-            Close X
+              Close X
             </button>
         </div>
       </div>
