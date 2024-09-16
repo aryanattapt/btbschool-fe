@@ -17,7 +17,7 @@ const Banner = () => {
         {btbBelajarData.albumimage.map((val, idx) => {
           return (
             <div className="relative h-full w-full" key={idx}>
-              <div
+              <div  
                 className="bg-cover absolute inset-0"
                 style={{ backgroundImage: `url(${val})` }}
               ></div>

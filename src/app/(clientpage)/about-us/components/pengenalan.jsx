@@ -9,7 +9,7 @@ const PengenalanPage = ({ data, language }) => {
     <>
       <div className="relative">
         <div className="mt-10 mb-5 pl-10 md:pl-32 text-[#00305E] sm:justify-center">
-          <h1 className="md:text-[35px] text-[30px] font-semibold">
+          <h1 className="md:text-[35px] text-[28px] font-semibold">
             {data[language].title}
           </h1>
         </div>
