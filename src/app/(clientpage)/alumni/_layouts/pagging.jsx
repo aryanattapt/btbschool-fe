@@ -5,8 +5,8 @@ const PaggingLayouts = () => {
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
         <div className="inline-flex md:gap-9 gap-7">
           <div className="border-r-2">
-            <div className="pr-10 pl-10 md:pr-40 md:pl-20">
-              <h1 className="md:text-[25px] text-center font-semibold py-5 md:py-10 mx-[6px] md:mx-[15px]">
+            <div className="px-10 md:px-40 py-5 md:py-10">
+              <h1 className="text-[20px] md:text-[25px] text-center font-semibold">
                 ALUMNI
               </h1>
             </div>
