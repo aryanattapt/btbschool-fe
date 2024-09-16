@@ -13,7 +13,7 @@ const SD = () => {
     <>
       <div className="relative">
         <div className="mt-10 mb-5">
-          <h1 className="md:text-[35px] xl:text-[35px] text-[30px] font-semibold pl-10 md:pl-32 text-[#00305E]">
+          <h1 className="text-[25px] md:text-[35px] xl:text-[35px] text-[30px] font-semibold pl-10 md:pl-32 text-[#00305E]">
             {btbBelajarData[language]["sd"].title}
           </h1>
         </div>
@@ -26,11 +26,11 @@ const SD = () => {
             />
           </div>
           <div className="content-center bg-[#EF802B] p-5">
-            <h1 className="text-center md:text-center lg:text-center xl:text-justify text-[18px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty font-semibold">
+            <h1 className="text-center md:text-center lg:text-center xl:text-justify text-[14px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty font-semibold">
               {/* Fundamental yang Menyenangkan */}
               {btbBelajarData[language]["sd"].text1}
             </h1>
-            <div className="text-center md:text-center lg:text-center xl:text-justify text-[18px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty">
+            <div className="text-center md:text-center lg:text-center xl:text-justify text-[14px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty">
               {/* Anak anda akan melanjutkan perjalanan edukatifnya melalui fase pembelajaran yang memotivasi 
               mereka untuk menemukan dan menyadari hal terbaik yang ada pada dirinya dan orang lain. */}
               {btbBelajarData[language]["sd"].text2}
@@ -39,11 +39,11 @@ const SD = () => {
         </div>
         <div className="mt-10 mb-5 pl-10 md:pl-10 lg:pl-32 xl:pl-32">
           <div className="border-b-8 border-[#EF802B] w-fit">
-            <h1 className="text-[28px] font-semibold text-[#00305E]">
+            <h1 className="text-[25px] md:text-[30px] font-semibold text-[#00305E]">
               {btbBelajarData[language]["sd"].text3}
             </h1>
           </div>
-          <h1 className="text-balance text-[28px] text-[#000000] mt-5">
+          <h1 className="text-balance text-[25px] md:text-[30px] text-[#000000] mt-5">
             {/* Fokus: */}
             Fokus:
           </h1>
@@ -84,7 +84,7 @@ const SD = () => {
         <div className="activity">
           <div className="mt-20 flex justify-center items-center">
             <div className="border-b-8 border-[#EF802B] w-fit">
-              <h1 className="text-[28px] font-semibold text-[#00305E]">
+              <h1 className="text-[25px] md:text-[30px]] font-semibold text-[#00305E]">
                 {/* AKTIVITAS */}
                 {btbBelajarData[language]["sd"].text5}
               </h1>
@@ -148,7 +148,7 @@ const SD = () => {
       </div>
       <div className="mt-10 md:mt-20 flex justify-end items-center pr-10 md:pr-10 lg:pr-32 xl:pr-32 md:text-[16px] lg:text-[25px] xl:text-[18px]">
         <div className="border-b-8 border-[#EF802B] w-fit">
-          <h1 className="text-[28px] font-semibold text-[#00305E]">
+          <h1 className="text-[25px] md:text-[30px] font-semibold text-[#00305E]">
             {btbBelajarData[language]["sd"].text8}
           </h1>
         </div>
