@@ -16,10 +16,10 @@ const PeduliLingkungan = ({ data, language }) => {
           alt="btb-peduli2"
           className="xl:w-[1460.8px] xl:h-[308px] md:w-screen md:h-auto md:mb-[25px] mb-[10px] lg:h-auto"
         />
-        <p className="text-[#00305E] md:text-[30px] md:mb-[25px] text-[20px] mb-[15px]">
+        <p className="text-[#00305E] md:text-[30px] md:mb-[25px] text-[19px] mb-[15px]">
           {data[language].text4}
         </p>
-        <p className="md:text-[20px] md:mb-[25px] text-black text-[15px] mb-[5px]">
+        <p className="md:text-[20px] md:mb-[25px] text-black text-[14px] mb-[5px]">
           {data[language].text5}
         </p>
       </div>
@@ -28,7 +28,7 @@ const PeduliLingkungan = ({ data, language }) => {
           <h2 className="text-[#00305E] md:text-[30px] md:my-[35px] font-semibold text-[25px] my-[5px]">
             {data[language].text6}
           </h2>
-          <p className="md:leading-[38px] md:mr-[25px] md:text-[20px] text-[15px] text-black">
+          <p className="md:leading-[38px] md:mr-[25px] md:text-[20px] text-[14px] text-black">
             {data[language].text7}
           </p>
         </div>

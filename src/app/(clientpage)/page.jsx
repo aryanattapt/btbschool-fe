@@ -1,9 +1,5 @@
 "use client";
-/* 
-import { Button } from "flowbite-react";
-import { FaInstagram } from "react-icons/fa";
-import Script from "next/script"; 
-*/
+
 import CarouselComponents from "../_components/carousel";
 import { useEffect, useState } from "react";
 import { GetBTBInstagramFeed } from "../../../services/instagram.service";
@@ -40,12 +36,12 @@ const HomePage = () => {
               <div className="text-[20px] md:text-[25px] lg:text-[25px]">
                 {homePagePayload[language].grade.smalltitle}
               </div>
-              <div className="font-semibold text-[25px] md:text-[60px]">
+              <div className="font-semibold text-[25px] md:text-[50px] xl:text-[60px]">
                 {homePagePayload[language].grade.title}
               </div>
             </div>
             <div className="place-content-center">
-              <p className="md:leading-[25px] md:text-[20px] md:text-justify md:leading-loose">
+              <p className="md:leading-[25px] text-[14px] md:text-[20px] md:text-left xl:leading-loose text-balance">
                 {homePagePayload[language].grade.desc}
               </p>
             </div>
@@ -59,7 +55,7 @@ const HomePage = () => {
                   <a
                     href="/btb-belajar/TK"
                     target="_blank"
-                    className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300"
+                    className="border-2 px-6 py-2 text-[14px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300"
                   >
                     Learn More
                   </a>
@@ -67,7 +63,7 @@ const HomePage = () => {
               </div>
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
-                  <p className="md:text-[20px] leading-tight text-center font-semibold">
+                  <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
                     {homePagePayload[language].grade.tktext}
                   </p>
                 </div>
@@ -87,7 +83,7 @@ const HomePage = () => {
               </div>
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
-                  <p className="md:text-[20px] leading-tight text-center font-semibold">
+                  <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
                     {homePagePayload[language].grade.sdtext}
                   </p>
                 </div>
@@ -107,7 +103,7 @@ const HomePage = () => {
               </div>
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
-                  <p className="md:text-[20px] leading-tight text-center font-semibold">
+                  <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
                     {homePagePayload[language].grade.smptext}
                   </p>
                 </div>
@@ -127,7 +123,7 @@ const HomePage = () => {
               </div>
               <div className="md:my-[10px] text-[#00305E]">
                 <div className="flex gap-2 justify-center">
-                  <p className="md:text-[20px] leading-tight text-center font-semibold">
+                  <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
                     {homePagePayload[language].grade.smatext}
                   </p>
                 </div>
@@ -135,7 +131,7 @@ const HomePage = () => {
             </div>
           </div>
           <hr className="h-px mt-10 md:mt-32 md:mb-20 mb-10 bg-gray-200 border-0 dark:bg-gray-700" />
-          <div className="text-[25px] md:text-[60px] md:text-start text-center">
+          <div className="text-[25px] md:text-[60px] md:text-start text-center font-semibold">
             <h1>{homePagePayload[language].instagramtitle}</h1>
           </div>
           <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 mt-4">

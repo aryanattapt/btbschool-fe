@@ -29,10 +29,10 @@ const Sukarelawan = ({ data, language }) => {
           />
         </div>
         <div className="mx-10 md:mx-32 mt-5 md:mt-20 mb-5">
-          <p className="text-[#00305E] text-[15px] sm:text-center md:text-[30px] font-semibold md:mb-[25px] mb-[5px]">
+          <p className="text-[#00305E] text-[14px] sm:text-center md:text-[30px] font-semibold md:mb-[25px] mb-[5px]">
             {data[language].text8}
           </p>
-          <p className="text-black text-[15px] md:text-[20px] mb-[5px] md:mb-[25px]">
+          <p className="text-black text-[14px] md:text-[20px] mb-[5px] md:mb-[25px]">
             {data[language].text9}
           </p>
         </div>
