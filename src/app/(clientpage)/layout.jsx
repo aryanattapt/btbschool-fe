@@ -2,6 +2,7 @@ import FooterComponent from "../_components/footer";
 import NavBar from "../_components/navbarapt";
 import Popup from "../_components/popup";
 import FloatingButtons from "../_components/floatingbutton";
+import GoToTop from "../_components/goToTop";
 import 'core-js/full/promise/with-resolvers'
 import { LanguageProvider } from "../../context/language.context";
 
@@ -19,6 +20,7 @@ export default function ClientLayout({ children }) {
         <main className="flex-grow">{children}</main>
         <FooterComponent />
         <FloatingButtons/>
+        <GoToTop />
       </div>
     </LanguageProvider>
   );

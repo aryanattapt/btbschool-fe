@@ -7,12 +7,12 @@ const AlumniPage = () => {
     <>
       <Banner />
       <Pagging />
-      <div className="flex-col p-12">
+      <div className="flex-col px-12 pb-12">
         <div id="hubungi-kami" className="">
-          <h1 className="mt-10 text-[#00305E] md:text-[50px] text-[25px] font-semibold">
+          <h1 className="mt-10 text-[#00305E] md:text-[35px] text-[28px] font-semibold">
             INFORMASI ALUMNI
           </h1>
-          <p className="md:text-[30px] text-[15px] text-black">
+          <p className="md:text-[16px] text-[14px] text-black">
             Sebagai alumni dari sekolah BTB, kami ingin mengenal anda lebih
             jauh. Silahkan isi formulir berikut ini. Kami menunggu respon
             kalian.

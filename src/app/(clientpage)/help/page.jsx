@@ -34,7 +34,7 @@ const HelpCenterPage = () => {
         <Tabs aria-label="Tabs with underline" variant="underline">
           <Tabs.Item title={helpData[language].banner.title}>
             <div className="p-4 rounded-lg shadow-md">
-              <h1 className="text-2xl font-bold text-[#00305E] text-center mb-6">
+              <h1 className="text-[20px] md:text-[25px] font-bold text-[#00305E] text-center mb-6">
                 {helpData[language].mainTitle}
               </h1>
               <FAQ payload={payload} />
