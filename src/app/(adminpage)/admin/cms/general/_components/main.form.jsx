@@ -17,6 +17,7 @@ import LogoForm from './logo.form';
 import SosmedForm from './sosmed.form';
 import ContactForm from './contact.form';
 import FloatingButtonForm from './floatingbutton.form';
+import AdminHeader from "../../../_components/header";
 
 const GeneralSettingsMainForm = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -83,9 +84,10 @@ const GeneralSettingsMainForm = () => {
     return (
         <NavbarSidebarLayout>
             <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-2xl font-bold text-[#00305E] mb-6 w-fit font-semibold text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                    General Content Settings Form
+                <div className="mt-4 mb-4">
+                    <AdminHeader title="General Content Settings Form"/>
                 </div>
+
                 <Tabs aria-label="Default tabs" variant="default">
                     <Tabs.Item title="Indonesia">
                         <LogoForm payload={payload} formChangeHandler={formChangeHandler} language={"ID"}/>
