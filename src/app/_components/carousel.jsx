@@ -12,7 +12,7 @@ const CarouselComponents = () => {
 
   return (
     <Carousel
-      slideInterval={12000}
+      slideInterval={5000}
       className="relative md:h-[100vh] w-full h-[400px]"
     >
       {homePageData.carousel.map((val, idx) => {
@@ -49,11 +49,10 @@ const CarouselComponents = () => {
             <div className="relative h-full w-full" key={idx}>
               <video
                 autoPlay={true}
-                muted={true}
                 loop={true}
                 className="h-full w-full object-cover"
               >
-                <source src={`${val.url}`} type="video/mp4" />
+                <source src={`${val.url}`} type="video/mp4"/>
                 Your browser does not support the video tag.
               </video>
               {/* <div className="absolute inset-0 grid h-full w-full place-items-center">
