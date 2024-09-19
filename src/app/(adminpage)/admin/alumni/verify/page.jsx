@@ -17,7 +17,7 @@ import {
 } from '../../../../../../services/alumni.service'
 import Swal from "sweetalert2";
 
-const CareerForm = () => {
+const AlumniVerifyForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams()
@@ -241,7 +241,7 @@ const CareerForm = () => {
 
 const VerifyAlumniPage = () => {
     return <Suspense>
-        <CareerForm/>
+        <AlumniVerifyForm/>
     </Suspense>
 }
 
