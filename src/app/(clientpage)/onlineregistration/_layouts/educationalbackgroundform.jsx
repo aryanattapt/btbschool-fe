@@ -5,8 +5,9 @@ import {
     Select, 
     TextInput 
 } from "flowbite-react";
+import { forwardRef } from "react";
 
-const EducationalBackgroundForm = ({ formChangeHandler, payload, errorPayload }) => {
+const EducationalBackgroundForm = forwardRef(({ formChangeHandler, payload, errorPayload }, ref) => {
     return (
         <>
             <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
@@ -19,6 +20,7 @@ const EducationalBackgroundForm = ({ formChangeHandler, payload, errorPayload })
                 <div className="w-full pr-10 md:pr-0">
                     <TextInput
                         className="md:w-full pr-10 md:pr-0"
+                        ref={ref.previousschoolname}
                         id="previousschoolname"
                         name="previousschoolname"
                         type="text"
@@ -42,6 +44,7 @@ const EducationalBackgroundForm = ({ formChangeHandler, payload, errorPayload })
                 <div className="w-full pr-10 md:pr-0">
                     <TextInput
                         className="md:w-full pr-10 md:pr-0"
+                        ref={ref.yearlevelprevschool}
                         id="yearlevelprevschool"
                         name="yearlevelprevschool"
                         type="text"
@@ -64,6 +67,7 @@ const EducationalBackgroundForm = ({ formChangeHandler, payload, errorPayload })
                 </div>
                 <div className="w-full pr-10 md:pr-0">
                     <Select
+                        ref={ref.nextclass}
                         className="md:w-full pr-10 md:pr-0"
                         id="nextclass"
                         name="nextclass"
@@ -98,6 +102,6 @@ const EducationalBackgroundForm = ({ formChangeHandler, payload, errorPayload })
             </div>
         </>
     );
-}
+})
 
 export default EducationalBackgroundForm;

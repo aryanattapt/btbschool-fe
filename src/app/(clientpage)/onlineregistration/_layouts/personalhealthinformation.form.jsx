@@ -8,8 +8,9 @@ import {
     TextInput
 } from "flowbite-react";
 import moment from "moment";
+import { forwardRef } from "react";
 
-const PersonalHealthInformationForm = ({ formChangeHandler, payload = {}, errorPayload = {}, datePickerHandler }) => {
+const PersonalHealthInformationForm = forwardRef(({ formChangeHandler, payload = {}, errorPayload = {}, datePickerHandler }, ref) => {
     return (
         <>
             <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
@@ -182,6 +183,7 @@ const PersonalHealthInformationForm = ({ formChangeHandler, payload = {}, errorP
                 </div>
                 <div className="md:w-full flex items-center gap-2" id="medicationoption">
                     <Radio
+                        ref={ref.medicationoption}
                         checked={payload.medicationoption === 'Yes'}
                         id="medicationoptionyes"
                         name="medicationoption"
@@ -211,6 +213,7 @@ const PersonalHealthInformationForm = ({ formChangeHandler, payload = {}, errorP
                 </div>
                 <div className="md:w-full flex items-center gap-2" id="isrecassmedication">
                     <Radio
+                        ref={ref.isrecassmedicationoption}
                         checked={payload.isrecassmedicationoption === 'Yes'}
                         id="isrecassmedicationoptionyes"
                         name="isrecassmedicationoption"
@@ -252,6 +255,6 @@ const PersonalHealthInformationForm = ({ formChangeHandler, payload = {}, errorP
             </div>
         </>
     );
-}
+})
 
 export default PersonalHealthInformationForm;

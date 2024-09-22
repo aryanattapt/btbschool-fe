@@ -5,8 +5,9 @@ import {
     Textarea, 
     TextInput 
 } from "flowbite-react";
+import { forwardRef } from "react";
 
-const EmergencyContactForm = ({ formChangeHandler, payload, errorPayload }) => {
+const EmergencyContactForm = forwardRef(({ formChangeHandler, payload, errorPayload }, ref) => {
     return (
         <>
             <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
@@ -18,6 +19,7 @@ const EmergencyContactForm = ({ formChangeHandler, payload, errorPayload }) => {
                 </div>
                 <div className="w-full pr-10 md:pr-0">
                     <TextInput
+                        ref={ref.emergencycontactname}
                         className="w-full pr-10 md:pr-0"
                         id="emergencycontactname"
                         name="emergencycontactname"
@@ -41,6 +43,7 @@ const EmergencyContactForm = ({ formChangeHandler, payload, errorPayload }) => {
                 </div>
                 <div className="w-full pr-10 md:pr-0">
                     <TextInput
+                        ref={ref.emergencycontactrelaction}
                         className="w-full pr-10 md:pr-0"
                         id="emergencycontactrelaction"
                         name="emergencycontactrelaction"
@@ -64,6 +67,7 @@ const EmergencyContactForm = ({ formChangeHandler, payload, errorPayload }) => {
                 </div>
                 <div className="w-full pr-10 md:pr-0">
                     <TextInput
+                        ref={ref.emergencycontactphoneno}
                         className="w-full pr-10 md:pr-0"
                         id="emergencycontactphoneno"
                         name="emergencycontactphoneno"
@@ -87,6 +91,7 @@ const EmergencyContactForm = ({ formChangeHandler, payload, errorPayload }) => {
                 </div>
                 <div className="w-full pr-10 md:pr-0">
                     <Textarea
+                        ref={ref.emergencycontactaddress}
                         className="w-full pr-10 md:pr-0"
                         id="emergencycontactaddress"
                         name="emergencycontactaddress"
@@ -107,6 +112,6 @@ const EmergencyContactForm = ({ formChangeHandler, payload, errorPayload }) => {
             </div>
         </>
     );
-}
+})
 
 export default EmergencyContactForm;

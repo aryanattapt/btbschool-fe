@@ -6,9 +6,9 @@ import {
     Radio, 
     TextInput 
 } from "flowbite-react";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 
-const MedicalProblemForm = ({ formChangeHandler, payload, errorPayload }) => {
+const MedicalProblemForm = forwardRef(({ formChangeHandler, payload, errorPayload }, ref) => {
     const [isShowLimitationExplain, setIsShowLimitationExplain] = useState(false);
     const [isShowSurgeryExplain, setIsShowSurgeryExplain] = useState(false);
 
@@ -22,6 +22,13 @@ const MedicalProblemForm = ({ formChangeHandler, payload, errorPayload }) => {
             setIsShowSurgeryExplain(value === 'Yes');
         }
     };
+
+    const getLimitationOfPhysicalRef = (index) => {
+        if(index === 0) return {ref : ref.limitationofphysical}
+    }
+    const getSurgeryOperationRef = (index) => {
+        if(index === 0) return {ref : ref.surgeryoperation}
+    }
 
     return (
         <>
@@ -73,9 +80,10 @@ const MedicalProblemForm = ({ formChangeHandler, payload, errorPayload }) => {
                     <Label htmlFor="limitationofphysical" value="Does your child suffer any limitation on physical activity?" />
                 </div>
                 <div className="md:w-full flex items-center gap-2" id="limitationofphysical">
-                    {['No', 'Yes'].map((option) => (
+                    {['No', 'Yes'].map((option, idx) => (
                         <div key={option} className="flex items-center gap-2">
                             <Radio
+                                {...getLimitationOfPhysicalRef(idx)}
                                 checked={payload.limitationofphysical === option}
                                 id={`limitationofphysical${option.toLowerCase()}`}
                                 name="limitationofphysical"
@@ -87,6 +95,7 @@ const MedicalProblemForm = ({ formChangeHandler, payload, errorPayload }) => {
                     ))}
                     {isShowLimitationExplain && (
                         <TextInput
+                            ref={ref.limitationofphysicalexplain}
                             value={payload.limitationofphysicalexplain || ''}
                             id="limitationofphysicalexplain"
                             name="limitationofphysicalexplain"
@@ -106,9 +115,10 @@ const MedicalProblemForm = ({ formChangeHandler, payload, errorPayload }) => {
                     <Label htmlFor="surgeryoperation" value="Has your child had any surgery or operation?" />
                 </div>
                 <div className="md:w-full flex items-center gap-2" id="surgeryoperation">
-                    {['No', 'Yes'].map((option) => (
+                    {['No', 'Yes'].map((option, idx) => (
                         <div key={option} className="flex items-center gap-2">
                             <Radio
+                                {...getSurgeryOperationRef(idx)}
                                 checked={payload.surgeryoperation === option}
                                 id={`surgeryoperation${option.toLowerCase()}`}
                                 name="surgeryoperation"
@@ -120,6 +130,7 @@ const MedicalProblemForm = ({ formChangeHandler, payload, errorPayload }) => {
                     ))}
                     {isShowSurgeryExplain && (
                         <TextInput
+                            ref={ref.surgeryoperationexplain}
                             value={payload.surgeryoperationexplain || ''}
                             id="surgeryoperationexplain"
                             name="surgeryoperationexplain"
@@ -185,6 +196,6 @@ const MedicalProblemForm = ({ formChangeHandler, payload, errorPayload }) => {
             </div>
         </>
     );
-};
+});
 
 export default MedicalProblemForm;

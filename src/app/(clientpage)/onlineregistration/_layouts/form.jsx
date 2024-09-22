@@ -12,7 +12,7 @@ import SchoolInformationForm from "./schoolinformationform";
 import StudentDetailForm from "./studentdetailform";
 import DraftNoForm from "./draft.form";
 import RulesRegistration from "./rulesregitration";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Label, Radio, Spinner, TextInput } from "flowbite-react";
 import { UploadAttachment } from "../../../../../services/attachment.service";
 import { GetCountry } from '../../../../../services/country.service'
@@ -42,7 +42,68 @@ const OnlineRegistrationForm = () => {
   const [nationalityPayload, setNationalityPayload] = useState([]);
   const [yearPayload, setYearPayload] = useState([]);
   const [errorPayload, setErrorPayload] = useState({});
-  
+  const [termandcondition, setTermandcondition] = useState(true)
+  // Ref for focus to mandatory field
+  const inputRef = {
+    registrationCode :useRef(),
+    mainEmailError : useRef(),
+    schoolyear : useRef(),
+    firstname : useRef(),
+    birthplace : useRef(),
+    birthdate : useRef(),
+    nationality : useRef(),
+    religion : useRef(),
+    gender : useRef(),
+    address : useRef(),
+    phonenoError : useRef(),
+    emailError : useRef(),
+    previousschoolname : useRef(),
+    yearlevelprevschool : useRef(),
+    nextclass : useRef(),
+    fathername : useRef(),
+    fatherbirthplace : useRef(),
+    fatherbirthdate : useRef(),
+    fatherphoneno : useRef(),
+    fatheremail : useRef(),
+    fathermaritalstatus : useRef(),
+    fatheroccupation : useRef(),
+    fathercompanyname : useRef(),
+    fatherbusinessAddress : useRef(),
+    fathertelephone : useRef(),
+    mothername : useRef(),
+    motherbirthplace : useRef(),
+    motherbirthdate : useRef(),
+    motherphoneno : useRef(),
+    motheremail : useRef(),
+    mothermaritalstatus : useRef(),
+    motheroccupation : useRef(),
+    mothercompanyname : useRef(),
+    motherbusinessAddress : useRef(),
+    mothertelephone : useRef(),
+    emergencycontactname : useRef(),
+    emergencycontactrelaction : useRef(),
+    emergencycontactphoneno : useRef(),
+    emergencycontactaddress : useRef(),
+    termandcondition : useRef(),
+    medicationoption : useRef(),
+    isrecassmedicationoption : useRef(),
+    alergicoption : useRef(),
+    limitationofphysical : useRef(),
+    limitationofphysicalexplain : useRef(),
+    surgeryoperation : useRef(),
+    surgeryoperationexplain : useRef(),
+    recommendedoption : useRef(),
+    btbparentnamerec : useRef(),
+    btbstudentnamerec : useRef(),
+    btbstudentgraderec : useRef(),
+    btbstudentphonehomerec : useRef(),
+    btbstudentphonemobilerec : useRef(),
+    birthcertificateattachment : useRef(),
+    familycardattachment : useRef(),
+    reportcardattachment : useRef(),
+  }
+
+
   const formChangeHandler = (e) => {
     const { name, value, type, files } = e.target;
     onChangeHookForValidation(e);
@@ -178,8 +239,37 @@ const OnlineRegistrationForm = () => {
       }
   };
 
+  const onCheckAttachment = () => {
+    if(!registrationPayload.birthcertificateattachment) {
+      return swalFormError('Birth Certificate is required!', 'birthcertificateattachment')
+    } else if(!registrationPayload.familycardattachment) {
+      return swalFormError('Family Card is required!', 'familycardattachment')
+    } else if(!registrationPayload.reportcardattachment) {
+      return swalFormError('Report Card is required!', 'reportcardattachment')
+    } else if(!registrationPayload.ttdpage4) {
+      return swalFormError('Signature is required!')
+    } 
+    return true
+  }
+
   const saveAndSendHandler = (e) => {
-    submitHandler(true, setIsLoading);
+    if (!registrationPayload.recommendedoption) {
+      return swalFormError('Recommend Option is required!', 'recommendedoption')
+    } else if(registrationPayload.recommendedoption === 'Yes'){
+      if(!registrationPayload.btbparentnamerec){
+        return swalFormError('Parent Name is required!', 'btbparentnamerec')
+      } else if (!registrationPayload.btbstudentnamerec){
+        return swalFormError('Student Name is required!', 'btbstudentnamerec')
+      } else if (!registrationPayload.btbstudentgraderec){
+        return swalFormError('Student Grade is required!', 'btbstudentgraderec')
+      } else if (!registrationPayload.btbstudentphonehomerec){
+        return swalFormError('Student Phone is required!', 'btbstudentphonehomerec')
+      } else if (!registrationPayload.btbstudentphonemobilerec){
+        return swalFormError('Student Phone Mobile is required!', 'btbstudentphonemobilerec')
+      }
+    } else if (onCheckAttachment() === true){
+      submitHandler(true, setIsLoading);
+    } 
   };
 
   const saveAsDraftHandler = (e) => {
@@ -256,24 +346,38 @@ const OnlineRegistrationForm = () => {
     }
   }
 
-  const setNextPage = () => {
+  const swalFormError = (text, ref) => {
+    Swal.fire({
+      allowOutsideClick: false,
+      title: "Student Submission Notification!",
+      text: text,
+      icon: "warning",
+    }).then((res) => {
+      if(ref && (res.dismiss || res.isConfirmed || res.isDismissed)){
+        setTimeout(() => {
+          inputRef[ref].current.focus()
+        }, 300);
+      }
+    })
+  }
+
+  const goToNextPage = () => {
+    setPageNo(pageNo + 1);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
+  const setNextPage = (e) => {
+    e.preventDefault()
     if(pageNo == 0){
       if (haveRegisCode == "true" && !registrationCode) {
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Student Submission Notification!",
-          text: "Please input registration code if you choose option yes. Otherwise please choose no!",
-          icon: "warning",
-        });
+        return swalFormError("Please input registration code if you choose option yes. Otherwise please choose no!", "registrationCode")
       } else if (haveRegisCode == "true" && registrationCode) {
         fetchDraftDataHandler();
       } else if (haveRegisCode == "false" && mainEmailError) {
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Student Submission Notification!",
-          text: mainEmailError,
-          icon: "warning",
-        });
+        return swalFormError(mainEmailError, 'mainEmailError')
       } else {
         setPageNo(pageNo + 1);
         window.scrollTo({
@@ -282,54 +386,107 @@ const OnlineRegistrationForm = () => {
         });
       }
     } else if(pageNo == 1){
-      if(!registrationPayload.firstname){
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Student Submission Notification!",
-          text: "First Name is required!",
-          icon: "warning",
-        });
+      if(!registrationPayload.schoolyear){
+        return swalFormError('School Year is required!','schoolyear')
+      } else if(!registrationPayload.firstname){
+        return swalFormError('First Name is required!','firstname')
+      } else if(!registrationPayload.birthplace){
+        return swalFormError('Birth Place is required!','birthplace')
       } else if(!registrationPayload.birthdate){
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Student Submission Notification!",
-          text: "Birth Date is required!",
-          icon: "warning",
-        });
+        return swalFormError('Birth Date is required!','birthdate')
+      } else if(!registrationPayload.nationality){
+        return swalFormError('Nationality is required!','nationality')
+      } else if(!registrationPayload.religion){
+        return swalFormError('Religion is required!','religion')
+      } else if(!registrationPayload.gender){
+        return swalFormError('Gender is required!','gender')
       } else if(!registrationPayload.address){
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Student Submission Notification!",
-          text: "Address is required!",
-          icon: "warning",
-        });
+        return swalFormError('Address is required!','address')
       } else if (phonenoError){
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Student Submission Notification!",
-          text: phonenoError,
-          icon: "warning",
-        });
+        return swalFormError(phonenoError, 'phonenoError')
       } else if(emailError){
-        Swal.fire({
-          allowOutsideClick: false,
-          title: "Student Submission Notification!",
-          text: emailError,
-          icon: "warning",
-        });
+        return swalFormError(emailError, 'emailError')
+      } else if(!registrationPayload.previousschoolname){
+        return swalFormError('Previous School Name is required!', 'previousschoolname')
+      } else if(!registrationPayload.yearlevelprevschool){
+        return swalFormError('Year Level at Previous School is required!', 'yearlevelprevschool')
+      } else if(!registrationPayload.nextclass){
+        return swalFormError('Class to which admission is sought is required!', 'nextclass')
+      } else if(!registrationPayload.fathername){
+        return swalFormError("Father's Name is required!", 'fathername')
+      } else if(!registrationPayload.fatherbirthplace){
+        return swalFormError("Father's Birth Place is required!", 'fatherbirthplace')
+      } else if(!registrationPayload.fatherbirthdate){
+        return swalFormError("Father's Birth Date is required!", 'fatherbirthdate')
+      } else if(!registrationPayload.fatherphoneno){
+        return swalFormError("Father's Phone No is required!", 'fatherphoneno')
+      } else if(!registrationPayload.fatheremail){
+        return swalFormError("Father's Email is required!", 'fatheremail')
+      } else if(!registrationPayload.fathermaritalstatus){
+        return swalFormError("Father's Marital Status is required!", 'fathermaritalstatus')
+      } else if(!registrationPayload.fatheroccupation){
+        return swalFormError("Father's Occupation is required!", 'fatheroccupation')
+      } else if(!registrationPayload.fathercompanyname){
+        return swalFormError("Father's Company Name is required!", 'fathercompanyname')
+      } else if(!registrationPayload.fatherbusinessAddress){
+        return swalFormError("Father's Business Address is required!", 'fatherbusinessAddress')
+      } else if(!registrationPayload.fathertelephone){
+        return swalFormError("Father's Telephone is required!", 'fathertelephone')
+      } else if(!registrationPayload.mothername){
+        return swalFormError("Mother's Name is required!", 'mothername')
+      } else if(!registrationPayload.motherbirthplace){
+        return swalFormError("Mother's Birth Place is required!", 'motherbirthplace')
+      } else if(!registrationPayload.motherbirthdate){
+        return swalFormError("Mother's Birth Date is required!", 'motherbirthdate')
+      } else if(!registrationPayload.motherphoneno){
+        return swalFormError("Mother's Phone No is required!", 'motherphoneno')
+      } else if(!registrationPayload.motheremail){
+        return swalFormError("Mother's Email is required!", 'motheremail')
+      } else if(!registrationPayload.mothermaritalstatus){
+        return swalFormError("Mother's Marital Status is required!", 'mothermaritalstatus')
+      } else if(!registrationPayload.motheroccupation){
+        return swalFormError("Mother's Occupation is required!", 'motheroccupation')
+      } else if(!registrationPayload.mothercompanyname){
+        return swalFormError("Mother's Company Name is required!", 'mothercompanyname')
+      } else if(!registrationPayload.motherbusinessAddress){
+        return swalFormError("Mother's Business Address is required!", 'motherbusinessAddress')
+      } else if(!registrationPayload.mothertelephone){
+        return swalFormError("Mother's Telephone is required!", 'mothertelephone')
+      } else if(!registrationPayload.emergencycontactname){
+        return swalFormError("Emergency Contact Name is required!", 'emergencycontactname')
+      } else if(!registrationPayload.emergencycontactrelaction){
+        return swalFormError("Emergency Contact Relation is required!", 'emergencycontactrelaction')
+      } else if(!registrationPayload.emergencycontactphoneno){
+        return swalFormError("Emergency Contact Phone is required!", 'emergencycontactphoneno')
+      } else if(!registrationPayload.emergencycontactaddress){
+        return swalFormError("Emergency Contact Address is required!", 'emergencycontactaddress')
+      } else if(!registrationPayload.ttdpage1){
+        return swalFormError("Signature is required!")
       } else {
-        setPageNo(pageNo + 1);
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        });
+        goToNextPage()
       }
+    } else if (pageNo === 2 ){
+      if(!termandcondition) return swalFormError('Term and Condition is required!', 'termandcondition')
+      else if(!registrationPayload.ttdpage2) return swalFormError('Signature is required!')
+      else goToNextPage()
+    } else if (pageNo === 3 ){
+      if(!registrationPayload.medicationoption) {
+        return swalFormError('Medication Option is required!', 'medicationoption')
+      } else if(!registrationPayload.isrecassmedicationoption) {
+        return swalFormError('Medication Assistance is required!', 'isrecassmedicationoption')
+      } else if(!registrationPayload.limitationofphysical) {
+        return swalFormError('Limitation of Physical Option is required!', 'limitationofphysical')
+      } else if(registrationPayload.limitationofphysical === 'Yes' && !registrationPayload.limitationofphysicalexplain){
+        return swalFormError('Limitation of Physical Explanation is required!', 'limitationofphysicalexplain')
+      } else if(!registrationPayload.surgeryoperation){
+        return swalFormError('Surgery Operation is required!', 'surgeryoperation')
+      } else if(registrationPayload.surgeryoperation === 'Yes' && !registrationPayload.surgeryoperationexplain){
+        return swalFormError('Surgery Operation Explanation is required!', 'surgeryoperationexplain')
+      } else if(!registrationPayload.ttdpage3) {
+        return swalFormError('Signature is required!')
+      } else return goToNextPage()
     } else {
-      setPageNo(pageNo + 1);
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
+      goToNextPage()
     }
   };
 
@@ -399,6 +556,7 @@ const OnlineRegistrationForm = () => {
             {
               haveRegisCode == "true" ? (
                 <DraftNoForm
+                  ref={inputRef.registrationCode}
                   onChange={onChangeRegistrationCode}
                   onPaste={onPasteRegistrationCode}
                   registrationcode={registrationCode}
@@ -413,7 +571,7 @@ const OnlineRegistrationForm = () => {
                       <div className="mb-2 block w-32">
                           <Label htmlFor="mainEmail" value="Email"/>
                       </div>
-                      <TextInput className="md:w-full pr-10 md:pr-0" id="mainEmail" name="mainEmail" type="email" icon={HiMail} autoFocus={true} onChange={formChangeHandler} value={registrationPayload.mainEmail || ''}/>
+                      <TextInput ref={inputRef.mainEmailError} className="md:w-full pr-10 md:pr-0" id="mainEmail" name="mainEmail" type="email" icon={HiMail} autoFocus={true} onChange={formChangeHandler} value={registrationPayload.mainEmail || ''}/>
                   </div>
                 </>
               ) : <></>
@@ -427,12 +585,14 @@ const OnlineRegistrationForm = () => {
         {pageNo == 1 ? (
           <>
             <SchoolInformationForm
+              ref={inputRef}
               yearPayload={yearPayload}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               errorPayload={errorPayload}
             />
             <StudentDetailForm
+              ref={inputRef}
               nationalityPayload = {nationalityPayload}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
@@ -440,17 +600,20 @@ const OnlineRegistrationForm = () => {
               errorPayload={errorPayload}
             />
             <EducationalBackgroundForm
+              ref={inputRef}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               errorPayload={errorPayload}
             />
             <ParentsInformationForm
+              ref={inputRef}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               datePickerHandler={datePickerHandler}
               errorPayload={errorPayload}
             />
             <EmergencyContactForm
+              ref={inputRef}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               errorPayload={errorPayload}
@@ -475,8 +638,8 @@ const OnlineRegistrationForm = () => {
         {pageNo == 2 ? (
           <>
             <RulesRegistration
-              payload={registrationPayload}
-              formChangeHandler={formChangeHandler}
+              ref={inputRef}
+              onChange={setTermandcondition}
             />
             <SignaturePad
               formChangeHandler={formChangeHandler}
@@ -492,11 +655,13 @@ const OnlineRegistrationForm = () => {
         {pageNo == 3 ? (
           <>
             <PersonalHealthInformationForm
+              ref={inputRef}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               errorPayload={errorPayload}
             />
             <MedicalProblemForm
+              ref={inputRef}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               errorPayload={errorPayload}
@@ -515,11 +680,12 @@ const OnlineRegistrationForm = () => {
         {pageNo == 4 ? (
           <>
             <RecomendedForm
+              ref={inputRef}
               payload={registrationPayload}
               formChangeHandler={formChangeHandler}
               errorPayload={errorPayload}
             />
-            <AttachmentForm formChangeHandler={formChangeHandler} />
+            <AttachmentForm ref={inputRef} formChangeHandler={formChangeHandler} />
             <SignaturePad
               formChangeHandler={formChangeHandler}
               value={registrationPayload.ttdpage4 || ''}

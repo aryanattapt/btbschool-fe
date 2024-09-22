@@ -9,6 +9,7 @@ import {
 } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
 import AgGridTableForm from "./aggrid.form";
+import { forwardRef } from "react";
 
 const columnDefs = [
   {
@@ -47,13 +48,13 @@ const columnDefs = [
   },
 ];
 
-const StudentDetailForm = ({
+const StudentDetailForm = forwardRef(({
   nationalityPayload,
   formChangeHandler,
   datePickerHandler,
   payload,
   errorPayload,
-}) => {
+}, ref) => {
   return (
     <>
       <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
@@ -64,6 +65,7 @@ const StudentDetailForm = ({
           <Label htmlFor="firstname" value="First Name" />
         </div>
         <TextInput
+          ref={ref.firstname}
           className="w-full pr-10 md:pr-0"
           value={payload.firstname || ""}
           id="firstname"
@@ -126,6 +128,7 @@ const StudentDetailForm = ({
         <div className="inline-flex w-full pr-10 md:pr-0">
           <div className="w-1/2 pr-2">
             <TextInput
+              ref={ref.birthplace}
               className="w-full pr-10 md:pr-0"
               value={payload.birthplace || ""}
               id="birthplace"
@@ -142,6 +145,7 @@ const StudentDetailForm = ({
           </div>
           <div className="w-1/2">
             <Datepicker
+              ref={ref.birthdate}
               value={payload.birthdate || ""}
               id="birthdate"
               name="birthdate"
@@ -166,6 +170,7 @@ const StudentDetailForm = ({
           <Label htmlFor="nationality" value="Nationality" />
         </div>
         <Select
+          ref={ref.nationality}
           className="w-full pr-10 md:pr-0"
           value={payload.nationality || ""}
           id="nationality"
@@ -188,6 +193,7 @@ const StudentDetailForm = ({
           <Label htmlFor="religion" value="Religion" />
         </div>
         <Select
+          ref={ref.religion}
           className="w-full pr-10 md:pr-0"
           value={payload.religion || ""}
           id="religion"
@@ -210,13 +216,14 @@ const StudentDetailForm = ({
       </div>
       <div className="md:inline-flex">
         <div className="mb-2 block w-72">
-          <Label htmlFor="gender" value="Gender" />
+          <Label htmlFor="gender" value="Gender"  />
         </div>
         <div
           className="flex items-center gap-2 w-full pr-10 md:pr-0"
           id="gender"
         >
           <Radio
+            ref={ref.gender}
             checked={payload.gender === "male"}
             id="genderMale"
             name="gender"
@@ -244,6 +251,7 @@ const StudentDetailForm = ({
           <Label htmlFor="address" value="Address" />
         </div>
         <Textarea
+          ref={ref.address}
           className="w-full pr-10 md:pr-0"
           value={payload.address || ""}
           id="address"
@@ -264,6 +272,7 @@ const StudentDetailForm = ({
           <Label htmlFor="phoneno" value="Phone No" />
         </div>
         <TextInput
+          ref={ref.phonenoError}
           className="w-full pr-10 md:pr-0"
           value={payload.phoneno || ""}
           id="phoneno"
@@ -283,6 +292,7 @@ const StudentDetailForm = ({
           <Label htmlFor="email" value="Email" />
         </div>
         <TextInput
+          ref={ref.emailError}
           className="w-full pr-10 md:pr-0"
           value={payload.email || ""}
           icon={HiMail}
@@ -311,6 +321,6 @@ const StudentDetailForm = ({
       </div>
     </>
   );
-};
+});
 
 export default StudentDetailForm;

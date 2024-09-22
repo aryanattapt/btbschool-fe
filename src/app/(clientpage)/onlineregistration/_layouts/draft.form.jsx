@@ -5,8 +5,9 @@ import {
     Label,
     TextInput 
 } from "flowbite-react";
+import { forwardRef } from "react";
 
-const DraftNoForm = ({ registrationcode, onChange, onPaste, errorPayload }) => {
+const DraftNoForm = forwardRef(({ registrationcode, onChange, onPaste, errorPayload }, ref) => {
     return (
         <>
             <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
@@ -18,6 +19,7 @@ const DraftNoForm = ({ registrationcode, onChange, onPaste, errorPayload }) => {
                 </div>
                 <div className="w-full pr-10 md:pr-0">
                     <TextInput
+                        ref={ref}
                         className="md:w-full pr-10 md:pr-0"
                         id="registrationcode"
                         name="registrationcode"
@@ -42,6 +44,6 @@ const DraftNoForm = ({ registrationcode, onChange, onPaste, errorPayload }) => {
             </div> */}
         </>
     );
-}
+})
 
 export default DraftNoForm;

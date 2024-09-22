@@ -7,14 +7,15 @@ import {
   Radio,
   TextInput,
 } from "flowbite-react";
+import { forwardRef } from "react";
 import { HiMail } from "react-icons/hi";
 
-const ParentsInformationForm = ({
+const ParentsInformationForm = forwardRef(({
   formChangeHandler,
   datePickerHandler,
   payload = {}, // Ensure payload is always defined
   errorPayload = {}, // Ensure errorPayload is always defined
-}) => {
+}, ref) => {
   return (
     <>
       <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
@@ -27,6 +28,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="fathername" value="Father's Name" />
         </div>
         <TextInput
+          ref={ref.fathername}
           className="w-full pr-10 md:pr-0"
           value={payload.fathername || ""}
           id="fathername"
@@ -43,6 +45,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="fatherbirthplace" value="Birth Place" />
         </div>
         <TextInput
+          ref={ref.fatherbirthplace}
           className="w-full pr-10 md:pr-0"
           value={payload.fatherbirthplace || ""}
           id="fatherbirthplace"
@@ -59,6 +62,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="fatherbirthdate" value="Birth Date" />
         </div>
         <Datepicker
+          ref={ref.fatherbirthdate}
           className="w-full pr-10 md:pr-0"
           value={payload.fatherbirthdate || ""}
           id="fatherbirthdate"
@@ -77,6 +81,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="fatherphoneno" value="Phone No" />
         </div>
         <TextInput
+          ref={ref.fatherphoneno}
           className="w-full pr-10 md:pr-0"
           value={payload.fatherphoneno || ""}
           id="fatherphoneno"
@@ -93,6 +98,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="fatheremail" value="Email" />
         </div>
         <TextInput
+          ref={ref.fatheremail}
           className="w-full pr-10 md:pr-0"
           value={payload.fatheremail || ""}
           icon={HiMail}
@@ -111,6 +117,7 @@ const ParentsInformationForm = ({
         </div>
         <div className="w-full pr-10 md:pr-0 flex items-center gap-2">
           <Radio
+            ref={ref.fathermaritalstatus}
             checked={payload.fathermaritalstatus === "Married"}
             id="marriedfather"
             name="fathermaritalstatus"
@@ -138,6 +145,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="fatheroccupation" value="Father's Occupation" />
         </div>
         <TextInput
+          ref={ref.fatheroccupation}
           className="w-full pr-10 md:pr-0"
           value={payload.fatheroccupation || ""}
           type="text"
@@ -154,6 +162,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="fathercompanyname" value="Company Name" />
         </div>
         <TextInput
+          ref={ref.fathercompanyname}
           className="w-full pr-10 md:pr-0"
           value={payload.fathercompanyname || ""}
           type="text"
@@ -170,6 +179,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="fatherbusinessAddress" value="Business Address" />
         </div>
         <TextInput
+          ref={ref.fatherbusinessAddress}
           className="w-full pr-10 md:pr-0"
           value={payload.fatherbusinessAddress || ""}
           type="text"
@@ -186,6 +196,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="fathertelephone" value="Telp" />
         </div>
         <TextInput
+          ref={ref.fathertelephone}
           className="w-full pr-10 md:pr-0"
           value={payload.fathertelephone || ""}
           type="text"
@@ -205,6 +216,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="mothername" value="Mother's Name" />
         </div>
         <TextInput
+          ref={ref.mothername}
           className="w-full pr-10 md:pr-0"
           value={payload.mothername || ""}
           id="mothername"
@@ -221,6 +233,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="motherbirthplace" value="Birth Place" />
         </div>
         <TextInput
+          ref={ref.motherbirthplace}
           className="w-full pr-10 md:pr-0"
           value={payload.motherbirthplace || ""}
           id="motherbirthplace"
@@ -237,6 +250,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="motherbirthdate" value="Birth Date" />
         </div>
         <Datepicker
+          ref={ref.motherbirthdate}
           className="w-full pr-10 md:pr-0"
           value={payload.motherbirthdate || ""}
           id="motherbirthdate"
@@ -255,6 +269,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="motherphoneno" value="Phone No" />
         </div>
         <TextInput
+          ref={ref.motherphoneno}
           className="w-full pr-10 md:pr-0"
           value={payload.motherphoneno || ""}
           id="motherphoneno"
@@ -271,6 +286,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="motheremail" value="Email" />
         </div>
         <TextInput
+          ref={ref.motheremail}
           className="w-full pr-10 md:pr-0"
           value={payload.motheremail || ""}
           icon={HiMail}
@@ -289,6 +305,7 @@ const ParentsInformationForm = ({
         </div>
         <div className="w-full pr-10 md:pr-0 flex items-center gap-2">
           <Radio
+            ref={ref.mothermaritalstatus}
             checked={payload.mothermaritalstatus === "Married"}
             id="marriedmother"
             name="mothermaritalstatus"
@@ -316,6 +333,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="motheroccupation" value="Mother's Occupation" />
         </div>
         <TextInput
+          ref={ref.motheroccupation}
           className="w-full pr-10 md:pr-0"
           value={payload.motheroccupation || ""}
           type="text"
@@ -332,6 +350,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="mothercompanyname" value="Company Name" />
         </div>
         <TextInput
+          ref={ref.mothercompanyname}
           className="w-full pr-10 md:pr-0"
           value={payload.mothercompanyname || ""}
           type="text"
@@ -348,6 +367,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="motherbusinessAddress" value="Business Address" />
         </div>
         <TextInput
+          ref={ref.motherbusinessAddress}
           className="w-full pr-10 md:pr-0"
           value={payload.motherbusinessAddress || ""}
           type="text"
@@ -364,6 +384,7 @@ const ParentsInformationForm = ({
           <Label htmlFor="mothertelephone" value="Telp" />
         </div>
         <TextInput
+          ref={ref.mothertelephone}
           className="w-full pr-10 md:pr-0"
           value={payload.mothertelephone || ""}
           type="text"
@@ -376,6 +397,6 @@ const ParentsInformationForm = ({
       </div>
     </>
   );
-};
+});
 
 export default ParentsInformationForm;

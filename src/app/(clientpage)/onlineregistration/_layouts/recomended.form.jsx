@@ -5,8 +5,9 @@ import {
     Radio, 
     TextInput 
 } from "flowbite-react";
+import { forwardRef } from "react";
 
-const RecomendedForm = ({ formChangeHandler, payload = {}, errorPayload = {} }) => {
+const RecomendedForm = forwardRef(({ formChangeHandler, payload = {}, errorPayload = {} }, ref) => {
     return (
         <>
             <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
@@ -19,6 +20,7 @@ const RecomendedForm = ({ formChangeHandler, payload = {}, errorPayload = {} }) 
                 </div>
                 <div className="md:w-full flex items-center gap-2" id="recommendedoption">
                     <Radio
+                        ref={ref.recommendedoption}
                         checked={payload.recommendedoption === 'Yes'}
                         id="recommendedoptionyes"
                         name="recommendedoption"
@@ -47,6 +49,7 @@ const RecomendedForm = ({ formChangeHandler, payload = {}, errorPayload = {} }) 
                     <Label htmlFor="btbparentnamerec" value="Name Of BTB Parent" />
                 </div>
                 <TextInput
+                    ref={ref.btbparentnamerec}
                     className="md:w-full"
                     value={payload.btbparentnamerec || ''}
                     id="btbparentnamerec"
@@ -63,6 +66,7 @@ const RecomendedForm = ({ formChangeHandler, payload = {}, errorPayload = {} }) 
                     <Label htmlFor="btbstudentnamerec" value="Name Of BTB Student" />
                 </div>
                 <TextInput
+                    ref={ref.btbstudentnamerec}
                     className="md:w-full"
                     value={payload.btbstudentnamerec || ''}
                     id="btbstudentnamerec"
@@ -79,6 +83,7 @@ const RecomendedForm = ({ formChangeHandler, payload = {}, errorPayload = {} }) 
                     <Label htmlFor="btbstudentgraderec" value="Grade" />
                 </div>
                 <TextInput
+                    ref={ref.btbstudentgraderec}
                     className="md:w-full"
                     value={payload.btbstudentgraderec || ''}
                     id="btbstudentgraderec"
@@ -95,6 +100,7 @@ const RecomendedForm = ({ formChangeHandler, payload = {}, errorPayload = {} }) 
                     <Label htmlFor="btbstudentphonehomerec" value="Phone Home" />
                 </div>
                 <TextInput
+                    ref={ref.btbstudentphonehomerec}
                     className="md:w-full"
                     value={payload.btbstudentphonehomerec || ''}
                     id="btbstudentphonehomerec"
@@ -111,6 +117,7 @@ const RecomendedForm = ({ formChangeHandler, payload = {}, errorPayload = {} }) 
                     <Label htmlFor="btbstudentphonemobilerec" value="Phone Mobile" />
                 </div>
                 <TextInput
+                    ref={ref.btbstudentphonemobilerec}
                     className="md:w-full"
                     value={payload.btbstudentphonemobilerec || ''}
                     id="btbstudentphonemobilerec"
@@ -123,6 +130,6 @@ const RecomendedForm = ({ formChangeHandler, payload = {}, errorPayload = {} }) 
             </div>
         </>
     );
-}
+})
 
 export default RecomendedForm;

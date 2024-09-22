@@ -1,9 +1,9 @@
 "use client";
 import { Checkbox, HR, Label, Radio, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { CgEditBlackPoint } from "react-icons/cg";
 
-const RulesRegistrationForm = ({ formChangeHandler, payload }) => {
+const RulesRegistrationForm = forwardRef(({ onChange }, ref) => {
   return (
     <>
       <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
@@ -35,10 +35,13 @@ const RulesRegistrationForm = ({ formChangeHandler, payload }) => {
             4.
             <ul>
               <li>
-                <CgEditBlackPoint />
+              <span className="flex items-center">
+                <CgEditBlackPoint  />
+                <b className="ml-2">
+                School Fee per term :</b>
+                <br />
+              </span>
                 <span>
-                  <b>School Fee per term :</b>
-                  <br />
                   Dibayarkan paling lambat setiap tanggal 5 term yang
                   bersangkutan, jika melewati tanggal tersebut, siswa tidak
                   diperkenankan untuk mengikuti kegiatan belajar mengajar
@@ -46,12 +49,14 @@ const RulesRegistrationForm = ({ formChangeHandler, payload }) => {
                 </span>
               </li>
               <li>
+              <span className="flex items-center">
                 <CgEditBlackPoint />
+                <b className="ml-2">
+                  School Fee per bulan (dengan menggunakan BRl Auto Debit) :
+                </b>
+                <br />
+              </span>
                 <span>
-                  <b>
-                    School Fee per bulan (dengan menggunakan BRl Auto Debit) :
-                  </b>
-                  <br />
                   Apabila pendebetan rekening gagal, maka diwajibkan untuk
                   melakukan pembayaran melalui transfer ke BRI virtual Account
                   masing-masing siswa/i sebelum tanggal 5 setiap bulannya
@@ -92,7 +97,7 @@ const RulesRegistrationForm = ({ formChangeHandler, payload }) => {
             diterima oleh pihak sekolah tidak dapat dikembalikan.
           </li>
           <li>
-            1o. Siswa / siswi dari Grade 7 sampai Grade 12 wajib membawa buku
+            10. Siswa / siswi dari Grade 7 sampai Grade 12 wajib membawa buku
             dan laptop sesuai dengan jadwal pelajaran dan tidak diijinkan
             meminjam laptop dari siswa/siswi lain.
           </li>
@@ -137,17 +142,19 @@ const RulesRegistrationForm = ({ formChangeHandler, payload }) => {
             17. Segala kesalahan atau ketidaklengkapan informasi di dalam
             formulir ini adalah diluar tanggung jawab pihak BTB School.
           </li>
-          <li>
-            <Checkbox
+          <li className="flex items-center mt-4">
+            {/* <Checkbox
               label="Saya telah membaca dan menyetujui seluruh peraturan dan persyaratan tersebut diatas."
-              defaultChecked={true}
+              
               className="text-black"
-            />
+            /> */}
+            <Checkbox ref={ref.termandcondition} id="termandcondition" name="termandcondition" onChange={(e) => onChange(e.target.checked)} defaultChecked={true} />
+            <Label className="text-[16px] ml-2" htmlFor="termandcondition">Saya telah membaca dan menyetujui seluruh peraturan dan persyaratan tersebut diatas.</Label>
           </li>
         </ol>
       </div>
     </>
   );
-};
+});
 
 export default RulesRegistrationForm;
