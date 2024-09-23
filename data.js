@@ -1403,8 +1403,9 @@ export const ContactUsPayLoad = {
     schoolList: [
       {
         title: "BTB SCHOOL PLUIT TIMUR",
+        subtitle: "Nursery - Grade 8",
         address: "Jl. Pluit Timur Blok MM",
-        phoneNumber: "081296333888",
+        phoneNumber: "(+62) 216698888",
         waList: [
           {
             waNumber: "(+62) 856 95 333 888",
@@ -1418,8 +1419,9 @@ export const ContactUsPayLoad = {
       },
       {
         title: "BTB SCHOOL PLUIT PUTRI",
-        address: "Jl.Pluit Timur Blok MM",
-        phoneNumber: "085776333888",
+        subtitle: "Grade 9 - Grade 12",
+        address: "Jl. Taman Pluit Putri",
+        phoneNumber: "(+62) 216685858",
         waList: [
           {
             waNumber: "(+62) 851 95 333 888",
