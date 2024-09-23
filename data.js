@@ -709,6 +709,7 @@ export const BTBBelajarPayload = {
         "Menyesuaikan usia dan tahapan perkembangan anak dengan pengalaman yang sesuai untuk menantang para murid untuk berkembang.",
       text10:
         "Mengembangkan karakter dan kemampuan dari murid. Tantangan, inisiatif, kemandirian, kepemimpinan, kerjasama, tanggung jawab, pengambilan resiko, hidup berdampingan, dan peduli lingkungan semua didukung dalam karyawisata dari tingkat 1 hingga tingkat 5. Kegiatan ini mengajak para murid untuk bertualang dari area sekolahan menuju area luar sekolah yang  sudah dipilih secara khusus untuk menciptakan pengalaman edukatif yang berkesan bersama dengan teman sekelas.",
+      },
       bannerImages: [
         "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (1).jpeg",
         "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (2).jpg",
@@ -716,7 +717,6 @@ export const BTBBelajarPayload = {
         "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (4).JPG",
         "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (1).jpg",
       ],
-    },
   },
 };
 

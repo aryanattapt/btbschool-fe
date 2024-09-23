@@ -20,7 +20,7 @@ const SDPage = () => {
         slideInterval={12000}
         className="relative h-[400px] md:h-[600px] lg:h-[1000px] xl:h-[100vh] w-full"
       >
-        {btbBelajarData[language].sd.bannerImages.map((val, idx) => {
+        {btbBelajarData[language].bannerImages.map((val, idx) => {
           return (
             <div className="relative h-full w-full" key={idx}>
               <div
