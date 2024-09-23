@@ -91,7 +91,7 @@ const BulletinSpotlightForm = () => {
         /* Call API in here... */
         UploadAttachment("alumni", formData)
         .then((res) => {
-            const finalPayload = { ...payload };
+            const finalPayload = { ...payload, "date": new Date() };
             finalPayload.attachment = res.data;
             delete finalPayload.bulletinFile;
 
