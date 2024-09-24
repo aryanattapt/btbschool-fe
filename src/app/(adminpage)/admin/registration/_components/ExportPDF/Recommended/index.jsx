@@ -63,7 +63,7 @@ const ARDExportRecommended = ({ data }) => {
 					}}
 				>
 					<Text>Admsn/Mrktg,</Text>
-					<ARDExportPDFSignatureDisplay data={data} />
+					<ARDExportPDFSignatureDisplay data={data} signature={data?.ttdpage4} />
 				</View>
 			</View>
 		</ARDExportPDFPageContainer>

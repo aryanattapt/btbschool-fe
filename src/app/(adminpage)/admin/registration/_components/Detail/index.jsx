@@ -9,7 +9,7 @@ import ARDHealthForm from "./HealthForm";
 import ARDRecommended from "./Recommended";
 import ARDRegistrationForm from "./RegistrationForm";
 import ARDTermAndCondition from "./TermAndCondition";
-import {NavbarPayload} from '../../../../../../../data'
+import { NavbarPayload } from "../../../../../../../data";
 
 const AdminRegistrationDetailContent = () => {
 	const params = useParams();

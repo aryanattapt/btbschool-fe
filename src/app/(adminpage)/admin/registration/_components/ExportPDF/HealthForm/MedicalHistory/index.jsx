@@ -162,7 +162,7 @@ const ARDExportMedicalHistory = ({ data }) => {
 						marginTop: 8,
 					}}
 				>
-					<ARDExportPDFSignatureDisplay data={data} />
+					<ARDExportPDFSignatureDisplay data={data} signature={data?.ttdpage3} />
 					<Text>Date : {dateShortDisplay(data?.registereddate)}</Text>
 				</View>
 			</View>

@@ -23,7 +23,7 @@ const ARDHealthFormAgreement = ({ data }) => {
 						<div className="flex items-center">
 							<p className="mr-4">Parent Signature</p>
 							<div className="bg-white px-12">
-								<ARDSignatureDisplay src={data?.ttd} />
+								<ARDSignatureDisplay src={data?.ttdpage3} />
 							</div>
 						</div>
 						<p>Date: {data?.registereddate}</p>

@@ -267,7 +267,8 @@ const OnlineRegistrationForm = () => {
       } else if (!registrationPayload.btbstudentphonemobilerec){
         return swalFormError('Student Phone Mobile is required!', 'btbstudentphonemobilerec')
       }
-    } else if (onCheckAttachment() === true){
+    } 
+    if (onCheckAttachment() === true){
       submitHandler(true, setIsLoading);
     } 
   };

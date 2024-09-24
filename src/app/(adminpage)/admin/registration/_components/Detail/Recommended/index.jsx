@@ -1,11 +1,12 @@
 import React from "react";
 import { FaRegCheckSquare, FaRegSquare } from "react-icons/fa";
 import ARDSignatureDisplay from "../SignatureDisplay";
+import { dateDetailDisplay } from "../../../../../../../utils/date";
 
 const ARDRecommended = ({ data }) => {
 	return (
 		<div className="p-2 border border-black w-[60%] text-[#424a57]">
-			<p className="text-end">Date: {data?.registereddate}</p>
+			<p className="text-end">Date: {dateDetailDisplay(data?.registereddate)}</p>
 			<p>Are you recommended by someone ?</p>
 			<div className="my-2">
 				<CheckboxIcon
@@ -71,7 +72,7 @@ const Signature = ({ data }) => {
 			<p className="min-w-52">Admsn/Mrktg.</p>
 			<div className="flex flex-col w-full items-center">
 				<p>Parents of applicant</p>
-				<ARDSignatureDisplay src={data?.ttd} />
+				<ARDSignatureDisplay src={data?.ttdpage4} />
 			</div>
 		</div>
 	);

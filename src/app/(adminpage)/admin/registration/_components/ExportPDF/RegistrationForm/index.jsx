@@ -59,7 +59,7 @@ const ARDExportRegistrationForm = ({ data }) => {
 			</ARDExportPDFPageContainer>
 			<ARDExportPDFPageContainer>
 				<View style={styles.signatureSection}>
-					<ARDExportPDFSignatureDisplay data={data} />
+					<ARDExportPDFSignatureDisplay data={data} signature={data?.ttdpage1} />
 					<Text style={styles.signatureDate}>
 						Date: {dateShortDisplay(data?.registereddate)}
 					</Text>

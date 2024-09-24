@@ -20,10 +20,10 @@ const ARDExportPDFStudentDetail = ({ data }) => {
 			<PDFExportRow label="Address" value={data?.address} />
 			<PDFExportRow label="Telephone" value={data?.phoneno} />
 			<PDFExportRow label="Email" value={data?.email} />
-			<PDFExportRow
+			{/* <PDFExportRow
 				label="Musical Instrument the Child Can Play"
 				value={data?.musicinstrument}
-			/>
+			/> */}
 			<PDFExportRow
 				label="Language(s) spken at Home"
 				value={data?.languagespoken}

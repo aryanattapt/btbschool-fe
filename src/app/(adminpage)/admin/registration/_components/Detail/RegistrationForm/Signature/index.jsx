@@ -6,7 +6,7 @@ const ARDParentSignature = ({ data }) => {
 		<div className="flex justify-between items-center mt-8">
 			<div className="flex items-center gap-8">
 				<p className="text-[#424a57]">Parent Signature : </p>
-				<ARDSignatureDisplay src={data?.ttd} />
+				<ARDSignatureDisplay src={data?.ttdpage1} />
 			</div>
 			<p className="text-[#424a57]">
 				Date : {dateShortDisplay(data?.registereddate)}

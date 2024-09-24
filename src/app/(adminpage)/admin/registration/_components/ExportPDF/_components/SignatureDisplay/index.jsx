@@ -8,11 +8,11 @@ const styles = StyleSheet.create({
 	},
 });
 
-const ARDExportPDFSignatureDisplay = ({ data }) => {
+const ARDExportPDFSignatureDisplay = ({ data, signature }) => {
 	return (
 		<View style={styles.signatureContainer}>
 			<Text style={{ alignSelf: "center" }}>Parent Signature</Text>
-			<Image src={data?.ttd} style={{ width: 100, height: 100 }} />
+			<Image src={signature} style={{ width: 100, height: 100 }} />
 			<Text style={{ alignSelf: "center" }}>
 				{data?.fathername?.toUpperCase()} / {data?.mothername?.toUpperCase()}
 			</Text>

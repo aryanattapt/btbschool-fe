@@ -46,12 +46,12 @@ const ARDHealthFormMedicalHistory = ({ data }) => {
 			"Persisten ear infections",
 			"Persisten chest infections",
 			"Attention Deficit Disorder (ADD)",
-			"Attention Deficit Hyperactivity Disorder (ADHD)"
+			"Attention Deficit Hyperactivity Disorder (ADHD)",
 		],
 	];
 
 	const checkMedicalProblems = (prob, medicalOpt) => {
-		if (medicalOpt.find((x) => x === prob.toLowerCase())) return true;
+		if (medicalOpt?.find((x) => x === prob.toLowerCase())) return true;
 		return false;
 	};
 

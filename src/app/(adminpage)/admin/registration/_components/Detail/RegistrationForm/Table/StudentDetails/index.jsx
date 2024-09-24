@@ -17,8 +17,10 @@ const ARDStudentDetailsTable = ({ data }) => {
 		Address: data?.address,
 		Telephone: data?.phoneno,
 		Email: data?.email,
-		"Musical Instrument the Child Can Play": data?.musicinstrument,
-		"Language(s) spken at Home": data?.languagespoken,
+		// "Musical Instrument the Child Can Play": data?.musicinstrument,
+		"Language(s) spoken at Home": data?.languagespoken
+			?.map((res) => res?.language)
+			.join(", "),
 	};
 
 	return (

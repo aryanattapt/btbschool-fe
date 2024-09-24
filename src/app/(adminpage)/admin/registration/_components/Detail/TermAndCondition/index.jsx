@@ -146,7 +146,7 @@ const ARDTermAndCondition = ({ data }) => {
 				</div>
 			</div>
 			<div className="flex justify-end">
-				<ARDSignatureDisplay src={data?.ttd} />
+				<ARDSignatureDisplay src={data?.ttdpage2 ?? data?.ttdpage1} />
 			</div>
 		</div>
 	);
