@@ -90,13 +90,17 @@ const AlumniForm = () => {
         Swal.fire({
             allowOutsideClick: false,
             title: "Alumni Submission Notification!",
-            text: "Success submit Alumni!",
+            text: "Success submit Alumni! Refreshing page in 5 seconds...",
             icon: "info",
         });
 
         setAlumniPayload({});
         captchaRef.current.reset();
         attachmentRef.current.value = '';
+
+        setTimeout(() => {
+          window.location.href = '/alumni';
+      }, 5000);
     } catch (err) {
         // Error handling
         Swal.fire({
@@ -160,16 +164,22 @@ const AlumniForm = () => {
             onSelectedDateChanged={(date) => datePickerHandler("birthdate", date)}
           />
         </div>
-        <div>
+        <div className="mb-4">
           <div className="mb-2 block">
             <Label htmlFor="laststudentyear" value="Last Year at BTB" />
           </div>
-           <DatePicker
-            selected={alumniPayload?.laststudentyear || ''}
-            onChange={(date) => datePickerHandler('laststudentyear', date ? moment(date).format("yyyy") : "")}
-            dateFormat="yyyy"
-            showYearPicker
-          />
+          <div className="relative w-full">
+            <DatePicker
+              selected={alumniPayload?.laststudentyear || null}
+              onChange={(date) => datePickerHandler('laststudentyear', date ? moment(date).format("yyyy") : "")}
+              dateFormat="yyyy"
+              showYearPicker
+              autoComplete="off"
+              onKeyDown={e => e.preventDefault()}
+              className="block w-full p-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+              wrapperClassName="w-full"
+            />
+          </div>
         </div>
         <div>
           <div className="mb-2 block">

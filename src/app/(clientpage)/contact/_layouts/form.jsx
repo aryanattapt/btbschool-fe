@@ -51,12 +51,16 @@ const ContactForm = () => {
         Swal.fire({
             allowOutsideClick: false,
             title: "Contact Submission Notification!",
-            text: "Success send contact",
+            text: "Success send contact! Refreshing page in 5 seconds...",
             icon: "success",
         });
 
         setContactPayload({});
         captchaRef.current.reset();
+
+        setTimeout(() => {
+          window.location.href = '/contact';
+      }, 5000);
     } catch (err) {
         Swal.fire({
             allowOutsideClick: false,

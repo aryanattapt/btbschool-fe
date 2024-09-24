@@ -107,14 +107,18 @@ const CareerApplyForm = ({params}) => {
     
             Swal.fire({
                 allowOutsideClick: false,
-                title: 'Alumni Submission Notification!',
-                text: "Success submit Alumni!",
+                title: 'Career Submission Notification!',
+                text: "Success submit Career! Refreshing page in 5 seconds...",
                 icon: 'info',
             });
+
+            setTimeout(() => {
+                window.location.href = '/career';
+            }, 5000);
         } catch (err) {
             Swal.fire({
                 allowOutsideClick: false,
-                title: 'Alumni Submission Notification!',
+                title: 'Career Submission Notification!',
                 text: err || 'An error occurred',
                 icon: 'error',
             });
