@@ -3,7 +3,13 @@
 import { Footer } from "flowbite-react";
 import { BsFacebook, BsYoutube, BsInstagram, BsTwitter } from "react-icons/bs";
 import { MdMailOutline } from "react-icons/md";
-import { FaMapPin, FaCalendar, FaBook, FaQuestion, FaWhatsapp } from "react-icons/fa";
+import {
+  FaMapPin,
+  FaCalendar,
+  FaBook,
+  FaQuestion,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { MdAppRegistration } from "react-icons/md";
 /* import { useLanguageStore } from "../../../store/language.store"; */
 import { FooterPayload } from "../../../data";
@@ -13,7 +19,7 @@ import useLanguage from "../../hooks/useLanguage";
 const FooterComponent = () => {
   const [footerPayload, setFooterPayload] = useState(FooterPayload);
   /* const { language } = useLanguageStore(); */
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <>
@@ -48,15 +54,16 @@ const FooterComponent = () => {
                 <h2 className="font-semibold md:text-[30px] text-[20px]">
                   {footerPayload[language].pagenavtitle}
                 </h2>
-                <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 sm:mt-3 sm:grid-cols-1 md:mr-10 gap-0">
+                <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 sm:mt-3 sm:grid-cols-1 md:mr-16 gap-0">
                   {footerPayload[language].url.map((val, idx) => {
                     return (
                       <div key={idx}>
-                          <a href={`${val.url}`}
-                            className="text-white text-[15px] underline"
-                          >
-                            {val.content}
-                          </a>
+                        <a
+                          href={`${val.url}`}
+                          className="text-white text-[15px] underline"
+                        >
+                          {val.content}
+                        </a>
                       </div>
                     );
                   })}
@@ -88,13 +95,18 @@ const FooterComponent = () => {
                         <a href={`https://wa.me/${val.phoneno}`}>
                           {val.phoneno}
                         </a>
-                        &nbsp;/&nbsp;
+                        <div className="mt-2 md:text-left"></div>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap mt-2 md:mt-0 xl:mt-2">
+                      <div className="mt-1 md:mr-1 mr-2 xl:mr-[15px]">
+                        <FaWhatsapp />
+                      </div>
+                      <div className="xl:text-[20px] md:text-[18px] text-[15px] md:text-left">
                         <a href={`https://wa.me/${val.phoneno2}`}>
                           {val.phoneno2}
                         </a>
-                        <div className="mt-2 md:text-left">
-                          
-                        </div>
+                        <div className="mt-2 md:text-left"></div>
                       </div>
                     </div>
                   </div>
@@ -103,7 +115,10 @@ const FooterComponent = () => {
               <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 md:mt-[15px] md:gap-6 xl:gap-0">
                 <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
                   <a href="/calendar-academic">
-                    <button title="Calendar" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                    <button
+                      title="Calendar"
+                      className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45"
+                    >
                       <FaCalendar className="text-white text-xl -rotate-45" />
                     </button>
                   </a>
@@ -111,7 +126,10 @@ const FooterComponent = () => {
                 </div>
                 <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
                   <a href="/bulletinspotlight">
-                    <button title="Bulletin" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                    <button
+                      title="Bulletin"
+                      className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45"
+                    >
                       <FaQuestion className="text-white text-xl -rotate-45" />
                     </button>
                   </a>
@@ -119,7 +137,10 @@ const FooterComponent = () => {
                 </div>
                 <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
                   <a href="/onlineregistration">
-                    <button title="Registration" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45">
+                    <button
+                      title="Registration"
+                      className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45"
+                    >
                       <MdAppRegistration className="text-white text-xl -rotate-45" />
                     </button>
                   </a>
@@ -127,7 +148,10 @@ const FooterComponent = () => {
                 </div>
                 <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
                   <a href="/help">
-                    <button title="FAQ" className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex flex-col justify-center items-center transform rotate-45">
+                    <button
+                      title="FAQ"
+                      className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex flex-col justify-center items-center transform rotate-45"
+                    >
                       <FaQuestion className="text-white text-xl -rotate-45" />
                     </button>
                   </a>
@@ -135,7 +159,6 @@ const FooterComponent = () => {
                 </div>
               </div>
             </div>
-
           </div>
           <hr className="h-px my-5 bg-gray-600 border-0" />
           {/* <Footer.Divider /> */}

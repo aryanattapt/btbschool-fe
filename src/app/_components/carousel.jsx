@@ -8,7 +8,7 @@ import { MdVolumeOff, MdVolumeUp } from "react-icons/md"; // Import icons
 
 const CarouselComponents = () => {
   const [homePageData, setHomePageData] = useState(HomePagePayload);
-  const {language} = useLanguage();
+  const { language } = useLanguage();
   const [isMuted, setIsMuted] = useState(true);
   const videoRefs = useRef([]);
 
@@ -45,7 +45,10 @@ const CarouselComponents = () => {
                       {temp.content}
                     </p>
                     <div className="flex justify-left gap-2">
-                      <a href="/#findClass" className="text-[10px] md:text-[16px]">
+                      <a
+                        href="/#findClass"
+                        className="text-[10px] md:text-[16px]"
+                      >
                         <button className="bg-[#EF802B] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                           {temp.buttondesc}
                         </button>
@@ -66,12 +69,13 @@ const CarouselComponents = () => {
                 muted={isMuted}
                 className="h-full w-full object-cover"
               >
-                <source src={val.url} type="video/mp4"/>
+                <source src={val.url} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <button 
+              <button
                 onClick={handleMuteToggle}
-                className="absolute bottom-5 left-5 bg-gray-800 text-white px-4 py-2 rounded z-50 flex items-center justify-center w-16 h-10">
+                className="absolute bottom-5 left-[75px] bg-gray-800/75 text-white px-4 py-2 rounded z-50 flex items-center justify-center w-16 h-10"
+              >
                 {isMuted ? <MdVolumeOff size={24} /> : <MdVolumeUp size={24} />}
               </button>
             </div>
