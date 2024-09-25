@@ -12,23 +12,23 @@ export const BTBBelajarPayload = {
     "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud1.jpg",
     "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud1.jpg",
   ],
-  image1: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd 1.jpg",
-  image2: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd 2.jpg",
-  image3: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd 4.jpg",
-  image4: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd 3.jpg",
-  image5: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sma 3.jpg",
-  image6: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA 4.jpg",
-  image7: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp 5.jpg",
-  image8: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA 1.jpg",
-  image9: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp 6.jpg",
-  image10: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp 7.jpg",
-  image11: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp 5.jpg",
-  image12: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP 4.jpg",
+  image1: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd1.jpg",
+  image2: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd2.jpg",
+  image3: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd4.jpg",
+  image4: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd3.jpg",
+  image5: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sma3.jpg",
+  image6: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA4.jpg",
+  image7: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp5.jpg",
+  image8: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA1.jpg",
+  image9: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp6.jpg",
+  image10: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp7.jpg",
+  image11: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/smp5.jpg",
+  image12: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP4.jpg",
 
   image13: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud1.jpg",
-  image14: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 3.jpg",
-  image15: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 5.jpg",
-  image16: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud 6.jpg",
+  image14: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud3.jpg",
+  image15: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud5.jpg",
+  image16: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/paud6.jpg",
 
   EN: {
     paging: {
@@ -89,10 +89,10 @@ export const BTBBelajarPayload = {
           "This program aligns with the school's values on ‘Learning Stages’, adjusting the child’s age and developmental stages with experiences that challenge them to grow. Field trips are a mandatory part of the curriculum, with costs included in the tuition fee structure.",
       },
       bannerImages: [
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider (1).JPG",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider (2).jpg",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider (3).JPG",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider (4).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(1).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(2).jpg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(3).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(4).JPG",
       ],
     },
     smp: {
@@ -192,9 +192,9 @@ export const BTBBelajarPayload = {
           "Develops students' character and abilities. Challenges, initiative, independence, leadership, cooperation, responsibility, risk-taking, co-existence, and environmental care are all supported in field trips from Grades 11 and 12. These activities invite students to venture from the school area to specially selected areas outside the school to create memorable educational experiences with their classmates.",
       },
       bannerImages: [
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider (1).JPG",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider (1).png",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider (2).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider(1).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider(1).png",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider(2).JPG",
       ],
     },
     sma: {
@@ -271,10 +271,10 @@ export const BTBBelajarPayload = {
           "Develops students' character and abilities. Challenges, initiative, independence, leadership, cooperation, responsibility, risk-taking, co-existence, and environmental care are all supported in field trips from Grades 11 and 12. These activities invite students to venture from the school area to specially selected areas outside the school to create memorable educational experiences with their classmates.",
       },
       bannerImages: [
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider (1).jpg",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider (2).jpg",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider (3).JPG",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider (4).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider(1).jpg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider(2).jpg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider(3).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider(4).JPG",
       ],
     },
     sd: {
@@ -363,14 +363,14 @@ export const BTBBelajarPayload = {
         "Adjusts the child's age and developmental stages with experiences that challenge students to grow.",
       text10:
         "Develops students' character and abilities. Challenges, initiative, independence, leadership, cooperation, responsibility, risk-taking, co-existence, and environmental care are all supported in field trips from Grades 1 to 5. These activities invite students to venture from the school area to specially selected areas outside the school to create memorable educational experiences with their classmates.",
+      bannerImages: [
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider(1).jpeg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider(2).jpg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider(3).jpeg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider(4).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider(1).jpg",
+      ],
     },
-    bannerImages: [
-      "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (1).jpeg",
-      "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (2).jpg",
-      "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (3).jpeg",
-      "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (4).JPG",
-      "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (1).jpg",
-    ],
   },
   ID: {
     paging: {
@@ -431,10 +431,10 @@ export const BTBBelajarPayload = {
           "Program ini berjalan sesuai dengan nilai sekolah terhadap ‘Fase Pembelajaran’, menyesuaikan usia dan tahapan perkembangan anak dengan pengalaman yang sesuai untuk menantang para murid untuk berkembang. Acara karyawisata ini merupakan bagian wajib dalam kurikulum dengan biaya yang sudah termasuk dalam struktur pembayaran uang sekolah.",
       },
       bannerImages: [
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider (1).JPG",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider (2).jpg",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider (3).JPG",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider (4).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(1).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(2).jpg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(3).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(4).JPG",
       ],
     },
     smp: {
@@ -536,9 +536,9 @@ export const BTBBelajarPayload = {
           "Mengembangkan karakter dan kemampuan dari murid. Tantangan, inisiatif, kemandirian, kepemimpinan, kerjasama, tanggung jawab, pengambilan resiko, hidup berdampingan, dan peduli lingkungan semua didukung dalam karyawisata dari tingkat 11 dan tingkat 12. Kegiatan ini mengajak para murid untuk bertualang dari area sekolahan menuju area luar sekolah yang sudah dipilih secara khusus untuk menciptakan pengalaman edukatif yang berkesan bersama dengan teman sekelas.",
       },
       bannerImages: [
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider (1).JPG",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider (1).png",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider (2).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider(1).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider(1).png",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMP/Slider(2).JPG",
       ],
     },
     sma: {
@@ -615,10 +615,10 @@ export const BTBBelajarPayload = {
           "Mengembangkan karakter dan kemampuan dari murid. Tantangan, inisiatif, kemandirian, kepemimpinan, kerjasama, tanggung jawab, pengambilan resiko, hidup berdampingan, dan peduli lingkungan semua didukung dalam karyawisata dari tingkat 11 dan tingkat 12. Kegiatan ini mengajak para murid untuk bertualang dari area sekolahan menuju area luar sekolah yang sudah dipilih secara khusus untuk menciptakan pengalaman edukatif yang berkesan bersama dengan teman sekelas.",
       },
       bannerImages: [
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider (1).jpg",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider (2).jpg",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider (3).JPG",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider (4).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider(1).jpg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider(2).jpg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider(3).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SMA/Slider(4).JPG",
       ],
     },
     sd: {
@@ -709,14 +709,14 @@ export const BTBBelajarPayload = {
         "Menyesuaikan usia dan tahapan perkembangan anak dengan pengalaman yang sesuai untuk menantang para murid untuk berkembang.",
       text10:
         "Mengembangkan karakter dan kemampuan dari murid. Tantangan, inisiatif, kemandirian, kepemimpinan, kerjasama, tanggung jawab, pengambilan resiko, hidup berdampingan, dan peduli lingkungan semua didukung dalam karyawisata dari tingkat 1 hingga tingkat 5. Kegiatan ini mengajak para murid untuk bertualang dari area sekolahan menuju area luar sekolah yang  sudah dipilih secara khusus untuk menciptakan pengalaman edukatif yang berkesan bersama dengan teman sekelas.",
-      },
       bannerImages: [
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (1).jpeg",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (2).jpg",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (3).jpeg",
-        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (4).JPG",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider(1).jpeg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider(2).jpg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider(3).jpeg",
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider(4).JPG",
         "https://w6i8.c1.e2-7.dev/assets/btbschool/images/SD/Slider (1).jpg",
       ],
+    },
   },
 };
 

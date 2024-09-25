@@ -17,16 +17,13 @@ const SDPage = () => {
     <>
       {/* <Banner /> */}
       <Carousel
-        slideInterval={12000}
+        slideInterval={3000}
         className="relative h-[400px] md:h-[600px] lg:h-[1000px] xl:h-[100vh] w-full"
       >
-        {btbBelajarData[language].bannerImages.map((val, idx) => {
+        {btbBelajarData[language].sd.bannerImages.map((val, idx) => {
           return (
             <div className="relative h-full w-full" key={idx}>
-              <div
-                className="bg-cover absolute inset-0"
-                style={{ backgroundImage: `url(${val})` }}
-              ></div>
+              <img src={val} alt="bannerSD" className="absolute inset-0 h-full w-full object-cover"></img>
             </div>
           );
         })}
