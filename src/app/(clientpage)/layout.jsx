@@ -3,7 +3,7 @@ import NavBar from "../_components/navbarapt";
 import Popup from "../_components/popup";
 import FloatingButtons from "../_components/floatingbutton";
 import GoToTop from "../_components/goToTop";
-import 'core-js/full/promise/with-resolvers'
+import "core-js/full/promise/with-resolvers";
 import { LanguageProvider } from "../../context/language.context";
 
 export const metadata = {
@@ -16,10 +16,10 @@ export default function ClientLayout({ children }) {
     <LanguageProvider>
       <div className="flex flex-col min-h-screen sm:w-100%">
         <NavBar />
-        <Popup />
+        {/* <Popup /> */}
         <main className="flex-grow">{children}</main>
         <FooterComponent />
-        <FloatingButtons/>
+        <FloatingButtons />
         <GoToTop />
       </div>
     </LanguageProvider>

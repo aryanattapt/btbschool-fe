@@ -54,10 +54,10 @@ const FooterComponent = () => {
                 <h2 className="font-semibold md:text-[30px] text-[20px]">
                   {footerPayload[language].pagenavtitle}
                 </h2>
-                <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 sm:mt-3 sm:grid-cols-1 md:mr-16 gap-0">
+                <div className="xl:flex xl:flex-wrap 2xl:flex 2xl:flex-wrap md:flex md:flex-wrap sm:grid grid grid-cols-2 sm:grid-cols-2 sm:mt-3 sm:grid-cols-1">
                   {footerPayload[language].url.map((val, idx) => {
                     return (
-                      <div key={idx}>
+                      <div key={idx} className="xl:mr-7 2xl:mr-7 md:mr-7">
                         <a
                           href={`${val.url}`}
                           className="text-white text-[15px] underline"
@@ -81,7 +81,7 @@ const FooterComponent = () => {
                       <div className="md:mr-1 mr-2 xl:mr-[15px]">
                         <FaMapPin />
                       </div>
-                      <div className="xl:text-[20px] md:text-[18px] text-[15px] md:text-left text-center">
+                      <div className="xl:text-[20px] md:text-[18px] text-[14.7px] md:text-left text-center">
                         <div className="xl:leading-[1.5rem] font-semibold flex xl:text-left">
                           {val.address}
                         </div>
