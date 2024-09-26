@@ -25,8 +25,8 @@ const ARDExportPDFStudentDetail = ({ data }) => {
 				value={data?.musicinstrument}
 			/> */}
 			<PDFExportRow
-				label="Language(s) spken at Home"
-				value={data?.languagespoken}
+				label="Language(s) spoken at Home"
+				value={data?.languagespoken?.map((res) => res?.language).join(", ")}
 			/>
 		</ARDExportPDFTableSection>
 	);

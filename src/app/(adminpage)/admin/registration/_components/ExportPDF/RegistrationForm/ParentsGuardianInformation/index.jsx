@@ -54,10 +54,10 @@ const ARDExportPDFParentAndGuardian = ({ data }) => {
 				/>
 				<PDFExportRow label="Telp" value={data?.mothertelephone} />
 				<PDFExportRow label="Fax" value={data?.motherfax} />
-				<PDFExportRow
-					label="Language(s) spken at Home"
-					value={data?.languagespoken}
-				/>
+				{/* <PDFExportRow
+					label="Language(s) spoken at Home"
+					value={data?.languagespoken?.map((res) => res?.language).join(", ")}
+				/> */}
 			</ARDExportPDFTableSection>
 		</View>
 	);

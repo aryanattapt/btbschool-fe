@@ -52,7 +52,9 @@ export const admRegisManagerExportObjectBuilder = (datas = []) => {
 					"Has your child had or contracted any of the following medical problems?":
 						data?.medicalproblemoptions?.join(", "),
 					"Musical Instrument the Child Can Play": data?.musicinstrument,
-					"Language(s) Spoken at Home": data?.languagespoken,
+					"Language(s) Spoken at Home": data?.languagespoken
+						?.map((res) => res?.language)
+						.join(", "),
 					"Previous School Name": data?.previousschoolname,
 					"Year Level at Previous School": data?.yearlevelprevschool,
 					"Class to which admission is sought": data?.nextclass,
