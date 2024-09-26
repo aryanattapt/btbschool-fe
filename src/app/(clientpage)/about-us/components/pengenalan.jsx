@@ -22,7 +22,7 @@ const PengenalanPage = ({ data, language }) => {
             />
           </div>
           <div className="content-center bg-[#EF802B]">
-            <div className="p-5 text-left text-[14px] md:text-[20px] text-[#000000] text-pretty">
+            <div className="p-5 text-left xl:text-[25px] 2xl:text-[25px] text-[14px] md:text-[20px] text-[#000000] text-pretty">
               {data[language].desc}
             </div>
           </div>
