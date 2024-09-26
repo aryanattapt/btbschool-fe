@@ -12,7 +12,10 @@ const ARDExportPDFSignatureDisplay = ({ data, signature }) => {
 	return (
 		<View style={styles.signatureContainer}>
 			<Text style={{ alignSelf: "center" }}>Parent Signature</Text>
-			<Image src={signature} style={{ width: 100, height: 100 }} />
+			{
+				signature &&
+				<Image src={signature} style={{ width: 100, height: 100 }} />
+			}
 			<Text style={{ alignSelf: "center" }}>
 				{data?.fathername?.toUpperCase()} / {data?.mothername?.toUpperCase()}
 			</Text>

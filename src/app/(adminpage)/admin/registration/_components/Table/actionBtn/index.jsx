@@ -8,6 +8,7 @@ import { IoMdDownload } from "react-icons/io";
 import useExportExcel from "../../../../../../../hooks/useExportExcel";
 import { admRegisManagerExportObjectBuilder } from "../../../../../../../utils/admin/registration/export";
 import ARDExportPdf from "../../ExportPDF";
+import Swal from "sweetalert2";
 
 const RegistrationTableActionBtn = (data) => {
 	const pathname = usePathname();
@@ -49,7 +50,15 @@ const RegistrationTableActionBtn = (data) => {
 							console.log({ url });
 							console.log({ loading });
 							console.log({ error });
-							if (!url) return setIsReadyToExport(false);
+							if(error != null) {
+								Swal.fire({
+									allowOutsideClick: false,
+									title: 'Error Notification!',
+									text: error.toString(),
+									icon: 'error',
+								});
+							}
+							if (!url) return setIsReadyToExport(false) ;
 							if (url) setIsReadyToExport(true);
 							return (
 								<a

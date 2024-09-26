@@ -122,7 +122,7 @@ const ARDExportMedicalHistory = ({ data }) => {
 								<ARDExportCheckListWithLabel
 									key={res}
 									label={res}
-									checked={data?.medicalproblemoptions.find(
+									checked={data?.medicalproblemoptions?.find(
 										(x) => x === res.toLowerCase()
 									)}
 								/>
