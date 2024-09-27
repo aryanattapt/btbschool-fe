@@ -63,6 +63,8 @@ const GeneralSettingsMainForm = () => {
     const submitHandler = (e) => {
         console.log("Submit Handler");
         if(!payload._id) {delete payload._id}
+        console.log(payload);
+
         /* setIsLoading(true); */
 
         /* Call API here */

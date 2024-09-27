@@ -6,17 +6,7 @@ import "ag-grid-community/styles/ag-theme-quartz.min.css";
 import { Button } from "flowbite-react";
 
 const AgGridTable = ({formChangeHandler, name, payload, columnDefs}) => {
-    /* const agGridRef = useRef({
-        api: undefined,
-        columnApi: undefined,
-    }); */
-
     const agGridRef = useRef();
-
-    /* const onGridReady = (params) => {
-        agGridRef.api = params.api;
-        agGridRef.columnApi = params.columnApi;
-    }; */
 
     const onCellEditingStopped = () => {
         let gridData = [];

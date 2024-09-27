@@ -5,7 +5,7 @@ import {
 import AgGridTableForm from './aggrid.form';
 
 const columnDefs = [
-    {
+    /* {
         width: "100vw",
         filter: false,
         sortable: false,
@@ -22,7 +22,7 @@ const columnDefs = [
         valueGetter: 'node.rowIndex + 1',
         valueFormatter: 'node?.rowPinned ? "" : x',
         editable: false,
-    },
+    }, */
     {
         headerName: "Building Name",
         field: "buildingName",
