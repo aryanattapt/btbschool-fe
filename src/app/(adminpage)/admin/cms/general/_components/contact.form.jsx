@@ -1,8 +1,18 @@
 'use client'
 import { 
+    Button,
     Label 
 } from "flowbite-react";
 import AgGridTableForm from './aggrid.form';
+
+const DeleteButtonRenderer = (params) => {
+    const handleDelete = () => {
+        params.api.applyTransaction({ remove: [params.node.data] });
+        params.api.refreshCells({ rowNodes: [params.node] });
+    };
+
+    return <Button onClick={handleDelete} color={"failure"}>Delete</Button>;
+};
 
 const columnDefs = [
     /* {
@@ -118,6 +128,22 @@ const columnDefs = [
         cellStyle: { textAlign: 'left' },
         width: "500vw",
         editable: true
+    },
+    {
+        headerName: "Delete",
+        field: "deleteAction",
+        cellRenderer: (p) => DeleteButtonRenderer(p),
+        width: "100vw",
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'center' },
     },
   ];
 

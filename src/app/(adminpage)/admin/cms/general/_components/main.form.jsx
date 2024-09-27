@@ -64,6 +64,7 @@ const GeneralSettingsMainForm = () => {
         console.log("Submit Handler");
         if(!payload._id) {delete payload._id}
         console.log(payload);
+        console.log([transformJsonLanguage(payload)]);
 
         /* setIsLoading(true); */
 
