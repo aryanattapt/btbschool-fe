@@ -16,7 +16,7 @@ export default function ClientLayout({ children }) {
     <LanguageProvider>
       <div className="flex flex-col min-h-screen sm:w-100%">
         <NavBar />
-        {/* <Popup /> */}
+        <Popup />
         <main className="flex-grow">{children}</main>
         <FooterComponent />
         <FloatingButtons />
