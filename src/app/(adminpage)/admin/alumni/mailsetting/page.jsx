@@ -1,54 +1,39 @@
 'use client'
 import {
-    Label,
     Button,
     Spinner,
-    TextInput,
 } from "flowbite-react";
-import { 
-    useSearchParams 
-} from 'next/navigation'
 import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
-import {
-    FetchAlumni,
-    VerifyAlumni
-} from '../../../../../../services/alumni.service'
 import Swal from "sweetalert2";
 import AdminHeader from '../../_components/header'
 import CustomEditor from '../../../../_components/customformeditor';
+import { detransformJsonLanguage, transformJsonLanguage } from "../../../../../../helpers/jsontransform.helper";
+import { GetConfig, SubmitConfig } from "../../../../../../services/config.service";
 
 const MailForm = () => {
+    const _id = 'admincms.alumni.mailcontent'
+    const configName = 'general';
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
-    const searchParams = useSearchParams()
-    const id = searchParams.get("id")
 
     useEffect(() => {
-        console.log(`ID: ${id}`);
-        setPayload(prevState => ({
-            ...prevState,
-            "_id": id
-        }));
+        fetchMailContentAlumni();
+    }, []);
 
-        if(id){
-            fetchAlumni(id)
+    const fetchMailContentAlumni = async () => {
+        try {
+            const data = await GetConfig(configName, {"_id": _id});
+            const deTransformJson = detransformJsonLanguage(data);
+            setPayload(deTransformJson);
+        } catch (error) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Alumni Notification!',
+                text: error.toString(),
+                icon: 'error',
+            });
         }
-    }, [])
-
-    const fetchAlumni = (id) => {
-        FetchAlumni({"_id": id})
-        .then(res => setPayload(res[0]))
-        .catch((err) => {
-            console.log(err);
-        })
-    }
-
-    const datePickerHandler = (name, value) => {
-        setPayload(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
     }
 
     const formChangeHandler = (e) => {
@@ -81,27 +66,27 @@ const MailForm = () => {
         }
     };
 
-    const submitHandler = (e) => {
-        if(id == null) {delete payload._id}
-        console.log(payload);
-        setIsLoading(true);
-
-        /* Call API in here... */
-        VerifyAlumni(payload)
-        .then(() => {
-            setIsLoading(false); 
-            window.location.href = '/admin/alumni'
-        })
-        .catch((err) => {
-            setIsLoading(false); 
+    const submitHandler = async (e) => {
+        try {
+            setIsLoading(true);
+            console.log("Submit Handler");
+            const finalPayload = {...payload, "_id": _id};
+            const transformedPayload = [transformJsonLanguage(finalPayload)];
+            console.log(transformedPayload);
+            
+            await SubmitConfig(configName, transformedPayload);
+            await fetchMailContentAlumni();
+        } catch (error) {
             Swal.fire({
                 allowOutsideClick: false,
-                title: 'Error Notification!',
-                text: err,
+                title: 'Submit Notification!',
+                text: error.toString(),
                 icon: 'error',
             });
-        })
-    }
+        } finally{
+            setIsLoading(false);
+        }
+    };
 
     return <>
         <NavbarSidebarLayout >

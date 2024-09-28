@@ -49,7 +49,7 @@ const AlumniPage = () => {
 
     const fetchAllAlumni = () => {
         FetchAlumni({})
-        .then(res => {setPayload(res); console.log(res);})
+        .then(res => setPayload(res))
         .catch((err) => {
             setPayload([])
             console.log(err);
