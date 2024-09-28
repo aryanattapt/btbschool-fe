@@ -12,7 +12,7 @@ import { detransformJsonLanguage, transformJsonLanguage } from "../../../../../.
 import { GetConfig, SubmitConfig } from "../../../../../../services/config.service";
 
 const MailForm = () => {
-    const _id = 'admincms.alumni.mailcontent'
+    const type = 'admincms.alumni.mailcontent'
     const configName = 'general';
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
@@ -23,8 +23,8 @@ const MailForm = () => {
 
     const fetchMailContentAlumni = async () => {
         try {
-            const data = await GetConfig(configName, {"_id": _id});
-            const deTransformJson = detransformJsonLanguage(data);
+            const data = await GetConfig(configName, {"type": type});
+            const deTransformJson = detransformJsonLanguage(data[0]);
             setPayload(deTransformJson);
         } catch (error) {
             Swal.fire({
@@ -34,6 +34,11 @@ const MailForm = () => {
                 icon: 'error',
             });
         }
+    }
+
+    const validateData = (str) => {
+        const matches = str.match(/%s/g);
+        return matches && matches.length === 3;
     }
 
     const formChangeHandler = (e) => {
@@ -68,14 +73,28 @@ const MailForm = () => {
 
     const submitHandler = async (e) => {
         try {
+            if(!validateData(payload.content)){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Mail Content should have 3 %s character. First %s is First name. Second %s is Last Name. Last %s is Alumni ID.",
+                    icon: 'error',
+                });
+                return;
+            }
+
             setIsLoading(true);
-            console.log("Submit Handler");
-            const finalPayload = {...payload, "_id": _id};
+            const finalPayload = {...payload, "type": type};
             const transformedPayload = [transformJsonLanguage(finalPayload)];
-            console.log(transformedPayload);
             
             await SubmitConfig(configName, transformedPayload);
             await fetchMailContentAlumni();
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Submit Notification!',
+                text: "Success!",
+                icon: 'info',
+            });
         } catch (error) {
             Swal.fire({
                 allowOutsideClick: false,
@@ -99,7 +118,8 @@ const MailForm = () => {
                 Mail Content
             </div>
             <div>
-                <CustomEditor name='content' onChange={formChangeHandler} value={payload.content || ''} />
+                <CustomEditor name='content' onChange={formChangeHandler} value={payload?.content || ''} />
+                <p className="mt-1 text-sm text-gray-500">Mail Content should have 3 %s character. First %s is First name. Second %s is Last Name. Last %s is Alumni ID.</p>
             </div>
             <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                 <div className="flex">
