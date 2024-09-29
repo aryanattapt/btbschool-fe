@@ -68,3 +68,10 @@ ul {
 ol {
   list-style-type: none;
 }
+
+.slider-container {
+  width: 100%; /* Ensure full width */
+  overflow: hidden; /* Prevent overflow if needed */
+  margin: 0 auto; /* Center the container if desired */
+  padding: 20px; /* Add some padding if needed */
+}
