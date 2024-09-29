@@ -41,7 +41,7 @@ const TK = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 px-10 md:px-10 lg:px-32 xl:px-32 mt-5 gap-12">
           <div className="text-[#000000] text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
-            <h1 className="text-balance text-[25px] lg:text-[30px]">Fokus:</h1>
+            <h1 className="text-balance text-[25px] lg:text-[30px]">{btbBelajarData[language].tk.curriculum.subtitle}</h1>
             <div className="ml-5">
               <ul className="list-disc">
                 {btbBelajarData[language].tk.curriculum.components1.map(
@@ -56,7 +56,7 @@ const TK = () => {
             </div>
           </div>
           <div className="text-[#000000] text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
-            <h1 className="text-balance text-[25px] lg:text-[30px]">Subyek Spesial:</h1>
+            <h1 className="text-balance text-[25px] lg:text-[30px]">{btbBelajarData[language].tk.curriculum.subtitle2}</h1>
             <div className="ml-5">
               <ul className="list-disc">
                 {btbBelajarData[language].tk.curriculum.components2.map(

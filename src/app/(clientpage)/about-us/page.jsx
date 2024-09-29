@@ -11,7 +11,6 @@ import JenjangPendidikan from "./components/jenjang-pendidikan";
 
 const AboutUsPage = () => {
   const [aboutUsData, setAboutUsData] = useState(AboutUsPayload);
-  /* const { language } = useLanguageStore(); */
   const {language} = useLanguage();
   const [activeTab, setActiveTab] = useState("pengenalan");
 
@@ -27,9 +26,7 @@ const AboutUsPage = () => {
 
       {activeTab === "pengenalan" && <Pengenalan data={aboutUsData} language={language} />}
       {activeTab === "visi-misi" && <VisiMisi data={aboutUsData} language={language} />}
-      {activeTab === "jenjang-pendidikan" && (
-        <JenjangPendidikan data={aboutUsData} language={language}/>
-      )}
+      {activeTab === "jenjang-pendidikan" && <JenjangPendidikan data={aboutUsData} language={language}/>}
 
       <div>
         <div className="my-8 md:my-10 bg-[#243F6D]">

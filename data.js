@@ -50,6 +50,7 @@ export const BTBBelajarPayload = {
       curriculum: {
         title: "CURRICULUM",
         subtitle: "Focus:",
+        subtitle2: "Special Subject:",
         paragraph:
           "The IBDP curriculum qualifies in understanding these core values. This curriculum consists of core values and six subject groups. Comprising three main components, these core values aim to broaden students' learning experiences and challenge them to use their knowledge and skills.",
         components1: ["English", "Mathematics", "Integrated Studies"],
@@ -392,6 +393,7 @@ export const BTBBelajarPayload = {
       curriculum: {
         title: "KURIKULUM",
         subtitle: "Fokus:",
+        subtitle2: "Subyek Spesial:",
         paragraph:
           "Kurikulum IBDP memiliki kualifikasi terhadap pemahaman nilai pokok ini. Kurikulum ini terbentuk dari nilai pokok dan enam kelompok mata pelajaran. Terbentuk dari tiga komponen utama, nilai pokok ini bertujuan untuk memperluas pengalaman belajar para murid dan menantang mereka untuk menggunakan pengetahuan dan kemampuan mereka.",
         components1: ["Bahasa Inggris", "Matematika", "Pelajaran Terintegrasi"],
