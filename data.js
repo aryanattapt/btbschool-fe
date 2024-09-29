@@ -1467,13 +1467,61 @@ export const AlumniPayload = {
   "EN": {
     "title": "Alumni Information",
     "desc": "As alumni of BTB school, we would like to get to know you better. Please fill out the following form. We look forward to your response.",
-    "registertext": "Alumni Registration"
+    "registertext": "Alumni Registration",
+    "ceritaText": "Alumni Stories",
+    "title2": "Global Competency",
   },
   "ID": {
     "title": "Informasi Alumni",
     "desc": "Sebagai alumni dari sekolah BTB, kami ingin mengenal anda lebih jauh. Silahkan isi formulir berikut ini. Kami menunggu respon kalian.",
-    "registertext": "Pendaftaran Alumni" 
-  }
+    "registertext": "Pendaftaran Alumni",
+    "ceritaText": "Cerita Alumni",
+    "title2": "Kompetensi Global",
+  },
+  ceritaAlumniFlag: [
+    {
+      image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
+      caption: "Japan",
+    },
+    {
+     image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
+     caption: "US",
+    },
+    {
+      image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
+      caption: "UK",
+    },
+    {
+      image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
+      caption: "France",
+    },
+  ],
+  ceritaAlumni: [
+  {
+    image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(1).JPG",    
+    name: "Cassandra Lee",
+    class: "2020",
+    university: "Harvard University",
+    major: "Public Policy",
+    testimonies: "As an alumnus of Bina Tunas Bangsa, I am grateful for the solid foundation it provided me in both academics and personal growth. The diverse community and global mindset nurtured my curiosity and adaptability, which have been invaluable in my career as a full-stack developer. The experiences I gained there continue to shape my approach to problem-solving and teamwork.",
+  },
+  {
+    image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd2.jpg",
+    name: "Aryanatta Tiratana",
+    class: "2015",
+    university: "MIT",
+    major: "Computer Science",
+    testimonies: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+  },
+  {
+    image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd2.jpg",
+    name: "Dina Putri Khoiru",
+    class: "2016",
+    university: "Universitas Pennsylvania State",
+    major: "Computer Science 3",
+    testimonies: "The International School in Jakarta equipped me with both academic excellence and a global perspective, which have been key in my professional journey. The diverse learning environment and experienced faculty ensured that I was prepared to take on challenges in any top-tier university, whether abroad or in Indonesia. My time there was transformative, giving me lifelong skills and connections.",
+  },
+  ]
 }
 
 export const CareerPayload = {
