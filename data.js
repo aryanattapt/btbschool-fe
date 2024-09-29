@@ -1303,6 +1303,9 @@ export const HelpPayload = {
     },
     mainTitle: "Pertanyaan Yang Sering Diajukan",
     secondTitle: "Informasi Pendaftaran",
+    "subtitle1": "Temukan Informasi",
+    "subtitle2": "Memiliki pertanyaan mengenai kehidupan di sekolah BTB, bagaimana kegiatan belajar mengajar dan aktivitas di lingkungan BTB?",
+    "subtitle3": "Alur Pendaftaran"
   },
   EN: {
     banner: {
@@ -1311,6 +1314,9 @@ export const HelpPayload = {
     },
     mainTitle: "Frequently Asked Questions",
     secondTitle: "Registration Information",
+    "subtitle1": "Find Information",
+    "subtitle2": "Do you have questions about life at BTB school, how the teaching and learning activities take place, and the activities in the BTB environment?",
+    "subtitle3": "Registration Flow"
   },
 };
 
@@ -1383,6 +1389,8 @@ export const ContactUsPayLoad = {
       },
     ],
     email: "info@btbschool.org",
+    "subtitleregis1": "Temukan Informasi",
+    "subtitleregis2": "Memiliki pertanyaan mengenai kehidupan di sekolah BTB, bagaimana kegiatan belajar mengajar dan aktivitas di lingkungan BTB?"
   },
   EN: {
     pagingHeader: {
@@ -1450,5 +1458,31 @@ export const ContactUsPayLoad = {
       },
     ],
     email: "info@btbschool.org",
+    "subtitleregis1": "Find Information",
+    "subtitleregis2": "Do you have questions about life at BTB school, how the teaching and learning activities take place, and the activities in the BTB environment?"
   },
 };
+
+export const AlumniPayload = {
+  "EN": {
+    "title": "Alumni Information",
+    "desc": "As alumni of BTB school, we would like to get to know you better. Please fill out the following form. We look forward to your response.",
+    "registertext": "Alumni Registration"
+  },
+  "ID": {
+    "title": "Informasi Alumni",
+    "desc": "Sebagai alumni dari sekolah BTB, kami ingin mengenal anda lebih jauh. Silahkan isi formulir berikut ini. Kami menunggu respon kalian.",
+    "registertext": "Pendaftaran Alumni" 
+  }
+}
+
+export const CareerPayload = {
+  "ID": {
+    "title": "BEKERJA BERSAMA KAMI",
+    "subtitle": "Mulai karir impianmu di Sekolah Terbaik Jakarta",
+  },
+  "EN": {
+    "title": "WORK WITH US",
+    "subtitle": "Start your dream career at the Best School in Jakarta"
+  }
+}

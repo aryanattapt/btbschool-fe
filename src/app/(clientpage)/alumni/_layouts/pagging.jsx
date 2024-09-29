@@ -1,5 +1,12 @@
 "use client";
+import { useState } from 'react';
+import {AlumniPayload} from '../../../../../data';
+import useLanguage from "../../../../hooks/useLanguage";
+
 const PaggingLayouts = () => {
+  const [alumniPayload, _] = useState(AlumniPayload);
+  const {language} = useLanguage();
+
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
@@ -19,7 +26,7 @@ const PaggingLayouts = () => {
                   className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600"
                   aria-current="page"
                 >
-                  Pendaftaran Alumni
+                  {alumniPayload[language].registertext}
                 </a>
               </li>
             </ul>

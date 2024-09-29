@@ -5,10 +5,14 @@ import { GetActiveCareerList } from "../../../../services/career.service";
 import CareerFilter from "./_components/CareerFilter";
 import CareerList from "./_components/CareerList";
 import CareerHeroSection from "./_components/HeroSection";
+import {CareerPayload} from '../../../../data';
+import useLanguage from "../../../hooks/useLanguage";
 
 const CareerPage = () => {
 	const [rawDatas, setRawDatas] = useState([]);
 	const [displayDatas, setDisplayDatas] = useState([]);
+	const [careerPagePayload, _] = useState(CareerPayload);
+  	const {language} = useLanguage();
 
 	const fetchData = () => {
 		GetActiveCareerList()
@@ -56,10 +60,10 @@ const CareerPage = () => {
 			<CareerHeroSection>
 				<div className="absolute top-0 h-full flex flex-col justify-center sm:px-16 px-32">
 					<h3 className="text-white sm:text-4xl sm:font-bold md:text-4xl lg:text-6xl">
-						BEKERJA BERSAMA KAMI
+						{careerPagePayload[language].title}
 					</h3>
 					<h5 className="text-white sm:text-lg md:text-lg lg:text-2xl mt-8">
-						Mulai karir impianmu di Sekolah Terbaik Jakarta
+						{careerPagePayload[language].subtitle}
 					</h5>
 				</div>
 			</CareerHeroSection>
