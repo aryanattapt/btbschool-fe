@@ -8,9 +8,8 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
           <div className="border-r-2">
             <div className="pr-10 pl-10 md:pr-20 md:pl-32">
               <h1 className="text-[25px] md:text-[25px] text-center font-semibold py-8 md:py-10">
-                <a
-                  href="/btb-peduli"
-                  className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
+                <div
+                  className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "introduction"
                       ? "bg-white text-black"
                       : "bg-white"
@@ -18,16 +17,15 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                   onClick={() => setActiveTab("introduction")}
                 >
                   {btbPeduliData[language].btbpedulititle}
-                </a>
+                </div>
               </h1>
             </div>
           </div>
           <div className="inline-flex text-[20px] md:text-[20px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
             <ul className="flex flex-wrap -mb-px py-8 md:py-10">
               <li className="px-10 sm:px-5 md:px-20 lg:px-4">
-                <a
-                  href="/btb-peduli#peduli-lingkungan"
-                  className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
+                <div
+                  className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "peduli-lingkungan"
                       ? "bg-white text-black underline"
                       : "bg-white"
@@ -36,12 +34,11 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                 >
                   {/* Peduli Lingkungan */}
                   {btbPeduliData[language].pedulilingkungantitle}
-                </a>
+                </div>
               </li>
               <li className="px-10 sm:px-5 md:px-20 lg:px-4">
-                <a
-                  href="/btb-peduli#sukarelawan"
-                  className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
+                <div
+                  className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "sukarelawan"
                       ? "bg-white text-black underline"
                       : "bg-white"
@@ -50,12 +47,11 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                 >
                   {/* Sukarelawan */}
                   {btbPeduliData[language].sukarelawantitle}
-                </a>
+                </div>
               </li>
               <li className="px-10 sm:px-5 md:px-20 lg:px-4">
-                <a
-                  href="/btb-peduli#tangan-penolong"
-                  className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
+                <div
+                  className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "tangan-penolong"
                       ? "bg-white text-black underline"
                       : "bg-white"
@@ -64,7 +60,7 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                 >
                   {/* Environment */}
                   {btbPeduliData[language].tanganpenolongtitle}
-                </a>
+                </div>
               </li>
             </ul>
           </div>
