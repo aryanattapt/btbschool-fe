@@ -1,7 +1,6 @@
 "use client";
 import Banner from "./components/banner";
 import Pagging from "./components/pagging";
-/* import { useLanguageStore } from "../../../../store/language.store"; */
 import useLanguage from '../../../hooks/useLanguage';
 import { AboutUsPayload } from "../../../../data";
 import { useState } from "react";

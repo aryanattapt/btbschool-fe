@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import CeritaAlumni from "./_layouts/cerita-alumni";
 import PendaftaranAlumni from "./_layouts/pendaftaran-alumni";
 import Banner from "./_layouts/banner";
@@ -8,7 +8,7 @@ import { useState } from "react";
 import {AlumniPayload} from '../../../../data';
 
 const AlumniPage = () => {
-  const [alumniPayload, _] = useState(AlumniPayload);
+  const [alumniPayload, setAlumniPayload] = useState(AlumniPayload);
   const {language} = useLanguage();
   const [activeTab, setActiveTab] = useState("cerita-alumni");
 
@@ -21,7 +21,7 @@ const AlumniPage = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-      
+
       {activeTab === "cerita-alumni" && (
           <CeritaAlumni data={alumniPayload} language={language} />
       )}

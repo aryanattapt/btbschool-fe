@@ -1,0 +1,28 @@
+.custom-prev-arrow,
+.custom-next-arrow {
+    background: transparent;
+    border: none;
+    font-size: 24px; /* Adjust the size as needed */
+    color: black; /* Arrow color */
+    cursor: pointer;
+    position: absolute;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+    z-index: 1; /* Ensure they are on top */
+}
+
+.custom-prev-arrow {
+    left: 10px; /* Adjust left position */
+}
+
+.custom-next-arrow {
+    right: 10px; /* Adjust right position */
+}
+
+/* Adjust the position of the dots */
+.slick-dots {
+    position: absolute; /* Position them absolutely */
+    bottom: -30px; /* Position below the slider */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center the dots */
+}
