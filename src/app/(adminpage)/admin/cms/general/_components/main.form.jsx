@@ -116,7 +116,7 @@ const GeneralSettingsMainForm = () => {
     const submitHandler = async (e) => {
         try {
             setIsLoading(true);
-            if(!validateData(payload)){
+            /* if(!validateData(payload)){
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
@@ -124,30 +124,36 @@ const GeneralSettingsMainForm = () => {
                     icon: 'error',
                 });
                 return;
-            }
+            } */
 
             const finalPayload = {...payload, "type": type};
             
-            var formDataLogoID = new FormData();
-            payload["logo[ID]"]?.map((val) => {
-                formDataLogoID.append("logofile", val);
-            });
-            
-            var formDataLogoEN = new FormData();
-            payload["logo[EN]"]?.map((val) => {
-                formDataLogoEN.append("logofile", val);
-            });
-            
-            const collectedPromise = [];
-            collectedPromise.push(UploadAttachment("assets", formDataLogoEN));
-            collectedPromise.push(UploadAttachment("assets", formDataLogoID));
-            const [resultEN, resultID] = await Promise.all(collectedPromise);
-            
-            finalPayload["logo[EN]"] = resultEN?.data[0]?.fileURL;
-            finalPayload["logo[ID]"] = resultID?.data[0]?.fileURL;
+            /* Handle Attachment */
+            try {
+                var formDataLogoID = new FormData();
+                payload["logo[ID]"]?.map((val) => {
+                    formDataLogoID.append("logofile", val);
+                });
+                
+                var formDataLogoEN = new FormData();
+                payload["logo[EN]"]?.map((val) => {
+                    formDataLogoEN.append("logofile", val);
+                });
+
+                const collectedPromise = [];
+                collectedPromise.push(UploadAttachment("assets", formDataLogoEN));
+                collectedPromise.push(UploadAttachment("assets", formDataLogoID));
+                
+                const [resultEN, resultID] = await Promise.all(collectedPromise);
+                
+                finalPayload["logo[EN]"] = resultEN?.data[0]?.fileURL;
+                finalPayload["logo[ID]"] = resultID?.data[0]?.fileURL;
+            } catch (error) {console.log(error);}
+
             const transformedPayload = [transformJsonLanguage(finalPayload)];
             console.log(transformedPayload);
             
+            /* Submit data */
             await SubmitConfig(configName, transformedPayload);
             await fetchData();
             Swal.fire({
