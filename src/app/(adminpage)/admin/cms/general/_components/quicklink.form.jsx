@@ -1,33 +1,9 @@
 'use client'
 import { 
     Button,
-    FileInput,
     Label 
 } from "flowbite-react";
 import AgGridTableForm from './aggrid.form';
-
-const LogoFileInputRenderer = (params) => {
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            params.setValue(file.name);
-
-            /* Jika mau disave jadi file beneran */
-            /* params.node.data.file = file;
-            params.api.refreshCells({ rowNodes: [params.node] }); */
-
-            /* Disimpan sebagai base64 */
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                params.node.data[params.column.colId] = reader.result;
-            };
-            reader.readAsDataURL(file);
-            params.api.refreshCells({ rowNodes: [params.node] });
-        }
-    };
-
-    return <FileInput accept="image/*" name={params.column.colid} onChange={handleFileChange} />;
-};
 
 const DeleteButtonRenderer = (params) => {
     const handleDelete = () => {
@@ -54,23 +30,6 @@ const columnDefs = [
         cellStyle: { textAlign: 'left' },
         width: "200vw",
         editable: true
-    },
-    {
-        headerName: "Logo",
-        field: "logo",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'left' },
-        width: "140vw",
-        editable: true,
-        cellRenderer: (p) => LogoFileInputRenderer(p),
     },
     {
         headerName: "Link",
@@ -106,20 +65,20 @@ const columnDefs = [
     },
 ];
 
-const SosialMediaForm = ({formChangeHandler, payload}) => {
+const QuickLinkForm = ({formChangeHandler, payload}) => {
     return <>
-        <div className="mt-5 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-            {`Sosial Media`}
+        <div className="mt-20 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+            {`Quick Link`}
         </div>
         <div>
             <div className="mb-2 block">
-                <Label htmlFor='socialmedia' value="" />
+                <Label htmlFor='quicklink' value="" />
             </div>
             <div className="ag-theme-quartz pr-10 md:pr-0" style={{height: '200px', width: "100%"}}>
-                <AgGridTableForm name="socialmedia" formChangeHandler={formChangeHandler} payload={payload?.socialmedia || []}  columnDefs={columnDefs}/>
+                <AgGridTableForm name="quicklink" formChangeHandler={formChangeHandler} payload={payload?.quicklink || []}  columnDefs={columnDefs}/>
             </div>
         </div>
     </>
 }
 
-export default SosialMediaForm;
+export default QuickLinkForm;

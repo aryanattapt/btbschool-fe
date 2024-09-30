@@ -4,13 +4,18 @@ import {
     Spinner,
     Tabs
 } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../../_layouts/navigation';
 import {
+    UploadAttachment
+} from '../../../../../../../services/attachment.service';
+import {
+    GetConfig,
     SubmitConfig
 } from '../../../../../../../services/config.service';
 import Swal from "sweetalert2";
 import {
+    detransformJsonLanguage,
     transformJsonLanguage
 } from '../../../../../../../helpers/jsontransform.helper';
 import LogoForm from './logo.form';
@@ -18,10 +23,33 @@ import SosmedForm from './sosmed.form';
 import ContactForm from './contact.form';
 import FloatingButtonForm from './floatingbutton.form';
 import AdminHeader from "../../../_components/header";
+import QuickLinkForm from './quicklink.form'
 
 const GeneralSettingsMainForm = () => {
+    const type = 'generalsetting'
+    const configName = 'general';
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({});
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const data = await GetConfig(configName, {"type": type});
+            const deTransformJson = detransformJsonLanguage(data[0]);
+            setPayload(deTransformJson);
+            console.log(deTransformJson);
+        } catch (error) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Error Notification!',
+                text: error.toString(),
+                icon: 'error',
+            });
+        }
+    }
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
@@ -52,36 +80,92 @@ const GeneralSettingsMainForm = () => {
             }));
         }
     };
+    const validateData = (data) => {
+        const isEmpty = (item) => typeof item === 'object' && Object.keys(item).length === 0;
+    
+        const isValidURL = (url) => /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/.test(url);
+    
+        const isValidE164 = (number) => /^\+?[1-9]\d{1,14}$/.test(number); // E.164 format
+    
+        const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    
+        const validate = (item) => {
+            if (Array.isArray(item)) {
+                if (item.length === 0) return false;
+                return item.every(validate);
+            } else if (typeof item === 'object' && item !== null) {
+                if (isEmpty(item)) return false;
+                return Object.entries(item).every(([key, value]) => {
+                    if (Array.isArray(value)) {
+                        return value.length > 0 && value.every(validate);
+                    } else if (key === 'link' || key === 'mapsLocation') {
+                        return isValidURL(value);
+                    } else if (key === 'phoneNo' || key === 'whatsAppNo') {
+                        return isValidE164(value);
+                    } else if (key === 'email') {
+                        return isValidEmail(value);
+                    }
+                    return value !== null && value !== '';
+                });
+            }
+            return item !== null && item !== '';
+        };
+        return validate(data);
+    };    
 
-    const datePickerHandler = (name, value) => {
-        setPayload(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
+    const submitHandler = async (e) => {
+        try {
+            setIsLoading(true);
+            if(!validateData(payload)){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Data is not valid!",
+                    icon: 'error',
+                });
+                return;
+            }
 
-    const submitHandler = (e) => {
-        console.log("Submit Handler");
-        if(!payload._id) {delete payload._id}
-        console.log(payload);
-        console.log([transformJsonLanguage(payload)]);
-
-        /* setIsLoading(true); */
-
-        /* Call API here */
-        /* SubmitConfig('', [transformJsonLanguage(payload)])
-        .then(_ => {
-            window.location.href = '/admin/cms/general';
-        })
-        .catch((err) => {
-            setIsLoading(false);
+            const finalPayload = {...payload, "type": type};
+            
+            var formDataLogoID = new FormData();
+            payload["logo[ID]"]?.map((val) => {
+                formDataLogoID.append("logofile", val);
+            });
+            
+            var formDataLogoEN = new FormData();
+            payload["logo[EN]"]?.map((val) => {
+                formDataLogoEN.append("logofile", val);
+            });
+            
+            const collectedPromise = [];
+            collectedPromise.push(UploadAttachment("assets", formDataLogoEN));
+            collectedPromise.push(UploadAttachment("assets", formDataLogoID));
+            const [resultEN, resultID] = await Promise.all(collectedPromise);
+            
+            finalPayload["logo[EN]"] = resultEN?.data[0]?.fileURL;
+            finalPayload["logo[ID]"] = resultID?.data[0]?.fileURL;
+            const transformedPayload = [transformJsonLanguage(finalPayload)];
+            console.log(transformedPayload);
+            
+            await SubmitConfig(configName, transformedPayload);
+            await fetchData();
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Submit Notification!',
-                text: err,
+                text: "Success!",
+                icon: 'info',
+            });
+        } catch (error) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Submit Notification!',
+                text: error.toString(),
                 icon: 'error',
             });
-        }); */
+        } finally{
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -107,6 +191,9 @@ const GeneralSettingsMainForm = () => {
                 </div>
                 <div className="space-y-4">
                     <FloatingButtonForm payload={payload} formChangeHandler={formChangeHandler}/>
+                </div>
+                <div className="space-y-4">
+                    <QuickLinkForm payload={payload} formChangeHandler={formChangeHandler}/>
                 </div>
                 <div className="mt-20 space-y-4">
                     <Button type="submit" id="btnSaveAndSend" name="btnSaveAndSend" className="w-full md:w-auto" disabled={isLoading} onClick={submitHandler}>
