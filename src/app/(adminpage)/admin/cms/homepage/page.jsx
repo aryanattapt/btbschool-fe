@@ -5,28 +5,22 @@ import {
     Tabs
 } from "flowbite-react";
 import { useEffect, useState } from "react";
-import NavbarSidebarLayout from '../../../_layouts/navigation';
+import NavbarSidebarLayout from '../../_layouts/navigation';
 import {
     UploadAttachment
-} from '../../../../../../../services/attachment.service';
+} from '../../../../../../services/attachment.service';
 import {
     GetConfig,
     SubmitConfig
-} from '../../../../../../../services/config.service';
+} from '../../../../../../services/config.service';
 import Swal from "sweetalert2";
 import {
     detransformJsonLanguage,
     transformJsonLanguage
-} from '../../../../../../../helpers/jsontransform.helper';
-import LogoForm from './logo.form';
-import SosmedForm from './sosmed.form';
-import ContactForm from './contact.form';
-import FloatingButtonForm from './floatingbutton.form';
-import AdminHeader from "../../../_components/header";
-import QuickLinkForm from './quicklink.form';
-import PopupForm from './popup.form';
+} from '../../../../../../helpers/jsontransform.helper';
+import AdminHeader from "../../_components/header";
 
-const GeneralSettingsMainForm = () => {
+const HomepageSettingsMainForm = () => {
     const type = 'generalsetting'
     const configName = 'general';
     const [isLoading, setIsLoading] = useState(false);
@@ -81,38 +75,6 @@ const GeneralSettingsMainForm = () => {
             }));
         }
     };
-    const validateData = (data) => {
-        const isEmpty = (item) => typeof item === 'object' && Object.keys(item).length === 0;
-    
-        const isValidURL = (url) => /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/.test(url);
-    
-        const isValidE164 = (number) => /^\+?[1-9]\d{1,14}$/.test(number); // E.164 format
-    
-        const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    
-        const validate = (item) => {
-            if (Array.isArray(item)) {
-                if (item.length === 0) return false;
-                return item.every(validate);
-            } else if (typeof item === 'object' && item !== null) {
-                if (isEmpty(item)) return false;
-                return Object.entries(item).every(([key, value]) => {
-                    if (Array.isArray(value)) {
-                        return value.length > 0 && value.every(validate);
-                    } else if (key === 'link' || key === 'mapsLocation') {
-                        return isValidURL(value);
-                    } else if (key === 'phoneNo' || key === 'whatsAppNo') {
-                        return isValidE164(value);
-                    } else if (key === 'email') {
-                        return isValidEmail(value);
-                    }
-                    return value !== null && value !== '';
-                });
-            }
-            return item !== null && item !== '';
-        };
-        return validate(data);
-    };    
 
     const submitHandler = async (e) => {
         try {
@@ -179,32 +141,28 @@ const GeneralSettingsMainForm = () => {
         <NavbarSidebarLayout>
             <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mt-4 mb-4">
-                    <AdminHeader title="General Content Settings Form"/>
+                    <AdminHeader title="Homepage Content Settings Form"/>
                 </div>
 
-                <Tabs aria-label="Default tabs" variant="default">
-                    <Tabs.Item title="Indonesia">
-                        <LogoForm payload={payload} formChangeHandler={formChangeHandler} language={"ID"}/>
-                    </Tabs.Item>
-                    <Tabs.Item title="English">
-                        <LogoForm payload={payload} formChangeHandler={formChangeHandler} language={"EN"}/>
-                    </Tabs.Item>
-                </Tabs>
-                <div className="space-y-4">
-                    <SosmedForm payload={payload} formChangeHandler={formChangeHandler}/>
+                <div className="mt-4 mb-4">
+                    <div className="mt-4 mb-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                        Homepage Carousel Settings
+                    </div>
+                    <Button color="blue" onClick={() => window.location.href="/admin/cms/homepage/carousel"}>Settings</Button>
                 </div>
-                <div className="space-y-4">
-                    <ContactForm payload={payload} formChangeHandler={formChangeHandler}/>
+
+                <div className="mt-4 mb-4">
+                    <div className="mt-4 mb-2 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                        Content Settings
+                    </div>
+                    <Tabs aria-label="Default tabs" variant="default">
+                        <Tabs.Item title="Indonesia">
+                        </Tabs.Item>
+                        <Tabs.Item title="English">
+                        </Tabs.Item>
+                    </Tabs>
                 </div>
-                <div className="space-y-4">
-                    <FloatingButtonForm payload={payload} formChangeHandler={formChangeHandler}/>
-                </div>
-                <div className="space-y-4">
-                    <QuickLinkForm payload={payload} formChangeHandler={formChangeHandler}/>
-                </div>
-                <div className="space-y-4">
-                    <PopupForm payload={payload} formChangeHandler={formChangeHandler}/>
-                </div>
+
                 <div className="mt-20 space-y-4">
                     <Button type="submit" id="btnSaveAndSend" name="btnSaveAndSend" className="w-full md:w-auto" disabled={isLoading} onClick={submitHandler}>
                         {isLoading ? (
@@ -222,4 +180,4 @@ const GeneralSettingsMainForm = () => {
     );
 };
 
-export default GeneralSettingsMainForm;
+export default HomepageSettingsMainForm;

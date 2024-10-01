@@ -35,11 +35,17 @@ const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
                 </div>
                 <Sidebar.Items className='h-full flex flex-col justify-between' >
                     <Sidebar.ItemGroup>
-                        {/* <Sidebar.Collapse label="Content Management">
+                        <Sidebar.Collapse label="Content Management">
                             <Sidebar.Item href="/admin/cms/general" className={"/admin/cms/general" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                                 General Setting
                             </Sidebar.Item>
-                        </Sidebar.Collapse> */}
+                            <Sidebar.Item href="/admin/cms/contact/mailsetting" className={"/admin/cms/contact/mailsetting" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                                Contact Setting
+                            </Sidebar.Item>
+                            <Sidebar.Item href="/admin/cms/homepage" className={"/admin/cms/homepage" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                                Homepage Setting
+                            </Sidebar.Item>
+                        </Sidebar.Collapse>
                         <Sidebar.Collapse label="Career">
                             <Sidebar.Item href="/admin/career" className={"/admin/career" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                                 Career
