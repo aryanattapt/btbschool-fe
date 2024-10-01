@@ -1651,10 +1651,39 @@ export const BeasiswaPayLoad = {
     title: "Beasiswa",
     subtitle:
       "Sekolah BTB memiliki panitia seleksi beasiswa yang mencari murid dengan prestasi yang mencerminkan integritas, intelegensi, dan komitmen terhadap pengembangan diri dan berdedikasi untuk mengembangkan komunitas. Beasiswa dapat diperoleh murid dari Tingkat 7 hingga 12.",
+    infomartion:
+      "Untuk informasi lebih lanjut, silahkan hubungi departemen pendaftaran: ",
+    detailschool: [
+      {
+        schoolName: "Jl.Pluit Timur Blok MM, Jakarta Utara",
+        schoolhp: [
+          {
+            waNumber: "0856 95 333 888",
+            hrefwa: "https://wa.me/085695333888",
+          },
+          {
+            waNumber: "0812 96 333 888",
+            hrefwa: "https://wa.me/081296333888",
+          },
+        ],
+        schooltlp: ["(+62 21) 669 8888", "(+62 21) 668 5858"],
+        schoolemail: "admission@btbschool.org",
+      },
+    ],
   },
   EN: {
     title: "Scholarship",
     subtitle:
       "BTB School has a scholarship selection committee that seeks students with achievements that reflect integrity, intelligence, and a commitment to self-development and dedication to improving the community. Scholarships are available to students from Grades 7 to 12.",
+    infomartion:
+      "For further information, please contact the registration department: ",
+    detailschool: [
+      {
+        schoolName: "Jl.Pluit Timur Blok MM, Jakarta Utara",
+        schoolhp: ["0856 95 333 888", "0812 96 333 888"],
+        schooltlp: ["(+62 21) 669 8888", "(+62 21) 668 5858"],
+        schoolemail: "admission@btbschool.org",
+      },
+    ],
   },
 };
