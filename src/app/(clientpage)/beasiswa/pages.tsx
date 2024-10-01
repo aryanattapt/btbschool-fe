@@ -1,25 +1,24 @@
 "use client";
 import Banner from "./_layouts/banner";
 import Pagging from "./_layouts/pagging";
-import { EnrolmentPayload } from "../../../../data";
+import { BeasiswaPayLoad } from "../../../../data";
 import useLanguage from "../../../hooks/useLanguage";
 import { useState } from "react";
-import Steps from "./_layouts/steps";
 
-const EnrolmentPage = () => {
-  const [enrolmentData, setEnrolmentData] = useState(EnrolmentPayload);
+const BeasiswaPage = () => {
+  const [beasiswaData, setBeasiswaData] = useState(BeasiswaPayLoad);
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState("introduction");
   return (
     <>
       <Banner />
       <Pagging
-        enrolmentData={enrolmentData}
+        beasiswaData={beasiswaData}
         language={language}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-      <Steps data={enrolmentData} language={language} />
+
       {/* {activeTab === "introduction" && (
         <Introduction data={btbPeduliData} language={language} />
       )}
@@ -36,4 +35,4 @@ const EnrolmentPage = () => {
   );
 };
 
-export default EnrolmentPage;
+export default BeasiswaPage;

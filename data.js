@@ -1649,8 +1649,12 @@ export const EnrolmentPayload = {
 export const BeasiswaPayLoad = {
   ID: {
     title: "Beasiswa",
+    subtitle:
+      "Sekolah BTB memiliki panitia seleksi beasiswa yang mencari murid dengan prestasi yang mencerminkan integritas, intelegensi, dan komitmen terhadap pengembangan diri dan berdedikasi untuk mengembangkan komunitas. Beasiswa dapat diperoleh murid dari Tingkat 7 hingga 12.",
   },
   EN: {
-    title: "Beasiswa",
+    title: "Scholarship",
+    subtitle:
+      "BTB School has a scholarship selection committee that seeks students with achievements that reflect integrity, intelligence, and a commitment to self-development and dedication to improving the community. Scholarships are available to students from Grades 7 to 12.",
   },
 };

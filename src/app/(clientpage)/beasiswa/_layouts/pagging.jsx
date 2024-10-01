@@ -2,7 +2,7 @@
 
 const PaggingLayouts = ({
   language,
-  enrolmentData,
+  beasiswaData,
   activeTab,
   setActiveTab,
 }) => {
@@ -14,7 +14,7 @@ const PaggingLayouts = ({
             <div className="pr-10 pl-10 md:pr-20 md:pl-32">
               <h1 className="text-[25px] md:text-[25px] text-center font-semibold py-8 md:py-10">
                 <div className="cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600">
-                  {enrolmentData[language].title}
+                  {beasiswaData[language].title}
                 </div>
               </h1>
             </div>
