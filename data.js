@@ -860,6 +860,10 @@ export const NavbarPayload = {
         url: "/alumni",
       },
       {
+        content: "Enrolment",
+        url: "/enrolment",
+      },
+      {
         content: "BTB Care",
         url: "/btb-peduli",
       },
@@ -923,6 +927,10 @@ export const NavbarPayload = {
       {
         content: "Alumni",
         url: "/alumni",
+      },
+      {
+        content: "Enrolment",
+        url: "/enrolment",
       },
       {
         content: "BTB Peduli",
@@ -1303,9 +1311,10 @@ export const HelpPayload = {
     },
     mainTitle: "Pertanyaan Yang Sering Diajukan",
     secondTitle: "Informasi Pendaftaran",
-    "subtitle1": "Temukan Informasi",
-    "subtitle2": "Memiliki pertanyaan mengenai kehidupan di sekolah BTB, bagaimana kegiatan belajar mengajar dan aktivitas di lingkungan BTB?",
-    "subtitle3": "Alur Pendaftaran"
+    subtitle1: "Temukan Informasi",
+    subtitle2:
+      "Memiliki pertanyaan mengenai kehidupan di sekolah BTB, bagaimana kegiatan belajar mengajar dan aktivitas di lingkungan BTB?",
+    subtitle3: "Alur Pendaftaran",
   },
   EN: {
     banner: {
@@ -1314,9 +1323,10 @@ export const HelpPayload = {
     },
     mainTitle: "Frequently Asked Questions",
     secondTitle: "Registration Information",
-    "subtitle1": "Find Information",
-    "subtitle2": "Do you have questions about life at BTB school, how the teaching and learning activities take place, and the activities in the BTB environment?",
-    "subtitle3": "Registration Flow"
+    subtitle1: "Find Information",
+    subtitle2:
+      "Do you have questions about life at BTB school, how the teaching and learning activities take place, and the activities in the BTB environment?",
+    subtitle3: "Registration Flow",
   },
 };
 
@@ -1389,8 +1399,9 @@ export const ContactUsPayLoad = {
       },
     ],
     email: "info@btbschool.org",
-    "subtitleregis1": "Temukan Informasi",
-    "subtitleregis2": "Memiliki pertanyaan mengenai kehidupan di sekolah BTB, bagaimana kegiatan belajar mengajar dan aktivitas di lingkungan BTB?"
+    subtitleregis1: "Temukan Informasi",
+    subtitleregis2:
+      "Memiliki pertanyaan mengenai kehidupan di sekolah BTB, bagaimana kegiatan belajar mengajar dan aktivitas di lingkungan BTB?",
   },
   EN: {
     pagingHeader: {
@@ -1458,8 +1469,9 @@ export const ContactUsPayLoad = {
       },
     ],
     email: "info@btbschool.org",
-    "subtitleregis1": "Find Information",
-    "subtitleregis2": "Do you have questions about life at BTB school, how the teaching and learning activities take place, and the activities in the BTB environment?"
+    subtitleregis1: "Find Information",
+    subtitleregis2:
+      "Do you have questions about life at BTB school, how the teaching and learning activities take place, and the activities in the BTB environment?",
   },
 };
 
@@ -1487,7 +1499,7 @@ export const AlumniPayload = {
     title: "Informasi Alumni",
     desc: "Sebagai alumni dari sekolah BTB, kami ingin mengenal anda lebih jauh. Silahkan isi formulir berikut ini. Kami menunggu respon kalian.",
   },
-  EN:{
+  EN: {
     pagingHeader: {
       title: "Alumni",
       url: [
@@ -1512,57 +1524,137 @@ export const AlumniPayload = {
   },
   ceritaAlumniFlag: [
     {
-      image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
+      image:
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
       caption: "Japan",
     },
     {
-     image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
-     caption: "US",
+      image:
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
+      caption: "US",
     },
     {
-      image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
+      image:
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
       caption: "UK",
     },
     {
-      image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
+      image:
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
       caption: "France",
     },
   ],
   ceritaAlumni: [
-  {
-    image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(1).JPG",    
-    name: "Cassandra Lee",
-    class: "2020",
-    university: "Harvard University",
-    major: "Public Policy",
-    testimonies: "As an alumnus of Bina Tunas Bangsa, I am grateful for the solid foundation it provided me in both academics and personal growth. The diverse community and global mindset nurtured my curiosity and adaptability, which have been invaluable in my career as a full-stack developer. The experiences I gained there continue to shape my approach to problem-solving and teamwork.",
-  },
-  {
-    image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd2.jpg",
-    name: "Aryanatta Tiratana",
-    class: "2015",
-    university: "MIT",
-    major: "Computer Science",
-    testimonies: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-  },
-  {
-    image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd2.jpg",
-    name: "Dina Putri Khoiru",
-    class: "2016",
-    university: "Universitas Pennsylvania State",
-    major: "Computer Science 3",
-    testimonies: "The International School in Jakarta equipped me with both academic excellence and a global perspective, which have been key in my professional journey. The diverse learning environment and experienced faculty ensured that I was prepared to take on challenges in any top-tier university, whether abroad or in Indonesia. My time there was transformative, giving me lifelong skills and connections.",
-  },
-  ]
-}
+    {
+      image:
+        "https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(1).JPG",
+      name: "Cassandra Lee",
+      class: "2020",
+      university: "Harvard University",
+      major: "Public Policy",
+      testimonies:
+        "As an alumnus of Bina Tunas Bangsa, I am grateful for the solid foundation it provided me in both academics and personal growth. The diverse community and global mindset nurtured my curiosity and adaptability, which have been invaluable in my career as a full-stack developer. The experiences I gained there continue to shape my approach to problem-solving and teamwork.",
+    },
+    {
+      image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd2.jpg",
+      name: "Aryanatta Tiratana",
+      class: "2015",
+      university: "MIT",
+      major: "Computer Science",
+      testimonies:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+    },
+    {
+      image: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/sd2.jpg",
+      name: "Dina Putri Khoiru",
+      class: "2016",
+      university: "Universitas Pennsylvania State",
+      major: "Computer Science 3",
+      testimonies:
+        "The International School in Jakarta equipped me with both academic excellence and a global perspective, which have been key in my professional journey. The diverse learning environment and experienced faculty ensured that I was prepared to take on challenges in any top-tier university, whether abroad or in Indonesia. My time there was transformative, giving me lifelong skills and connections.",
+    },
+  ],
+};
 
 export const CareerPayload = {
-  "ID": {
-    "title": "BEKERJA BERSAMA KAMI",
-    "subtitle": "Mulai karir impianmu di Sekolah Terbaik Jakarta",
+  ID: {
+    title: "BEKERJA BERSAMA KAMI",
+    subtitle: "Mulai karir impianmu di Sekolah Terbaik Jakarta",
   },
-  "EN": {
-    "title": "WORK WITH US",
-    "subtitle": "Start your dream career at the Best School in Jakarta"
-  }
-}
+  EN: {
+    title: "WORK WITH US",
+    subtitle: "Start your dream career at the Best School in Jakarta",
+  },
+};
+
+export const EnrolmentPayload = {
+  ID: {
+    title: "Enrolment",
+    subtitle: "Tahapan Pendaftaran",
+    stepsList: [
+      {
+        titleStep: "1. Temukan Informasi",
+        descStep:
+          "Memiliki pertanyaan mengenai kehidupan di sekolah BTB, bagaimana kegiatan belajar mengajar dan aktivitas di lingkungan BTB? Email kami di admission@btbschool.org atau telepon 021-669 8888 / 021-668 5858.",
+      },
+      {
+        titleStep: "2. Kunjungi Sekolah BTB",
+        descStep:
+          "Lihat secara langsung kegiatan sehari - hari di dalam lingkungan Sekolah BTB. Buat janji dengan staf kami untuk bisa berkeliling fasilitas dan lingkungan Sekolah Bina Tunas Bangsa.",
+      },
+      {
+        titleStep: "3. Daftarkan Anak Anda",
+        descStep:
+          "Daftarkan anak anda secepatnya untuk bisa mengikuti tes masuk atau proses pengamatan.",
+      },
+      {
+        titleStep: "4. Tunggu dan Tetap Terhubung",
+        descStep:
+          "Pihak BTB akan menghubungi orang tua untuk menginformasikan hasil tes masuk dan pengamatan yang dilakukan.",
+      },
+    ],
+    notes:
+      "*Penerimaan siswa baru adalah pada Kelompok Bermain, Tingkat 1, Tingkat 7, dan Tingkat 10.",
+  },
+  EN: {
+    title: "Enrolment",
+    subtitle: "Registration Stages",
+    stepsList: [
+      {
+        titleStep: "1. Find Information",
+        descStep:
+          "Have questions about life at BTB school, how are the teaching and learning activities and activities in the BTB environment? Send an email to admission@btbschool.org or call 021-669 8888 / 021-668 5858.",
+      },
+      {
+        titleStep: "2. Visit BTB School",
+        descStep:
+          "Witness firsthand the daily activities in the BTB School environment. Make an appointment with our staff to see the facilities and environment of Bina Tunas Bangsa School.",
+      },
+      {
+        titleStep: "3. Register Your Child",
+        descStep:
+          "Register your child as soon as possible to take the entrance test or observation process.",
+      },
+      {
+        titleStep: "4. Wait and Stay Connected",
+        descStep:
+          "BTB will contact parents to inform them of the results of the entrance test and observations conducted.",
+      },
+    ],
+    notes:
+      "*New student admissions are open for Playgroup, Grade 1, Grade 7, and Grade 10.",
+  },
+};
+
+export const BeasiswaPayLoad = {
+  ID: {
+    title: "Beasiswa",
+    subtitle:
+      "Sekolah BTB memiliki panitia seleksi beasiswa yang mencari murid dengan prestasi yang mencerminkan integritas, intelegensi, dan komitmen terhadap pengembangan diri dan berdedikasi untuk mengembangkan komunitas. Beasiswa dapat diperoleh murid dari Tingkat 7 hingga 12.",
+  },
+  EN: {
+    title: "Scholarship",
+    subtitle:
+      "BTB School has a scholarship selection committee that seeks students with achievements that reflect integrity, intelligence, and a commitment to self-development and dedication to improving the community. Scholarships are available to students from Grades 7 to 12.",
+  },
+};
