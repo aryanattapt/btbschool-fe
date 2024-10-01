@@ -1476,19 +1476,51 @@ export const ContactUsPayLoad = {
 };
 
 export const AlumniPayload = {
-  EN: {
-    title: "Alumni Information",
-    desc: "As alumni of BTB school, we would like to get to know you better. Please fill out the following form. We look forward to your response.",
-    registertext: "Alumni Registration",
-    ceritaText: "Alumni Stories",
-    title2: "Global Competency",
-  },
   ID: {
+    pagingHeader: {
+      title: "Alumni",
+      url: [
+        {
+          title: "Cerita Alumni",
+          subtitle: "Kompetensi Global",
+          url: "/#cerita-alumni",
+          id: "cerita-alumni-tab",
+          control: "cerita-alumni",
+        },
+        {
+          title: "Pendaftaran Alumni",
+          subtitle: "",
+          url: "/#pendaftaran-alumni",
+          id: "pendaftaran-alumni-tab",
+          control: "pendaftaran-alumni",
+        },
+      ],
+    },
     title: "Informasi Alumni",
     desc: "Sebagai alumni dari sekolah BTB, kami ingin mengenal anda lebih jauh. Silahkan isi formulir berikut ini. Kami menunggu respon kalian.",
-    registertext: "Pendaftaran Alumni",
-    ceritaText: "Cerita Alumni",
-    title2: "Kompetensi Global",
+  },
+  EN: {
+    pagingHeader: {
+      title: "Alumni",
+      url: [
+        {
+          title: "Alumni Stories",
+          subtitle: "Global Competency",
+          url: "#cerita-alumni",
+          id: "cerita-alumni-tab",
+          control: "cerita-alumni",
+        },
+        {
+          title: "Alumni Registration",
+          subtitle: "",
+          url: "#pendaftaran-alumni",
+          id: "pendaftaran-alumni-tab",
+          control: "pendaftaran-alumni",
+        },
+      ],
+    },
+    title: "Alumni Information",
+    desc: "As alumni of BTB school, we would like to get to know you better. Please fill out the following form. We look forward to your response.",
   },
   ceritaAlumniFlag: [
     {
