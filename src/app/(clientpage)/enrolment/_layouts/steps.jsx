@@ -4,22 +4,38 @@ import React from "react";
 const StepsLayouts = ({ data, language }) => {
   return (
     <>
-      <div className="md:mx-32 mx-10 text-black leading-loose">
-        <h2 className="md:text-[25px] text-[28px] mb-[10px] font-semibold">
-          {data[language].title}
-        </h2>
-        <p className="text-[14px] md:text-[16px] leading-[35px]">
-          {data[language].subtitle}
-        </p>
-        <ul className="list-disc text-[14px] md:text-[16px]">
-          {data[language].stepsList.map((val, idx) => {
-            return (
-              <li key={idx}>
-                {val.titleStep} <br></br> {val.descStep}
-              </li>
-            );
-          })}
-        </ul>
+      <div className="md:mx-32 mx-10 grid md:grid-cols-1 grid-cols-1 xl:grid-cols-2 lg:grid-cols-1 text-black leading-loose my-5">
+        <div>
+          <h2 className="md:text-[25px] text-[28px]  font-semibold text-[#00305E]">
+            {data[language].title}
+          </h2>
+          <p className="text-[16px] md:text-[19px] leading-[35px]">
+            {data[language].subtitle}
+          </p>
+
+          <div className="my-7">
+            {data[language].stepsList.map((val, idx) => {
+              return (
+                <div key={idx} className="mb-6">
+                  <p className="text-base	font-semibold">{val.titleStep}</p>
+                  <p>{val.descStep}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="pl-[0px] md:pl-[50px] py-5 md:py-5 xl:py-0">
+          <img
+            // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
+            src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(1).JPG"
+            alt="aboutus2"
+            className="md:h-[500px] md:w-[546px] px-4 object-cover"
+          />
+        </div>
+      </div>
+
+      <div className="md:mx-32 mx-10 mb-5">
+        <p className="text-red-500	">{data[language].notes}</p>
       </div>
     </>
   );
