@@ -7,9 +7,6 @@ import {
     TextInput,
     Tabs
 } from "flowbite-react";
-import { 
-    useSearchParams 
-} from 'next/navigation'
 import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../../../_layouts/navigation';
 import {
@@ -21,33 +18,32 @@ import {
 } from '../../../../../../../../services/attachment.service';
 import Swal from "sweetalert2";
 import AdminHeader from "../../../../_components/header";
+import { detransformJsonLanguage, transformJsonLanguage } from "../../../../../../../../helpers/jsontransform.helper";
+import { useSearchParams } from "next/navigation";
 
 const CarouselForm = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [payload, setPayload] = useState({})
     const searchParams = useSearchParams()
     const id = searchParams.get("id")
+    
+    const type = 'homepage.carousel'
+    const configName = 'general';
+    const [isLoading, setIsLoading] = useState(false);
+    const [payload, setPayload] = useState({});
 
     useEffect(() => {
-        console.log(`ID: ${id}`);
-        setPayload(prevState => ({
-            ...prevState,
-            "_id": id
-        }));
-
-        if(id){
-            GetConfig('bulletinspotlight', {"_id": id})
-            .then(res => setPayload(res[0]))
-            .catch((err) => {
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: err,
-                    icon: 'error',
-                });
-            })
-        }
+        fetchData();
     }, [])
+
+    const fetchData = async () => {
+        try {
+            if(id){
+                const data = await GetConfig(configName, {type, "_id": id || ''});
+                const deTransformJson = detransformJsonLanguage(data[0]);
+                setPayload(deTransformJson);
+                console.log(deTransformJson);
+            }
+        } catch (error) {console.log(error);}
+    };
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
@@ -79,49 +75,46 @@ const CarouselForm = () => {
         }
     };
 
-    const submitHandler = (e) => {
-        console.log(`Masuk Submit Handler`);
-        if(id == null) {delete payload._id}
-        console.log(payload);
-        setIsLoading(true);
+    const submitHandler = async (e) => {
+        try {
+            console.log(`Masuk Submit Handler`);
+            setIsLoading(true);
 
-        var formData = new FormData();
-        payload?.bulletinFile?.map((val) => {
-            formData.append("bulletinFile", val);
-        });
+            /* Handle Attachment */
+            let fileType = payload.fileType; let formData = new FormData();
+            try {
+                const theFile = payload?.carousel[0];
+                formData.append("carousel", theFile);
+                fileType = theFile?.type?.startsWith('image/') ? 'IMAGE' : theFile?.type?.startsWith('video/') ? 'VIDEO' : '';
 
-        /* Call API in here... */
-        UploadAttachment("alumni", formData)
-        .then((res) => {
-            const finalPayload = { ...payload };
-            finalPayload.attachment = res.data;
-            delete finalPayload.bulletinFile;
+                var resultAssets = await UploadAttachment("assets", formData);
+                resultAssets = resultAssets?.data[0]?.fileURL;
+            } catch (error) {console.log(error);}
 
-            SubmitConfig('bulletinspotlight', [finalPayload])
-            .then(res => {
-                setPayload({});
-                setIsLoading(false);
-                window.location.href = '/admin/bulletinspotlight'
-            })
-            .catch((err) => {
-                setIsLoading(false);
-                setStateCallBack(false);
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: err,
-                    icon: 'error',
-                });
-            })
-        }).catch((err) => {
-            setIsLoading(false);
+            delete payload.carousel;
+            const finalPayload = {...payload, "type": type, "url": resultAssets, "fileType": fileType};
+            const transformedPayload = [transformJsonLanguage(finalPayload)];
+            console.log(transformedPayload);
+            
+            /* Submit data */
+            await SubmitConfig(configName, transformedPayload);
+            await fetchData();
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Submit Notification!',
+                text: "Success!",
+                icon: 'info',
+            });
+        } catch (error) {
             Swal.fire({
                 allowOutsideClick: false,
                 title: "Error Notification!",
-                text: err,
+                text: error.toString(),
                 icon: "error",
             });
-        });
+        } finally{
+            setIsLoading(false);
+        }
     }
 
     return <>
@@ -134,25 +127,49 @@ const CarouselForm = () => {
                     <Tabs.Item title="Indonesia">
                         <div>
                             <div className="mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                                <Label htmlFor="bulletintitle[ID]" value="Judul (ID)"/>
+                                <Label htmlFor="title[ID]" value="Title (ID)"/>
                             </div>
-                            <TextInput value={payload[`bulletintitle[ID]`]} id="bulletintitle" name="bulletintitle[ID]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                            <TextInput value={payload[`title[ID]`] || ''} id="title[ID]" name="title[ID]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                            <div className="mt-3 mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                                <Label htmlFor="content[ID]" value="Content (ID)"/>
+                            </div>
+                            <TextInput value={payload[`content[ID]`] || ''} id="content[ID]" name="content[ID]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                            <div className="mt-3 mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                                <Label htmlFor="buttondesc[ID]" value="Button Description (ID)"/>
+                            </div>
+                            <TextInput value={payload[`buttondesc[ID]`] || ''} id="buttondesc[ID]" name="buttondesc[ID]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                            <div className="mt-3 mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                                <Label htmlFor="buttonlink[ID]" value="Button Link (ID)"/>
+                            </div>
+                            <TextInput value={payload[`buttonlink[ID]`] || ''} id="buttonlink[ID]" name="buttonlink[ID]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
                         </div>
                     </Tabs.Item>
                     <Tabs.Item title="English">
                         <div>
                             <div className="mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                                <Label htmlFor="bulletintitle[EN]" value="Title (EN)"/>
+                                <Label htmlFor="title[EN]" value="Title (EN)"/>
                             </div>
-                            <TextInput value={payload[`bulletintitle[EN]`]} id="bulletintitle" name="bulletintitle[EB]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                            <TextInput value={payload[`title[EN]`] || ''} id="title[EN]" name="title[EN]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                            <div className="mt-3 mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                                <Label htmlFor="content[EN]" value="Content (EN)"/>
+                            </div>
+                            <TextInput value={payload[`content[EN]`] || ''} id="content[EN]" name="content[EN]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                            <div className="mt-3 mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                                <Label htmlFor="buttondesc[EN]" value="Button Description (EN)"/>
+                            </div>
+                            <TextInput value={payload[`buttondesc[EN]`] || ''} id="buttondesc[EN]" name="buttondesc[EN]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                            <div className="mt-3 mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                                <Label htmlFor="buttonlink[EN]" value="Button Link (EN)"/>
+                            </div>
+                            <TextInput value={payload[`buttonlink[EN]`] || ''} id="buttonlink[EN]" name="buttonlink[EN]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
                         </div>
                     </Tabs.Item>
                 </Tabs>
                 <div>
                         <div className="mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                            <Label htmlFor="bulletinFile" value="Unggah File" />
+                            <Label htmlFor="carousel" value="Unggah File" />
                         </div>
-                        <FileInput accept=".pdf" id="bulletinFile" name="bulletinFile" helperText="Ukuran Maksimum 32MB. Format Images/Video" onChange={formChangeHandler}/>
+                        <FileInput accept="image/*,video/*" id="carousel" name="carousel" helperText="Ukuran Maksimum 32MB. Format Images/Video" onChange={formChangeHandler}/>
                     </div>
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">

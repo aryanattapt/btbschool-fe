@@ -149,6 +149,7 @@ const MailForm = () => {
             </div>
             <div>
                 <CustomEditor name='content' onChange={formChangeHandler} value={payload.content || ''} />
+                <p className="mt-1 text-sm text-gray-500">Mail Content should have 3 %s character. First %s is First name. Second %s is Last Name. Last %s is Message.</p>
             </div>
             <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                 <div className="flex">

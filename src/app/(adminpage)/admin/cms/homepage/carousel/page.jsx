@@ -9,27 +9,38 @@ import {
 import Swal from 'sweetalert2';
 import AdminHeader from '../../../_components/header'
 import CarouselTable from './_components/table'
+import { detransformJsonLanguage } from '../../../../../../../helpers/jsontransform.helper';
 
 const HomePageCarouselManagerPage = () => {
+    const type = 'homepage.carousel'
+    const configName = 'general';
     const [payload, setPayload] = useState([]);
 
     useEffect(() => {
-        fetchConfig()
+        fetchData()
     }, [])
 
-    const fetchConfig = () => {
-        GetConfig('bulletinspotlight', {})
-        .then(res => setPayload(res))
-        .catch((err) => {
-            setPayload([])
-            console.log(err);
-        })
-    }
+    const fetchData = async () => {
+        try {
+            const data = await GetConfig(configName, {"type": type});
+            const deTransformJson = detransformJsonLanguage(data);
+            setPayload(deTransformJson);
+            console.log(deTransformJson);
+        } catch (error) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Error Notification!',
+                text: error.toString(),
+                icon: 'error',
+            });
+        }
+    };
 
     const DeleteHandler = (id) => {
-        DeleteConfig('bulletinspotlight', [{"_id": id}])
-        .then(() => fetchConfig())
+        DeleteConfig(configName, [{"_id": id, "type": type}])
+        .then(() => fetchData())
         .catch((err) => {
+            setPayload([]);
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Error Notification!',
