@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+import { HiPhone, HiMail } from "react-icons/hi";
+import { AiOutlineWhatsApp } from "react-icons/ai";
 
 const DetailLayouts = ({ data, language }) => {
   return (
