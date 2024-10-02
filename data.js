@@ -1591,6 +1591,8 @@ export const EnrolmentPayload = {
   ID: {
     title: "Enrolment",
     subtitle: "Tahapan Pendaftaran",
+    image2:
+      "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
     stepsList: [
       {
         titleStep: "1. Temukan Informasi",
@@ -1619,6 +1621,8 @@ export const EnrolmentPayload = {
   EN: {
     title: "Enrolment",
     subtitle: "Registration Stages",
+    image2:
+      "https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
     stepsList: [
       {
         titleStep: "1. Find Information",
