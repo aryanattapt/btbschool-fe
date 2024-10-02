@@ -73,7 +73,7 @@ const MailForm = () => {
 
     const submitHandler = async (e) => {
         try {
-            if(!validateData(payload.content)){
+            if(!validateData(payload?.content || '')){
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',

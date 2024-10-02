@@ -5,51 +5,38 @@ import {
     Spinner,
     TextInput,
 } from "flowbite-react";
-import { 
-    useSearchParams 
-} from 'next/navigation'
 import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../../_layouts/navigation';
-import {
-    FetchAlumni,
-    VerifyAlumni
-} from '../../../../../../../services/alumni.service'
 import Swal from "sweetalert2";
 import AdminHeader from '../../../_components/header'
 import CustomEditor from '../../../../../_components/customformeditor';
+import { GetConfig, SubmitConfig } from "../../../../../../../services/config.service";
+import { detransformJsonLanguage, transformJsonLanguage } from "../../../../../../../helpers/jsontransform.helper";
 
 const MailForm = () => {
+    const type = 'admincms.contact.mailcontent'
+    const configName = 'general';
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
-    const searchParams = useSearchParams()
-    const id = searchParams.get("id")
 
     useEffect(() => {
-        console.log(`ID: ${id}`);
-        setPayload(prevState => ({
-            ...prevState,
-            "_id": id
-        }));
+        fetchMailContent();
+    }, []);
 
-        if(id){
-            fetchAlumni(id)
+    const fetchMailContent = async () => {
+        try {
+            const data = await GetConfig(configName, {"type": type});
+            const deTransformJson = detransformJsonLanguage(data[0]);
+            setPayload(deTransformJson);
+        } catch (error) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Error Notification!',
+                text: error.toString(),
+                icon: 'error',
+            });
         }
-    }, [])
-
-    const fetchAlumni = (id) => {
-        FetchAlumni({"_id": id})
-        .then(res => setPayload(res[0]))
-        .catch((err) => {
-            console.log(err);
-        })
-    }
-
-    const datePickerHandler = (name, value) => {
-        setPayload(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    }
+    };
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
@@ -81,27 +68,67 @@ const MailForm = () => {
         }
     };
 
-    const submitHandler = (e) => {
-        if(id == null) {delete payload._id}
-        console.log(payload);
-        setIsLoading(true);
+    const validateData = (str) => {
+        const matches = str.match(/%s/g);
+        return matches && matches.length === 3;
+    }
 
-        /* Call API in here... */
-        VerifyAlumni(payload)
-        .then(() => {
-            setIsLoading(false); 
-            window.location.href = '/admin/alumni'
-        })
-        .catch((err) => {
-            setIsLoading(false); 
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
+
+    const validateEmails = (emailsString) => {
+        const emails = emailsString.trim().split(';').map(email => email.trim());
+        console.log(emails);
+        return emails.every(validateEmail);
+    };    
+
+    const submitHandler = async (e) => {
+        try {
+            if(!validateEmails(payload?.emailrecepient || '')){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Must Be Valid Email Format. If there is multiple Recepient split using \";\". Example: test@test.com;test1@test1.com",
+                    icon: 'error',
+                });
+                return;
+            }
+            if(!validateData(payload?.content || '')){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Mail Content should have 3 %s character. First %s is First name. Second %s is Last Name. Last %s is Message.",
+                    icon: 'error',
+                });
+                return;
+            }
+
+            setIsLoading(true);
+            const finalPayload = {...payload, "type": type};
+            const transformedPayload = [transformJsonLanguage(finalPayload)];
+            console.log(transformedPayload);
+            
+            await SubmitConfig(configName, transformedPayload);
+            await fetchMailContent();
             Swal.fire({
                 allowOutsideClick: false,
-                title: 'Error Notification!',
-                text: err,
+                title: 'Submit Notification!',
+                text: "Success!",
+                icon: 'info',
+            });
+        } catch (error) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Submit Notification!',
+                text: error.toString(),
                 icon: 'error',
             });
-        })
-    }
+        } finally{
+            setIsLoading(false);
+        }
+    };
 
     return <>
         <NavbarSidebarLayout >
@@ -114,7 +141,8 @@ const MailForm = () => {
                 Email Recepient
             </div>
             <div>
-                <TextInput value={payload.emailrecepient || ''} id="emailrecepient" name="emailrecepient"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                <TextInput value={payload.emailrecepient || ''} id="emailrecepient" name="emailrecepient"  type="text" autoFocus={true} onChange={formChangeHandler} placeholder="test@test.com;test1@test1.com"/>
+                <p className="mt-1 text-sm text-gray-500">Must Be Valid Email Format. If there is multiple Recepient split using ";". Example: test@test.com;test1@test1.com</p>
             </div>
             <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
                 Mail Content

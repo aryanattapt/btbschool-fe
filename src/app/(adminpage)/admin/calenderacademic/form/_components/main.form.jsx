@@ -57,26 +57,45 @@ const CalenderAcademicMainForm = ({payload, setPayload}) => {
         }));
     }
 
-    const submitHandler = (e) => {
-        console.log(`Masuk Submit Handler`);
-        if(!payload._id) {delete payload._id}
-        setIsLoading(true);
+    const submitHandler = async (e) => {
+        try {
+            console.log(`Masuk Submit Handler`);
+            setIsLoading(true);
+            if(!payload._id) {delete payload._id}
+            console.log(payload);
+            
+            if(!payload.date){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please Fill Date!",
+                    icon: 'error',
+                });
+                return;
+            }
+            
+            if(!payload["activity[ID]"] || !payload["activity[EN]"]){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please Fill All Activity Data in English And Indonesia!",
+                    icon: 'error',
+                });
+                return;
+            }
 
-        /* Call API in here... */
-        SubmitConfig('calenderacademic', [transformJsonLanguage(payload)])
-        .then(_ => {
+            await SubmitConfig('calenderacademic', [transformJsonLanguage(payload)]);
             window.location.href = '/admin/calenderacademic'
-        })
-        .catch((err) => {
-            setIsLoading(false);
-            setStateCallBack(false);
+        } catch (error) {
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Submit Notification!',
                 text: err,
                 icon: 'error',
             });
-        })
+        } finally{
+            setIsLoading(false);
+        }
     }
 
     return <>
