@@ -106,20 +106,12 @@ const columnDefs = [
     },
 ];
 
-const FloatingButtonForm = ({formChangeHandler, payload}) => {
+const GradeListForm = ({formChangeHandler, payload}) => {
     return <>
-        <div className="mt-20 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-            {`Floating Button`}
-        </div>
-        <div>
-            <div className="mb-2 block">
-                <Label htmlFor='floatingButton' value="" />
-            </div>
-            <div className="ag-theme-quartz pr-10 md:pr-0" style={{height: '200px', width: "100%"}}>
-                <AgGridTableForm name="floatingbuttons" formChangeHandler={formChangeHandler} payload={payload.floatingbuttons || []} columnDefs={columnDefs}/>
-            </div>
+        <div className="ag-theme-quartz pr-10 md:pr-0" style={{height: '200px', width: "100%"}}>
+            <AgGridTableForm name="gradelist" formChangeHandler={formChangeHandler} payload={payload?.gradelist || []} columnDefs={columnDefs}/>
         </div>
     </>
 }
 
-export default FloatingButtonForm;
+export default GradeListForm;

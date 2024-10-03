@@ -3,7 +3,7 @@ import {
     Button,
     Label 
 } from "flowbite-react";
-import AgGridTableForm from './aggrid.form';
+import AgGridTableForm from '../../_components/aggrid.form';
 
 const DeleteButtonRenderer = (params) => {
     const handleDelete = () => {

@@ -1,6 +1,7 @@
 'use client';
 import {
     Button,
+    Label,
     Spinner,
     Tabs
 } from "flowbite-react";
@@ -19,9 +20,11 @@ import {
     transformJsonLanguage
 } from '../../../../../../helpers/jsontransform.helper';
 import AdminHeader from "../../_components/header";
+import GradeForm from './_components/grade.form';
+import GradeListForm from './_components/gradelist.form';
 
 const HomepageSettingsMainForm = () => {
-    const type = 'generalsetting'
+    const type = 'homepage'
     const configName = 'general';
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({});
@@ -36,14 +39,7 @@ const HomepageSettingsMainForm = () => {
             const deTransformJson = detransformJsonLanguage(data[0]);
             setPayload(deTransformJson);
             console.log(deTransformJson);
-        } catch (error) {
-            Swal.fire({
-                allowOutsideClick: false,
-                title: 'Error Notification!',
-                text: error.toString(),
-                icon: 'error',
-            });
-        }
+        } catch (error) {console.log(error)}
     }
 
     const formChangeHandler = (e) => {
@@ -79,39 +75,7 @@ const HomepageSettingsMainForm = () => {
     const submitHandler = async (e) => {
         try {
             setIsLoading(true);
-            /* if(!validateData(payload)){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Data is not valid!",
-                    icon: 'error',
-                });
-                return;
-            } */
-
             const finalPayload = {...payload, "type": type};
-            
-            /* Handle Attachment */
-            try {
-                var formDataLogoID = new FormData();
-                payload["logo[ID]"]?.map((val) => {
-                    formDataLogoID.append("logofile", val);
-                });
-                
-                var formDataLogoEN = new FormData();
-                payload["logo[EN]"]?.map((val) => {
-                    formDataLogoEN.append("logofile", val);
-                });
-
-                const collectedPromise = [];
-                collectedPromise.push(UploadAttachment("assets", formDataLogoEN));
-                collectedPromise.push(UploadAttachment("assets", formDataLogoID));
-                
-                const [resultEN, resultID] = await Promise.all(collectedPromise);
-                
-                finalPayload["logo[EN]"] = resultEN?.data[0]?.fileURL;
-                finalPayload["logo[ID]"] = resultID?.data[0]?.fileURL;
-            } catch (error) {console.log(error);}
 
             const transformedPayload = [transformJsonLanguage(finalPayload)];
             console.log(transformedPayload);
@@ -153,14 +117,23 @@ const HomepageSettingsMainForm = () => {
 
                 <div className="mt-4 mb-4">
                     <div className="mt-4 mb-2 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                        Content Settings
+                        Grade Content Settings
                     </div>
                     <Tabs aria-label="Default tabs" variant="default">
                         <Tabs.Item title="Indonesia">
+                            <GradeForm formChangeHandler={formChangeHandler} language={"ID"} payload={payload}/>
                         </Tabs.Item>
                         <Tabs.Item title="English">
+                            <GradeForm formChangeHandler={formChangeHandler} language={"EN"} payload={payload}/>
                         </Tabs.Item>
                     </Tabs>
+                </div>
+
+                <div className="mt-4 mb-4">
+                    <div className="mb-2 block">
+                        <Label value="Grade Lists Settings" />
+                    </div>
+                    <GradeListForm formChangeHandler={formChangeHandler} payload={payload}/>
                 </div>
 
                 <div className="mt-20 space-y-4">

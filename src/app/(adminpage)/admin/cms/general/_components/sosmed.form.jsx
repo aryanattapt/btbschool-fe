@@ -4,7 +4,7 @@ import {
     FileInput,
     Label 
 } from "flowbite-react";
-import AgGridTableForm from './aggrid.form';
+import AgGridTableForm from '../../_components/aggrid.form';
 
 const LogoFileInputRenderer = (params) => {
     const handleFileChange = (event) => {
