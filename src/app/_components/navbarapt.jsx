@@ -5,7 +5,7 @@ import useLanguage from '../../hooks/useLanguage'
 import { NavbarPayload } from "../../../data";
 import { IoIosArrowDown } from "react-icons/io";
 
-const NavBar = () => {
+const NavBar = ({payload}) => {
   const [navBarPayload, setNavBarPayload] = useState(NavbarPayload);
   /* const { language } = useLanguageStore();
   const setLanguage = useLanguageStore((state) => state.setLanguage); */
@@ -106,7 +106,15 @@ const NavBar = () => {
                         <li className="relative group hover:text-[#EF802B]">
                         Quick Link
                         <ul className="absolute left-0 hidden group-hover:block bg-white text-black mt-2 min-w-[200px] shadow-lg rounded-lg z-10 flex flex-col">
-                            <li>
+                            {
+                                payload?.map((val, idx) => {
+                                    return <li key={idx}>
+                                        <a href={val?.link || '#'} className="block px-4 py-2 hover:bg-gray-200 text-center">{val?.name}</a>
+                                    </li>
+                                })
+                            }
+
+                            {/* <li>
                             <a href="#login" className="block px-4 py-2 hover:bg-gray-200 text-center">Login</a>
                             </li>
                             <li>
@@ -114,7 +122,7 @@ const NavBar = () => {
                             </li>
                             <li>
                             <a href="#settings" className="block px-4 py-2 hover:bg-gray-200 text-center">Settings</a>
-                            </li>
+                            </li> */}
                         </ul>
                         </li>
                     </ul>
@@ -194,7 +202,15 @@ const NavBar = () => {
                         <li className="relative group">
                         Quick Link
                         <ul className="absolute right-0 -left-full hidden group-hover:block bg-[#EF802B] text-white min-w-[160px] shadow-lg rounded-lg z-10 flex flex-col">
-                            <li>
+                            {
+                                payload?.map((val, idx) => {
+                                    return <li key={idx}>
+                                        <a href={val?.link || '#'} className="block px-4 py-2 hover:bg-gray-200 text-center">{val?.name}</a>
+                                    </li>
+                                })
+                            }
+
+                            {/* <li>
                             <a href="#login" className="block px-4 py-2 hover:bg-orange-400">Login</a>
                             </li>
                             <li>
@@ -202,7 +218,7 @@ const NavBar = () => {
                             </li>
                             <li>
                             <a href="#settings" className="block px-4 py-2 hover:bg-orange-400">Settings</a>
-                            </li>
+                            </li> */}
                         </ul>
                         </li>
                     </ul>

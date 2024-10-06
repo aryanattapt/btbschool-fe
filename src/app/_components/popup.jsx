@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import useLanguage from '../../hooks/useLanguage';
 
-const Popup = () => {
+const Popup = ({payload}) => {
+  const {language} = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -45,16 +47,27 @@ const Popup = () => {
           &times;
         </button>
         <div className='mt-2'>
-          <p>Please complete your application before</p>
-          <p className='mb-5 text-[#EF802B] font-semibold'>October 6, 2024, 23.59</p>
+          {/* <p>Please complete your application before</p> */}
+          <div dangerouslySetInnerHTML={{__html: payload[language]?.popuptitle || ''}}></div>
+
+          {/* <p className='mb-5 text-[#EF802B] font-semibold'>October 6, 2024, 23.59</p> */}
+          <div dangerouslySetInnerHTML={{__html: payload[language]?.popupsubtitle || ''}} className='mb-5 text-[#EF802B] font-semibold'></div>
+          
           <a 
             className="my-10 font-bold group focus:outline-none text-white bg-[#EF802B] rounded-lg px-5 py-2.5 md:py-2.5 lg:py-5 xl:py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             href="/onlineregistration"
           >
             Register Now!
           </a>
+          
           <hr className="mt-5 mb-2"></hr>
-          <p className="pt-2"><a href='/contact' className='text-[#EF802B] underline'>Click Here</a> to Redirect to Contact Page</p>
+          
+          {/* <p className="pt-2">
+            <a href='/contact' >
+            Click Here</a> to Redirect to Contact Page
+            </p> */}
+          <div dangerouslySetInnerHTML={{__html: payload[language]?.popupsubtitle2 || ''}} className='text-[#EF802B] underline' onClick={() => window.location.href = '/contact'}></div>
+          
           <button onClick={dontShowAgain} className='underline text-[12px] md:text-[18px] lg:text-[18px] xl:text-[12px]'>
             Don't Show Again
           </button>
