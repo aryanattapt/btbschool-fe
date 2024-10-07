@@ -50,6 +50,22 @@ const columnDefs = [
         editable: true
     },
     {
+        headerName: "Grade",
+        field: "grade",
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "200vw",
+        editable: true
+    },
+    {
         headerName: "Phone No",
         field: "phoneNo",
         filter: false,
@@ -66,8 +82,24 @@ const columnDefs = [
         editable: true
     },
     {
-        headerName: "WhatsApp No",
-        field: "whatsAppNo",
+        headerName: "WhatsApp No 1",
+        field: "whatsAppNo1",
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "200vw",
+        editable: true
+    },
+    {
+        headerName: "WhatsApp No 2",
+        field: "whatsAppNo2",
         filter: false,
         sortable: false,
         resizable: false,
