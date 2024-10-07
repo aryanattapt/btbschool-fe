@@ -2,13 +2,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Carousel } from "flowbite-react";
 /* import { useLanguageStore } from "../../../store/language.store"; */
-import { HomePagePayload } from "../../../data";
+/* import { HomePagePayload } from "../../../data"; */
 import useLanguage from "../../hooks/useLanguage";
 import { MdVolumeOff, MdVolumeUp } from "react-icons/md"; // Import icons
 import { GetConfig } from "../../../services/config.service";
 
 const CarouselComponents = () => {
-  const [homePageData, setHomePageData] = useState(HomePagePayload);
+  const [homePageData, setHomePageData] = useState([]);
   const { language } = useLanguage();
   const [isMuted, setIsMuted] = useState(true);
   const videoRefs = useRef([]);
@@ -35,8 +35,6 @@ const CarouselComponents = () => {
     })();
   }, []);
 
-
-  
   return (
     <Carousel
       slideInterval={5000}

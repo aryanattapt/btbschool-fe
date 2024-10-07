@@ -35,7 +35,7 @@ export default function ClientLayout({ children }) {
   return (
     <LanguageProvider>
       <div className="flex flex-col min-h-screen sm:w-100%">
-        <NavBar payload={payload?.quicklink || []}/>
+        <NavBar payload={payload}/>
         <Popup payload={payload}/>
         <main className="flex-grow">
           {children}

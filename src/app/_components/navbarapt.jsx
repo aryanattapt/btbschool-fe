@@ -62,7 +62,8 @@ const NavBar = ({payload}) => {
             <div className="flex items-center justify-between w-full lg:hidden">
                 <a href="/" className="flex items-center">
                 <img
-                    src={navBarPayload[language].logourl}
+                    src={payload[language]?.logo}
+                    /* src={navBarPayload[language].logourl} */
                     alt="logo"
                     className="h-12 md:h-16 lg:h-20 object-contain"
                 />
@@ -107,7 +108,7 @@ const NavBar = ({payload}) => {
                         Quick Link
                         <ul className="absolute left-0 hidden group-hover:block bg-white text-black mt-2 min-w-[200px] shadow-lg rounded-lg z-10 flex flex-col">
                             {
-                                payload?.map((val, idx) => {
+                                payload?.quicklink?.map((val, idx) => {
                                     return <li key={idx}>
                                         <a href={val?.link || '#'} className="block px-4 py-2 hover:bg-gray-200 text-center">{val?.name}</a>
                                     </li>
@@ -170,7 +171,8 @@ const NavBar = ({payload}) => {
             <div className="flex flex-row w-[390px] justify-between items-center">
                 <a href="/" className="flex items-center">
                 <img
-                    src={navBarPayload[language].logourl}
+                    /* src={navBarPayload[language].logourl} */
+                    src={payload[language]?.logo}
                     alt="logo"
                     className="h-10 md:h-12 lg:h-16 object-contain"
                 />
@@ -203,7 +205,7 @@ const NavBar = ({payload}) => {
                         Quick Link
                         <ul className="absolute right-0 -left-full hidden group-hover:block bg-[#EF802B] text-white min-w-[160px] shadow-lg rounded-lg z-10 flex flex-col">
                             {
-                                payload?.map((val, idx) => {
+                                payload?.quicklink?.map((val, idx) => {
                                     return <li key={idx}>
                                         <a href={val?.link || '#'} className="block px-4 py-2 hover:bg-gray-200 text-center">{val?.name}</a>
                                     </li>
