@@ -40,8 +40,24 @@ const DeleteButtonRenderer = (params) => {
 
 const columnDefs = [
     {
-        headerName: "Name",
-        field: "name",
+        headerName: "Name (ID)",
+        field: "nameID",
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "200vw",
+        editable: true
+    },
+    {
+        headerName: "Name (EN)",
+        field: "nameEN",
         filter: false,
         sortable: false,
         resizable: false,
