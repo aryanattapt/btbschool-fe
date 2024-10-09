@@ -175,6 +175,7 @@ const AlumniForm = () => {
               dateFormat="yyyy"
               showYearPicker
               autoComplete="off"
+              maxDate={new Date()}
               onKeyDown={e => e.preventDefault()}
               className="block w-full p-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
               wrapperClassName="w-full"

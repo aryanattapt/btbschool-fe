@@ -25,7 +25,7 @@ const ARDHealthFormPersonalHealth = ({ data }) => {
 					{key !== "Gender" ? (
 						<>
 							<ARDHealthFormBox classes={"min-w-56"}>{key}</ARDHealthFormBox>
-							<ARDHealthFormBox full>: {skeleton[key]}</ARDHealthFormBox>
+							<ARDHealthFormBox full> {skeleton[key]}</ARDHealthFormBox>
 						</>
 					) : (
 						<>

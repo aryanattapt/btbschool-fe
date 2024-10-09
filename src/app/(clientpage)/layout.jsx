@@ -29,8 +29,8 @@ export default function ClientLayout({ children }) {
     })();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error loading data: {error.message}</div>;
+  /* if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading data: {error.message}</div>; */
 
   return (
     <LanguageProvider>

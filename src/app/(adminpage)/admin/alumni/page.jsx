@@ -49,7 +49,15 @@ const AlumniPage = () => {
 
     const fetchAllAlumni = () => {
         FetchAlumni({})
-        .then(res => setPayload(res))
+        .then(res => {
+            const currentYearFiltered = new Date().getFullYear();
+            const startYearFiltered = currentYearFiltered - 3;
+            const filteredData = res.filter(item => {
+                const lastStudentYear = parseInt(item.laststudentyear, 10); // Convert to integer
+                return lastStudentYear >= startYearFiltered && lastStudentYear <= currentYearFiltered;
+            });
+            setPayload(filteredData)
+        })
         .catch((err) => {
             setPayload([])
             console.log(err);

@@ -6,7 +6,7 @@ const ARDTableRow = ({ label, data, breakRow = false }) => {
 			{!breakRow ? (
 				<>
 					<TD>{label}</TD>
-					<TD value>: {data}</TD>
+					<TD value> {data}</TD>
 				</>
 			) : (
 				<TD colSpan={2} />

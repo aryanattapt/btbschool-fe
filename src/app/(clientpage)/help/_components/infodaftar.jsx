@@ -1,18 +1,40 @@
 'use client'
 const { Button } = require("flowbite-react")
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContactUsPayLoad } from "../../../../../data";
 import { HelpPayload } from "../../../../../data";
 /* import { useLanguageStore } from "../../../../../store/language.store"; */
 import { HiMail, HiPhone } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import useLanguage from "../../../../hooks/useLanguage";
+import { GetConfig } from "../../../../../services/config.service";
+
+const convertPhoneNumber = (input) => {
+  try {
+    const cleaned = input.replace(/[\s()]+/g, '').replace('+', '');
+    const formatted = `+${cleaned.slice(0, 2)}${cleaned.slice(2)}`; 
+    return formatted;
+  } catch (error) {return "";}
+}
 
 const InformasiPendaftaran = () => {
     const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
     const [helpData, setHelpData] = useState(HelpPayload);
     /* const { language } = useLanguageStore(); */
     const {language} = useLanguage();
+
+    const [payload, setPayload] = useState([]);
+    useEffect(() => {
+      (async () => {
+        try {
+          const result = await GetConfig('general', {"type": "generalsetting"});
+          console.log(result[0]);
+          setPayload(result[0]?.contact);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }, []);
 
     return <div className="p-4">
         <h1 className="text-2xl font-bold text-[#00305E] text-center mb-6">
@@ -30,7 +52,7 @@ const InformasiPendaftaran = () => {
             className="flex-1 bg-[#00305E] rounded-3xl py-4 md:py-6 lg:py-8 flex flex-col justify-between"
           >
             <div className="text-white">
-              {contactUsData[language].schoolList.map((val, idx) => (
+              {/* {contactUsData[language].schoolList.map((val, idx) => (
                 <div className="px-4 md:px-6 lg:px-8" key={idx}>
                   <h1 className="font-bold text-base sm:text-xs md:text-[13px] lg:text-base xl:text-xl 2xl:text-2xl pt-4 md:pt-6 lg:pt-8">
                     {val.title}
@@ -59,7 +81,48 @@ const InformasiPendaftaran = () => {
                     </div>
                   ))}
                 </div>
-              ))}
+              ))} */}
+
+            {
+                payload?.map((val, idx) => {
+                  return <div className="px-4 md:px-6 lg:px-8" key={idx}>
+                    <h1 className="font-bold text-base sm:text-xs md:text-[13px] lg:text-base xl:text-xl 2xl:text-2xl pt-4 md:pt-6 lg:pt-8">
+                      {val?.buildingName}
+                    </h1>
+                    <h3 className="font-bold text-[16px] sm:text-[18px] md:text-[12px] lg:text-[14px] xl:text-[18px] 2xl:text-[18px] ">
+                      {val?.grade}
+                    </h3>
+                    <div className="mt-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg leading-relaxed">
+                      {val?.address}
+                    </div>
+                    <div className="flex items-center mt-2">
+                      <HiPhone className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                      <p className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg">
+                        {val?.phoneNo}
+                      </p>
+                    </div>
+                      <div className="flex items-center mt-2">
+                        <AiOutlineWhatsApp className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                        <a
+                          href={`https://wa.me/${convertPhoneNumber(val?.whatsAppNo1)}`}
+                          className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg"
+                        >
+                          {val?.whatsAppNo1}
+                        </a>
+                      </div>
+                      <div className="flex items-center mt-2">
+                        <AiOutlineWhatsApp className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                        <a
+                          href={`https://wa.me/${convertPhoneNumber(val?.whatsAppNo2)}`}
+                          className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg"
+                        >
+                          {val?.whatsAppNo2}
+                        </a>
+                      </div>
+                  </div>
+                })
+              }
+
               <div className="mx-4 my-3 flex items-center text-sm text-gray-800 border-t border-gray-200 dark:text-white dark:border-neutral-600"></div>
               <div className="px-4 sm:px-4 md:px-6 lg:px-8 xl:px-8 my-2">
                 <div className="flex items-center mt-2">

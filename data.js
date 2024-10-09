@@ -802,8 +802,8 @@ export const BTBPeduliPayload = {
 };
 
 export const NavbarPayload = {
-  genericlogourl:
-    "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png",
+  /* genericlogourl: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LogoFooter.png", */
+  genericlogourl: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LOGOENNEW.png",
   EN: {
     logourl: "https://w6i8.c1.e2-7.dev/assets/btbschool/images/LOGOBTB-EN.png",
     navbarlink: [
