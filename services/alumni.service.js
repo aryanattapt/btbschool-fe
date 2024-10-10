@@ -30,3 +30,13 @@ export const VerifyAlumni = (payload) => new Promise(async (resolve, reject) => 
         return reject(error.response.data?.message || error.message);
     }
 });
+
+export const ValidateAlumniSubmissionData = (payload) => new Promise(async (resolve, reject) => {
+    try {
+        await callInternalAPI('/alumni/submit/validate', 'POST', payload, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
+        return resolve(true);
+    } catch (error) {
+        console.log(error); 
+        return reject(error.response.data);
+    }
+});

@@ -11,7 +11,7 @@ import {
 } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
 import { HiMail } from "react-icons/hi";
-import { SubmitCareer } from '../../../../../../services/career.service';
+import { SubmitCareer, ValidateSubmitCareer } from '../../../../../../services/career.service';
 import { UploadAttachment } from '../../../../../../services/attachment.service';
 import Swal from "sweetalert2";
 import {
@@ -85,9 +85,9 @@ const CareerApplyForm = ({params}) => {
     }, []);
 
     const submitHandler = async (e) => {
-        setIsLoading(true);
-        
         try {
+            setIsLoading(true);
+            await ValidateSubmitCareer(careerPayload);
             if (!isRecaptchaValidated) {
                 await ValidateGoogleRecaptcha(captchaValue);
                 setIsRecaptchaValidated(true);
@@ -116,11 +116,21 @@ const CareerApplyForm = ({params}) => {
                 window.location.href = '/career';
             }, 5000);
         } catch (err) {
+            let errorMessage = err?.message || 'Something went wrong!';
+            if (typeof err === "string") {
+                errorMessage = err
+            } else if(typeof err === "object" && Object.keys(err.error).length > 0) {
+                errorMessage = "";
+                Object.keys(err.error).map(val => {
+                    errorMessage += err.error[val]?.message + '<br/>'
+                })
+            }
+
             Swal.fire({
                 allowOutsideClick: false,
-                title: 'Career Submission Notification!',
-                text: err || 'An error occurred',
-                icon: 'error',
+                title: "Career Submission Notification!",
+                html: errorMessage,
+                icon: "error",
             });
         } finally {
             setIsLoading(false);
@@ -137,13 +147,13 @@ const CareerApplyForm = ({params}) => {
                     Harap lengkapi formulir aplikasi di bawah ini untuk mendaftarkan diri anda.
                 </small>
             </div>
-            <div>
+            {/* <div>
                 <div className="mb-3 block">
                     <Label value="Posisi yang dilamar"/>
                     <Label value=":"/>
                     <Label value="Test"/>
                 </div>
-            </div>
+            </div> */}
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="firstname" value="Nama Depan"/>

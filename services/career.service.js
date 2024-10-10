@@ -1,9 +1,9 @@
 import { getCookie } from "cookies-next";
 import { callInternalAPI } from "../helpers/internalapi.helper";
 
-export const SubmitCareer = (contactPayload) => new Promise(async (resolve, reject) => {
+export const SubmitCareer = (payload) => new Promise(async (resolve, reject) => {
     try {
-        await callInternalAPI('/career/apply/', 'POST', contactPayload, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
+        await callInternalAPI('/career/apply/', 'POST', payload, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
         return resolve(true);
     } catch (error) {
         console.log(error); 
@@ -50,3 +50,13 @@ export const GetActiveCareerList = () => new Promise(async (resolve, reject) => 
         return reject(error.response.data?.message || error.message);
     }
 })
+
+export const ValidateSubmitCareer = (payload) => new Promise(async (resolve, reject) => {
+    try {
+        await callInternalAPI('/career/apply/validate/', 'POST', payload, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
+        return resolve(true);
+    } catch (error) {
+        console.log(error); 
+        return reject(error.response.data);
+    }
+});

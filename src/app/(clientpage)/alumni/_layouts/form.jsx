@@ -13,7 +13,7 @@ import {
 import { useRef, useState } from "react";
 import { HiMail } from "react-icons/hi";
 import { UploadAttachment } from "../../../../../services/attachment.service";
-import { SubmitAlumni } from "../../../../../services/alumni.service";
+import { SubmitAlumni, ValidateAlumniSubmissionData } from "../../../../../services/alumni.service";
 import Swal from "sweetalert2";
 import moment from 'moment';
 import DatePicker from "react-datepicker";
@@ -69,6 +69,8 @@ const AlumniForm = () => {
   const submitHandler = async (e) => {
     try {
         setIsLoading(true);
+        await ValidateAlumniSubmissionData(alumniPayload);
+
         if (!isRecaptchaValidated) {
             await ValidateGoogleRecaptcha(captchaValue);
             setIsRecaptchaValidated(true);
@@ -102,11 +104,20 @@ const AlumniForm = () => {
           window.location.href = '/alumni';
       }, 5000);
     } catch (err) {
-        // Error handling
+        let errorMessage = err?.message || 'Something went wrong!';
+        if (typeof err === "string") {
+          errorMessage = err
+        } else if(typeof err === "object" && Object.keys(err.error).length > 0) {
+          errorMessage = "";
+          Object.keys(err.error).map(val => {
+            errorMessage += err.error[val]?.message + '<br/>'
+          })
+        }
+
         Swal.fire({
             allowOutsideClick: false,
             title: "Alumni Submission Notification!",
-            html: err || "An error occurred",
+            html: errorMessage,
             icon: "error",
         });
     } finally {
