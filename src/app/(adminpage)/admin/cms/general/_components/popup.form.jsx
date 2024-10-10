@@ -4,7 +4,8 @@ import {
     Datepicker,
     Button,
     Spinner,
-    Tabs
+    Tabs,
+    TextInput
 } from "flowbite-react";
 import PopupInputForm from './popupinput.form';
 
@@ -25,6 +26,9 @@ const PopupMainForm = ({payload, formChangeHandler}) => {
                     <div className="mt-4 mb-4">
                         <PopupInputForm title="Subtitle 2" name="popupsubtitle2" payload={payload} formChangeHandler={formChangeHandler} language={"ID"}/>
                     </div>
+                    <div className="mt-4 mb-4">
+                        <PopupInputForm title="Button Text" name="buttontext" payload={payload} formChangeHandler={formChangeHandler} language={"ID"}/>
+                    </div>
                 </Tabs.Item>
                 <Tabs.Item active title="English">
                 <div className="mb-4">
@@ -36,8 +40,23 @@ const PopupMainForm = ({payload, formChangeHandler}) => {
                     <div className="mt-4 mb-4">
                         <PopupInputForm title="Subtitle 2" name="popupsubtitle2" payload={payload} formChangeHandler={formChangeHandler} language={"EN"}/>
                     </div>
+                    <div className="mt-4 mb-4">
+                        <PopupInputForm title="Button Text" name="buttontext" payload={payload} formChangeHandler={formChangeHandler} language={"EN"}/>
+                    </div>
                 </Tabs.Item>
             </Tabs>
+            <div className="mt-4 mb-4">
+                <div className="mb-2 block">
+                    <Label value="Button Link"/>
+                </div>
+                <TextInput name={`buttonlink`} value={payload[`buttonlink`]} onChange={formChangeHandler}/>
+            </div>
+            <div className="mt-4 mb-4">
+                <div className="mb-2 block">
+                    <Label value="Link"/>
+                </div>
+                <TextInput name={`link`} value={payload[`link`]} onChange={formChangeHandler}/>
+            </div>
         </div>
     </>
 };

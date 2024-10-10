@@ -55,9 +55,9 @@ const Popup = ({payload}) => {
           
           <a 
             className="my-10 font-bold group focus:outline-none text-white bg-[#EF802B] rounded-lg px-5 py-2.5 md:py-2.5 lg:py-5 xl:py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-            href="/onlineregistration"
+            href={payload?.buttonlink || '#'}
           >
-            Register Now!
+            {payload[language]?.buttontext}
           </a>
           
           <hr className="mt-5 mb-2"></hr>
@@ -66,7 +66,7 @@ const Popup = ({payload}) => {
             <a href='/contact' >
             Click Here</a> to Redirect to Contact Page
             </p> */}
-          <div dangerouslySetInnerHTML={{__html: payload[language]?.popupsubtitle2 || ''}} className='text-[#EF802B] underline' onClick={() => window.location.href = '/contact'}></div>
+          <div dangerouslySetInnerHTML={{__html: payload[language]?.popupsubtitle2 || ''}} className='text-[#EF802B] underline' onClick={() => window.location.href = payload?.link || '#'}></div>
           
           <button onClick={dontShowAgain} className='underline text-[12px] md:text-[18px] lg:text-[18px] xl:text-[12px]'>
             Don't Show Again
