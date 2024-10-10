@@ -36,10 +36,12 @@ export default function ClientLayout({ children }) {
     <LanguageProvider>
       <div className="flex flex-col min-h-screen sm:w-100%">
         <NavBar payload={payload}/>
-        <Popup payload={payload}/>
         <main className="flex-grow">
           {children}
         </main>
+        {
+          payload?.showpopup == 'true' && <Popup payload={payload}/>
+        }
         <FooterComponent payload={payload}/>
         <FloatingButtons payload={payload?.floatingbuttons || []}/>
         <GoToTop />

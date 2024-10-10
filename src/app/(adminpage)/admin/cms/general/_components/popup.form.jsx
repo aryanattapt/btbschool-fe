@@ -1,11 +1,9 @@
 'use client'
 import {
-    Label, 
-    Datepicker,
-    Button,
-    Spinner,
+    Label,
     Tabs,
-    TextInput
+    TextInput,
+    Radio
 } from "flowbite-react";
 import PopupInputForm from './popupinput.form';
 
@@ -56,6 +54,17 @@ const PopupMainForm = ({payload, formChangeHandler}) => {
                     <Label value="Link"/>
                 </div>
                 <TextInput name={`link`} value={payload[`link`]} onChange={formChangeHandler}/>
+            </div>
+            <div className="mt-4">
+                <div className="mb-2 block">
+                    <Label value="Show Popup"/>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                    <Radio checked={payload?.showpopup == 'true'} id="showpopuptrue" name="showpopup" value="true" onChange={formChangeHandler}/>
+                    <Label className="mr-4">True</Label>
+                    <Radio checked={payload?.showpopup == 'false'} id="showpopupfalse" name="showpopup" value="false" onChange={formChangeHandler}/>
+                    <Label className="mr-4">False</Label>
+                </div>
             </div>
         </div>
     </>
