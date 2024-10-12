@@ -43,13 +43,13 @@ const PopupMainForm = ({payload, formChangeHandler}) => {
                     </div>
                 </Tabs.Item>
             </Tabs>
-            <div className="mt-4 mb-4">
+            <div className="mb-4">
                 <div className="mb-2 block">
                     <Label value="Button Link"/>
                 </div>
                 <TextInput name={`buttonlink`} value={payload[`buttonlink`]} onChange={formChangeHandler}/>
             </div>
-            <div className="mt-4 mb-4">
+            <div className="mb-4">
                 <div className="mb-2 block">
                     <Label value="Link"/>
                 </div>

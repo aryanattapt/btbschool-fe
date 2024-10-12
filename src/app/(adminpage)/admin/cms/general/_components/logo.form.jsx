@@ -13,7 +13,7 @@ const LogoForm = ({formChangeHandler, language}) => {
             <div className="mb-2 block">
                 <Label htmlFor={`logo[${language}]`} value="" />
             </div>
-            <FileInput accept="image/*" multiple={true} id={`logo[${language}]`} name={`logo[${language}]`} helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg)" onChange={formChangeHandler}/>
+            <FileInput accept="image/*" multiple={true} id={`logo[${language}]`} name={`logo[${language}]`} helperText="Ukuran Maksimum 2MB. Format Gambar" onChange={formChangeHandler}/>
         </div>
     </>
 }

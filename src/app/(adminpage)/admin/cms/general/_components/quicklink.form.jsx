@@ -70,6 +70,9 @@ const QuickLinkForm = ({formChangeHandler, payload}) => {
         <div className="mt-20 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
             {`Quick Link`}
         </div>
+        <div className="mt-3 w-fit">
+            <p className="mt-1 text-sm text-gray-500">Format Link berbentuk URL (https://test.com)</p>
+        </div>
         <div>
             <div className="mb-2 block">
                 <Label htmlFor='quicklink' value="" />

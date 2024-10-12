@@ -55,12 +55,32 @@ const GeneralSettingsMainForm = () => {
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type === 'file'){
-            Object.keys(files).map((val) => {
+            const newFiles = Array.from(files);
+            const validFiles = [];
+            let isValid = true;
+
+            newFiles.forEach((file) => {
+                if (file.size >= 2 * 1024 * 1024) {
+                    isValid = false;
+                    alert(`${file.name} exceeds the 2 MB size limit.`);
+                } else {
+                    validFiles.push(file);
+                }
+            });
+
+            if (isValid) {
+                setPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : [...validFiles]
+                }));
+            }
+
+            /* Object.keys(files).map((val) => {
                 setPayload(prevState => ({
                     ...prevState,
                     [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
                 }));
-            });
+            }); */
         } else if(type === 'checkbox'){
             if(e.target.checked){
                 setPayload(prevState => ({
@@ -205,7 +225,7 @@ const GeneralSettingsMainForm = () => {
                 <div className="space-y-4">
                     <PopupForm payload={payload} formChangeHandler={formChangeHandler}/>
                 </div>
-                <div className="mt-20 space-y-4">
+                <div className="mt-3 space-y-4">
                     <Button type="submit" id="btnSaveAndSend" name="btnSaveAndSend" className="w-full md:w-auto" disabled={isLoading} onClick={submitHandler}>
                         {isLoading ? (
                             <>

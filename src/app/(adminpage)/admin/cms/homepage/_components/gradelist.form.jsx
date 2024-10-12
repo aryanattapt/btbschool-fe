@@ -9,7 +9,7 @@ import AgGridTableForm from '../../_components/aggrid.form';
 const LogoFileInputRenderer = (params) => {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
-        if (file) {
+        if (file && file.size <= 2 * 1024 * 1024) {
             params.setValue(file.name);
 
             /* Jika mau disave jadi file beneran */
@@ -23,6 +23,8 @@ const LogoFileInputRenderer = (params) => {
             };
             reader.readAsDataURL(file);
             params.api.refreshCells({ rowNodes: [params.node] });
+        } else{
+            alert(`${file.name} exceeds the 2 MB size limit.`);
         }
     };
 
@@ -124,6 +126,10 @@ const columnDefs = [
 
 const GradeListForm = ({formChangeHandler, payload}) => {
     return <>
+        <div className="mt-3 w-fit">
+            <p className="mt-1 text-sm text-gray-500">Ukuran Maksimum Logo 2 MB.</p>
+            <p className="mt-1 text-sm text-gray-500">Format Link berbentuk URL (https://test.com)</p>
+        </div>
         <div className="ag-theme-quartz pr-10 md:pr-0" style={{height: '200px', width: "100%"}}>
             <AgGridTableForm name="gradelist" formChangeHandler={formChangeHandler} payload={payload?.gradelist || []} columnDefs={columnDefs}/>
         </div>

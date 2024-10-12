@@ -48,12 +48,33 @@ const CarouselForm = () => {
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type == 'file'){
-            Object.keys(files).map((val) => {
+            const newFiles = Array.from(files);
+            const validFiles = [];
+            let isValid = true;
+            console.log(`masuk`);
+
+            newFiles.forEach((file) => {
+                if (file.size >= 1 * 1024 * 1024) {
+                    isValid = false;
+                    alert(`${file.name} exceeds the 64 MB size limit.`);
+                } else {
+                    validFiles.push(file);
+                }
+            });
+
+            if (isValid) {
+                setPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : [...validFiles]
+                }));
+            }
+
+            /* Object.keys(files).map((val) => {
                 setPayload(prevState => ({
                     ...prevState,
                     [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
                 }));
-            });
+            }); */
         } else if(type == 'checkbox'){
             if(e.target.checked){
                 setPayload(prevState => ({
@@ -169,7 +190,7 @@ const CarouselForm = () => {
                         <div className="mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
                             <Label htmlFor="carousel" value="Unggah File" />
                         </div>
-                        <FileInput accept="image/*,video/*" id="carousel" name="carousel" helperText="Ukuran Maksimum 32MB. Format Images/Video" onChange={formChangeHandler}/>
+                        <FileInput accept="image/*,video/*" id="carousel" name="carousel" helperText="Ukuran Maksimum 64MB. Format Images/Video" onChange={formChangeHandler}/>
                     </div>
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">
