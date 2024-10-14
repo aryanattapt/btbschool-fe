@@ -45,6 +45,15 @@ const SidebarComp = ({ currentPage, logoutHandler, isOpen, onClose }) => {
                             <Sidebar.Item href="/admin/cms/homepage" className={"/admin/cms/homepage" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                                 Homepage Setting
                             </Sidebar.Item>
+                            <Sidebar.Item href="/admin/cms/aboutus" className={"/admin/cms/aboutus" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                                About Us Setting
+                            </Sidebar.Item>
+                            <Sidebar.Item href="/admin/cms/btbcare" className={"/admin/cms/btbcare" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                                BTB Care Setting
+                            </Sidebar.Item>
+                            <Sidebar.Item href="/admin/cms/belajarbtb" className={"/admin/cms/belajarbtb" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                                BTB Belajar Setting
+                            </Sidebar.Item>
                         </Sidebar.Collapse>
                         <Sidebar.Collapse label="Career">
                             <Sidebar.Item href="/admin/career" className={"/admin/career" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
