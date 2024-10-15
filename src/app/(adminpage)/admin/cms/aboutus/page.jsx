@@ -1,5 +1,5 @@
 "use client";
-import { TextInput } from "flowbite-react";
+import { Button, TextInput } from "flowbite-react";
 import { useEffect } from "react";
 import { useCmsAboutUsStore } from "../../../../../../store/admin/cms/aboutUsStore";
 import { isObjectEmpty } from "../../../../../utils/checker";
@@ -20,6 +20,7 @@ const CMSAboutUs = () => {
 	);
 	const setGradeLists = useCmsAboutUsStore((state) => state.setVisiMisi);
 	const data = useCmsAboutUsStore((state) => state.data);
+	const submitData = useCmsAboutUsStore((state) => state.submitData)
 
 	useEffect(() => {
 		getInitialData();
@@ -110,6 +111,7 @@ const CMSAboutUs = () => {
 									/>
 								</div>
 							))}
+							<Button id="btnSaveAndSend" name="btnSaveAndSend" className="w-full md:w-auto mt-3" onClick={submitData}>Save</Button>
 						</div>
 					</div>
 				)}

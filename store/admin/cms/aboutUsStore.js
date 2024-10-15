@@ -1,6 +1,10 @@
 import { create } from "zustand";
 import { deepCopy } from "../../../src/utils/object";
-import { tempAboutUsPayload } from "./tempDatas";
+/* import { tempAboutUsPayload } from "./tempDatas"; */
+import {
+	GetConfig,
+	SubmitConfig
+} from '../../../services/config.service'
 
 const initialData = {
 	rawData: {},
@@ -15,6 +19,9 @@ const template = (get) => {
 	};
 };
 
+const type = 'aboutus'
+const configName = 'general';
+
 export const useCmsAboutUsStore = create((set, get) => ({
 	...initialData,
 
@@ -22,7 +29,12 @@ export const useCmsAboutUsStore = create((set, get) => ({
 		set({ [prop]: val });
 	},
 	getInitialData: async () => {
-		set({ rawData: tempAboutUsPayload, data: tempAboutUsPayload });
+		/* set({ rawData: tempAboutUsPayload, data: tempAboutUsPayload }); */
+		try {
+			let data = await GetConfig(configName, {"type": type});
+			data = data.length > 0 ? data[0]: {} 
+			set({ rawData: data, data: data });
+		} catch (error) {console.log(error);}
 	},
 	setDescription: (value) => {
 		const { data, language } = template(get);
@@ -49,4 +61,10 @@ export const useCmsAboutUsStore = create((set, get) => ({
 		data[language]["gradelists"][index][prop] = value;
 		set({ data: data });
 	},
+	submitData: async () => {
+		try {
+			const payload = get().data;
+			await SubmitConfig(configName, [{"type": "type", ...payload}]);
+		} catch (error) {console.log(error);}
+	}
 }));

@@ -7,7 +7,7 @@ import AdminHeader from "../../_components/header";
 import FieldTitle from "../_components/FieldTitle";
 import ImageAttachment from "../_components/ImageAttachment";
 import LanguageChanger from "../_components/LanguageChanger";
-import { TextInput } from "flowbite-react";
+import { Button, TextInput } from "flowbite-react";
 
 const CMSBtbCare = () => {
 	const data = useCmsBtbCareStore((state) => state.data);
@@ -17,6 +17,7 @@ const CMSBtbCare = () => {
 	const setStateLanguage = useCmsBtbCareStore(
 		(state) => state.setStateLanguage
 	);
+	const submitData = useCmsBtbCareStore((state) => state.submitData)
 
 	useEffect(() => {
 		getInitialData();
@@ -181,6 +182,7 @@ const CMSBtbCare = () => {
 									setVisiMisi(e.target.value, "text13");
 								}}
 							/>
+							<Button id="btnSaveAndSend" name="btnSaveAndSend" className="w-full md:w-auto mt-3" onClick={submitData}>Save</Button>
 						</div>
 					</div>
 				)}
