@@ -12,6 +12,7 @@ const UniversityList = ({payload, deleteHandler}) => {
                 <Table.Head>
                     <Table.HeadCell>Name</Table.HeadCell>
                     <Table.HeadCell>Logo</Table.HeadCell>
+                    <Table.HeadCell>Action</Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
                     {
@@ -33,13 +34,13 @@ const UniversityList = ({payload, deleteHandler}) => {
                                             >
                                                 Edit
                                             </Button>
-                                            <Button 
+                                            {/* <Button 
                                                 color="failure" 
                                                 onClick={() => deleteHandler(alumni._id)} 
                                                 className="mr-4"
                                             >
                                                 Delete
-                                            </Button>
+                                            </Button> */}
                                         </div>
                                     </Table.Cell>
                                 </Table.Row>

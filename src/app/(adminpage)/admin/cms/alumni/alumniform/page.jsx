@@ -3,7 +3,8 @@ import {
     Label,
     Button,
     Spinner,
-    TextInput
+    TextInput,
+    FileInput
 } from "flowbite-react";
 import { 
     useSearchParams 
@@ -11,10 +12,12 @@ import {
 import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../../_layouts/navigation';
 import {
-    DeleteConfig,
     GetConfig,
     SubmitConfig
 } from '../../../../../../../services/config.service';
+import {
+    UploadAttachment
+} from '../../../../../../../services/attachment.service';
 import Swal from "sweetalert2";
 
 const CMSAlumni = () => {
@@ -27,15 +30,15 @@ const CMSAlumni = () => {
     useEffect(() => {
         console.log(`ID: ${id}`);
         
-        if(id) {
-            // Fetch alumni data
-            GetConfig('general', {"type": "alumni"})
-            .then(res => {
-                setOriginalPayload(res[0]);
+        // Fetch alumni data
+        GetConfig('general', {"type": "alumni"})
+        .then(res => {
+            setOriginalPayload(res[0]);
 
-                // Log the response to see the data
-                console.log("Fetched Alumni Data:", res);
+            // Log the response to see the data
+            console.log("Fetched Alumni Data:", res);
 
+            if(id){
                 // Find the specific alumni based on the index (id)
                 const selectedAlumni = res[0].ceritaAlumni[id];
                 if (selectedAlumni) {
@@ -47,26 +50,30 @@ const CMSAlumni = () => {
                         icon: 'error',
                     });
                 }
-            })
-            .catch((err) => {
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: err,
-                    icon: 'error',
-                });
+            }
+        })
+        .catch((err) => {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Error Notification!',
+                text: err,
+                icon: 'error',
             });
-        }
+        });
     }, [id]);
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type === 'file'){
             Object.keys(files).forEach((val) => {
-                setPayload(prevState => ({
-                    ...prevState,
-                    [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
-                }));
+                if(files[val].size > 2*1024*1024){
+                    alert("File exceed 2 mb");
+                } else{
+                    setPayload(prevState => ({
+                        ...prevState,
+                        [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
+                    }));
+                }
             });
         } else if(type === 'checkbox'){
             if(e.target.checked){
@@ -93,19 +100,25 @@ const CMSAlumni = () => {
         try {
             setIsLoading(true);
             console.log("Submit Handler triggered");
+            console.log(payload);
 
             /* Handle Attachment */
             try {
                 let formData = new FormData();
-                const theFile = payload?.carousel[0]; /* Ganti disini input file name nya */
-                formData.append("carousel", theFile); /* Ganti disini input file name nya */
+                const theFile = payload?.image[0]; /* Ganti disini input file name nya */
+                formData.append("image", theFile); /* Ganti disini input file name nya */
 
                 var resultAssets = await UploadAttachment("assets", formData);
                 resultAssets = resultAssets?.data[0]?.fileURL;
             } catch (error) {console.log(error);}
 
-            let data = {...originalPayload, "type": "alumni", "image": resultAssets};
-            data.ceritaAlumni[id] = payload;
+            let data = {...originalPayload, "type": "alumni"};
+            if(id){
+                data.ceritaAlumni[id] = {...payload, "image": resultAssets || payload.image};
+            } else{
+                data.ceritaAlumni.push({...payload, "image": resultAssets || payload.image})
+            }
+            console.log(data);
 
             await SubmitConfig('general', [data]);
             window.location.href = '/admin/cms/alumni';            
@@ -149,6 +162,12 @@ const CMSAlumni = () => {
                 <div>
                     <Label htmlFor="testimonies" value="Testimonies"/>
                     <TextInput value={payload.testimonies || ''} id="testimonies" name="testimonies" type="text" onChange={formChangeHandler}/>
+                </div>
+                <div>
+                    <div className="mb-2 block">
+                        <Label htmlFor="image" value="Foto" />
+                    </div>
+                    <FileInput accept="image/*" id="image" name="image" helperText="Ukuran Maksimum 2MB. Format Image" onChange={formChangeHandler}/>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                     <Button 

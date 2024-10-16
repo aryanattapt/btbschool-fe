@@ -46,13 +46,13 @@ const TableTestimoni = ({payload, deleteHandler}) => {
                                             >
                                                 Edit
                                             </Button>
-                                            <Button 
+                                            {/* <Button 
                                                 color="failure" 
                                                 onClick={() => deleteHandler(alumni._id)} 
                                                 className="mr-4"
                                             >
                                                 Delete
-                                            </Button>
+                                            </Button> */}
                                         </div>
                                     </Table.Cell>
                                 </Table.Row>
