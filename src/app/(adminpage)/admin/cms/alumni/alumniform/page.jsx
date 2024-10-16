@@ -94,7 +94,17 @@ const CMSAlumni = () => {
             setIsLoading(true);
             console.log("Submit Handler triggered");
 
-            let data = {...originalPayload, "type": "alumni"};
+            /* Handle Attachment */
+            try {
+                let formData = new FormData();
+                const theFile = payload?.carousel[0]; /* Ganti disini input file name nya */
+                formData.append("carousel", theFile); /* Ganti disini input file name nya */
+
+                var resultAssets = await UploadAttachment("assets", formData);
+                resultAssets = resultAssets?.data[0]?.fileURL;
+            } catch (error) {console.log(error);}
+
+            let data = {...originalPayload, "type": "alumni", "image": resultAssets};
             data.ceritaAlumni[id] = payload;
 
             await SubmitConfig('general', [data]);
