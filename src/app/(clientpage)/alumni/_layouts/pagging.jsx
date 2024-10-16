@@ -28,7 +28,7 @@ const PaggingLayouts = ({ language, alumniPayload, activeTab, setActiveTab }) =>
                   }`}
                   onClick={() => setActiveTab("cerita-alumni")}
                 >
-                  {alumniPayload[language].pagingHeader.url[0].title}
+                  {alumniPayload[language]?.pagingHeader?.url[0]?.title}
                 </div>
               </li>
               <li className="px-10 sm:px-5 md:px-20 lg:px-4">
@@ -40,7 +40,7 @@ const PaggingLayouts = ({ language, alumniPayload, activeTab, setActiveTab }) =>
                   }`}
                   onClick={() => setActiveTab("registertext")}
                 >
-                  {alumniPayload[language].pagingHeader.url[1].title}
+                  {alumniPayload[language]?.pagingHeader?.url[1]?.title}
                 </div>
               </li>
             </ul>

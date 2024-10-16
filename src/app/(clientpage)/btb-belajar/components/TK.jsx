@@ -4,8 +4,8 @@ import { BTBBelajarPayload } from "../../../../../data";
 import { useState } from "react";
 import useLanguage from "../../../../hooks/useLanguage";
 
-const TK = () => {
-  const [btbBelajarData, setBtbBelajarData] = useState(BTBBelajarPayload);
+const TK = ({btbBelajarData}) => {
+  /* const [btbBelajarData, setBtbBelajarData] = useState(BTBBelajarPayload); */
   /* const { language } = useLanguageStore(); */
   const {language} = useLanguage();
 
@@ -14,7 +14,7 @@ const TK = () => {
       <div className="relative">
         <div className="mt-10 mb-5">
           <h1 className="md:text-[35px] text-[25px] font-semibold px-10 md:px-10 lg:px-32 xl:px-32 text-[#00305E]">
-            {btbBelajarData[language].tk.title}
+            {btbBelajarData[language]?.tk?.title}
           </h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2">
@@ -27,7 +27,7 @@ const TK = () => {
           </div>
           <div className="content-center bg-[#EF802B] p-5">
             <div className="text-center md:text-center lg:text-center xl:text-justify text-[14px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty">
-              {btbBelajarData[language].tk.introduction.paragraph}
+              {btbBelajarData[language]?.tk?.introduction?.paragraph}
             </div>
           </div>
         </div>
@@ -35,16 +35,16 @@ const TK = () => {
         <div className="mt-10 mb-5 px-10 md:px-10 lg:px-32 xl:px-32">
           <div className="border-b-8 border-[#EF802B] w-fit">
             <h1 className="text-[25px] md:text-[30px] font-semibold text-[#00305E]">
-              {btbBelajarData[language].tk.curriculum.title}
+              {btbBelajarData[language]?.tk?.curriculum?.title}
             </h1>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 px-10 md:px-10 lg:px-32 xl:px-32 mt-5 gap-12">
           <div className="text-[#000000] text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
-            <h1 className="text-balance text-[25px] lg:text-[30px]">{btbBelajarData[language].tk.curriculum.subtitle}</h1>
+            <h1 className="text-balance text-[25px] lg:text-[30px]">{btbBelajarData[language]?.tk?.curriculum?.subtitle}</h1>
             <div className="ml-5">
               <ul className="list-disc">
-                {btbBelajarData[language].tk.curriculum.components1.map(
+                {btbBelajarData[language]?.tk?.curriculum?.components1?.map(
                   (val, idx) => {
                     return <li key={idx}>{val}</li>;
                   }
@@ -52,14 +52,14 @@ const TK = () => {
               </ul>
             </div>
             <div className="mt-2 text-pretty">
-              {btbBelajarData[language].tk.curriculum.desc1}
+              {btbBelajarData[language]?.tk?.curriculum?.desc1}
             </div>
           </div>
           <div className="text-[#000000] text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
-            <h1 className="text-balance text-[25px] lg:text-[30px]">{btbBelajarData[language].tk.curriculum.subtitle2}</h1>
+            <h1 className="text-balance text-[25px] lg:text-[30px]">{btbBelajarData[language]?.tk?.curriculum?.subtitle2}</h1>
             <div className="ml-5">
               <ul className="list-disc">
-                {btbBelajarData[language].tk.curriculum.components2.map(
+                {btbBelajarData[language]?.tk?.curriculum?.components2.map(
                   (val, idx) => {
                     return <li key={idx}>{val}</li>;
                   }
@@ -67,14 +67,14 @@ const TK = () => {
               </ul>
             </div>
             <div className="mt-2 text-left text-pretty text-balance">
-              {btbBelajarData[language].tk.curriculum.desc2}
+              {btbBelajarData[language]?.tk?.curriculum?.desc2}
             </div>
           </div>
         </div>
         <div className="mt-20 flex justify-center items-center">
           <div className="border-b-8 border-[#EF802B] w-fit">
             <h1 className="text-[25px] lg:text-[30px] font-semibold text-[#00305E]">
-              {btbBelajarData[language].tk.activity.title}
+              {btbBelajarData[language]?.tk?.activity?.title}
             </h1>
           </div>
         </div>
@@ -84,17 +84,19 @@ const TK = () => {
               <div
                 className="pr-0 lg:pr-10 text-left text-balance text-[#000000] xl:leading-loose"
               >
-                {btbBelajarData[language].tk.activity.content}
+                {btbBelajarData[language]?.tk?.activity?.content}
               </div>
             </div>
           </div>
           <div className="flex">
             <div className="w-full h-full">
-              <img
-                src={`${btbBelajarData.image14}`}
-                alt="SMP"
-                className="w-full h-full object-cover"
-              />
+              {
+                btbBelajarData?.image14 && <img
+                  src={`${btbBelajarData.image14}`}
+                  alt="SMP"
+                  className="w-full h-full object-cover"
+                />
+              }
             </div>
           </div>
         </div>
@@ -102,11 +104,13 @@ const TK = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-10 text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
           <div className="flex">
             <div className="w-full h-full">
-              <img
-                src={`${btbBelajarData.image15}`}
-                alt="SMP"
-                className="w-full h-full object-cover"
-              />
+              {
+                btbBelajarData?.image15 && <img
+                  src={`${btbBelajarData.image15}`}
+                  alt="SMP"
+                  className="w-full h-full object-cover"
+                />
+              }
             </div>
           </div>
           <div className="flex">
@@ -118,20 +122,20 @@ const TK = () => {
                 <div>
                   <h1 className="font-semibold text-[#000000]">
                     {/* PROGRAM KAMI */}
-                    {btbBelajarData[language].tk.programs.title}
+                    {btbBelajarData[language]?.tk?.programs?.title}
                   </h1>
                 </div>
                 <div className="grid grid-cols-1 gap-8">
                   <div>
                     <ul className="list-disc">
-                      {btbBelajarData[language].tk.programs.list1.map(
+                      {btbBelajarData[language]?.tk?.programs?.list1?.map(
                         (val, idx) => {
                           return <li key={idx}>{val}</li>;
                         }
                       )}
                     </ul>
                     <div className="pt-1">
-                      {btbBelajarData[language].tk.programs.desc}
+                      {btbBelajarData[language]?.tk?.programs?.desc}
                     </div>
                   </div>
                 </div>
@@ -145,7 +149,7 @@ const TK = () => {
             <div className="border-b-8 border-[#EF802B] w-fit">
               <h1 className="text-[25px] lg:text-[30px] font-semibold text-[#00305E]">
                 {/* DI LUAR RUANGAN */}
-                {btbBelajarData[language].tk.outdoor.title}
+                {btbBelajarData[language]?.tk?.outdoor?.title}
               </h1>
             </div>
           </div>
@@ -164,11 +168,11 @@ const TK = () => {
                 <div className="pl-0 xl:pl-5 text-left md:text-justify lg:text-justify xl:text-justify md:text-left lg:text-left xl:text-left">
                   <div>
                     <h1 className="font-semibold text-[16px] lg:text-[30px] xl:text-[20px]">
-                      {btbBelajarData[language].tk.outdoor.text}
+                      {btbBelajarData[language]?.tk?.outdoor?.text}
                     </h1>
                   </div>
                   <div className="text-justify text-[14px] md:text-[16px]">
-                    {btbBelajarData[language].tk.outdoor.paragraph}
+                    {btbBelajarData[language]?.tk?.outdoor?.paragraph}
                   </div>
                 </div>
               </div>

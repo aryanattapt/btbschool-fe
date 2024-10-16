@@ -3,15 +3,24 @@ import Banner from "./components/banner";
 import Pagging from "./components/pagging";
 import useLanguage from '../../../hooks/useLanguage';
 import { AboutUsPayload } from "../../../../data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pengenalan from "./components/pengenalan";
 import VisiMisi from "./components/visi-misi";
 import JenjangPendidikan from "./components/jenjang-pendidikan";
+import { GetConfig } from "../../../../services/config.service";
 
 const AboutUsPage = () => {
-  const [aboutUsData, setAboutUsData] = useState(AboutUsPayload);
+  const [aboutUsData, setAboutUsData] = useState({});
   const {language} = useLanguage();
   const [activeTab, setActiveTab] = useState("pengenalan");
+
+  useEffect(() => {
+    try {
+      GetConfig('general', {"type": "aboutus"})
+      .then((res) => setAboutUsData(res[0]))
+      .catch((err) => console.log(err))
+    } catch (error) {console.log(error);}
+  }, [])
 
   return (
     <>
@@ -33,7 +42,7 @@ const AboutUsPage = () => {
             {/* Pengajar BTB mendorong para murid untuk dapat menemukan tempatnya di dunia yang memiliki tantangan 
           dan peluang tidak terbatas ini. Mereka membimbing para murid untuk berpikir, bertindak, dan menerima 
           rekannya dan diri mereka sendiri. */}
-            {aboutUsData[language].smallparagraph}
+            {aboutUsData[language]?.smallparagraph}
           </div>
         </div>
       </div>

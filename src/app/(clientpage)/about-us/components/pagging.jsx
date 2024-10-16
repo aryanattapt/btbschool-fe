@@ -14,7 +14,7 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
                   }`}
                   onClick={() => setActiveTab("pengenalan")}
                 >
-                  {aboutUsData[language].pagingHeader.title}
+                  {aboutUsData[language]?.pagingHeader?.title}
                 </div>
               </h1>
             </div>
@@ -31,7 +31,7 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
                   onClick={() => setActiveTab("pengenalan")}
                 >
                   {/* Pengenalan */}
-                  {aboutUsData[language].pagingHeader.url[0].title}
+                  {aboutUsData[language]?.pagingHeader?.url[0]?.title}
                 </div>
               </li>
               <li className="md:px-20 sm:px-8 px-5 lg:px-10 xl:px-20">
@@ -44,7 +44,7 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
                   onClick={() => setActiveTab("visi-misi")}
                 >
                   {/* Visi Misi */}
-                  {aboutUsData[language].pagingHeader.url[1].title}
+                  {aboutUsData[language]?.pagingHeader?.url[1]?.title}
                 </div>
               </li>
               <li className="sm:px-8 md:px-20 px-5 lg:px-10 xl:px-20">
@@ -57,7 +57,7 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
                   onClick={() => setActiveTab("jenjang-pendidikan")}
                 >
                   {/* Jenjang Pendidikan */}
-                  {aboutUsData[language].pagingHeader.url[2].title}
+                  {aboutUsData[language]?.pagingHeader?.url[2]?.title}
                 </div>
               </li>
             </ul>

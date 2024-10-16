@@ -11,25 +11,25 @@ const VisiMisiPage = ({ data, language }) => {
         <div>
           <h2 className="md:text-[25px] text-[28px] mb-[10px] font-semibold">
             {/* Visi */}
-            {data[language].visimisi.titlevisi}
+            {data[language]?.visimisi?.titlevisi}
           </h2>
           <p className="text-[14px] md:text-[16px] leading-[35px]">
             {/* Untuk memberikan pendidikan holistik dan membina siswa untuk menjadi
             pemimpin yang dinamis dalam masyarakat global. */}
-            {data[language].visimisi.descvisi}
+            {data[language]?.visimisi?.descvisi}
           </p>
           <h2 className="md:text-[25px] text-[28px] mb-[10px] font-semibold mt-3">
             {/* Misi */}
-            {data[language].visimisi.titlemisi}
+            {data[language]?.visimisi?.titlemisi}
           </h2>
           <p className="text-[14px] md:text-[16px] leading-[35px]">
             {/* Menyelenggarakan pendidikan internasional berkualitas yang akan
             mengembangkan kebutuhan individu siswa secara akademis, emosional,
             fisik dan sosial dengan:  */}
-            {data[language].visimisi.descmisi}
+            {data[language]?.visimisi?.descmisi}
           </p>
           <ul className="list-disc text-[14px] md:text-[16px]">
-            {data[language].visimisi.misilist.map((val, idx) => {
+            {data[language]?.visimisi?.misilist.map((val, idx) => {
               return <li key={idx}>{val}</li>;
             })}
             {/* <li>Menanamkan nilai moral dan budi pekerti
@@ -42,12 +42,14 @@ const VisiMisiPage = ({ data, language }) => {
           </ul>
         </div>
         <div className="pl-[0px] md:pl-[50px] py-5 md:py-5 xl:py-0">
-          <img
-            // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
-            src={`${data.image2}`}
-            alt="aboutus2"
-            className="md:h-[500px] md:w-[546px] px-4 object-cover"
-          />
+          {
+            data?.image2 && <img
+              // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
+              src={`${data?.image2}`}
+              alt="aboutus2"
+              className="md:h-[500px] md:w-[546px] px-4 object-cover"
+            />
+          }
         </div>
       </div>
     </>

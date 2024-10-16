@@ -4,13 +4,22 @@ import PendaftaranAlumni from "./_layouts/pendaftaran-alumni";
 import Banner from "./_layouts/banner";
 import Pagging from "./_layouts/pagging";
 import useLanguage from "../../../hooks/useLanguage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {AlumniPayload} from '../../../../data';
+import { GetConfig } from "../../../../services/config.service";
 
 const AlumniPage = () => {
-  const [alumniPayload, setAlumniPayload] = useState(AlumniPayload);
+  const [alumniPayload, setAlumniPayload] = useState({});
   const {language} = useLanguage();
   const [activeTab, setActiveTab] = useState("cerita-alumni");
+
+  useEffect(() => {
+    try {
+      GetConfig('general', {"type": "alumni"})
+      .then((res) => setAlumniPayload(res[0]))
+      .catch((err) => console.log(err))
+    } catch (error) {console.log(error);}
+  }, [])
 
   return (
     <>

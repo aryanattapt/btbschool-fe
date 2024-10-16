@@ -16,7 +16,7 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                   }`}
                   onClick={() => setActiveTab("introduction")}
                 >
-                  {btbPeduliData[language].btbpedulititle}
+                  {btbPeduliData[language]?.btbpedulititle}
                 </div>
               </h1>
             </div>
@@ -33,7 +33,7 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                   onClick={() => setActiveTab("peduli-lingkungan")}
                 >
                   {/* Peduli Lingkungan */}
-                  {btbPeduliData[language].pedulilingkungantitle}
+                  {btbPeduliData[language]?.pedulilingkungantitle}
                 </div>
               </li>
               <li className="px-10 sm:px-5 md:px-20 lg:px-4">
@@ -46,7 +46,7 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                   onClick={() => setActiveTab("sukarelawan")}
                 >
                   {/* Sukarelawan */}
-                  {btbPeduliData[language].sukarelawantitle}
+                  {btbPeduliData[language]?.sukarelawantitle}
                 </div>
               </li>
               <li className="px-10 sm:px-5 md:px-20 lg:px-4">
@@ -59,7 +59,7 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                   onClick={() => setActiveTab("tangan-penolong")}
                 >
                   {/* Environment */}
-                  {btbPeduliData[language].tanganpenolongtitle}
+                  {btbPeduliData[language]?.tanganpenolongtitle}
                 </div>
               </li>
             </ul>
