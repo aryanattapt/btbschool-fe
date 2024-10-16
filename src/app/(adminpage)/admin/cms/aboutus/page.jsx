@@ -1,6 +1,6 @@
 "use client";
 import { Button, TextInput } from "flowbite-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCmsAboutUsStore } from "../../../../../../store/admin/cms/aboutUsStore";
 import { isObjectEmpty } from "../../../../../utils/checker";
 import AdminHeader from "../../_components/header";
@@ -10,6 +10,7 @@ import ImageAttachment from "../_components/ImageAttachment";
 import LanguageChanger from "../_components/LanguageChanger";
 
 const CMSAboutUs = () => {
+	const rawData = useCmsAboutUsStore((state) => state.rawData);
 	const setState = useCmsAboutUsStore((state) => state.setState);
 	const language = useCmsAboutUsStore((state) => state.language);
 	const getInitialData = useCmsAboutUsStore((state) => state.getInitialData);
@@ -20,18 +21,25 @@ const CMSAboutUs = () => {
 	);
 	const setGradeLists = useCmsAboutUsStore((state) => state.setVisiMisi);
 	const data = useCmsAboutUsStore((state) => state.data);
-	const submitData = useCmsAboutUsStore((state) => state.submitData)
+	const submitData = useCmsAboutUsStore((state) => state.submitData);
+	// const onChangeAttachment = useCmsAboutUsStore(
+	// 	(state) => state.onChangeAttachment
+	// );
+
+	const [attachment, setAttachment] = useState({});
 
 	useEffect(() => {
 		getInitialData();
 	}, []);
 
-	const onChangeAttachment = (e, prop) => {
-		if (e.target.files.length > 0) {
-			setState(e.target.files[0], prop);
+	const onChangeAttachment = (file, prop) => {
+		if (file.length > 0) {
+			attachment[prop] = file[0];
 		} else {
-			setState("", prop);
+			// setState("", prop);
+			attachment[prop] = rawData[prop];
 		}
+		setAttachment({ ...attachment });
 	};
 
 	const onChangeGradeListAttachment = (e, prop) => {
@@ -40,6 +48,26 @@ const CMSAboutUs = () => {
 		} else {
 			setGradeLists("", prop);
 		}
+	};
+	useEffect(() => {
+		if (!isObjectEmpty(rawData)) {
+			setAttachment({
+				image1: rawData["image1"],
+				image2: rawData["image2"],
+				image3: rawData["image3"],
+				image4: rawData["image4"],
+				image5: rawData["image5"],
+				image6: rawData["image6"],
+			});
+		}
+	}, [rawData]);
+
+	const onSubmitData = () => {
+		const container = {};
+		Object.keys(attachment).forEach((key) => {
+			if (typeof attachment[key] === "object") container[key] = attachment[key];
+		});
+		submitData(container);
 	};
 
 	return (
@@ -52,12 +80,27 @@ const CMSAboutUs = () => {
 						{/* Pengenanlan */}
 						<FieldTitle>Gambar Pengenalan</FieldTitle>
 						<ImageAttachment
-							onChange={(e) => onChangeAttachment(e, "image1")}
+							id="image1"
+							onChange={(e) => onChangeAttachment(e.target.files, "image1")}
 						/>
 						<FieldTitle>Gambar Visi Misi</FieldTitle>
 						<ImageAttachment
-							onChange={(e) => onChangeAttachment(e, "image2")}
+							id="image2"
+							onChange={(e) => onChangeAttachment(e.target.files, "image2")}
 						/>
+
+						<FieldTitle>List Grade</FieldTitle>
+						{data["ID"]["gradelists"].map((res, index) => (
+							<div className="mb-3" key={index}>
+								<h6>{res.title}</h6>
+								<ImageAttachment
+									id={`image${index + 3}`}
+									onChange={(e) =>
+										onChangeAttachment(e.target.files, `image${index + 3}`)
+									}
+								/>
+							</div>
+						))}
 						<div className="mt-6">
 							<LanguageChanger
 								onChange={(val) => setState(val, "language")}
@@ -102,16 +145,14 @@ const CMSAboutUs = () => {
 									setVisiMisi(e.target.value, "smallparagraph");
 								}}
 							/>
-							<FieldTitle>List Grade</FieldTitle>
-							{data[language]["gradelists"].map((res, index) => (
-								<div className="mb-3">
-									<h6>{res.title}</h6>
-									<ImageAttachment
-										onChange={(e) => onChangeGradeListAttachment(e, "image")}
-									/>
-								</div>
-							))}
-							<Button id="btnSaveAndSend" name="btnSaveAndSend" className="w-full md:w-auto mt-3" onClick={submitData}>Save</Button>
+							<Button
+								id="btnSaveAndSend"
+								name="btnSaveAndSend"
+								className="w-full md:w-auto mt-3"
+								onClick={onSubmitData}
+							>
+								Save
+							</Button>
 						</div>
 					</div>
 				)}
