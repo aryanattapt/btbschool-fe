@@ -12,13 +12,15 @@ import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../../_layouts/navigation';
 import {
     DeleteConfig,
-    GetConfig
+    GetConfig,
+    SubmitConfig
 } from '../../../../../../../services/config.service';
 import Swal from "sweetalert2";
 
 const CMSAlumni = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
+    const [originalData, setOriginalData] = useState({});
     const searchParams = useSearchParams();
     const id = searchParams.get("id"); // Get the id from URL
 
@@ -29,6 +31,8 @@ const CMSAlumni = () => {
             // Fetch alumni data
             GetConfig('general', {"type": "alumni"})
             .then(res => {
+                setOriginalData(res[0]);
+
                 // Log the response to see the data
                 console.log("Fetched Alumni Data:", res);
 
@@ -89,23 +93,33 @@ const CMSAlumni = () => {
         console.log("Submit Handler triggered");
         if(!id) { delete payload._id }
         console.log("Payload:", payload);
-        setIsLoading(true);
+        // setIsLoading(true);
 
-        SubmitConfig('alumni', [payload])
-        .then(res => {
-            setPayload({});
-            setIsLoading(false);
-            window.location.href = '/admin/cms/alumni';
-        })
-        .catch((err) => {
-            setIsLoading(false);
-            Swal.fire({
-                allowOutsideClick: false,
-                title: 'Submit Notification!',
-                text: err,
-                icon: 'error',
-            });
-        });
+        let data = [...originalData?.ceritaAlumni];
+        data[id] = payload;
+        console.log(data)
+
+        setOriginalData(prevState => ({
+            ...prevState,
+            "ceritaAlumni": [...data]
+        }))
+        console.log(originalData)
+
+        // SubmitConfig('alumni', [originalData])
+        // .then(res => {
+        //     setPayload({});
+        //     setIsLoading(false);
+        //     // window.location.href = '/admin/cms/alumni';
+        // })
+        // .catch((err) => {
+        //     setIsLoading(false);
+        //     Swal.fire({
+        //         allowOutsideClick: false,
+        //         title: 'Submit Notification!',
+        //         text: err,
+        //         icon: 'error',
+        //     });
+        // });
     };
 
     return (
