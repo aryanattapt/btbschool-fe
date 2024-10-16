@@ -42,13 +42,6 @@ const CMSAboutUs = () => {
 		setAttachment({ ...attachment });
 	};
 
-	const onChangeGradeListAttachment = (e, prop) => {
-		if (e.target.files.length > 0) {
-			setGradeLists(e.target.files[0], prop);
-		} else {
-			setGradeLists("", prop);
-		}
-	};
 	useEffect(() => {
 		if (!isObjectEmpty(rawData)) {
 			setAttachment({
