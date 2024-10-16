@@ -12,11 +12,13 @@ import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../../_layouts/navigation';
 import {
     DeleteConfig,
-    GetConfig
+    GetConfig,
+    SubmitConfig
 } from '../../../../../../../services/config.service';
 import Swal from "sweetalert2";
 
 const CMSAlumni = () => {
+    const [originalPayload, setOriginalPayload] = useState([])
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams();
@@ -29,6 +31,8 @@ const CMSAlumni = () => {
             // Fetch alumni data
             GetConfig('general', {"type": "alumni"})
             .then(res => {
+                setOriginalPayload(res[0]);
+
                 // Log the response to see the data
                 console.log("Fetched Alumni Data:", res);
 
@@ -85,27 +89,27 @@ const CMSAlumni = () => {
         }
     };
 
-    const submitHandler = (e) => {
-        console.log("Submit Handler triggered");
-        if(!id) { delete payload._id }
-        console.log("Payload:", payload);
-        setIsLoading(true);
+    const submitHandler = async (e) => {
+        try {
+            setIsLoading(true);
+            console.log("Submit Handler triggered");
 
-        SubmitConfig('alumni', [payload])
-        .then(res => {
-            setPayload({});
-            setIsLoading(false);
-            window.location.href = '/admin/cms/alumni';
-        })
-        .catch((err) => {
-            setIsLoading(false);
+            let data = {...originalPayload, "type": "alumni"};
+            data.ceritaAlumni[id] = payload;
+
+            await SubmitConfig('general', [data]);
+            window.location.href = '/admin/cms/alumni';            
+        } catch (error) {
+            console.log(error);
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Submit Notification!',
-                text: err,
+                text: error.toString(),
                 icon: 'error',
             });
-        });
+        } finally{
+            setIsLoading(false);
+        }
     };
 
     return (
