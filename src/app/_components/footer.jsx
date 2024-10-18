@@ -52,7 +52,7 @@ const FooterComponent = ({payload}) => {
                   </a>
                 </div>
               </div>
-              <div className="md:py-0 py-4 text-center md:text-left md:mt-5">
+              {/* <div className="md:py-0 py-4 text-center md:text-left md:mt-5">
                 <h2 className="font-semibold md:text-[30px] text-[20px]">
                   {footerPayload[language].pagenavtitle}
                 </h2>
@@ -70,7 +70,7 @@ const FooterComponent = ({payload}) => {
                     );
                   })}
                 </div>
-              </div>
+              </div> */}
             </div>
             <div>
               <h1 className="font-semibold md:text-[30px] text-[20px] md:text-left text-center">
@@ -126,7 +126,7 @@ const FooterComponent = ({payload}) => {
                         </div>
                         <div className="xl:text-[20px] md:text-[18px] text-[14.7px] md:text-left text-center">
                           <div className="xl:leading-[1.5rem] font-semibold flex xl:text-left">
-                            {val?.address}
+                            <a href={val?.mapsLocationEmbeded} target="_blank">{val?.address}</a>
                           </div>
                         </div>
                       </div>
@@ -156,7 +156,7 @@ const FooterComponent = ({payload}) => {
                   );
                 })
               }
-              <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 md:mt-[15px] md:gap-6 xl:gap-0">
+              <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 md:mt-[15px] md:gap-6 xl:gap-12">
                 {/* <div className="md:mt-2 mt-10 justify-self-center flex flex-col items-center">
                   <a href="/calendar-academic">
                     <button
