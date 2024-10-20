@@ -19,7 +19,6 @@ export default function ClientLayout({ children }) {
       try {
         setLoading(true);
         const result = await GetConfig('general', {"type": "generalsetting"});
-        console.log(result[0]);
         setPayload(result[0]);
       } catch (error) {
         setError(error);

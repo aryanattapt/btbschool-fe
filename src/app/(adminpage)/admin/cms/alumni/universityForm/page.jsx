@@ -21,45 +21,22 @@ import {
 import Swal from "sweetalert2";
 
 const CMSAlumni = () => {
-    const [originalPayload, setOriginalPayload] = useState([])
+    const type = {"type": "alumni.university"};
+    const configName = "general";
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams();
     const id = searchParams.get("id"); // Get the id from URL
 
     useEffect(() => {
-        console.log(`ID: ${id}`);
-        
-        // Fetch alumni data
-        GetConfig('general', {"type": "alumni"})
-        .then(res => {
-            setOriginalPayload(res[0]);
-
-            // Log the response to see the data
-            console.log("Fetched Alumni Data:", res);
-
-            if(id){
-                // Find the specific alumni based on the index (id)
-                const selectedAlumni = res[0].ceritaAlumniFlag[id];
-                if (selectedAlumni) {
-                    setPayload(selectedAlumni);  // Set the specific alumni data in payload
-                } else {
-                    Swal.fire({
-                        title: 'Alumni Not Found!',
-                        text: `No alumni found with id: ${id}`,
-                        icon: 'error',
-                    });
-                }
-            }
-        })
-        .catch((err) => {
-            Swal.fire({
-                allowOutsideClick: false,
-                title: 'Error Notification!',
-                text: err,
-                icon: 'error',
-            });
-    });
+        if(id){
+            (async (id) => {
+                try {
+                    const result = await GetConfig("general", {...type, "_id": id});
+                    setPayload(result[0]);
+                } catch (error) {console.log(error);}
+            })(id)
+        }
     }, [id]);
 
     const formChangeHandler = (e) => {
@@ -99,29 +76,32 @@ const CMSAlumni = () => {
     const submitHandler = async (e) => {
         try {
             setIsLoading(true);
-            console.log("Submit Handler triggered");
-            console.log(payload);
+            const finalData = {...payload, ...type};
 
             /* Handle Attachment */
             try {
                 let formData = new FormData();
-                const theFile = payload?.image[0]; /* Ganti disini input file name nya */
-                formData.append("image", theFile); /* Ganti disini input file name nya */
+                formData.append("image", payload?.universityImage[0]);
 
                 var resultAssets = await UploadAttachment("assets", formData);
                 resultAssets = resultAssets?.data[0]?.fileURL;
+                if(resultAssets){
+                    finalData.image = resultAssets;
+                    delete finalData.universityImage;
+                }
             } catch (error) {console.log(error);}
 
-            let data = {...originalPayload, "type": "alumni"};
-            if(id){
-                data.ceritaAlumniFlag[id] = {...payload, "image": resultAssets || payload.image};
-            } else{
-                data.ceritaAlumniFlag.push({...payload, "image": resultAssets || payload.image})
-            }
-            console.log(data);
-
-            await SubmitConfig('general', [data]);
-            window.location.href = '/admin/cms/alumni';          
+            console.log([finalData]);
+            await SubmitConfig(configName, [finalData]);
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Submit Notification!',
+                text: "Success!",
+                icon: 'info',
+            });
+            setTimeout(() => {
+                window.location.href = '/admin/cms/alumni';
+            }, 5*1000); 
         } catch (error) {
             console.log(error);
             Swal.fire({
@@ -149,9 +129,9 @@ const CMSAlumni = () => {
                 </div>
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="image" value="Foto" />
+                        <Label htmlFor="universityImage" value="Foto" />
                     </div>
-                    <FileInput accept="image/*" id="image" name="image" helperText="Ukuran Maksimum 2MB. Format Image" onChange={formChangeHandler}/>
+                    <FileInput accept="image/*" id="universityImage" name="universityImage" helperText="Ukuran Maksimum 2MB. Format Image" onChange={formChangeHandler}/>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                     <Button 

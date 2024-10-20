@@ -25,7 +25,7 @@ const CustomNextArrow = (props) => {
 };
 
 
-const CeritaAlumni = ({ data, language }) => {
+const CeritaAlumni = ({ alumniPayload, alumniStoryPayload, alumniUniversityPayload, language }) => {
     const settingsTestimonies = {
         dots: true,
         infinite: true,
@@ -62,14 +62,14 @@ const CeritaAlumni = ({ data, language }) => {
     <div className="px-12 pb-12">
         <div className="flex flex-col items-start">
             <h2 className="text-[#00305E] text-[25px] md:text-[50px] font-semibold mx-5 my-5">
-                {data[language]?.pagingHeader?.url[0]?.title}
+                {alumniPayload[language]?.pagingHeader?.url[0]?.title}
             </h2>
         </div>
         <div className="slider-container">
         <div className="bg-slate-300 rounded mb-20">
         {/* <div className="bg-slate-300 rounded mb-20 min-h-[20rem] sm:min-h-[25rem] md:min-h-[30rem] lg:min-h-[35rem] xl:min-h-[40rem]"> */}
             <Slider {...settingsTestimonies}>
-                {data?.ceritaAlumni?.map((val, idx) => {
+                {alumniStoryPayload?.map((val, idx) => {
                     return(
                     <div key={idx}>
                         <div className="p-10 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
@@ -102,7 +102,7 @@ const CeritaAlumni = ({ data, language }) => {
 
         <div className="my-5 text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
             <h2 className="text-[#00305E] text-[25px] md:text-[50px] mx-5">
-                {data[language]?.pagingHeader?.url[0]?.subtitle}
+                {alumniPayload[language]?.pagingHeader?.url[0]?.subtitle}
             </h2>
             <p className="mx-5 mb-5">
                 Kami berkomitmen mempersiapkan setiap murid untuk meraih sukses di universitas terkemuka, baik di dalam maupun luar negeri.
@@ -112,7 +112,8 @@ const CeritaAlumni = ({ data, language }) => {
         </div>
         <div className="slider-container">
             <Slider {...settingsFlag}>
-                {data?.ceritaAlumniFlag?.map((val, idx) => {
+                {alumniUniversityPayload?.map((val, idx) => {
+                    console.log(idx);
                     return(
                         <div key={idx} className="relative">
                             {

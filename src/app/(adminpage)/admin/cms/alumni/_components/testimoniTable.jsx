@@ -1,11 +1,6 @@
-'use client'
 import { Button, Table } from "flowbite-react";
-import { useEffect } from "react";
 
 const TableTestimoni = ({payload, deleteHandler}) => {
-    useEffect(() => {
-        console.log("Payload data:", payload["ceritaAlumni"]);
-    }, [payload]);
     return (
         <div className="overflow-x-auto">
             <Table hoverable>
@@ -19,40 +14,32 @@ const TableTestimoni = ({payload, deleteHandler}) => {
                 </Table.Head>
                 <Table.Body className="divide-y">
                     {
-                        payload && payload["ceritaAlumni"] && payload["ceritaAlumni"].length > 0 ? (
-                            payload["ceritaAlumni"].map((alumni, idx) => (
+                        payload && payload?.length > 0 ? (
+                            payload?.map((alumni, idx) => (
                                 <Table.Row key={idx} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {alumni.name}
+                                        {alumni?.name}
                                     </Table.Cell>
                                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {alumni.class}
+                                        {alumni?.class}
                                     </Table.Cell>
                                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {alumni.university}
+                                        {alumni?.university}
                                     </Table.Cell>
                                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {alumni.major}
+                                        {alumni?.major}
                                     </Table.Cell>
                                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {alumni.testimonies}
+                                        {alumni?.testimonies}
                                     </Table.Cell>
                                     <Table.Cell>
                                         <div className="flex flex-wrap gap-2">
-                                            <Button 
-                                                color="warning" 
-                                                onClick={() => window.location.href = '/admin/cms/alumni/alumniform?id=' + idx} 
-                                                className="mr-4"
-                                            >
+                                            <Button color="warning" onClick={() => window.location.href = '/admin/cms/alumni/alumniform?id=' + alumni?._id} className="mr-4">
                                                 Edit
                                             </Button>
-                                            {/* <Button 
-                                                color="failure" 
-                                                onClick={() => deleteHandler(alumni._id)} 
-                                                className="mr-4"
-                                            >
+                                            <Button color="failure" onClick={() => deleteHandler(alumni?.type, alumni?._id)} className="mr-4">
                                                 Delete
-                                            </Button> */}
+                                            </Button>
                                         </div>
                                     </Table.Cell>
                                 </Table.Row>
@@ -60,7 +47,7 @@ const TableTestimoni = ({payload, deleteHandler}) => {
                         ) : (
                             <Table.Row>
                                 <Table.Cell colSpan={6} className="text-center">
-                                    Loading...
+                                    Data not found...
                                 </Table.Cell>
                             </Table.Row>
                         )
