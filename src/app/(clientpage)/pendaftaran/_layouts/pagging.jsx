@@ -15,7 +15,7 @@ const PaggingLayouts = ({
               <a href="/onlineregistration">
                 <h1 className="text-[25px] md:text-[25px] text-center font-semibold py-8 md:py-10">
                   <div className="cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600">
-                    {pendaftaranData[language].mainTitle}
+                    {pendaftaranData[language]?.mainTitle}
                   </div>
                 </h1>
               </a>
@@ -32,7 +32,7 @@ const PaggingLayouts = ({
                   }`}
                   onClick={() => setActiveTab("enrolment")}
                 >
-                  {pendaftaranData[language].pagingHeader.url[0].title}
+                  {pendaftaranData[language]?.pagingHeader?.url[0]?.title}
                 </div>
               </li>
               <li className="px-10 sm:px-4 md:px-2 lg:px-4 xl:px-[100px]">
@@ -44,7 +44,7 @@ const PaggingLayouts = ({
                   }`}
                   onClick={() => setActiveTab("beasiswa")}
                 >
-                  {pendaftaranData[language].pagingHeader.url[1].title}
+                  {pendaftaranData[language]?.pagingHeader?.url[1]?.title}
                 </div>
               </li>
               <li className="px-10 sm:px-4 md:px-2 lg:px-4 xl:px-[100px]">
@@ -56,7 +56,7 @@ const PaggingLayouts = ({
                   }`}
                   onClick={() => setActiveTab("tur-sekolah")}
                 >
-                  {pendaftaranData[language].pagingHeader.url[2].title}
+                  {pendaftaranData[language]?.pagingHeader?.url[2]?.title}
                 </div>
               </li>
             </ul>
