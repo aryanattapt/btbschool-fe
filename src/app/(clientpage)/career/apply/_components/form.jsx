@@ -24,6 +24,7 @@ import {
 import { GetCountry } from '../../../../../../services/country.service'
 
 const CareerApplyForm = ({params}) => {
+    const [errorPayload, setErrorPayload] = useState({});
     const [isLoading, setIsLoading] = useState(null);
     const [careerPayload, setCareerPayload] = useState({"careerid": params.id});
 
@@ -34,23 +35,46 @@ const CareerApplyForm = ({params}) => {
     const [isRecaptchaValidated, setIsRecaptchaValidated] = useState(false);
     const captchaRef = useRef();
 
+    const fileInputRef = useRef(null);
+    const clearFile = (name) => {
+        fileInputRef.current.value = null;
+        setCareerPayload(prevState => ({
+            ...prevState,
+            [name]: null,
+        }));
+    }
+
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
-        console.log(name);
-        console.log(convertPhoneNumberToInternational(value));
         if(name === 'phoneno'){
-            console.log('masuk');
             setCareerPayload(prevState => ({
                 ...prevState,
                 [name]: convertPhoneNumberToInternational(value),
             }));
         } else if(type == 'file'){
-            Object.keys(files).map((val) => {
+            const validFiles = [];
+            const maxFileSize = 5 * 1024 * 1024;
+            Object.keys(files).forEach((key) => {
+                const file = files[key];
+                if (file.type === 'application/pdf') {
+                    if (file.size <= maxFileSize) {
+                        validFiles.push(file);
+                    } else {
+                        clearFile(name);
+                        alert(`${file.name} exceeds the maximum size of 5 MB.`);
+                    }
+                } else {
+                    clearFile(name);
+                    alert(`${file.name} is not a valid PDF file.`);
+                }
+            });
+
+            if (validFiles.length > 0) {
                 setCareerPayload(prevState => ({
                     ...prevState,
-                    [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
+                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : validFiles
                 }));
-            });
+            }
         } else if(type == 'checkbox'){
             if(e.target.checked){
                 setCareerPayload(prevState => ({
@@ -116,20 +140,11 @@ const CareerApplyForm = ({params}) => {
                 window.location.href = '/career';
             }, 5000);
         } catch (err) {
-            let errorMessage = err?.message || 'Something went wrong!';
-            if (typeof err === "string") {
-                errorMessage = err
-            } else if(typeof err === "object" && Object.keys(err.error).length > 0) {
-                errorMessage = "";
-                Object.keys(err.error).map(val => {
-                    errorMessage += err.error[val]?.message + '<br/>'
-                })
-            }
-
+            setErrorPayload(err.error);
             Swal.fire({
                 allowOutsideClick: false,
                 title: "Career Submission Notification!",
-                html: errorMessage,
+                html: err.message,
                 icon: "error",
             });
         } finally {
@@ -158,7 +173,12 @@ const CareerApplyForm = ({params}) => {
                 <div className="mb-2 block">
                     <Label htmlFor="firstname" value="Nama Depan"/>
                 </div>
-                <TextInput id="firstname" name="firstname" type="text" value={careerPayload.firstname || ''} autoFocus={true} onChange={formChangeHandler}/>
+                <TextInput id="firstname" name="firstname" type="text" value={careerPayload.firstname || ''} autoFocus={true} onChange={formChangeHandler} 
+                    color={errorPayload?.firstName && 'failure'}
+                    helperText={
+                      errorPayload?.firstName && <span className="font-medium">{errorPayload?.firstName?.message}</span>
+                    }     
+                />
             </div>
             <div>
                 <div className="mb-2 block">
@@ -170,25 +190,45 @@ const CareerApplyForm = ({params}) => {
                 <div className="mb-2 block">
                     <Label htmlFor="additionalInfo" value="Informasi Tambahan" />
                 </div>
-                <Textarea id="additionalInfo" name="additionalInfo" value={careerPayload.additionalInfo || ''} required rows={4} onChange={formChangeHandler} />
+                <Textarea id="additionalInfo" name="additionalInfo" value={careerPayload.additionalInfo || ''} required rows={4} onChange={formChangeHandler} 
+                    color={errorPayload?.additionalInfo && 'failure'}
+                    helperText={
+                      errorPayload?.additionalInfo && <span className="font-medium">{errorPayload?.additionalInfo?.message}</span>
+                    }
+                />
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="email" value="Email" />
                 </div>
-                <TextInput icon={HiMail} type="email" id="email" name="email" value={careerPayload.email || ''} onChange={formChangeHandler}/>
+                <TextInput icon={HiMail} type="email" id="email" name="email" value={careerPayload.email || ''} onChange={formChangeHandler}
+                    color={errorPayload?.email && 'failure'}
+                    helperText={
+                      errorPayload?.email && <span className="font-medium">{errorPayload?.email?.message}</span>
+                    }
+                />
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="phoneno" value="Nomor Telepon" />
                 </div>
-                <TextInput id="phoneno" name="phoneno" type="text" value={careerPayload.phoneno || ''} onChange={formChangeHandler}/>
+                <TextInput id="phoneno" name="phoneno" type="text" value={careerPayload.phoneno || ''} onChange={formChangeHandler}
+                    color={errorPayload?.phoneno && 'failure'}
+                    helperText={
+                      errorPayload?.phoneno && <span className="font-medium">{errorPayload?.phoneno?.message}</span>
+                    }
+                />
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="country" value="Negara"/>
                 </div>
-                <Select id="country" name="country" required value={careerPayload.country || ''} onChange={formChangeHandler}>
+                <Select id="country" name="country" required value={careerPayload.country || ''} onChange={formChangeHandler} 
+                    color={errorPayload?.country && 'failure'}
+                    helperText={
+                      errorPayload?.country && <span className="font-medium">{errorPayload?.country?.message}</span>
+                    }
+                >
                     <option value="">Select Country</option>
                     {
                         nationalityPayload.map((val, idx) => {
@@ -201,13 +241,18 @@ const CareerApplyForm = ({params}) => {
                 <div className="mb-2 block">
                     <Label htmlFor="currentaddress" value="Lokasi Sekarang" />
                 </div>
-                <Textarea id="currentaddress" name="currentaddress" required rows={4} value={careerPayload.currentaddress || ''} onChange={formChangeHandler} />
+                <Textarea id="currentaddress" name="currentaddress" required rows={4} value={careerPayload.currentaddress || ''} onChange={formChangeHandler} 
+                    color={errorPayload?.currentaddress && 'failure'}
+                    helperText={
+                      errorPayload?.currentaddress && <span className="font-medium">{errorPayload?.currentaddress?.message}</span>
+                    }
+                />
             </div>
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="cvFile" value="Unggah CV" />
                 </div>
-                <FileInput accept=".pdf" id="cvFile" name="cvFile" helperText="Ukuran Maksimum 2MB. Format PDF" onChange={formChangeHandler}/>
+                <FileInput accept=".pdf" id="cvFile" name="cvFile" helperText="Ukuran Maksimum 5 MB. Format PDF" ref={fileInputRef} onChange={formChangeHandler}/>
             </div>
             <div>
                 <Recaptcha
