@@ -55,32 +55,12 @@ const GeneralSettingsMainForm = () => {
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type === 'file'){
-            const newFiles = Array.from(files);
-            const validFiles = [];
-            let isValid = true;
-
-            newFiles.forEach((file) => {
-                if (file.size >= 2 * 1024 * 1024) {
-                    isValid = false;
-                    alert(`${file.name} exceeds the 2 MB size limit.`);
-                } else {
-                    validFiles.push(file);
-                }
+            Object.keys(files).map((val) => {
+                setPayload(prevState => ({
+                    ...prevState,
+                    [name]: [files[val]]
+                }));
             });
-
-            if (isValid) {
-                setPayload(prevState => ({
-                    ...prevState,
-                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : [...validFiles]
-                }));
-            }
-
-            /* Object.keys(files).map((val) => {
-                setPayload(prevState => ({
-                    ...prevState,
-                    [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
-                }));
-            }); */
         } else if(type === 'checkbox'){
             if(e.target.checked){
                 setPayload(prevState => ({
@@ -101,6 +81,7 @@ const GeneralSettingsMainForm = () => {
             }));
         }
     };
+    
     const validateData = (data) => {
         const isEmpty = (item) => typeof item === 'object' && Object.keys(item).length === 0;
     
@@ -137,18 +118,8 @@ const GeneralSettingsMainForm = () => {
     const submitHandler = async (e) => {
         try {
             setIsLoading(true);
-            /* if(!validateData(payload)){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Data is not valid!",
-                    icon: 'error',
-                });
-                return;
-            } */
-
             const finalPayload = {...payload, "type": type};
-            
+
             /* Handle Attachment */
             try {
                 var formDataLogoID = new FormData();

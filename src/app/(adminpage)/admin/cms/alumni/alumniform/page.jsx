@@ -10,7 +10,7 @@ import {
 import { 
     useSearchParams 
 } from 'next/navigation'
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import NavbarSidebarLayout from '../../../_layouts/navigation';
 import {
     GetConfig,
@@ -30,6 +30,16 @@ const CMSAlumni = () => {
     const searchParams = useSearchParams();
     const id = searchParams.get("id"); // Get the id from URL
 
+    const fileInputRef = useRef(null);
+    const clearFile = (name) => {
+        fileInputRef.current.value = null;
+        setPayload(prevState => ({
+            ...prevState,
+            [name]: null,
+        }));
+    }
+
+
     useEffect(() => {
         if(id){
             (async (id) => {
@@ -44,16 +54,29 @@ const CMSAlumni = () => {
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type === 'file'){
-            Object.keys(files).forEach((val) => {
-                if(files[val].size > 2*1024*1024){
-                    alert("File exceed 2 mb");
-                } else{
-                    setPayload(prevState => ({
-                        ...prevState,
-                        [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
-                    }));
+            const validFiles = [];
+            const maxFileSize = 2 * 1024 * 1024;
+            Object.keys(files).forEach((key) => {
+                const file = files[key];
+                if (file.type.startsWith('image/')) {
+                    if (file.size <= maxFileSize) {
+                        validFiles.push(file);
+                    } else {
+                        clearFile(name);
+                        alert(`${file.name} exceeds the maximum size of 2 MB.`);
+                    }
+                } else {
+                    clearFile(name);
+                    alert(`${file.name} is not a valid image file.`);
                 }
             });
+
+            if (validFiles.length > 0) {
+                setPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : validFiles
+                }));
+            }
         } else if(type === 'checkbox'){
             if(e.target.checked){
                 setPayload(prevState => ({
@@ -79,8 +102,57 @@ const CMSAlumni = () => {
         try {
             setIsLoading(true);
             const finalData = {...payload, ...type};
+            if(!payload.name){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni name",
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.class){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni class",
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.university){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni university",
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.major){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni major",
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.testimonies){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni testimony",
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.alumniImage){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni photo",
+                    icon: 'error',
+                });
+                return;
+            }
 
-            /* Handle Attachment */
+            // /* Handle Attachment */
             try {
                 let formData = new FormData();
                 formData.append("image", payload?.alumniImage[0]);
@@ -103,7 +175,7 @@ const CMSAlumni = () => {
             });
             setTimeout(() => {
                 window.location.href = '/admin/cms/alumni';
-            }, 5*1000); 
+            }, 2*1000); 
         } catch (error) {
             console.log(error);
             Swal.fire({
@@ -149,7 +221,7 @@ const CMSAlumni = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="alumniImage" value="Foto" />
                     </div>
-                    <FileInput accept="image/*" id="alumniImage" name="alumniImage" helperText="Ukuran Maksimum 2MB. Format Image" onChange={formChangeHandler}/>
+                    <FileInput accept="image/*" ref={fileInputRef} id="alumniImage" name="alumniImage" helperText="Ukuran Maksimum 2MB. Format Image" onChange={formChangeHandler}/>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                     <Button 

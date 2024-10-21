@@ -25,11 +25,6 @@ const AlumniVerifyForm = () => {
 
     useEffect(() => {
         console.log(`ID: ${id}`);
-        setPayload(prevState => ({
-            ...prevState,
-            "_id": id
-        }));
-
         if(id){
             fetchAlumni(id)
         }

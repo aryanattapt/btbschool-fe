@@ -8,7 +8,7 @@ import AgGridTableForm from '../../_components/aggrid.form';
 const LogoFileInputRenderer = (params) => {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
-        if (file && file.size <= 2 * 1024 * 1024) {
+        if (file  && file.size <= 2 * 1024 * 1024 && file.type.startsWith('image/')) {
             params.setValue(file.name);
 
             /* Jika mau disave jadi file beneran */
@@ -23,7 +23,7 @@ const LogoFileInputRenderer = (params) => {
             reader.readAsDataURL(file);
             params.api.refreshCells({ rowNodes: [params.node] });
         } else{
-            alert(`${file.name} exceeds the 2 MB size limit.`);
+            alert(`${file.name} exceeds the 2 MB size limit or file should be valid image format`);
         }
     };
 

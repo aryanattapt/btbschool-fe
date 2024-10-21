@@ -89,12 +89,12 @@ const RegistrationTableActionBtn = (data) => {
 				<IoMdDownload className="mr-2 h-4 w-4" />
 				<p>Excel</p>
 			</Button>
-			{pathname.includes("/outstanding") && (
+			{/* {pathname.includes("/outstanding") && (
 				<Button size={"xs"} color="warning">
 					<FaCheck className="mr-2 h-4 w-4" />
 					<p>Approve</p>
 				</Button>
-			)}
+			)} */}
 			<Link href={`/admin/registration/detail/${data["_id"]}`}>
 				<Button size={"xs"} color="dark">
 					Detail

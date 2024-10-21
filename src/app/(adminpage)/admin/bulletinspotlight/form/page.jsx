@@ -9,7 +9,7 @@ import {
 import { 
     useSearchParams 
 } from 'next/navigation'
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
 import {
     GetConfig,
@@ -21,6 +21,7 @@ import {
 import Swal from "sweetalert2";
 
 const BulletinSpotlightForm = () => {
+    const fileInputRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams()
@@ -28,11 +29,6 @@ const BulletinSpotlightForm = () => {
 
     useEffect(() => {
         console.log(`ID: ${id}`);
-        setPayload(prevState => ({
-            ...prevState,
-            "_id": id
-        }));
-
         if(id){
             GetConfig('bulletinspotlight', {"_id": id})
             .then(res => setPayload(res[0]))
@@ -47,15 +43,40 @@ const BulletinSpotlightForm = () => {
         }
     }, [])
 
+    const clearFile = (name) => {
+        fileInputRef.current.value = null;
+        setPayload(prevState => ({
+            ...prevState,
+            [name]: null,
+        }));
+    }
+
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type == 'file'){
-            Object.keys(files).map((val) => {
+            const validFiles = [];
+            const maxFileSize = 20 * 1024 * 1024;
+            Object.keys(files).forEach((key) => {
+                const file = files[key];
+                if (file.type === 'application/pdf') {
+                    if (file.size <= maxFileSize) {
+                        validFiles.push(file);
+                    } else {
+                        clearFile(name);
+                        alert(`${file.name} exceeds the maximum size of 20 MB.`);
+                    }
+                } else {
+                    clearFile(name);
+                    alert(`${file.name} is not a valid PDF file.`);
+                }
+            });
+
+            if (validFiles.length > 0) {
                 setPayload(prevState => ({
                     ...prevState,
-                    [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
+                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : validFiles
                 }));
-            });
+            }
         } else if(type == 'checkbox'){
             if(e.target.checked){
                 setPayload(prevState => ({
@@ -77,49 +98,54 @@ const BulletinSpotlightForm = () => {
         }
     };
 
-    const submitHandler = (e) => {
-        console.log(`Masuk Submit Handler`);
-        if(id == null) {delete payload._id}
-        console.log(payload);
-        setIsLoading(true);
-
-        var formData = new FormData();
-        payload?.bulletinFile?.map((val) => {
-            formData.append("bulletinFile", val);
-        });
-
-        /* Call API in here... */
-        UploadAttachment("alumni", formData)
-        .then((res) => {
-            const finalPayload = { ...payload, "date": new Date() };
-            finalPayload.attachment = res.data;
-            delete finalPayload.bulletinFile;
-
-            SubmitConfig('bulletinspotlight', [finalPayload])
-            .then(res => {
-                setPayload({});
-                setIsLoading(false);
-                window.location.href = '/admin/bulletinspotlight'
-            })
-            .catch((err) => {
-                setIsLoading(false);
-                setStateCallBack(false);
+    const submitHandler = async (e) => {
+        try {
+            setIsLoading(true);
+            const finalPayload = {...payload, "date": new Date()};
+            if(!payload.bulletintitle){
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
-                    text: err,
+                    text: "Please fill title",
                     icon: 'error',
                 });
-            })
-        }).catch((err) => {
-            setIsLoading(false);
+                return;
+            } if(!payload.bulletinFile){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill attachment",
+                    icon: 'error',
+                });
+                return;
+            }
+
+            try {
+                var formData = new FormData();
+                payload?.bulletinFile?.map((val) => {
+                    formData.append("bulletinFile", val);
+                });
+
+                const attachmentResult = await UploadAttachment("alumni", formData);
+                if(attachmentResult && attachmentResult.data){
+                    finalPayload.attachment = attachmentResult.data;
+                    delete finalPayload.bulletinFile;
+                }
+            } catch (error) {console.log(error);}
+
+            console.log([finalPayload]);
+            SubmitConfig('bulletinspotlight', [finalPayload]);
+            // window.location.href = '/admin/bulletinspotlight';
+        } catch (error) {
             Swal.fire({
                 allowOutsideClick: false,
-                title: "Error Notification!",
+                title: 'Submit Notification!',
                 text: err,
-                icon: "error",
+                icon: 'error',
             });
-        });
+        } finally{
+            setIsLoading(false);
+        }
     }
 
     return <>
@@ -140,7 +166,7 @@ const BulletinSpotlightForm = () => {
                         <div className="mb-2 block">
                             <Label htmlFor="bulletinFile" value="Unggah CV" />
                         </div>
-                        <FileInput accept=".pdf" id="bulletinFile" name="bulletinFile" helperText="Ukuran Maksimum 2MB. Format PDF" onChange={formChangeHandler}/>
+                        <FileInput accept=".pdf" ref={fileInputRef} id="bulletinFile" name="bulletinFile" helperText="Ukuran Maksimum 20MB. Format PDF" onChange={formChangeHandler}/>
                     </div>
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">

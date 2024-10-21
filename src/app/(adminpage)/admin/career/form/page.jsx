@@ -28,11 +28,6 @@ const CareerForm = () => {
 
     useEffect(() => {
         console.log(`ID: ${id}`);
-        setPayload(prevState => ({
-            ...prevState,
-            "_id": id
-        }));
-
         if(id){
             fetchCareer(id)
         }
@@ -89,26 +84,103 @@ const CareerForm = () => {
         }
     };
 
-    const submitHandler = (e) => {
-        if(id == null) {delete payload._id}
-        console.log(payload);
-        setIsLoading(true);
+    const submitHandler = async (e) => {
+        try {
+            if(!payload.jobtitlename){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: 'Please input jobtitle name',
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.experienced){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: 'Please input Experience',
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.jobcategory){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: 'Please input job category',
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.location){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: 'Please input job location',
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.jobsummary){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: 'Please input job summary',
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.responsibilites){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: 'Please input responsibility',
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.maximumApplyDate){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: 'Please input apply before date',
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.jobtype){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: 'Please input job type',
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.experiencelevel){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: 'Please input experience level',
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.requirement){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: 'Please input requirement',
+                    icon: 'error',
+                });
+                return;
+            }
 
-        /* Call API in here... */
-        UpsertCareer(payload)
-        .then(() => {
-            setIsLoading(false); 
-            window.location.href = '/admin/career'
-        })
-        .catch((err) => {
-            setIsLoading(false); 
+            setIsLoading(true);
+            await UpsertCareer(payload);
+            window.location.href = '/admin/career';
+        } catch (error) {
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Error Notification!',
                 text: err,
                 icon: 'error',
             });
-        })
+        } finally{
+            setIsLoading(false);
+        }
     }
 
     return <>

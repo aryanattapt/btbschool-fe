@@ -9,7 +9,7 @@ import {
 import { 
     useSearchParams 
 } from 'next/navigation'
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import NavbarSidebarLayout from '../../../_layouts/navigation';
 import {
     GetConfig,
@@ -28,6 +28,15 @@ const CMSAlumni = () => {
     const searchParams = useSearchParams();
     const id = searchParams.get("id"); // Get the id from URL
 
+    const fileInputRef = useRef(null);
+    const clearFile = (name) => {
+        fileInputRef.current.value = null;
+        setPayload(prevState => ({
+            ...prevState,
+            [name]: null,
+        }));
+    }
+
     useEffect(() => {
         if(id){
             (async (id) => {
@@ -42,16 +51,29 @@ const CMSAlumni = () => {
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type === 'file'){
-            Object.keys(files).forEach((val) => {
-                if(files[val].size > 2*1024*1024){
-                    alert("File exceed 2 mb");
-                } else{
-                    setPayload(prevState => ({
-                        ...prevState,
-                        [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
-                    }));
+            const validFiles = [];
+            const maxFileSize = 2 * 1024 * 1024;
+            Object.keys(files).forEach((key) => {
+                const file = files[key];
+                if (file.type.startsWith('image/')) {
+                    if (file.size <= maxFileSize) {
+                        validFiles.push(file);
+                    } else {
+                        clearFile(name);
+                        alert(`${file.name} exceeds the maximum size of 2 MB.`);
+                    }
+                } else {
+                    clearFile(name);
+                    alert(`${file.name} is not a valid image file.`);
                 }
             });
+
+            if (validFiles.length > 0) {
+                setPayload(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : validFiles
+                }));
+            }
         } else if(type === 'checkbox'){
             if(e.target.checked){
                 setPayload(prevState => ({
@@ -77,6 +99,23 @@ const CMSAlumni = () => {
         try {
             setIsLoading(true);
             const finalData = {...payload, ...type};
+            if(!payload.caption){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill university name",
+                    icon: 'error',
+                });
+                return;
+            } if(!payload.universityImage){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill univeristy image",
+                    icon: 'error',
+                });
+                return;
+            }
 
             /* Handle Attachment */
             try {
@@ -91,7 +130,6 @@ const CMSAlumni = () => {
                 }
             } catch (error) {console.log(error);}
 
-            console.log([finalData]);
             await SubmitConfig(configName, [finalData]);
             Swal.fire({
                 allowOutsideClick: false,
@@ -131,7 +169,7 @@ const CMSAlumni = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="universityImage" value="Foto" />
                     </div>
-                    <FileInput accept="image/*" id="universityImage" name="universityImage" helperText="Ukuran Maksimum 2MB. Format Image" onChange={formChangeHandler}/>
+                    <FileInput accept="image/*" ref={fileInputRef} id="universityImage" name="universityImage" helperText="Ukuran Maksimum 2MB. Format Image" onChange={formChangeHandler}/>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                     <Button 
