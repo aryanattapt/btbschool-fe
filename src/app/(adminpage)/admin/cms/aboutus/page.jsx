@@ -113,6 +113,13 @@ const CMSAboutUs = () => {
 									setVisiMisi(e.target.value, "descvisi");
 								}}
 							/>
+							<FieldTitle>Deskripsi Misi</FieldTitle>
+							<TextInput
+								value={data[language]["visimisi"]["descmisi"]}
+								onChange={(e) => {
+									setVisiMisi(e.target.value, "descmisi");
+								}}
+							/>
 							<FieldTitle>List Misi</FieldTitle>
 							<div className="flex flex-col gap-2">
 								{data[language]["visimisi"]["misilist"].map((res, index) => (

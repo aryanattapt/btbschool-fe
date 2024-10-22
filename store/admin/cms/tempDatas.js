@@ -954,3 +954,219 @@ export const BTBBelajarPayload = {
 		},
 	},
 };
+
+export const PendaftaranPayLoad = {
+	ID: {
+		mainTitle: "Pendaftaran",
+		titleEnrolment: "Enrolment",
+		titleBeasiswa: "Beasiswa",
+		pagingHeader: {
+			title: "Pendaftaran",
+			url: [
+				{ title: "Enrolment", url: "/pendaftaran#enrolment" },
+				{ title: "Beasiswa", url: "/pendaftaran#beasiswa" },
+				{ title: "Tur Sekolah", url: "/pendaftaran#tur-sekolah" },
+			],
+		},
+		enrolmentPagedata: {
+			title: "Enrolment",
+			subtitle: "Tahapan Pendaftaran",
+			image2:
+				"https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
+			stepsList: [
+				{
+					titleStep: "1. Temukan Informasi",
+					descStep:
+						"Memiliki pertanyaan mengenai kehidupan di sekolah BTB, bagaimana kegiatan belajar mengajar dan aktivitas di lingkungan BTB? Email kami di admission@btbschool.org atau telepon 021-669 8888 / 021-668 5858.",
+				},
+				{
+					titleStep: "2. Kunjungi Sekolah BTB",
+					descStep:
+						"Lihat secara langsung kegiatan sehari - hari di dalam lingkungan Sekolah BTB. Buat janji dengan staf kami untuk bisa berkeliling fasilitas dan lingkungan Sekolah Bina Tunas Bangsa.",
+				},
+				{
+					titleStep: "3. Daftarkan Anak Anda",
+					descStep:
+						"Daftarkan anak anda secepatnya untuk bisa mengikuti tes masuk atau proses pengamatan.",
+				},
+				{
+					titleStep: "4. Tunggu dan Tetap Terhubung",
+					descStep:
+						"Pihak BTB akan menghubungi orang tua untuk menginformasikan hasil tes masuk dan pengamatan yang dilakukan.",
+				},
+			],
+			notes:
+				"*Penerimaan siswa baru adalah pada Kelompok Bermain, Tingkat 1, Tingkat 7, dan Tingkat 10.",
+		},
+		beasiswaPagedata: {
+			title: "Beasiswa",
+			subtitle:
+				"Sekolah BTB memiliki panitia seleksi beasiswa yang mencari murid dengan prestasi yang mencerminkan integritas, intelegensi, dan komitmen terhadap pengembangan diri dan berdedikasi untuk mengembangkan komunitas. Beasiswa dapat diperoleh murid dari Tingkat 7 hingga 12.",
+			infomartion:
+				"Untuk informasi lebih lanjut, silahkan hubungi departemen pendaftaran: ",
+			detailschool: [
+				{
+					schoolName: "Jl.Pluit Timur Blok MM, Jakarta Utara",
+					schoolhp: [
+						{
+							waNumber: "0856 95 333 888",
+							hrefwa: "https://wa.me/085695333888",
+						},
+						{
+							waNumber: "0812 96 333 888",
+							hrefwa: "https://wa.me/081296333888",
+						},
+					],
+					schooltlp: ["(+62 21) 669 8888", "(+62 21) 668 5858"],
+					schoolemail: "admission@btbschool.org",
+				},
+			],
+		},
+		turSekolahdata: {
+			title: "School Tour",
+			subtitle: "Join a tour of BTB School.",
+			infomartion:
+				"Please attend and see the activities that take place at school. If you need further help, please contact:",
+			detailschool: [
+				{
+					schoolName: "Jl.Pluit Timur Blok MM, Jakarta Utara",
+					schoolhp: [
+						{
+							waNumber: "(+62) 856 95 333 888",
+							hrefwa: "https://wa.me/085695333888",
+						},
+						{
+							waNumber: "(+62) 812 96 333 888",
+							hrefwa: "https://wa.me/081296333888",
+						},
+					],
+					schooltlp: ["(+62) 216698888"],
+					schoolemail: "admission@btbschool.org",
+					title: "BTB SCHOOL PLUIT TIMUR",
+					mapEmbed:
+						"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7934.134621362215!2d106.79109025869137!3d-6.12164295274717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1deb383b5aad%3A0x88c7848de94ced29!2sBTB%20School%20Pluit%20Timur!5e0!3m2!1sid!2sid!4v1722009912125!5m2!1sid!2sid",
+				},
+				{
+					schoolName: "Jl. Taman Pluit Putri",
+					schoolhp: [
+						{
+							waNumber: "(+62) 851 95 333 888",
+							hrefwa: "https://wa.me/085195333888",
+						},
+						{
+							waNumber: "(+62) 857 76 333 888",
+							hrefwa: "https://wa.me/085776333888",
+						},
+					],
+					schooltlp: ["(+62) 216685858"],
+					schoolemail: "admission@btbschool.org",
+					title: "BTB SCHOOL PLUIT PUTRI",
+					mapEmbed:
+						"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.080070999209!2d106.78967467369849!3d-6.119924360009179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1d84049afab9%3A0x79d9dbfb470b13dd!2sBTB%20School!5e0!3m2!1sid!2sid!4v1722008582899!5m2!1sid!2sid",
+				},
+			],
+		},
+	},
+	EN: {
+		mainTitle: "Registration",
+		titleEnrolment: "Enrolment",
+		titleBeasiswa: "Scholarship",
+		pagingHeader: {
+			title: "Registration",
+			url: [
+				{ title: "Enrolment", url: "/pendaftaran#enrolment" },
+				{ title: "Scholarship", url: "/pendaftaran#beasiswa" },
+				{ title: "Tur Sekolah", url: "/pendaftaran#tur-sekolah" },
+			],
+		},
+		enrolmentPagedata: {
+			title: "Enrolment",
+			subtitle: "Registration Stages",
+			image2:
+				"https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg",
+			stepsList: [
+				{
+					titleStep: "1. Find Information",
+					descStep:
+						"Have questions about life at BTB school, how are the teaching and learning activities and activities in the BTB environment? Send an email to admission@btbschool.org or call 021-669 8888 / 021-668 5858.",
+				},
+				{
+					titleStep: "2. Visit BTB School",
+					descStep:
+						"Witness firsthand the daily activities in the BTB School environment. Make an appointment with our staff to see the facilities and environment of Bina Tunas Bangsa School.",
+				},
+				{
+					titleStep: "3. Register Your Child",
+					descStep:
+						"Register your child as soon as possible to take the entrance test or observation process.",
+				},
+				{
+					titleStep: "4. Wait and Stay Connected",
+					descStep:
+						"BTB will contact parents to inform them of the results of the entrance test and observations conducted.",
+				},
+			],
+			notes:
+				"*New student admissions are open for Playgroup, Grade 1, Grade 7, and Grade 10.",
+		},
+		beasiswaPagedata: {
+			title: "Scholarship",
+			subtitle:
+				"BTB School has a scholarship selection committee that seeks students with achievements that reflect integrity, intelligence, and a commitment to self-development and dedication to improving the community. Scholarships are available to students from Grades 7 to 12.",
+			infomartion:
+				"For further information, please contact the registration department: ",
+			detailschool: [
+				{
+					schoolName: "Jl.Pluit Timur Blok MM, Jakarta Utara",
+					schoolhp: ["0856 95 333 888", "0812 96 333 888"],
+					schooltlp: ["(+62 21) 669 8888", "(+62 21) 668 5858"],
+					schoolemail: "admission@btbschool.org",
+				},
+			],
+		},
+		turSekolahdata: {
+			title: "School Tour",
+			subtitle: "Join a tour of BTB School.",
+			infomartion:
+				"Please attend and see the activities that take place at school. If you need further help, please contact:",
+			detailschool: [
+				{
+					schoolName: "Jl.Pluit Timur Blok MM, Jakarta Utara",
+					schoolhp: [
+						{
+							waNumber: "(+62) 856 95 333 888",
+							hrefwa: "https://wa.me/085695333888",
+						},
+						{
+							waNumber: "(+62) 812 96 333 888",
+							hrefwa: "https://wa.me/081296333888",
+						},
+					],
+					schooltlp: ["(+62) 216698888"],
+					schoolemail: "admission@btbschool.org",
+					title: "BTB SCHOOL PLUIT TIMUR",
+					mapEmbed:
+						"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7934.134621362215!2d106.79109025869137!3d-6.12164295274717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1deb383b5aad%3A0x88c7848de94ced29!2sBTB%20School%20Pluit%20Timur!5e0!3m2!1sid!2sid!4v1722009912125!5m2!1sid!2sid",
+				},
+				{
+					schoolName: "Jl. Taman Pluit Putri",
+					schoolhp: [
+						{
+							waNumber: "(+62) 851 95 333 888",
+							hrefwa: "https://wa.me/085195333888",
+						},
+						{
+							waNumber: "(+62) 857 76 333 888",
+							hrefwa: "https://wa.me/085776333888",
+						},
+					],
+					schooltlp: ["(+62) 216685858"],
+					schoolemail: "admission@btbschool.org",
+					title: "BTB SCHOOL PLUIT PUTRI",
+					mapEmbed:
+						"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.080070999209!2d106.78967467369849!3d-6.119924360009179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1d84049afab9%3A0x79d9dbfb470b13dd!2sBTB%20School!5e0!3m2!1sid!2sid!4v1722008582899!5m2!1sid!2sid",
+				},
+			],
+		},
+	},
+};
