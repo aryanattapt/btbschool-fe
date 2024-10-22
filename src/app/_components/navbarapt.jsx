@@ -110,7 +110,7 @@ const NavBar = ({payload}) => {
                             {
                                 payload?.quicklink?.map((val, idx) => {
                                     return <li key={idx}>
-                                        <a href={val?.link || '#'} className="block px-4 py-2 hover:bg-gray-200 text-center">{val?.name}</a>
+                                        <a href={val?.link || '#'} className="block px-4 py-2 hover:bg-gray-200 text-center" target="_blank">{val?.name}</a>
                                     </li>
                                 })
                             }
@@ -207,7 +207,7 @@ const NavBar = ({payload}) => {
                             {
                                 payload?.quicklink?.map((val, idx) => {
                                     return <li key={idx}>
-                                        <a href={val?.link || '#'} className="block px-4 py-2 hover:bg-gray-200 text-center">{val?.name}</a>
+                                        <a href={val?.link || '#'} className="block px-4 py-2 hover:bg-gray-200 text-center" target="_blank">{val?.name}</a>
                                     </li>
                                 })
                             }
