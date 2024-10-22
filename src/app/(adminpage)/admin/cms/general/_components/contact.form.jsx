@@ -5,197 +5,206 @@ import {
 } from "flowbite-react";
 import AgGridTableForm from '../../_components/aggrid.form';
 
-const DeleteButtonRenderer = (params) => {
-    const handleDelete = () => {
-        params.api.applyTransaction({ remove: [params.node.data] });
-        params.api.refreshCells({ rowNodes: [params.node] });
-    };
-
-    return <Button onClick={handleDelete} color={"failure"}>Delete</Button>;
-};
-
-const columnDefs = [
-    /* {
-        width: "100vw",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerName: 'No',
-        colId: 'rownumber',
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'right' },
-        valueGetter: 'node.rowIndex + 1',
-        valueFormatter: 'node?.rowPinned ? "" : x',
-        editable: false,
-    }, */
-    {
-        headerName: "Building Name",
-        field: "buildingName",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'left' },
-        width: "200vw",
-        editable: true
-    },
-    {
-        headerName: "Grade",
-        field: "grade",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'left' },
-        width: "200vw",
-        editable: true
-    },
-    {
-        headerName: "Phone No",
-        field: "phoneNo",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'left' },
-        width: "200vw",
-        editable: true
-    },
-    {
-        headerName: "WhatsApp No 1",
-        field: "whatsAppNo1",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'left' },
-        width: "200vw",
-        editable: true
-    },
-    {
-        headerName: "WhatsApp No 2",
-        field: "whatsAppNo2",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'left' },
-        width: "200vw",
-        editable: true
-    },
-    {
-        headerName: "Email",
-        field: "email",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'left' },
-        width: "200vw",
-        editable: true
-    },
-    {
-        headerName: "Maps Location (Embeded)",
-        field: "mapsLocationEmbeded",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'left' },
-        width: "200vw",
-        editable: true
-    },
-    {
-        headerName: "Maps Location",
-        field: "mapsLocation",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'left' },
-        width: "200vw",
-        editable: true
-    },
-    {
-        headerName: "Alamat",
-        field: "address",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'left' },
-        width: "500vw",
-        editable: true
-    },
-    {
-        headerName: "Delete",
-        field: "deleteAction",
-        cellRenderer: (p) => DeleteButtonRenderer(p),
-        width: "100vw",
-        filter: false,
-        sortable: false,
-        resizable: false,
-        suppressHeaderMenuButton: true,
-        suppressMovable: true,
-        enableRowGroup: false,
-        suppressAutoSize: true,
-        suppressSizeToFit: true,
-        headerClass: 'cell-center',
-        cellStyle: { textAlign: 'center' },
-    },
-  ];
 
 const ContactForm = ({formChangeHandler, payload}) => {
+    const DeleteButtonRenderer = (params, formChangeHandler, name) => {
+        const handleDelete = () => {
+            params.api.applyTransaction({ remove: [params.node.data] });
+    
+            let gridData = [];
+            params.api.forEachNode(node => gridData.push(node.data));
+            formChangeHandler({
+                "target": {
+                    "name": name,
+                    "value": gridData,
+                    "type": "table"
+                }
+            });
+        };
+    
+        return <Button onClick={handleDelete} color={"failure"}>Delete</Button>;
+    };
+    
+    const columnDefs = [
+        /* {
+            width: "100vw",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerName: 'No',
+            colId: 'rownumber',
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'right' },
+            valueGetter: 'node.rowIndex + 1',
+            valueFormatter: 'node?.rowPinned ? "" : x',
+            editable: false,
+        }, */
+        {
+            headerName: "Building Name",
+            field: "buildingName",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'left' },
+            width: "200vw",
+            editable: true
+        },
+        {
+            headerName: "Grade",
+            field: "grade",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'left' },
+            width: "200vw",
+            editable: true
+        },
+        {
+            headerName: "Phone No",
+            field: "phoneNo",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'left' },
+            width: "200vw",
+            editable: true
+        },
+        {
+            headerName: "WhatsApp No 1",
+            field: "whatsAppNo1",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'left' },
+            width: "200vw",
+            editable: true
+        },
+        {
+            headerName: "WhatsApp No 2",
+            field: "whatsAppNo2",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'left' },
+            width: "200vw",
+            editable: true
+        },
+        {
+            headerName: "Email",
+            field: "email",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'left' },
+            width: "200vw",
+            editable: true
+        },
+        {
+            headerName: "Maps Location (Embeded)",
+            field: "mapsLocationEmbeded",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'left' },
+            width: "200vw",
+            editable: true
+        },
+        {
+            headerName: "Maps Location",
+            field: "mapsLocation",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'left' },
+            width: "200vw",
+            editable: true
+        },
+        {
+            headerName: "Alamat",
+            field: "address",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'left' },
+            width: "500vw",
+            editable: true
+        },
+        {
+            headerName: "Delete",
+            field: "deleteAction",
+            cellRenderer: (p) => DeleteButtonRenderer(p, formChangeHandler, 'contact'),
+            width: "100vw",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'center' },
+        },
+      ];
     return <>
         <div className="mt-20 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
             {`Contact Form`}

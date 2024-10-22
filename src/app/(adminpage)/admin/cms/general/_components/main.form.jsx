@@ -145,15 +145,15 @@ const GeneralSettingsMainForm = () => {
             const transformedPayload = [transformJsonLanguage(finalPayload)];
             console.log(transformedPayload);
             
-            /* Submit data */
-            await SubmitConfig(configName, transformedPayload);
-            await fetchData();
-            Swal.fire({
-                allowOutsideClick: false,
-                title: 'Submit Notification!',
-                text: "Success!",
-                icon: 'info',
-            });
+            // /* Submit data */
+            // await SubmitConfig(configName, transformedPayload);
+            // await fetchData();
+            // Swal.fire({
+            //     allowOutsideClick: false,
+            //     title: 'Submit Notification!',
+            //     text: "Success!",
+            //     icon: 'info',
+            // });
         } catch (error) {
             Swal.fire({
                 allowOutsideClick: false,
