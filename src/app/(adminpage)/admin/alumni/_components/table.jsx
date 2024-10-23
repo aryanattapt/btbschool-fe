@@ -1,77 +1,185 @@
-import { Button, Table } from "flowbite-react";
-import moment from "moment";
+import moment from 'moment';
+import AgGrid from '../../_components/aggrid';
+import { Button } from 'flowbite-react';
+
+const columnDefs = [
+    {
+        headerName: "Alumni ID",
+        field: "alumniid",
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "120vw",
+        editable: false,
+    },
+    {
+        headerName: "Full Name",
+        valueGetter: (p) => {
+            return `${p.data.firstname} ${p.data.lastname}`;
+        },
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "200vw",
+        editable: false,
+    },
+    {
+        headerName: "Birth Date",
+        valueGetter: (p) => {
+            return moment(p.data.birthdate).format("DD MMMM YYYY")
+        },
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "150vw",
+        editable: false,
+    },
+    {
+        headerName: "Last Year At BTB",
+        field: "laststudentyear",
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "150vw",
+        editable: false,
+    },
+    {
+        headerName: "Education",
+        valueGetter: (p) => {
+            return `${p.data?.edukasiOptions?.join(", ")}`;
+        },
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "300vw",
+        editable: false,
+    },
+    {
+        headerName: "Working Status",
+        field: "statusKerjaOptions",
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "150vw",
+        editable: false,
+    },
+    {
+        headerName: "Email",
+        field: "email",
+        cellRenderer: (p) =>  {
+            return <Button onClick={() => window.location.href = "mailto:" + p?.data?.email} color={"warning"}>{p?.data?.email}</Button>;
+        },
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "200vw",
+        editable: false,
+    },
+    {
+        headerName: "Phone no",
+        field: "phoneno",
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "200vw",
+        editable: false,
+    },
+    {
+        headerName: "Photo",
+        cellRenderer: (p) =>  {
+            return <Button onClick={() => window.location.href = p?.data?.attachment[0]?.fileURL} color={"success"}>View</Button>;
+        },
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "100vw",
+        editable: false,
+    },
+    {
+        headerName: "Verify",
+        cellRenderer: (p) =>  {
+            return <Button color="info" onClick={() => window.location.href = '/admin/alumni/verify?id=' + p?.data?._id} className="mr-4">Verify</Button>
+        },
+        filter: false,
+        sortable: false,
+        resizable: false,
+        suppressHeaderMenuButton: true,
+        suppressMovable: true,
+        enableRowGroup: false,
+        suppressAutoSize: true,
+        suppressSizeToFit: true,
+        headerClass: 'cell-center',
+        cellStyle: { textAlign: 'left' },
+        width: "100vw",
+        editable: false,
+    },
+];
 
 const TableAlumniList = ({payload}) => {
-    return <div className="overflow-x-auto">
-        <Table hoverable>
-            <Table.Head>
-                <Table.HeadCell>Alumni ID</Table.HeadCell>
-                <Table.HeadCell>Full Name</Table.HeadCell>
-                <Table.HeadCell>Birth Date</Table.HeadCell>
-                <Table.HeadCell>Last Year At BTB</Table.HeadCell>
-                <Table.HeadCell>Education</Table.HeadCell>
-                {/* <Table.HeadCell>Undergraduate Name</Table.HeadCell>
-                <Table.HeadCell>Postgraduate Name</Table.HeadCell> */}
-                <Table.HeadCell>Working Status</Table.HeadCell>
-                {/* <Table.HeadCell>Profession Name</Table.HeadCell>
-                <Table.HeadCell>Current Location</Table.HeadCell> */}
-                <Table.HeadCell>Email</Table.HeadCell>
-                <Table.HeadCell>Phone No</Table.HeadCell>
-                <Table.HeadCell>View Photo</Table.HeadCell>
-                <Table.HeadCell>Verify</Table.HeadCell>
-            </Table.Head>
-            <Table.Body className="divide-y">
-                {
-                    payload.map((val, idx) => {
-                        return <Table.Row key={idx} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val?.alumniid}
-                            </Table.Cell>
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val?.firstname} {val?.lastname}
-                            </Table.Cell>
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {moment(val.birthdate).format("DD MMMM YYYY")}
-                            </Table.Cell>
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val.laststudentyear}
-                            </Table.Cell>
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val?.edukasiOptions?.join(",")}
-                            </Table.Cell>
-                            {/* <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val?.undergraduateuniversityname}
-                            </Table.Cell>
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val?.postgraduateuniversityname}
-                            </Table.Cell> */}
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val?.statusKerjaOptions}
-                            </Table.Cell>
-                            {/* <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val?.professionname}
-                            </Table.Cell>
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val?.currentlocation}
-                            </Table.Cell> */}
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                <Button color="warning" onClick={() => window.location.href = "mailto:" + val?.email} className="mr-4">{val?.email}</Button>
-                            </Table.Cell>
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val?.phoneno}
-                            </Table.Cell>
-                            <Table.Cell>
-                                <Button color="success" onClick={() => window.location.href = val.attachment[0].fileURL} className="mr-4">View</Button>
-                            </Table.Cell>
-                            <Table.Cell>
-                                <Button color="info" onClick={() => window.location.href = '/admin/alumni/verify?id=' + val._id} className="mr-4">Verify</Button>
-                            </Table.Cell>
-                        </Table.Row>
-                    })
-                }
-            </Table.Body>
-        </Table>
-    </div>
+    return  <AgGrid payload={payload} columnDefs={columnDefs} name="alumniListTable"/>
 }
 
 export default TableAlumniList;
