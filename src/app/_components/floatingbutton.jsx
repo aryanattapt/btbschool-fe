@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react';
 import { FaPlus, FaTimes } from "react-icons/fa";
 import FloatingButtonSubMenu from './floatingbuttonsubmenu'
+import { usePageData } from '../../hooks/usePageData';
 
-const FloatingButtons = ({payload}) => {
+const FloatingButtons = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const checkVisibility = () => {
@@ -35,6 +36,13 @@ const FloatingButtons = ({payload}) => {
     setIsExpanded(!isExpanded);
   };
 
+  const isLoading = usePageData((state) => state.isLoading);
+  const payload = usePageData((state) => state.result?.generalPayload?.floatingbuttons || []);
+
+  if(isLoading) {
+    return <></>
+  }
+  else if(payload)
   return (
     <div 
       className={`fixed bottom-5 right-10 flex flex-col items-center space-y-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}

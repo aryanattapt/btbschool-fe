@@ -1,10 +1,4 @@
-"use client";
-import React from "react";
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
-
 const PengenalanPage = ({ data, language }) => {
-  /* const { language } = useLanguageStore(); */
-
   return (
     <>
       <div className="relative">

@@ -1,15 +1,10 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Carousel } from "flowbite-react";
-/* import { useLanguageStore } from "../../../store/language.store"; */
-/* import { HomePagePayload } from "../../../data"; */
-import useLanguage from "../../hooks/useLanguage";
 import { MdVolumeOff, MdVolumeUp } from "react-icons/md"; // Import icons
-import { GetConfig } from "../../../services/config.service";
+import { usePageData } from '../../hooks/usePageData';
 
 const CarouselComponents = () => {
-  const [homePageData, setHomePageData] = useState([]);
-  const { language } = useLanguage();
   const [isMuted, setIsMuted] = useState(true);
   const videoRefs = useRef([]);
 
@@ -23,18 +18,10 @@ const CarouselComponents = () => {
     });
   };
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const result = await GetConfig('general', {"type": "homepage.carousel"});
-        console.log(result);
-        setHomePageData(result);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
+  const {language} = usePageData();
+  const homePageData = usePageData((state) => state.result.carousel);
 
+  if(homePageData)
   return (
     <Carousel
       slideInterval={5000}

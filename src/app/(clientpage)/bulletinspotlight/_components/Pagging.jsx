@@ -1,17 +1,11 @@
 "use client";
-
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
 import { BulletinSpotlightPayload } from "../../../../../data";
 import { useState } from "react";
-import useLanguage from "../../../../hooks/useLanguage";
 
-const Pagging = () => {
-	const [bulletinSpotlightData, setBulletinSpotlightData] = useState(
+const Pagging = ({language}) => {
+	const [bulletinSpotlightData] = useState(
 		BulletinSpotlightPayload
 	);
-	/* const { language } = useLanguageStore(); */
-	const {language} = useLanguage();
-
 	return (
 		<>
 			<header className="flex flex-row items-start justify-between text-[#00305E] border-b">

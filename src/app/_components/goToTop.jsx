@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { GoMoveToTop } from "react-icons/go";
+import { usePageData } from '../../hooks/usePageData';
 
 const GoToTop = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -38,6 +39,12 @@ const GoToTop = () => {
         });
     };
 
+    const {isLoading} = usePageData();
+
+    if(isLoading) {
+        return <></>
+    }
+    else
     return (
         <div 
         className={`fixed bottom-5 right-10 flex flex-col items-center space-y-4 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}

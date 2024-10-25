@@ -1,13 +1,6 @@
-'use client'
 const { Button } = require("flowbite-react")
-import { useEffect, useState } from "react";
-import { ContactUsPayLoad } from "../../../../../data";
-import { HelpPayload } from "../../../../../data";
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
 import { HiMail, HiPhone } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
-import useLanguage from "../../../../hooks/useLanguage";
-import { GetConfig } from "../../../../../services/config.service";
 
 const convertPhoneNumber = (input) => {
   try {
@@ -17,25 +10,7 @@ const convertPhoneNumber = (input) => {
   } catch (error) {return "";}
 }
 
-const InformasiPendaftaran = () => {
-    const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
-    const [helpData, setHelpData] = useState(HelpPayload);
-    /* const { language } = useLanguageStore(); */
-    const {language} = useLanguage();
-
-    const [payload, setPayload] = useState([]);
-    useEffect(() => {
-      (async () => {
-        try {
-          const result = await GetConfig('general', {"type": "generalsetting"});
-          console.log(result[0]);
-          setPayload(result[0]?.contact);
-        } catch (error) {
-          console.log(error);
-        }
-      })();
-    }, []);
-
+const InformasiPendaftaran = ({helpData, contactUsData, payload, language}) => {
     return <div className="p-4">
         <h1 className="text-2xl font-bold text-[#00305E] text-center mb-6">
             {helpData[language].secondTitle}

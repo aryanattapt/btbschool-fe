@@ -1,15 +1,4 @@
-"use client";
-
-import {useLanguageStore} from '../../../../../store/language.store';
-import {CalendarAcademicPayload} from '../../../../../data';
-import { useState } from 'react';
-import useLanguage from '../../../../hooks/useLanguage';
-
-const pagging = () => {
-  const [calendarAcademicData, setCalendarAcademicData] = useState(CalendarAcademicPayload);
-  /* const { language } = useLanguageStore(); */
-  const {language} = useLanguage();
-
+const pagging = ({calendarAcademicData, language}) => {
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">

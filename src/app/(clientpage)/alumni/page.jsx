@@ -3,60 +3,44 @@ import CeritaAlumni from "./_layouts/cerita-alumni";
 import PendaftaranAlumni from "./_layouts/pendaftaran-alumni";
 import Banner from "./_layouts/banner";
 import Pagging from "./_layouts/pagging";
-import useLanguage from "../../../hooks/useLanguage";
 import { useEffect, useState } from "react";
-import {AlumniPayload} from '../../../../data';
-import { GetConfig } from "../../../../services/config.service";
+import { usePageData } from '../../../hooks/usePageData';
 
 const AlumniPage = () => {
-  const [alumniPayload, setAlumniPayload] = useState({});
-  const [alumniStoryPayload, setAlumniStoryPayload] = useState([]);
-  const [alumniUniversityPayload, setAlumniUniversityPayload] = useState([]);
-  const {language} = useLanguage();
   const [activeTab, setActiveTab] = useState("cerita-alumni");
 
+  const {language, getAlumniPageData, isLoading} = usePageData();
+  const alumniPayload = usePageData((state) => state.result.alumni);
+  const alumniStoryPayload = usePageData((state) => state.result.alumniStory);
+  const alumniUniversityPayload = usePageData((state) => state.result.alumniUniversity);
+
   useEffect(() => {
-    fetchConfig();
-  }, [])
+    getAlumniPageData();
+  }, []);
 
-  const fetchConfig = async () => {
-      const alumniType = 'alumni';
-      const alumniStoryType = 'alumni.story';
-      const alumniUniversityType = 'alumni.university';
-      try {
-          const result = await GetConfig('general', {
-              "type": {
-                  "$in": [alumniType, alumniStoryType, alumniUniversityType]
-              }
-          });
-
-          console.log(result.filter(val => val.type === alumniStoryType));
-          console.log(result.filter(val => val.type === alumniUniversityType));
-          setAlumniPayload(result.find(val => val.type === alumniType));
-          setAlumniStoryPayload(result.filter(val => val.type === alumniStoryType));
-          setAlumniUniversityPayload(result.filter(val => val.type === alumniUniversityType));
-      } catch (error) {console.log(error)}
+  if(isLoading) {
+    return <div>loading...</div>
   }
+  else if(alumniPayload)
+    return (
+      <>
+        <Banner />
+        <Pagging
+          alumniPayload={alumniPayload}
+          language={language}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
 
-  return (
-    <>
-      <Banner />
-      <Pagging
-        alumniPayload={alumniPayload}
-        language={language}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
+        {activeTab === "cerita-alumni" && (
+            <CeritaAlumni alumniPayload={alumniPayload} alumniStoryPayload={alumniStoryPayload} alumniUniversityPayload = {alumniUniversityPayload} language={language} />
+        )}
 
-      {activeTab === "cerita-alumni" && (
-          <CeritaAlumni alumniPayload={alumniPayload} alumniStoryPayload={alumniStoryPayload} alumniUniversityPayload = {alumniUniversityPayload} language={language} />
-      )}
-
-      {activeTab === "registertext" && (
-          <PendaftaranAlumni alumniPayload={alumniPayload} language={language} />
-      )}
-    </>
-  );
+        {activeTab === "registertext" && (
+            <PendaftaranAlumni alumniPayload={alumniPayload} language={language} />
+        )}
+      </>
+    );
 };
 
 export default AlumniPage;

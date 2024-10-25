@@ -1,14 +1,4 @@
-"use client";
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
-import { BTBBelajarPayload } from "../../../../../data";
-import { useState } from "react";
-import useLanguage from "../../../../hooks/useLanguage";
-
-const SD = ({btbBelajarData}) => {
-  /* const [btbBelajarData, setBtbBelajarData] = useState(BTBBelajarPayload); */
-  /* const { language } = useLanguageStore(); */
-  const {language} = useLanguage();
-
+const SD = ({btbBelajarData, language}) => {
   return (
     <>
       <div className="relative">

@@ -1,15 +1,6 @@
 "use client";
 
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
-import useLanguage from '../../../../hooks/useLanguage';
-import { BTBBelajarPayload } from "../../../../../data";
-import { useState } from "react";
-
-const Pagging = ({btbBelajarData}) => {
-  /* const [btbBelajarData, setBtbBelajarData] = useState(BTBBelajarPayload); */
-  /* const { language } = useLanguageStore(); */
-  const {language} = useLanguage();
-
+const Pagging = ({btbBelajarData, language}) => {
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">

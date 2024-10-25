@@ -1,5 +1,3 @@
-"use client";
-
 const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
   return (
     <>

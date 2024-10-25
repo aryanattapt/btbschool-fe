@@ -1,19 +1,19 @@
 'use client'
 import { useState, useEffect } from "react";
-/* import { useLanguageStore } from "../../../store/language.store"; */
-import useLanguage from '../../hooks/useLanguage'
 import { NavbarPayload } from "../../../data";
 import { IoIosArrowDown } from "react-icons/io";
+import { usePageData } from '../../hooks/usePageData';
 
-const NavBar = ({payload}) => {
-  const [navBarPayload, setNavBarPayload] = useState(NavbarPayload);
-  /* const { language } = useLanguageStore();
-  const setLanguage = useLanguageStore((state) => state.setLanguage); */
-  const {language, changeLanguage} = useLanguage();
+const NavBar = () => {
+  const [navBarPayload, _] = useState(NavbarPayload);
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true); 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const {language, changeLanguage, isLoading} = usePageData();
+  const payload = usePageData((state) => state.result.generalPayload);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +47,10 @@ const NavBar = ({payload}) => {
     }
   }
 
+  if(isLoading) {
+    return <></>
+  }
+  else if(payload)
   return (
     <nav
       className={`transition-transform text-white duration-500 ease-in-out 

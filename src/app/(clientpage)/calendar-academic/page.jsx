@@ -3,43 +3,28 @@ import { useEffect, useState } from 'react';
 import Banner from "./components/banner";
 import Pagging from "./components/pagging";
 import Content from "./components/content";
-import { GetConfig } from '../../../../services/config.service';
-import { FaDownload } from "react-icons/fa";
 import {CalendarAcademicPayload} from '../../../../data';
-/* import {useLanguageStore} from '../../../../store/language.store'; */
-import useLanguage from '../../../hooks/useLanguage';
+import { usePageData } from '../../../hooks/usePageData';
 
 const CalendarAcademicPage = () => {
-  const [payload, setPayload] = useState([])
-  const [calendarAcademicData, setCalendarAcademicData] = useState(CalendarAcademicPayload);
-  /* const { language } = useLanguageStore(); */
-  const {language} = useLanguage();
+  const [calendarAcademicData] = useState(CalendarAcademicPayload);
+
+  const {language, getCalenderAcademicPageData, isLoading} = usePageData();
+  const payload = usePageData((state) => state.result.calenderacademic);
 
   useEffect(() => {
-    GetConfig('calenderacademic', {}).then(res => {
-      console.log(res);
-      setPayload(res);
-    }).catch((err) => {
-      Swal.fire({
-        allowOutsideClick: false,
-        title: 'Error Notification!',
-        text: err,
-        icon: 'error',
-      });
-    })
-  }, [])
+    getCalenderAcademicPageData();
+  }, []);
 
-  return <>
-    <Banner />
-    <Pagging />
-    <Content payload={payload} content={calendarAcademicData[language]} language={language}/>
-    <div className='my-10 flex justify-center'>
-      <button className='bg-[#EF802B] p-3 rounded text-white flex items-center'>
-        <FaDownload className="text-white mr-2"/> 
-        {calendarAcademicData[language].buttonAction}
-      </button>
-    </div>
-  </>
+  if(isLoading) {
+    return <div>loading...</div>
+  }
+  else if(payload)
+    return <>
+      <Banner />
+      <Pagging calendarAcademicData={calendarAcademicData} language={language}/>
+      <Content payload={payload} content={calendarAcademicData[language]} language={language}/>
+    </>
 };
 
 export default CalendarAcademicPage;

@@ -1,11 +1,9 @@
 "use client";
-/* import {useLanguageStore} from '../../../../../store/language.store'; */
 import {BulletinSpotlightPayload} from '../../../../../data';
 import { useState } from 'react';
 
 const Banner = () => {
-  const [bulletinSpotlightData, setBulletinSpotlightData] = useState(BulletinSpotlightPayload);
-  /* const { language } = useLanguageStore(); */
+  const [bulletinSpotlightData] = useState(BulletinSpotlightPayload);
 
   return (
     <>

@@ -11,10 +11,9 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { MdAppRegistration } from "react-icons/md";
-/* import { useLanguageStore } from "../../../store/language.store"; */
 import { FooterPayload } from "../../../data";
 import { useState } from "react";
-import useLanguage from "../../hooks/useLanguage";
+import { usePageData } from '../../hooks/usePageData';
 
 const convertPhoneNumber = (input) => {
   try {
@@ -26,11 +25,16 @@ const convertPhoneNumber = (input) => {
   }
 };
 
-const FooterComponent = ({ payload }) => {
+const FooterComponent = () => {
   const [footerPayload, _] = useState(FooterPayload);
-  /* const { language } = useLanguageStore(); */
-  const { language } = useLanguage();
 
+  const {language, isLoading} = usePageData();
+  const payload = usePageData((state) => state.result.generalPayload);
+
+  if(isLoading) {
+    return <></>
+  }
+  else if(payload)
   return (
     <>
       <Footer className="bg-[#00305E] text-white rounded-none">

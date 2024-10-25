@@ -1,10 +1,4 @@
-"use client";
-import React from "react";
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
-
 const VisiMisiPage = ({ data, language }) => {
-  /* const { language } = useLanguageStore(); */
-
   return (
     <>
       <div className="md:mx-32 mx-10 grid md:grid-cols-1 grid-cols-1 xl:grid-cols-2 lg:grid-cols-1 text-black leading-loose">

@@ -4,8 +4,6 @@ import { useRef, useState } from "react";
 import { HiMail } from "react-icons/hi";
 import { SubmitContact } from "../../../../../services/contact.service";
 import Swal from "sweetalert2";
-import { ContactUsPayLoad } from "../../../../../data";
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
 import {
   convertPhoneNumberToInternational
 } from "../../../../../helpers/string.helper";
@@ -13,9 +11,8 @@ import Recaptcha from '../../../_components/recaptcha';
 import {
   ValidateGoogleRecaptcha
 } from '../../../../../services/googlerecaptcha.service'
-import useLanguage from "../../../../hooks/useLanguage";
 
-const ContactForm = () => {
+const ContactForm = ({contactUsData, language}) => {
   const [isLoading, setIsLoading] = useState(null);
   const [contactPayload, setContactPayload] = useState({});
 
@@ -72,10 +69,6 @@ const ContactForm = () => {
         setIsLoading(false);
     }
   };
-
-  const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
-  /* const { language } = useLanguageStore(); */
-  const {language} = useLanguage();
 
   /* State google recaptcha */
   const [captchaValue, setCaptchaValue] = useState(null);

@@ -1,10 +1,4 @@
-"use client";
-import React from "react";
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
-
 const JenjangPendidikanPage = ({ data, language }) => {
-  /* const { language } = useLanguageStore(); */
-
   return (
     <>
       <div className="flex items-center justify-center">

@@ -1,27 +1,25 @@
 "use client";
 import Banner from "./components/banner";
 import Pagging from "./components/pagging";
-import useLanguage from '../../../hooks/useLanguage';
-import { AboutUsPayload } from "../../../../data";
 import { useEffect, useState } from "react";
 import Pengenalan from "./components/pengenalan";
 import VisiMisi from "./components/visi-misi";
 import JenjangPendidikan from "./components/jenjang-pendidikan";
-import { GetConfig } from "../../../../services/config.service";
+import { usePageData } from '../../../hooks/usePageData';
 
 const AboutUsPage = () => {
-  const [aboutUsData, setAboutUsData] = useState({});
-  const {language} = useLanguage();
   const [activeTab, setActiveTab] = useState("pengenalan");
 
+  const {language, getAboutUsPageData, isLoading} = usePageData();
+  const aboutUsData = usePageData((state) => state.result.aboutus);
   useEffect(() => {
-    try {
-      GetConfig('general', {"type": "aboutus"})
-      .then((res) => setAboutUsData(res[0]))
-      .catch((err) => console.log(err))
-    } catch (error) {console.log(error);}
-  }, [])
-
+    getAboutUsPageData();
+  }, []);
+    
+  if(isLoading) {
+    return <div>loading...</div>
+  }
+  else if(aboutUsData)
   return (
     <>
       <Banner />

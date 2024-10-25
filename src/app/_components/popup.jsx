@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import useLanguage from '../../hooks/useLanguage';
+import { usePageData } from '../../hooks/usePageData';
 
-const Popup = ({payload}) => {
-  const {language} = useLanguage();
+const Popup = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  const {language, isLoading} = usePageData();
+  const payload = usePageData((state) => state.result.generalPayload);
 
   useEffect(() => {
     const popupHiddenTimestamp = localStorage.getItem('popupHiddenTimestamp');
@@ -37,6 +39,10 @@ const Popup = ({payload}) => {
 
   if (!isVisible) return null;
 
+  if(isLoading) {
+    return <></>
+  }
+  else if(payload)
   return (
     <div className="fixed text-white inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 text-center text-[14px] md:text-[20px] lg:text-[25px] xl:text-[16px]">
       <div className="relative flex flex-col bg-[#00305e] p-6 rounded-lg shadow-lg max-w-lg">

@@ -1,28 +1,29 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Banner from "./components/Banner";
 import Pagging from "./components/Pagging";
 import TK from "./components/TK";
-import { GetConfig } from "../../../../services/config.service";
+import { usePageData } from '../../../hooks/usePageData';
 
 const BTBBelajarPage = () => {
-  const [btbBelajarData, setBtbBelajarData] = useState({});
+  const {language, getBTBBelajarPageData, isLoading} = usePageData();
+  const btbBelajarData = usePageData((state) => state.result.btbbelajar);
 
   useEffect(() => {
-    try {
-      GetConfig('general', {"type": "btbbelajar"})
-      .then((res) => setBtbBelajarData(res[0]))
-      .catch((err) => console.log(err))
-    } catch (error) {console.log(error);}
-  }, [])
+    getBTBBelajarPageData();
+  }, []);
 
+  if(isLoading) {
+    return <div>loading...</div>
+  }
+  else if(btbBelajarData)
     return (
-    <>
-        <Banner />
-        <Pagging btbBelajarData={btbBelajarData}/>
-        <TK btbBelajarData={btbBelajarData}/>
-    </>
-  );
+      <>
+          <Banner />
+          <Pagging btbBelajarData={btbBelajarData} language={language}/>
+          <TK btbBelajarData={btbBelajarData} language={language}/>
+      </>
+    );
 };
 
 export default BTBBelajarPage;

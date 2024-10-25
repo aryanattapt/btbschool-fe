@@ -5,10 +5,8 @@ import Pagging from "./_layouts/pagging";
 import { HiPhone, HiMail } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { ContactUsPayLoad } from "../../../../data";
-/* import { useLanguageStore } from "../../../../store/language.store"; */
-import useLanguage from "../../../hooks/useLanguage";
 import { useEffect, useState } from "react";
-import { GetConfig } from "../../../../services/config.service";
+import { usePageData } from '../../../hooks/usePageData';
 
 const convertPhoneNumber = (input) => {
   try {
@@ -19,27 +17,22 @@ const convertPhoneNumber = (input) => {
 }
 
 const ContactPage = () => {
-  const [contactUsData, setcontactUsData] = useState(ContactUsPayLoad);
-  /* const { language } = useLanguageStore(); */
-  const { language } = useLanguage();
-
-  const [payload, setPayload] = useState([]);
+  const [contactUsData] = useState(ContactUsPayLoad);
+  const {language, getContactPageData, isLoading} = usePageData();
+  const payload = usePageData((state) => state.result.contact);
+  
   useEffect(() => {
-    (async () => {
-      try {
-        const result = await GetConfig('general', {"type": "generalsetting"});
-        console.log(result[0]);
-        setPayload(result[0]?.contact);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    getContactPageData();
   }, []);
-
+  
+  if(isLoading) {
+    return <div>loading...</div>
+  }
+  else if(payload)
   return (
     <>
-      <Banner />
-      <Pagging />
+      <Banner contactUsData={contactUsData} />
+      <Pagging contactUsData={contactUsData} language={language}/>
       <div
         id="hubungi-kami"
         className="mx-4 sm:mx-10 md:mx-15 lg:mx-25 xl:mx-32"
@@ -147,7 +140,7 @@ const ContactPage = () => {
               {contactUsData[language].desc}
             </p>
             <div className="flex-1">
-              <ContactForm />
+              <ContactForm contactUsData={contactUsData} language={language}/>
             </div>
           </div>
         </div>
