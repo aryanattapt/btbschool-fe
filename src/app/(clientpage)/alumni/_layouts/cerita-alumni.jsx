@@ -119,7 +119,7 @@ const CeritaAlumni = ({ alumniPayload, alumniStoryPayload, alumniUniversityPaylo
                                 val?.image && <img
                                     src={val.image}
                                     alt="alumni"
-                                    className="w-[400px] h-[200px] object-cover"
+                                    className="w-[400px] h-[200px] object-contain"
                                 />
                             }
                             <span className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50">
