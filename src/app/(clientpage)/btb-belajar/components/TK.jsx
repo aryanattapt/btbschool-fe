@@ -1,5 +1,3 @@
-"use client";
-
 const TK = ({btbBelajarData, language}) => {
   return (
     <>

@@ -4,7 +4,6 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import BulletinFlipBook from "../FlipBook";
-import { Modal } from "flowbite-react";
 import { IoMdDownload } from "react-icons/io";
 import BtnPrimary from "../../../../../components/Button/Primary";
 

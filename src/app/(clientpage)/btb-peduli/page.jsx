@@ -24,7 +24,7 @@ const BTBPeduliPage = () => {
   else if(btbPeduliData)
     return (
       <>
-        <Banner />
+        <Banner btbPeduliData={btbPeduliData} language={language}/>
         <Pagging
           btbPeduliData={btbPeduliData}
           language={language}

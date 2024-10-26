@@ -19,7 +19,7 @@ const BTBBelajarPage = () => {
   else if(btbBelajarData)
     return (
       <>
-          <Banner />
+          <Banner btbBelajarData={btbBelajarData}/>
           <Pagging btbBelajarData={btbBelajarData} language={language}/>
           <TK btbBelajarData={btbBelajarData} language={language}/>
       </>

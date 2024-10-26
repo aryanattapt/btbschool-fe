@@ -1,10 +1,4 @@
-"use client";
-import React from "react";
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
-
 const PeduliLingkungan = ({ data, language }) => {
-  /* const { language } = useLanguageStore(); */
-
   return (
     <div>
       <div className="md:mx-32 mx-5 md:py-0 py-9">

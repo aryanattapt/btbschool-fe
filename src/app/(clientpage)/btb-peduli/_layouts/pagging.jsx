@@ -1,5 +1,3 @@
-"use client";
-
 const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
   return (
     <>

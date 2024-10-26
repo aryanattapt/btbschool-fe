@@ -1,10 +1,4 @@
-"use client";
-import React from "react";
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
-
 const Sukarelawan = ({ data, language }) => {
-  /* const { language } = useLanguageStore(); */
-
   return (
     <div id="sukarelawan">
       <div className="flex flex-col items-start">

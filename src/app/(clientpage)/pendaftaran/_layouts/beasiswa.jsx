@@ -1,12 +1,8 @@
-"use client";
 import React from "react";
 import { HiPhone, HiMail } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
 
-const BeasiswaPage = ({ data, language }) => {
-  /* const { language } = useLanguageStore(); */
-
+const BeasiswaPage = ({ data, language, generalSetting }) => {
   return (
     <>
       <div className="md:mx-32 mx-10 text-black leading-loose">

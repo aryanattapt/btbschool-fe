@@ -1,10 +1,4 @@
-"use client";
-import {BulletinSpotlightPayload} from '../../../../../data';
-import { useState } from 'react';
-
-const Banner = () => {
-  const [bulletinSpotlightData] = useState(BulletinSpotlightPayload);
-
+const Banner = ({bulletinSpotlightData}) => {
   return (
     <>
       <div className="relative h-[475px] w-full">

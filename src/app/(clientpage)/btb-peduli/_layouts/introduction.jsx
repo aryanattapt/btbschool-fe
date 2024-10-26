@@ -1,10 +1,4 @@
-"use client";
-import React from "react";
-/* import { useLanguageStore } from "../../../../../store/language.store"; */
-
 const Introduction = ({ data, language }) => {
-  /* const { language } = useLanguageStore(); */
-
   return (
     <div id="introduction">
       <div className="mt-10 mb-5 mx-5 md:pl-32 text-[#00305E] sm:justify-center">

@@ -1,11 +1,4 @@
-"use client";
-import { BulletinSpotlightPayload } from "../../../../../data";
-import { useState } from "react";
-
-const Pagging = ({language}) => {
-	const [bulletinSpotlightData] = useState(
-		BulletinSpotlightPayload
-	);
+const Pagging = ({language, bulletinSpotlightData}) => {
 	return (
 		<>
 			<header className="flex flex-row items-start justify-between text-[#00305E] border-b">

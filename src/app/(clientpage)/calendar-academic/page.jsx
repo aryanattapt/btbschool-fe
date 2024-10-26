@@ -1,16 +1,14 @@
 'use client'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Banner from "./components/banner";
 import Pagging from "./components/pagging";
 import Content from "./components/content";
-import {CalendarAcademicPayload} from '../../../../data';
 import { usePageData } from '../../../hooks/usePageData';
 
 const CalendarAcademicPage = () => {
-  const [calendarAcademicData] = useState(CalendarAcademicPayload);
-
   const {language, getCalenderAcademicPageData, isLoading} = usePageData();
   const payload = usePageData((state) => state.result.calenderacademic);
+  const calendarAcademicData = usePageData((state) => state.result.CalendarAcademicPageData);
 
   useEffect(() => {
     getCalenderAcademicPageData();

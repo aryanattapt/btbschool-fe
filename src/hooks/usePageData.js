@@ -3,9 +3,12 @@ import { GetConfig } from "../../services/config.service";
 import { GetBTBInstagramFeed } from "../../services/instagram.service";
 import { GetActiveCareerList } from "../../services/career.service";
 import {
+    BulletinSpotlightPayload,
+    CalendarAcademicPayload,
     CareerPayload,
     ContactUsPayLoad,
-    HelpPayload
+    HelpPayload,
+    FooterPayload
 } from '../../data';
 
 const initialData = {
@@ -14,6 +17,7 @@ const initialData = {
     isError: false,
     error: {},
 	language: "ID",
+    footerPayload: FooterPayload
 };
 
 const LANGUAGEKEY = "LANG";
@@ -177,6 +181,7 @@ export const usePageData = create((set, get) => ({
 
             set({
                 result: {
+                    bulletinSpotlightPageData: BulletinSpotlightPayload || {},
                     bulletinspotlight: bulletinspotlight || [],
                     generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
                 }
@@ -201,6 +206,7 @@ export const usePageData = create((set, get) => ({
 
             set({
                 result: {
+                    CalendarAcademicPageData: CalendarAcademicPayload || {},
                     calenderacademic: calenderacademic || [],
                     generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
                 }
@@ -247,6 +253,7 @@ export const usePageData = create((set, get) => ({
 
             set({
                 result: {
+                    ContactPageData: ContactUsPayLoad || {},
                     contact: mainData?.find(val => val?.type == 'generalsetting')?.contact || {},
                     generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
                 }
@@ -275,6 +282,33 @@ export const usePageData = create((set, get) => ({
                     faq: faqData || [],
                     ContactUsPayLoad: ContactUsPayLoad,
                     contact: mainData?.find(val => val?.type == 'generalsetting')?.contact || {},
+                    generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
+                }
+            });
+        } catch (error) {
+            console.log(error);
+            set({ isError: true, error: {error} });
+        } finally{
+            setTimeout(() => {
+                set({ isLoading: false });
+            }, 1000);
+        }
+    },
+
+    getPendaftaranPageData: async () => {
+        try {
+            set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
+            const mainData = await GetConfig(configName, {
+                type: {
+                    "$in": ["generalsetting", "pendaftaran"]
+                }
+            })
+
+            console.log(mainData?.find(val => val?.type == 'generalsetting'));
+
+            set({
+                result: {
+                    pendaftaranData: mainData?.find(val => val?.type == 'pendaftaran') || {},
                     generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
                 }
             });

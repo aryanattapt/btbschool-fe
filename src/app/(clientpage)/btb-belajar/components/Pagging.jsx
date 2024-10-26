@@ -1,5 +1,3 @@
-"use client";
-
 const Pagging = ({btbBelajarData, language}) => {
   return (
     <>

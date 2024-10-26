@@ -4,8 +4,7 @@ import Banner from "./_layouts/banner";
 import Pagging from "./_layouts/pagging";
 import { HiPhone, HiMail } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
-import { ContactUsPayLoad } from "../../../../data";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usePageData } from '../../../hooks/usePageData';
 
 const convertPhoneNumber = (input) => {
@@ -17,9 +16,9 @@ const convertPhoneNumber = (input) => {
 }
 
 const ContactPage = () => {
-  const [contactUsData] = useState(ContactUsPayLoad);
   const {language, getContactPageData, isLoading} = usePageData();
   const payload = usePageData((state) => state.result.contact);
+  const contactUsData = usePageData((state) => state.result.ContactPageData);
   
   useEffect(() => {
     getContactPageData();
@@ -180,8 +179,8 @@ const ContactPage = () => {
                     {val?.buildingName}
                   </h3>
                   {
-                    val?.mapsLocation && <iframe
-                      src={val?.mapsLocation}
+                    val?.mapsLocationEmbeded && <iframe
+                      src={val?.mapsLocationEmbeded}
                       className="w-full h-500 md:w-full md:h-64 lg:w-86 lg:h-70"
                       allowFullScreen
                       loading="lazy"
