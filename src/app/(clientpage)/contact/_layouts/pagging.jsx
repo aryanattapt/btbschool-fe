@@ -1,4 +1,4 @@
-const PaggingLayouts = ({contactUsData, language}) => {
+const PaggingLayouts = ({ contactUsData, language }) => {
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
@@ -16,7 +16,7 @@ const PaggingLayouts = ({contactUsData, language}) => {
                 return (
                   <li
                     className="px-[3px] xl:px-[150px] md:px-[50px] lg:pr-[2px] py-3
-                   md:py-0"
+                   md:py-0 border-b-2"
                     key={idx}
                   >
                     <a
