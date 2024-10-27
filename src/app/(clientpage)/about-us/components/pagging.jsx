@@ -19,7 +19,7 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
           </div>
           <div className="inline-flex gap-9 sm:gap-5 md:gap-20 text-[20px] md:text-[20px] text-left text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
             <ul className="flex flex-wrap -mb-px py-8 md:py-10">
-              <li className="sm:px-8 md:px-20 lg:px-10 xl:px-20 px-5">
+              <li className="sm:px-8 md:px-20 lg:px-10 xl:px-20 px-5 border-b-2">
                 <div
                   className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "pengenalan"
@@ -32,7 +32,7 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
                   {aboutUsData[language]?.pagingHeader?.url[0]?.title}
                 </div>
               </li>
-              <li className="md:px-20 sm:px-8 px-5 lg:px-10 xl:px-20">
+              <li className="md:px-20 sm:px-8 px-5 lg:px-10 xl:px-20 border-b-2">
                 <div
                   className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "visi-misi"
@@ -45,7 +45,7 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
                   {aboutUsData[language]?.pagingHeader?.url[1]?.title}
                 </div>
               </li>
-              <li className="sm:px-8 md:px-20 px-5 lg:px-10 xl:px-20">
+              <li className="sm:px-8 md:px-20 px-5 lg:px-10 xl:px-20 border-b-2">
                 <div
                   className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "jenjang-pendidikan"
