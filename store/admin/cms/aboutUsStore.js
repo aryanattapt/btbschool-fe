@@ -68,11 +68,11 @@ export const useCmsAboutUsStore = create((set, get) => ({
 		}
 		set({ data: data });
 	},
-	setGradeLists: (value, prop, index) => {
-		const { data, language } = template(get);
-		data[language]["gradelists"][index][prop] = value;
-		set({ data: data });
-	},
+	// setGradeLists: (value, prop, index) => {
+	// 	const { data, language } = template(get);
+	// 	data[language]["gradelists"][index][prop] = value;
+	// 	set({ data: data });
+	// },
 	submitData: async (attachments) => {
 		const tempAtt = {};
 		if (!isObjectEmpty(attachments)) {

@@ -23,11 +23,28 @@ import {
 } from '../../../../../../services/googlerecaptcha.service'
 import { GetCountry } from '../../../../../../services/country.service'
 
+const labelTemplate = {
+    firstname: 'First Name',
+    additionalInfo: 'Additional Info',
+    email: 'Email',
+    phoneno: 'Phone No',
+    country: 'Country',
+    currentaddress: 'Current Address',
+    cvFile: 'CV File'
+}
+
 const CareerApplyForm = ({params}) => {
-    const [errorPayload, setErrorPayload] = useState({});
+    const [errorPayload, setErrorPayload] = useState({
+        firstname: '',
+        additionalInfo: '',
+        email: '',
+        phoneno: '',
+        country: '',
+        currentaddress: '',
+        cvFile: ''
+    });
     const [isLoading, setIsLoading] = useState(null);
     const [careerPayload, setCareerPayload] = useState({"careerid": params.id});
-
     const [nationalityPayload, setNationalityPayload] = useState([]);
 
     /* State google recaptcha */
@@ -44,36 +61,54 @@ const CareerApplyForm = ({params}) => {
         }));
     }
 
+    const makeFormValid = (name) => { 
+        if(errorPayload[name]){
+            setErrorPayload(prev => ({
+                ...prev,
+                [name]: ''
+            }))
+        }
+    }
+
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(name === 'phoneno'){
+            makeFormValid('phoneno')
             setCareerPayload(prevState => ({
                 ...prevState,
                 [name]: convertPhoneNumberToInternational(value),
             }));
         } else if(type == 'file'){
-            const validFiles = [];
-            const maxFileSize = 5 * 1024 * 1024;
-            Object.keys(files).forEach((key) => {
-                const file = files[key];
-                if (file.type === 'application/pdf') {
-                    if (file.size <= maxFileSize) {
-                        validFiles.push(file);
+            if(files.length > 0){
+                makeFormValid('cvFile')
+                const validFiles = [];
+                const maxFileSize = 5 * 1024 * 1024;
+                Object.keys(files).forEach((key) => {
+                    const file = files[key];
+                    if (file.type === 'application/pdf') {
+                        if (file.size <= maxFileSize) {
+                            validFiles.push(file);
+                        } else {
+                            clearFile(name);
+                            alert(`${file.name} exceeds the maximum size of 5 MB.`);
+                        }
                     } else {
                         clearFile(name);
-                        alert(`${file.name} exceeds the maximum size of 5 MB.`);
+                        alert(`${file.name} is not a valid PDF file.`);
                     }
-                } else {
-                    clearFile(name);
-                    alert(`${file.name} is not a valid PDF file.`);
+                });
+    
+                if (validFiles.length > 0) {
+                    setCareerPayload(prevState => ({
+                        ...prevState,
+                        [name]: prevState[name] ? [...prevState[name], ...validFiles] : validFiles
+                    }));
                 }
-            });
-
-            if (validFiles.length > 0) {
+            } else {
                 setCareerPayload(prevState => ({
                     ...prevState,
-                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : validFiles
-                }));
+                    cvFile: []
+                }))
             }
         } else if(type == 'checkbox'){
             if(e.target.checked){
@@ -89,6 +124,7 @@ const CareerApplyForm = ({params}) => {
             }
         }
         else{
+            makeFormValid(name)
             setCareerPayload(prevState => ({
                 ...prevState,
                 [name]:  value
@@ -108,7 +144,34 @@ const CareerApplyForm = ({params}) => {
         })();
     }, []);
 
+    const submitValidation = () => {
+        let flag = true
+        
+        Object.keys(errorPayload).forEach((key) => {
+            if(key === 'cvFile' && careerPayload?.['cvFile']?.length === 0){
+                flag = false
+                errorPayload[key] = `${labelTemplate[key]} is required`
+            } else if (!careerPayload?.[key]){
+                flag = false
+                errorPayload[key] = `${labelTemplate[key]} is required`
+            }
+            setErrorPayload({...errorPayload})
+        })
+        return flag
+    }
+
+    const setErrorMessageFromApi = (err) => {
+        Object.keys(err).forEach((key) => {
+            setErrorPayload((prev) => ({
+                ...prev,
+                [key] : err[key]['message'].replace(key, labelTemplate[key])
+            }))
+        })
+    }
+
     const submitHandler = async (e) => {
+        if(!submitValidation()) return Swal.fire('Error', 'Please fill all the error field', 'error')
+        if(!captchaValue) return Swal.fire('Error', 'Please make sure you are not a Robot by clicking the Captcha', 'error')
         try {
             setIsLoading(true);
             await ValidateSubmitCareer(careerPayload);
@@ -140,7 +203,9 @@ const CareerApplyForm = ({params}) => {
                 window.location.href = '/career';
             }, 5000);
         } catch (err) {
-            setErrorPayload(err.error);
+            console.log({err})
+            // setErrorPayload(err.error);
+            setErrorMessageFromApi(err.error)
             Swal.fire({
                 allowOutsideClick: false,
                 title: "Career Submission Notification!",
@@ -174,9 +239,9 @@ const CareerApplyForm = ({params}) => {
                     <Label htmlFor="firstname" value="Nama Depan"/>
                 </div>
                 <TextInput id="firstname" name="firstname" type="text" value={careerPayload.firstname || ''} autoFocus={true} onChange={formChangeHandler} 
-                    color={errorPayload?.firstName && 'failure'}
+                    color={errorPayload?.firstname && 'failure'}
                     helperText={
-                      errorPayload?.firstName && <span className="font-medium">{errorPayload?.firstName?.message}</span>
+                      errorPayload?.firstname && <span className="font-medium">{errorPayload?.firstname}</span>
                     }     
                 />
             </div>
@@ -193,7 +258,7 @@ const CareerApplyForm = ({params}) => {
                 <Textarea id="additionalInfo" name="additionalInfo" value={careerPayload.additionalInfo || ''} required rows={4} onChange={formChangeHandler} 
                     color={errorPayload?.additionalInfo && 'failure'}
                     helperText={
-                      errorPayload?.additionalInfo && <span className="font-medium">{errorPayload?.additionalInfo?.message}</span>
+                      errorPayload?.additionalInfo && <span className="font-medium">{errorPayload?.additionalInfo}</span>
                     }
                 />
             </div>
@@ -204,7 +269,7 @@ const CareerApplyForm = ({params}) => {
                 <TextInput icon={HiMail} type="email" id="email" name="email" value={careerPayload.email || ''} onChange={formChangeHandler}
                     color={errorPayload?.email && 'failure'}
                     helperText={
-                      errorPayload?.email && <span className="font-medium">{errorPayload?.email?.message}</span>
+                      errorPayload?.email && <span className="font-medium">{errorPayload?.email}</span>
                     }
                 />
             </div>
@@ -215,7 +280,7 @@ const CareerApplyForm = ({params}) => {
                 <TextInput id="phoneno" name="phoneno" type="text" value={careerPayload.phoneno || ''} onChange={formChangeHandler}
                     color={errorPayload?.phoneno && 'failure'}
                     helperText={
-                      errorPayload?.phoneno && <span className="font-medium">{errorPayload?.phoneno?.message}</span>
+                      errorPayload?.phoneno && <span className="font-medium">{errorPayload?.phoneno}</span>
                     }
                 />
             </div>
@@ -226,7 +291,7 @@ const CareerApplyForm = ({params}) => {
                 <Select id="country" name="country" required value={careerPayload.country || ''} onChange={formChangeHandler} 
                     color={errorPayload?.country && 'failure'}
                     helperText={
-                      errorPayload?.country && <span className="font-medium">{errorPayload?.country?.message}</span>
+                      errorPayload?.country && <span className="font-medium">{errorPayload?.country}</span>
                     }
                 >
                     <option value="">Select Country</option>
@@ -244,7 +309,7 @@ const CareerApplyForm = ({params}) => {
                 <Textarea id="currentaddress" name="currentaddress" required rows={4} value={careerPayload.currentaddress || ''} onChange={formChangeHandler} 
                     color={errorPayload?.currentaddress && 'failure'}
                     helperText={
-                      errorPayload?.currentaddress && <span className="font-medium">{errorPayload?.currentaddress?.message}</span>
+                      errorPayload?.currentaddress && <span className="font-medium">{errorPayload?.currentaddress}</span>
                     }
                 />
             </div>
@@ -252,7 +317,14 @@ const CareerApplyForm = ({params}) => {
                 <div className="mb-2 block">
                     <Label htmlFor="cvFile" value="Unggah CV" />
                 </div>
-                <FileInput accept=".pdf" id="cvFile" name="cvFile" helperText="Ukuran Maksimum 5 MB. Format PDF" ref={fileInputRef} onChange={formChangeHandler}/>
+                <FileInput value={careerPayload?.cvFile?.filename} accept=".pdf" id="cvFile" name="cvFile" ref={fileInputRef} onChange={formChangeHandler}
+                    color={errorPayload?.cvFile && 'failure'}
+                    helperText={
+                      errorPayload?.cvFile 
+                        ? <span className="font-medium">{errorPayload?.currentaddress}</span>
+                        : "Ukuran Maksimum 5 MB. Format PDF"
+                    }
+                />
             </div>
             <div>
                 <Recaptcha

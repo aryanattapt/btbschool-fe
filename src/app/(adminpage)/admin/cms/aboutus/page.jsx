@@ -19,7 +19,6 @@ const CMSAboutUs = () => {
 	const setSmallParagraph = useCmsAboutUsStore(
 		(state) => state.setSmallParagraph
 	);
-	const setGradeLists = useCmsAboutUsStore((state) => state.setVisiMisi);
 	const data = useCmsAboutUsStore((state) => state.data);
 	const submitData = useCmsAboutUsStore((state) => state.submitData);
 	// const onChangeAttachment = useCmsAboutUsStore(

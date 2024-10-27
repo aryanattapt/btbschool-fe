@@ -24,7 +24,7 @@ const TableCareerApplicant = ({payload}) => {
                                 {moment(val?.registereddate).format("DD MMMM YYYY HH:mm:ss")}
                             </Table.Cell>
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {`${val.firstname} ${val.lastname}`}
+                                {`${val.firstname} ${val?.lastname ?? ''}`}
                             </Table.Cell>
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                 {val.phoneno}
