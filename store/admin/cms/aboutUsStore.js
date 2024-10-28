@@ -68,11 +68,21 @@ export const useCmsAboutUsStore = create((set, get) => ({
 		}
 		set({ data: data });
 	},
-	setGradeLists: (value, prop, index) => {
+	deleteVisiMisi: (index) => {
 		const { data, language } = template(get);
-		data[language]["gradelists"][index][prop] = value;
+		data[language]["visimisi"]["misilist"].splice(index, 1);
 		set({ data: data });
 	},
+	addVisiMisi: () => {
+		const { data, language } = template(get);
+		data[language]["visimisi"]["misilist"].push("");
+		set({ data: data });
+	},
+	// setGradeLists: (value, prop, index) => {
+	// 	const { data, language } = template(get);
+	// 	data[language]["gradelists"][index][prop] = value;
+	// 	set({ data: data });
+	// },
 	submitData: async (attachments) => {
 		const tempAtt = {};
 		if (!isObjectEmpty(attachments)) {
