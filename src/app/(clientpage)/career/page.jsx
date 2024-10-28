@@ -8,9 +8,8 @@ import { usePageData } from '../../../hooks/usePageData';
 const CareerPage = () => {
 	const {language, getCareerPageData, isLoading} = usePageData();
 	const careerPagePayload = usePageData((state) => state.result.careerPayload);
-	const activeCareer = usePageData((state) => state.result.activeCareer);
-	const [rawDatas] = useState(activeCareer);
-	const [displayDatas, setDisplayDatas] = useState(activeCareer);
+	const rawDatas = usePageData((state) => state.result.activeCareer);
+	const [displayDatas, setDisplayDatas] = useState([]);
 
 	const onFilter = (jobcategory, jobtitle) => {
 		let container = [...rawDatas];
@@ -34,8 +33,18 @@ const CareerPage = () => {
 	};
 
 	useEffect(() => {
-		getCareerPageData();
-	}, []);
+		(async () => {
+			try {
+				await getCareerPageData();
+			} catch (error) {}
+		})();
+	}, [getCareerPageData]);	
+
+	useEffect(() => {
+		if (rawDatas) {
+			setDisplayDatas(rawDatas);
+		}
+	}, [rawDatas]);	
 
 	if(isLoading) {
 		return <div>loading...</div>
