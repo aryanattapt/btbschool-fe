@@ -27,11 +27,19 @@ const CareerList = ({ datas }) => {
 							<div className="hidden md:grid grid-cols-12 sm:gap-4 gap-12">
 								<div className="col-span-4 flex items-center">
 									<IoPersonCircle className="hidden xl:block text-[30px] mr-2" />
-									<p>{res?.experienced}</p>
+									<p>
+										{
+											Array.isArray(res?.experienced) ? res?.experienced?.join(', ') : res?.experienced
+										}
+									</p>
 								</div>
 								<div className="col-span-6 flex items-center">
 									<FiHome className="hidden xl:block text-[30px] mr-2" />
-									<p>{res?.jobtype}</p>
+									<p>
+										{
+											Array.isArray(res?.jobtype) ? res?.jobtype?.join(', ') : res?.jobtype
+										}
+									</p>
 								</div>
 								<div className="col-span-2 flex items-center justify-end">
 									<BtnPrimary onClick={() => onClickDetail(res)}>

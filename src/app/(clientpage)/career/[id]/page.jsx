@@ -41,7 +41,10 @@ const DetailCareer = () => {
 							{data?.jobtitlename}
 						</h3>
 						<h5 className="text-lg md:text-xl lg:text-2xl my-6">
-							{data?.experienced} <span className="mx-2 lg:mx-6">|</span>{" "}
+							{
+								Array.isArray(data?.experienced) ? data?.experienced?.join(', ') : data?.experienced
+							}
+							<span className="mx-2 lg:mx-6">|</span>{" "}
 							{data?.jobcategory}
 						</h5>
 						<div
@@ -104,10 +107,14 @@ const DetailCareer = () => {
 							label={"Posted On"}
 							value={moment(data?.registereddate).format("DD MMMM YYYY")}
 						/>
-						<DetailInformationRow label={"Job Type"} value={data?.jobtype} />
+						<DetailInformationRow label={"Job Type"} value={
+							Array.isArray(data?.jobtype) ? data?.jobtype?.join(', ') : data?.jobtype
+						} />
 						<DetailInformationRow
 							label={"Experience Level"}
-							value={data?.experiencelevel}
+							value={
+								Array.isArray(data?.experiencelevel) ? data?.experiencelevel?.join(', ') : data?.experiencelevel 
+							}
 						/>
 						<div className="bg-[#646464] h-[1px] w-full my-3 mb-7" />
 						<DetailInformationRow

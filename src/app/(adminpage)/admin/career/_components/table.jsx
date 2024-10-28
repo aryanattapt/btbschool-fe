@@ -29,7 +29,9 @@ const TableCareerList = ({payload}) => {
                                 {moment(val.maximumApplyDate).format("DD MMMM YYYY")}
                             </Table.Cell>
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {val.experiencelevel}
+                                {
+                                    Array.isArray(val?.experiencelevel) ? val.experiencelevel.join(',') : val.experiencelevel
+                                }
                             </Table.Cell>
                             <Table.Cell>
                                 <Button color="warning" onClick={() => window.location.href = '/admin/career/form?id=' + val._id} className="mr-4">Edit</Button>
