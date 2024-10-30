@@ -15,7 +15,6 @@ import RulesRegistration from "./rulesregitration";
 import { useEffect, useRef, useState } from "react";
 import { Button, Label, Radio, Spinner, TextInput } from "flowbite-react";
 import { UploadAttachment } from "../../../../../services/attachment.service";
-import { GetCountry } from '../../../../../services/country.service'
 import {
   GetDraftStudentRegistration,
   SubmitStudentRegistration,
@@ -27,20 +26,24 @@ import { HiMail } from "react-icons/hi";
 import {
   convertPhoneNumberToInternational
 } from "../../../../../helpers/string.helper";
-import { GetConfig } from "../../../../../services/config.service";
 import moment from "moment";
 import {
   useEmailValidator,
   usePhoneNumberValidator
-} from '../../../../hooks/useFormValidator'
+} from '../../../../hooks/useFormValidator';
+import { usePageData } from '../../../../hooks/usePageData';
 
 const OnlineRegistrationForm = () => {
+  const {getOnlineRegistrationPageData, isLoading: isLoadingPage} = usePageData();
+  const nationalityPayload = usePageData((state) => state.result.countryData);
+  const yearPayload = usePageData((state) => state.result.yearData);
+
   let [pageNo, setPageNo] = useState(0);
   const [haveRegisCode, setHaveRegiscode] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [registrationPayload, setRegistrationPayload] = useState({medicalproblemoptions: []});
-  const [nationalityPayload, setNationalityPayload] = useState([]);
-  const [yearPayload, setYearPayload] = useState([]);
+  /* const [nationalityPayload, setNationalityPayload] = useState([]);
+  const [yearPayload, setYearPayload] = useState([]); */
   const [errorPayload, setErrorPayload] = useState({});
   const [termandcondition, setTermandcondition] = useState(true)
   // Ref for focus to mandatory field
@@ -102,7 +105,6 @@ const OnlineRegistrationForm = () => {
     familycardattachment : useRef(),
     reportcardattachment : useRef(),
   }
-
 
   const formChangeHandler = (e) => {
     const { name, value, type, files } = e.target;
@@ -496,19 +498,13 @@ const OnlineRegistrationForm = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      const collectedPromise = [];
-      collectedPromise.push(GetCountry());
-      collectedPromise.push(GetConfig('onlineregisyear', {}))
-
-      try {
-        const [country, year] = await Promise.all(collectedPromise);
-        setNationalityPayload(country);
-        setYearPayload(year)
-      } catch (error) {console.log(error);}
-    })();
+    getOnlineRegistrationPageData();
   }, []);
 
+  if(isLoadingPage){
+    return <div>loading...</div>
+  }
+  else if(nationalityPayload && yearPayload)
   return (
     <>
       <div className="max-w-full grid gap-3 mt-20 md:px-32">

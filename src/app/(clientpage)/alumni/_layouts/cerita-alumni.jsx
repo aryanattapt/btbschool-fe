@@ -112,7 +112,6 @@ const CeritaAlumni = ({ alumniPayload, alumniStoryPayload, alumniUniversityPaylo
         <div className="slider-container">
             <Slider {...settingsFlag}>
                 {alumniUniversityPayload?.map((val, idx) => {
-                    console.log(idx);
                     return(
                         <div key={idx} className="relative">
                             {

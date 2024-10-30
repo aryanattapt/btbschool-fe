@@ -10,6 +10,7 @@ import {
     HelpPayload,
     FooterPayload
 } from '../../data';
+import { GetCountry } from "../../services/country.service";
 
 const initialData = {
 	isLoading: false,
@@ -42,21 +43,22 @@ export const usePageData = create((set, get) => ({
     getHomePageData: async() => {
         try {
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
-            const [igFeedData, mainData ] = await Promise.all([
+            const results = await Promise.allSettled([
                 GetBTBInstagramFeed(),
                 GetConfig(configName, { 
-                    type: {
-                        "$in" : ["homepage", "generalsetting", "homepage.carousel"]
-                    } 
+                    type: { "$in": ["homepage", "generalsetting", "homepage.carousel"] }
                 }),
             ]);
-
+        
+            const igFeedData = results[0].status === 'fulfilled' ? results[0].value : [];
+            const mainData = results[1].status === 'fulfilled' ? results[1].value : [];
+        
             set({
                 result: {
-                    instagramFeed: igFeedData.length > 0 && igFeedData.slice(0, 6),
-                    homepage: mainData?.find(val => val?.type == 'homepage') || {},
-                    generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
-                    carousel: mainData?.filter(val => val?.type == 'homepage.carousel') || [],
+                    instagramFeed: igFeedData.length > 0 ? igFeedData.slice(0, 6) : [],
+                    homepage: mainData?.find(val => val?.type === 'homepage') || {},
+                    generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
+                    carousel: mainData?.filter(val => val?.type === 'homepage.carousel') || [],
                 }
             });
         } catch (error) {
@@ -174,16 +176,19 @@ export const usePageData = create((set, get) => ({
     getBulletinSpotlightPageData: async() => {
         try {
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
-            const [mainData, bulletinspotlight] = await Promise.all([
+            const results = await Promise.allSettled([
                 GetConfig(configName, { type: "generalsetting" }),
                 GetConfig("bulletinspotlight", {})
             ]);
+        
+            const mainData = results[0].status === 'fulfilled' ? results[0].value : null;
+            const bulletinspotlight = results[1].status === 'fulfilled' ? results[1].value : [];
 
             set({
                 result: {
                     bulletinSpotlightPageData: BulletinSpotlightPayload || {},
-                    bulletinspotlight: bulletinspotlight || [],
-                    generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
+                    bulletinspotlight: bulletinspotlight,
+                    generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                 }
             });
         } catch (error) {
@@ -199,16 +204,19 @@ export const usePageData = create((set, get) => ({
     getCalenderAcademicPageData: async() => {
         try {
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
-            const [mainData, calenderacademic] = await Promise.all([
+            const results = await Promise.allSettled([
                 GetConfig(configName, { type: "generalsetting" }),
                 GetConfig("calenderacademic", {})
             ]);
-
+        
+            const mainData = results[0].status === 'fulfilled' ? results[0].value : null;
+            const calenderacademic = results[1].status === 'fulfilled' ? results[1].value : [];
+        
             set({
                 result: {
                     CalendarAcademicPageData: CalendarAcademicPayload || {},
-                    calenderacademic: calenderacademic || [],
-                    generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
+                    calenderacademic: calenderacademic,
+                    generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                 }
             });
         } catch (error) {
@@ -224,18 +232,21 @@ export const usePageData = create((set, get) => ({
     getCareerPageData: async() => {
         try {
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
-            const [mainData, activeCareer] = await Promise.all([
+            const results = await Promise.allSettled([
                 GetConfig(configName, { type: "generalsetting" }),
                 GetActiveCareerList()
             ]);
+        
+            const mainData = results[0].status === 'fulfilled' ? results[0].value : null;
+            const activeCareer = results[1].status === 'fulfilled' ? results[1].value : [];
 
             set({
                 result: {
-                    activeCareer: activeCareer || [],
+                    activeCareer: activeCareer,
                     careerPayload: CareerPayload,
-                    generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
+                    generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                 }
-            });
+            });        
         } catch (error) {
             console.log(error);
             set({ isError: true, error: {error} });
@@ -271,20 +282,23 @@ export const usePageData = create((set, get) => ({
     getHelpPageData: async() => {
         try {
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
-            const [mainData, faqData] = await Promise.all([
+            const results = await Promise.allSettled([
                 GetConfig(configName, { type: "generalsetting" }),
                 GetConfig("faq", {})
             ]);
+        
+            const mainData = results[0].status === 'fulfilled' ? results[0].value : [];
+            const faqData = results[1].status === 'fulfilled' ? results[1].value : [];
 
             set({
                 result: {
-                    helpPaylod: HelpPayload || {},
-                    faq: faqData || [],
-                    ContactUsPayLoad: ContactUsPayLoad,
-                    contact: mainData?.find(val => val?.type == 'generalsetting')?.contact || {},
-                    generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
+                    helpPayload: HelpPayload || {},
+                    faq: faqData,
+                    ContactusPayload: ContactUsPayLoad,
+                    contact: mainData?.find(val => val?.type === 'generalsetting')?.contact || {},
+                    generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                 }
-            });
+            });        
         } catch (error) {
             console.log(error);
             set({ isError: true, error: {error} });
@@ -302,14 +316,42 @@ export const usePageData = create((set, get) => ({
                 type: {
                     "$in": ["generalsetting", "pendaftaran"]
                 }
-            })
-
-            console.log(mainData?.find(val => val?.type == 'generalsetting'));
+            });
 
             set({
                 result: {
                     pendaftaranData: mainData?.find(val => val?.type == 'pendaftaran') || {},
                     generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
+                }
+            });
+        } catch (error) {
+            console.log(error);
+            set({ isError: true, error: {error} });
+        } finally{
+            setTimeout(() => {
+                set({ isLoading: false });
+            }, 1000);
+        }
+    },
+
+    getOnlineRegistrationPageData: async () => {
+        try {
+            set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
+            const results = await Promise.allSettled([
+                GetConfig(configName, { type: "generalsetting" }),
+                GetCountry(),
+                GetConfig('onlineregisyear', {}),
+            ]);
+        
+            const mainData = results[0].status === 'fulfilled' ? results[0].value : [];
+            const countryData = results[1].status === 'fulfilled' ? results[1].value : [];
+            const yearData = results[2].status === 'fulfilled' ? results[2].value : [];
+
+            set({
+                result: {
+                    countryData,
+                    yearData,
+                    generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                 }
             });
         } catch (error) {

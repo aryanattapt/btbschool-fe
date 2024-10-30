@@ -8,10 +8,10 @@ import { usePageData } from '../../../hooks/usePageData';
 
 const HelpCenterPage = () => {
   const {language, getHelpPageData, isLoading} = usePageData();
-  const helpData = usePageData((state) => state.result.helpPaylod);
+  const helpData = usePageData((state) => state.result.helpPayload);
   const payload = usePageData((state) => state.result.faq);
   const contactData = usePageData((state) => state.result.contact);
-  const ContactUsPayLoad = usePageData((state) => state.result.ContactUsPayLoad);
+  const contactUs = usePageData((state) => state.result.ContactusPayload);
 
   useEffect(() => {
     getHelpPageData()
@@ -20,7 +20,7 @@ const HelpCenterPage = () => {
   if(isLoading) {
     return <div>loading...</div>
   }
-  else if(helpData)
+  else if(helpData && contactUs)
     return (
       <>
         <BannerHelpCenter />
@@ -35,7 +35,7 @@ const HelpCenterPage = () => {
               </div>
             </Tabs.Item>
             <Tabs.Item title={helpData[language].banner.title2}>
-              <InformasiPendaftaran language={language} contactUsData={ContactUsPayLoad} helpData={helpData} payload={contactData}/>
+              <InformasiPendaftaran language={language} contactUsData={contactUs} helpData={helpData} payload={contactData}/>
             </Tabs.Item>
           </Tabs>
         </div>
