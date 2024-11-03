@@ -429,12 +429,12 @@ const OnlineRegistrationForm = () => {
         return swalFormError("Father's Marital Status is required!", 'fathermaritalstatus')
       } else if(!registrationPayload.fatheroccupation){
         return swalFormError("Father's Occupation is required!", 'fatheroccupation')
-      } else if(!registrationPayload.fathercompanyname){
-        return swalFormError("Father's Company Name is required!", 'fathercompanyname')
-      } else if(!registrationPayload.fatherbusinessAddress){
-        return swalFormError("Father's Business Address is required!", 'fatherbusinessAddress')
-      } else if(!registrationPayload.fathertelephone){
-        return swalFormError("Father's Telephone is required!", 'fathertelephone')
+      // } else if(!registrationPayload.fathercompanyname){
+      //   return swalFormError("Father's Company Name is required!", 'fathercompanyname')
+      // } else if(!registrationPayload.fatherbusinessAddress){
+      //   return swalFormError("Father's Business Address is required!", 'fatherbusinessAddress')
+      // } else if(!registrationPayload.fathertelephone){
+      //   return swalFormError("Father's Telephone is required!", 'fathertelephone')
       } else if(!registrationPayload.mothername){
         return swalFormError("Mother's Name is required!", 'mothername')
       } else if(!registrationPayload.motherbirthplace){
@@ -449,12 +449,12 @@ const OnlineRegistrationForm = () => {
         return swalFormError("Mother's Marital Status is required!", 'mothermaritalstatus')
       } else if(!registrationPayload.motheroccupation){
         return swalFormError("Mother's Occupation is required!", 'motheroccupation')
-      } else if(!registrationPayload.mothercompanyname){
-        return swalFormError("Mother's Company Name is required!", 'mothercompanyname')
-      } else if(!registrationPayload.motherbusinessAddress){
-        return swalFormError("Mother's Business Address is required!", 'motherbusinessAddress')
-      } else if(!registrationPayload.mothertelephone){
-        return swalFormError("Mother's Telephone is required!", 'mothertelephone')
+      // } else if(!registrationPayload.mothercompanyname){
+      //   return swalFormError("Mother's Company Name is required!", 'mothercompanyname')
+      // } else if(!registrationPayload.motherbusinessAddress){
+      //   return swalFormError("Mother's Business Address is required!", 'motherbusinessAddress')
+      // } else if(!registrationPayload.mothertelephone){
+      //   return swalFormError("Mother's Telephone is required!", 'mothertelephone')
       } else if(!registrationPayload.emergencycontactname){
         return swalFormError("Emergency Contact Name is required!", 'emergencycontactname')
       } else if(!registrationPayload.emergencycontactrelaction){

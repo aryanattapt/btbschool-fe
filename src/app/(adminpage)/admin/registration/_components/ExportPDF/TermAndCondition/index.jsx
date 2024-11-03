@@ -137,8 +137,11 @@ const ARDExportTermAndCondition = ({ data }) => {
 						tersebut diatas.
 					</Text>
 				</View>
-				<View style={{ width: 100, marginTop: 8 }}>
-					<ARDExportPDFSignatureDisplay data={data} signature={data?.ttdpage2} />
+				<View style={{ width: 100, marginTop: 20 }}>
+					<ARDExportPDFSignatureDisplay
+						data={data}
+						signature={data?.ttdpage2}
+					/>
 				</View>
 			</View>
 		</ARDExportPDFPageContainer>

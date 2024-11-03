@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
 		columnGap: 12,
 	},
 	signatureSection: {
+		marginTop: 20,
 		width: "100%",
 		display: "flex",
 		justifyContent: "space-between",
@@ -56,8 +57,6 @@ const ARDExportRegistrationForm = ({ data }) => {
 					<ARDExportPDFEmergencyContact data={data} />
 				</View>
 				<ARDExportPDFDetailSiblings data={data} />
-			</ARDExportPDFPageContainer>
-			<ARDExportPDFPageContainer>
 				<View style={styles.signatureSection}>
 					<ARDExportPDFSignatureDisplay
 						data={data}
@@ -68,6 +67,8 @@ const ARDExportRegistrationForm = ({ data }) => {
 					</Text>
 				</View>
 			</ARDExportPDFPageContainer>
+			{/* <ARDExportPDFPageContainer>
+			</ARDExportPDFPageContainer> */}
 		</>
 	);
 };

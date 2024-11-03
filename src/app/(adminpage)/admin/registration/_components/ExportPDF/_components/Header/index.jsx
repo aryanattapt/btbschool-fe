@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from "@react-pdf/renderer";
 import React from "react";
-import {NavbarPayload} from '../../../../../../../../../data'
+import { NavbarPayload } from "../../../../../../../../../data";
 
 const styles = StyleSheet.create({
 	titleSection: {
@@ -12,17 +12,30 @@ const styles = StyleSheet.create({
 	subtitle: {
 		fontSize: 11,
 	},
+	imageContainer: {
+		display: "flex",
+		alignItems: "center",
+	},
+	imageStyle: {
+		width: "50%",
+	},
 });
 
 const ARDExportPDFHeader = ({ title, subtitle }) => {
 	return (
 		<>
-			<Image
-				// src={
-				// 	"https://w6i8.c1.e2-7.dev/assets/btbschool/images/Logo BTB 1.1-01.png"
-				// }
-				src={NavbarPayload.genericlogourl}
-			/>
+			<View style={styles.imageContainer}>
+				<View style={styles.imageStyle}>
+					<Image
+						src={NavbarPayload.genericlogourl}
+						// style={{
+						// 	width: 250, // Set the desired width
+						// 	height: 30, // Set the desired height
+						// 	// objectFit: "cover", // Options: 'cover', 'contain', or 'fill'
+						// }}
+					/>
+				</View>
+			</View>
 			<View style={styles.titleSection}>
 				<Text style={styles.title}>{title}</Text>
 				{subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}

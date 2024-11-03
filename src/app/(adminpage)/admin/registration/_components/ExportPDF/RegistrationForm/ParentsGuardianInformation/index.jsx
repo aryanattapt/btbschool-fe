@@ -28,7 +28,7 @@ const ARDExportPDFParentAndGuardian = ({ data }) => {
 					value={data?.fatherbusinessAddress}
 				/>
 				<PDFExportRow label="Telp" value={data?.fathertelephone} />
-				<PDFExportRow label="Fax" value={data?.fatherfax} />
+				{/* <PDFExportRow label="Fax" value={data?.fatherfax} /> */}
 				<PDFExportRow
 					rowStyles={{ borderTop: "3px solid black" }}
 					label="Mother's Name"
@@ -53,7 +53,7 @@ const ARDExportPDFParentAndGuardian = ({ data }) => {
 					value={data?.motherbusinessAddress}
 				/>
 				<PDFExportRow label="Telp" value={data?.mothertelephone} />
-				<PDFExportRow label="Fax" value={data?.motherfax} />
+				{/* <PDFExportRow label="Fax" value={data?.motherfax} /> */}
 				{/* <PDFExportRow
 					label="Language(s) spoken at Home"
 					value={data?.languagespoken?.map((res) => res?.language).join(", ")}
