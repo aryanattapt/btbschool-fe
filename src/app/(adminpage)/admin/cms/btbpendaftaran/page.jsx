@@ -6,7 +6,7 @@ import { isObjectEmpty } from "../../../../../utils/checker";
 import AdminHeader from "../../_components/header";
 import LanguageChanger from "../_components/LanguageChanger";
 import FieldTitle from "../_components/FieldTitle";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import ImageAttachment from "../_components/ImageAttachment";
 
 const CMSBtbPendaftaran = () => {
@@ -133,7 +133,8 @@ const CMSBtbPendaftaran = () => {
 												htmlFor={`enrolmentPagedata-content${index}`}
 												value="Description"
 											/>
-											<TextInput
+											<Textarea
+												rows={4}
 												id={`enrolmentPagedata-content${index}`}
 												value={res["descStep"]}
 												onChange={(e) => {
@@ -168,7 +169,8 @@ const CMSBtbPendaftaran = () => {
 							}}
 						/>
 						<FieldTitle>Beasiswa Subtitle</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["beasiswaPagedata"]["subtitle"]}
 							onChange={(e) => {
 								setInnerState(e.target.value, "beasiswaPagedata", "subtitle");

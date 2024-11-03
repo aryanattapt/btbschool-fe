@@ -1,5 +1,5 @@
 "use client";
-import { Button, TextInput } from "flowbite-react";
+import { Button, Textarea, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useCmsAboutUsStore } from "../../../../../../store/admin/cms/aboutUsStore";
 import { isObjectEmpty } from "../../../../../utils/checker";
@@ -102,7 +102,8 @@ const CMSAboutUs = () => {
 								value={language}
 							/>
 							<FieldTitle>Pengenalan</FieldTitle>
-							<TextInput
+							<Textarea
+								rows={4}
 								value={data[language]["desc"]}
 								onChange={(e) => {
 									setDescription(e.target.value);
@@ -147,14 +148,16 @@ const CMSAboutUs = () => {
 								Add
 							</Button>
 							<FieldTitle>Catatan Kaki</FieldTitle>
-							<TextInput
+							<Textarea
+								rows={4}
 								value={data[language]["smallparagraph"]}
 								onChange={(e) => {
 									setSmallParagraph(e.target.value, "smallparagraph");
 								}}
 							/>
 							<FieldTitle>List Jenjang Pendidikan</FieldTitle>
-							<TextInput
+							<Textarea
+								rows={4}
 								value={data[language]["smallparagraph"]}
 								onChange={(e) => {
 									setVisiMisi(e.target.value, "smallparagraph");

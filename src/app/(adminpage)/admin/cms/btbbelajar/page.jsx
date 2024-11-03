@@ -6,7 +6,7 @@ import LanguageChanger from "../_components/LanguageChanger";
 import AdminHeader from "../../_components/header";
 import { isObjectEmpty } from "../../../../../utils/checker";
 import FieldTitle from "../_components/FieldTitle";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, Textarea, TextInput } from "flowbite-react";
 
 const CMSBtbBelajar = () => {
 	const rawData = useCmsBtbBelajarStore((state) => state.rawData);
@@ -69,7 +69,7 @@ const CMSBtbBelajar = () => {
 						/> */}
 
 						{/* CONTENT GRADE TK */}
-						<h3>TK</h3>
+						<h1 className="mt-8 font-bold text-2xl">TK</h1>
 						<FieldTitle>Introduction Title</FieldTitle>
 						<TextInput
 							value={data[language]["tk"]["introduction"]["title"]}
@@ -78,7 +78,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Introduction Paragraph</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["tk"]["introduction"]["paragraph"]}
 							onChange={(e) => {
 								setContentState(
@@ -107,7 +108,8 @@ const CMSBtbBelajar = () => {
 						<div className="flex flex-col gap-2">
 							{data[language]["tk"]["curriculum"]["components1"].map(
 								(res, index) => (
-									<TextInput
+									<Textarea
+										rows={4}
 										key={index}
 										value={res}
 										onChange={(e) => {
@@ -165,7 +167,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Activity Title</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["tk"]["activity"]["title"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "tk", "activity", "title");
@@ -186,7 +189,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Program Description</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["tk"]["programs"]["desc"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "tk", "programs", "desc");
@@ -224,7 +228,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Outdoor Content Paragraph</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["tk"]["outdoor"]["paragraph"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "tk", "outdoor", "paragraph");
@@ -232,7 +237,7 @@ const CMSBtbBelajar = () => {
 						/>
 
 						{/* CONTENT GRADE SD */}
-						<h3>SD</h3>
+						<h1 className="mt-8 font-bold text-2xl">SD</h1>
 						<FieldTitle>Title</FieldTitle>
 						<TextInput
 							value={data[language]["sd"]["title"]}
@@ -364,7 +369,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Activity Content Paragraph</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["sd"]["text6"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "sd", "text6");
@@ -416,7 +422,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Outdoor Activity Paragraph Description</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["sd"]["text10"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "sd", "text10");
@@ -424,7 +431,7 @@ const CMSBtbBelajar = () => {
 						/>
 
 						{/* CONTENT GRADE SMP */}
-						<h3>SMP</h3>
+						<h1 className="mt-8 font-bold text-2xl">SMP</h1>
 						<FieldTitle>Grade Title</FieldTitle>
 						<TextInput
 							value={data[language]["smp"]["title"]}
@@ -440,7 +447,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Introduction Paragraph Description</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["smp"]["introduction"]["paragraph"]}
 							onChange={(e) => {
 								setContentState(
@@ -471,7 +479,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Curriculum Content Paragraph</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["smp"]["curriculum"]["paragraph"]}
 							onChange={(e) => {
 								setContentState(
@@ -575,7 +584,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Activity Content</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["smp"]["activity"]["content"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "smp", "activity", "content");
@@ -589,7 +599,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Programs Description</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["smp"]["programs"]["desc"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "smp", "programs", "desc");
@@ -653,7 +664,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Outdoor Activity Paragraph Content</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["smp"]["outdoor"]["paragraph"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "smp", "outdoor", "paragraph");
@@ -661,7 +673,7 @@ const CMSBtbBelajar = () => {
 						/>
 
 						{/* CONTENT GRADE SMA */}
-						<h3>SMA</h3>
+						<h1 className="mt-8 font-bold text-2xl">SMA</h1>
 						<FieldTitle>Content Title</FieldTitle>
 						<TextInput
 							value={data[language]["sma"]["title"]}
@@ -684,7 +696,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Introduction Paragraph Content</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["sma"]["introduction"]["paragraph"]}
 							onChange={(e) => {
 								setContentState(
@@ -715,7 +728,8 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Curriculum Paragraph Content</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["sma"]["curriculum"]["paragraph"]}
 							onChange={(e) => {
 								setContentState(
@@ -802,7 +816,8 @@ const CMSBtbBelajar = () => {
 							Add
 						</Button>
 						<FieldTitle>Activities Label Content</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["sma"]["activities"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "sma", "activities");
@@ -816,13 +831,14 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Programs Description</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["sma"]["programs"]["desc"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "sma", "programs", "desc");
 							}}
 						/>
-						<div className="grid grid-cols-2 gap-4">
+						<div className="grid grid-cols-2 gap-4 mt-2">
 							<div className="flex flex-col gap-2">
 								{data[language]["sma"]["programs"]["list1"].map(
 									(res, index) => (
@@ -876,14 +892,16 @@ const CMSBtbBelajar = () => {
 							}}
 						/>
 						<FieldTitle>Outdoor Activity Subtitle</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["sma"]["outdoor"]["text"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "sma", "outdoor", "text");
 							}}
 						/>
 						<FieldTitle>Outdoor Activity Paragraph Content</FieldTitle>
-						<TextInput
+						<Textarea
+							rows={4}
 							value={data[language]["sma"]["outdoor"]["paragraph"]}
 							onChange={(e) => {
 								setContentState(e.target.value, "sma", "outdoor", "paragraph");

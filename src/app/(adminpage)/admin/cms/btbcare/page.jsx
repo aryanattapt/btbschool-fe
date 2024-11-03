@@ -7,7 +7,7 @@ import AdminHeader from "../../_components/header";
 import FieldTitle from "../_components/FieldTitle";
 import ImageAttachment from "../_components/ImageAttachment";
 import LanguageChanger from "../_components/LanguageChanger";
-import { Button, TextInput } from "flowbite-react";
+import { Button, Textarea, TextInput } from "flowbite-react";
 
 const CMSBtbCare = () => {
 	const rawData = useCmsBtbCareStore((state) => state.rawData);
@@ -138,14 +138,16 @@ const CMSBtbCare = () => {
 								value={language}
 							/>
 							<FieldTitle>Text 1</FieldTitle>
-							<TextInput
+							<Textarea
+								rows={4}
 								value={data[language]["text1"]}
 								onChange={(e) => {
 									setStateLanguage(e.target.value, "text1");
 								}}
 							/>
 							<FieldTitle>Text 2</FieldTitle>
-							<TextInput
+							<Textarea
+								rows={4}
 								value={data[language]["text2"]}
 								onChange={(e) => {
 									setStateLanguage(e.target.value, "text2");
@@ -173,7 +175,8 @@ const CMSBtbCare = () => {
 								}}
 							/>
 							<FieldTitle>Konteks dari Subjudul 1</FieldTitle>
-							<TextInput
+							<Textarea
+								rows={4}
 								value={data[language]["text5"]}
 								onChange={(e) => {
 									setStateLanguage(e.target.value, "text5");
@@ -201,7 +204,8 @@ const CMSBtbCare = () => {
 								}}
 							/>
 							<FieldTitle>Konteks BTB Sukarelawan</FieldTitle>
-							<TextInput
+							<Textarea
+								rows={4}
 								value={data[language]["text9"]}
 								onChange={(e) => {
 									setStateLanguage(e.target.value, "text9");
@@ -215,21 +219,24 @@ const CMSBtbCare = () => {
 								}}
 							/>
 							<FieldTitle>Konteks BTB Tangan Penolong 1</FieldTitle>
-							<TextInput
+							<Textarea
+								rows={4}
 								value={data[language]["text11"]}
 								onChange={(e) => {
 									setStateLanguage(e.target.value, "text11");
 								}}
 							/>
 							<FieldTitle>Konteks BTB Tangan Penolong 2</FieldTitle>
-							<TextInput
+							<Textarea
+								rows={4}
 								value={data[language]["text12"]}
 								onChange={(e) => {
 									setStateLanguage(e.target.value, "text12");
 								}}
 							/>
 							<FieldTitle>Konteks BTB Tangan Penolong 3</FieldTitle>
-							<TextInput
+							<Textarea
+								rows={4}
 								value={data[language]["text13"]}
 								onChange={(e) => {
 									setStateLanguage(e.target.value, "text13");
