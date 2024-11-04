@@ -6,6 +6,7 @@ import Enrolment from "./_layouts/enrolment";
 import Beasiswa from "./_layouts/beasiswa";
 import TurSekolah from "./_layouts/tur-sekolah";
 import { usePageData } from '../../../hooks/usePageData';
+import Loader from "../../_components/loader";
 
 const PendaftaranPage = () => {
   const [activeTab, setActiveTab] = useState("enrolment");
@@ -19,7 +20,7 @@ const PendaftaranPage = () => {
   }, [])
 
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(pendaftaranData)
     return (

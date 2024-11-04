@@ -5,10 +5,10 @@ import Banner from "./_layouts/banner";
 import Pagging from "./_layouts/pagging";
 import { useEffect, useState } from "react";
 import { usePageData } from '../../../hooks/usePageData';
+import Loader from "../../_components/loader";
 
 const AlumniPage = () => {
   const [activeTab, setActiveTab] = useState("cerita-alumni");
-
   const {language, getAlumniPageData, isLoading} = usePageData();
   const alumniPayload = usePageData((state) => state.result.alumni);
   const alumniStoryPayload = usePageData((state) => state.result.alumniStory);
@@ -19,7 +19,7 @@ const AlumniPage = () => {
   }, []);
 
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(alumniPayload)
     return (

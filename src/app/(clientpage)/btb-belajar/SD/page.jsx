@@ -4,6 +4,7 @@ import SD from "../components/SD";
 import { Carousel } from "flowbite-react";
 import { usePageData } from '../../../../hooks/usePageData';
 import { useEffect } from "react";
+import Loader from "../../../_components/loader";
 
 const SDPage = () => {
   const {language, getBTBBelajarPageData, isLoading} = usePageData();
@@ -14,7 +15,7 @@ const SDPage = () => {
   }, []);
   
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(btbBelajarData)
     return (

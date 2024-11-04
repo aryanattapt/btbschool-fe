@@ -32,6 +32,7 @@ import {
   usePhoneNumberValidator
 } from '../../../../hooks/useFormValidator';
 import { usePageData } from '../../../../hooks/usePageData';
+import Loader from "../../../_components/loader";
 
 const OnlineRegistrationForm = () => {
   const {getOnlineRegistrationPageData, isLoading: isLoadingPage} = usePageData();
@@ -502,7 +503,7 @@ const OnlineRegistrationForm = () => {
   }, []);
 
   if(isLoadingPage){
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(nationalityPayload && yearPayload)
   return (

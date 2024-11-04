@@ -7,6 +7,7 @@ import Sukarelawan from "./_layouts/sukarelawan";
 import Introduction from "./_layouts/introduction";
 import TanganPenolong from "./_layouts/tangan-penolong";
 import { usePageData } from '../../../hooks/usePageData';
+import Loader from "../../_components/loader";
 
 const BTBPeduliPage = () => {
   const [activeTab, setActiveTab] = useState("introduction");
@@ -19,7 +20,7 @@ const BTBPeduliPage = () => {
   }, []);
 
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(btbPeduliData)
     return (

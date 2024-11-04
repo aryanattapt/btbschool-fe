@@ -4,6 +4,7 @@ import Banner from "./components/banner";
 import Pagging from "./components/pagging";
 import Content from "./components/content";
 import { usePageData } from '../../../hooks/usePageData';
+import Loader from "../../_components/loader";
 
 const CalendarAcademicPage = () => {
   const {language, getCalenderAcademicPageData, isLoading} = usePageData();
@@ -15,7 +16,7 @@ const CalendarAcademicPage = () => {
   }, []);
 
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(payload)
     return <>

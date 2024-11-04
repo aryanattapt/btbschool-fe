@@ -6,6 +6,7 @@ import { HiPhone, HiMail } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { useEffect } from "react";
 import { usePageData } from '../../../hooks/usePageData';
+import Loader from "../../_components/loader";
 
 const convertPhoneNumber = (input) => {
   try {
@@ -25,7 +26,7 @@ const ContactPage = () => {
   }, []);
   
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(payload)
   return (

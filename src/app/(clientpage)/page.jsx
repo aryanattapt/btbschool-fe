@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { FaInstagram } from "react-icons/fa";
 import { HomePagePayload } from "../../../data";
 import { usePageData } from '../../hooks/usePageData';
+import Loader from "../_components/loader";
 
 const HomePage = () => {
   const [homePagePayload, _] = useState(HomePagePayload);
@@ -20,7 +21,7 @@ const HomePage = () => {
   }, []);
 
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader />;
   }
   else if(payload)
     return (

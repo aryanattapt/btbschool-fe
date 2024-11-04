@@ -4,6 +4,7 @@ import Banner from "./components/Banner";
 import Pagging from "./components/Pagging";
 import TK from "./components/TK";
 import { usePageData } from '../../../hooks/usePageData';
+import Loader from "../../_components/loader";
 
 const BTBBelajarPage = () => {
   const {language, getBTBBelajarPageData, isLoading} = usePageData();
@@ -14,7 +15,7 @@ const BTBBelajarPage = () => {
   }, []);
 
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(btbBelajarData)
     return (

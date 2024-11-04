@@ -4,6 +4,7 @@ import Banner from "./_components/Banner";
 import Pagging from "./_components/Pagging";
 import BulletinThumnail from "./_components/Thumbnail";
 import { usePageData } from '../../../hooks/usePageData';
+import Loader from "../../_components/loader";
 
 const BulletinSpotlightPage = () => {
 	const {language, getBulletinSpotlightPageData, isLoading} = usePageData();
@@ -15,7 +16,7 @@ const BulletinSpotlightPage = () => {
 	}, []);
 
 	if(isLoading) {
-		return <div>loading...</div>
+		return <Loader/>;
 	}
 	else if(payload)
 		return (

@@ -6,6 +6,7 @@ import Pengenalan from "./components/pengenalan";
 import VisiMisi from "./components/visi-misi";
 import JenjangPendidikan from "./components/jenjang-pendidikan";
 import { usePageData } from '../../../hooks/usePageData';
+import Loader from "../../_components/loader";
 
 const AboutUsPage = () => {
   const [activeTab, setActiveTab] = useState("pengenalan");
@@ -17,7 +18,7 @@ const AboutUsPage = () => {
   }, []);
     
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(aboutUsData)
   return (

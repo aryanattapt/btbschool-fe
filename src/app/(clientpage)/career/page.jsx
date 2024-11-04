@@ -4,6 +4,7 @@ import CareerFilter from "./_components/CareerFilter";
 import CareerList from "./_components/CareerList";
 import CareerHeroSection from "./_components/HeroSection";
 import { usePageData } from '../../../hooks/usePageData';
+import Loader from "../../_components/loader";
 
 const CareerPage = () => {
 	const {language, getCareerPageData, isLoading} = usePageData();
@@ -47,7 +48,7 @@ const CareerPage = () => {
 	}, [rawDatas]);	
 
 	if(isLoading) {
-		return <div>loading...</div>
+		return <Loader/>;
 	}
 	else if(careerPagePayload)
 		return (

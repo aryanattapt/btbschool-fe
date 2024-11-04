@@ -5,6 +5,7 @@ import BannerHelpCenter from "./_components/banner";
 import InformasiPendaftaran from "./_components/infodaftar";
 import FAQ from "./_components/faq";
 import { usePageData } from '../../../hooks/usePageData';
+import Loader from "../../_components/loader";
 
 const HelpCenterPage = () => {
   const {language, getHelpPageData, isLoading} = usePageData();
@@ -18,7 +19,7 @@ const HelpCenterPage = () => {
   }, []);
 
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(helpData && contactUs)
     return (

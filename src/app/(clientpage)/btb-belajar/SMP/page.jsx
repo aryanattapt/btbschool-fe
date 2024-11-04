@@ -4,6 +4,7 @@ import SMP from "../components/SMP";
 import { Carousel } from "flowbite-react";
 import { usePageData } from '../../../../hooks/usePageData';
 import { useEffect } from "react";
+import Loader from "../../../_components/loader";
 
 const SMPPage = () => {
   const {language, getBTBBelajarPageData, isLoading} = usePageData();
@@ -14,7 +15,7 @@ const SMPPage = () => {
   }, []);
   
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(btbBelajarData)
     return (

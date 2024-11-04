@@ -4,6 +4,7 @@ import Pagging from "../components/Pagging";
 import TK from "../components/TK";
 import { Carousel } from "flowbite-react";
 import { usePageData } from '../../../../hooks/usePageData';
+import Loader from "../../../_components/loader";
 
 const TKPage = () => {
   const {language, getBTBBelajarPageData, isLoading} = usePageData();
@@ -14,7 +15,7 @@ const TKPage = () => {
   }, []);
   
   if(isLoading) {
-    return <div>loading...</div>
+    return <Loader/>;
   }
   else if(btbBelajarData)
     return (
