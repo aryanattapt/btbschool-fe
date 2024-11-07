@@ -99,45 +99,43 @@ const CalenderAcademicMainForm = ({payload, setPayload}) => {
     }
 
     return <>
-        <NavbarSidebarLayout >
-            <div className="max-w-full grid gap-3 md:px-8">
-                <div className="inline-flex flex justify-between">
-                    <div className="text-[35px] text-[#00305E] font-bold">
-                        Calender Academic Form
-                    </div>
+        <div className="max-w-full grid gap-3 md:px-8">
+            <div className="inline-flex flex justify-between">
+                <div className="text-[35px] text-[#00305E] font-bold">
+                    Calender Academic Form
                 </div>
-                <div>
-                    <div className="mb-2 block">
-                        <Label htmlFor="date" value="Tanggal" />
-                    </div>
-                    <Datepicker value={payload.date || ''} id="date" name='date' language="en-id" onSelectedDateChanged={date => datePickerHandler('date', date)}/>
+            </div>
+            <div>
+                <div className="mb-2 block">
+                    <Label htmlFor="date" value="Tanggal" />
                 </div>
-                <Tabs aria-label="Default tabs" variant="default">
-                    <Tabs.Item active title="Indonesia">
-                        <CalenderAcademicActivityForm payload={payload} formChangeHandler={formChangeHandler} language={"ID"}/>
-                    </Tabs.Item>
-                    <Tabs.Item active title="English">
-                        <CalenderAcademicActivityForm payload={payload} formChangeHandler={formChangeHandler} language={"EN"}/>
-                    </Tabs.Item>
-                </Tabs>
-                <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
-                    <div className="flex">
-                        <div className="mt-1 py-1.25 px-0.75 items-center text-center w-1/2 md:w-full">
-                            <Button type="submit" id="btnSaveAndSend" name="btnSaveAndSend" className="w-full lg:w-auto" disabled={isLoading} onClick={submitHandler}>
-                                {
-                                    isLoading ? <>
-                                        <Spinner aria-label="Spinner button example" size="sm" />
-                                        <span className="pl-3">Please Wait...</span>
-                                    </> : <>
-                                        Save  
-                                    </>
-                                }
-                            </Button>
-                        </div>
+                <Datepicker value={payload.date || ''} id="date" name='date' language="en-id" onSelectedDateChanged={date => datePickerHandler('date', date)}/>
+            </div>
+            <Tabs aria-label="Default tabs" variant="default">
+                <Tabs.Item active title="Indonesia">
+                    <CalenderAcademicActivityForm payload={payload} formChangeHandler={formChangeHandler} language={"ID"}/>
+                </Tabs.Item>
+                <Tabs.Item active title="English">
+                    <CalenderAcademicActivityForm payload={payload} formChangeHandler={formChangeHandler} language={"EN"}/>
+                </Tabs.Item>
+            </Tabs>
+            <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
+                <div className="flex">
+                    <div className="mt-1 py-1.25 px-0.75 items-center text-center w-1/2 md:w-full">
+                        <Button type="submit" id="btnSaveAndSend" name="btnSaveAndSend" className="w-full lg:w-auto" disabled={isLoading} onClick={submitHandler}>
+                            {
+                                isLoading ? <>
+                                    <Spinner aria-label="Spinner button example" size="sm" />
+                                    <span className="pl-3">Please Wait...</span>
+                                </> : <>
+                                    Save  
+                                </>
+                            }
+                        </Button>
                     </div>
                 </div>
             </div>
-        </NavbarSidebarLayout>
+        </div>
     </>
 };
 

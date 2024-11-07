@@ -16,9 +16,14 @@ const TableBulletinSpotlight = ({payload, deleteHandler}) => {
                             {val.bulletintitle}
                             </Table.Cell>
                             <Table.Cell>
-                                <a href={`${val.attachment[0].fileURL}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
-                                    {val.attachment[0].fileName}
-                                </a>
+                                {
+                                    val?.attachment?.length > 0 ?
+                                    <a href={`${val?.attachment[0]?.fileURL}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
+                                        {val?.attachment[0]?.fileName}
+                                    </a>
+                                    :
+                                    <div></div>
+                                }
                             </Table.Cell>
                             <Table.Cell>
                                 <div className="flex flex-wrap gap-2">

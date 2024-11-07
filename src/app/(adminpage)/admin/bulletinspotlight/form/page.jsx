@@ -19,29 +19,55 @@ import {
     UploadAttachment
 } from '../../../../../../services/attachment.service';
 import Swal from "sweetalert2";
+import Loader from '../../../../_components/loader';
+import { checkPermission } from '../../../../../../services/auth.service';
 
 const BulletinSpotlightForm = () => {
     const fileInputRef = useRef(null);
-    const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams()
     const id = searchParams.get("id")
+    const [isLoading, setIsLoading] = useState(false);
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
         console.log(`ID: ${id}`);
-        if(id){
-            GetConfig('bulletinspotlight', {"_id": id})
-            .then(res => setPayload(res[0]))
-            .catch((err) => {
+        fetchData(fetchBulletinSpotlight)
+    }, []);
+
+    const fetchData = async (callback) => {
+        setIsLoading(true);
+        try {
+            await checkPermission('manage_bulletin');
+            setIsAuthorized(true);
+            await callback();
+        } catch (error) {
+            console.log(error);
+            if(error.status != '401'){
+                try {
+                    await callback();
+                } catch (error) {console.log(error);}
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const fetchBulletinSpotlight = async () => {
+        if (id) {
+            try {
+                const res = await GetConfig('bulletinspotlight', { "_id": id });
+                setPayload(res[0]);
+            } catch (err) {
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Error Notification!',
                     text: err,
                     icon: 'error',
                 });
-            })
+            }
         }
-    }, [])
+    };
 
     const clearFile = (name) => {
         fileInputRef.current.value = null;
@@ -148,8 +174,12 @@ const BulletinSpotlightForm = () => {
         }
     }
 
-    return <>
-        <NavbarSidebarLayout >
+    if(isLoading){
+        return <Loader/>
+    } else
+        return <NavbarSidebarLayout >
+        {
+            isAuthorized ? 
             <div className="max-w-full grid gap-3 md:px-8">
                 <div className="inline-flex flex justify-between">
                     <div className="text-[35px] text-[#00305E] font-bold">
@@ -185,8 +215,9 @@ const BulletinSpotlightForm = () => {
                     </div>
                 </div>
             </div>
+            : <div>Unauthorized</div>
+        }
         </NavbarSidebarLayout>
-    </>
 }
 
 const BulletinSpotlightFormPage = () => {

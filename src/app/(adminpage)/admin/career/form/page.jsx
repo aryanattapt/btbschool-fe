@@ -19,7 +19,8 @@ import {
 } from '../../../../../../services/career.service'
 import Swal from "sweetalert2";
 import CustomEditor from '../../../../_components/customformeditor';
-import moment from "moment";
+import Loader from '../../../../_components/loader';
+import { checkPermission } from '../../../../../../services/auth.service';
 
 const CareerForm = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -27,24 +28,46 @@ const CareerForm = () => {
     const searchParams = useSearchParams()
     const id = searchParams.get("id")
 
+    const [isLoadingPage, setIsLoadingPage] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(null);
+
     useEffect(() => {
-        if(id){
-            fetchCareer(id)
-        }
+        fetchData(fetchCareer)
     }, [])
 
-    const fetchCareer = (id) => {
-        GetAllCareer({"_id": id})
-        .then(res => setPayload(res[0]))
-        .catch((err) => {
-            Swal.fire({
-                allowOutsideClick: false,
-                title: 'Error Notification!',
-                text: err,
-                icon: 'error',
-            });
-        })
-    }
+    const fetchData = async (callback) => {
+        setIsLoadingPage(true);
+        try {
+            await checkPermission('manage_career');
+            setIsAuthorized(true);
+            await callback();
+        } catch (error) {
+            console.log(error);
+            if(error.status != '401'){
+                try {
+                    await callback();
+                } catch (error) {console.log(error);}
+            }
+        } finally {
+            setIsLoadingPage(false);
+        }
+    };
+
+    const fetchCareer = async () => {
+        if(id){
+            try {
+                const res = await GetAllCareer({ "_id": id });
+                setPayload(res[0]);
+            } catch (err) {
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Error Notification!',
+                    text: err.message || err,
+                    icon: 'error',
+                });
+            }
+        }
+    };
 
     const datePickerHandler = (name, value) => {
         setPayload(prevState => ({
@@ -183,8 +206,12 @@ const CareerForm = () => {
         }
     }
 
-    return <>
-        <NavbarSidebarLayout >
+    if(isLoadingPage){
+        return <Loader/>
+    } else
+        return <NavbarSidebarLayout >
+        {
+            isAuthorized ? 
             <div className="max-w-full grid gap-3 md:px-8">
                 <div className="inline-flex flex justify-between">
                     <div className="text-[35px] text-[#00305E] font-bold">
@@ -382,8 +409,9 @@ const CareerForm = () => {
                     </div>
                 </div>
             </div>
+            : <div>Unauthorized</div>
+        }
         </NavbarSidebarLayout>
-    </>
 }
 
 const CareerFormPage = () => {

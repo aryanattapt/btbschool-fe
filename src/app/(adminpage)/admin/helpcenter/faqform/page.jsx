@@ -15,33 +15,55 @@ import {
     SubmitConfig
 } from '../../../../../../services/config.service';
 import Swal from "sweetalert2";
+import Loader from '../../../../_components/loader';
+import { checkPermission } from '../../../../../../services/auth.service';
+
 
 const FAQ = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams()
     const id = searchParams.get("id")
+    const [isLoadingPage, setIsLoadingPage] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
-        console.log(`ID: ${id}`);
-        setPayload(prevState => ({
-            ...prevState,
-            "_id": id
-        }));
+        fetchData(fetchFaq)
+    }, [])
 
-        if(id){
-            GetConfig('faq', {"_id": id})
-            .then(res => setPayload(res[0]))
-            .catch((err) => {
+    const fetchData = async (callback) => {
+        setIsLoadingPage(true);
+        try {
+            await checkPermission('manage_faq');
+            setIsAuthorized(true);
+            await callback();
+        } catch (error) {
+            console.log(error);
+            if(error.status != '401'){
+                try {
+                    await callback();
+                } catch (error) {console.log(error);}
+            }
+        } finally {
+            setIsLoadingPage(false);
+        }
+    };
+
+    const fetchFaq = async () => {
+        if (id) {
+            try {
+                const res = await GetConfig('faq', { "_id": id });
+                setPayload(res[0]);
+            } catch (err) {
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Error Notification!',
-                    text: err,
+                    text: err.message || err,
                     icon: 'error',
                 });
-            })
+            }
         }
-    }, [])
+    };    
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
@@ -98,8 +120,12 @@ const FAQ = () => {
         })
     }
 
-    return <>
-        <NavbarSidebarLayout >
+    if(isLoadingPage){
+        return <Loader/>
+    } else
+        return <NavbarSidebarLayout >
+        {
+            isAuthorized ? 
             <div className="max-w-full grid gap-3 md:px-8">
                 <div className="inline-flex flex justify-between">
                     <div className="text-[35px] text-[#00305E] font-bold">
@@ -135,8 +161,9 @@ const FAQ = () => {
                     </div>
                 </div>
             </div>
+            : <div>Unauthorized</div>
+        }
         </NavbarSidebarLayout>
-    </>
 }
 
 const FAQForm = () => {

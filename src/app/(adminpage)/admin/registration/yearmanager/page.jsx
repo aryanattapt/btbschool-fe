@@ -8,22 +8,45 @@ import {
 } from '../../../../../../services/config.service'
 import { Button } from 'flowbite-react';
 import TableOnlineRegistrationYearManager from './_components/table'
+import Loader from '../../../../_components/loader';
+import { checkPermission } from '../../../../../../services/auth.service';
 
 const YearManagerPage = () => {
     const [payload, setPayload] = useState([]);
+    const [isLoadingPage, setIsLoadingPage] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
-        fetchSchoolYear()
+        fetchData(fetchSchoolYear)
     }, [])
 
-    const fetchSchoolYear = () => {
-        GetConfig('onlineregisyear', {})
-        .then(res => setPayload(res))
-        .catch((err) => {
-            setPayload([])
+    const fetchData = async (callback) => {
+        setIsLoadingPage(true);
+        try {
+            await checkPermission('manage_studentregistration');
+            setIsAuthorized(true);
+            await callback();
+        } catch (error) {
+            console.log(error);
+            if(error.status != '401'){
+                try {
+                    await callback();
+                } catch (error) {console.log(error);}
+            }
+        } finally {
+            setIsLoadingPage(false);
+        }
+    };
+
+    const fetchSchoolYear = async () => {
+        try {
+            const res = await GetConfig('onlineregisyear', {});
+            setPayload(res);
+        } catch (err) {
+            setPayload([]);
             console.log(err);
-        })
-    }
+        }
+    };    
 
     const DeleteHandler = (id) => {
         DeleteConfig('onlineregisyear', [{"_id": id}])
@@ -38,8 +61,12 @@ const YearManagerPage = () => {
         })
     }
 
-    return <>
-        <NavbarSidebarLayout >
+    if(isLoadingPage){
+        return <Loader/>
+    } else
+        return <NavbarSidebarLayout >
+        {
+            isAuthorized ? 
             <div className="mt-4">
                 <AdminHeader title="Online Registration Year Manager"/>
                 <div className="p-4 border border-gray-300 border-t-0">
@@ -47,8 +74,9 @@ const YearManagerPage = () => {
                     <TableOnlineRegistrationYearManager payload={payload} deleteHandler={DeleteHandler}/>  
                 </div>
             </div>
+            : <div>Unauthorized</div>
+        }
         </NavbarSidebarLayout>
-    </>
 }
 
 export default YearManagerPage;

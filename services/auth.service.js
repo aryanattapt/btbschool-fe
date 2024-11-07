@@ -34,3 +34,10 @@ export const checkSession = () => new Promise(async (resolve, reject) => {
         return resolve(result.data);
     } catch (error) {return reject(error.response.data?.message || error.message);}
 });
+
+export const checkPermission = (permission) => new Promise(async (resolve, reject) => {
+    try {
+        const result = await callInternalAPI('/auth/checkpermission/', 'POST', {"permission": permission}, {"Authorization": `Bearer ${getCookie(process.env.NEXT_PUBLIC_CLIENTSESSION)}`});
+        return resolve(result.data);
+    } catch (error) {return reject(error);}
+});

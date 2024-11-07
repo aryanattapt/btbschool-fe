@@ -22,18 +22,41 @@ import {
 import AdminHeader from "../../_components/header";
 import GradeForm from './_components/grade.form';
 import GradeListForm from './_components/gradelist.form';
+import Loader from '../../../../_components/loader';
+import { checkPermission } from '../../../../../../services/auth.service';
 
 const HomepageSettingsMainForm = () => {
+    const [isLoadingPage, setIsLoadingPage] = useState(true);
+	const [isAuthorized, setIsAuthorized] = useState(null);
+
     const type = 'homepage'
     const configName = 'general';
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({});
 
     useEffect(() => {
-        fetchData();
+        fetchData(fetchPage);
     }, []);
 
-    const fetchData = async () => {
+    const fetchData = async (callback) => {
+		setIsLoadingPage(true);
+		try {
+			await checkPermission('manage_content');
+			setIsAuthorized(true);
+			await callback();
+		} catch (error) {
+			console.log(error);
+			if(error.status != '401'){
+				try {
+					await callback();
+				} catch (error) {console.log(error);}
+			}
+		} finally {
+			setIsLoadingPage(false);
+		}
+	};
+
+    const fetchPage = async () => {
         try {
             const data = await GetConfig(configName, {"type": type});
             const deTransformJson = detransformJsonLanguage(data[0]);
@@ -101,8 +124,12 @@ const HomepageSettingsMainForm = () => {
         }
     };
 
-    return (
-        <NavbarSidebarLayout>
+    if(isLoadingPage){
+        return <Loader/>
+    } else
+        return <NavbarSidebarLayout >
+        {
+            isAuthorized ? 
             <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mt-4 mb-4">
                     <AdminHeader title="Homepage Content Settings Form"/>
@@ -148,9 +175,10 @@ const HomepageSettingsMainForm = () => {
                         )}
                     </Button>
                 </div>
-            </div>
+            </div>            
+            : <div>Unauthorized</div>
+        }
         </NavbarSidebarLayout>
-    );
 };
 
 export default HomepageSettingsMainForm;

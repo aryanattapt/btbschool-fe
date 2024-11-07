@@ -6,7 +6,8 @@ import {
     TextInput,
     Radio,
     Datepicker,
-    Select
+    Select,
+    Checkbox
 } from "flowbite-react";
 import { 
     useSearchParams 
@@ -90,11 +91,10 @@ const UserForm = () => {
         setIsLoading(true);
         if(id == null) {delete payload._id}
         if(!payload.password) {delete payload.password}
-        const finalData = {...payload, "isactive": payload.isactive === "true"}
 
         /* Call API in here... */
         if(id){
-            updateUser(finalData)
+            updateUser(payload)
             .then(res => {
                 setIsLoading(false);
                 Swal.fire({
@@ -114,7 +114,7 @@ const UserForm = () => {
                 });
             })
         } else{
-            insertUser(finalData)
+            insertUser(payload)
             .then(res => {
                 setPayload({});
                 setIsLoading(false);
@@ -175,7 +175,7 @@ const UserForm = () => {
                     </div>
                     <TextInput value={payload.password || ''} id="password" name="password"  type="password" autoFocus={true} onChange={formChangeHandler}/>
                 </div>
-                <div>
+                {/* <div>
                     <div className="mb-2 block">
                         <Label htmlFor="role" value="Role"/>
                     </div>
@@ -184,6 +184,79 @@ const UserForm = () => {
                         <option value="admin">Administrator</option>
                         <option value="marketingadmission">Marketing Admission</option>
                     </Select>
+                </div> */}
+                <div>
+                    <div className="mb-2 block">
+                        <Label value="Permission"/>
+                    </div>
+                    <div>
+                        <Checkbox
+                            checked={payload?.permission?.includes('manage_content')}
+                            id="manage_content_permission"
+                            name="permission"
+                            value="manage_content"
+                            onChange={formChangeHandler}
+                        />
+                        <Label htmlFor="manage_content_permission" className="mr-4">Manage Content Client Page</Label>
+                        <Checkbox
+                            checked={payload?.permission?.includes('manage_career')}
+                            id="manage_career_permission"
+                            name="permission"
+                            value="manage_career"
+                            onChange={formChangeHandler}
+                        />
+                        <Label htmlFor="manage_career_permission" className="mr-4">Manage Career</Label>
+                        <Checkbox
+                            checked={payload?.permission?.includes('manage_bulletin')}
+                            id="manage_bulletin_permission"
+                            name="permission"
+                            value="manage_bulletin"
+                            onChange={formChangeHandler}
+                        />
+                        <Label htmlFor="manage_bulletin_permission" className="mr-4">Manage bulletin</Label>
+                        <Checkbox
+                            checked={payload?.permission?.includes('manage_faq')}
+                            id="manage_faq_permission"
+                            name="permission"
+                            value="manage_faq"
+                            onChange={formChangeHandler}
+                        />
+                        <Label htmlFor="manage_faq_permission" className="mr-4">Manage FAQ</Label>
+                        <Checkbox
+                            checked={payload?.permission?.includes('manage_calender')}
+                            id="manage_calender_permission"
+                            name="permission"
+                            value="manage_calender"
+                            onChange={formChangeHandler}
+                        />
+                        <Label htmlFor="manage_calender_permission" className="mr-4">Manage Calendar Academic</Label>
+                    </div>
+                    <div>
+                    <Checkbox
+                            checked={payload?.permission?.includes('manage_alumni')}
+                            id="manage_alumni_permission"
+                            name="permission"
+                            value="manage_alumni"
+                            onChange={formChangeHandler}
+                        />
+                        <Label htmlFor="manage_alumni_permission" className="mr-4">Manage Alumni</Label>
+                        <Checkbox
+                            checked={payload?.permission?.includes('manage_users')}
+                            id="manage_users_permission"
+                            name="permission"
+                            value="manage_users"
+                            onChange={formChangeHandler}
+                        />
+                        <Label htmlFor="manage_users_permission" className="mr-4">Manage Users</Label>
+                        <Checkbox
+                            checked={payload?.permission?.includes('manage_studentregistration')}
+                            id="manage_studentregistration_permission"
+                            name="permission"
+                            value="manage_studentregistration"
+                            onChange={formChangeHandler}
+                        />
+                        <Label htmlFor="manage_studentregistration_permission" className="mr-4">Manage Student Registration</Label>
+                    </div>
                 </div>
                 <div>
                     <div className="mb-2 block">

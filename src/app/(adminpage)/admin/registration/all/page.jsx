@@ -10,8 +10,13 @@ import AdminRegistrationHeader from "../_components/Header";
 import AdminRegistrationMainContent from "../_components/MainContent";
 import AdminRegistrationTableSection from "../_components/Table";
 import RegistrationTableActionBtn from "../_components/Table/actionBtn";
+import Loader from '../../../../_components/loader';
+import { checkPermission } from '../../../../../../services/auth.service';
 
 const AdminRegistrationAllPage = () => {
+	const [isLoadingPage, setIsLoadingPage] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(null);
+
 	const onExportExcel = useExportExcel();
 	const [payload, setPayload] = useState([]);
 	const colDef = [
@@ -50,22 +55,47 @@ const AdminRegistrationAllPage = () => {
 	};
 
 	useEffect(() => {
-		GetAllStudentRegistration()
-			.then((res) => {
-				setPayload(res.data);
-			})
-			.catch((err) => {
-				Swal.fire({
-					allowOutsideClick: false,
-					title: "Error Notification!",
-					text: err,
-					icon: "error",
-				});
-			});
-	}, []);
+        fetchData(fetchStudentRegistration)
+    }, [])
 
-	return (
-		<NavbarSidebarLayout>
+	const fetchStudentRegistration = async () => {
+		try {
+			const res = await GetAllStudentRegistration();
+			setPayload(res.data);
+		} catch (err) {
+			Swal.fire({
+				allowOutsideClick: false,
+				title: "Error Notification!",
+				text: err.message || err,
+				icon: "error",
+			});
+		}
+	};
+	
+	const fetchData = async (callback) => {
+        setIsLoadingPage(true);
+        try {
+            await checkPermission('manage_studentregistration');
+            setIsAuthorized(true);
+            await callback();
+        } catch (error) {
+            console.log(error);
+            if(error.status != '401'){
+                try {
+                    await callback();
+                } catch (error) {console.log(error);}
+            }
+        } finally {
+            setIsLoadingPage(false);
+        }
+    };
+
+	if(isLoadingPage){
+		return <Loader/>
+	} else
+		return <NavbarSidebarLayout >
+		{
+			isAuthorized ? 
 			<div>
 				<AdminRegistrationHeader />
 				<AdminRegistrationMainContent
@@ -82,8 +112,9 @@ const AdminRegistrationAllPage = () => {
 					<AdminRegistrationTableSection colDef={colDef} datas={payload} />
 				</AdminRegistrationMainContent>
 			</div>
+			: <div>Unauthorized</div>
+		}
 		</NavbarSidebarLayout>
-	);
 };
 
 export default AdminRegistrationAllPage;

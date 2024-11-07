@@ -14,8 +14,13 @@ import AdminRegistrationTableSection from "../_components/Table";
 import RegistrationTableActionBtn from "../_components/Table/actionBtn";
 import { FaCheck } from "react-icons/fa";
 import { admRegisManagerExportObjectBuilder } from "../../../../../utils/admin/registration/export";
+import Loader from '../../../../_components/loader';
+import { checkPermission } from '../../../../../../services/auth.service';
 
 const AdminRegistrationOutstandingPage = () => {
+	const [isLoadingPage, setIsLoadingPage] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(null);
+
 	const onExportExcel = useExportExcel();
 	const [payload, setPayload] = useState([]);
 	const colDef = [
@@ -80,19 +85,36 @@ const AdminRegistrationOutstandingPage = () => {
 			});
 	};
 
-	const getOutstandingData = () => {
-		GetOutstandingStudentRegistration()
-			.then((res) => {
-				setPayload(res.data);
-			})
-			.catch((err) => {
-				setPayload([]);
-			});
-	};
-
 	useEffect(() => {
-		getOutstandingData();
+		fetchData(getOutstandingData);
 	}, []);
+
+	const fetchData = async (callback) => {
+        setIsLoadingPage(true);
+        try {
+            await checkPermission('manage_studentregistration');
+            setIsAuthorized(true);
+            await callback();
+        } catch (error) {
+            console.log(error);
+            if(error.status != '401'){
+                try {
+                    await callback();
+                } catch (error) {console.log(error);}
+            }
+        } finally {
+            setIsLoadingPage(false);
+        }
+    };
+
+	const getOutstandingData = async () => {
+		try {
+			const res = await GetOutstandingStudentRegistration();
+			setPayload(res.data);
+		} catch (err) {
+			setPayload([]);
+		}
+	};	
 
 	const onClickExport = () => {
 		if (payload.length > 0) {
@@ -105,8 +127,12 @@ const AdminRegistrationOutstandingPage = () => {
 		}
 	};
 
-	return (
-		<NavbarSidebarLayout>
+	if(isLoadingPage){
+		return <Loader/>
+	} else
+		return <NavbarSidebarLayout >
+		{
+			isAuthorized ? 
 			<div>
 				<AdminRegistrationHeader />
 				<AdminRegistrationMainContent
@@ -122,9 +148,10 @@ const AdminRegistrationOutstandingPage = () => {
 				>
 					<AdminRegistrationTableSection colDef={colDef} datas={payload} />
 				</AdminRegistrationMainContent>
-			</div>
+			</div>	
+			: <div>Unauthorized</div>
+		}
 		</NavbarSidebarLayout>
-	);
 };
 
 export default AdminRegistrationOutstandingPage;

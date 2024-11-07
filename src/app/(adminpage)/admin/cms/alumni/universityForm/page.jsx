@@ -19,8 +19,13 @@ import {
     UploadAttachment
 } from '../../../../../../../services/attachment.service';
 import Swal from "sweetalert2";
+import Loader from '../../../../../_components/loader';
+import { checkPermission } from '../../../../../../../services/auth.service';
 
 const CMSAlumni = () => {
+    const [isLoadingPage, setIsLoadingPage] = useState(true);
+	const [isAuthorized, setIsAuthorized] = useState(null);
+
     const type = {"type": "alumni.university"};
     const configName = "general";
     const [isLoading, setIsLoading] = useState(false);
@@ -38,16 +43,38 @@ const CMSAlumni = () => {
     }
 
     useEffect(() => {
-        if(id){
-            (async (id) => {
-                try {
-                    const result = await GetConfig("general", {...type, "_id": id});
-                    setPayload(result[0]);
-                } catch (error) {console.log(error);}
-            })(id)
-        }
-    }, [id]);
+        fetchData(fetchGeneralConfig)
+    }, []);
 
+    const fetchData = async (callback) => {
+		setIsLoadingPage(true);
+		try {
+			await checkPermission('manage_content');
+			setIsAuthorized(true);
+			await callback();
+		} catch (error) {
+			console.log(error);
+			if(error.status != '401'){
+				try {
+					await callback();
+				} catch (error) {console.log(error);}
+			}
+		} finally {
+			setIsLoadingPage(false);
+		}
+	};
+
+    const fetchGeneralConfig = async () => {
+        if (id) {
+            try {
+                const result = await GetConfig("general", { ...type, "_id": id });
+                setPayload(result[0]);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
+    
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if(type === 'file'){
@@ -153,8 +180,12 @@ const CMSAlumni = () => {
         }
     };
 
-    return (
-        <NavbarSidebarLayout>
+    if(isLoadingPage){
+        return <Loader/>
+    } else
+        return <NavbarSidebarLayout >
+        {
+            isAuthorized ? 
             <div className="max-w-full grid gap-3 md:px-8">
                 <div className="inline-flex justify-between">
                     <div className="text-[35px] text-[#00305E] font-bold">
@@ -191,8 +222,9 @@ const CMSAlumni = () => {
                     </Button>
                 </div>
             </div>
+            : <div>Unauthorized</div>
+        }
         </NavbarSidebarLayout>
-    );
 }
 
 const AlumniForm = () => {

@@ -9,21 +9,44 @@ import {
 import Swal from 'sweetalert2';
 import AdminHeader from '../_components/header'
 import BulletinTable from './_components/table'
+import Loader from '../../../_components/loader';
+import { checkPermission } from '../../../../../services/auth.service';
 
 const BulletinSpotlightPage = () => {
     const [payload, setPayload] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
-        fetchConfig()
+        fetchData(fetchConfig)
     }, [])
 
-    const fetchConfig = () => {
-        GetConfig('bulletinspotlight', {})
-        .then(res => setPayload(res))
-        .catch((err) => {
+    const fetchData = async (callback) => {
+        setIsLoading(true);
+        try {
+            await checkPermission('manage_bulletin');
+            setIsAuthorized(true);
+            await callback();
+        } catch (error) {
+            console.log(error);
+            if(error.status != '401'){
+                try {
+                    await callback();
+                } catch (error) {console.log(error);}
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const fetchConfig = async () => {
+        try {
+            const res = await GetConfig('bulletinspotlight', {});
+            setPayload(res)
+        } catch (error) {
             setPayload([])
             console.log(err);
-        })
+        }
     }
 
     const DeleteHandler = (id) => {
@@ -39,17 +62,24 @@ const BulletinSpotlightPage = () => {
         })
     }
 
-    return <>
-        <NavbarSidebarLayout >
-            <div className="mt-4">
-                <AdminHeader title="Bulletin Spotlight Manager"/>
-                <div className="p-4 border border-gray-300 border-t-0">
-                    <Button color="success" onClick={() => window.location.href = '/admin/bulletinspotlight/form'} className="mb-4">Add Bulletin</Button>
-                    <BulletinTable payload={payload} deleteHandler={DeleteHandler}/>  
-                </div>
-            </div>
-        </NavbarSidebarLayout>
-    </>
+    if(isLoading){
+        return <Loader/>
+    } else
+        return <>
+            <NavbarSidebarLayout >
+            {
+                isAuthorized ? 
+                    <div className="mt-4">
+                        <AdminHeader title="Bulletin Spotlight Manager"/>
+                        <div className="p-4 border border-gray-300 border-t-0">
+                            <Button color="success" onClick={() => window.location.href = '/admin/bulletinspotlight/form'} className="mb-4">Add Bulletin</Button>
+                            <BulletinTable payload={payload} deleteHandler={DeleteHandler}/>  
+                        </div>
+                    </div>
+                : <div>Unauthorized</div>
+            }
+            </NavbarSidebarLayout>
+        </>
 }
 
 export default BulletinSpotlightPage;

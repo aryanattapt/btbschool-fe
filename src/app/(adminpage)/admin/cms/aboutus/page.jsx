@@ -9,8 +9,13 @@ import FieldTitle from "../_components/FieldTitle";
 import ImageAttachment from "../_components/ImageAttachment";
 import LanguageChanger from "../_components/LanguageChanger";
 import { FaMinusCircle } from "react-icons/fa";
+import Loader from '../../../../_components/loader';
+import { checkPermission } from '../../../../../../services/auth.service';
 
 const CMSAboutUs = () => {
+	const [isLoadingPage, setIsLoadingPage] = useState(true);
+	const [isAuthorized, setIsAuthorized] = useState(null);
+
 	const rawData = useCmsAboutUsStore((state) => state.rawData);
 	const setState = useCmsAboutUsStore((state) => state.setState);
 	const language = useCmsAboutUsStore((state) => state.language);
@@ -31,8 +36,26 @@ const CMSAboutUs = () => {
 	const [attachment, setAttachment] = useState({});
 
 	useEffect(() => {
-		getInitialData();
+		fetchData(getInitialData)
 	}, []);
+
+	const fetchData = async (callback) => {
+		setIsLoadingPage(true);
+		try {
+			await checkPermission('manage_content');
+			setIsAuthorized(true);
+			await callback();
+		} catch (error) {
+			console.log(error);
+			if(error.status != '401'){
+				try {
+					await callback();
+				} catch (error) {console.log(error);}
+			}
+		} finally {
+			setIsLoadingPage(false);
+		}
+	};
 
 	const onChangeAttachment = (file, prop) => {
 		if (file.length > 0) {
@@ -65,9 +88,13 @@ const CMSAboutUs = () => {
 		submitData(container);
 	};
 
-	return (
-		<div>
-			<NavbarSidebarLayout>
+	if(isLoadingPage){
+		return <Loader/>
+	} else
+		return <NavbarSidebarLayout >
+		{
+			isAuthorized ? 
+			<>
 				{!isObjectEmpty(data) && (
 					<div>
 						<AdminHeader title="About Us Content Settings Form" />
@@ -174,9 +201,10 @@ const CMSAboutUs = () => {
 						</div>
 					</div>
 				)}
-			</NavbarSidebarLayout>
-		</div>
-	);
+			</>
+			: <div>Unauthorized</div>
+		}
+		</NavbarSidebarLayout>
 };
 
 export default CMSAboutUs;

@@ -13,15 +13,38 @@ import {
     detransformJsonLanguage,
 } from '../../../../../../helpers/jsontransform.helper';
 import { Button } from 'flowbite-react';
+import Loader from '../../../../_components/loader';
+import { checkPermission } from '../../../../../../services/auth.service';
 
 const CMSAlumni = () => {
+    const [isLoadingPage, setIsLoadingPage] = useState(true);
+	const [isAuthorized, setIsAuthorized] = useState(null);
+
     const [alumniPayload, setAlumniPayload] = useState({});
     const [alumniStoryPayload, setAlumniStoryPayload] = useState([]);
     const [alumniUniversityPayload, setAlumniUniversityPayload] = useState([]);
 
     useEffect(() => {
-        fetchConfig();
+        fetchData(fetchConfig);
     }, []);
+
+    const fetchData = async (callback) => {
+		setIsLoadingPage(true);
+		try {
+			await checkPermission('manage_content');
+			setIsAuthorized(true);
+			await callback();
+		} catch (error) {
+			console.log(error);
+			if(error.status != '401'){
+				try {
+					await callback();
+				} catch (error) {console.log(error);}
+			}
+		} finally {
+			setIsLoadingPage(false);
+		}
+	};
 
     const fetchConfig = async () => {
         const alumniType = 'alumni';
@@ -46,27 +69,30 @@ const CMSAlumni = () => {
         .catch((err) => console.log(err))
     }
 
-	return (
-		<div>
-			<NavbarSidebarLayout>
-					<div>
-						<AdminHeader title="Alumni Content Settings Form" />
+    if(isLoadingPage){
+        return <Loader/>
+    } else
+        return <NavbarSidebarLayout >
+        {
+            isAuthorized ? 
+            <div>
+                <AdminHeader title="Alumni Content Settings Form" />
 
-						{/* Pengenanlan */}
-						<div className="my-6">
-                            <Button color="success" onClick={() => window.location.href = '/admin/cms/alumni/alumniform'} className="mb-4">Add Cerita Alumni</Button>
-                            <FieldTitle>List Cerita Alumni</FieldTitle>
-                            <TableTestimoni payload={alumniStoryPayload} deleteHandler={deleteHandler}/>
-                        </div>
-                        <div className="my-6">
-                            <Button color="success" onClick={() => window.location.href = '/admin/cms/alumni/universityForm'} className="mb-4">Add Univeritas</Button>
-                            <FieldTitle>List Universitas</FieldTitle>
-                            <UniversityList payload={alumniUniversityPayload} deleteHandler={deleteHandler}/>
-                        </div>
-					</div>
-			</NavbarSidebarLayout>
-		</div>
-	);
+                {/* Pengenanlan */}
+                <div className="my-6">
+                    <Button color="success" onClick={() => window.location.href = '/admin/cms/alumni/alumniform'} className="mb-4">Add Cerita Alumni</Button>
+                    <FieldTitle>List Cerita Alumni</FieldTitle>
+                    <TableTestimoni payload={alumniStoryPayload} deleteHandler={deleteHandler}/>
+                </div>
+                <div className="my-6">
+                    <Button color="success" onClick={() => window.location.href = '/admin/cms/alumni/universityForm'} className="mb-4">Add Univeritas</Button>
+                    <FieldTitle>List Universitas</FieldTitle>
+                    <UniversityList payload={alumniUniversityPayload} deleteHandler={deleteHandler}/>
+                </div>
+            </div>
+            : <div>Unauthorized</div>
+        }
+        </NavbarSidebarLayout>
 };
 
 export default CMSAlumni;

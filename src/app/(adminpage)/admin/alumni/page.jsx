@@ -10,6 +10,8 @@ import { Button } from 'flowbite-react';
 import useExportExcel from "../../../../hooks/useExportExcel";
 import { FaFile } from 'react-icons/fa';
 import moment from 'moment';
+import { checkPermission } from '../../../../../services/auth.service';
+import Loader from '../../../_components/loader';
 
 const AlumniExcelPayload = (datas = []) => {
 	if (datas?.length > 0) {
@@ -42,27 +44,48 @@ const AlumniExcelPayload = (datas = []) => {
 const AlumniPage = () => {
     const onExportExcel = useExportExcel();
     const [payload, setPayload] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
-        fetchAllAlumni()
+        fetchData(fetchAllAlumni)
     }, [])
 
-    const fetchAllAlumni = () => {
-        FetchAlumni({})
-        .then(res => {
+    const fetchData = async (callback) => {
+        setIsLoading(true);
+        try {
+            await checkPermission('manage_alumni');
+            setIsAuthorized(true);
+            await callback();
+        } catch (error) {
+            console.log(error);
+            if(error.status != '401'){
+                try {
+                    await callback();
+                } catch (error) {console.log(error);}
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const fetchAllAlumni = async () => {
+        try {
+            const res = await FetchAlumni({});
+    
             const currentYearFiltered = new Date().getFullYear();
             const startYearFiltered = currentYearFiltered - 3;
+            
             const filteredData = res.filter(item => {
                 const lastStudentYear = parseInt(item.laststudentyear, 10); // Convert to integer
                 return lastStudentYear >= startYearFiltered && lastStudentYear <= currentYearFiltered;
             });
-            setPayload(filteredData)
-        })
-        .catch((err) => {
-            setPayload([])
-            console.log(err);
-        })
-    }
+            setPayload(filteredData);
+        } catch (err) {
+            setPayload([]);
+            console.error('Error fetching alumni data:', err);
+        }
+    };    
 
     const onExportAllAsExcelHandler = () => {
 		if (payload.length > 0) {
@@ -77,24 +100,31 @@ const AlumniPage = () => {
 		}
 	};
 
-    return <>
-        <NavbarSidebarLayout >
-            <div className="mt-4">
-                <AdminHeader title="Alumni List"/>
-                <div className="mt-4">
-                    <div className="bg-white p-4 border border-gray-300 border-t-0">
-                        <Button className="px-2" onClick={onExportAllAsExcelHandler} size="xs" style={{background: "#95b65d", "&:hover": { color: "black", background: "white" } }}>
-                            <FaFile className="mr-2 h-4 w-4" />
-                            Export All
-                        </Button>
-                    </div>
-                </div>
-                <div className="p-4 border border-gray-300 border-t-0">
-                    <TableAlumniList payload={payload}/>  
-                </div>
-            </div>
-        </NavbarSidebarLayout>
-    </>
+    if(isLoading){
+        return <Loader/>
+    } else
+        return <>
+            <NavbarSidebarLayout >
+                {
+                    isAuthorized ? <div className="mt-4">
+                        <AdminHeader title="Alumni List"/>
+                        <div className="mt-4">
+                            <div className="bg-white p-4 border border-gray-300 border-t-0">
+                                <Button className="px-2" onClick={onExportAllAsExcelHandler} size="xs" style={{background: "#95b65d", "&:hover": { color: "black", background: "white" } }}>
+                                    <FaFile className="mr-2 h-4 w-4" />
+                                    Export All
+                                </Button>
+                            </div>
+                        </div>
+                        <div className="p-4 border border-gray-300 border-t-0">
+                            <TableAlumniList payload={payload}/>  
+                        </div>
+                    </div> :
+                    <div>Unauthorized</div>
+                }
+                
+            </NavbarSidebarLayout>
+        </>
 }
 
 export default AlumniPage;

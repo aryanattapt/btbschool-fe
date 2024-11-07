@@ -25,18 +25,41 @@ import FloatingButtonForm from './floatingbutton.form';
 import AdminHeader from "../../../_components/header";
 import QuickLinkForm from './quicklink.form';
 import PopupForm from './popup.form';
+import Loader from '../../../../../_components/loader';
+import { checkPermission } from '../../../../../../../services/auth.service';
 
 const GeneralSettingsMainForm = () => {
+    const [isLoadingPage, setIsLoadingPage] = useState(true);
+	const [isAuthorized, setIsAuthorized] = useState(null);
+
     const type = 'generalsetting'
     const configName = 'general';
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({});
 
     useEffect(() => {
-        fetchData();
+        fetchData(fetchPage);
     }, []);
 
-    const fetchData = async () => {
+    const fetchData = async (callback) => {
+		setIsLoadingPage(true);
+		try {
+			await checkPermission('manage_content');
+			setIsAuthorized(true);
+			await callback();
+		} catch (error) {
+			console.log(error);
+			if(error.status != '401'){
+				try {
+					await callback();
+				} catch (error) {console.log(error);}
+			}
+		} finally {
+			setIsLoadingPage(false);
+		}
+	};
+
+    const fetchPage = async () => {
         try {
             const data = await GetConfig(configName, {"type": type});
             const deTransformJson = detransformJsonLanguage(data[0]);
@@ -166,8 +189,12 @@ const GeneralSettingsMainForm = () => {
         }
     };
 
-    return (
-        <NavbarSidebarLayout>
+    if(isLoadingPage){
+        return <Loader/>
+    } else
+        return <NavbarSidebarLayout >
+        {
+            isAuthorized ? 
             <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mt-4 mb-4">
                     <AdminHeader title="General Content Settings Form"/>
@@ -209,8 +236,9 @@ const GeneralSettingsMainForm = () => {
                     </Button>
                 </div>
             </div>
+            : <div>Unauthorized</div>
+        }
         </NavbarSidebarLayout>
-    );
 };
 
 export default GeneralSettingsMainForm;

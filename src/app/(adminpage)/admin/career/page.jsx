@@ -7,25 +7,52 @@ import TableCareerApplicant from './_components/table'
 import {
     GetAllCareer
 } from '../../../../../services/career.service'
+import Loader from '../../../_components/loader';
+import { checkPermission } from '../../../../../services/auth.service';
 
 const CareerPage = () => {
     const [payload, setPayload] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
-        fetchAllCareer()
+        fetchData(fetchAllCareer)
     }, [])
 
-    const fetchAllCareer = () => {
-        GetAllCareer({})
-        .then(res => setPayload(res))
-        .catch((err) => {
-            setPayload([])
-            console.log(err);
-        })
-    }
+    const fetchData = async (callback) => {
+        setIsLoading(true);
+        try {
+            await checkPermission('manage_career');
+            setIsAuthorized(true);
+            await callback();
+        } catch (error) {
+            console.log(error);
+            if(error.status != '401'){
+                try {
+                    await callback();
+                } catch (error) {console.log(error);}
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-    return <>
-        <NavbarSidebarLayout >
+    const fetchAllCareer = async () => {
+        try {
+            const res = await GetAllCareer({});
+            setPayload(res);
+        } catch (err) {
+            setPayload([]);
+            console.log(err);
+        }
+    };
+    
+    if(isLoading){
+        return <Loader/>
+    } else
+        return <NavbarSidebarLayout >
+        {
+            isAuthorized ? 
             <div className="mt-4">
                 <AdminHeader title="Career List"/>
                 <div className="p-4 border border-gray-300 border-t-0">
@@ -33,8 +60,9 @@ const CareerPage = () => {
                     <TableCareerApplicant payload={payload}/>  
                 </div>
             </div>
+            : <div>Unauthorized</div>
+        }
         </NavbarSidebarLayout>
-    </>
 }
 
 export default CareerPage;
