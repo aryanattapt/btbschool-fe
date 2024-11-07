@@ -7,7 +7,7 @@ const TableUser = ({payload}) => {
         <Table hoverable>
             <Table.Head>
                 <Table.HeadCell>Full Name</Table.HeadCell>
-                <Table.HeadCell>Role</Table.HeadCell>
+                {/* <Table.HeadCell>Role</Table.HeadCell> */}
                 <Table.HeadCell>Username</Table.HeadCell>
                 <Table.HeadCell>Email</Table.HeadCell>
                 <Table.HeadCell>Registered date</Table.HeadCell>
@@ -20,9 +20,9 @@ const TableUser = ({payload}) => {
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                 {`${val.firstname} ${val.lastname}`}
                             </Table.Cell>
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                            {/* <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                 {val.role}
-                            </Table.Cell>
+                            </Table.Cell> */}
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                 {val.username}
                             </Table.Cell>
