@@ -40,3 +40,13 @@ export const ValidateAlumniSubmissionData = (payload) => new Promise(async (reso
         return reject(error.response.data);
     }
 });
+
+export const DeleteAlumniSubmissiondata = (payload) => new Promise(async (resolve, reject) => {
+    try {
+        await callInternalAPI('/alumni/', 'DELETE', payload, {"Authorization": `Bearer ${getCookie(process.env.NEXT_PUBLIC_CLIENTSESSION)}`});
+        return resolve(true);
+    } catch (error) {
+        console.log(error); 
+        return reject(error.response.data);
+    }
+});

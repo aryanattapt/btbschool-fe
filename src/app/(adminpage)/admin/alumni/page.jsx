@@ -3,15 +3,17 @@ import NavbarSidebarLayout from '../_layouts/navigation';
 import { useEffect, useState } from 'react';
 import AdminHeader from '../_components/header';
 import {
+    DeleteAlumniSubmissiondata,
     FetchAlumni,
 } from '../../../../../services/alumni.service'
 import TableAlumniList from './_components/table';
-import { Button } from 'flowbite-react';
+import { Button, Label } from 'flowbite-react';
 import useExportExcel from "../../../../hooks/useExportExcel";
 import { FaFile } from 'react-icons/fa';
 import moment from 'moment';
 import { checkPermission } from '../../../../../services/auth.service';
 import Loader from '../../../_components/loader';
+import Swal from 'sweetalert2';
 
 const AlumniExcelPayload = (datas = []) => {
 	if (datas?.length > 0) {
@@ -100,6 +102,30 @@ const AlumniPage = () => {
 		}
 	};
 
+    const deleteHandler = async (id) => {
+        try {
+            DeleteAlumniSubmissiondata({"_id": id});
+
+            setTimeout(() => {
+                window.location.href = '/admin/alumni/';
+            }, 3000);
+
+            Swal.fire({
+                allowOutsideClick: false,
+                title: "Alumni Delete Notification!",
+                text: "Success delete Alumni! Refreshing page in 3 seconds...",
+                icon: "info",
+            });
+        } catch (error) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: "Alumni Delete Notification!",
+                text: error.message,
+                icon: "error",
+            });
+        }
+    }
+
     if(isLoading){
         return <Loader/>
     } else
@@ -117,7 +143,10 @@ const AlumniPage = () => {
                             </div>
                         </div>
                         <div className="p-4 border border-gray-300 border-t-0">
-                            <TableAlumniList payload={payload}/>  
+                            <div className="mb-2 block w-72">
+                                <Label value="List all data of alumni"/>
+                            </div>
+                            <TableAlumniList payload={payload} deleteHandler={deleteHandler}/>  
                         </div>
                     </div> :
                     <div>Unauthorized</div>
