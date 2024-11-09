@@ -19,6 +19,11 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/../aryanattapt/btbschool-fe
+            if ! git reset --hard; then
+              echo "Git reset failed. Exiting process..."
+              exit 1;
+            fi
+
             if ! git pull origin master; then
               echo "Git pull failed. exit the process..."
               exit 1;
