@@ -8,8 +8,7 @@ export const isLogin = () => {
 export const login = (payload) => new Promise(async (resolve, reject) => {
     try {
         const result = await callInternalAPI('/auth/signin/', 'POST', payload, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
-        var expiredDate = new Date();
-        expiredDate.setHours(expiredDate.getHours() + 23);
+        let expiredDate = (result?.data) ? new Date(result?.data?.expiredate) : expiredDate.setHours(new Date().getHours() + 4);
         setCookie(process.env.NEXT_PUBLIC_CLIENTSESSION, result.data.token, {
             expires: expiredDate,
             path: '/',
