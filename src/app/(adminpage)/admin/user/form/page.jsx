@@ -86,56 +86,48 @@ const UserForm = () => {
         }
     };
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         console.log(`Masuk Submit Handler`);
-        setIsLoading(true);
-        if(id == null) {delete payload._id}
-        if(!payload.password) {delete payload.password}
-
-        /* Call API in here... */
-        if(id){
-            updateUser(payload)
-            .then(res => {
-                setIsLoading(false);
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: `Success submit data`,
-                    icon: 'info',
-                });
-            })
-            .catch((err) => {
-                setIsLoading(false);
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: err,
-                    icon: 'error',
-                });
-            })
-        } else{
-            insertUser(payload)
-            .then(res => {
-                setPayload({});
-                setIsLoading(false);
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: `Success submit data`,
-                    icon: 'info',
-                });
-            })
-            .catch((err) => {
-                setIsLoading(false);
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: err,
-                    icon: 'error',
-                });
-            })
+        if (!payload.password) {
+            delete payload.password;
         }
-    }
+    
+        payload.isactive = (payload.isactive === 'true') || payload.isactive;
+        console.log(payload);
+
+        try {
+            setIsLoading(true);
+            if (id) {
+                // Call the update API
+                await updateUser(payload);
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: 'Success submit data',
+                    icon: 'info',
+                });
+            } else {
+                // Call the insert API
+                await insertUser(payload);
+                setPayload({});
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: 'Success submit data',
+                    icon: 'info',
+                });
+            }
+        } catch (err) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Submit Notification!',
+                text: err.message || err,
+                icon: 'error',
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };    
 
     return <>
         <NavbarSidebarLayout >
