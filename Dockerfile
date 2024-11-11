@@ -1,40 +1,32 @@
-FROM node:22.4.0
+# Stage 1: Build the app
+FROM node:22.4.0 AS builder
 
-# Set the working directory inside the container  
+# Set the working directory for the build process
 WORKDIR /app/btbschool-fe
 
-# Copy package.json and package-lock.json to the container  
-COPY package*.json ./  
+# Copy package.json and package-lock.json to the container
+COPY package*.json ./
 
-# Set Config
-RUN npm config delete proxy
-RUN npm config delete http-proxy
-RUN npm config delete https-proxy
-RUN npm cache clean --force
-RUN npm config set fetch-retries 5
-RUN npm config set fetch-retry-maxtimeout 120000
-RUN npm config set registry http://registry.npmjs.org/
-RUN npm install -g npm
+# Install dependencies with npm ci (faster and more reliable for CI/CD)
+RUN npm ci --no-audit --prefer-offline
 
-# Install dependencies
-RUN npm ci --no-audit
+# Copy the entire source code into the container
+COPY . .
 
-# Copy the app source code to the container  
-COPY . .  
+# Build the Next.js app
+RUN npm run build
 
-# Set environment Variable
-ENV NEXT_PUBLIC_INTERNALAPIBASEURL="https://developerpreview.aryanattapt.my.id/api/btbschool"
-ENV NEXT_PUBLIC_BASEURL="https://developerpreview.aryanattapt.my.id/"
-ENV NEXT_PUBLIC_CLIENTSESSION="X-CLIENT-SID"
-ENV NEXT_PUBLIC_BASICKEY="Basic YnRic2Nob29sOmJ0YnNjaG9vbA=="
-ENV NEXT_PUBLIC_RECAPTCHA_SITE_KEY="6Lc5SikqAAAAAIury1pPE5QsX1ilLuyVL8MsXdd_"
-ENV NEXT_PUBLIC_RECAPTCHA_SECRET_KEY="6Lc5SikqAAAAAE3pIs6vKTMZGZgqtSj43E1bTUwY"
+# Stage 2: Create the runtime image
+FROM node:22.4.0 AS runtime
 
-# Expose the port the app will run on  
+# Set the working directory for the runtime environment
+WORKDIR /app/btbschool-fe
+
+# Copy only the necessary artifacts from the builder stage (node_modules & .next build output)
+COPY --from=builder /app/btbschool-fe /app/btbschool-fe
+
+# Expose the port the app will run on
 EXPOSE 40000
 
-# Build the Next.js app  
-RUN npm run build  
-
-# Start the app
-CMD npm run start:pro
+# Start the app in production mode
+CMD ["npm", "run", "start:pro"]
