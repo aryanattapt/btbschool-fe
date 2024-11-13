@@ -92,7 +92,7 @@ const UserForm = () => {
             delete payload.password;
         }
     
-        payload.isactive = (payload.isactive === 'true') || payload.isactive;
+        payload.isactive = Boolean(payload.isactive);
         console.log(payload);
 
         try {
