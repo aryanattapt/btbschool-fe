@@ -91,15 +91,14 @@ const UserForm = () => {
         if (!payload.password) {
             delete payload.password;
         }
-    
-        payload.isactive = Boolean(payload.isactive);
-        console.log(payload);
 
+        
         try {
+            const isactive = payload.isactive ? payload.isactive == 'true': false;
             setIsLoading(true);
             if (id) {
                 // Call the update API
-                await updateUser(payload);
+                await updateUser({...payload, "isactive": isactive});
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
@@ -108,7 +107,7 @@ const UserForm = () => {
                 });
             } else {
                 // Call the insert API
-                await insertUser(payload);
+                await insertUser({...payload, "isactive": isactive});
                 setPayload({});
                 Swal.fire({
                     allowOutsideClick: false,
@@ -125,9 +124,9 @@ const UserForm = () => {
                 icon: 'error',
             });
         } finally {
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000)
+            // setTimeout(() => {
+            //     window.location.reload();
+            // }, 2000)
             setIsLoading(false);
         }
     };    
