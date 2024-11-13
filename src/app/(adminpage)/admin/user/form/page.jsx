@@ -103,7 +103,7 @@ const UserForm = () => {
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
-                    text: 'Success submit data',
+                    text: 'Success submit data. Refreshing in 2 seconds...',
                     icon: 'info',
                 });
             } else {
@@ -113,7 +113,7 @@ const UserForm = () => {
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
-                    text: 'Success submit data',
+                    text: 'Success submit data. Refreshing in 2 seconds...',
                     icon: 'info',
                 });
             }
@@ -125,6 +125,9 @@ const UserForm = () => {
                 icon: 'error',
             });
         } finally {
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000)
             setIsLoading(false);
         }
     };    

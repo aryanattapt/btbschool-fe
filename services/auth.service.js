@@ -40,3 +40,10 @@ export const checkPermission = (permission) => new Promise(async (resolve, rejec
         return resolve(result.data);
     } catch (error) {return reject(error);}
 });
+
+export const GetAdminMenus = () => new Promise(async (resolve, reject) => {
+    try {
+        const result = await callInternalAPI('/auth/checkadminmenus/', 'POST', {}, {"Authorization": `Bearer ${getCookie(process.env.NEXT_PUBLIC_CLIENTSESSION)}`});
+        return resolve(result.data);
+    } catch (error) {return reject(error);}
+});
