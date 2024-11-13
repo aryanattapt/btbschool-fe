@@ -124,9 +124,9 @@ const UserForm = () => {
                 icon: 'error',
             });
         } finally {
-            // setTimeout(() => {
-            //     window.location.reload();
-            // }, 2000)
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000)
             setIsLoading(false);
         }
     };    
