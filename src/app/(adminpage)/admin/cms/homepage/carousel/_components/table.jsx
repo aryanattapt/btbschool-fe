@@ -20,7 +20,9 @@ const TableCarousel = ({payload, deleteHandler}) => {
                             </Table.Cell>
                             <Table.Cell>
                                 <div className="flex flex-wrap gap-2">
-                                    <Button color="info" onClick={() => window.location.href=`${val?.url}`} className="mr-4">Preview</Button>
+                                    {
+                                        val?.url && <Button color="info" onClick={() => window.location.href=`${val?.url}`} className="mr-4">Preview</Button>
+                                    }
                                     <Button color="warning" onClick={() => window.location.href=`/admin/cms/homepage/carousel/form?id=${val._id}`} className="mr-4">Edit</Button>
                                     <Button color="failure" onClick={() => deleteHandler(val._id)} className="mr-4">Delete</Button>
                                 </div>
