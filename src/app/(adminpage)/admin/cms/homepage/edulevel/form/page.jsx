@@ -4,41 +4,44 @@ import {
     FileInput,
     Button,
     Spinner,
-    TextInput
+    TextInput,
+    Tabs
 } from "flowbite-react";
 import { 
     useSearchParams 
 } from 'next/navigation'
 import { Suspense, useEffect, useRef, useState } from "react";
-import NavbarSidebarLayout from '../../_layouts/navigation';
+import NavbarSidebarLayout from '../../../../_layouts/navigation';
 import {
     GetConfig,
     SubmitConfig
-} from '../../../../../../services/config.service';
+} from '../../../../../../../../services/config.service';
 import {
     UploadAttachment
-} from '../../../../../../services/attachment.service';
+} from '../../../../../../../../services/attachment.service';
 import Swal from "sweetalert2";
-import Loader from '../../../../_components/loader';
-import { checkPermission } from '../../../../../../services/auth.service';
+import Loader from '../../../../../../_components/loader';
+import { checkPermission } from '../../../../../../../../services/auth.service';
+import { detransformJsonLanguage, transformJsonLanguage } from "../../../../../../../../helpers/jsontransform.helper";
 
-const BulletinSpotlightForm = () => {
+const EducationLevelForm = () => {
     const fileInputRef = useRef(null);
     const [payload, setPayload] = useState({})
     const searchParams = useSearchParams()
     const id = searchParams.get("id")
     const [isLoading, setIsLoading] = useState(false);
+    const [isSaveLoading, setIsSaveLoading] = useState(false);
     const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
         console.log(`ID: ${id}`);
-        fetchData(fetchBulletinSpotlight)
+        fetchData(fetchEducationLevel)
     }, []);
 
     const fetchData = async (callback) => {
         setIsLoading(true);
         try {
-            await checkPermission('manage_bulletin');
+            await checkPermission('manage_content');
             setIsAuthorized(true);
             await callback();
         } catch (error) {
@@ -53,11 +56,11 @@ const BulletinSpotlightForm = () => {
         }
     };
 
-    const fetchBulletinSpotlight = async () => {
+    const fetchEducationLevel = async () => {
         if (id) {
             try {
-                const res = await GetConfig('bulletinspotlight', { "_id": id });
-                setPayload(res[0]);
+                const res = await GetConfig('general', { "_id": id, "type": "homepage.edulevel" });
+                setPayload(detransformJsonLanguage(res[0]));
             } catch (err) {
                 Swal.fire({
                     allowOutsideClick: false,
@@ -81,19 +84,19 @@ const BulletinSpotlightForm = () => {
         const { name, value, type, files } = e.target;
         if(type == 'file'){
             const validFiles = [];
-            const maxFileSize = 20 * 1024 * 1024;
+            const maxFileSize = 16 * 1024 * 1024;
             Object.keys(files).forEach((key) => {
                 const file = files[key];
-                if (file.type === 'application/pdf') {
+                if (file.type.startsWith('image/')) {
                     if (file.size <= maxFileSize) {
                         validFiles.push(file);
                     } else {
                         clearFile(name);
-                        alert(`${file.name} exceeds the maximum size of 20 MB.`);
+                        alert(`${file.name} exceeds the maximum size of 16 MB.`);
                     }
                 } else {
                     clearFile(name);
-                    alert(`${file.name} is not a valid PDF file.`);
+                    alert(`${file.name} is not a valid Image file.`);
                 }
             });
 
@@ -126,9 +129,9 @@ const BulletinSpotlightForm = () => {
 
     const submitHandler = async (e) => {
         try {
-            setIsLoading(true);
-            const finalPayload = {...payload, "date": new Date()};
-            if(!payload.bulletintitle){
+            setIsSaveLoading(true);
+            const finalPayload = {...payload, "date": new Date(), "type": "homepage.edulevel"};
+            if(!payload["title[EN]"] || !payload["title[ID]"]){
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
@@ -136,7 +139,7 @@ const BulletinSpotlightForm = () => {
                     icon: 'error',
                 });
                 return;
-            } if(!payload.bulletinFile){
+            } if(!payload.photofile && !payload.attachment){
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
@@ -148,21 +151,22 @@ const BulletinSpotlightForm = () => {
 
             try {
                 var formData = new FormData();
-                payload?.bulletinFile?.map((val) => {
-                    formData.append("bulletinFile", val);
+                payload?.photofile?.map((val) => {
+                    formData.append("photofile", val);
                 });
 
-                const attachmentResult = await UploadAttachment("alumni", formData);
+                const attachmentResult = await UploadAttachment("educationlevel", formData);
                 if(attachmentResult && attachmentResult.data){
                     finalPayload.attachment = attachmentResult.data;
-                    delete finalPayload.bulletinFile;
+                    delete finalPayload.photofile;
                 }
             } catch (error) {console.log(error);}
 
-            console.log([finalPayload]);
-            SubmitConfig('bulletinspotlight', [finalPayload]);
-            // window.location.href = '/admin/bulletinspotlight';
+            const transformedPayload = [transformJsonLanguage(finalPayload)];
+            console.log(transformedPayload);
+            SubmitConfig('general', transformedPayload);
         } catch (error) {
+            console.log(error);
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Submit Notification!',
@@ -170,7 +174,8 @@ const BulletinSpotlightForm = () => {
                 icon: 'error',
             });
         } finally{
-            setIsLoading(false);
+            setIsSaveLoading(false);
+            window.location.href = "/admin/cms/homepage/edulevel"
         }
     }
 
@@ -183,27 +188,47 @@ const BulletinSpotlightForm = () => {
             <div className="max-w-full grid gap-3 md:px-8">
                 <div className="inline-flex flex justify-between">
                     <div className="text-[35px] text-[#00305E] font-bold">
-                        Bulletin Form
+                        Homepage Education Level Form
                     </div>
                 </div>
+                <Tabs aria-label="Default tabs" variant="default">
+                    <Tabs.Item title="Indonesia">
+                        <div>
+                            <div className="mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                                <Label htmlFor="title[ID]" value="Title (ID)"/>
+                            </div>
+                            <TextInput value={payload[`title[ID]`] || ''} id="title[ID]" name="title[ID]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                        </div>
+                    </Tabs.Item>
+                    <Tabs.Item title="English">
+                        <div>
+                            <div className="mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                                <Label htmlFor="title[EN]" value="Title (EN)"/>
+                            </div>
+                            <TextInput value={payload[`title[EN]`] || ''} id="title[EN]" name="title[EN]"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                        </div>
+                    </Tabs.Item>
+                </Tabs>
                 <div>
-                    <div className="mb-2 block">
-                        <Label htmlFor="bulletintitle" value="Bulletin Title"/>
-                    </div>
-                    <TextInput value={payload.bulletintitle || ''} id="bulletintitle" name="bulletintitle"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                        <div>
+                            <div className="mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                                <Label htmlFor="Link" value="Link"/>
+                            </div>
+                            <TextInput value={payload.link} id="link" name="link"  type="text" autoFocus={true} onChange={formChangeHandler}/>
+                        </div>
                 </div>
                 <div>
                         <div className="mb-2 block">
-                            <Label htmlFor="bulletinFile" value="Unggah CV" />
+                            <Label htmlFor="photofile" value="Unggah Photo" />
                         </div>
-                        <FileInput accept=".pdf" ref={fileInputRef} id="bulletinFile" name="bulletinFile" helperText="Ukuran Maksimum 20MB. Format PDF" onChange={formChangeHandler}/>
+                        <FileInput accept="image/*" ref={fileInputRef} id="photofile" name="photofile" helperText="Ukuran Maksimum 16MB. Format Image" onChange={formChangeHandler}/>
                     </div>
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">
                         <div className="mt-1 py-1.25 px-0.75 items-center text-center w-1/2 md:w-full">
                             <Button type="submit" id="btnSaveAndSend" name="btnSaveAndSend" className="w-full lg:w-auto" disabled={isLoading} onClick={submitHandler}>
                                 {
-                                    isLoading ? <>
+                                    isSaveLoading ? <>
                                         <Spinner aria-label="Spinner button example" size="sm" />
                                         <span className="pl-3">Please Wait...</span>
                                     </> : <>
@@ -220,10 +245,10 @@ const BulletinSpotlightForm = () => {
         </NavbarSidebarLayout>
 }
 
-const BulletinSpotlightFormPage = () => {
+const EducationLevelFormPage = () => {
     return <Suspense>
-        <BulletinSpotlightForm/>
+        <EducationLevelForm/>
     </Suspense>
 }
 
-export default BulletinSpotlightFormPage;
+export default EducationLevelFormPage;

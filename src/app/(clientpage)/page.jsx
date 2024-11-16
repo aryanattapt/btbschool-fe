@@ -15,6 +15,7 @@ const HomePage = () => {
   const {language, getHomePageData, isLoading} = usePageData();
   const payload = usePageData((state) => state.result.homepage);
   const instagramFeed = usePageData((state) => state.result.instagramFeed);
+  const gradelist = usePageData((state) => state.result.gradelist);
 
   useEffect(() => {
     getHomePageData();
@@ -131,7 +132,46 @@ const HomePage = () => {
                 </div>
               </div> */}
 
-              {payload?.gradelist?.map((val, idx) => {
+              {console.log(gradelist)}
+              {
+                gradelist.map((val, idx) => {
+                  const photoFile = val?.attachment.length > 0 ? val?.attachment[0].fileURL : '';
+                  if (photoFile) {
+                    return (
+                      <div
+                        className="relative w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] bg-cover bg-center rounded-[30px]"
+                        key={idx}
+                      >
+                        <img
+                          src={photoFile}
+                          alt="Logo"
+                          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105 bg-cover bg-center rounded-[30px]"
+                        />
+                        <div className="absolute inset-0 hover:bg-[#243F6D] hover:opacity-80 flex items-center justify-center rounded-[30px]">
+                          <div className="text-white group">
+                            <a
+                              href={val?.link || "#"}
+                              target="_blank"
+                              className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300"
+                            >
+                              Learn More
+                            </a>
+                          </div>
+                        </div>
+                        <div className="md:my-[10px] text-[#00305E]">
+                          <div className="flex gap-2 justify-center">
+                            <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
+                              {val[`${language}`]?.title}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                })
+              }
+
+              {/* {payload?.gradelist?.map((val, idx) => {
                 if (val?.logo) {
                   return (
                     <div
@@ -164,7 +204,7 @@ const HomePage = () => {
                     </div>
                   );
                 }
-              })}
+              })} */}
             </div>
             <hr className="h-px mt-10 md:mt-32 md:mb-20 mb-10 bg-gray-200 border-0 dark:bg-gray-700" />
             <div className="text-[25px] md:text-[60px] md:text-start text-center font-semibold">

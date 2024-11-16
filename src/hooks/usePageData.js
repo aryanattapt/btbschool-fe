@@ -46,7 +46,7 @@ export const usePageData = create((set, get) => ({
             const results = await Promise.allSettled([
                 GetBTBInstagramFeed(),
                 GetConfig(configName, { 
-                    type: { "$in": ["homepage", "generalsetting", "homepage.carousel"] }
+                    type: { "$in": ["homepage", "generalsetting", "homepage.carousel", "homepage.edulevel"] }
                 }),
             ]);
         
@@ -59,6 +59,7 @@ export const usePageData = create((set, get) => ({
                     homepage: mainData?.find(val => val?.type === 'homepage') || {},
                     generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                     carousel: mainData?.filter(val => val?.type === 'homepage.carousel') || [],
+                    gradelist: mainData?.filter(val => val?.type === 'homepage.edulevel') || [],
                 }
             });
         } catch (error) {

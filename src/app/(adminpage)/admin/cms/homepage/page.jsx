@@ -160,10 +160,11 @@ const HomepageSettingsMainForm = () => {
                     <div className="mb-2 block">
                         <Label value="Grade Lists Settings" />
                     </div>
-                    <GradeListForm formChangeHandler={formChangeHandler} payload={payload}/>
+                    {/* <GradeListForm formChangeHandler={formChangeHandler} payload={payload}/> */}
+                    <Button color="blue" onClick={() => window.location.href="/admin/cms/homepage/edulevel"}>Settings</Button>
                 </div>
 
-                <div className="mt-20 space-y-4">
+                <div className="mt-10 space-y-4">
                     <Button type="submit" id="btnSaveAndSend" name="btnSaveAndSend" className="w-full md:w-auto" disabled={isLoading} onClick={submitHandler}>
                         {isLoading ? (
                             <>
