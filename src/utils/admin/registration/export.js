@@ -82,7 +82,7 @@ export const admRegisManagerExportObjectBuilder = (datas = []) => {
 					Email: data?.motheremail,
 					"Marital Status": data?.mothermaritalstatus,
 					Occupation: data?.motheroccupation,
-					"Company Name": data?.mothercompanyname,
+					"Conpany Name": data?.mothercompanyname,
 					"Bussiness Address": data?.motherbusinessAddress,
 					Telp: data?.mothertelephone,
 					Fax: data?.motherfax,
