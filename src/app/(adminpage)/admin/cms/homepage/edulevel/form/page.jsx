@@ -82,24 +82,56 @@ const EducationLevelForm = () => {
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
-        if(type == 'file'){
+        if (type === 'file') {
             const validFiles = [];
-            const maxFileSize = 16 * 1024 * 1024;
+            const maxFileSize = 8 * 1024 * 1024;
             Object.keys(files).forEach((key) => {
                 const file = files[key];
+                
                 if (file.type.startsWith('image/')) {
                     if (file.size <= maxFileSize) {
-                        validFiles.push(file);
+                        const img = new Image();
+                        const reader = new FileReader();
+                        
+                        reader.onload = (event) => {
+                            img.src = event.target.result;
+                            img.onload = () => {
+                                const isSquare = img.width === img.height;
+                                if (isSquare) {
+                                    validFiles.push(file);
+                                } else {
+                                    clearFile(name);
+                                    Swal.fire({
+                                        allowOutsideClick: false,
+                                        title: 'Error Notification!',
+                                        text: `${file.name} does not have a 1:1 aspect ratio. Height: ${img.height}px. Width: ${img.width}px.`,
+                                        icon: 'error',
+                                    });
+                                }
+                            };
+                        };
+                        reader.readAsDataURL(file);
+                        
                     } else {
                         clearFile(name);
-                        alert(`${file.name} exceeds the maximum size of 16 MB.`);
+                        Swal.fire({
+                            allowOutsideClick: false,
+                            title: 'Error Notification!',
+                            text: `${file.name} exceeds the maximum size of 8 MB.`,
+                            icon: 'error',
+                        });
                     }
                 } else {
                     clearFile(name);
-                    alert(`${file.name} is not a valid Image file.`);
+                    Swal.fire({
+                        allowOutsideClick: false,
+                        title: 'Error Notification!',
+                        text: `${file.name} is not a valid image file.`,
+                        icon: 'error',
+                    });
                 }
             });
-
+        
             if (validFiles.length > 0) {
                 setPayload(prevState => ({
                     ...prevState,
@@ -221,7 +253,7 @@ const EducationLevelForm = () => {
                         <div className="mb-2 block">
                             <Label htmlFor="photofile" value="Unggah Photo" />
                         </div>
-                        <FileInput accept="image/*" ref={fileInputRef} id="photofile" name="photofile" helperText="Ukuran Maksimum 16MB. Format Image" onChange={formChangeHandler}/>
+                        <FileInput accept="image/*" ref={fileInputRef} id="photofile" name="photofile" helperText="Ukuran Maksimum 8MB. Format Image dengan aspect ratio 1:1. Example: 512x512 px" onChange={formChangeHandler}/>
                     </div>
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">
