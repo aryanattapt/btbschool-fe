@@ -44,6 +44,10 @@ export const transformJsonLanguage = (input) => {
 
 export const detransformJsonLanguage = (input) => {
     const processObject = (obj, prefix = '') => {
+        if (obj == null) {
+            return {};
+        }
+
         const result = {};
         Object.keys(obj).forEach(key => {
             const value = obj[key];

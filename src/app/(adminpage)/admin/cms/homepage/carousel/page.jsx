@@ -24,9 +24,10 @@ const HomePageCarouselManagerPage = () => {
         try {
             const data = await GetConfig(configName, {"type": type});
             const deTransformJson = detransformJsonLanguage(data);
-            setPayload(deTransformJson);
             console.log(deTransformJson);
+            setPayload(deTransformJson);
         } catch (error) {
+            console.log(error);
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Error Notification!',
