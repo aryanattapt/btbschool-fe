@@ -11,6 +11,8 @@ const convertPhoneNumber = (input) => {
 }
 
 const InformasiPendaftaran = ({helpData, contactUsData, payload, language}) => {
+    const linkEmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${contactUsData[language]?.email}`;
+
     return <div className="p-4">
         <h1 className="text-2xl font-bold text-[#00305E] text-center mb-6">
             {helpData[language].secondTitle}
@@ -102,15 +104,11 @@ const InformasiPendaftaran = ({helpData, contactUsData, payload, language}) => {
               <div className="px-4 sm:px-4 md:px-6 lg:px-8 xl:px-8 my-2">
                 <div className="flex items-center mt-2">
                   <HiMail className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                  <p
-                    className="ml-2 text-sm md:text-base lg:text-base xl:text-lg"
-                    onClick={() =>
-                      (window.location.href =
-                        "mailto:" + contactUsData[language]?.email)
-                    }
-                  >
+                  <a 
+                  className="ml-2 text-sm md:text-base lg:text-base xl:text-lg" 
+                  href={linkEmail} target="_blank" rel="noopener noreferrer">
                     {contactUsData[language].email}
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>

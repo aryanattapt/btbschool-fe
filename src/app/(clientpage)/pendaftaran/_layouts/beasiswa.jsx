@@ -49,14 +49,13 @@ const BeasiswaPage = ({ data, language, generalSetting }) => {
 
                 <div className="flex items-center mt-2">
                   <HiMail className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                  <p
+                  <a
                     className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg"
-                    onClick={() =>
-                      (window.location.href = "mailto:" + val?.schoolemail)
-                    }
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${val?.schoolemail}`}
+                    target="_blank"
                   >
                     {val?.schoolemail}
-                  </p>
+                  </a>
                 </div>
               </div>
             );

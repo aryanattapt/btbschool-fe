@@ -3,7 +3,7 @@ import { HiPhone, HiMail } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 
 const TurSekolahPage = ({ data, language, generalSetting }) => {
-
+  const emailAdmission = data[language]?.beasiswaPagedata?.detailschool?.[0]?.schoolemail;
   return (
     <>
       <div className="md:mx-32 mx-10 text-black leading-loose">
@@ -58,14 +58,12 @@ const TurSekolahPage = ({ data, language, generalSetting }) => {
 
                     <div className="flex items-center mt-2">
                       <HiMail className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                      <p
+                      <a
                         className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg"
-                        onClick={() =>
-                          (window.location.href = `mailto:admission@btbschool.org`)
-                        }
+                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${emailAdmission}`} target="_blank" rel="noopener noreferrer"
                       >
                         {`admission@btbschool.org`}
-                      </p>
+                      </a>
                     </div>
 
                     <div>

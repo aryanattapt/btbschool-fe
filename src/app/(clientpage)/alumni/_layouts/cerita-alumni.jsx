@@ -35,26 +35,37 @@ const CeritaAlumni = ({ alumniPayload, alumniStoryPayload, alumniUniversityPaylo
         nextArrow: <CustomNextArrow />,
       };
     
+    // const settingsFlag = {
+    //     dots: true, // Enable dot indicators
+    //     infinite: true, // Infinite scrolling
+    //     speed: 500, // Transition speed
+    //     slidesToShow: 3, // Number of slides to show at once
+    //     slidesToScroll: 1, // Number of slides to scroll
+    //     responsive: [
+    //         {
+    //             breakpoint: 1024,
+    //             settings: {
+    //                 slidesToShow: 2,
+    //             },
+    //         },
+    //         {
+    //             breakpoint: 600,
+    //             settings: {
+    //                 slidesToShow: 1,
+    //             },
+    //         },
+    //     ],
+    // };
+
     const settingsFlag = {
-        dots: true, // Enable dot indicators
-        infinite: true, // Infinite scrolling
-        speed: 500, // Transition speed
-        slidesToShow: 3, // Number of slides to show at once
-        slidesToScroll: 1, // Number of slides to scroll
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                },
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 1,
-                },
-            },
-        ],
+        dots: false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        speed: 1000,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: false,
     };
 
   return (

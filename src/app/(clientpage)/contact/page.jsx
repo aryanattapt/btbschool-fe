@@ -20,7 +20,7 @@ const ContactPage = () => {
   const {language, getContactPageData, isLoading} = usePageData();
   const payload = usePageData((state) => state.result.contact);
   const contactUsData = usePageData((state) => state.result.ContactPageData);
-  
+
   useEffect(() => {
     getContactPageData();
   }, []);
@@ -121,16 +121,13 @@ const ContactPage = () => {
               <div className="px-4 sm:px-4 md:px-6 lg:px-8 xl:px-8 my-2">
                 <div className="flex items-center mt-2">
                   <HiMail className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                  <p
+                  <a
                     className="ml-2 text-sm md:text-base lg:text-base xl:text-lg"
-                    onClick={() =>
-                      (window.location.href =
-                        "mailto:" + (payload.length > 0 && payload[0]?.email))
-                    }
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${payload[0]?.email}`}
+                    target="_blank"
                   >
-                    {/* {contactUsData[language].email} */}
                     {payload.length > 0 && payload[0]?.email}
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>

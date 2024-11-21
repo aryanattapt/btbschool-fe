@@ -20,6 +20,7 @@ const FooterComponent = () => {
   const {language, isLoading} = usePageData();
   const payload = usePageData((state) => state.result.generalPayload);
   const footerPayload = usePageData((state) => state.footerPayload);
+  const linkEmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${footerPayload.email}`;
 
   if(isLoading) {
     return <></>
@@ -45,8 +46,9 @@ const FooterComponent = () => {
                 <div className="text-center md:text-left">
                   <div>
                     <a
-                      href={`mailto:${footerPayload.email}`}
+                      href={linkEmail}
                       className="inline-flex underline"
+                      target="_blank" rel="noopener noreferrer"
                     >
                       <MdMailOutline className="md:mt-2 size-5" />
                       <div className="pb-2 md:ml-[10px] ml-[5px] md:text-[20px] text-[13px] items-center">
@@ -250,13 +252,6 @@ const FooterComponent = () => {
             <div className="w-full flex items-center justify-between px-10 md:px-32 mb-5">
               <Footer.Copyright href="/" by="Bina Tunas Bangsa™" year={2024} />
               <div className="flex space-x-6 sm:mt-0 sm:justify-center">
-                {/* <a href={footerPayload.instagram} target="_blank">
-                  <BsInstagram />
-                  </a>
-                  <a href={footerPayload.youtube} target="_blank">
-                  <BsYoutube />
-                  </a> */}
-
                 {payload?.socialmedia?.map((val, idx) => {
                   return (
                     <a href={val?.link} target="_blank" key={idx}>
