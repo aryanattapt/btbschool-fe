@@ -24,86 +24,22 @@ import {
 import Recaptcha from '../../../_components/recaptcha';
 import {
   ValidateGoogleRecaptcha
-} from '../../../../../services/googlerecaptcha.service';
+} from '../../../../../services/googlerecaptcha.service'
 
 const AlumniForm = () => {
   const attachmentRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [alumniPayload, setAlumniPayload] = useState({ edukasiOptions: [], errors: {} });
+  const [alumniPayload, setAlumniPayload] = useState({edukasiOptions: []});
 
   /* State google recaptcha */
   const [captchaValue, setCaptchaValue] = useState(null);
   const [isRecaptchaValidated, setIsRecaptchaValidated] = useState(false);
   const captchaRef = useRef();
 
-  // Validation function
-  const validateFormData = (e) => {
-    const { name, value, type, files, checked } = e.target;
-    let error = "";
-  
-    switch (name) {
-      case "firstname":
-      case "lastname":
-        if (!value.trim()) {
-          error = "This field is required.";
-        }
-        break;
-      case "email":
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        if (!emailRegex.test(value)) {
-          error = "Please enter a valid email address.";
-        }
-        break;
-      case "phoneno":
-        if (!value || !/^(\+?\d{1,3})?\d{1,15}$/.test(value)) {
-          error = "Please enter a valid phone number.";
-        }
-        break;
-      case "birthdate":
-        if (!value) {
-          error = "Please select a birth date.";
-        } else if (moment(value).isAfter(moment())) {
-          error = "Birthdate cannot be in the future.";
-        }
-        break;
-      case "laststudentyear":
-        if (!value) {
-          error = "Please select the last year at BTB.";
-        }
-        break;
-      case "photoFile":
-        if (files && files[0] && files[0].size > 2 * 1024 * 1024) {
-          error = "The file size must be less than 2MB.";
-        } else if (files && !files[0].type.startsWith("image")) {
-          error = "Only image files (.jpg, .png) are allowed.";
-        }
-        break;
-      case "currentlocation":
-        if (!value.trim()) {
-          error = "Please provide your current location.";
-        }
-        break;
-      case "statusKerjaOptions":
-        if (!value) {
-          error = "Please select your working status.";
-        }
-        break;
-      case "professionname":
-        if (!value.trim()) {
-          error = "Please provide your profession name.";
-        }
-        break;
-      default:
-        break;
-    }
-    return error;
-  };
-
   const formChangeHandler = (e) => {
     const { name, value, type, files, checked } = e.target;
-    let errorMessage = "";
-
-    if (name === 'phoneno') {
+    
+    if(name === 'phoneno'){
       setAlumniPayload(prevState => ({
         ...prevState,
         [name]: convertPhoneNumberToInternational(value),
@@ -128,107 +64,64 @@ const AlumniForm = () => {
         [name]: value,
       }));
     }
-
-    // Validate the field
-    errorMessage = validateFormData(e);
-    setAlumniPayload(prevState => ({
-      ...prevState,
-      errors: {
-        ...prevState.errors,
-        [name]: errorMessage,
-      }
-    }));
   };
 
   const submitHandler = async (e) => {
     try {
-      setIsLoading(true);
-      // Validate the entire form
-      let isValid = true;
-      Object.keys(alumniPayload).forEach((key) => {
-        if (key !== "errors") {
-          const error = validateFormData(e);
-          if (error) {
-            isValid = false;
-            setAlumniPayload((prevState) => ({
-              ...prevState,
-              errors: {
-                ...prevState.errors,
-                [key]: error,
-              }
-            }));
-          }
+        setIsLoading(true);
+        await ValidateAlumniSubmissionData(alumniPayload);
+
+        if (!isRecaptchaValidated) {
+            await ValidateGoogleRecaptcha(captchaValue);
+            setIsRecaptchaValidated(true);
         }
-      });
 
-      if (!isValid) {
-        Swal.fire({
-          title: "Form Validation",
-          text: "Please correct the highlighted errors.",
-          icon: "error",
+        const formData = new FormData();
+        alumniPayload?.photoFile?.forEach(val => {
+            formData.append("photoFile", val);
         });
-        return;
-      }
 
-      // Validate Google Recaptcha
-      if (!isRecaptchaValidated) {
-        await ValidateGoogleRecaptcha(captchaValue);
-        setIsRecaptchaValidated(true);
-      }
+        const res = await UploadAttachment("alumni", formData);
 
-      const formData = new FormData();
-      alumniPayload?.photoFile?.forEach(val => {
-        formData.append("photoFile", val);
-      });
+        const alumniSubmitPayload = { ...alumniPayload };
+        alumniSubmitPayload.attachment = res.data;
+        delete alumniSubmitPayload.photoFile;
 
-      let res = await UploadAttachment("alumni", formData);
-      try {
-        res = res?.data[0]?.fileURL;
-      } catch (error) {res = "";}
+        await SubmitAlumni(alumniSubmitPayload);
 
-      const alumniSubmitPayload = { ...alumniPayload, "attachment": res };
-      delete alumniSubmitPayload.photoFile;
-      delete alumniSubmitPayload.errors;
+        Swal.fire({
+            allowOutsideClick: false,
+            title: "Alumni Submission Notification!",
+            text: "Success submit Alumni! Refreshing page in 5 seconds...",
+            icon: "info",
+        });
 
-      await SubmitAlumni(alumniSubmitPayload);
+        setAlumniPayload({});
+        captchaRef.current.reset();
+        attachmentRef.current.value = '';
 
-      Swal.fire({
-        allowOutsideClick: false,
-        title: "Alumni Submission Notification!",
-        text: "Success submit Alumni! Refreshing page in 5 seconds...",
-        icon: "info",
-      });
-
-      setAlumniPayload({});
-      try {        
-          captchaRef.current.reset();
-          attachmentRef.current.value = '';
-      } catch (error) {console.log(error);}
-
-      setTimeout(() => {
-        window.location.href = '/alumni';
+        setTimeout(() => {
+          window.location.href = '/alumni';
       }, 5000);
     } catch (err) {
-        console.log(err);
-        if(err != null){
-            let errorMessage = err?.message || 'Something went wrong!';
-            if (typeof err === "string") {
-                errorMessage = err;
-            } else if (typeof err === "object" && Object.keys(err?.error)?.length > 0) {
-                errorMessage = "";
-                Object.keys(err?.error)?.map(val => {
-                    errorMessage += err?.error[val]?.message + '<br/>';
-                });
-            }
-            Swal.fire({
-              allowOutsideClick: false,
-              title: "Alumni Submission Notification!",
-              html: errorMessage,
-              icon: "error",
-            });
+        let errorMessage = err?.message || 'Something went wrong!';
+        if (typeof err === "string") {
+          errorMessage = err
+        } else if(typeof err === "object" && Object.keys(err.error).length > 0) {
+          errorMessage = "";
+          Object.keys(err.error).map(val => {
+            errorMessage += err.error[val]?.message + '<br/>'
+          })
         }
+
+        Swal.fire({
+            allowOutsideClick: false,
+            title: "Alumni Submission Notification!",
+            html: errorMessage,
+            icon: "error",
+        });
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
   };
 
@@ -255,9 +148,6 @@ const AlumniForm = () => {
               onChange={formChangeHandler}
               value={alumniPayload?.firstname || ''}
             />
-            {alumniPayload.errors?.firstname && (
-              <p className="text-red-500 text-sm">{alumniPayload.errors.firstname}</p>
-            )}
           </div>
           <div>
             <div className="mb-2 block">
@@ -270,9 +160,6 @@ const AlumniForm = () => {
               onChange={formChangeHandler}
               value={alumniPayload?.lastname || ''}
             />
-            {alumniPayload.errors?.lastname && (
-              <p className="text-red-500 text-sm">{alumniPayload.errors.lastname}</p>
-            )}
           </div>
         </div>
 
@@ -285,13 +172,9 @@ const AlumniForm = () => {
             name="birthdate"
             language="en-id"
             value={alumniPayload?.birthdate || ''}
-            onSelectedDateChanged={(date) => datePickerHandler("birthdate", date ? moment(date).format("YYYY-MM-DD") : "")}
+            onSelectedDateChanged={(date) => datePickerHandler("birthdate", date)}
           />
-          {alumniPayload.errors?.birthdate && (
-            <p className="text-red-500 text-sm">{alumniPayload.errors.birthdate}</p>
-          )}
         </div>
-
         <div className="mb-4">
           <div className="mb-2 block">
             <Label htmlFor="laststudentyear" value="Last Year at BTB" />
@@ -309,9 +192,6 @@ const AlumniForm = () => {
               wrapperClassName="w-full"
             />
           </div>
-          {alumniPayload.errors?.laststudentyear && (
-            <p className="text-red-500 text-sm">{alumniPayload.errors.laststudentyear}</p>
-          )}
         </div>
         <div>
           <div className="mb-2 block">
@@ -410,73 +290,75 @@ const AlumniForm = () => {
             onChange={formChangeHandler}
           />
         </div>
-        <div className="mb-4">
-          <div className="mb-2 block">
-            <Label htmlFor="phoneno" value="Phone Number" />
-          </div>
-          <TextInput
-            id="phoneno"
-            name="phoneno"
-            type="text"
-            onChange={formChangeHandler}
-            value={alumniPayload?.phoneno || ''}
-          />
-          {alumniPayload.errors?.phoneno && (
-            <p className="text-red-500 text-sm">{alumniPayload.errors.phoneno}</p>
-          )}
-        </div>
-
-        <div className="mb-4">
+        <div>
           <div className="mb-2 block">
             <Label htmlFor="email" value="Email" />
           </div>
           <TextInput
+            value={alumniPayload?.email || ''}
+            icon={HiMail}
+            type="email"
             id="email"
             name="email"
+            onChange={formChangeHandler}
+          />
+        </div>
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="phoneno" value="Phone No" />
+          </div>
+          <TextInput
+            value={alumniPayload?.phoneno || ''}
+            id="phoneno"
+            name="phoneno"
             type="text"
             onChange={formChangeHandler}
-            value={alumniPayload?.email || ''}
           />
-          {alumniPayload.errors?.email && (
-            <p className="text-red-500 text-sm">{alumniPayload.errors.email}</p>
-          )}
         </div>
-
-        <div className="mb-4">
+        <div>
           <div className="mb-2 block">
-            <Label htmlFor="photoFile" value="Photo" />
+            <Label htmlFor="photoFile" value="Unggah Foto" />
           </div>
           <FileInput
+            multiple={false}
+            accept="image/*"
             id="photoFile"
             name="photoFile"
+            helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg, .png)"
             onChange={formChangeHandler}
-            accept="image/*"
+            ref={attachmentRef}
           />
-          {alumniPayload.errors?.photoFile && (
-            <p className="text-red-500 text-sm">{alumniPayload.errors.photoFile}</p>
-          )}
         </div>
-
         <div>
-          <Recaptcha 
-            onChange={(value) => {
-              setCaptchaValue(value);
-              setIsRecaptchaValidated(true);
-            }}
-            ref={captchaRef}
+          <Recaptcha
+            recaptchaRef={captchaRef}
+            handleRecaptchaChange={(value) => setCaptchaValue(value)}
+            handleRecaptchaExpired={() => {setCaptchaValue(null); setIsRecaptchaValidated(false)}}
           />
         </div>
-
-        <Button 
-          onClick={submitHandler}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <Spinner aria-label="Extra large spinner example" />
-          ) : (
-            "Submit"
-          )}
-        </Button>
+        <div>
+          <small className="text-gray-500 dark:text-gray-400">
+            Untuk informasi atau pertanyaan lebih lanjut, silahkan kirim email
+            ke alumni@btbschool.org.
+          </small>
+        </div>
+        <div>
+          <Button
+            type="submit"
+            className="w-full lg:w-auto"
+            disabled={isLoading}
+            onClick={submitHandler}
+          >
+            {isLoading ? (
+              <>
+                <Spinner aria-label="Spinner button example" size="sm" />
+                <span className="pl-3">Please Wait...</span>
+              </>
+            ) : (
+              <>Kirim</>
+            )}
+          </Button>
+        </div>
       </div>
     </>
   );

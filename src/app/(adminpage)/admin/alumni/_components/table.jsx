@@ -144,7 +144,7 @@ const TableAlumniList = ({payload, deleteHandler}) => {
         {
             headerName: "Photo",
             cellRenderer: (p) =>  {
-                return <Button onClick={() => window.location.href = p?.data?.attachment[0]?.fileURL} color={"success"}>View</Button>;
+                return <Button onClick={() => window.location.href = p?.data?.attachment} color={"success"}>View</Button>;
             },
             filter: false,
             sortable: false,
