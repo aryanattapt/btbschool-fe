@@ -458,12 +458,10 @@ const AlumniForm = () => {
         </div>
 
         <div>
-          <Recaptcha 
-            onChange={(value) => {
-              setCaptchaValue(value);
-              setIsRecaptchaValidated(true);
-            }}
-            ref={captchaRef}
+        <Recaptcha
+            recaptchaRef={captchaRef}
+            handleRecaptchaChange={(value) => setCaptchaValue(value)}
+            handleRecaptchaExpired={() => {setCaptchaValue(null); setIsRecaptchaValidated(false)}}
           />
         </div>
 
