@@ -447,10 +447,13 @@ const AlumniForm = () => {
             <Label htmlFor="photoFile" value="Photo" />
           </div>
           <FileInput
+            multiple={false}
+            accept="image/*"
             id="photoFile"
             name="photoFile"
+            helperText="Ukuran Maksimum 2MB. Format Gambar (.jpg, .png)"
             onChange={formChangeHandler}
-            accept="image/*"
+            ref={attachmentRef}
           />
           {alumniPayload.errors?.photoFile && (
             <p className="text-red-500 text-sm">{alumniPayload.errors.photoFile}</p>

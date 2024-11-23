@@ -94,11 +94,10 @@ const UserForm = () => {
 
         
         try {
-            const isactive = payload.isactive ? payload.isactive == 'true': false;
             setIsLoading(true);
             if (id) {
                 // Call the update API
-                await updateUser({...payload, "isactive": isactive});
+                await updateUser({...payload});
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
@@ -107,7 +106,7 @@ const UserForm = () => {
                 });
             } else {
                 // Call the insert API
-                await insertUser({...payload, "isactive": isactive});
+                await insertUser({...payload});
                 setPayload({});
                 Swal.fire({
                     allowOutsideClick: false,
@@ -257,9 +256,9 @@ const UserForm = () => {
                         <Label htmlFor="isactive" value="Active"/>
                     </div>
                     <div>
-                        <Radio checked={payload.isactive?.toString() == 'true'} id="isactivetrue" name="isactive" value="true" onChange={formChangeHandler}/>
+                        <Radio checked={payload.isactive?.toString() == 'active'} id="isactivetrue" name="isactive" value="active" onChange={formChangeHandler}/>
                         <Label htmlFor="isactivetrue">Active</Label>
-                        <Radio checked={payload.isactive?.toString() == 'false'} id="isactivefalse" name="isactive" value="false" onChange={formChangeHandler}/>
+                        <Radio checked={payload.isactive?.toString() == 'nonactive'} id="isactivefalse" name="isactive" value="nonactive" onChange={formChangeHandler}/>
                         <Label htmlFor="isactivefalse">Inactive</Label>
                     </div>
                 </div>
