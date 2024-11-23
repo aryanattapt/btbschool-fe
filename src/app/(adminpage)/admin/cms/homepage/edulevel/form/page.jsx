@@ -83,7 +83,6 @@ const EducationLevelForm = () => {
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
         if (type === 'file') {
-            const validFiles = [];
             const maxFileSize = 8 * 1024 * 1024;
             Object.keys(files).forEach((key) => {
                 const file = files[key];
@@ -98,7 +97,10 @@ const EducationLevelForm = () => {
                             img.onload = () => {
                                 const isSquare = img.width === img.height;
                                 if (isSquare) {
-                                    validFiles.push(file);
+                                    setPayload(prevState => ({
+                                        ...prevState,
+                                        [name]: prevState[name] ? [...prevState[name], file] : [file]
+                                    }));    
                                 } else {
                                     clearFile(name);
                                     Swal.fire({
@@ -131,13 +133,6 @@ const EducationLevelForm = () => {
                     });
                 }
             });
-        
-            if (validFiles.length > 0) {
-                setPayload(prevState => ({
-                    ...prevState,
-                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : validFiles
-                }));
-            }
         } else if(type == 'checkbox'){
             if(e.target.checked){
                 setPayload(prevState => ({
@@ -163,23 +158,6 @@ const EducationLevelForm = () => {
         try {
             setIsSaveLoading(true);
             const finalPayload = {...payload, "date": new Date(), "type": "homepage.edulevel"};
-            if(!payload["title[EN]"] || !payload["title[ID]"]){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Please fill title",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.photofile && !payload.attachment){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Please fill attachment",
-                    icon: 'error',
-                });
-                return;
-            }
 
             try {
                 var formData = new FormData();
@@ -193,6 +171,24 @@ const EducationLevelForm = () => {
                     delete finalPayload.photofile;
                 }
             } catch (error) {console.log(error);}
+
+            if(!finalPayload["title[EN]"] || !finalPayload["title[ID]"]){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill title",
+                    icon: 'error',
+                });
+                return;
+            } if(!finalPayload.attachment){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill attachment",
+                    icon: 'error',
+                });
+                return;
+            }
 
             const transformedPayload = [transformJsonLanguage(finalPayload)];
             console.log(transformedPayload);

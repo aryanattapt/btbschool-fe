@@ -112,12 +112,14 @@ const CeritaAlumni = ({ alumniPayload, alumniStoryPayload, alumniUniversityPaylo
 
         <div className="my-5 text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
             <h2 className="text-[#00305E] text-[25px] md:text-[50px] mx-5">
-                {alumniPayload[language]?.pagingHeader?.url[0]?.subtitle}
+                {/* {alumniPayload[language]?.pagingHeader?.url[0]?.subtitle} */}
+                {alumniPayload[language]?.universitytitle}
             </h2>
             <p className="mx-5 mb-5">
-                Kami berkomitmen mempersiapkan setiap murid untuk meraih sukses di universitas terkemuka, baik di dalam maupun luar negeri.
+                {/* Kami berkomitmen mempersiapkan setiap murid untuk meraih sukses di universitas terkemuka, baik di dalam maupun luar negeri.
                 Dengan kurikulum berstandar internasional, pendampingan akademis yang menyeluruh, serta bimbingan personal yang mendalam, 
-                kami memastikan setiap siswa siap menghadapi tantangan pendidikan tinggi dengan percaya diri dan kompetensi global.
+                kami memastikan setiap siswa siap menghadapi tantangan pendidikan tinggi dengan percaya diri dan kompetensi global. */}
+                {alumniPayload[language]?.universitycontent}
             </p>
         </div>
         <div className="slider-container">

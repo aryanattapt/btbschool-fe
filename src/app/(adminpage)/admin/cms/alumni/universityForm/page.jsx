@@ -77,31 +77,58 @@ const CMSAlumni = () => {
     
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
-        if(type === 'file'){
-            const validFiles = [];
-            const maxFileSize = 2 * 1024 * 1024;
+        if (type === 'file') {
+            const maxFileSize = 8 * 1024 * 1024;
             Object.keys(files).forEach((key) => {
                 const file = files[key];
+                
                 if (file.type.startsWith('image/')) {
                     if (file.size <= maxFileSize) {
-                        validFiles.push(file);
+                        const img = new Image();
+                        const reader = new FileReader();
+                        
+                        reader.onload = (event) => {
+                            img.src = event.target.result;
+                            img.onload = () => {
+                                const isSquare = img.width === img.height;
+                                if (isSquare) {
+                                    setPayload(prevState => ({
+                                        ...prevState,
+                                        [name]: prevState[name] ? [...prevState[name], file] : [file]
+                                    }));    
+                                } else {
+                                    clearFile(name);
+                                    Swal.fire({
+                                        allowOutsideClick: false,
+                                        title: 'Error Notification!',
+                                        text: `${file.name} does not have a 1:1 aspect ratio. Height: ${img.height}px. Width: ${img.width}px.`,
+                                        icon: 'error',
+                                    });
+                                }
+                            };
+                        };
+                        reader.readAsDataURL(file);
+                        
                     } else {
                         clearFile(name);
-                        alert(`${file.name} exceeds the maximum size of 2 MB.`);
+                        Swal.fire({
+                            allowOutsideClick: false,
+                            title: 'Error Notification!',
+                            text: `${file.name} exceeds the maximum size of 8 MB.`,
+                            icon: 'error',
+                        });
                     }
                 } else {
                     clearFile(name);
-                    alert(`${file.name} is not a valid image file.`);
+                    Swal.fire({
+                        allowOutsideClick: false,
+                        title: 'Error Notification!',
+                        text: `${file.name} is not a valid image file.`,
+                        icon: 'error',
+                    });
                 }
             });
-
-            if (validFiles.length > 0) {
-                setPayload(prevState => ({
-                    ...prevState,
-                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : validFiles
-                }));
-            }
-        } else if(type === 'checkbox'){
+        } else if(type == 'checkbox'){
             if(e.target.checked){
                 setPayload(prevState => ({
                     ...prevState,
@@ -126,23 +153,6 @@ const CMSAlumni = () => {
         try {
             setIsLoading(true);
             const finalData = {...payload, ...type};
-            if(!payload.caption){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Please fill university name",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.universityImage){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Please fill univeristy image",
-                    icon: 'error',
-                });
-                return;
-            }
 
             /* Handle Attachment */
             try {
@@ -157,16 +167,34 @@ const CMSAlumni = () => {
                 }
             } catch (error) {console.log(error);}
 
+            if(!finalData.caption){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill university name",
+                    icon: 'error',
+                });
+                return;
+            } if(!finalData.image){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill univeristy image",
+                    icon: 'error',
+                });
+                return;
+            }
+
             await SubmitConfig(configName, [finalData]);
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Submit Notification!',
-                text: "Success!",
+                text: "Success! Redirect in 2 seconds...",
                 icon: 'info',
             });
             setTimeout(() => {
                 window.location.href = '/admin/cms/alumni';
-            }, 5*1000); 
+            }, 2*1000); 
         } catch (error) {
             console.log(error);
             Swal.fire({
@@ -200,7 +228,7 @@ const CMSAlumni = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="universityImage" value="Foto" />
                     </div>
-                    <FileInput accept="image/*" ref={fileInputRef} id="universityImage" name="universityImage" helperText="Ukuran Maksimum 2MB. Format Image" onChange={formChangeHandler}/>
+                    <FileInput accept="image/*" ref={fileInputRef} id="universityImage" name="universityImage" helperText="Ukuran Maksimum 8MB. Format Image dengan aspect ratio 1:1 contoh 512px x 512 px" onChange={formChangeHandler}/>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                     <Button 

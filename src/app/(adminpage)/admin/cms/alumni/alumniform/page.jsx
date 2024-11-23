@@ -79,31 +79,58 @@ const CMSAlumni = () => {
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
-        if(type === 'file'){
-            const validFiles = [];
-            const maxFileSize = 2 * 1024 * 1024;
+        if (type === 'file') {
+            const maxFileSize = 8 * 1024 * 1024;
             Object.keys(files).forEach((key) => {
                 const file = files[key];
+                
                 if (file.type.startsWith('image/')) {
                     if (file.size <= maxFileSize) {
-                        validFiles.push(file);
+                        const img = new Image();
+                        const reader = new FileReader();
+                        
+                        reader.onload = (event) => {
+                            img.src = event.target.result;
+                            img.onload = () => {
+                                const isSquare = img.width === img.height;
+                                if (isSquare) {
+                                    setPayload(prevState => ({
+                                        ...prevState,
+                                        [name]: prevState[name] ? [...prevState[name], file] : [file]
+                                    }));    
+                                } else {
+                                    clearFile(name);
+                                    Swal.fire({
+                                        allowOutsideClick: false,
+                                        title: 'Error Notification!',
+                                        text: `${file.name} does not have a 1:1 aspect ratio. Height: ${img.height}px. Width: ${img.width}px.`,
+                                        icon: 'error',
+                                    });
+                                }
+                            };
+                        };
+                        reader.readAsDataURL(file);
+                        
                     } else {
                         clearFile(name);
-                        alert(`${file.name} exceeds the maximum size of 2 MB.`);
+                        Swal.fire({
+                            allowOutsideClick: false,
+                            title: 'Error Notification!',
+                            text: `${file.name} exceeds the maximum size of 8 MB.`,
+                            icon: 'error',
+                        });
                     }
                 } else {
                     clearFile(name);
-                    alert(`${file.name} is not a valid image file.`);
+                    Swal.fire({
+                        allowOutsideClick: false,
+                        title: 'Error Notification!',
+                        text: `${file.name} is not a valid image file.`,
+                        icon: 'error',
+                    });
                 }
             });
-
-            if (validFiles.length > 0) {
-                setPayload(prevState => ({
-                    ...prevState,
-                    [name]: prevState[name] ? [...prevState[name], ...validFiles] : validFiles
-                }));
-            }
-        } else if(type === 'checkbox'){
+        } else if(type == 'checkbox'){
             if(e.target.checked){
                 setPayload(prevState => ({
                     ...prevState,
@@ -128,60 +155,12 @@ const CMSAlumni = () => {
         try {
             setIsLoading(true);
             const finalData = {...payload, ...type};
-            if(!payload.name){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Please fill alumni name",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.class){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Please fill alumni class",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.university){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Please fill alumni university",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.major){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Please fill alumni major",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.testimonies){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Please fill alumni testimony",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.alumniImage){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Please fill alumni photo",
-                    icon: 'error',
-                });
-                return;
-            }
+            console.log(finalData);
 
-            // /* Handle Attachment */
+            /* Handle Attachment */
             try {
                 let formData = new FormData();
-                formData.append("image", payload?.alumniImage[0]);
+                formData.append("image", finalData?.alumniImage[0]);
 
                 var resultAssets = await UploadAttachment("assets", formData);
                 resultAssets = resultAssets?.data[0]?.fileURL;
@@ -191,12 +170,61 @@ const CMSAlumni = () => {
                 }
             } catch (error) {console.log(error);}
 
-            console.log([finalData]);
+            if(!finalData.name){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni name",
+                    icon: 'error',
+                });
+                return;
+            } if(!finalData.class){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni class",
+                    icon: 'error',
+                });
+                return;
+            } if(!finalData.university){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni university",
+                    icon: 'error',
+                });
+                return;
+            } if(!finalData.major){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni major",
+                    icon: 'error',
+                });
+                return;
+            } if(!finalData.testimonies){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni testimony",
+                    icon: 'error',
+                });
+                return;
+            } if(!finalData.image){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Please fill alumni photo",
+                    icon: 'error',
+                });
+                return;
+            }
+
             await SubmitConfig(configName, [finalData]);
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Submit Notification!',
-                text: "Success!",
+                text: "Success! Redirect in 2 seconds...",
                 icon: 'info',
             });
             setTimeout(() => {
@@ -251,7 +279,7 @@ const CMSAlumni = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="alumniImage" value="Foto" />
                     </div>
-                    <FileInput accept="image/*" ref={fileInputRef} id="alumniImage" name="alumniImage" helperText="Ukuran Maksimum 2MB. Format Image" onChange={formChangeHandler}/>
+                    <FileInput accept="image/*" ref={fileInputRef} id="alumniImage" name="alumniImage" helperText="Ukuran Maksimum 8MB. Format Image dengan aspect ratio 1:1 contoh 512px x 512 px" onChange={formChangeHandler}/>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                     <Button 
