@@ -1,6 +1,20 @@
 import Swal from "sweetalert2";
 import { dateDetailDisplay } from "../../date";
 
+const gender = {
+	male: "M",
+	female: "F",
+};
+
+const yesNo = {
+	Yes: "Y",
+	No: "N",
+};
+
+const marital = {
+	Married: "M",
+};
+
 const siblingExport = (data) => {
 	const result = {};
 	for (let i = 0; i < 5; i++) {
@@ -19,16 +33,18 @@ export const admRegisManagerExportObjectBuilder = (datas = []) => {
 				{
 					No: index + 1,
 					"Registration Code": data?.registrationcode,
-					"Registration Date": data?.registereddate,
+					"Registration Date": moment(data?.registereddate).format(
+						"DD/MM/YYYY HH:mm:ss"
+					),
 					"Student ID": "",
 					NISN: "",
 					"Student Name": `${data?.firstname} ${data?.middlename} ${data?.lastname}`,
-					"Place & Date of Birth": `${data?.birthplace}, ${dateDetailDisplay(
+					"Place & Date of Birth": `${data?.birthplace}, ${moment(
 						data?.birthdate
-					)}`,
+					).format("YYYY-MM-DD")}`,
 					Nationality: data?.nationality,
 					Religion: data?.religion,
-					Gender: data?.gender,
+					Gender: gender[data?.gender],
 					Address: data?.address,
 					Telepon: data?.phoneno,
 					Email: data?.email,
@@ -36,9 +52,9 @@ export const admRegisManagerExportObjectBuilder = (datas = []) => {
 					"Doctor's Name": data?.doctorname,
 					"Doctor's Telephone": data?.doctorphone,
 					"Doctor's Address": data?.doctoraddress,
-					"Is your Child on Medication ?": data?.medicationoption,
+					"Is your Child on Medication ?": yesNo[data?.medicationoption],
 					"Does the Child Require Assistance With The Medication?":
-						data?.isrecassmedicationoption,
+						yesNo[data?.isrecassmedicationoption],
 					"Please Explain the Nature of the medication, frequency of usage and how it administered":
 						data?.naturemedication,
 					"Does your child have an allergy to any following?":
@@ -46,9 +62,9 @@ export const admRegisManagerExportObjectBuilder = (datas = []) => {
 					"Please specify the nature of the allergy (doctor's certificate required)":
 						data?.natureofallergy,
 					"Does your child suffer any limitation on physical activity?":
-						data?.limitationofphysical,
+						yesNo[data?.limitationofphysical],
 					"Has your child had any surgery or operation?":
-						data?.surgeryoperation,
+						yesNo[data?.surgeryoperation],
 					"Has your child had or contracted any of the following medical problems?":
 						data?.medicalproblemoptions?.join(", "),
 					"Musical Instrument the Child Can Play": data?.musicinstrument,
@@ -61,12 +77,12 @@ export const admRegisManagerExportObjectBuilder = (datas = []) => {
 				},
 				{
 					"Father's Name": data?.fathername,
-					"Place & Date of Birth": `${
-						data?.fatherbirthplace
-					}, ${dateDetailDisplay(data?.fatherbirthdate)}`,
+					"Place & Date of Birth": `${data?.fatherbirthplace}, ${moment(
+						data?.fatherbirthdate
+					).format("YYYY-MM-DD")}`,
 					Mobile: data?.fatherphoneno,
 					Email: data?.fatheremail,
-					"Marital Status": data?.fathermaritalstatus,
+					"Marital Status": marital[data?.fathermaritalstatus],
 					Occupation: data?.fatheroccupation,
 					"Conpany Name": data?.fathercompanyname,
 					"Bussiness Address": data?.fatherbusinessAddress,
@@ -75,12 +91,12 @@ export const admRegisManagerExportObjectBuilder = (datas = []) => {
 				},
 				{
 					"Mother's Name": data?.mothername,
-					"Place & Date of Birth": `${
-						data?.motherbirthplace
-					}, ${dateDetailDisplay(data?.motherbirthdate)}`,
+					"Place & Date of Birth": `${data?.motherbirthplace}, ${moment(
+						data?.motherbirthdate
+					).format("YYYY-MM-DD")}`,
 					Mobile: data?.motherphoneno,
 					Email: data?.motheremail,
-					"Marital Status": data?.mothermaritalstatus,
+					"Marital Status": marital[data?.mothermaritalstatus],
 					Occupation: data?.motheroccupation,
 					"Conpany Name": data?.mothercompanyname,
 					"Bussiness Address": data?.motherbusinessAddress,
@@ -93,7 +109,7 @@ export const admRegisManagerExportObjectBuilder = (datas = []) => {
 					"Emergency Telp": data?.emergencycontactphoneno,
 					"Emergency Address": data?.emergencycontactaddress,
 					...siblingExport(data),
-					"Recommended by someone ?": data?.recommendedoption,
+					"Recommended by someone ?": yesNo[data?.recommendedoption],
 					"Name of BTB Parent": data?.btbparentnamerec,
 					"Name of BTB Student": data?.btbstudentnamerec,
 					Grade: data?.btbstudentgraderec,

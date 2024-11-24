@@ -74,15 +74,14 @@ export const useCmsPendaftaranStore = create((set, get) => ({
 				tempAtt[type] = res.data[0].fileURL;
 			});
 		}
-		console.log(tempAtt);
 		if (!isObjectEmpty(tempAtt)) {
 			data["ID"]["enrolmentPagedata"]["image2"] = tempAtt["image2"];
 			data["EN"]["enrolmentPagedata"]["image2"] = tempAtt["image2"];
 		}
-		// try {
-		// 	await SubmitConfig(configName, [{ type: "type", ...data }]);
-		// } catch (error) {
-		// 	console.log(error);
-		// }
+		try {
+			await SubmitConfig(configName, [{ type: "type", ...data }]);
+		} catch (error) {
+			console.log(error);
+		}
 	},
 }));
