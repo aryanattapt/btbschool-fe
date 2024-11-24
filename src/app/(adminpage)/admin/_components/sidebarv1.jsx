@@ -33,8 +33,8 @@ const SidebarComp = ({ sidebarData, currentPage, logoutHandler, isOpen, onClose 
                     </button>
                 </div>
                 <Sidebar.Items className='h-full flex flex-col justify-between' >
+                  <Sidebar.ItemGroup>
                     {sidebarData.map((section) => (
-                        <Sidebar.ItemGroup key={section._id}>
                             <Sidebar.Collapse label={section.label}>
                                 {section.items ? section.items.map((item) => (
                                     <Sidebar.Item
@@ -54,9 +54,7 @@ const SidebarComp = ({ sidebarData, currentPage, logoutHandler, isOpen, onClose 
                                     </Sidebar.Item>
                                 )}
                             </Sidebar.Collapse>
-                        </Sidebar.ItemGroup>
                     ))}
-                    <Sidebar.ItemGroup>
                         <Sidebar.Item href="#" onClick={logoutHandler}>
                             Logout
                         </Sidebar.Item>
