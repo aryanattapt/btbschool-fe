@@ -103,7 +103,7 @@ const CeritaAlumni = ({
                                         {val?.name}
                                     </h1>
                                     <h1 className="text-gray-500 font-bold text-[14px] md:text-[20px] lg:text-[25px] xl:text-[25px] w-full md:w-1/2 text-center md:text-left">
-                                        Class of {val?.class}
+                                        {val?.class}
                                     </h1>
                                 </div>
                                 <div className="mr-10">
