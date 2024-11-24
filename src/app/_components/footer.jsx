@@ -126,7 +126,6 @@ const FooterComponent = () => {
                 {payload?.contact?.map((val, idx) => {
                   return (
                     <div key={idx}>
-                      {console.log(val)}
                       <div className="flex flex-wrap mt-2 md:mt-0 xl:mt-2">
                         <div className="md:mr-1 mr-2 xl:mr-[15px]">
                           <FaMapPin />

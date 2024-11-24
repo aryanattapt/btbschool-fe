@@ -7,7 +7,7 @@ export const SubmitAlumni = (payload) => new Promise(async (resolve, reject) => 
         return resolve(true);
     } catch (error) {
         console.log(error); 
-        return reject(error.response.data?.message || error.message);
+        return reject(error.response.data);
     }
 });
 

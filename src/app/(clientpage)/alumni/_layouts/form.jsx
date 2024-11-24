@@ -209,15 +209,19 @@ const AlumniForm = () => {
         window.location.href = '/alumni';
       }, 5000);
     } catch (err) {
-        console.log(err);
         if(err != null){
             let errorMessage = err?.message || 'Something went wrong!';
             if (typeof err === "string") {
                 errorMessage = err;
             } else if (typeof err === "object" && Object.keys(err?.error)?.length > 0) {
-                errorMessage = "";
                 Object.keys(err?.error)?.map(val => {
-                    errorMessage += err?.error[val]?.message + '<br/>';
+                    setAlumniPayload((prevState) => ({
+                      ...prevState,
+                      errors: {
+                        ...prevState.errors,
+                        [val]: err?.error[val]?.message,
+                      }
+                    }));
                 });
             }
             Swal.fire({

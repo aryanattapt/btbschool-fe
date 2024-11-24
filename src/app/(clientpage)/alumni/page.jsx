@@ -36,7 +36,7 @@ const AlumniPage = () => {
             <CeritaAlumni alumniPayload={alumniPayload} alumniStoryPayload={alumniStoryPayload} alumniUniversityPayload = {alumniUniversityPayload} language={language} />
         )}
 
-        {activeTab === "registertext" && (
+        {activeTab === "pendaftaran-alumni" && (
             <PendaftaranAlumni alumniPayload={alumniPayload} language={language} />
         )}
       </>
