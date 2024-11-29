@@ -4,7 +4,6 @@ const FAQ = ({ payload }) => {
   return (
     <Accordion collapseAll>
       {payload.map((val, idx) => {
-        console.log(val);
         return (
           <Accordion.Panel key={idx}>
             <Accordion.Title>

@@ -284,7 +284,11 @@ export const usePageData = create((set, get) => ({
         try {
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
             const results = await Promise.allSettled([
-                GetConfig(configName, { type: "generalsetting" }),
+                GetConfig(configName, {
+                    type: {
+                        "$in": ["generalsetting", "btbhelp"]
+                    }
+                }),
                 GetConfig("faq", {})
             ]);
         
@@ -293,13 +297,13 @@ export const usePageData = create((set, get) => ({
 
             set({
                 result: {
-                    helpPayload: HelpPayload || {},
+                    helpPayload: mainData?.find(val => val?.type === 'btbhelp') || {},
                     faq: faqData,
                     ContactusPayload: ContactUsPayLoad,
                     contact: mainData?.find(val => val?.type === 'generalsetting')?.contact || {},
                     generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                 }
-            });        
+            });
         } catch (error) {
             console.log(error);
             set({ isError: true, error: {error} });

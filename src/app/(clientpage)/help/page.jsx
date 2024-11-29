@@ -24,18 +24,18 @@ const HelpCenterPage = () => {
   else if(helpData && contactUs)
     return (
       <>
-        <BannerHelpCenter />
+        <BannerHelpCenter helpData={helpData}/>
         <div className="max-w-7xl mx-auto p-4">
           <Tabs aria-label="Tabs with underline" variant="underline">
-            <Tabs.Item title={helpData[language].banner.title}>
+            <Tabs.Item title={helpData[language].tabtitle1}>
               <div className="p-4 rounded-lg shadow-md">
                 <h1 className="text-[20px] md:text-[25px] font-bold text-[#00305E] text-center mb-6">
-                  {helpData[language].mainTitle}
+                  {helpData[language].faqtitle}
                 </h1>
                 <FAQ payload={payload} />
               </div>
             </Tabs.Item>
-            <Tabs.Item title={helpData[language].banner.title2}>
+            <Tabs.Item title={helpData[language].tabtitle2}>
               <InformasiPendaftaran language={language} contactUsData={contactUs} helpData={helpData} payload={contactData}/>
             </Tabs.Item>
           </Tabs>
