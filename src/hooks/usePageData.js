@@ -178,7 +178,11 @@ export const usePageData = create((set, get) => ({
         try {
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
             const results = await Promise.allSettled([
-                GetConfig(configName, { type: "generalsetting" }),
+                GetConfig(configName, {
+                    type: {
+                        "$in": ["generalsetting", "btbbuletin"]
+                    }
+                }),
                 GetConfig("bulletinspotlight", {})
             ]);
         
@@ -187,7 +191,7 @@ export const usePageData = create((set, get) => ({
 
             set({
                 result: {
-                    bulletinSpotlightPageData: BulletinSpotlightPayload || {},
+                    bulletinSpotlightPageData: mainData?.find(val => val?.type === 'btbbuletin') || {},
                     bulletinspotlight: bulletinspotlight,
                     generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                 }
@@ -206,7 +210,11 @@ export const usePageData = create((set, get) => ({
         try {
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
             const results = await Promise.allSettled([
-                GetConfig(configName, { type: "generalsetting" }),
+                GetConfig(configName, {
+                    type: {
+                        "$in": ["generalsetting", "btbcalendar"]
+                    }
+                }),
                 GetConfig("calenderacademic", {})
             ]);
         
@@ -215,7 +223,7 @@ export const usePageData = create((set, get) => ({
         
             set({
                 result: {
-                    CalendarAcademicPageData: CalendarAcademicPayload || {},
+                    CalendarAcademicPageData: mainData?.find(val => val?.type === 'btbcalendar') || {},
                     calenderacademic: calenderacademic,
                     generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                 }
@@ -261,11 +269,15 @@ export const usePageData = create((set, get) => ({
     getContactPageData: async() => {
         try {
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
-            const mainData = await GetConfig(configName, { type: "generalsetting"});
+            const mainData = await GetConfig(configName, {
+                type: {
+                    "$in": ["generalsetting", "btbcontact"]
+                }
+            });
 
             set({
                 result: {
-                    ContactPageData: ContactUsPayLoad || {},
+                    ContactPageData: mainData?.find(val => val?.type == 'btbcontact') || {},
                     contact: mainData?.find(val => val?.type == 'generalsetting')?.contact || {},
                     generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
                 }

@@ -3,7 +3,7 @@ const Banner = ({bulletinSpotlightData}) => {
     <>
       <div className="relative h-[475px] w-full">
         <img
-          src = {`${bulletinSpotlightData.bannerImage}`}
+          src = {`${bulletinSpotlightData.bannerimageurl}`}
           alt="/bulletinSpotlight.jpg"
           className="h-[475px] w-full object-cover"
         />

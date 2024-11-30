@@ -11,21 +11,19 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
 import Swal from "sweetalert2";
 import AdminHeader from '../../_components/header'
-import Form from './components/form';
 import { GetConfig, SubmitConfig } from "../../../../../../services/config.service";
 import { UploadAttachment } from "../../../../../../services/attachment.service";
 import { detransformJsonLanguage, transformJsonLanguage } from "../../../../../../helpers/jsontransform.helper";
 import Loader from '../../../../_components/loader';
 import { checkPermission } from '../../../../../../services/auth.service';
 
-const HelpForm = () => {
-    const fileAlurPendaftaranRef = useRef(null);
+const BannerForm = () => {
     const fileBannerRef = useRef(null);
 
     const [isLoadingPage, setIsLoadingPage] = useState(true);
 	const [isAuthorized, setIsAuthorized] = useState(null);
 
-    const type = 'btbhelp'
+    const type = 'btbcalendar'
     const configName = 'general';
     const [isLoading, setIsLoading] = useState(false);
     const [payload, setPayload] = useState({})
@@ -55,8 +53,7 @@ const HelpForm = () => {
     const fetchContent = async () => {
         try {
             const data = await GetConfig(configName, {"type": type});
-            const deTransformJson = detransformJsonLanguage(data[0]);
-            setPayload(deTransformJson);
+            setPayload(data[0]);
         } catch (error) {
             Swal.fire({
                 allowOutsideClick: false,
@@ -130,98 +127,8 @@ const HelpForm = () => {
         }));
     }
 
-    const alurPendaftaranChangeHandler = (e) => {
-        const { name, files } = e.target;
-        const validFiles = [];
-        const maxFileSize = 10 * 1024 * 1024;
-        Object.keys(files).forEach((key) => {
-            const file = files[key];
-            if (file.type.startsWith('image/')) {
-                if (file.size <= maxFileSize) {
-                    validFiles.push(file);
-                } else {
-                    clearAlurPendaftaranFile(name);
-                    alert(`${file.name} exceeds the maximum size of 10 MB.`);
-                }
-            } else {
-                clearAlurPendaftaranFile(name);
-                alert(`${file.name} is not a valid image file.`);
-            }
-        });
-
-        if (validFiles.length > 0) {
-            formChangeHandler(e);
-        }
-    }
-
-    const clearAlurPendaftaranFile = (name) => {
-        fileAlurPendaftaranRef.current.value = null;
-        setPayload(prevState => ({
-            ...prevState,
-            [name]: null,
-        }));
-    }
-
     const submitHandler = async (e) => {
         try {
-            if(!payload["title[EN]"] || !payload["title[ID]"]){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Title should be filled",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload["subtitle[EN]"] || !payload["subtitle[ID]"]){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Subtitle should be filled",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload["description[EN]"] || !payload["description[ID]"]){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Description should be filled",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload["registitle[EN]"] || !payload["registitle[ID]"]){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Description should be filled",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.bannerimageurl && !payload.bannerimage){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Banner image should be filled",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.alurpendaftaranimageurl && !payload.alurpendaftaranimage){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "Alur Pendaftaran image should be filled",
-                    icon: 'error',
-                });
-                return;
-            } if(!payload["faqtitle[EN]"] || !payload["faqtitle[ID]"]){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Submit Notification!',
-                    text: "F.A.Q Title should be filled",
-                    icon: 'error',
-                });
-                return;
-            }
-
             /* Handle Attachment */
             try {
                 let formData = new FormData();
@@ -235,21 +142,9 @@ const HelpForm = () => {
                 }
             } catch (error) {console.log(error);}
 
-            try {
-                let formData = new FormData();
-                formData.append("image", payload?.alurpendaftaranimage[0]);
-
-                var resultAssets = await UploadAttachment("assets", formData);
-                resultAssets = resultAssets?.data[0]?.fileURL;
-                if(resultAssets){
-                    payload.alurpendaftaranimageurl = resultAssets;
-                    delete payload.alurpendaftaranimage;
-                }
-            } catch (error) {console.log(error);}
-
             setIsLoading(true);
             const finalPayload = {...payload, "type": type};
-            const transformedPayload = [transformJsonLanguage(finalPayload)];
+            const transformedPayload = [finalPayload];
             console.log(transformedPayload);
             
             await SubmitConfig(configName, transformedPayload);
@@ -280,35 +175,18 @@ const HelpForm = () => {
             isAuthorized ? 
             <div className="max-w-full grid gap-3 md:px-8">
                 <div className="mt-4 mb-4">
-                    <AdminHeader title="Help Page Setting Form"/>
+                    <AdminHeader title="Calendar Academic Page Setting Form"/>
+                </div>
+
+                <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                    Calendar Data
+                </div>
+                <div>
+                    <Button color="success" onClick={() => window.location.href = '/admin/bulletinspotlight'} className="mb-4">Manage</Button>
                 </div>
                 
                 <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                    F.A.Q Setting
-                </div>
-                <div>
-                    <Button color="success" onClick={() => window.location.href = '/admin/helpcenter'} className="mb-4">Manage</Button>
-                </div>
-
-                <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                    Contact Setting
-                </div>
-                <div>
-                    <Button color="success" onClick={() => window.location.href = '/admin/cms/general'} className="mb-4">Manage</Button>
-                </div>
-
-                <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                    Content
-                </div>
-                <div>
-                    <Tabs aria-label="Default tabs" variant="default">
-                        <Tabs.Item title="Indonesia">
-                            <Form payload={payload} formChangeHandler={formChangeHandler} language={"ID"}/>
-                        </Tabs.Item>
-                        <Tabs.Item title="English">
-                            <Form payload={payload} formChangeHandler={formChangeHandler} language={"EN"}/>
-                        </Tabs.Item>
-                    </Tabs>
+                    Banner Setting
                 </div>
 
                 <div>
@@ -316,13 +194,6 @@ const HelpForm = () => {
                         <Label htmlFor={`bannerimage`} value="Banner" />
                     </div>
                     <FileInput accept="image/*" multiple={false} id={`bannerimage`} ref={fileBannerRef} name={`bannerimage`} helperText="Ukuran Maksimum 10 MB. Format Gambar" onChange={bannerChangeHandler}/>
-                </div>
-
-                <div>
-                    <div className="mb-2 block">
-                        <Label htmlFor={`alurpendaftaranimage`} value="Alur Pendaftaran" />
-                    </div>
-                    <FileInput accept="image/*" multiple={false} id={`alurpendaftaranimage`} ref={fileAlurPendaftaranRef} name={`alurpendaftaranimage`} helperText="Ukuran Maksimum 10 MB. Format Gambar" onChange={alurPendaftaranChangeHandler}/>
                 </div>
 
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
@@ -347,10 +218,10 @@ const HelpForm = () => {
         </NavbarSidebarLayout>
 }
 
-const HelpPage = () => {
+const Page = () => {
     return <Suspense>
-        <HelpForm/>
+        <BannerForm/>
     </Suspense>
 }
 
-export default HelpPage;
+export default Page;

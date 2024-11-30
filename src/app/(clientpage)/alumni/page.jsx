@@ -24,7 +24,7 @@ const AlumniPage = () => {
   else if(alumniPayload)
     return (
       <>
-        <Banner />
+        <Banner alumniPayload={alumniPayload}/>
         <Pagging
           alumniPayload={alumniPayload}
           language={language}

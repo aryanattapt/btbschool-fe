@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
     DeleteConfig,
     GetConfig,
@@ -14,12 +14,14 @@ import {
     detransformJsonLanguage,
     transformJsonLanguage,
 } from '../../../../../../helpers/jsontransform.helper';
-import { Button, Label, Spinner, Tabs, Textarea } from 'flowbite-react';
+import { Button, FileInput, Label, Spinner, Tabs, Textarea } from 'flowbite-react';
 import Loader from '../../../../_components/loader';
 import { checkPermission } from '../../../../../../services/auth.service';
 import Swal from 'sweetalert2';
+import { UploadAttachment } from '../../../../../../services/attachment.service';
 
 const CMSAlumni = () => {
+    const fileBannerRef = useRef(null);
     const [isSaveLoading, setIsSaveLoading] = useState(false);
     const [isLoadingPage, setIsLoadingPage] = useState(true);
 	const [isAuthorized, setIsAuthorized] = useState(null);
@@ -105,6 +107,20 @@ const CMSAlumni = () => {
 
     const submitAlumniHandler = async (e) => {
         try {
+            /* Handle Attachment */
+            try {
+                console.log(alumniPayload);
+                let formData = new FormData();
+                formData.append("image", alumniPayload?.bannerimage[0]);
+
+                var resultAssets = await UploadAttachment("assets", formData);
+                resultAssets = resultAssets?.data[0]?.fileURL;
+                if(resultAssets){
+                    alumniPayload.bannerimageurl = resultAssets;
+                    delete alumniPayload.bannerimage;
+                }
+            } catch (error) {console.log(error);}
+            
             setIsSaveLoading(true);
             const finalPayload = {...alumniPayload, "type": "alumni"};
             const transformedPayload = [transformJsonLanguage(finalPayload)];
@@ -128,6 +144,39 @@ const CMSAlumni = () => {
             setIsSaveLoading(false);
         }
     };
+
+    const bannerChangeHandler = (e) => {
+        const { name, files } = e.target;
+        const validFiles = [];
+        const maxFileSize = 10 * 1024 * 1024;
+        Object.keys(files).forEach((key) => {
+            const file = files[key];
+            if (file.type.startsWith('image/')) {
+                if (file.size <= maxFileSize) {
+                    validFiles.push(file);
+                } else {
+                    clearBannerFile(name);
+                    alert(`${file.name} exceeds the maximum size of 10 MB.`);
+                }
+            } else {
+                clearBannerFile(name);
+                alert(`${file.name} is not a valid image file.`);
+            }
+        });
+
+        if (validFiles.length > 0) {
+            formChangeHandler(e);
+        }
+    }
+
+    const clearBannerFile = (name) => {
+        console.log(`masuk clear banner`);
+        fileBannerRef.current.value = null;
+        setAlumniPayload(prevState => ({
+            ...prevState,
+            [name]: null,
+        }));
+    }
 
     if(isLoadingPage){
         return <Loader/>
@@ -179,6 +228,18 @@ const CMSAlumni = () => {
                                 </div>
                             </Tabs.Item>
                         </Tabs>
+
+                        <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                            Banner Setting
+                        </div>
+
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor={`bannerimage`} value="Banner" />
+                            </div>
+                            <FileInput accept="image/*" multiple={false} id={`bannerimage`} ref={fileBannerRef} name={`bannerimage`} helperText="Ukuran Maksimum 10 MB. Format Gambar" onChange={bannerChangeHandler}/>
+                        </div>
+                        
                         <Button type="submit" id="btnSaveAndSend" name="btnSaveAndSend" className="w-full lg:w-auto" disabled={isSaveLoading} onClick={submitAlumniHandler}>
                             {
                                 isSaveLoading ? <>
