@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { dateDetailDisplay } from "../../date";
+import moment from "moment";
 
 const gender = {
 	male: "M",
