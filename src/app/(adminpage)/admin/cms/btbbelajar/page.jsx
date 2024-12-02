@@ -9,54 +9,67 @@ import FieldTitle from "../_components/FieldTitle";
 import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import Loader from '../../../../_components/loader';
 import { checkPermission } from '../../../../../../services/auth.service';
+import BannerAttachment from "./_components/BannerAttachment/BannerAttachment"
 
 const CMSBtbBelajar = () => {
 	const [isLoadingPage, setIsLoadingPage] = useState(true);
 	const [isAuthorized, setIsAuthorized] = useState(null);
+	const [isDeclaredAtt, setIsDeclaredAtt] = useState(false)
+	const {
+		data,
+		language,
+		setState,
+		setContentState,
+		setTkCurriculumContent,
+		getInitialData,
+		addTkCurriculumContent,
+		setProgramContent,
+		addProgramContent,
+		setSdContentList,
+		addSdContentList,
+		setSmpContentList,
+		addSmpContentList,
+		setSmaContentList,
+		submitData,
+	} = useCmsBtbBelajarStore((state) => ({
+		data : state.data,
+		language : state.language,
+		setState : state.setState,
+		setContentState : state.setContentState,
+		setTkCurriculumContent : state.setTkCurriculumContent,
+		getInitialData : state.getInitialData,
+		addTkCurriculumContent : state.addTkCurriculumContent,
+		setProgramContent : state.setProgramContent,
+		addProgramContent : state.addProgramContent,
+		setSdContentList : state.setSdContentList,
+		addSdContentList : state.addSdContentList,
+		setSmpContentList : state.setSmpContentList,
+		addSmpContentList : state.addSmpContentList,
+		setSmaContentList : state.setSmaContentList,
+		submitData : state.submitData,
+	}))
 
-	const rawData = useCmsBtbBelajarStore((state) => state.rawData);
-	const data = useCmsBtbBelajarStore((state) => state.data);
-	const language = useCmsBtbBelajarStore((state) => state.language);
-	const setState = useCmsBtbBelajarStore((state) => state.setState);
-	const setContentState = useCmsBtbBelajarStore(
-		(state) => state.setContentState
-	);
-	const setTkCurriculumContent = useCmsBtbBelajarStore(
-		(state) => state.setTkCurriculumContent
-	);
-	const getInitialData = useCmsBtbBelajarStore((state) => state.getInitialData);
-	const addTkCurriculumContent = useCmsBtbBelajarStore(
-		(state) => state.addTkCurriculumContent
-	);
-	const setProgramContent = useCmsBtbBelajarStore(
-		(state) => state.setProgramContent
-	);
-	const addProgramContent = useCmsBtbBelajarStore(
-		(state) => state.addProgramContent
-	);
-	const setSdContentList = useCmsBtbBelajarStore(
-		(state) => state.setSdContentList
-	);
-	const addSdContentList = useCmsBtbBelajarStore(
-		(state) => state.addSdContentList
-	);
-	const setSmpContentList = useCmsBtbBelajarStore(
-		(state) => state.setSmpContentList
-	);
-	const addSmpContentList = useCmsBtbBelajarStore(
-		(state) => state.addSmpContentList
-	);
-	const setSmaContentList = useCmsBtbBelajarStore(
-		(state) => state.setSmaContentList
-	);
-	const addSmaContentList = useCmsBtbBelajarStore(
-		(state) => state.addSmaContentList
-	);
-	const [attachments, setAttachments] = useState({});
+	const [attachments, setAttachments] = useState({
+		tk: [],
+		sd: [],
+		smp: [],
+		sma: []
+	});
 
 	useEffect(() => {
 		fetchData(getInitialData);
 	}, []);
+
+
+	useEffect(() => {
+		if(!isObjectEmpty(data) && !isDeclaredAtt){
+			Object.keys(attachments).forEach((grade) => {
+				attachments[grade] = [...data['ID'][grade]['bannerImages']]
+			})
+			setAttachments(JSON.parse(JSON.stringify(attachments)))
+			if(!isDeclaredAtt) setIsDeclaredAtt(true)
+		}
+	},[data])
 
 	const fetchData = async (callback) => {
 		setIsLoadingPage(true);
@@ -76,6 +89,25 @@ const CMSBtbBelajar = () => {
 		}
 	};
 
+	const onChangeAttachment = (file, grade, index) => {
+		attachments[grade][index] = file
+		setAttachments({...attachments})
+	}
+
+	const deleteAttachment = (grade, index) => {
+		setAttachments(prev => ({...prev, [grade]: prev[grade].filter((_, idx) => idx !== index)}))
+
+	}
+
+	const addAttachment = (grade) => {
+		setAttachments(prev => ({...prev, [grade]: [...prev[grade], {}]}))
+	}
+
+	const onSubmit = async () => {
+		setIsLoadingPage(true)
+		submitData(attachments)
+	}
+	
 	if(isLoadingPage){
 		return <Loader/>
 	} else
@@ -90,13 +122,52 @@ const CMSBtbBelajar = () => {
 						onChange={(val) => setState(val, "language")}
 						value={language}
 					/>
-					{/* <FieldTitle>Gambar Banner</FieldTitle>
-					<ImageAttachment
-						onChange={(e) => onChangeAttachment(e, "bannerimage")}
-					/> */}
 
 					{/* CONTENT GRADE TK */}
 					<h1 className="mt-8 font-bold text-2xl">TK</h1>
+					<FieldTitle>Gambar Banner</FieldTitle>
+					<BannerAttachment 
+						datas={attachments['tk']}
+						grade={'tk'}
+						onDelete={deleteAttachment}
+						onChangeAttachment={onChangeAttachment}
+						addAttachment={addAttachment}
+					/>
+					{/* <div className="flex flex-col gap-2">
+						{attachments['tk'].length > 0 && attachments['tk'].map((res, index) => (
+							<div key={index} >
+								{typeof res === 'string' ? (
+									<div className="flex items-center">
+										<div
+											onClick={() => deleteAttachment('tk', index)}
+											className="mr-4 cursor-pointer text-xl text-red-600 hover:text-red-700"
+										>
+											<FaMinusCircle />
+										</div>
+										<a href={res} target="_blank" className="underline text-blue-600 hover:text-blue-800">{res}</a>
+									</div>
+								) : (
+									<div className="flex">
+										<div
+											onClick={() => deleteAttachment('tk', index)}
+											className="mr-4 mt-2 cursor-pointer text-xl text-red-600 hover:text-red-700"
+										>
+											<FaMinusCircle />
+										</div>
+										<div className="w-full">
+											<ImageAttachment
+												onChange={(e) => onChangeAttachment(e.target.files, "tk", index)}
+											/>
+										</div>
+									</div>
+								)}
+							</div>
+						))}
+						
+						<Button className="mt-2 ml-9 w-36" onClick={() =>addAttachment('tk')} size={"sm"}>
+							Add
+						</Button>
+					</div> */}
 					<FieldTitle>Introduction Title</FieldTitle>
 					<TextInput
 						value={data[language]["tk"]["introduction"]["title"]}
@@ -265,6 +336,14 @@ const CMSBtbBelajar = () => {
 
 					{/* CONTENT GRADE SD */}
 					<h1 className="mt-8 font-bold text-2xl">SD</h1>
+					<FieldTitle>Gambar Banner</FieldTitle>
+					<BannerAttachment 
+						datas={attachments['sd']}
+						grade={'sd'}
+						onDelete={deleteAttachment}
+						onChangeAttachment={onChangeAttachment}
+						addAttachment={addAttachment}
+					/>
 					<FieldTitle>Title</FieldTitle>
 					<TextInput
 						value={data[language]["sd"]["title"]}
@@ -459,6 +538,14 @@ const CMSBtbBelajar = () => {
 
 					{/* CONTENT GRADE SMP */}
 					<h1 className="mt-8 font-bold text-2xl">SMP</h1>
+					<FieldTitle>Gambar Banner</FieldTitle>
+					<BannerAttachment 
+						datas={attachments['smp']}
+						grade={'smp'}
+						onDelete={deleteAttachment}
+						onChangeAttachment={onChangeAttachment}
+						addAttachment={addAttachment}
+					/>
 					<FieldTitle>Grade Title</FieldTitle>
 					<TextInput
 						value={data[language]["smp"]["title"]}
@@ -701,6 +788,14 @@ const CMSBtbBelajar = () => {
 
 					{/* CONTENT GRADE SMA */}
 					<h1 className="mt-8 font-bold text-2xl">SMA</h1>
+					<FieldTitle>Gambar Banner</FieldTitle>
+					<BannerAttachment 
+						datas={attachments['sma']}
+						grade={'sma'}
+						onDelete={deleteAttachment}
+						onChangeAttachment={onChangeAttachment}
+						addAttachment={addAttachment}
+					/>
 					<FieldTitle>Content Title</FieldTitle>
 					<TextInput
 						value={data[language]["sma"]["title"]}
@@ -934,6 +1029,7 @@ const CMSBtbBelajar = () => {
 							setContentState(e.target.value, "sma", "outdoor", "paragraph");
 						}}
 					/>
+					<Button className="mt-4" onClick={onSubmit}>Save</Button>
 				</div>
 			)}
 			</>

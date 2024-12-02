@@ -101,7 +101,7 @@ export const useCmsAboutUsStore = create((set, get) => ({
 		}
 		const payload = { ...get().data, ...tempAtt };
 		try {
-			await SubmitConfig(configName, [{ type: "type", ...payload }]);
+			await SubmitConfig(configName, [{ type: type, ...payload }]);
 		} catch (error) {
 			console.log(error);
 		}

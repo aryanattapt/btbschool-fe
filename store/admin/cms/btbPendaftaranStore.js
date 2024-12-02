@@ -3,6 +3,7 @@ import { deepCopy } from "../../../src/utils/object";
 import { PendaftaranPayLoad } from "./tempDatas";
 import { UploadAttachment } from "../../../services/attachment.service";
 import { isObjectEmpty } from "../../../src/utils/checker";
+import { GetConfig, SubmitConfig } from "../../../services/config.service";
 
 const initialData = {
 	rawData: {},
@@ -24,6 +25,8 @@ export const useCmsPendaftaranStore = create((set, get) => ({
 	...initialData,
 
 	getInitialData: async () => {
+		let data = await GetConfig(configName, { type: type });
+		data = data.length > 0 ? data[0] : {};
 		set({ data: PendaftaranPayLoad });
 	},
 
@@ -79,7 +82,7 @@ export const useCmsPendaftaranStore = create((set, get) => ({
 			data["EN"]["enrolmentPagedata"]["image2"] = tempAtt["image2"];
 		}
 		try {
-			await SubmitConfig(configName, [{ type: "type", ...data }]);
+			await SubmitConfig(configName, [{ type: type, ...data }]);
 		} catch (error) {
 			console.log(error);
 		}

@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { deepCopy } from "../../../src/utils/object";
 import { BTBBelajarPayload, tempAboutUsPayload } from "./tempDatas";
+import { UploadAttachment } from "../../../services/attachment.service";
+import { GetConfig, SubmitConfig } from "../../../services/config.service";
 
 const initialData = {
 	rawData: {},
@@ -15,7 +17,7 @@ const template = (get) => {
 	};
 };
 
-const type = "btbpeduli";
+const type = "btbbelajar";
 const configName = "general";
 
 export const useCmsBtbBelajarStore = create((set, get) => ({
@@ -108,35 +110,50 @@ export const useCmsBtbBelajarStore = create((set, get) => ({
 	getInitialData: async () => {
 		/* set({ rawData: BTBPeduliPayload, data: BTBPeduliPayload }); */
 		try {
-			// let data = await GetConfig(configName, { type: type });
-			// data = data.length > 0 ? data[0] : {};
-			set({ rawData: BTBBelajarPayload, data: BTBBelajarPayload });
+			let data = await GetConfig(configName, { type: type });
+			data = data.length > 0 ? data[0] : {};
+			set({ rawData: data, data: data });
 		} catch (error) {
 			console.log(error);
 		}
 	},
 
-	// submitData: async (attachments) => {
-	// 	const tempAtt = {};
-	// 	if (!isObjectEmpty(attachments)) {
-	// 		const promises = await Promise.all(
-	// 			Object.keys(attachments).map((key) => {
-	// 				let formData = new FormData();
-	// 				const theFile = attachments[key];
-	// 				formData.append(key, theFile);
-	// 				return UploadAttachment("assets", formData);
-	// 			})
-	// 		);
-	// 		promises.forEach((res) => {
-	// 			const type = res.data[0].type;
-	// 			tempAtt[type] = res.data[0].fileURL;
-	// 		});
-	// 	}
-	// 	const payload = { ...get().data, ...tempAtt };
-	// 	try {
-	// 		await SubmitConfig(configName, [{ type: "type", ...payload }]);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// },
+	submitData: async (attachments) => {
+		const container = []
+		Object.keys(attachments).forEach((grade) => {
+			attachments[grade].forEach((res) => {
+				container.push({[grade]: res})
+			})
+		})
+		const promises = await Promise.all(container.map(async(res) => {
+			const grade = Object.keys(res)[0]
+			if(typeof res[grade] === 'string'){
+				return { [grade]: res[grade] }
+			} else {
+				let formData = new FormData();
+				const theFile = res[grade];
+				formData.append(grade, theFile);
+				const result =  await UploadAttachment("assets", formData);
+				return { [grade]: result?.data?.[0]?.fileURL }
+			}
+		}))
+		const finalBanner = {}
+		promises.forEach((res) => {
+			const grade = Object.keys(res)[0]
+			if(!finalBanner[grade]) finalBanner[grade] = []
+			finalBanner[grade].push(res[grade])
+		})
+		const payload = { ...get().data };
+		['ID', 'EN'].forEach((lang) => {
+			['tk', 'sd', 'smp', 'sma'].forEach((grade) => {
+				payload[lang][grade]['bannerImages'] = finalBanner[grade]
+			})
+		}) 
+		try {
+			await SubmitConfig(configName, [{ type: type, ...payload }]);
+			window.location.reload()
+		} catch (error) {
+			console.log(error);
+		}
+	},
 }));
