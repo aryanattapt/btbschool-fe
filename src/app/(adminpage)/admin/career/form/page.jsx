@@ -78,7 +78,6 @@ const CareerForm = () => {
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
-        console.log(value);
         if(type == 'file'){
             Object.keys(files).map((val) => {
                 setPayload(prevState => ({
@@ -107,90 +106,49 @@ const CareerForm = () => {
         }
     };
 
+    const onChangeExperienceLevel = (e) => {
+        const {value, checked} = e.target
+        const referenced = ['All', 'S3', 'S2', 'S1', 'SMA', 'SMP'];
+        if(checked){
+            if(value === 'All'){
+                payload['experiencelevel'] = referenced
+            } else {
+                payload['experiencelevel'].push(value)
+            }
+        } else {
+            if(value === 'All'){
+                payload['experiencelevel'] = []
+            } else {
+                payload['experiencelevel'] = payload['experiencelevel'].filter(res => res !== value && res !== 'All')
+            }
+        }
+        payload['experiencelevel'] = payload['experiencelevel'].sort((a, b) => { 
+            return referenced.indexOf(a) - referenced.indexOf(b)
+        })
+        setPayload({...payload})
+    }
+
+    const errorSwal = (message) => {
+        Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error Notification!',
+            text: `Please input ${message}`,
+            icon: 'error',
+        });
+    }
+
     const submitHandler = async (e) => {
         try {
-            if(!payload.jobtitlename){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: 'Please input jobtitle name',
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.experienced){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: 'Please input Experience',
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.jobcategory){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: 'Please input job category',
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.location){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: 'Please input job location',
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.jobsummary){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: 'Please input job summary',
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.responsibilites){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: 'Please input responsibility',
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.maximumApplyDate){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: 'Please input apply before date',
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.jobtype){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: 'Please input job type',
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.experiencelevel){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: 'Please input experience level',
-                    icon: 'error',
-                });
-                return;
-            } if(!payload.requirement){
-                Swal.fire({
-                    allowOutsideClick: false,
-                    title: 'Error Notification!',
-                    text: 'Please input requirement',
-                    icon: 'error',
-                });
-                return;
-            }
-
+            if(!payload.jobtitlename) return errorSwal('Jobtitle Name')
+            else if(!payload.experienced) return errorSwal('Experience')
+            else if(!payload.jobcategory) return errorSwal('Job Category')
+            else if(!payload.location) return errorSwal('Job Location')
+            else if(!payload.jobsummary) return errorSwal('Job Summary')
+            else if(!payload.responsibilites) return errorSwal('Responsibility')
+            else if(!payload.maximumApplyDate) return errorSwal('Apply before date')
+            else if(!payload.jobtype) return errorSwal('Job Type')
+            else if(!payload.experiencelevel) return errorSwal('Experience Level')
+            else if(!payload.requirement) return errorSwal('Requirement')
             setIsLoading(true);
             await UpsertCareer(payload);
             window.location.href = '/admin/career';
@@ -330,7 +288,7 @@ const CareerForm = () => {
                             id="experiencelevelAll"
                             name="experiencelevel"
                             value="All"
-                            onChange={formChangeHandler}
+                            onChange={onChangeExperienceLevel}
                         />
                         <Label htmlFor="experiencelevelAll" className="mr-4">All</Label>
 
@@ -340,7 +298,7 @@ const CareerForm = () => {
                             id="experiencelevelS3"
                             name="experiencelevel"
                             value="S3"
-                            onChange={formChangeHandler}
+                            onChange={onChangeExperienceLevel}
                         />
                         <Label htmlFor="experiencelevelS3" className="mr-4">S3</Label>
                         
@@ -350,7 +308,7 @@ const CareerForm = () => {
                             id="experiencelevelS2"
                             name="experiencelevel"
                             value="S2"
-                            onChange={formChangeHandler}
+                            onChange={onChangeExperienceLevel}
                         />
                         <Label htmlFor="experiencelevelS2" className="mr-4">S2</Label>
 
@@ -360,7 +318,7 @@ const CareerForm = () => {
                             id="experiencelevelS1"
                             name="experiencelevel"
                             value="S1"
-                            onChange={formChangeHandler}
+                            onChange={onChangeExperienceLevel}
                         />
                         <Label htmlFor="experiencelevelS1" className="mr-4">S1</Label>
 
@@ -370,7 +328,7 @@ const CareerForm = () => {
                             id="experiencelevelSMA"
                             name="experiencelevel"
                             value="SMA"
-                            onChange={formChangeHandler}
+                            onChange={onChangeExperienceLevel}
                         />
                         <Label htmlFor="experiencelevelSMA" className="mr-4">SMA</Label>
                         
@@ -380,7 +338,7 @@ const CareerForm = () => {
                             id="experiencelevelSMP"
                             name="experiencelevel"
                             value="SMP"
-                            onChange={formChangeHandler}
+                            onChange={onChangeExperienceLevel}
                         />
                         <Label htmlFor="experiencelevelSMP" className="mr-4">SMP</Label>
                     </div>
