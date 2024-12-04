@@ -242,7 +242,11 @@ export const usePageData = create((set, get) => ({
         try {
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
             const results = await Promise.allSettled([
-                GetConfig(configName, { type: "generalsetting" }),
+                GetConfig(configName, { 
+                    type: {
+                        "$in": ["generalsetting", "btbcareer"]
+                    } 
+                }),
                 GetActiveCareerList()
             ]);
         
@@ -252,7 +256,7 @@ export const usePageData = create((set, get) => ({
             set({
                 result: {
                     activeCareer: activeCareer,
-                    careerPayload: CareerPayload,
+                    careerPayload: mainData?.find(val => val?.type === 'btbcareer') || {},
                     generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                 }
             });        

@@ -27,7 +27,7 @@ export const useCmsPendaftaranStore = create((set, get) => ({
 	getInitialData: async () => {
 		let data = await GetConfig(configName, { type: type });
 		data = data.length > 0 ? data[0] : {};
-		set({ data: PendaftaranPayLoad });
+		set({ data: data });
 	},
 
 	setState: (val, prop) => {
