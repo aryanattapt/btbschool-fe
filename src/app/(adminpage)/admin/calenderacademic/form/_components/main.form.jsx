@@ -16,6 +16,7 @@ import CalenderAcademicActivityForm from "./activity.form";
 import {
     transformJsonLanguage
 } from '../../../../../../../helpers/jsontransform.helper'
+import moment from "moment";
 
 const CalenderAcademicMainForm = ({payload, setPayload}) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -109,7 +110,7 @@ const CalenderAcademicMainForm = ({payload, setPayload}) => {
                 <div className="mb-2 block">
                     <Label htmlFor="date" value="Tanggal" />
                 </div>
-                <Datepicker value={payload.date || ''} id="date" name='date' language="en-id" onSelectedDateChanged={date => datePickerHandler('date', date)}/>
+                <Datepicker value={payload.date || ''} id="date" name='date' language="en-id" onSelectedDateChanged={(date) => datePickerHandler("date", date ? moment(date).format("YYYY-MM-DD") : "")}/>
             </div>
             <Tabs aria-label="Default tabs" variant="default">
                 <Tabs.Item active title="Indonesia">

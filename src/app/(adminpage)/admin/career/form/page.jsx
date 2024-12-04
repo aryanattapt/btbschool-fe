@@ -21,6 +21,7 @@ import Swal from "sweetalert2";
 import CustomEditor from '../../../../_components/customformeditor';
 import Loader from '../../../../_components/loader';
 import { checkPermission } from '../../../../../../services/auth.service';
+import moment from "moment";
 
 const CareerForm = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -239,7 +240,7 @@ const CareerForm = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="maximumApplyDate" value="Apply Before" />
                     </div>
-                    <Datepicker value={payload.maximumApplyDate || ''} id="maximumApplyDate" name="maximumApplyDate" language="en-id" onSelectedDateChanged={date => datePickerHandler('maximumApplyDate', date)}/>
+                    <Datepicker value={payload.maximumApplyDate || ''} id="maximumApplyDate" name="maximumApplyDate" language="en-id" onSelectedDateChanged={(date) => datePickerHandler("maximumApplyDate", date ? moment(date).format("YYYY-MM-DD") : "")}/>
                 </div>
                 <div>
                     <div className="mb-2 block">

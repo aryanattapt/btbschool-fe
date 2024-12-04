@@ -18,7 +18,7 @@ const template = (get) => {
 	};
 };
 
-const type = "btbpeduli";
+const type = "pendaftaran";
 const configName = "general";
 
 export const useCmsPendaftaranStore = create((set, get) => ({
