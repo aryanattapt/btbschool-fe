@@ -34,8 +34,8 @@ const SidebarComp = ({ sidebarData, currentPage, logoutHandler, isOpen, onClose 
                 </div>
                 <Sidebar.Items className='h-full flex flex-col justify-between' >
                   <Sidebar.ItemGroup>
-                    {sidebarData.map((section) => (
-                            <Sidebar.Collapse label={section.label}>
+                    {sidebarData.map((section, idx) => (
+                            <Sidebar.Collapse label={section.label} key={idx}>
                                 {section.items ? section.items.map((item) => (
                                     <Sidebar.Item
                                     key={item.href}
