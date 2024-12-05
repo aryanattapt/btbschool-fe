@@ -55,7 +55,7 @@ export const usePageData = create((set, get) => ({
         
             set({
                 result: {
-                    instagramFeed: igFeedData.length > 0 ? igFeedData.slice(0, 6) : [],
+                    instagramFeed: (igFeedData != null && igFeedData.length > 0) ? igFeedData.slice(0, 6) : [],
                     homepage: mainData?.find(val => val?.type === 'homepage') || {},
                     generalPayload: mainData?.find(val => val?.type === 'generalsetting') || {},
                     carousel: mainData?.filter(val => val?.type === 'homepage.carousel') || [],
