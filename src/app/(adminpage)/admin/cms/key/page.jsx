@@ -4,6 +4,7 @@ import {
     Button,
     Spinner,
     TextInput,
+    Textarea,
 } from "flowbite-react";
 import { Suspense, useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
@@ -11,19 +12,22 @@ import Swal from "sweetalert2";
 import AdminHeader from '../../_components/header'
 import Loader from '../../../../_components/loader';
 import { checkPermission } from '../../../../../../services/auth.service';
-import { GetEmailConfig, GetRecaptchaConfig, UpdateEmailConfig, UpdateRecaptchaConfig } from "../../../../../../services/secretkey.service";
+import { GetEmailConfig, GetInstagramConfig, GetRecaptchaConfig, UpdateEmailConfig, UpdateInstagramonfig, UpdateRecaptchaConfig } from "../../../../../../services/secretkey.service";
 
 const SecretKeyForm = () => {
+    const [isAuthorized, setIsAuthorized] = useState(null);
+    
     const [isLoadingPage, setIsLoadingPage] = useState(true);
-	const [isAuthorized, setIsAuthorized] = useState(null);
-
     const [isLoadingMail, setIsLoadingMail] = useState(false);
     const [isLoadingRecaptcha, setIsLoadingRecaptcha] = useState(false);
+    const [isLoadingInstagram, setIsLoadingInstagram] = useState(false);
+
     const [payloadMail, setPayloadMail] = useState({})
     const [payloadRecaptcha, setPayloadRecaptcha] = useState({})
+    const [payloadInstagram, setPayloadInstagram] = useState({})
 
     useEffect(() => {
-        fetchData(fetchContent);
+        fetchData(fetchAllContent);
     }, []);
 
     const fetchData = async (callback) => {
@@ -44,18 +48,20 @@ const SecretKeyForm = () => {
 		}
 	};
 
-    const fetchContent = async () => {
+    const fetchAllContent = async () => {
         try {
-            let [emailConfig, recaptchaConfig] = await Promise.allSettled([
-                GetEmailConfig(),
-                GetRecaptchaConfig()
+            const results = await Promise.allSettled([
+                fetchEmailConfigContent(),
+                fetchRecaptchaConfigContent(),
+                fetchInstagramConfigContent(),
             ]);
 
-            emailConfig = emailConfig.status === 'fulfilled' ? emailConfig.value?.data : {};
-            recaptchaConfig = recaptchaConfig.status === 'fulfilled' ? recaptchaConfig.value?.data : {};
+            const rejectedPromises = results.filter(result => result.status === 'rejected');
 
-            setPayloadMail(emailConfig); 
-            setPayloadRecaptcha(recaptchaConfig);
+            if (rejectedPromises.length > 0) {
+                const errors = rejectedPromises.map(result => result.reason);
+                throw new Error(errors.join(', '));
+            }
         } catch (error) {
             Swal.fire({
                 allowOutsideClick: false,
@@ -64,7 +70,37 @@ const SecretKeyForm = () => {
                 icon: 'error',
             });
         }
-    };    
+    };
+
+    const fetchRecaptchaConfigContent = async () => new Promise(async (resolve, reject) => {
+        try {
+            const recaptchaConfig = await GetRecaptchaConfig();
+            setPayloadRecaptcha(recaptchaConfig?.data);
+            return resolve(true);
+        } catch (error) {
+            return reject(error);
+        }
+    })
+
+    const fetchEmailConfigContent = async () => new Promise(async (resolve, reject) => {
+        try {
+            const emailConfig = await GetEmailConfig();
+            setPayloadMail(emailConfig?.data);
+            return resolve(true);
+        } catch (error) {
+            return reject(error);
+        }
+    })
+
+    const fetchInstagramConfigContent = async () => new Promise(async (resolve, reject) => {
+        try {
+            const emailConfig = await GetInstagramConfig();
+            setPayloadInstagram(emailConfig?.data);
+            return resolve(true);
+        } catch (error) {
+            return reject(error);
+        }
+    })
 
     const formChangeHandlerMail = (e) => {
         const { name, value, type, files } = e.target;
@@ -126,6 +162,36 @@ const SecretKeyForm = () => {
         }
     };
 
+    const formChangeHandlerInstagram = (e) => {
+        const { name, value, type, files } = e.target;
+        if(type == 'file'){
+            Object.keys(files).map((val) => {
+                setPayloadInstagram(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
+                }));
+            });
+        } else if(type == 'checkbox'){
+            if(e.target.checked){
+                setPayloadInstagram(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], value] : [value]
+                }));
+            } else{
+                setPayloadInstagram(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name].filter(val => val !== value)
+                }));
+            }
+        }
+        else{
+            setPayloadInstagram(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
+    };
+
     const submitHandlerMail = async (e) => {
         try {
             if(!payloadMail.smtpemail){
@@ -164,7 +230,7 @@ const SecretKeyForm = () => {
 
             setIsLoadingMail(true);
             await UpdateEmailConfig({...payloadMail, "type": "emailconfig"});
-            await fetchContent();
+            await fetchEmailConfigContent();
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Submit Notification!',
@@ -205,7 +271,7 @@ const SecretKeyForm = () => {
 
             setIsLoadingRecaptcha(true);
             await UpdateRecaptchaConfig({...payloadRecaptcha, "type": "recaptcha"});
-            await fetchContent();
+            await fetchRecaptchaConfigContent();
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Submit Notification!',
@@ -223,6 +289,39 @@ const SecretKeyForm = () => {
             setIsLoadingRecaptcha(false);
         }
     };
+
+    const submitHandlerInstagram = async (e) => {
+        try {
+            if(!payloadInstagram.token){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Instagram token is mandatory",
+                    icon: 'error',
+                });
+                return;
+            }
+
+            setIsLoadingInstagram(true);
+            await UpdateInstagramonfig({...payloadInstagram, "type": "instagramtoken"});
+            await fetchInstagramConfigContent();
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Submit Notification!',
+                text: "Success!",
+                icon: 'info',
+            });
+        } catch (error) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Submit Notification!',
+                text: error.toString(),
+                icon: 'error',
+            });
+        } finally{
+            setIsLoadingInstagram(false);
+        }
+    };
     
 
     if(isLoadingPage){
@@ -233,11 +332,15 @@ const SecretKeyForm = () => {
             isAuthorized ? 
             <div className="max-w-full grid gap-3 md:px-8">
                 <div className="mt-4 mb-4">
-                    <AdminHeader title="Key Setting Form"/>
+                    <AdminHeader title="Secret Key Setting Form"/>
                 </div>
                 
                 <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                    Email Config
+                    Email Notification Config
+                </div>
+                <div>
+                    <p className="mt-1 text-sm text-gray-500">Please contact your email provider to get those SMTP Settings such as SMTP Host And Port.</p>
+                    <p className="mt-1 text-sm text-gray-500">Make sure the configuration is not blocked by the email provider.</p>
                 </div>
                 <div>
                     <div className="mb-2 block">
@@ -265,7 +368,10 @@ const SecretKeyForm = () => {
                         <Label value="SMTP Port" />
                     </div>
                     <TextInput value={payloadMail.smtpport || ''} id="smtpport" name="smtpport"  type="text" onChange={formChangeHandlerMail} placeholder="465"/>
-                    <p className="mt-1 text-sm text-gray-500">SMTP Port. Example: 465</p>
+                    <p className="mt-1 text-sm text-gray-500">SMTP Port. Example: 465. Commonly used: 25/465/587.</p>
+                    <p className="mt-1 text-sm text-gray-500">Port 587 is the preferred port for sending emails securely with STARTTLS.</p>
+                    <p className="mt-1 text-sm text-gray-500">Port 25 should generally be avoided for sending email from clients, but may still be used for server-to-server communication.</p>
+                    <p className="mt-1 text-sm text-gray-500">Port 465 is less commonly used and considered deprecated, but it can be an alternative if your mail server supports it.</p>
                 </div>
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">
@@ -288,6 +394,20 @@ const SecretKeyForm = () => {
                     Google Recaptcha V2 Config
                 </div>
                 <div>
+                    <p className="mt-2 text-sm text-gray-600">
+                        Please configure your reCAPTCHA settings <a 
+                            href="https://www.google.com/recaptcha/admin/create" 
+                            className="text-blue-600 hover:text-blue-800 underline" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            aria-label="Go to Google reCAPTCHA configuration page">
+                            here
+                        </a>.
+                    </p>
+                    <p className="mt-1 text-sm text-gray-500">Please ensure you are using reCAPTCHA v2 and add both your main and testing domains for proper integration.</p>
+                    <p className="mt-1 text-sm text-gray-500">You can find those key at settings</p>
+                </div>
+                <div>
                     <div className="mb-2 block">
                         <Label value="Secret Key" />
                     </div>
@@ -308,6 +428,34 @@ const SecretKeyForm = () => {
                             <Button type="submit" id="btnSaveAndSendRecaptcha" name="btnSaveAndSendRecaptcha" className="w-full lg:w-auto" disabled={isLoadingRecaptcha} onClick={submitHandlerRecaptcha}>
                                 {
                                     isLoadingRecaptcha ? <>
+                                        <Spinner aria-label="Spinner button example" size="sm" />
+                                        <span className="pl-3">Please Wait...</span>
+                                    </> : <>
+                                        Save  
+                                    </>
+                                }
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                    Instagram Config
+                </div>
+                <div>
+                    <div className="mb-2 block">
+                        <Label value="Token" />
+                    </div>
+                    <Textarea value={payloadInstagram.token || ''} id="token" name="token"  type="text" onChange={formChangeHandlerInstagram} required rows={4} />
+                    <p className="mt-1 text-sm text-gray-500">Instagram Basic API Token</p>
+                </div>
+
+                <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
+                    <div className="flex">
+                        <div className="mt-1 py-1.25 px-0.75 items-center text-center w-1/2 md:w-full">
+                            <Button type="submit" id="btnSaveAndSendInstagram" name="btnSaveAndSendInstagram" className="w-full lg:w-auto" disabled={isLoadingInstagram} onClick={submitHandlerInstagram}>
+                                {
+                                    isLoadingInstagram ? <>
                                         <Spinner aria-label="Spinner button example" size="sm" />
                                         <span className="pl-3">Please Wait...</span>
                                     </> : <>

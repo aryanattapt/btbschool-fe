@@ -40,3 +40,23 @@ export const UpdateRecaptchaConfig = (payload) => new Promise(async (resolve, re
         return reject(error.response.data?.message || error.message);
     }
 });
+
+export const GetInstagramConfig = (payload) => new Promise(async (resolve, reject) => {
+    try {
+        const result = await callInternalAPI('/secretkey/instagram/fetch/', 'POST', payload, {"Authorization": `Bearer ${getCookie(process.env.NEXT_PUBLIC_CLIENTSESSION)}`});
+        return resolve(result);
+    } catch (error) {
+        console.log(error); 
+        return reject(error.response.data?.message || error.message);
+    }
+});
+
+export const UpdateInstagramonfig = (payload) => new Promise(async (resolve, reject) => {
+    try {
+        const result = await callInternalAPI('/secretkey/instagram/update/', 'PUT',  {"data": payload}, {"Authorization": `Bearer ${getCookie(process.env.NEXT_PUBLIC_CLIENTSESSION)}`});
+        return resolve(result);
+    } catch (error) {
+        console.log(error); 
+        return reject(error.response.data?.message || error.message);
+    }
+});
