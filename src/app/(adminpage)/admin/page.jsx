@@ -20,9 +20,7 @@ const AdminPage = () => {
 
     if(isSignIn){
         return <>
-            <NavbarSidebarLayout >
-                test
-            </NavbarSidebarLayout>
+            <NavbarSidebarLayout />
         </>;
     } else {
         return <>

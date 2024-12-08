@@ -3,6 +3,7 @@ import { Button, Table } from 'flowbite-react';
 import NavbarSidebarLayout from '../_layouts/navigation';
 import { useEffect, useState } from 'react';
 import {
+    DeleteConfig,
     GetConfig
 } from '../../../../../services/config.service';
 import Swal from 'sweetalert2';
