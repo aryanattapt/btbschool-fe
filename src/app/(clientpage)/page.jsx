@@ -131,8 +131,7 @@ const HomePage = () => {
                   </div>
                 </div>
               </div> */}
-
-              {console.log(gradelist)}
+              
               {
                 gradelist.map((val, idx) => {
                   const photoFile = val?.attachment.length > 0 ? val?.attachment[0].fileURL : '';

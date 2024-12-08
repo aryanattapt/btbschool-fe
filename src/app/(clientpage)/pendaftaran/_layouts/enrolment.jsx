@@ -28,12 +28,16 @@ const EnrolmentPage = ({ data, language }) => {
           </div>
         </div>
         <div className="pl-[0px] md:pl-[50px] py-5 md:py-5 xl:py-0">
-          <img
-            // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
-            src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(1).JPG"
-            alt="aboutus2"
-            className="md:h-[500px] md:w-[546px] px-4 object-cover"
-          />
+          {
+            data[language]?.enrolmentPagedata?.image2 &&
+            <img
+              // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
+              // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/PAUD/Slider(1).JPG"
+              src = {data[language]?.enrolmentPagedata?.image2}
+              alt="aboutus2"
+              className="md:h-[500px] md:w-[546px] px-4 object-cover"
+            />
+          }
         </div>
       </div>
 

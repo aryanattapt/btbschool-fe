@@ -25,7 +25,7 @@ const PendaftaranPage = () => {
   else if(pendaftaranData)
     return (
       <>
-        <Banner />
+        <Banner payload={pendaftaranData}/>
         <Pagging
           pendaftaranData={pendaftaranData}
           language={language}

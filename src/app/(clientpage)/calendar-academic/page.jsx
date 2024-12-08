@@ -20,7 +20,7 @@ const CalendarAcademicPage = () => {
   }
   else if(payload)
     return <>
-      <Banner />
+      <Banner calenderPayload={calendarAcademicData}/>
       <Pagging calendarAcademicData={calendarAcademicData} language={language}/>
       <Content payload={payload} content={calendarAcademicData[language]} language={language}/>
     </>

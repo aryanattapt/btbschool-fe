@@ -98,6 +98,12 @@ const CMSAboutUs = () => {
 				{!isObjectEmpty(data) && (
 					<div>
 						<AdminHeader title="About Us Content Settings Form" />
+						<FieldTitle>Gambar Banner</FieldTitle>
+						<ImageAttachment
+							id="image1"
+							onChange={(e) => onChangeAttachment(e.target.files, "bannerimage")}
+						/>
+
 
 						{/* Pengenanlan */}
 						<FieldTitle>Gambar Pengenalan</FieldTitle>

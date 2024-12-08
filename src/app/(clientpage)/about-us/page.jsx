@@ -23,7 +23,7 @@ const AboutUsPage = () => {
   else if(aboutUsData)
   return (
     <>
-      <Banner />
+      <Banner payload={aboutUsData}/>
       <Pagging
         aboutUsData={aboutUsData}
         language={language}

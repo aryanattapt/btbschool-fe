@@ -86,7 +86,12 @@ const CMSBtbPendaftaran = () => {
 
 					<FieldTitle>Gambar Banner</FieldTitle>
 					<ImageAttachment
-						onChange={(e) => onChangeAttachment(e.target.files, "image2")}
+						onChange={(e) => onChangeAttachment(e.target.files, "bannerimage")}
+					/>
+
+					<FieldTitle>Gambar Enrollment</FieldTitle>
+					<ImageAttachment
+						onChange={(e) => onChangeAttachment(e.target.files, "enrollmentimage")}
 					/>
 
 					<LanguageChanger
