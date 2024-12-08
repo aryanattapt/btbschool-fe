@@ -50,7 +50,7 @@ const HelpCenterPage = () => {
     };    
 
     const DeleteHandler = (id) => {
-        DeleteConfig('bulletinspotlight', [{"_id": id}])
+        DeleteConfig('faq', [{"_id": id}])
         .then(() => fetchConfig())
         .catch((err) => {
             Swal.fire({
