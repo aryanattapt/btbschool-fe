@@ -4,11 +4,13 @@ import { deepCopy } from "../../../src/utils/object";
 import { GetConfig, SubmitConfig } from "../../../services/config.service";
 import { isObjectEmpty } from "../../../src/utils/checker";
 import { UploadAttachment } from "../../../services/attachment.service";
+import Swal from "sweetalert2";
 
 const initialData = {
 	rawData: {},
 	data: {},
 	language: "ID",
+	loading: false,
 };
 
 const template = (get) => {
@@ -25,7 +27,6 @@ export const useCmsAboutUsStore = create((set, get) => ({
 	...initialData,
 
 	setState: (val, prop) => {
-		console.log({ val, prop });
 		set({ [prop]: val });
 	},
 	getInitialData: async () => {
@@ -40,7 +41,6 @@ export const useCmsAboutUsStore = create((set, get) => ({
 	},
 	onChangeAttachment: (file, prop) => {
 		const { data } = template(get);
-		console.log({ file, prop });
 		if (file.length > 0) {
 			data[prop] = file[0];
 		} else {
@@ -100,11 +100,16 @@ export const useCmsAboutUsStore = create((set, get) => ({
 			});
 		}
 		const payload = { ...get().data, ...tempAtt };
-		console.log(payload);
 		try {
 			await SubmitConfig(configName, [{ type: type, ...payload }]);
+			set({ loading: false });
+			Swal.fire("Success", "Success to submit data!", "success").then((res) => {
+				if (res.isConfirmed) window.location.reload();
+			});
 		} catch (error) {
 			console.log(error);
+		} finally {
+			set({ loading: false });
 		}
 	},
 }));
