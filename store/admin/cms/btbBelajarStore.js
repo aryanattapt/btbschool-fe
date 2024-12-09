@@ -1,13 +1,14 @@
 import { create } from "zustand";
 import { deepCopy } from "../../../src/utils/object";
-import { BTBBelajarPayload, tempAboutUsPayload } from "./tempDatas";
 import { UploadAttachment } from "../../../services/attachment.service";
 import { GetConfig, SubmitConfig } from "../../../services/config.service";
+import Swal from "sweetalert2";
 
 const initialData = {
 	rawData: {},
 	data: {},
 	language: "ID",
+	loading: false,
 };
 
 const template = (get) => {
@@ -119,41 +120,48 @@ export const useCmsBtbBelajarStore = create((set, get) => ({
 	},
 
 	submitData: async (attachments) => {
-		const container = []
+		const container = [];
 		Object.keys(attachments).forEach((grade) => {
 			attachments[grade].forEach((res) => {
-				container.push({[grade]: res})
+				container.push({ [grade]: res });
+			});
+		});
+		const promises = await Promise.all(
+			container.map(async (res) => {
+				const grade = Object.keys(res)[0];
+				if (typeof res[grade] === "string") {
+					return { [grade]: res[grade] };
+				} else {
+					let formData = new FormData();
+					const theFile = res[grade];
+					formData.append(grade, theFile);
+					const result = await UploadAttachment("assets", formData);
+					return { [grade]: result?.data?.[0]?.fileURL };
+				}
 			})
-		})
-		const promises = await Promise.all(container.map(async(res) => {
-			const grade = Object.keys(res)[0]
-			if(typeof res[grade] === 'string'){
-				return { [grade]: res[grade] }
-			} else {
-				let formData = new FormData();
-				const theFile = res[grade];
-				formData.append(grade, theFile);
-				const result =  await UploadAttachment("assets", formData);
-				return { [grade]: result?.data?.[0]?.fileURL }
-			}
-		}))
-		const finalBanner = {}
+		);
+		const finalBanner = {};
 		promises.forEach((res) => {
-			const grade = Object.keys(res)[0]
-			if(!finalBanner[grade]) finalBanner[grade] = []
-			finalBanner[grade].push(res[grade])
-		})
+			const grade = Object.keys(res)[0];
+			if (!finalBanner[grade]) finalBanner[grade] = [];
+			finalBanner[grade].push(res[grade]);
+		});
 		const payload = { ...get().data };
-		['ID', 'EN'].forEach((lang) => {
-			['tk', 'sd', 'smp', 'sma'].forEach((grade) => {
-				payload[lang][grade]['bannerImages'] = finalBanner[grade]
-			})
-		}) 
+		["ID", "EN"].forEach((lang) => {
+			["tk", "sd", "smp", "sma"].forEach((grade) => {
+				payload[lang][grade]["bannerImages"] = finalBanner[grade];
+			});
+		});
 		try {
 			await SubmitConfig(configName, [{ type: type, ...payload }]);
-			window.location.reload()
+			set({ loading: false });
+			Swal.fire("Success", "Success to submit data!", "success").then((res) => {
+				if (res.isConfirmed) window.location.reload();
+			});
 		} catch (error) {
 			console.log(error);
+		} finally {
+			set({ loading: false });
 		}
 	},
 }));
