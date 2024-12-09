@@ -13,6 +13,7 @@ const AboutUsPage = () => {
 
   const {language, getAboutUsPageData, isLoading} = usePageData();
   const aboutUsData = usePageData((state) => state.result.aboutus);
+  const gradelistData = usePageData((state) => state.result.gradelist);
   useEffect(() => {
     getAboutUsPageData();
   }, []);
@@ -33,7 +34,7 @@ const AboutUsPage = () => {
 
       {activeTab === "pengenalan" && <Pengenalan data={aboutUsData} language={language} />}
       {activeTab === "visi-misi" && <VisiMisi data={aboutUsData} language={language} />}
-      {activeTab === "jenjang-pendidikan" && <JenjangPendidikan data={aboutUsData} language={language}/>}
+      {activeTab === "jenjang-pendidikan" && <JenjangPendidikan data={gradelistData} language={language}/>}
 
       <div>
         <div className="my-8 md:my-10 bg-[#243F6D]">

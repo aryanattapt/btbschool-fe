@@ -77,7 +77,7 @@ export const usePageData = create((set, get) => ({
             set({ isLoading: true, language: localStorage.getItem(LANGUAGEKEY) || initialData.language});
             const mainData = await GetConfig(configName, { 
                 type: {
-                    "$in" : ["generalsetting", "aboutus"]
+                    "$in" : ["generalsetting", "aboutus", "homepage.edulevel"]
                 }
             });
 
@@ -85,6 +85,7 @@ export const usePageData = create((set, get) => ({
                 result: {
                     aboutus: mainData?.find(val => val?.type == 'aboutus') || {},
                     generalPayload: mainData?.find(val => val?.type == 'generalsetting') || {},
+                    gradelist: mainData?.filter(val => val?.type === 'homepage.edulevel') || [],
                 }
             });
         } catch (error) {
