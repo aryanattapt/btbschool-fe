@@ -11,6 +11,7 @@ import { Button, Textarea, TextInput } from "flowbite-react";
 import Loader from "../../../../_components/loader";
 import { checkPermission } from "../../../../../../services/auth.service";
 import LoadingModal from "../../../../../components/LoadingModal";
+import Swal from "sweetalert2";
 
 const CMSBtbCare = () => {
 	const [isLoadingPage, setIsLoadingPage] = useState(true);

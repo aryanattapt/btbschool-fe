@@ -4,6 +4,7 @@ import { deepCopy } from "../../../src/utils/object";
 import { GetConfig, SubmitConfig } from "../../../services/config.service";
 import { UploadAttachment } from "../../../services/attachment.service";
 import { isObjectEmpty } from "../../../src/utils/checker";
+import Swal from "sweetalert2";
 
 const initialData = {
 	rawData: {},
