@@ -1,7 +1,6 @@
 const JenjangPendidikanPage = ({ data, language }) => {
   return (
     <>
-      {console.log(data)}
       <div className="flex items-center justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5 p-5">
           {data?.map((val, idx) => (
