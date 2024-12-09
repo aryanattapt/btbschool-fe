@@ -1,13 +1,12 @@
 import { create } from "zustand";
-import { CareerPayload } from "./tempDatas";
 import { UploadAttachment } from "../../../services/attachment.service";
 import { GetConfig, SubmitConfig } from "../../../services/config.service";
 
 const initialData = {
 	rawData: {},
 	data: {},
-	// data: CareerPayload,
 	language: "ID",
+	loading: false,
 };
 
 const type = "btbcareer";
@@ -41,11 +40,15 @@ export const useCmsCareerStore = create((set, get) => ({
 			data["image"] = result?.data?.[0]?.fileURL;
 		}
 		try {
-			await SubmitConfig(configName, [{ type: type, ...data }]).then(() => {
-				window.location.reload();
+			await SubmitConfig(configName, [{ type: type, ...data }]);
+			set({ loading: false });
+			Swal.fire("Success", "Success to submit data!", "success").then((res) => {
+				if (res.isConfirmed) window.location.reload();
 			});
 		} catch (error) {
 			console.log(error);
+		} finally {
+			set({ loading: false });
 		}
 	},
 }));

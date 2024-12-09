@@ -10,6 +10,8 @@ import LanguageChanger from "../_components/LanguageChanger";
 import ImageAttachment from "../_components/ImageAttachment";
 import Loader from "../../../../_components/loader";
 import { Button, TextInput } from "flowbite-react";
+import Swal from "sweetalert2";
+import LoadingModal from "../../../../../components/LoadingModal";
 
 const page = () => {
 	const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -23,6 +25,7 @@ const page = () => {
 		setStateLanguage,
 		getInitialData,
 		onSubmit,
+		loading,
 	} = useCmsCareerStore((state) => ({
 		data: state.data,
 		language: state.language,
@@ -30,6 +33,7 @@ const page = () => {
 		setStateLanguage: state.setStateLanguage,
 		getInitialData: state.getInitialData,
 		onSubmit: state.onSubmit,
+		loading: state.loading,
 	}));
 
 	useEffect(() => {
@@ -68,6 +72,19 @@ const page = () => {
 		}
 	}, [data]);
 
+	const onSubmitData = () => {
+		Swal.fire(
+			"Are you sure?",
+			"Once submitted, you can't undo it",
+			"warning"
+		).then((res) => {
+			if (res.isConfirmed) {
+				setState(true, "loading");
+				onSubmit(attachment);
+			}
+		});
+	};
+
 	if (isLoadingPage) {
 		return <Loader />;
 	} else
@@ -82,6 +99,7 @@ const page = () => {
 								{/* Pengenanlan */}
 								<FieldTitle>Gambar Banner</FieldTitle>
 								<ImageAttachment
+									resolution="1920x1080px."
 									onChange={(e) =>
 										onChangeAttachment(e.target.files, "bannerimage")
 									}
@@ -109,7 +127,7 @@ const page = () => {
 										id="btnSaveAndSend"
 										name="btnSaveAndSend"
 										className="w-full md:w-auto mt-3"
-										onClick={() => onSubmit(attachment)}
+										onClick={onSubmitData}
 									>
 										Save
 									</Button>
@@ -120,6 +138,7 @@ const page = () => {
 				) : (
 					<div>Unauthorized</div>
 				)}
+				{loading && <LoadingModal label={"Submitting data, please wait..."} />}
 			</NavbarSidebarLayout>
 		);
 };

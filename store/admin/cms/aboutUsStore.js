@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { deepCopy } from "../../../src/utils/object";
-// import { tempAboutUsPayload } from "./tempDatas";
 import { GetConfig, SubmitConfig } from "../../../services/config.service";
 import { isObjectEmpty } from "../../../src/utils/checker";
 import { UploadAttachment } from "../../../services/attachment.service";

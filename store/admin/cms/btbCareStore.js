@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { deepCopy } from "../../../src/utils/object";
-/* import { BTBPeduliPayload, tempAboutUsPayload } from "./tempDatas"; */
 import { GetConfig, SubmitConfig } from "../../../services/config.service";
 import { UploadAttachment } from "../../../services/attachment.service";
 import { isObjectEmpty } from "../../../src/utils/checker";
