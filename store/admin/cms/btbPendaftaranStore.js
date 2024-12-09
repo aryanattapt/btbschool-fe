@@ -1,14 +1,15 @@
 import { create } from "zustand";
 import { deepCopy } from "../../../src/utils/object";
-import { PendaftaranPayLoad } from "./tempDatas";
 import { UploadAttachment } from "../../../services/attachment.service";
 import { isObjectEmpty } from "../../../src/utils/checker";
 import { GetConfig, SubmitConfig } from "../../../services/config.service";
+import Swal from "sweetalert2";
 
 const initialData = {
 	rawData: {},
 	data: {},
 	language: "ID",
+	loading: false,
 };
 
 const template = (get) => {
@@ -84,8 +85,14 @@ export const useCmsPendaftaranStore = create((set, get) => ({
 		}
 		try {
 			await SubmitConfig(configName, [{ type: type, ...data }]);
+			set({ loading: false });
+			Swal.fire("Success", "Success to submit data!", "success").then((res) => {
+				if (res.isConfirmed) window.location.reload();
+			});
 		} catch (error) {
 			console.log(error);
+		} finally {
+			set({ loading: false });
 		}
 	},
 }));
