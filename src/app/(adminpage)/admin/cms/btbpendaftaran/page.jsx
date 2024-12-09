@@ -363,17 +363,17 @@ const CMSBtbPendaftaran = () => {
 								/>
 								<FieldTitle>Tur Sekolah Information</FieldTitle>
 								<TextInput
-									value={data[language]["turSekolahdata"]["information"]}
+									value={data[language]["turSekolahdata"]["infomartion"]}
 									onChange={(e) => {
 										setInnerState(
 											e.target.value,
 											"turSekolahdata",
-											"information"
+											"infomartion"
 										);
 									}}
 								/>
 
-								<FieldTitle>Tur Sekolah Detail School</FieldTitle>
+								{/* <FieldTitle>Tur Sekolah Detail School</FieldTitle>
 								<div className="flex flex-col gap-2">
 									{!isObjectEmpty(
 										data[language]["turSekolahdata"]["detailschool"]
@@ -486,7 +486,7 @@ const CMSBtbPendaftaran = () => {
 												</div>
 											)
 										)}
-								</div>
+								</div> */}
 
 								<Button
 									id="btnSaveAndSend"
