@@ -2,7 +2,7 @@ import { FileInput } from "flowbite-react";
 import React from "react";
 
 const ImageAttachment = ({ onChange, resolution = "", ...props }) => {
-	const reso = resolution && ` Resolution ${resolution}`;
+	const reso = resolution && ` Resolusi ${resolution}`;
 	return (
 		<FileInput
 			accept="image/*"
