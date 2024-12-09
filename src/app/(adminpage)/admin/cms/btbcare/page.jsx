@@ -8,8 +8,9 @@ import FieldTitle from "../_components/FieldTitle";
 import ImageAttachment from "../_components/ImageAttachment";
 import LanguageChanger from "../_components/LanguageChanger";
 import { Button, Textarea, TextInput } from "flowbite-react";
-import Loader from '../../../../_components/loader';
-import { checkPermission } from '../../../../../../services/auth.service';
+import Loader from "../../../../_components/loader";
+import { checkPermission } from "../../../../../../services/auth.service";
+import LoadingModal from "../../../../../components/LoadingModal";
 
 const CMSBtbCare = () => {
 	const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -24,6 +25,7 @@ const CMSBtbCare = () => {
 	);
 	const getInitialData = useCmsBtbCareStore((state) => state.getInitialData);
 	const submitData = useCmsBtbCareStore((state) => state.submitData);
+	const loading = useCmsBtbCareStore((state) => state.loading);
 
 	const [attachment, setAttachment] = useState({});
 
@@ -44,15 +46,17 @@ const CMSBtbCare = () => {
 	const fetchData = async (callback) => {
 		setIsLoadingPage(true);
 		try {
-			await checkPermission('manage_content');
+			await checkPermission("manage_content");
 			setIsAuthorized(true);
 			await callback();
 		} catch (error) {
 			console.log(error);
-			if(error.status != '401'){
+			if (error.status != "401") {
 				try {
 					await callback();
-				} catch (error) {console.log(error);}
+				} catch (error) {
+					console.log(error);
+				}
 			}
 		} finally {
 			setIsLoadingPage(false);
@@ -76,215 +80,232 @@ const CMSBtbCare = () => {
 	}, [rawData]);
 
 	const onSubmitData = () => {
-		const container = {};
-		Object.keys(attachment).forEach((key) => {
-			if (typeof attachment[key] === "object") container[key] = attachment[key];
+		Swal.fire(
+			"Are you sure?",
+			"Once submitted, you can't undo it",
+			"warning"
+		).then((res) => {
+			if (res.isConfirmed) {
+				setState(true, "loading");
+				const container = {};
+				Object.keys(attachment).forEach((key) => {
+					if (typeof attachment[key] === "object")
+						container[key] = attachment[key];
+				});
+				submitData(container);
+			}
 		});
-		submitData(container);
 	};
 
-	// const onChangeAttachment = (e, prop) => {
-	// 	if (e.target.files.length > 0) {
-	// 		setState(e.target.files[0], prop);
-	// 	} else {
-	// 		setState("", prop);
-	// 	}
-	// };
-
-	console.log({ attachment });
-
-
-	if(isLoadingPage){
-		return <Loader/>
+	if (isLoadingPage) {
+		return <Loader />;
 	} else
-		return <NavbarSidebarLayout >
-		{
-			isAuthorized ? 
-			<>
-			{!isObjectEmpty(data) && (
-				<div>
-					<AdminHeader title="About Us Content Settings Form" />
+		return (
+			<NavbarSidebarLayout>
+				{isAuthorized ? (
+					<>
+						{!isObjectEmpty(data) && (
+							<div>
+								<AdminHeader title="About Us Content Settings Form" />
 
-					{/* Pengenanlan */}
-					<FieldTitle>Gambar Banner</FieldTitle>
-					<ImageAttachment
-						onChange={(e) =>
-							onChangeAttachment(e.target.files, "bannerimage")
-						}
-					/>
-					<FieldTitle>Gambar BTB Peduli</FieldTitle>
-					<ImageAttachment
-						onChange={(e) =>
-							onChangeAttachment(e.target.files, "btbcaremage")
-						}
-					/>
-					<FieldTitle>Gambar BTB Peduli Lingkungan 1</FieldTitle>
-					<ImageAttachment
-						onChange={(e) =>
-							onChangeAttachment(e.target.files, "btbpedulilingkunganimage1")
-						}
-					/>
-					<FieldTitle>Gambar BTB Peduli Lingkungan 2</FieldTitle>
-					<ImageAttachment
-						onChange={(e) =>
-							onChangeAttachment(e.target.files, "btbpedulilingkunganimage2")
-						}
-					/>
-					<FieldTitle>Gambar BTB Peduli Sukarelawan 1</FieldTitle>
-					<ImageAttachment
-						onChange={(e) =>
-							onChangeAttachment(e.target.files, "sukarelawanbtbimage1")
-						}
-					/>
-					<FieldTitle>Gambar BTB Peduli Sukarelawan 2</FieldTitle>
-					<ImageAttachment
-						onChange={(e) =>
-							onChangeAttachment(e.target.files, "sukarelawanbtbimage2")
-						}
-					/>
-					<FieldTitle>Gambar BTB Peduli Sukarelawan 3</FieldTitle>
-					<ImageAttachment
-						onChange={(e) =>
-							onChangeAttachment(e.target.files, "sukarelawanbtbimage3")
-						}
-					/>
-					<FieldTitle>Gambar BTB Peduli Sukarelawan 4</FieldTitle>
-					<ImageAttachment
-						onChange={(e) =>
-							onChangeAttachment(e.target.files, "sukarelawanbtbimage4")
-						}
-					/>
-					<FieldTitle>Gambar BTB Peduli Tangan Penolong 1</FieldTitle>
-					<ImageAttachment
-						onChange={(e) =>
-							onChangeAttachment(e.target.files, "tanganpenolongimage1")
-						}
-					/>
-					<div className="mt-6">
-						<LanguageChanger
-							onChange={(val) => setState(val, "language")}
-							value={language}
-						/>
-						<FieldTitle>Text 1</FieldTitle>
-						<Textarea
-							rows={4}
-							value={data[language]["text1"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text1");
-							}}
-						/>
-						<FieldTitle>Text 2</FieldTitle>
-						<Textarea
-							rows={4}
-							value={data[language]["text2"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text2");
-							}}
-						/>
-						<FieldTitle>Text 3 (Catatan Kaki)</FieldTitle>
-						<TextInput
-							value={data[language]["text3"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text3");
-							}}
-						/>
-						<FieldTitle>Text 4</FieldTitle>
-						<TextInput
-							value={data[language]["text4"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text4");
-							}}
-						/>
-						<FieldTitle>Sub Judul BTB Peduli Lingkungan</FieldTitle>
-						<TextInput
-							value={data[language]["text4"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text4");
-							}}
-						/>
-						<FieldTitle>Konteks dari Subjudul 1</FieldTitle>
-						<Textarea
-							rows={4}
-							value={data[language]["text5"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text5");
-							}}
-						/>
-						<FieldTitle>Sub Judul BTB Peduli Lingkungan</FieldTitle>
-						<TextInput
-							value={data[language]["text6"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text6");
-							}}
-						/>
-						<FieldTitle>Konteks dari Subjudul 1</FieldTitle>
-						<TextInput
-							value={data[language]["text7"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text7");
-							}}
-						/>
-						<FieldTitle>Sub Judul BTB Sukarelawan</FieldTitle>
-						<TextInput
-							value={data[language]["text8"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text8");
-							}}
-						/>
-						<FieldTitle>Konteks BTB Sukarelawan</FieldTitle>
-						<Textarea
-							rows={4}
-							value={data[language]["text9"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text9");
-							}}
-						/>
-						<FieldTitle>Sub Judul BTB Tangan Penolong</FieldTitle>
-						<TextInput
-							value={data[language]["text10"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text10");
-							}}
-						/>
-						<FieldTitle>Konteks BTB Tangan Penolong 1</FieldTitle>
-						<Textarea
-							rows={4}
-							value={data[language]["text11"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text11");
-							}}
-						/>
-						<FieldTitle>Konteks BTB Tangan Penolong 2</FieldTitle>
-						<Textarea
-							rows={4}
-							value={data[language]["text12"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text12");
-							}}
-						/>
-						<FieldTitle>Konteks BTB Tangan Penolong 3</FieldTitle>
-						<Textarea
-							rows={4}
-							value={data[language]["text13"]}
-							onChange={(e) => {
-								setStateLanguage(e.target.value, "text13");
-							}}
-						/>
-						<Button
-							id="btnSaveAndSend"
-							name="btnSaveAndSend"
-							className="w-full md:w-auto mt-3"
-							onClick={onSubmitData}
-						>
-							Save
-						</Button>
-					</div>
-				</div>
-			)}
-			</>
-			: <div>Unauthorized</div>
-		}
-		</NavbarSidebarLayout>
+								{/* Pengenanlan */}
+								<FieldTitle>Gambar Banner</FieldTitle>
+								<ImageAttachment
+									resolution="1920x1080px."
+									onChange={(e) =>
+										onChangeAttachment(e.target.files, "bannerimage")
+									}
+								/>
+								<FieldTitle>Gambar BTB Peduli</FieldTitle>
+								<ImageAttachment
+									resolution="1920x1080px."
+									onChange={(e) =>
+										onChangeAttachment(e.target.files, "btbcaremage")
+									}
+								/>
+								<FieldTitle>Gambar BTB Peduli Lingkungan 1</FieldTitle>
+								<ImageAttachment
+									resolution="1920x1080px."
+									onChange={(e) =>
+										onChangeAttachment(
+											e.target.files,
+											"btbpedulilingkunganimage1"
+										)
+									}
+								/>
+								<FieldTitle>Gambar BTB Peduli Lingkungan 2</FieldTitle>
+								<ImageAttachment
+									resolution="1920x1080px."
+									onChange={(e) =>
+										onChangeAttachment(
+											e.target.files,
+											"btbpedulilingkunganimage2"
+										)
+									}
+								/>
+								<FieldTitle>Gambar BTB Peduli Sukarelawan 1</FieldTitle>
+								<ImageAttachment
+									resolution="1920x1080px."
+									onChange={(e) =>
+										onChangeAttachment(e.target.files, "sukarelawanbtbimage1")
+									}
+								/>
+								<FieldTitle>Gambar BTB Peduli Sukarelawan 2</FieldTitle>
+								<ImageAttachment
+									resolution="1920x1080px."
+									onChange={(e) =>
+										onChangeAttachment(e.target.files, "sukarelawanbtbimage2")
+									}
+								/>
+								<FieldTitle>Gambar BTB Peduli Sukarelawan 3</FieldTitle>
+								<ImageAttachment
+									resolution="1920x1080px."
+									onChange={(e) =>
+										onChangeAttachment(e.target.files, "sukarelawanbtbimage3")
+									}
+								/>
+								<FieldTitle>Gambar BTB Peduli Sukarelawan 4</FieldTitle>
+								<ImageAttachment
+									resolution="1920x1080px."
+									onChange={(e) =>
+										onChangeAttachment(e.target.files, "sukarelawanbtbimage4")
+									}
+								/>
+								<FieldTitle>Gambar BTB Peduli Tangan Penolong 1</FieldTitle>
+								<ImageAttachment
+									resolution="1920x1080px."
+									onChange={(e) =>
+										onChangeAttachment(e.target.files, "tanganpenolongimage1")
+									}
+								/>
+								<div className="mt-6">
+									<LanguageChanger
+										onChange={(val) => setState(val, "language")}
+										value={language}
+									/>
+									<FieldTitle>Text 1</FieldTitle>
+									<Textarea
+										rows={4}
+										value={data[language]["text1"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text1");
+										}}
+									/>
+									<FieldTitle>Text 2</FieldTitle>
+									<Textarea
+										rows={4}
+										value={data[language]["text2"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text2");
+										}}
+									/>
+									<FieldTitle>Text 3 (Catatan Kaki)</FieldTitle>
+									<TextInput
+										value={data[language]["text3"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text3");
+										}}
+									/>
+									<FieldTitle>Text 4</FieldTitle>
+									<TextInput
+										value={data[language]["text4"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text4");
+										}}
+									/>
+									<FieldTitle>Sub Judul BTB Peduli Lingkungan</FieldTitle>
+									<TextInput
+										value={data[language]["text4"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text4");
+										}}
+									/>
+									<FieldTitle>Konteks dari Subjudul 1</FieldTitle>
+									<Textarea
+										rows={4}
+										value={data[language]["text5"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text5");
+										}}
+									/>
+									<FieldTitle>Sub Judul BTB Peduli Lingkungan</FieldTitle>
+									<TextInput
+										value={data[language]["text6"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text6");
+										}}
+									/>
+									<FieldTitle>Konteks dari Subjudul 1</FieldTitle>
+									<TextInput
+										value={data[language]["text7"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text7");
+										}}
+									/>
+									<FieldTitle>Sub Judul BTB Sukarelawan</FieldTitle>
+									<TextInput
+										value={data[language]["text8"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text8");
+										}}
+									/>
+									<FieldTitle>Konteks BTB Sukarelawan</FieldTitle>
+									<Textarea
+										rows={4}
+										value={data[language]["text9"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text9");
+										}}
+									/>
+									<FieldTitle>Sub Judul BTB Tangan Penolong</FieldTitle>
+									<TextInput
+										value={data[language]["text10"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text10");
+										}}
+									/>
+									<FieldTitle>Konteks BTB Tangan Penolong 1</FieldTitle>
+									<Textarea
+										rows={4}
+										value={data[language]["text11"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text11");
+										}}
+									/>
+									<FieldTitle>Konteks BTB Tangan Penolong 2</FieldTitle>
+									<Textarea
+										rows={4}
+										value={data[language]["text12"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text12");
+										}}
+									/>
+									<FieldTitle>Konteks BTB Tangan Penolong 3</FieldTitle>
+									<Textarea
+										rows={4}
+										value={data[language]["text13"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "text13");
+										}}
+									/>
+									<Button
+										id="btnSaveAndSend"
+										name="btnSaveAndSend"
+										className="w-full md:w-auto mt-3"
+										onClick={onSubmitData}
+									>
+										Save
+									</Button>
+								</div>
+							</div>
+						)}
+					</>
+				) : (
+					<div>Unauthorized</div>
+				)}
+				{loading && <LoadingModal label={"Submitting data, please wait..."} />}
+			</NavbarSidebarLayout>
+		);
 };
 
 export default CMSBtbCare;

@@ -9,6 +9,7 @@ const initialData = {
 	rawData: {},
 	data: {},
 	language: "ID",
+	loading: false,
 };
 
 const template = (get) => {
@@ -61,8 +62,14 @@ export const useCmsBtbCareStore = create((set, get) => ({
 		const payload = { ...get().data, ...tempAtt };
 		try {
 			await SubmitConfig(configName, [{ type: type, ...payload }]);
+			set({ loading: false });
+			Swal.fire("Success", "Success to submit data!", "success").then((res) => {
+				if (res.isConfirmed) window.location.reload();
+			});
 		} catch (error) {
 			console.log(error);
+		} finally {
+			set({ loading: false });
 		}
 	},
 }));
