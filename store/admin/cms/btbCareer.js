@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { UploadAttachment } from "../../../services/attachment.service";
 import { GetConfig, SubmitConfig } from "../../../services/config.service";
+import Swal from "sweetalert2";
 
 const initialData = {
 	rawData: {},
