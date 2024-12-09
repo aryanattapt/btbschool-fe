@@ -190,7 +190,7 @@ const CarouselForm = () => {
                         <div className="mb-3 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
                             <Label htmlFor="carousel" value="Unggah File" />
                         </div>
-                        <FileInput accept="image/*,video/*" id="carousel" name="carousel" helperText="Ukuran Maksimum 64MB. Format Images/Video dengan menggunakan aspect ratio 16:9 Misal 1920x1080px" onChange={formChangeHandler}/>
+                        <FileInput accept="image/*,video/*" id="carousel" name="carousel" helperText="Ukuran Maksimum 64MB. Format Images/Video dengan menggunakan aspect ratio wide Misal 1920x1080px" onChange={formChangeHandler}/>
                     </div>
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">

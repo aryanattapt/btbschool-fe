@@ -200,7 +200,7 @@ const BannerForm = () => {
                     <div className="mb-2 block">
                         <Label htmlFor={`bannerimage`} value="Banner" />
                     </div>
-                    <FileInput accept="image/*" multiple={false} id={`bannerimage`} ref={fileBannerRef} name={`bannerimage`} helperText="Ukuran Maksimum 10 MB. Format Gambar dengan menggunakan aspect ratio 16:9 Misal 1920x1080px" onChange={bannerChangeHandler}/>
+                    <FileInput accept="image/*" multiple={false} id={`bannerimage`} ref={fileBannerRef} name={`bannerimage`} helperText="Ukuran Maksimum 10 MB. Format Gambar dengan menggunakan aspect ratio wide Misal 1920x1080px" onChange={bannerChangeHandler}/>
                 </div>
 
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
