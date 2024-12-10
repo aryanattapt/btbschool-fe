@@ -86,7 +86,7 @@ const AttachInput = ({ filename, onChange }) => {
 				</div>
 			</div>
 			<p className="text-sm text-gray-500">
-				Ukuran Maksimum 2MB. Format Gambar (.jpg). Resolusi 1920x1080px.
+				Ukuran Maksimum 2MB. Format Gambar (.jpg) dengan menggunakan aspect ratio wide Misal 1920x1080px
 			</p>
 			<input
 				type="file"

@@ -115,7 +115,7 @@ const CMSAboutUs = () => {
 								<AdminHeader title="About Us Content Settings Form" />
 								<FieldTitle>Gambar Banner</FieldTitle>
 								<ImageAttachment
-									resolution="1920x1080px."
+									resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
 									id="image1"
 									onChange={(e) =>
 										onChangeAttachment(e.target.files, "bannerimage")
@@ -125,13 +125,13 @@ const CMSAboutUs = () => {
 								{/* Pengenanlan */}
 								<FieldTitle>Gambar Pengenalan</FieldTitle>
 								<ImageAttachment
-									resolution="1920x1080px."
+									resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
 									id="image1"
 									onChange={(e) => onChangeAttachment(e.target.files, "image1")}
 								/>
 								<FieldTitle>Gambar Visi Misi</FieldTitle>
 								<ImageAttachment
-									resolution="1920x1080px."
+									resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
 									id="image2"
 									onChange={(e) => onChangeAttachment(e.target.files, "image2")}
 								/>

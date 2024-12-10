@@ -19,7 +19,7 @@ const SignInForm = () => {
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Signin Notification!',
-                text: err.message || 'An error occurred',
+                text: err || 'An error occurred',
                 icon: 'error',
             });
         } finally {

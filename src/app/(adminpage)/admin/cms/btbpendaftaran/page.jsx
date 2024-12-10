@@ -101,7 +101,7 @@ const CMSBtbPendaftaran = () => {
 
 								<FieldTitle>Gambar Banner</FieldTitle>
 								<ImageAttachment
-									resolution="1920x1080px."
+									resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
 									onChange={(e) =>
 										onChangeAttachment(e.target.files, "bannerimage")
 									}
@@ -109,7 +109,7 @@ const CMSBtbPendaftaran = () => {
 
 								<FieldTitle>Gambar Enrollment</FieldTitle>
 								<ImageAttachment
-									resolution="1920x1080px."
+									resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
 									onChange={(e) =>
 										onChangeAttachment(e.target.files, "enrollmentimage")
 									}

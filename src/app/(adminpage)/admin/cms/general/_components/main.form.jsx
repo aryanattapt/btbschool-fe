@@ -170,7 +170,7 @@ const GeneralSettingsMainForm = () => {
             
             /* Submit data */
             await SubmitConfig(configName, transformedPayload);
-            await fetchData();
+            await fetchData(fetchPage);
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Submit Notification!',

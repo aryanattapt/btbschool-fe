@@ -44,7 +44,7 @@ const LogoForm = ({formChangeHandler, language}) => {
             <div className="mb-2 block">
                 <Label htmlFor={`logo[${language}]`} value="" />
             </div>
-            <FileInput accept="image/*" multiple={true} id={`logo[${language}]`} ref={fileInputRef} name={`logo[${language}]`} helperText="Ukuran Maksimum 5 MB. Format Gambar" onChange={inputChangeHandler}/>
+            <FileInput accept="image/*" multiple={true} id={`logo[${language}]`} ref={fileInputRef} name={`logo[${language}]`} helperText="Ukuran Maksimum 5 MB. Format Gambar(.jpg) dengan menggunakan aspect ratio wide Misal 1920x1080px" onChange={inputChangeHandler}/>
         </div>
     </>
 }
