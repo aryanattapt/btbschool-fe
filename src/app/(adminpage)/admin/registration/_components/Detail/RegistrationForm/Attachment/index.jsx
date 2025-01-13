@@ -8,8 +8,6 @@ const ARDAttachment = ({ attachments }) => {
 		"Copy of Report Card From Previous School": "reportcardattachment",
 	};
 
-	console.log({ attachments });
-
 	const findAttachment = (key) => {
 		const attachment = attachments?.find((x) => x?.type === key);
 		if (attachment)

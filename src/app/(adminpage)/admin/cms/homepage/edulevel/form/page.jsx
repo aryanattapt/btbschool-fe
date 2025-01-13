@@ -34,7 +34,6 @@ const EducationLevelForm = () => {
     const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
-        console.log(`ID: ${id}`);
         fetchData(fetchEducationLevel)
     }, []);
 
@@ -191,7 +190,6 @@ const EducationLevelForm = () => {
             }
 
             const transformedPayload = [transformJsonLanguage(finalPayload)];
-            console.log(transformedPayload);
             SubmitConfig('general', transformedPayload);
         } catch (error) {
             console.log(error);

@@ -64,7 +64,6 @@ const GeneralSettingsMainForm = () => {
             const data = await GetConfig(configName, {"type": type});
             const deTransformJson = detransformJsonLanguage(data[0]);
             setPayload(deTransformJson);
-            console.log(deTransformJson);
         } catch (error) {
             Swal.fire({
                 allowOutsideClick: false,
@@ -166,7 +165,6 @@ const GeneralSettingsMainForm = () => {
             } catch (error) {console.log(error);}
 
             const transformedPayload = [transformJsonLanguage(finalPayload)];
-            console.log(transformedPayload);
             
             /* Submit data */
             await SubmitConfig(configName, transformedPayload);

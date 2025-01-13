@@ -103,7 +103,6 @@ const MailForm = () => {
 
     const validateEmails = (emailsString) => {
         const emails = emailsString.trim().split(';').map(email => email.trim());
-        console.log(emails);
         return emails.every(validateEmail);
     };    
 
@@ -131,7 +130,6 @@ const MailForm = () => {
             setIsLoading(true);
             const finalPayload = {...payload, "type": type};
             const transformedPayload = [transformJsonLanguage(finalPayload)];
-            console.log(transformedPayload);
             
             await SubmitConfig(configName, transformedPayload);
             await fetchMailContent();

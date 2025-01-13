@@ -24,7 +24,6 @@ const HomePageCarouselManagerPage = () => {
         try {
             const data = await GetConfig(configName, {"type": type});
             const deTransformJson = detransformJsonLanguage(data);
-            console.log(deTransformJson);
             setPayload(deTransformJson);
         } catch (error) {
             console.log(error);

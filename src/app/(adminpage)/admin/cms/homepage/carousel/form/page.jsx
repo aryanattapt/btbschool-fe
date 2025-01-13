@@ -40,7 +40,6 @@ const CarouselForm = () => {
                 const data = await GetConfig(configName, {type, "_id": id || ''});
                 const deTransformJson = detransformJsonLanguage(data[0]);
                 setPayload(deTransformJson);
-                console.log(deTransformJson);
             }
         } catch (error) {console.log(error);}
     };
@@ -51,7 +50,6 @@ const CarouselForm = () => {
             const newFiles = Array.from(files);
             const validFiles = [];
             let isValid = true;
-            console.log(`masuk`);
 
             newFiles.forEach((file) => {
                 if (file.size >= 1 * 1024 * 1024) {
@@ -98,7 +96,6 @@ const CarouselForm = () => {
 
     const submitHandler = async (e) => {
         try {
-            console.log(`Masuk Submit Handler`);
             setIsLoading(true);
 
             /* Handle Attachment */

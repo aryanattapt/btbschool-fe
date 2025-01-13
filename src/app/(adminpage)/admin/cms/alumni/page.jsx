@@ -109,7 +109,6 @@ const CMSAlumni = () => {
         try {
             /* Handle Attachment */
             try {
-                console.log(alumniPayload);
                 let formData = new FormData();
                 formData.append("image", alumniPayload?.bannerimage[0]);
 
@@ -124,7 +123,6 @@ const CMSAlumni = () => {
             setIsSaveLoading(true);
             const finalPayload = {...alumniPayload, "type": "alumni"};
             const transformedPayload = [transformJsonLanguage(finalPayload)];
-            console.log(transformedPayload);
             
             await SubmitConfig('general', transformedPayload);
             Swal.fire({
@@ -170,7 +168,6 @@ const CMSAlumni = () => {
     }
 
     const clearBannerFile = (name) => {
-        console.log(`masuk clear banner`);
         fileBannerRef.current.value = null;
         setAlumniPayload(prevState => ({
             ...prevState,

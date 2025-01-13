@@ -122,7 +122,6 @@ const HelpForm = () => {
     }
 
     const clearBannerFile = (name) => {
-        console.log(`masuk clear banner`);
         fileBannerRef.current.value = null;
         setPayload(prevState => ({
             ...prevState,
@@ -250,7 +249,6 @@ const HelpForm = () => {
             setIsLoading(true);
             const finalPayload = {...payload, "type": type};
             const transformedPayload = [transformJsonLanguage(finalPayload)];
-            console.log(transformedPayload);
             
             await SubmitConfig(configName, transformedPayload);
             await fetchContent();

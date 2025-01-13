@@ -50,7 +50,6 @@ const NavBar = () => {
     const deviceWidth = window.innerWidth 
     if(deviceWidth < 1024){
       const tempHeight = `h-[${deviceWidth+'px'}]`
-      console.log({tempHeight})
       setCustomTheme({
         "collapse": {
           "base": `overflow-y-scroll h-[500px]`,
@@ -82,7 +81,7 @@ const NavBar = () => {
           ? "bg-[#00305E] bg-opacity-100 text-white"
           : "bg-gradient-to-b from-[#091531] via-[#00305E] via-20% bg-opacity-0 text-[#00305E]"
       }
-       fixed top-0 z-20 w-full p-4 ${
+        fixed top-0 z-20 w-full p-4 ${
         isVisible ? "translate-y-0" : "md:-translate-y-full"
       }`}
     >

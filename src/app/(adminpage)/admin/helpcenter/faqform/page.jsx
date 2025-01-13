@@ -96,9 +96,7 @@ const FAQ = () => {
     };
 
     const submitHandler = (e) => {
-        console.log(`Masuk Submit Handler`);
         if(id == null) {delete payload._id}
-        console.log(payload);
         setIsLoading(true);
 
         /* Call API in here... */

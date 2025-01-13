@@ -60,10 +60,8 @@ const CalenderAcademicMainForm = ({payload, setPayload}) => {
 
     const submitHandler = async (e) => {
         try {
-            console.log(`Masuk Submit Handler`);
             setIsLoading(true);
             if(!payload._id) {delete payload._id}
-            console.log(payload);
             
             if(!payload.date){
                 Swal.fire({

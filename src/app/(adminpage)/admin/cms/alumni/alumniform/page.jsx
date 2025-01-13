@@ -155,7 +155,6 @@ const CMSAlumni = () => {
         try {
             setIsLoading(true);
             const finalData = {...payload, ...type};
-            console.log(finalData);
 
             /* Handle Attachment */
             try {

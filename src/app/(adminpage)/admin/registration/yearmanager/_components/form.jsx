@@ -72,7 +72,6 @@ const OnlineRegistrationYearManagerForm = () => {
 
     const submitHandler = (e) => {
         if(id == null) {delete payload._id}
-        console.log(payload);
         setIsLoading(true);
 
         /* Call API in here... */

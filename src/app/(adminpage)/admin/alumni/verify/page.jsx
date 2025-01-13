@@ -24,7 +24,6 @@ const AlumniVerifyForm = () => {
     const id = searchParams.get("id")
 
     useEffect(() => {
-        console.log(`ID: ${id}`);
         if(id){
             fetchAlumni(id)
         }
@@ -77,7 +76,6 @@ const AlumniVerifyForm = () => {
 
     const submitHandler = (e) => {
         if(id == null) {delete payload._id}
-        console.log(payload);
         setIsLoading(true);
 
         /* Call API in here... */

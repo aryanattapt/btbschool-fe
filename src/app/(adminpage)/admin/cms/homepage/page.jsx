@@ -61,7 +61,6 @@ const HomepageSettingsMainForm = () => {
             const data = await GetConfig(configName, {"type": type});
             const deTransformJson = detransformJsonLanguage(data[0]);
             setPayload(deTransformJson);
-            console.log(deTransformJson);
         } catch (error) {console.log(error)}
     }
 
@@ -101,7 +100,6 @@ const HomepageSettingsMainForm = () => {
             const finalPayload = {...payload, "type": type};
 
             const transformedPayload = [transformJsonLanguage(finalPayload)];
-            console.log(transformedPayload);
             
             /* Submit data */
             await SubmitConfig(configName, transformedPayload);

@@ -29,7 +29,6 @@ const UserForm = () => {
     const id = searchParams.get("id")
 
     useEffect(() => {
-        console.log(`ID: ${id}`);
         setPayload(prevState => ({
             ...prevState,
             "_id": id
@@ -57,7 +56,6 @@ const UserForm = () => {
 
     const formChangeHandler = (e) => {
         const { name, value, type, files } = e.target;
-        console.log(value);
         if(type == 'file'){
             Object.keys(files).map((val) => {
                 setPayload(prevState => ({
@@ -87,7 +85,6 @@ const UserForm = () => {
     };
 
     const submitHandler = async (e) => {
-        console.log(`Masuk Submit Handler`);
         if (!payload.password) {
             delete payload.password;
         }

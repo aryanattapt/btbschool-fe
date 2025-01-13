@@ -20,14 +20,6 @@ const BulletinFlipBook = ({ url }) => {
 	});
 
 	useEffect(() => {
-		console.log("masuk sini ga");
-		if (window) {
-			const container = window;
-			console.log({ container });
-		}
-	}, []);
-
-	useEffect(() => {
 		const handleResize = () => {
 			const width = window.innerWidth;
 			// if (width >= 1024) {

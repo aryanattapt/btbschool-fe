@@ -31,7 +31,6 @@ const BulletinSpotlightForm = () => {
     const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
-        console.log(`ID: ${id}`);
         fetchData(fetchBulletinSpotlight)
     }, []);
 
@@ -159,7 +158,6 @@ const BulletinSpotlightForm = () => {
                 }
             } catch (error) {console.log(error);}
 
-            console.log([finalPayload]);
             SubmitConfig('bulletinspotlight', [finalPayload]);
             // window.location.href = '/admin/bulletinspotlight';
         } catch (error) {

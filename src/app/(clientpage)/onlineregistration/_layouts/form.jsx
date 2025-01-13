@@ -111,7 +111,6 @@ const OnlineRegistrationForm = () => {
     const { name, value, type, files } = e.target;
     onChangeHookForValidation(e);
     if(name.includes("phone") || name.includes("telephone")){
-      console.log(`convert phone format ${name}`);
       setRegistrationPayload(prevState => ({
         ...prevState,
         [name]: convertPhoneNumberToInternational(value),
@@ -164,27 +163,22 @@ const OnlineRegistrationForm = () => {
 
   const submitHandler = async (isFinal, setStateCallBack) => {
       try {
-          console.log(`Masuk Submit Handler`);
-          console.log(registrationPayload);
           setStateCallBack(true);
 
           /* Collect Attachment */
           const formData = new FormData();
           if (registrationPayload.birthcertificateattachment && Array.isArray(registrationPayload.birthcertificateattachment)) {
               registrationPayload.birthcertificateattachment.forEach(val => {
-                  console.log(val);
                   formData.append("birthcertificate", val);
               });
           }
           if (registrationPayload.familycardattachment && Array.isArray(registrationPayload.familycardattachment)) {
               registrationPayload.familycardattachment.forEach(val => {
-                  console.log(val);
                   formData.append("familycardattachment", val);
               });
           }
           if (registrationPayload.reportcardattachment && Array.isArray(registrationPayload.reportcardattachment)) {
               registrationPayload.reportcardattachment.forEach(val => {
-                  console.log(val);
                   formData.append("reportcardattachment", val);
               });
           }
@@ -285,9 +279,7 @@ const OnlineRegistrationForm = () => {
   const onChangeRegistrationCode = (e) => {
     if(!isPasteRegistrationCode){
       setRegistrationCode(e.target.value);
-    } else{
-      console.log(`on paste regis code detected in on change`);
-    }
+    } 
   }
 
   const onPasteRegistrationCode = (e) => { 
@@ -308,10 +300,8 @@ const OnlineRegistrationForm = () => {
     }
 
     if(registrationPayload.registrationcode == registrationCode){
-      console.log(`tidak perlu fetch ulang regis code karena data sama`);
       setPageNo(++pageNo);
     } else{
-      console.log(`fetch/refetch regis code`);
       GetDraftStudentRegistration(registrationCode)
         .then((res) => {
           setRegistrationPayload(res.data[0]);

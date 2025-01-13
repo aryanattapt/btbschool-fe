@@ -13,7 +13,6 @@ const ARDHealthFormIconCheckbox = ({
 			if (value === flag) return true;
 			return false;
 		} else {
-			console.log(customValidation());
 			return customValidation();
 		}
 	};

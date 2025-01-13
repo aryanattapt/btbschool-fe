@@ -119,7 +119,6 @@ const BannerForm = () => {
     }
 
     const clearBannerFile = (name) => {
-        console.log(`masuk clear banner`);
         fileBannerRef.current.value = null;
         setPayload(prevState => ({
             ...prevState,
@@ -145,7 +144,6 @@ const BannerForm = () => {
             setIsLoading(true);
             const finalPayload = {...payload, "type": type};
             const transformedPayload = [finalPayload];
-            console.log(transformedPayload);
             
             await SubmitConfig(configName, transformedPayload);
             await fetchContent();

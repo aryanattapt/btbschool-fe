@@ -34,7 +34,6 @@ const RegistrationTableActionBtn = (data) => {
 	};
 
 	useEffect(() => {
-		console.log({ isReadyToExport });
 		if (isReadyToExport) {
 			pdfRef.current.click();
 		}
@@ -46,10 +45,6 @@ const RegistrationTableActionBtn = (data) => {
 				{exportPdf && (
 					<BlobProvider document={<ARDExportPdf data={data} />}>
 						{({ blob, url, loading, error }) => {
-							console.log(data?.middlename);
-							console.log({ url });
-							console.log({ loading });
-							console.log({ error });
 							if(error != null) {
 								Swal.fire({
 									allowOutsideClick: false,
