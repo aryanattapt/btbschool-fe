@@ -56,6 +56,14 @@ export const useCmsPendaftaranStore = create((set, get) => ({
 		] = `https://wa.me/${removeParantheses}`;
 		set({ data: data });
 	},
+	setSchoolWaNumber: (val, outer, inner, idx, innerIdx) => {
+		const { data, language } = template(get);
+		data[language][outer]["detailschool"][idx][inner][innerIdx]["waNumber"] =
+			val;
+		data[language][outer]["detailschool"][idx][inner][innerIdx]["hrefwa"] =
+			val.replace(/\s+/g, "");
+		set({ data: data });
+	},
 	setSchoolTlp: (val, prop, index, tlpIndex) => {
 		const { data, language } = template(get);
 		data[language][prop]["detailschool"][index]["schooltlp"][tlpIndex] = val;

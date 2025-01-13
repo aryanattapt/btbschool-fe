@@ -12,6 +12,7 @@ import { checkPermission } from "../../../../../../services/auth.service";
 import BannerAttachment from "./_components/BannerAttachment/BannerAttachment";
 import Swal from "sweetalert2";
 import LoadingModal from "../../../../../components/LoadingModal";
+import CMSSubTitle from "../_components/CMSSubtitle/CMSSubTitle";
 
 const CMSBtbBelajar = () => {
 	const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -140,7 +141,7 @@ const CMSBtbBelajar = () => {
 								/>
 
 								{/* CONTENT GRADE TK */}
-								<h1 className="mt-8 font-bold text-2xl">TK</h1>
+								<CMSSubTitle>TK</CMSSubTitle>
 								<FieldTitle>Gambar Banner</FieldTitle>
 								<BannerAttachment
 									datas={attachments["tk"]}
@@ -358,7 +359,7 @@ const CMSBtbBelajar = () => {
 								/>
 
 								{/* CONTENT GRADE SD */}
-								<h1 className="mt-8 font-bold text-2xl">SD</h1>
+								<CMSSubTitle>SD</CMSSubTitle>
 								<FieldTitle>Gambar Banner</FieldTitle>
 								<BannerAttachment
 									datas={attachments["sd"]}
@@ -574,7 +575,7 @@ const CMSBtbBelajar = () => {
 								/>
 
 								{/* CONTENT GRADE SMP */}
-								<h1 className="mt-8 font-bold text-2xl">SMP</h1>
+								<CMSSubTitle>SMP</CMSSubTitle>
 								<FieldTitle>Gambar Banner</FieldTitle>
 								<BannerAttachment
 									datas={attachments["smp"]}
@@ -848,7 +849,7 @@ const CMSBtbBelajar = () => {
 								/>
 
 								{/* CONTENT GRADE SMA */}
-								<h1 className="mt-8 font-bold text-2xl">SMA</h1>
+								<CMSSubTitle>SMA</CMSSubTitle>
 								<FieldTitle>Gambar Banner</FieldTitle>
 								<BannerAttachment
 									datas={attachments["sma"]}

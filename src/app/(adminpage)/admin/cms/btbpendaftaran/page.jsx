@@ -12,6 +12,7 @@ import Loader from "../../../../_components/loader";
 import { checkPermission } from "../../../../../../services/auth.service";
 import Swal from "sweetalert2";
 import LoadingModal from "../../../../../components/LoadingModal";
+import CMSSubTitle from "../_components/CMSSubtitle/CMSSubTitle";
 
 const CMSBtbPendaftaran = () => {
 	const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -142,7 +143,7 @@ const CMSBtbPendaftaran = () => {
 									}}
 								/>
 								{/* Enrolment Page Data */}
-								<h3 className="mt-4">Enrollment Page</h3>
+								<CMSSubTitle>Enrollment Page</CMSSubTitle>
 								<FieldTitle>Enrollment Title</FieldTitle>
 								<TextInput
 									value={data[language]["enrolmentPagedata"]["title"]}
@@ -195,7 +196,7 @@ const CMSBtbPendaftaran = () => {
 														id={`enrolmentPagedata-content${index}`}
 														value={res["descStep"]}
 														onChange={(e) => {
-															setSdContentList(
+															setInnerContentList(
 																e.target.value,
 																"enrolmentPagedata",
 																"stepsList",
@@ -217,7 +218,7 @@ const CMSBtbPendaftaran = () => {
 									}}
 								/>
 
-								<h3 className="mt-4">Beasiswa Page</h3>
+								<CMSSubTitle>Beasiswa Page</CMSSubTitle>
 								<FieldTitle>Beasiswa Title</FieldTitle>
 								<TextInput
 									value={data[language]["beasiswaPagedata"]["notes"]}
@@ -290,6 +291,7 @@ const CMSBtbPendaftaran = () => {
 																		setSchoolWaNumber(
 																			e.target.value,
 																			"beasiswaPagedata",
+																			"schoolhp",
 																			index,
 																			innerIdx
 																		);
@@ -346,7 +348,7 @@ const CMSBtbPendaftaran = () => {
 										)}
 								</div>
 
-								<h3 className="mt-4">Tur Sekolah Page</h3>
+								<CMSSubTitle>Tur Sekolah Page</CMSSubTitle>
 								<FieldTitle>Tur Sekolah Title</FieldTitle>
 								<TextInput
 									value={data[language]["turSekolahdata"]["title"]}
