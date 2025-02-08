@@ -1,4 +1,7 @@
-const Pagging = ({language, bulletinSpotlightData}) => {
+import { usePathname } from "next/navigation";
+
+const Pagging = ({ language, bulletinSpotlightData }) => {
+	const pathname = usePathname();
 	return (
 		<>
 			<header className="flex flex-row items-start justify-between text-[#00305E] border-b">
@@ -17,8 +20,12 @@ const Pagging = ({language, bulletinSpotlightData}) => {
 									return (
 										<li className="px-4 lg:px-10 flex items-center" key={idx}>
 											<a
-												href={`${val.url}`}
-												className="inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 active"
+												href={val.url === pathname ? "#" : val.url}
+												className={`inline-block border-transparent rounded-t-lg ${
+													val.url === pathname
+														? "text-gray-600 cursor-default"
+														: "hover:text-blue-600 dark:hover:text-blue-600 active"
+												}`}
 												aria-current="page"
 											>
 												{val.title}
