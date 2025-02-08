@@ -1,3 +1,5 @@
+import JustifiedContentText from "../../../_components/JustifiedContentText";
+
 const TanganPenolong = ({ data, language }) => {
 	return (
 		<div id="tangan-penolong">
@@ -14,12 +16,8 @@ const TanganPenolong = ({ data, language }) => {
 					<p className="text-[#00305E] text-[14px] sm:text-center md:text-[30px] font-semibold md:mb-[25px] mb-[5px]">
 						{data[language]?.text10}
 					</p>
-					<p className="text-black text-[14px] md:text-[20px] mb-[5px] md:mb-[25px]">
-						{data[language]?.text11}
-					</p>
-					<p className="text-black text-[14px] md:text-[20px] mb-[5px] md:mb-[25px]">
-						{data[language]?.text12}
-					</p>
+					<JustifiedContentText>{data[language]?.text11}</JustifiedContentText>
+					<JustifiedContentText>{data[language]?.text12}</JustifiedContentText>
 				</div>
 				<img
 					src={`${data?.sukarelawanbtbimage4}`}
@@ -27,9 +25,7 @@ const TanganPenolong = ({ data, language }) => {
 					className="w-full xl:w-[1460.8px] xl:h-[308px] object-cover mb-5"
 				/>
 				<div className="mx-10 md:mx-32 mt-5 md:mt-20 mb-5">
-					<p className="text-black text-[15px] md:text-[20px] mb-[5px] md:mb-[25px]">
-						{data[language]?.text13}
-					</p>
+					<JustifiedContentText>{data[language]?.text13}</JustifiedContentText>
 				</div>
 			</div>
 		</div>

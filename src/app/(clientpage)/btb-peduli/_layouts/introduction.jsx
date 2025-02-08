@@ -24,7 +24,7 @@ const Introduction = ({ data, language }) => {
 			</div>
 
 			<div className="text-justify md:mx-32 mt-5 mb-5">
-				<p className="text-sm md:text-[20px] md:leading-[38px] text-black p-5 md:p-0">
+				<p className="text-sm md:text-[20px] md:leading-[38px] text-black p-5 md:p-0 text-justify">
 					{data[language]?.text2}
 				</p>
 			</div>

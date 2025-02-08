@@ -1,3 +1,5 @@
+import JustifiedContentText from "../../../_components/JustifiedContentText";
+
 const Sukarelawan = ({ data, language }) => {
 	return (
 		<div id="sukarelawan">
@@ -32,9 +34,7 @@ const Sukarelawan = ({ data, language }) => {
 					<p className="text-[#00305E] text-[14px] sm:text-center md:text-[30px] font-semibold md:mb-[25px] mb-[5px]">
 						{data[language]?.text8}
 					</p>
-					<p className="text-black text-[14px] md:text-[20px] mb-[5px] md:mb-[25px]">
-						{data[language]?.text9}
-					</p>
+					<JustifiedContentText>{data[language]?.text9}</JustifiedContentText>
 				</div>
 				{data?.sukarelawanbtbimage4 && (
 					<img
