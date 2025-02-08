@@ -6,47 +6,46 @@ import PeduliLingkungan from "./_layouts/peduli-lingkungan";
 import Sukarelawan from "./_layouts/sukarelawan";
 import Introduction from "./_layouts/introduction";
 import TanganPenolong from "./_layouts/tangan-penolong";
-import { usePageData } from '../../../hooks/usePageData';
+import { usePageData } from "../../../hooks/usePageData";
 import Loader from "../../_components/loader";
 
 const BTBPeduliPage = () => {
-  const [activeTab, setActiveTab] = useState("introduction");
+	const [activeTab, setActiveTab] = useState("introduction");
 
-  const {language, getBTBPeduliPageData, isLoading} = usePageData();
-  const btbPeduliData = usePageData((state) => state.result.btbpeduli);
+	const { language, getBTBPeduliPageData, isLoading } = usePageData();
+	const btbPeduliData = usePageData((state) => state.result.btbpeduli);
 
-  useEffect(() => {
-    getBTBPeduliPageData();
-  }, []);
+	useEffect(() => {
+		getBTBPeduliPageData();
+	}, []);
 
-  if(isLoading) {
-    return <Loader/>;
-  }
-  else if(btbPeduliData)
-    return (
-      <>
-        <Banner btbPeduliData={btbPeduliData} language={language}/>
-        <Pagging
-          btbPeduliData={btbPeduliData}
-          language={language}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
+	if (isLoading) {
+		return <Loader />;
+	} else if (btbPeduliData)
+		return (
+			<>
+				<Banner btbPeduliData={btbPeduliData} language={language} />
+				<Pagging
+					btbPeduliData={btbPeduliData}
+					language={language}
+					activeTab={activeTab}
+					setActiveTab={setActiveTab}
+				/>
 
-        {activeTab === "introduction" && (
-          <Introduction data={btbPeduliData} language={language} />
-        )}
-        {activeTab === "peduli-lingkungan" && (
-          <PeduliLingkungan data={btbPeduliData} language={language} />
-        )}
-        {activeTab === "sukarelawan" && (
-          <Sukarelawan data={btbPeduliData} language={language} />
-        )}
-        {activeTab === "tangan-penolong" && (
-          <TanganPenolong data={btbPeduliData} language={language} />
-        )}
-      </>
-    );
+				{activeTab === "introduction" && (
+					<Introduction data={btbPeduliData} language={language} />
+				)}
+				{activeTab === "peduli-lingkungan" && (
+					<PeduliLingkungan data={btbPeduliData} language={language} />
+				)}
+				{activeTab === "sukarelawan" && (
+					<Sukarelawan data={btbPeduliData} language={language} />
+				)}
+				{activeTab === "tangan-penolong" && (
+					<TanganPenolong data={btbPeduliData} language={language} />
+				)}
+			</>
+		);
 };
 
 export default BTBPeduliPage;
