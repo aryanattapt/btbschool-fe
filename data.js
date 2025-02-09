@@ -742,20 +742,20 @@ export const BTBPeduliPayload = {
   tanganpenolongimage1:
     "https://w6i8.c1.e2-7.dev/assets/btbschool/images/btb-peduli7.jpeg",
   EN: {
-    btbpedulititle: "BTB Care",
-    pedulilingkungantitle: "BTB Care for the Environment",
+    btbpedulititle: "BTB Cares",
+    pedulilingkungantitle: "BTB Cares for the Environment",
     sukarelawantitle: "BTB Volunteers",
     tanganpenolongtitle: "BTB Environment",
     text1:
-      "BTB Care is a community program from BTB School aimed at bringing people together, inspiring change, and making a positive impact on many lives. It is BTB's way of giving back to the community.",
+      "BTB Cares is a community program from BTB School aimed at bringing people together, inspiring change, and making a positive impact on many lives. It is BTB's way of giving back to the community.",
     text2:
-      "BTB Care hopes to instill a strong and responsible environmental social awareness in every student, from preschool to high school. The program includes BTB Care for the Environment, BTB Volunteers, and BTB Helping Hands, plus a special disaster response team.",
+      "BTB Cares hopes to instill a strong and responsible environmental social awareness in every student, from preschool to high school. The program includes BTB Care for the Environment, BTB Volunteers, and BTB Helping Hands, plus a special disaster response team.",
     text3:
-      '"The goal of BTB Care is to develop innovative and caring young individuals who can grow to become responsible members of the global community."',
+      '"The goal of BTB Cares is to develop innovative and caring young individuals who can grow to become responsible members of the global community."',
     text4:
       "Our Earth is a legacy that will be passed down from generation to generation.",
     text5:
-      "BTB Care hopes to instill a strong and responsible environmental social awareness in every student, from preschool to high school. The program includes BTB Care for the Environment, BTB Volunteers, and BTB Helping Hands, plus a special disaster response team.",
+      "BTB Cares hopes to instill a strong and responsible environmental social awareness in every student, from preschool to high school. The program includes BTB Care for the Environment, BTB Volunteers, and BTB Helping Hands, plus a special disaster response team.",
     text6: "Involving Everyone",
     text7:
       "BTB Green Hands activities involve every student in planting trees as part of a global initiative to reduce the effects of climate change and global warming.",
@@ -771,20 +771,20 @@ export const BTBPeduliPayload = {
       "We support organizations that build safe, secure, and healthy homes/schools for the less fortunate in various villages and hamlets. In 2019, BTB Peduli worked with Happy Hearts Indonesia to rebuild SD Wali Ate, an elementary school in East Nusa Tenggara. Our students helped with the final construction phase of their school building, as well as the handover transition to Wali Ate teachers and students.",
   },
   ID: {
-    btbpedulititle: "BTB Peduli",
-    pedulilingkungantitle: "BTB Peduli Lingkungan",
-    sukarelawantitle: "Sukarelawan BTB",
-    tanganpenolongtitle: "BTB Tangan Penolong",
+    btbpedulititle: "BTB Cares",
+    pedulilingkungantitle: "BTB for The Environment",
+    sukarelawantitle: "BTB Volunteers",
+    tanganpenolongtitle: "BTB Helping Hands",
     text1:
-      "BTB Peduli adalah program komunitas dari sekolah BTB yang bertujuan menyatukan semua orang, menginspirasi perubahan, dan memberikan dampak positif bagi hidup orang banyak, hal ini merupakan cara BTB untuk memberikan kembali kepada masyarakat.",
+      "BTB Cares adalah program komunitas dari sekolah BTB yang bertujuan menyatukan semua orang, menginspirasi perubahan, dan memberikan dampak positif bagi hidup orang banyak, hal ini merupakan cara BTB untuk memberikan kembali kepada masyarakat.",
     text2:
-      "BTB Peduli berharap untuk menanamkan kepedulian sosial lingkungan yang kuat dan bertanggung jawab dalam pribadi setiap murid, mulai dari kelompok bermain hingga sekolah menengah atas.  Program ini termasuk BTB Peduli Lingkungan, Sukarelawan BTB, dan Tangan Penolong BTB ditambah lagi tim khusus bencana alam.",
+      "BTB Cares berharap untuk menanamkan kepedulian sosial lingkungan yang kuat dan bertanggung jawab dalam pribadi setiap murid, mulai dari kelompok bermain hingga sekolah menengah atas.  Program ini termasuk BTB for The Environment, BTB Volunteers, dan BTB Helping Hands ditambah lagi tim khusus bencana alam.",
     text3:
-      "“Tujuan BTB Peduli adalah mengembangkan individual muda yang inovatif dan peduli sehingga bisa tumbuh menjadi orang yang bertanggung jawab ditengah masyarakat global.”",
+      "“Tujuan BTB Cares adalah mengembangkan individual muda yang inovatif dan peduli sehingga bisa tumbuh menjadi orang yang bertanggung jawab ditengah masyarakat global.”",
     text4:
       "Bumi kita merupakan warisan yang akan terus diturunkan dari generasi ke generasi.",
     text5:
-      " BTB Peduli berharap untuk menanamkan kepedulian sosial lingkungan yang kuat dan bertanggung jawab dalam pribadi setiap murid, mulai dari kelompok bermain hingga sekolah menengah atas. Program ini termasuk BTB Peduli Lingkungan, Sukarelawan BTB, dan Tangan Penolong BTB ditambah lagi tim khusus bencana alam.",
+      " BTB Peduli berharap untuk menanamkan kepedulian sosial lingkungan yang kuat dan bertanggung jawab dalam pribadi setiap murid, mulai dari kelompok bermain hingga sekolah menengah atas. Program ini termasuk BTB for The Environment, BTB Volunteers, dan BTB Helping Hands ditambah lagi tim khusus bencana alam.",
     text6: "Melibatkan Semua",
     text7:
       "Kegiatan BTB Green Hands melibatkan setiap murid untuk menanam pohon sebagai bagian dari inisiatif global untuk mengurangi efek perubahan iklim dan pemanasan global.",
@@ -812,15 +812,15 @@ export const NavbarPayload = {
         url: "/btb-belajar",
         submenu: [
           {
-            content: "Kindergarden",
+            content: "Early Chilhood Years",
             url: "/btb-belajar/TK",
           },
           {
-            content: "Elementary School",
+            content: "Primary School",
             url: "/btb-belajar/SD",
           },
           {
-            content: "Junior High School",
+            content: "Middle School",
             url: "/btb-belajar/SMP",
           },
           {
@@ -903,7 +903,7 @@ export const NavbarPayload = {
         url: "#",
         submenu: [
           {
-            content: "Sorotan Buletin",
+            content: "Buletin Sekolah",
             url: "/bulletinspotlight",
           },
           {
@@ -933,7 +933,7 @@ export const NavbarPayload = {
         url: "/pendaftaran",
       },
       {
-        content: "BTB Peduli",
+        content: "BTB Cares",
         url: "/btb-peduli",
       },
       {
@@ -946,8 +946,6 @@ export const NavbarPayload = {
 
 export const FooterPayload = {
   facebook: "",
-  instagram: "https://www.instagram.com/btb_school/",
-  youtube: "",
   twitter: "",
   email: "info@btbschool.org",
   location: [
@@ -1021,13 +1019,13 @@ export const HomePagePayload = {
         {
           language: "ID",
           title: "Bina Tunas Bangsa",
-          content: "DATANG DAN BELAJAR di Sekolah Terbaik Jakarta",
+          content: "DATANG DAN BELAJAR di Salah Satu Sekolah Terbaik di Jakarta",
           buttondesc: "Pelajari Lebih Lanjut!",
         },
         {
           language: "EN",
           title: "Bina Tunas Bangsa",
-          content: "COME AND LEARN at One of the best school in Jakarta",
+          content: "COME AND LEARN at One of The Best School in Jakarta",
           buttondesc: "Learn More!",
         },
       ],
@@ -1039,13 +1037,13 @@ export const HomePagePayload = {
         {
           language: "ID",
           title: "Bina Tunas Bangsa",
-          content: "DATANG DAN BELAJAR di Sekolah Terbaik Jakarta",
+          content: "DATANG DAN BELAJAR di Salah Satu Sekolah Terbaik Jakarta",
           buttondesc: "Pelajari Lebih Lanjut!",
         },
         {
           language: "EN",
           title: "Bina Tunas Bangsa",
-          content: "COME AND LEARN at One of the best school in Jakarta",
+          content: "COME AND LEARN at One of The Best School in Jakarta",
           buttondesc: "Learn More!",
         },
       ],
@@ -1057,13 +1055,13 @@ export const HomePagePayload = {
         {
           language: "ID",
           title: "Bina Tunas Bangsa",
-          content: "DATANG DAN BELAJAR di Sekolah Terbaik Jakarta",
+          content: "DATANG DAN BELAJAR di Salah Satu Sekolah Terbaik Jakarta",
           buttondesc: "Pelajari Lebih Lanjut!",
         },
         {
           language: "EN",
           title: "Bina Tunas Bangsa",
-          content: "COME AND LEARN at One of the best school in Jakarta",
+          content: "COME AND LEARN at One of The Best School in Jakarta",
           buttondesc: "Learn More!",
         },
       ],
@@ -1075,13 +1073,13 @@ export const HomePagePayload = {
         {
           language: "ID",
           title: "Bina Tunas Bangsa",
-          content: "DATANG DAN BELAJAR di Sekolah Terbaik Jakarta",
+          content: "DATANG DAN BELAJAR Di Salah Satu Sekolah Terbaik Jakarta",
           buttondesc: "Pelajari Lebih Lanjut!",
         },
         {
           language: "EN",
           title: "Bina Tunas Bangsa",
-          content: "COME AND LEARN at One of the best school in Jakarta",
+          content: "COME AND LEARN at One of The Best School in Jakarta",
           buttondesc: "Learn More!",
         },
       ],
