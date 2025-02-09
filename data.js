@@ -841,10 +841,6 @@ export const NavbarPayload = {
             content: "School Calendar",
             url: "/calendar-academic",
           },
-          {
-            content: "Help",
-            url: "/help",
-          },
         ],
       },
       {
