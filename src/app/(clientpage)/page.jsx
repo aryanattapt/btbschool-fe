@@ -51,87 +51,6 @@ const HomePage = () => {
 
             {/* Section */}
             <div className="grid place-items-center gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 md:my-[40px]">
-              {/* <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel1.jpeg')] w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] lg:w-[240px] lg:h-[240px] bg-cover bg-center rounded-[30px]">
-                <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
-                  <div className="flex items-center justify-center h-full text-white group">
-                    <a
-                      href="/btb-belajar/TK"
-                      target="_blank"
-                      className="border-2 px-6 py-2 text-[14px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                      Learn More
-                    </a>
-                  </div>
-                </div>
-                <div className="md:my-[10px] text-[#00305E]">
-                  <div className="flex gap-2 justify-center">
-                    <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
-                      {homePagePayload[language].grade.tktext}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel2.jpeg')] w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] bg-cover bg-center rounded-[30px]">
-                <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
-                  <div className="flex items-center justify-center h-full text-white group">
-                    <a
-                      href="/btb-belajar/SD"
-                      target="_blank"
-                      className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                      Learn More
-                    </a>
-                  </div>
-                </div>
-                <div className="md:my-[10px] text-[#00305E]">
-                  <div className="flex gap-2 justify-center">
-                    <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
-                      {homePagePayload[language].grade.sdtext}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel3.jpeg')] w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] bg-cover bg-center rounded-[30px]">
-                <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
-                  <div className="flex items-center justify-center h-full text-white group">
-                    <a
-                      href="/btb-belajar/SMP"
-                      target="_blank"
-                      className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                      Learn More
-                    </a>
-                  </div>
-                </div>
-                <div className="md:my-[10px] text-[#00305E]">
-                  <div className="flex gap-2 justify-center">
-                    <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
-                      {homePagePayload[language].grade.smptext}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-[url('https://w6i8.c1.e2-7.dev/assets/btbschool/images/edulevel4.jpeg')] w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] bg-cover bg-center rounded-[30px]">
-                <div className="h-full hover:bg-[#243F6D] hover:opacity-80 hover:rounded-[30px]">
-                  <div className="flex items-center justify-center h-full text-white group">
-                    <a
-                      href="/btb-belajar/SMA"
-                      target="_blank"
-                      className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300"
-                    >
-                      Learn More
-                    </a>
-                  </div>
-                </div>
-                <div className="md:my-[10px] text-[#00305E]">
-                  <div className="flex gap-2 justify-center">
-                    <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
-                      {homePagePayload[language].grade.smatext}
-                    </p>
-                  </div>
-                </div>
-              </div> */}
-              
               {
                 gradelist.map((val, idx) => {
                   const photoFile = val?.attachment.length > 0 ? val?.attachment[0].fileURL : '';
@@ -169,52 +88,18 @@ const HomePage = () => {
                   }
                 })
               }
-
-              {/* {payload?.gradelist?.map((val, idx) => {
-                if (val?.logo) {
-                  return (
-                    <div
-                      className="relative w-[200px] h-[200px] md:w-[240px] md:h-[240px] my-[25px] bg-cover bg-center rounded-[30px]"
-                      key={idx}
-                    >
-                      <img
-                        src={val.logo}
-                        alt="Logo"
-                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105 bg-cover bg-center rounded-[30px]"
-                      />
-                      <div className="absolute inset-0 hover:bg-[#243F6D] hover:opacity-80 flex items-center justify-center rounded-[30px]">
-                        <div className="text-white group">
-                          <a
-                            href={val?.link || "#"}
-                            target="_blank"
-                            className="border-2 px-6 py-2 text-[15px] rounded-full opacity-0 font-semibold group-hover:border-1 group-hover:opacity-100 transition-opacity duration-300"
-                          >
-                            Learn More
-                          </a>
-                        </div>
-                      </div>
-                      <div className="md:my-[10px] text-[#00305E]">
-                        <div className="flex gap-2 justify-center">
-                          <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
-                            {val[`name${language}`]}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-              })} */}
             </div>
             <hr className="h-px mt-10 md:mt-32 md:mb-20 mb-10 bg-gray-200 border-0 dark:bg-gray-700" />
             <div className="text-[25px] md:text-[60px] md:text-start text-center font-semibold">
               <h1>{homePagePayload[language].instagramtitle}</h1>
             </div>
-            <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-7 mt-4">
+            <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-2 mt-4 ">
               {instagramFeed.map((val, idx) => {
                 return (
                   <div key={idx}>
+                    {/* h-[300px] h-[300px] md:w-[230px] md:h-[230px]  xl:w-[360px] xl:h-[360px] lg:w-[230px] lg:h-[230px] object-cover */}
                     <img
-                      className="cursor-pointer h-[300px] h-[300px] md:w-[230px] md:h-[230px]  xl:w-[360px] xl:h-[360px] lg:w-[230px] lg:h-[230px] object-cover"
+                      className="cursor-pointer h-[300px] md:w-[400px] md:h-[500px] lg:w-[300px] lg:h-[300px] xl:w-[300px] xl:h-[400px] object-cover"
                       src={`${val.thumbnail_url || val.media_url}`}
                       alt={`${val.caption}`}
                       onClick={() => window.open(val.permalink)}
