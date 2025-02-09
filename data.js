@@ -860,7 +860,7 @@ export const NavbarPayload = {
         url: "/pendaftaran",
       },
       {
-        content: "BTB Care",
+        content: "BTB Cares",
         url: "/btb-peduli",
       },
       {
