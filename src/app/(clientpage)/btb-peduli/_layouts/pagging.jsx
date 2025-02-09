@@ -21,7 +21,7 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
           </div>
           <div className="inline-flex text-[20px] md:text-[20px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
             <ul className="flex flex-wrap -mb-px py-8 md:py-10">
-              <li className="px-10 sm:px-5 md:px-20 lg:px-4 border-b-2">
+              <li className="px-10 sm:px-5 md:px-20 lg:px-4">
                 <div
                   className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "peduli-lingkungan"
@@ -34,7 +34,7 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                   {btbPeduliData[language]?.pedulilingkungantitle}
                 </div>
               </li>
-              <li className="px-10 sm:px-5 md:px-20 lg:px-4 border-b-2">
+              <li className="px-10 sm:px-5 md:px-20 lg:px-4">
                 <div
                   className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "sukarelawan"
@@ -47,7 +47,7 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                   {btbPeduliData[language]?.sukarelawantitle}
                 </div>
               </li>
-              <li className="px-10 sm:px-5 md:px-20 lg:px-4 border-b-2">
+              <li className="px-10 sm:px-5 md:px-20 lg:px-4">
                 <div
                   className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "tangan-penolong"

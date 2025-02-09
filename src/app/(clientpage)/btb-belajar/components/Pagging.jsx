@@ -15,7 +15,7 @@ const Pagging = ({ btbBelajarData, language }) => {
               {btbBelajarData[language]?.paging?.url?.map((val, idx) => {
                 return (
                   <li
-                    className="sm:px-8 md:px-20 lg:px-10 xl:px-15 px-5 border-b-2"
+                    className="sm:px-8 md:px-20 lg:px-10 xl:px-15 px-5"
                     key={idx}
                   >
                     <a

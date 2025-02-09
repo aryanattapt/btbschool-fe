@@ -1,7 +1,7 @@
 const VisiMisiPage = ({ data, language }) => {
 	return (
 		<>
-			<div className="md:mx-32 mx-10 grid md:grid-cols-1 grid-cols-1 xl:grid-cols-2 lg:grid-cols-1 text-black leading-loose">
+			<div className="mt-10 md:mx-32 mx-10 grid md:grid-cols-1 grid-cols-1 xl:grid-cols-2 lg:grid-cols-1 text-black leading-loose">
 				<div>
 					<h2 className="md:text-[25px] text-[28px] mb-[10px] font-semibold">
 						{/* Visi */}
