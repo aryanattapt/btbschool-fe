@@ -12,370 +12,351 @@ import Loader from "../../../../_components/loader";
 import { checkPermission } from "../../../../../../services/auth.service";
 import Swal from "sweetalert2";
 import LoadingModal from "../../../../../components/LoadingModal";
-import CMSSubTitle from "../_components/CMSSubtitle/CMSSubTitle";
+import CMSSubTitle from "../_components/CMSSubtitle";
+import { Navigation } from "./Navigation";
 
 const CMSBtbPendaftaran = () => {
-	const [isLoadingPage, setIsLoadingPage] = useState(true);
-	const [isAuthorized, setIsAuthorized] = useState(null);
+  const [isLoadingPage, setIsLoadingPage] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(null);
 
-	const data = useCmsPendaftaranStore((state) => state.data);
-	const language = useCmsPendaftaranStore((state) => state.language);
-	const getInitialData = useCmsPendaftaranStore(
-		(state) => state.getInitialData
-	);
-	const setState = useCmsPendaftaranStore((state) => state.setState);
-	const setInnerState = useCmsPendaftaranStore((state) => state.setInnerState);
-	const setInnerContentList = useCmsPendaftaranStore(
-		(state) => state.setInnerContentList
-	);
-	const setSchoolWaNumber = useCmsPendaftaranStore(
-		(state) => state.setSchoolWaNumber
-	);
-	const setSchoolTlp = useCmsPendaftaranStore((state) => state.setSchoolTlp);
-	const submitData = useCmsPendaftaranStore((state) => state.submitData);
-	const loading = useCmsPendaftaranStore((state) => state.loading);
+  const data = useCmsPendaftaranStore((state) => state.data);
+  const language = useCmsPendaftaranStore((state) => state.language);
+  const getInitialData = useCmsPendaftaranStore(
+    (state) => state.getInitialData
+  );
+  const setState = useCmsPendaftaranStore((state) => state.setState);
+  const setInnerState = useCmsPendaftaranStore((state) => state.setInnerState);
+  const setInnerContentList = useCmsPendaftaranStore(
+    (state) => state.setInnerContentList
+  );
+  const setSchoolWaNumber = useCmsPendaftaranStore(
+    (state) => state.setSchoolWaNumber
+  );
+  const setSchoolTlp = useCmsPendaftaranStore((state) => state.setSchoolTlp);
+  const submitData = useCmsPendaftaranStore((state) => state.submitData);
+  const loading = useCmsPendaftaranStore((state) => state.loading);
 
-	const [attachment, setAttachment] = useState({});
+  const [attachment, setAttachment] = useState({});
 
-	const onChangeAttachment = (file, prop) => {
-		if (file.length > 0) {
-			attachment[prop] = file[0];
-		} else {
-			// setState("", prop);
-			attachment[prop] = rawData[prop];
-		}
-		setAttachment({ ...attachment });
-	};
+  const onChangeAttachment = (file, prop) => {
+    if (file.length > 0) {
+      attachment[prop] = file[0];
+    } else {
+      // setState("", prop);
+      attachment[prop] = rawData[prop];
+    }
+    setAttachment({ ...attachment });
+  };
 
-	const onSubmitData = () => {
-		Swal.fire(
-			"Are you sure?",
-			"Once submitted, you can't undo it",
-			"warning"
-		).then((res) => {
-			if (res.isConfirmed) {
-				setState(true, "loading");
-				const container = {};
-				Object.keys(attachment).forEach((key) => {
-					if (typeof attachment[key] === "object")
-						container[key] = attachment[key];
-				});
-				submitData(container);
-			}
-		});
-	};
+  const onSubmitData = () => {
+    Swal.fire(
+      "Are you sure?",
+      "Once submitted, you can't undo it",
+      "warning"
+    ).then((res) => {
+      if (res.isConfirmed) {
+        setState(true, "loading");
+        const container = {};
+        Object.keys(attachment).forEach((key) => {
+          if (typeof attachment[key] === "object")
+            container[key] = attachment[key];
+        });
+        submitData(container);
+      }
+    });
+  };
 
-	useEffect(() => {
-		fetchData(getInitialData);
-	}, []);
+  useEffect(() => {
+    fetchData(getInitialData);
+  }, []);
 
-	const fetchData = async (callback) => {
-		setIsLoadingPage(true);
-		try {
-			await checkPermission("manage_content");
-			setIsAuthorized(true);
-			await callback();
-		} catch (error) {
-			console.log(error);
-			if (error.status != "401") {
-				try {
-					await callback();
-				} catch (error) {
-					console.log(error);
-				}
-			}
-		} finally {
-			setIsLoadingPage(false);
-		}
-	};
+  const fetchData = async (callback) => {
+    setIsLoadingPage(true);
+    try {
+      await checkPermission("manage_content");
+      setIsAuthorized(true);
+      await callback();
+    } catch (error) {
+      console.log(error);
+      if (error.status != "401") {
+        try {
+          await callback();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    } finally {
+      setIsLoadingPage(false);
+    }
+  };
 
-	if (isLoadingPage) {
-		return <Loader />;
-	} else
-		return (
-			<NavbarSidebarLayout>
-				{isAuthorized ? (
-					<>
-						{!isObjectEmpty(data) && (
-							<div>
-								<AdminHeader title="Pendaftaran BTB Content Settings Form" />
+  if (isLoadingPage) {
+    return <Loader />;
+  } else
+    return (
+      <NavbarSidebarLayout>
+        {isAuthorized ? (
+          <>
+            {!isObjectEmpty(data) && (
+              <div>
+                <AdminHeader title="Pendaftaran BTB Content Settings Form" />
 
-								<FieldTitle>Gambar Banner</FieldTitle>
-								<ImageAttachment
-									resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
-									onChange={(e) =>
-										onChangeAttachment(e.target.files, "bannerimage")
-									}
-								/>
+                <FieldTitle>Gambar Banner</FieldTitle>
+                <ImageAttachment
+                  resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
+                  onChange={(e) =>
+                    onChangeAttachment(e.target.files, "bannerimage")
+                  }
+                />
 
-								<FieldTitle>Gambar Enrollment</FieldTitle>
-								<ImageAttachment
-									resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
-									onChange={(e) =>
-										onChangeAttachment(e.target.files, "enrollmentimage")
-									}
-								/>
+                <FieldTitle>Gambar Enrollment</FieldTitle>
+                <ImageAttachment
+                  resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
+                  onChange={(e) =>
+                    onChangeAttachment(e.target.files, "enrollmentimage")
+                  }
+                />
 
-								<LanguageChanger
-									onChange={(val) => setState(val, "language")}
-									value={language}
-								/>
+                <LanguageChanger
+                  onChange={(val) => setState(val, "language")}
+                  value={language}
+                />
+                <Navigation />
 
-								<FieldTitle>Main Title</FieldTitle>
-								<TextInput
-									value={data[language]["mainTitle"]}
-									onChange={(e) => {
-										setState(e.target.value, "mainTitle");
-									}}
-								/>
-								<FieldTitle>Enrollment Title</FieldTitle>
-								<TextInput
-									value={data[language]["titleEnrolment"]}
-									onChange={(e) => {
-										setState(e.target.value, "titleEnrolment");
-									}}
-								/>
-								<FieldTitle>Beasiswa Title</FieldTitle>
-								<TextInput
-									value={data[language]["titleBeasiswa"]}
-									onChange={(e) => {
-										setState(e.target.value, "titleBeasiswa");
-									}}
-								/>
-								{/* Enrolment Page Data */}
-								<CMSSubTitle>Enrollment Page</CMSSubTitle>
-								<FieldTitle>Enrollment Title</FieldTitle>
-								<TextInput
-									value={data[language]["enrolmentPagedata"]["title"]}
-									onChange={(e) => {
-										setInnerState(e.target.value, "enrolmentPagedata", "title");
-									}}
-								/>
-								<FieldTitle>Enrollment Subtitle</FieldTitle>
-								<TextInput
-									value={data[language]["enrolmentPagedata"]["subtitle"]}
-									onChange={(e) => {
-										setInnerState(
-											e.target.value,
-											"enrolmentPagedata",
-											"subtitle"
-										);
-									}}
-								/>
-								<FieldTitle>Enrollment Step List</FieldTitle>
-								<div className="flex flex-col gap-2">
-									{!isObjectEmpty(
-										data[language]["enrolmentPagedata"]["stepsList"]
-									) &&
-										data[language]["enrolmentPagedata"]["stepsList"].map(
-											(res, index) => (
-												<div>
-													<Label
-														htmlFor={`enrolmentPagedata-title${index}`}
-														value="Title"
-													/>
-													<TextInput
-														id={`enrolmentPagedata-title${index}`}
-														value={res["titleStep"]}
-														onChange={(e) => {
-															setInnerContentList(
-																e.target.value,
-																"enrolmentPagedata",
-																"stepsList",
-																index,
-																"titleStep"
-															);
-														}}
-													/>
-													<Label
-														htmlFor={`enrolmentPagedata-content${index}`}
-														value="Description"
-													/>
-													<Textarea
-														rows={4}
-														id={`enrolmentPagedata-content${index}`}
-														value={res["descStep"]}
-														onChange={(e) => {
-															setInnerContentList(
-																e.target.value,
-																"enrolmentPagedata",
-																"stepsList",
-																index,
-																"descStep"
-															);
-														}}
-													/>
-												</div>
-											)
-										)}
-								</div>
+                {/* Enrolment Page Data */}
+                <CMSSubTitle>Enrollment Page</CMSSubTitle>
+                <FieldTitle>Enrollment Title</FieldTitle>
+                <TextInput
+                  value={data[language]["enrolmentPagedata"]["title"]}
+                  onChange={(e) => {
+                    setInnerState(e.target.value, "enrolmentPagedata", "title");
+                  }}
+                />
+                <FieldTitle>Enrollment Subtitle</FieldTitle>
+                <TextInput
+                  value={data[language]["enrolmentPagedata"]["subtitle"]}
+                  onChange={(e) => {
+                    setInnerState(
+                      e.target.value,
+                      "enrolmentPagedata",
+                      "subtitle"
+                    );
+                  }}
+                />
+                <FieldTitle>Enrollment Step List</FieldTitle>
+                <div className="flex flex-col gap-2">
+                  {!isObjectEmpty(
+                    data[language]["enrolmentPagedata"]["stepsList"]
+                  ) &&
+                    data[language]["enrolmentPagedata"]["stepsList"].map(
+                      (res, index) => (
+                        <div>
+                          <Label
+                            htmlFor={`enrolmentPagedata-title${index}`}
+                            value="Title"
+                          />
+                          <TextInput
+                            id={`enrolmentPagedata-title${index}`}
+                            value={res["titleStep"]}
+                            onChange={(e) => {
+                              setInnerContentList(
+                                e.target.value,
+                                "enrolmentPagedata",
+                                "stepsList",
+                                index,
+                                "titleStep"
+                              );
+                            }}
+                          />
+                          <Label
+                            htmlFor={`enrolmentPagedata-content${index}`}
+                            value="Description"
+                          />
+                          <Textarea
+                            rows={4}
+                            id={`enrolmentPagedata-content${index}`}
+                            value={res["descStep"]}
+                            onChange={(e) => {
+                              setInnerContentList(
+                                e.target.value,
+                                "enrolmentPagedata",
+                                "stepsList",
+                                index,
+                                "descStep"
+                              );
+                            }}
+                          />
+                        </div>
+                      )
+                    )}
+                </div>
 
-								<FieldTitle>Enrollment Notes</FieldTitle>
-								<TextInput
-									value={data[language]["enrolmentPagedata"]["notes"]}
-									onChange={(e) => {
-										setInnerState(e.target.value, "enrolmentPagedata", "notes");
-									}}
-								/>
+                <FieldTitle>Enrollment Notes</FieldTitle>
+                <TextInput
+                  value={data[language]["enrolmentPagedata"]["notes"]}
+                  onChange={(e) => {
+                    setInnerState(e.target.value, "enrolmentPagedata", "notes");
+                  }}
+                />
 
-								<CMSSubTitle>Beasiswa Page</CMSSubTitle>
-								<FieldTitle>Beasiswa Title</FieldTitle>
-								<TextInput
-									value={data[language]["beasiswaPagedata"]["notes"]}
-									onChange={(e) => {
-										setInnerState(e.target.value, "beasiswaPagedata", "notes");
-									}}
-								/>
-								<FieldTitle>Beasiswa Subtitle</FieldTitle>
-								<Textarea
-									rows={4}
-									value={data[language]["beasiswaPagedata"]["subtitle"]}
-									onChange={(e) => {
-										setInnerState(
-											e.target.value,
-											"beasiswaPagedata",
-											"subtitle"
-										);
-									}}
-								/>
-								<FieldTitle>Beasiswa Information</FieldTitle>
-								<TextInput
-									value={data[language]["beasiswaPagedata"]["infomartion"]}
-									onChange={(e) => {
-										setInnerState(
-											e.target.value,
-											"beasiswaPagedata",
-											"infomartion"
-										);
-									}}
-								/>
-								<FieldTitle>Beasiswa Detail School</FieldTitle>
-								<div className="flex flex-col gap-2">
-									{!isObjectEmpty(
-										data[language]["beasiswaPagedata"]["detailschool"]
-									) &&
-										data[language]["beasiswaPagedata"]["detailschool"].map(
-											(res, index) => (
-												<div className="flex flex-col gap-2">
-													<Label
-														htmlFor={`beasiswaPagedata-title${index}`}
-														value="School Name"
-													/>
-													<TextInput
-														id={`beasiswaPagedata-title${index}`}
-														value={res["schoolName"]}
-														onChange={(e) => {
-															setInnerContentList(
-																e.target.value,
-																"beasiswaPagedata",
-																"detailschool",
-																index,
-																"schoolName"
-															);
-														}}
-													/>
+                <CMSSubTitle>Beasiswa Page</CMSSubTitle>
+                <FieldTitle>Beasiswa Title</FieldTitle>
+                <TextInput
+                  value={data[language]["beasiswaPagedata"]["notes"]}
+                  onChange={(e) => {
+                    setInnerState(e.target.value, "beasiswaPagedata", "notes");
+                  }}
+                />
+                <FieldTitle>Beasiswa Subtitle</FieldTitle>
+                <Textarea
+                  rows={4}
+                  value={data[language]["beasiswaPagedata"]["subtitle"]}
+                  onChange={(e) => {
+                    setInnerState(
+                      e.target.value,
+                      "beasiswaPagedata",
+                      "subtitle"
+                    );
+                  }}
+                />
+                <FieldTitle>Beasiswa Information</FieldTitle>
+                <TextInput
+                  value={data[language]["beasiswaPagedata"]["infomartion"]}
+                  onChange={(e) => {
+                    setInnerState(
+                      e.target.value,
+                      "beasiswaPagedata",
+                      "infomartion"
+                    );
+                  }}
+                />
+                <FieldTitle>Beasiswa Detail School</FieldTitle>
+                <div className="flex flex-col gap-2">
+                  {!isObjectEmpty(
+                    data[language]["beasiswaPagedata"]["detailschool"]
+                  ) &&
+                    data[language]["beasiswaPagedata"]["detailschool"].map(
+                      (res, index) => (
+                        <div className="flex flex-col gap-2">
+                          <Label
+                            htmlFor={`beasiswaPagedata-title${index}`}
+                            value="School Name"
+                          />
+                          <TextInput
+                            id={`beasiswaPagedata-title${index}`}
+                            value={res["schoolName"]}
+                            onChange={(e) => {
+                              setInnerContentList(
+                                e.target.value,
+                                "beasiswaPagedata",
+                                "detailschool",
+                                index,
+                                "schoolName"
+                              );
+                            }}
+                          />
 
-													<Label
-														htmlFor={`beasiswaPagedata-waNumber`}
-														value="Wa Number"
-													/>
-													<div
-														className="flex flex-col gap-2"
-														id="beasiswaPagedata-waNumber"
-													>
-														{!isObjectEmpty(res.schoolhp) &&
-															res.schoolhp.map((res, innerIdx) => (
-																<TextInput
-																	value={res["waNumber"]}
-																	onChange={(e) => {
-																		setSchoolWaNumber(
-																			e.target.value,
-																			"beasiswaPagedata",
-																			"schoolhp",
-																			index,
-																			innerIdx
-																		);
-																	}}
-																/>
-															))}
-													</div>
+                          <Label
+                            htmlFor={`beasiswaPagedata-waNumber`}
+                            value="Wa Number"
+                          />
+                          <div
+                            className="flex flex-col gap-2"
+                            id="beasiswaPagedata-waNumber"
+                          >
+                            {!isObjectEmpty(res.schoolhp) &&
+                              res.schoolhp.map((res, innerIdx) => (
+                                <TextInput
+                                  value={res["waNumber"]}
+                                  onChange={(e) => {
+                                    setSchoolWaNumber(
+                                      e.target.value,
+                                      "beasiswaPagedata",
+                                      "schoolhp",
+                                      index,
+                                      innerIdx
+                                    );
+                                  }}
+                                />
+                              ))}
+                          </div>
 
-													<Label
-														htmlFor={`beasiswaPagedata-schooltlp`}
-														value="School Tel"
-													/>
-													<div
-														className="flex flex-col gap-2"
-														id="beasiswaPagedata-schooltlp"
-													>
-														{!isObjectEmpty(res["schooltlp"]) &&
-															res["schooltlp"].map((res, innerIdx) => (
-																<div>
-																	<TextInput
-																		value={res}
-																		onChange={(e) => {
-																			setSchoolTlp(
-																				e.target.value,
-																				"beasiswaPagedata",
-																				index,
-																				innerIdx
-																			);
-																		}}
-																	/>
-																</div>
-															))}
-													</div>
+                          <Label
+                            htmlFor={`beasiswaPagedata-schooltlp`}
+                            value="School Tel"
+                          />
+                          <div
+                            className="flex flex-col gap-2"
+                            id="beasiswaPagedata-schooltlp"
+                          >
+                            {!isObjectEmpty(res["schooltlp"]) &&
+                              res["schooltlp"].map((res, innerIdx) => (
+                                <div>
+                                  <TextInput
+                                    value={res}
+                                    onChange={(e) => {
+                                      setSchoolTlp(
+                                        e.target.value,
+                                        "beasiswaPagedata",
+                                        index,
+                                        innerIdx
+                                      );
+                                    }}
+                                  />
+                                </div>
+                              ))}
+                          </div>
 
-													<Label
-														htmlFor={`beasiswaPagedata-email${index}`}
-														value="School Email"
-													/>
-													<TextInput
-														id={`beasiswaPagedata-email${index}`}
-														value={res["schoolemail"]}
-														onChange={(e) => {
-															setInnerContentList(
-																e.target.value,
-																"beasiswaPagedata",
-																"detailschool",
-																index,
-																"schoolemail"
-															);
-														}}
-													/>
-												</div>
-											)
-										)}
-								</div>
+                          <Label
+                            htmlFor={`beasiswaPagedata-email${index}`}
+                            value="School Email"
+                          />
+                          <TextInput
+                            id={`beasiswaPagedata-email${index}`}
+                            value={res["schoolemail"]}
+                            onChange={(e) => {
+                              setInnerContentList(
+                                e.target.value,
+                                "beasiswaPagedata",
+                                "detailschool",
+                                index,
+                                "schoolemail"
+                              );
+                            }}
+                          />
+                        </div>
+                      )
+                    )}
+                </div>
 
-								<CMSSubTitle>Tur Sekolah Page</CMSSubTitle>
-								<FieldTitle>Tur Sekolah Title</FieldTitle>
-								<TextInput
-									value={data[language]["turSekolahdata"]["title"]}
-									onChange={(e) => {
-										setInnerState(e.target.value, "turSekolahdata", "title");
-									}}
-								/>
-								<FieldTitle>Tur Sekolah Subtitle</FieldTitle>
-								<TextInput
-									value={data[language]["turSekolahdata"]["subtitle"]}
-									onChange={(e) => {
-										setInnerState(e.target.value, "turSekolahdata", "subtitle");
-									}}
-								/>
-								<FieldTitle>Tur Sekolah Information</FieldTitle>
-								<TextInput
-									value={data[language]["turSekolahdata"]["infomartion"]}
-									onChange={(e) => {
-										setInnerState(
-											e.target.value,
-											"turSekolahdata",
-											"infomartion"
-										);
-									}}
-								/>
+                <CMSSubTitle>Tur Sekolah Page</CMSSubTitle>
+                <FieldTitle>Tur Sekolah Title</FieldTitle>
+                <TextInput
+                  value={data[language]["turSekolahdata"]["title"]}
+                  onChange={(e) => {
+                    setInnerState(e.target.value, "turSekolahdata", "title");
+                  }}
+                />
+                <FieldTitle>Tur Sekolah Subtitle</FieldTitle>
+                <TextInput
+                  value={data[language]["turSekolahdata"]["subtitle"]}
+                  onChange={(e) => {
+                    setInnerState(e.target.value, "turSekolahdata", "subtitle");
+                  }}
+                />
+                <FieldTitle>Tur Sekolah Information</FieldTitle>
+                <TextInput
+                  value={data[language]["turSekolahdata"]["infomartion"]}
+                  onChange={(e) => {
+                    setInnerState(
+                      e.target.value,
+                      "turSekolahdata",
+                      "infomartion"
+                    );
+                  }}
+                />
 
-								{/* <FieldTitle>Tur Sekolah Detail School</FieldTitle>
+                {/* <FieldTitle>Tur Sekolah Detail School</FieldTitle>
 								<div className="flex flex-col gap-2">
 									{!isObjectEmpty(
 										data[language]["turSekolahdata"]["detailschool"]
@@ -490,23 +471,23 @@ const CMSBtbPendaftaran = () => {
 										)}
 								</div> */}
 
-								<Button
-									id="btnSaveAndSend"
-									name="btnSaveAndSend"
-									className="w-full md:w-auto mt-3"
-									onClick={onSubmitData}
-								>
-									Save
-								</Button>
-							</div>
-						)}
-					</>
-				) : (
-					<div>Unauthorized</div>
-				)}
-				{loading && <LoadingModal label={"Submitting data, please wait..."} />}
-			</NavbarSidebarLayout>
-		);
+                <Button
+                  id="btnSaveAndSend"
+                  name="btnSaveAndSend"
+                  className="w-full md:w-auto mt-3"
+                  onClick={onSubmitData}
+                >
+                  Save
+                </Button>
+              </div>
+            )}
+          </>
+        ) : (
+          <div>Unauthorized</div>
+        )}
+        {loading && <LoadingModal label={"Submitting data, please wait..."} />}
+      </NavbarSidebarLayout>
+    );
 };
 
 export default CMSBtbPendaftaran;
