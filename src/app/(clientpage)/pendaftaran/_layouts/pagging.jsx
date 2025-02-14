@@ -13,7 +13,7 @@ const PaggingLayouts = ({
               <a href="/onlineregistration">
                 <h1 className="text-[25px] md:text-[25px] text-center font-semibold py-8 md:py-10">
                   <div className="cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600">
-                    {pendaftaranData[language]?.mainTitle}
+                    {pendaftaranData[language]?.pagingHeader?.title}
                   </div>
                 </h1>
               </a>
