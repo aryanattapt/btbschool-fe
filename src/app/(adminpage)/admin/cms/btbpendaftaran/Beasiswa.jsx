@@ -1,10 +1,19 @@
-import React from "react";
-import CMSSubTitle from "../_components/CMSSubtitle";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionPanel,
+  AccordionTitle,
+  Button,
+  Label,
+  Textarea,
+  TextInput,
+} from "flowbite-react";
+import { FaMinusCircle } from "react-icons/fa";
 import { useCmsPendaftaranStore } from "../../../../../../store/admin/cms/btbPendaftaranStore";
-import FieldTitle from "../_components/FieldTitle";
-import { Label, Textarea, TextInput } from "flowbite-react";
-import CMSDivider from "../_components/CMSDivider";
 import { isObjectEmpty } from "../../../../../utils/checker";
+import CMSDivider from "../_components/CMSDivider";
+import CMSSubTitle from "../_components/CMSSubtitle";
+import FieldTitle from "../_components/FieldTitle";
 
 const Beasiswa = () => {
   const data = useCmsPendaftaranStore((state) => state.data);
@@ -16,7 +25,21 @@ const Beasiswa = () => {
   const setSchoolWaNumber = useCmsPendaftaranStore(
     (state) => state.setSchoolWaNumber
   );
+  const addSchoolWa = useCmsPendaftaranStore((state) => state.addSchoolWa);
+  const deleteSchoolWa = useCmsPendaftaranStore(
+    (state) => state.deleteSchoolWa
+  );
   const setSchoolTlp = useCmsPendaftaranStore((state) => state.setSchoolTlp);
+  const addSchoolTlp = useCmsPendaftaranStore((state) => state.addSchoolTlp);
+  const deleteSchoolTlp = useCmsPendaftaranStore(
+    (state) => state.deleteSchoolTlp
+  );
+  const addSchoolDetail = useCmsPendaftaranStore(
+    (state) => state.addSchoolDetail
+  );
+  const deleteSchoolDetail = useCmsPendaftaranStore(
+    (state) => state.deleteSchoolDetail
+  );
 
   return (
     <>
@@ -45,99 +68,142 @@ const Beasiswa = () => {
       />
       <FieldTitle>Beasiswa Detail School</FieldTitle>
       <div className="flex flex-col gap-2">
-        {!isObjectEmpty(data[language]["beasiswaPagedata"]["detailschool"]) &&
-          data[language]["beasiswaPagedata"]["detailschool"].map(
-            (res, index) => (
-              <div className="flex flex-col gap-2">
-                <Label
-                  htmlFor={`beasiswaPagedata-title${index}`}
-                  value="School Name"
-                />
-                <TextInput
-                  id={`beasiswaPagedata-title${index}`}
-                  value={res["schoolName"]}
-                  onChange={(e) => {
-                    setInnerContentList(
-                      e.target.value,
-                      "beasiswaPagedata",
-                      "detailschool",
-                      index,
-                      "schoolName"
-                    );
-                  }}
-                />
-
-                <Label
-                  htmlFor={`beasiswaPagedata-waNumber`}
-                  value="Wa Number"
-                />
-                <div
-                  className="flex flex-col gap-2"
-                  id="beasiswaPagedata-waNumber"
-                >
-                  {!isObjectEmpty(res.schoolhp) &&
-                    res.schoolhp.map((res, innerIdx) => (
-                      <TextInput
-                        value={res["waNumber"]}
-                        onChange={(e) => {
-                          setSchoolWaNumber(
-                            e.target.value,
-                            "beasiswaPagedata",
-                            "schoolhp",
-                            index,
-                            innerIdx
-                          );
-                        }}
+        <Accordion collapseAll>
+          {!isObjectEmpty(data[language]["beasiswaPagedata"]["detailschool"]) &&
+            data[language]["beasiswaPagedata"]["detailschool"].map(
+              (res, index) => (
+                <AccordionPanel>
+                  <AccordionTitle className="p-4 bg-blue-200">
+                    {res["schoolName"]}
+                  </AccordionTitle>
+                  <AccordionContent>
+                    <Label
+                      htmlFor={`beasiswaPagedata-title${index}`}
+                      value="School Name"
+                    />
+                    <TextInput
+                      id={`beasiswaPagedata-title${index}`}
+                      value={res["schoolName"]}
+                      onChange={(e) => {
+                        setInnerContentList(
+                          e.target.value,
+                          "beasiswaPagedata",
+                          "detailschool",
+                          index,
+                          "schoolName"
+                        );
+                      }}
+                    />
+                    <div className="flex mt-3 mb-2 gap-4 items-center">
+                      <Label
+                        htmlFor={`beasiswaPagedata-waNumber`}
+                        value="Wa Number"
                       />
-                    ))}
-                </div>
+                      <Button size={"xs"} onClick={() => addSchoolWa(index)}>
+                        Tambah
+                      </Button>
+                    </div>
+                    <div
+                      className="flex flex-col gap-2"
+                      id="beasiswaPagedata-waNumber"
+                    >
+                      {!isObjectEmpty(res.schoolhp) &&
+                        res.schoolhp.map((res, innerIdx) => (
+                          <div className="flex gap-4 items-center">
+                            <div className="w-[50%]">
+                              <TextInput
+                                value={res["waNumber"]}
+                                onChange={(e) => {
+                                  setSchoolWaNumber(
+                                    e.target.value,
+                                    "beasiswaPagedata",
+                                    "schoolhp",
+                                    index,
+                                    innerIdx
+                                  );
+                                }}
+                              />
+                            </div>
+                            <div
+                              onClick={() => deleteSchoolWa(index, innerIdx)}
+                              className="mr-4 cursor-pointer text-xl text-red-600 hover:text-red-700"
+                            >
+                              <FaMinusCircle />
+                            </div>
+                          </div>
+                        ))}
+                    </div>
 
-                <Label
-                  htmlFor={`beasiswaPagedata-schooltlp`}
-                  value="School Tel"
-                />
-                <div
-                  className="flex flex-col gap-2"
-                  id="beasiswaPagedata-schooltlp"
-                >
-                  {!isObjectEmpty(res["schooltlp"]) &&
-                    res["schooltlp"].map((res, innerIdx) => (
-                      <div>
-                        <TextInput
-                          value={res}
-                          onChange={(e) => {
-                            setSchoolTlp(
-                              e.target.value,
-                              "beasiswaPagedata",
-                              index,
-                              innerIdx
-                            );
-                          }}
-                        />
-                      </div>
-                    ))}
-                </div>
+                    <div className="flex mt-3 mb-2 gap-4 items-center">
+                      <Label
+                        htmlFor={`beasiswaPagedata-schooltlp`}
+                        value="School Tel"
+                      />
+                      <Button size={"xs"} onClick={() => addSchoolTlp(index)}>
+                        Tambah
+                      </Button>
+                    </div>
+                    <div
+                      className="flex flex-col gap-2"
+                      id="beasiswaPagedata-schooltlp"
+                    >
+                      {!isObjectEmpty(res["schooltlp"]) &&
+                        res["schooltlp"].map((res, innerIdx) => (
+                          <div className="flex gap-4 items-center">
+                            <div className="w-[50%]">
+                              <TextInput
+                                value={res}
+                                onChange={(e) => {
+                                  setSchoolTlp(
+                                    e.target.value,
+                                    "beasiswaPagedata",
+                                    index,
+                                    innerIdx
+                                  );
+                                }}
+                              />
+                            </div>
+                            <div
+                              onClick={() => deleteSchoolTlp(index, innerIdx)}
+                              className="mr-4 cursor-pointer text-xl text-red-600 hover:text-red-700"
+                            >
+                              <FaMinusCircle />
+                            </div>
+                          </div>
+                        ))}
+                    </div>
 
-                <Label
-                  htmlFor={`beasiswaPagedata-email${index}`}
-                  value="School Email"
-                />
-                <TextInput
-                  id={`beasiswaPagedata-email${index}`}
-                  value={res["schoolemail"]}
-                  onChange={(e) => {
-                    setInnerContentList(
-                      e.target.value,
-                      "beasiswaPagedata",
-                      "detailschool",
-                      index,
-                      "schoolemail"
-                    );
-                  }}
-                />
-              </div>
-            )
-          )}
+                    <Label
+                      htmlFor={`beasiswaPagedata-email${index}`}
+                      value="School Email"
+                    />
+                    <TextInput
+                      id={`beasiswaPagedata-email${index}`}
+                      value={res["schoolemail"]}
+                      onChange={(e) => {
+                        setInnerContentList(
+                          e.target.value,
+                          "beasiswaPagedata",
+                          "detailschool",
+                          index,
+                          "schoolemail"
+                        );
+                      }}
+                    />
+                    <Button
+                      onClick={() => deleteSchoolDetail(index)}
+                      className="mt-4"
+                      color={"failure"}
+                      size={"sm"}
+                    >
+                      Delete
+                    </Button>
+                  </AccordionContent>
+                </AccordionPanel>
+              )
+            )}
+        </Accordion>
+        <Button onClick={addSchoolDetail}>Tambah Sekolah</Button>
       </div>
       <CMSDivider />
     </>
