@@ -18,6 +18,11 @@
   }
 }
 
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 body {
   /* color: rgb(var(--foreground-rgb)); */
   background: linear-gradient(
@@ -76,7 +81,7 @@ ol {
   padding: 20px; /* Add some padding if needed */
 }
 
-  /* styles/globals.css */
+/* styles/globals.css */
 .loader {
   display: flex;
   align-items: center;

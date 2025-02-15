@@ -73,7 +73,16 @@ const Beasiswa = () => {
             data[language]["beasiswaPagedata"]["detailschool"].map(
               (res, index) => (
                 <AccordionPanel>
-                  <AccordionTitle className="p-4 bg-blue-200">
+                  <AccordionTitle
+                    className={`
+                      p-4 bg-gray-200 hover:bg-gray-300 
+                      ${
+                        index + 1 !==
+                          data[language]["beasiswaPagedata"]["detailschool"]
+                            .length && "border-b-[1px] border-gray-300"
+                      }
+                    `}
+                  >
                     {res["schoolName"]}
                   </AccordionTitle>
                   <AccordionContent>
