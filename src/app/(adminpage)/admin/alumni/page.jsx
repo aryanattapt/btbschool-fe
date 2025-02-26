@@ -75,14 +75,15 @@ const AlumniPage = () => {
         try {
             const res = await FetchAlumni({});
     
-            const currentYearFiltered = new Date().getFullYear();
+            /* const currentYearFiltered = new Date().getFullYear();
             const startYearFiltered = currentYearFiltered - 3;
             
             const filteredData = res.filter(item => {
                 const lastStudentYear = parseInt(item.laststudentyear, 10); // Convert to integer
                 return lastStudentYear >= startYearFiltered && lastStudentYear <= currentYearFiltered;
-            });
-            setPayload(filteredData);
+            }); */
+            
+            setPayload(res);
         } catch (err) {
             setPayload([]);
             console.error('Error fetching alumni data:', err);
