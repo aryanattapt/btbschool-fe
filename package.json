@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.10.39",
+    "@amcharts/amcharts4-geodata": "^4.1.30",
     "@react-pdf/renderer": "^3.4.4",
     "ag-grid-community": "^32.0.2",
     "ag-grid-react": "^32.0.2",
@@ -38,6 +40,7 @@
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.6.13",
     "swiper": "^11.1.9",
+    "world-countries": "^5.0.0",
     "zustand": "^4.5.4"
   },
   "devDependencies": {

@@ -1,9 +1,12 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
+import WorldMapChart from "./world-map";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./sliderStyles.css";
+import useComponentWidth from "../../../../hooks/useComponentWidth";
+import RegionModal from "./RegionModal";
 
 const CustomPrevArrow = (props) => {
   const { onClick } = props;
@@ -29,6 +32,7 @@ const CeritaAlumni = ({
   alumniUniversityPayload,
   language,
 }) => {
+  const [ref, width] = useComponentWidth();
   const settingsTestimonies = {
     dots: false,
     infinite: true,
@@ -38,6 +42,7 @@ const CeritaAlumni = ({
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
   };
+  const [selectedRegion, setSelectedRegion] = useState();
 
   // const settingsFlag = {
   //     dots: true, // Enable dot indicators
@@ -83,40 +88,40 @@ const CeritaAlumni = ({
         <div className="bg-slate-300 rounded mb-20">
           {/* <div className="bg-slate-300 rounded mb-20 min-h-[20rem] sm:min-h-[25rem] md:min-h-[30rem] lg:min-h-[35rem] xl:min-h-[40rem]"> */}
           <Slider {...settingsTestimonies}>
-          {Array.isArray(alumniStoryPayload) &&
-            alumniStoryPayload.map((val, idx) => {
+            {Array.isArray(alumniStoryPayload) &&
+              alumniStoryPayload.map((val, idx) => {
                 return (
-                    <div key={val?.id || idx}>
-                        <div className="dataAlumni p-10 flex flex-col md:flex-row items-center">
-                            {val?.image && (
-                                <div className="basis-full xl:basis-1/2 flex justify-center mb-5 md:mb-0 md:mx-10 xl:mx-0">
-                                    <img
-                                        src={val?.image}
-                                        alt="alumni"
-                                        className="xl:w-[400px] md:w-[300px] xl:h-[400px] md:h-[300px] object-cover rounded-md"
-                                    />
-                                </div>
-                            )}
-                            <div className="basis-full xl:basis-1/2 text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px] flex flex-col justify-center">
-                                <div className="flex flex-col md:flex-row">
-                                    <h1 className="text-[#00305E] font-bold text-[14px] md:text-[20px] lg:text-[25px] xl:text-[25px] pr-2 max-w-full md:max-w-1/2">
-                                        {val?.name}
-                                    </h1>
-                                    <h1 className="text-gray-500 font-bold text-[14px] md:text-[20px] lg:text-[25px] xl:text-[25px] w-full md:w-1/2 text-center md:text-left">
-                                        {val?.class}
-                                    </h1>
-                                </div>
-                                <div className="mr-10">
-                                    <p className="font-semibold">
-                                        {val?.university}, {val?.major}
-                                    </p>
-                                    <p>{val?.testimonies}</p>
-                                </div>
-                            </div>
+                  <div key={val?.id || idx}>
+                    <div className="dataAlumni p-10 flex flex-col md:flex-row items-center">
+                      {val?.image && (
+                        <div className="basis-full xl:basis-1/2 flex justify-center mb-5 md:mb-0 md:mx-10 xl:mx-0">
+                          <img
+                            src={val?.image}
+                            alt="alumni"
+                            className="xl:w-[400px] md:w-[300px] xl:h-[400px] md:h-[300px] object-cover rounded-md"
+                          />
                         </div>
+                      )}
+                      <div className="basis-full xl:basis-1/2 text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px] flex flex-col justify-center">
+                        <div className="flex flex-col md:flex-row">
+                          <h1 className="text-[#00305E] font-bold text-[14px] md:text-[20px] lg:text-[25px] xl:text-[25px] pr-2 max-w-full md:max-w-1/2">
+                            {val?.name}
+                          </h1>
+                          <h1 className="text-gray-500 font-bold text-[14px] md:text-[20px] lg:text-[25px] xl:text-[25px] w-full md:w-1/2 text-center md:text-left">
+                            {val?.class}
+                          </h1>
+                        </div>
+                        <div className="mr-10">
+                          <p className="font-semibold">
+                            {val?.university}, {val?.major}
+                          </p>
+                          <p>{val?.testimonies}</p>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 );
-            })}
+              })}
           </Slider>
         </div>
       </div>
@@ -128,6 +133,21 @@ const CeritaAlumni = ({
         <p className="mx-5 mb-5">
           {alumniPayload[language]?.universitycontent}
         </p>
+      </div>
+      <div ref={ref} className="mx-5 relative">
+        <WorldMapChart
+          width={width}
+          markers={alumniPayload.regionMap}
+          onSelect={(val) => setSelectedRegion(val)}
+        />
+        <RegionModal
+          selectedRegion={selectedRegion}
+          attachment={
+            alumniPayload.regionMap.find((x) => x.title === selectedRegion)
+              ?.attachment
+          }
+          onClose={() => setSelectedRegion("")}
+        />
       </div>
       <div className="slider-container">
         <Slider {...settingsFlag}>
@@ -141,7 +161,7 @@ const CeritaAlumni = ({
                     className="w-[400px] h-[200px] object-contain"
                   />
                 )}
-                  {/* <span className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50">
+                {/* <span className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50">
                     {val?.caption}
                   </span> */}
               </div>

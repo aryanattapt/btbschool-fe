@@ -50,6 +50,7 @@ const CMSBtbBelajar = () => {
     setSmpContentList: state.setSmpContentList,
     addSmpContentList: state.addSmpContentList,
     setSmaContentList: state.setSmaContentList,
+    addSmaContentList: state.addSmaContentList,
     submitData: state.submitData,
     loading: state.loading,
   }));

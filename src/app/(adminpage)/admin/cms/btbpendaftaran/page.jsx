@@ -84,8 +84,6 @@ const CMSBtbPendaftaran = () => {
     }
   };
 
-  console.log({ data });
-
   if (isLoadingPage) {
     return <Loader />;
   } else
