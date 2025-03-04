@@ -297,6 +297,33 @@ const AlumniForm = () => {
         </div>
 
         <div className="mb-4">
+          <div className="mb-2 block w-72">
+            <Label htmlFor="gender" value="Gender"  />
+          </div>
+          <div className="flex items-center gap-2" id="gender">
+            <Radio
+              checked={alumniPayload.gender === "male"}
+              id="genderMale"
+              name="gender"
+              value="male"
+              onChange={formChangeHandler}
+            />
+            <Label htmlFor="genderMale">Male</Label>
+            <Radio
+              checked={alumniPayload.gender === "female"}
+              id="genderFemale"
+              name="gender"
+              value="female"
+              onChange={formChangeHandler}
+            />
+            <Label htmlFor="genderFemale">Female</Label>
+          </div>
+          {alumniPayload.errors?.gender && (
+            <span className="font-medium text-red-600">{alumniPayload.errors.gender}</span>
+          )}
+        </div>
+
+        <div className="mb-4">
           <div className="mb-2 block">
             <Label htmlFor="laststudentyear" value="Last Year at BTB" />
           </div>
@@ -366,6 +393,42 @@ const AlumniForm = () => {
             />
           </div>
         }
+
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="major" value="Major" />
+          </div>
+          <TextInput
+            value={alumniPayload?.major || ''}
+            type="text"
+            id="major"
+            name="major"
+            onChange={formChangeHandler}
+          />
+        </div>
+
+        <div className="mb-4">
+          <div className="mb-2 block">
+            <Label htmlFor="yeargraduation" value="Year Of Graduation" />
+          </div>
+          <div className="relative w-full">
+            <DatePicker
+              selected={alumniPayload?.yeargraduation || null}
+              onChange={(date) => datePickerHandler('yeargraduation', date ? moment(date).format("yyyy") : "")}
+              dateFormat="yyyy"
+              showYearPicker
+              autoComplete="off"
+              maxDate={new Date()}
+              onKeyDown={e => e.preventDefault()}
+              className="block w-full p-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+              wrapperClassName="w-full"
+            />
+          </div>
+          {alumniPayload.errors?.yeargraduation && (
+            <p className="text-red-500 text-sm">{alumniPayload.errors.yeargraduation}</p>
+          )}
+        </div>
+
         <div>
           <div className="mb-2 block">
             <Label htmlFor="statusKerjaOptions" value="Working Status" />
@@ -414,6 +477,7 @@ const AlumniForm = () => {
             onChange={formChangeHandler}
           />
         </div>
+        
         <div className="mb-4">
           <div className="mb-2 block">
             <Label htmlFor="phoneno" value="Phone Number" />
@@ -442,6 +506,64 @@ const AlumniForm = () => {
             value={alumniPayload?.email || ''}
           />
           {alumniPayload.errors?.email && (
+            <p className="text-red-500 text-sm">{alumniPayload.errors.email}</p>
+          )}
+        </div>
+
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="address" value="Address" />
+          </div>
+          <Textarea
+            rows={4}
+            value={alumniPayload?.address || ''}
+            type="text"
+            id="address"
+            name="address"
+            onChange={formChangeHandler}
+          />
+        </div>
+
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="careerpathwayandactivities" value="Career Pathway & what is your Activities now?" />
+          </div>
+          <Textarea
+            rows={4}
+            value={alumniPayload?.careerpathwayandactivities || ''}
+            type="text"
+            id="careerpathwayandactivities"
+            name="careerpathwayandactivities"
+            onChange={formChangeHandler}
+          />
+        </div>
+
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="momentatbtb" value="Moments at BTB" />
+          </div>
+          <Textarea
+            rows={4}
+            value={alumniPayload?.momentatbtb || ''}
+            type="text"
+            id="momentatbtb"
+            name="momentatbtb"
+            onChange={formChangeHandler}
+          />
+        </div>
+
+        <div className="mb-4">
+          <div className="mb-2 block">
+            <Label htmlFor="socialmedia" value="Social Media" />
+          </div>
+          <TextInput
+            id="socialmedia"
+            name="socialmedia"
+            type="text"
+            onChange={formChangeHandler}
+            value={alumniPayload?.socialmedia || ''}
+          />
+          {alumniPayload.errors?.socialmedia && (
             <p className="text-red-500 text-sm">{alumniPayload.errors.email}</p>
           )}
         </div>

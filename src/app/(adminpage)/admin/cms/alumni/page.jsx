@@ -248,8 +248,23 @@ const CMSAlumni = () => {
           <div>
             <AdminHeader title="Alumni Content Settings Form" />
 
+            {/* Mail Setting */}
+            <div className="my-6">
+              <FieldTitle>Mail Setting</FieldTitle>
+              <Button
+                color="success"
+                onClick={() =>
+                  (window.location.href = "/admin/cms/alumni/mailsetting")
+                }
+                className="mb-4"
+              >
+                Open Setting
+              </Button>
+            </div>
+
             {/* Pengenanlan */}
             <div className="my-6">
+              <FieldTitle>Tambah Cerita Alumni</FieldTitle>
               <Button
                 color="success"
                 onClick={() =>
@@ -266,6 +281,7 @@ const CMSAlumni = () => {
               />
             </div>
             <div className="my-6">
+              <FieldTitle>Tambah Universitas</FieldTitle>
               <Button
                 color="success"
                 onClick={() =>
