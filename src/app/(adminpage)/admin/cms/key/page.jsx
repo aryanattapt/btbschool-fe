@@ -20,11 +20,14 @@ const SecretKeyForm = () => {
     const [isLoadingPage, setIsLoadingPage] = useState(true);
     const [isLoadingMail, setIsLoadingMail] = useState(false);
     const [isLoadingRecaptcha, setIsLoadingRecaptcha] = useState(false);
-    const [isLoadingInstagram, setIsLoadingInstagram] = useState(false);
+    
+    const [payloadMail, setPayloadMail] = useState({});
+    const [payloadRecaptcha, setPayloadRecaptcha] = useState({});
 
-    const [payloadMail, setPayloadMail] = useState({})
-    const [payloadRecaptcha, setPayloadRecaptcha] = useState({})
-    const [payloadInstagram, setPayloadInstagram] = useState({})
+    const [isLoadingInstagramHomePage, setIsLoadingInstagramHomePage] = useState(false);
+    const [isLoadingInstagramAlumniPage, setIsLoadingInstagramAlumniPage] = useState(false);
+    const [payloadInstagramHomePage, setPayloadInstagramHomePage] = useState({})
+    const [payloadInstagramAlumniPage, setPayloadInstagramAlumniPage] = useState({})
 
     useEffect(() => {
         fetchData(fetchAllContent);
@@ -53,7 +56,8 @@ const SecretKeyForm = () => {
             const results = await Promise.allSettled([
                 fetchEmailConfigContent(),
                 fetchRecaptchaConfigContent(),
-                fetchInstagramConfigContent(),
+                fetchHomepageInstagramConfigContent(),
+                fetchAlumnipageInstagramConfigContent(),
             ]);
 
             const rejectedPromises = results.filter(result => result.status === 'rejected');
@@ -92,15 +96,25 @@ const SecretKeyForm = () => {
         }
     })
 
-    const fetchInstagramConfigContent = async () => new Promise(async (resolve, reject) => {
+    const fetchHomepageInstagramConfigContent = async () => new Promise(async (resolve, reject) => {
         try {
-            const emailConfig = await GetInstagramConfig();
-            setPayloadInstagram(emailConfig?.data);
+            const emailConfig = await GetInstagramConfig({"type": "instagramtoken.homepage"});
+            setPayloadInstagramHomePage(emailConfig?.data);
             return resolve(true);
         } catch (error) {
             return reject(error);
         }
-    })
+    });
+
+    const fetchAlumnipageInstagramConfigContent = async () => new Promise(async (resolve, reject) => {
+        try {
+            const emailConfig = await GetInstagramConfig({"type": "instagramtoken.alumnipage"});
+            setPayloadInstagramAlumniPage(emailConfig?.data);
+            return resolve(true);
+        } catch (error) {
+            return reject(error);
+        }
+    });
 
     const formChangeHandlerMail = (e) => {
         const { name, value, type, files } = e.target;
@@ -162,30 +176,60 @@ const SecretKeyForm = () => {
         }
     };
 
-    const formChangeHandlerInstagram = (e) => {
+    const formChangeHandlerHomePageInstagram = (e) => {
         const { name, value, type, files } = e.target;
         if(type == 'file'){
             Object.keys(files).map((val) => {
-                setPayloadInstagram(prevState => ({
+                setPayloadInstagramHomePage(prevState => ({
                     ...prevState,
                     [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
                 }));
             });
         } else if(type == 'checkbox'){
             if(e.target.checked){
-                setPayloadInstagram(prevState => ({
+                setPayloadInstagramHomePage(prevState => ({
                     ...prevState,
                     [name]: prevState[name] ? [...prevState[name], value] : [value]
                 }));
             } else{
-                setPayloadInstagram(prevState => ({
+                setPayloadInstagramHomePage(prevState => ({
                     ...prevState,
                     [name]: prevState[name].filter(val => val !== value)
                 }));
             }
         }
         else{
-            setPayloadInstagram(prevState => ({
+            setPayloadInstagramHomePage(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
+    };
+
+    const formChangeHandlerAlumniPageInstagram = (e) => {
+        const { name, value, type, files } = e.target;
+        if(type == 'file'){
+            Object.keys(files).map((val) => {
+                setPayloadInstagramAlumniPage(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], files[val]] : [files[val]]
+                }));
+            });
+        } else if(type == 'checkbox'){
+            if(e.target.checked){
+                setPayloadInstagramAlumniPage(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name] ? [...prevState[name], value] : [value]
+                }));
+            } else{
+                setPayloadInstagramAlumniPage(prevState => ({
+                    ...prevState,
+                    [name]: prevState[name].filter(val => val !== value)
+                }));
+            }
+        }
+        else{
+            setPayloadInstagramAlumniPage(prevState => ({
                 ...prevState,
                 [name]: value
             }));
@@ -290,9 +334,9 @@ const SecretKeyForm = () => {
         }
     };
 
-    const submitHandlerInstagram = async (e) => {
+    const submitHandlerHomePageInstagram = async (e) => {
         try {
-            if(!payloadInstagram.token){
+            if(!payloadInstagramHomePage.token){
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
@@ -302,9 +346,9 @@ const SecretKeyForm = () => {
                 return;
             }
 
-            setIsLoadingInstagram(true);
-            await UpdateInstagramonfig({...payloadInstagram, "type": "instagramtoken"});
-            await fetchInstagramConfigContent();
+            setIsLoadingInstagramHomePage(true);
+            await UpdateInstagramonfig({...payloadInstagramHomePage, "type": "instagramtoken.homepage"});
+            await fetchHomepageInstagramConfigContent();
             Swal.fire({
                 allowOutsideClick: false,
                 title: 'Submit Notification!',
@@ -319,7 +363,40 @@ const SecretKeyForm = () => {
                 icon: 'error',
             });
         } finally{
-            setIsLoadingInstagram(false);
+            setIsLoadingInstagramHomePage(false);
+        }
+    };
+
+    const submitHandlerAlumniPageInstagram = async (e) => {
+        try {
+            if(!payloadInstagramAlumniPage.token){
+                Swal.fire({
+                    allowOutsideClick: false,
+                    title: 'Submit Notification!',
+                    text: "Instagram token is mandatory",
+                    icon: 'error',
+                });
+                return;
+            }
+
+            setIsLoadingInstagramAlumniPage(true);
+            await UpdateInstagramonfig({...payloadInstagramAlumniPage, "type": "instagramtoken.alumnipage"});
+            await fetchAlumnipageInstagramConfigContent();
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Submit Notification!',
+                text: "Success!",
+                icon: 'info',
+            });
+        } catch (error) {
+            Swal.fire({
+                allowOutsideClick: false,
+                title: 'Submit Notification!',
+                text: error.toString(),
+                icon: 'error',
+            });
+        } finally{
+            setIsLoadingInstagramAlumniPage(false);
         }
     };
     
@@ -440,22 +517,50 @@ const SecretKeyForm = () => {
                 </div>
 
                 <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                    Instagram Config
+                    Home Page Instagram Config
                 </div>
                 <div>
                     <div className="mb-2 block">
                         <Label value="Token" />
                     </div>
-                    <Textarea value={payloadInstagram.token || ''} id="token" name="token"  type="text" onChange={formChangeHandlerInstagram} required rows={4} />
+                    <Textarea value={payloadInstagramHomePage.token || ''} id="token" name="token"  type="text" onChange={formChangeHandlerHomePageInstagram} required rows={4} />
                     <p className="mt-1 text-sm text-gray-500">Instagram Basic API Token</p>
                 </div>
 
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">
                         <div className="mt-1 py-1.25 px-0.75 items-center text-center w-1/2 md:w-full">
-                            <Button type="submit" id="btnSaveAndSendInstagram" name="btnSaveAndSendInstagram" className="w-full lg:w-auto" disabled={isLoadingInstagram} onClick={submitHandlerInstagram}>
+                            <Button type="submit" id="btnSaveAndSendInstagramHomePage" name="btnSaveAndSendInstagramHomePage" className="w-full lg:w-auto" disabled={isLoadingInstagramHomePage} onClick={submitHandlerHomePageInstagram}>
                                 {
-                                    isLoadingInstagram ? <>
+                                    isLoadingInstagramHomePage ? <>
+                                        <Spinner aria-label="Spinner button example" size="sm" />
+                                        <span className="pl-3">Please Wait...</span>
+                                    </> : <>
+                                        Save  
+                                    </>
+                                }
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                    Alumni Page Instagram Config
+                </div>
+                <div>
+                    <div className="mb-2 block">
+                        <Label value="Token" />
+                    </div>
+                    <Textarea value={payloadInstagramAlumniPage.token || ''} id="token" name="token"  type="text" onChange={formChangeHandlerAlumniPageInstagram} required rows={4} />
+                    <p className="mt-1 text-sm text-gray-500">Instagram Basic API Token</p>
+                </div>
+
+                <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
+                    <div className="flex">
+                        <div className="mt-1 py-1.25 px-0.75 items-center text-center w-1/2 md:w-full">
+                            <Button type="submit" id="btnSaveAndSendInstagramAlumniPage" name="btnSaveAndSendInstagramAlumniPage" className="w-full lg:w-auto" disabled={isLoadingInstagramAlumniPage} onClick={submitHandlerAlumniPageInstagram}>
+                                {
+                                    isLoadingInstagramAlumniPage ? <>
                                         <Spinner aria-label="Spinner button example" size="sm" />
                                         <span className="pl-3">Please Wait...</span>
                                     </> : <>

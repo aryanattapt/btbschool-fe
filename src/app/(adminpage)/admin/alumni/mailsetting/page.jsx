@@ -136,7 +136,7 @@ const MailForm = () => {
             isAuthorized ? 
             <div className="max-w-full grid gap-3 md:px-8">
                 <div className="mt-4 mb-4">
-                    <AdminHeader title="Alumni Mail Setting Form"/>
+                    <AdminHeader title="Verify Alumni Mail Setting Form"/>
                 </div>
                 
                 <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">

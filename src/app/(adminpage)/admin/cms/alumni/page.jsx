@@ -248,13 +248,27 @@ const CMSAlumni = () => {
           <div>
             <AdminHeader title="Alumni Content Settings Form" />
 
-            {/* Mail Setting */}
+            {/* Alumni Submission Mail Setting */}
             <div className="my-6">
-              <FieldTitle>Mail Setting</FieldTitle>
+              <FieldTitle>Alumni Submission Mail Setting</FieldTitle>
               <Button
                 color="success"
                 onClick={() =>
                   (window.location.href = "/admin/cms/alumni/mailsetting")
+                }
+                className="mb-4"
+              >
+                Open Setting
+              </Button>
+            </div>
+
+            {/* Verify Alumni Mail Setting */}
+            <div className="my-6">
+              <FieldTitle>Verify Alumni Mail Setting</FieldTitle>
+              <Button
+                color="success"
+                onClick={() =>
+                  (window.location.href = "/admin/alumni/mailsetting")
                 }
                 className="mb-4"
               >

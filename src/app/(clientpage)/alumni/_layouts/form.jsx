@@ -405,6 +405,9 @@ const AlumniForm = () => {
             name="major"
             onChange={formChangeHandler}
           />
+          {alumniPayload.errors?.major && (
+            <p className="text-red-500 text-sm">{alumniPayload.errors.major}</p>
+          )}
         </div>
 
         <div className="mb-4">
@@ -451,6 +454,9 @@ const AlumniForm = () => {
             />
             <Label htmlFor="statusKerjaOptionNotWork">Not Work</Label>
           </div>
+          {alumniPayload.errors?.statusKerjaOptions && (
+            <p className="text-red-500 text-sm">{alumniPayload.errors.statusKerjaOptions}</p>
+          )}
         </div>
         <div>
           <div className="mb-2 block">
@@ -463,6 +469,9 @@ const AlumniForm = () => {
             name="professionname"
             onChange={formChangeHandler}
           />
+          {alumniPayload.errors?.professionname && (
+            <p className="text-red-500 text-sm">{alumniPayload.errors.professionname}</p>
+          )}
         </div>
         <div>
           <div className="mb-2 block">
@@ -476,6 +485,9 @@ const AlumniForm = () => {
             name="currentlocation"
             onChange={formChangeHandler}
           />
+          {alumniPayload.errors?.currentlocation && (
+            <p className="text-red-500 text-sm">{alumniPayload.errors.currentlocation}</p>
+          )}
         </div>
         
         <div className="mb-4">
@@ -522,6 +534,9 @@ const AlumniForm = () => {
             name="address"
             onChange={formChangeHandler}
           />
+          {alumniPayload.errors?.address && (
+            <p className="text-red-500 text-sm">{alumniPayload.errors.address}</p>
+          )}
         </div>
 
         <div>
@@ -536,6 +551,9 @@ const AlumniForm = () => {
             name="careerpathwayandactivities"
             onChange={formChangeHandler}
           />
+          {alumniPayload.errors?.careerpathwayandactivities && (
+            <p className="text-red-500 text-sm">{alumniPayload.errors.careerpathwayandactivities}</p>
+          )}
         </div>
 
         <div>
@@ -550,6 +568,9 @@ const AlumniForm = () => {
             name="momentatbtb"
             onChange={formChangeHandler}
           />
+          {alumniPayload.errors?.momentatbtb && (
+            <p className="text-red-500 text-sm">{alumniPayload.errors.momentatbtb}</p>
+          )}
         </div>
 
         <div className="mb-4">
@@ -564,7 +585,7 @@ const AlumniForm = () => {
             value={alumniPayload?.socialmedia || ''}
           />
           {alumniPayload.errors?.socialmedia && (
-            <p className="text-red-500 text-sm">{alumniPayload.errors.email}</p>
+            <p className="text-red-500 text-sm">{alumniPayload.errors.socialmedia}</p>
           )}
         </div>
 

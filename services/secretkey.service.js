@@ -43,7 +43,7 @@ export const UpdateRecaptchaConfig = (payload) => new Promise(async (resolve, re
 
 export const GetInstagramConfig = (payload) => new Promise(async (resolve, reject) => {
     try {
-        const result = await callInternalAPI('/secretkey/instagram/fetch/', 'POST', payload, {"Authorization": `Bearer ${getCookie(process.env.NEXT_PUBLIC_CLIENTSESSION)}`});
+        const result = await callInternalAPI('/secretkey/instagram/fetch/', 'POST', {"data": payload}, {"Authorization": `Bearer ${getCookie(process.env.NEXT_PUBLIC_CLIENTSESSION)}`});
         return resolve(result);
     } catch (error) {
         console.log(error); 

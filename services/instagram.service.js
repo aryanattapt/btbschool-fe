@@ -1,8 +1,8 @@
 import { callInternalAPI } from "../helpers/internalapi.helper";
 
-export const GetBTBInstagramFeed = () => new Promise(async (resolve, reject) => {
+export const GetBTBInstagramFeed = (igType) => new Promise(async (resolve, reject) => {
     try {
-        const res = await callInternalAPI('/instagram/feed/', 'GET', {}, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
+        const res = await callInternalAPI('/instagram/feed/', 'POST', {"data": {"type": igType}}, {"Authorization": process.env.NEXT_PUBLIC_BASICKEY});
         return resolve(res.data);
     } catch (error) {
         console.log(error); 

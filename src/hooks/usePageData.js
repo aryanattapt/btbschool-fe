@@ -48,7 +48,7 @@ export const usePageData = create((set, get) => ({
         language: localStorage.getItem(LANGUAGEKEY) || initialData.language,
       });
       const results = await Promise.allSettled([
-        GetBTBInstagramFeed(),
+        GetBTBInstagramFeed("instagramtoken.homepage"),
         GetConfig(configName, {
           type: {
             $in: [
