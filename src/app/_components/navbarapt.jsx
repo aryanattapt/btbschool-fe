@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavbarPayload } from "../../../data";
 import { IoIosArrowDown } from "react-icons/io";
 import { usePageData } from "../../hooks/usePageData";
@@ -11,6 +11,8 @@ const NavBar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   const {
     language,
@@ -56,6 +58,29 @@ const NavBar = () => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        navRef.current &&
+        !navRef.current.contains(event.target) &&
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target) // Tambahkan pengecualian untuk hamburger icon
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   if (isLoading) {
     return <></>;
   } else if (payload)
@@ -81,6 +106,7 @@ const NavBar = () => {
               />
             </a>
             <div
+              ref={hamburgerRef}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="transition-all duration-300 text-white cursor-pointer"
             >
@@ -102,6 +128,7 @@ const NavBar = () => {
           </div>
 
           <div
+            ref={navRef}
             className={`lg:hidden w-full ${
               isMenuOpen ? "block" : "hidden"
             } bg-[#00305E]`}
@@ -148,16 +175,6 @@ const NavBar = () => {
                             </li>
                           );
                         })}
-
-                        {/* <li>
-                            <a href="#login" className="block px-4 py-2 hover:bg-gray-200 text-center">Login</a>
-                            </li>
-                            <li>
-                            <a href="#signup" className="block px-4 py-2 hover:bg-gray-200 text-center">Sign Up</a>
-                            </li>
-                            <li>
-                            <a href="#settings" className="block px-4 py-2 hover:bg-gray-200 text-center">Settings</a>
-                            </li> */}
                       </ul>
                     </li>
                   </ul>
@@ -262,16 +279,6 @@ const NavBar = () => {
                           </li>
                         );
                       })}
-
-                      {/* <li>
-                            <a href="#login" className="block px-4 py-2 hover:bg-orange-400">Login</a>
-                            </li>
-                            <li>
-                            <a href="#signup" className="block px-4 py-2 hover:bg-orange-400">Sign Up</a>
-                            </li>
-                            <li>
-                            <a href="#settings" className="block px-4 py-2 hover:bg-orange-400">Settings</a>
-                            </li> */}
                     </ul>
                   </li>
                 </ul>
