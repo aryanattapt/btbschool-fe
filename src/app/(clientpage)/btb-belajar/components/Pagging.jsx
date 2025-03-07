@@ -10,12 +10,12 @@ const Pagging = ({ btbBelajarData, language }) => {
               </h1>
             </div>
           </div>
-          <div className="inline-flex gap-20 text-[20px] justify-center text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
-            <ul className="flex flex-wrap -mb-px py-8 md:py-10 px-5">
+          <div className="inline-flex text-[20px] justify-center text-left sm:text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
+            <ul className="flex flex-col sm:flex-row sm:gap-x-8 md:gap-x-16 2xl:gap-x-24 -mb-px py-8 md:py-10 px-5 ">
               {btbBelajarData[language]?.paging?.url?.map((val, idx) => {
                 return (
                   <li
-                    className="sm:px-8 md:px-20 lg:px-10 xl:px-15 px-5"
+                    // className="sm:px-8 md:px-20 lg:px-10 xl:px-15 px-5"
                     key={idx}
                   >
                     <a
