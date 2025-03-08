@@ -19,6 +19,7 @@ import {
   Button,
   FileInput,
   Label,
+  Radio,
   Spinner,
   Tabs,
   Textarea,
@@ -248,6 +249,17 @@ const CMSAlumni = () => {
           <div>
             <AdminHeader title="Alumni Content Settings Form" />
 
+            {/* Show Instagram Feed */}
+            <div className="my-6">
+              <FieldTitle>Show Instagram Feed</FieldTitle>
+                <div className="flex flex-wrap gap-2">
+                    <Radio checked={alumniPayload?.showigfeed == 'true'} id="showigfeedtrue" name="showigfeed" value="true" onChange={formChangeHandler}/>
+                    <Label className="mr-4">True</Label>
+                    <Radio checked={alumniPayload?.showigfeed == 'false' || !alumniPayload?.showigfeed} id="showigfeedfalse" name="showigfeed" value="false" onChange={formChangeHandler}/>
+                    <Label className="mr-4">False</Label>
+                </div>
+            </div>
+
             {/* Alumni Submission Mail Setting */}
             <div className="my-6">
               <FieldTitle>Alumni Submission Mail Setting</FieldTitle>
@@ -315,6 +327,19 @@ const CMSAlumni = () => {
                   <Tabs.Item active title="Indonesia">
                     <div>
                       <div className="mb-2 block">
+                        <Label htmlFor="instagramfeedtitle" value="Instagram Feed Title" />
+                      </div>
+                      <Textarea
+                        value={alumniPayload[`instagramfeedtitle[ID]`]}
+                        id="instagramfeedtitle"
+                        name={`instagramfeedtitle[ID]`}
+                        required
+                        rows={1}
+                        onChange={formChangeHandler}
+                      />
+                    </div>
+                    <div>
+                      <div className="mb-2 block">
                         <Label htmlFor="universitytitle" value="Title" />
                       </div>
                       <Textarea
@@ -341,6 +366,19 @@ const CMSAlumni = () => {
                     </div>
                   </Tabs.Item>
                   <Tabs.Item active title="English">
+                    <div>
+                      <div className="mb-2 block">
+                        <Label htmlFor="instagramfeedtitle" value="Instagram Feed Title" />
+                      </div>
+                      <Textarea
+                        value={alumniPayload[`instagramfeedtitle[EN]`]}
+                        id="instagramfeedtitle"
+                        name={`instagramfeedtitle[EN]`}
+                        required
+                        rows={1}
+                        onChange={formChangeHandler}
+                      />
+                    </div>
                     <div>
                       <div className="mb-2 block">
                         <Label htmlFor="universitytitle" value="Title" />

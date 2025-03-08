@@ -128,19 +128,32 @@ export const usePageData = create((set, get) => ({
         isLoading: true,
         language: localStorage.getItem(LANGUAGEKEY) || initialData.language,
       });
-      const mainData = await GetConfig(configName, {
-        type: {
-          $in: [
-            "generalsetting",
-            "alumni",
-            "alumni.story",
-            "alumni.university",
-          ],
-        },
-      });
+
+      const results = await Promise.allSettled([
+        GetBTBInstagramFeed("instagramtoken.alumnipage"),
+        GetConfig(configName, {
+          type: {
+            $in: [
+              "generalsetting",
+              "alumni",
+              "alumni.story",
+              "alumni.university",
+            ],
+          },
+        }),
+      ]);
+
+      const igFeedData =
+        results[0].status === "fulfilled" ? results[0].value : [];
+      const mainData =
+        results[1].status === "fulfilled" ? results[1].value : [];
 
       set({
         result: {
+          instagramFeed:
+            igFeedData != null && igFeedData.length > 0
+              ? igFeedData.slice(0, 6)
+              : [],
           alumni: mainData?.find((val) => val?.type == "alumni") || {},
           alumniStory:
             mainData?.filter((val) => val?.type == "alumni.story") || [],

@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./sliderStyles.css";
 import useComponentWidth from "../../../../hooks/useComponentWidth";
 import RegionModal from "./RegionModal";
+import InstagramFeedsComponent from '../../../_components/instagramfeed';
 
 const CustomPrevArrow = (props) => {
   const { onClick } = props;
@@ -31,6 +32,7 @@ const CeritaAlumni = ({
   alumniStoryPayload,
   alumniUniversityPayload,
   language,
+  instagramFeed
 }) => {
   const [ref, width] = useComponentWidth();
   const settingsTestimonies = {
@@ -169,6 +171,10 @@ const CeritaAlumni = ({
           })}
         </Slider>
       </div>
+
+      {
+        alumniPayload?.showigfeed == 'true' ? <InstagramFeedsComponent payload={instagramFeed || []} title={alumniPayload[language]?.instagramfeedtitle} url={'https://www.instagram.com/btb_school_alumni'}/>:<></>
+      }
     </div>
   );
 };

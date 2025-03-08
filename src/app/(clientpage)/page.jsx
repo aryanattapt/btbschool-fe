@@ -7,6 +7,7 @@ import { FaInstagram } from "react-icons/fa";
 import { HomePagePayload } from "../../../data";
 import { usePageData } from '../../hooks/usePageData';
 import Loader from "../_components/loader";
+import InstagramFeedsComponent from '../_components/instagramfeed';
 
 const HomePage = () => {
   const [homePagePayload, _] = useState(HomePagePayload);
@@ -89,15 +90,17 @@ const HomePage = () => {
                 })
               }
             </div>
-            <hr className="h-px mt-10 md:mt-32 md:mb-20 mb-10 bg-gray-200 border-0 dark:bg-gray-700" />
+
+            {/* <hr className="h-px mt-10 md:mt-32 md:mb-20 mb-10 bg-gray-200 border-0 dark:bg-gray-700" />
             <div className="text-[25px] md:text-[60px] md:text-start text-center font-semibold">
               <h1>{homePagePayload[language].instagramtitle}</h1>
-            </div>
-            <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-2 mt-4 ">
+            </div> */}
+
+            {/* h-[300px] h-[300px] md:w-[230px] md:h-[230px]  xl:w-[360px] xl:h-[360px] lg:w-[230px] lg:h-[230px] object-cover */}
+            {/* <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-2 mt-4 ">
               {instagramFeed.map((val, idx) => {
                 return (
                   <div key={idx}>
-                    {/* h-[300px] h-[300px] md:w-[230px] md:h-[230px]  xl:w-[360px] xl:h-[360px] lg:w-[230px] lg:h-[230px] object-cover */}
                     <img
                       className="cursor-pointer h-[300px] md:w-[400px] md:h-[500px] lg:w-[300px] lg:h-[300px] xl:w-[300px] xl:h-[400px] object-cover"
                       src={`${val.thumbnail_url || val.media_url}`}
@@ -107,8 +110,11 @@ const HomePage = () => {
                   </div>
                 );
               })}
-            </div>
-            <div className="m-10 flex justify-center">
+            </div> */}
+
+            <InstagramFeedsComponent payload={instagramFeed} title={homePagePayload[language].instagramtitle} url={'https://www.instagram.com/btb_school'}/>
+            
+            {/* <div className="m-10 flex justify-center">
               <button
                 className="bg-[#00305E] flex items-center text-white hover:bg-blue-700 font-medium md:rounded-full rounded text-sm md:text-md md:px-10 px-5 py-2.5 text-center"
                 onClick={() =>
@@ -118,7 +124,7 @@ const HomePage = () => {
                 <FaInstagram className="text-white mr-2" />
                 View More On Instagram
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </>

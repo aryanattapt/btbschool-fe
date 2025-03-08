@@ -13,6 +13,7 @@ const AlumniPage = () => {
   const alumniPayload = usePageData((state) => state.result.alumni);
   const alumniStoryPayload = usePageData((state) => state.result.alumniStory);
   const alumniUniversityPayload = usePageData((state) => state.result.alumniUniversity);
+  const instagramFeed = usePageData((state) => state.result.instagramFeed);
 
   useEffect(() => {
     getAlumniPageData();
@@ -33,7 +34,7 @@ const AlumniPage = () => {
         />
 
         {activeTab === "cerita-alumni" && (
-            <CeritaAlumni alumniPayload={alumniPayload} alumniStoryPayload={alumniStoryPayload} alumniUniversityPayload = {alumniUniversityPayload} language={language} />
+            <CeritaAlumni alumniPayload={alumniPayload} alumniStoryPayload={alumniStoryPayload} alumniUniversityPayload = {alumniUniversityPayload} language={language} instagramFeed={instagramFeed}/>
         )}
 
         {activeTab === "pendaftaran-alumni" && (
