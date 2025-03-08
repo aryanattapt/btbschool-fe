@@ -103,6 +103,23 @@ const Beasiswa = () => {
                         );
                       }}
                     />
+                    <Label
+                      htmlFor={`beasiswaPagedata-address${index}`}
+                      value="School Address"
+                    />
+                    <TextInput
+                      id={`beasiswaPagedata-address${index}`}
+                      value={res["schoolAddress"]}
+                      onChange={(e) => {
+                        setInnerContentList(
+                          e.target.value,
+                          "beasiswaPagedata",
+                          "detailschool",
+                          index,
+                          "schoolAddress"
+                        );
+                      }}
+                    />
                     <div className="flex mt-3 mb-2 gap-4 items-center">
                       <Label
                         htmlFor={`beasiswaPagedata-waNumber`}
