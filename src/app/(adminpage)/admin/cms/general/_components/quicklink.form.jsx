@@ -1,12 +1,46 @@
 'use client'
 import { 
     Button,
+    FileInput,
     Label 
 } from "flowbite-react";
 import AgGridTableForm from '../../_components/aggrid.form';
 
 
 const QuickLinkForm = ({formChangeHandler, payload}) => {
+    const LogoFileInputRenderer = (params) => {
+        const handleFileChange = (event) => {
+          const file = event.target.files[0];
+          if (file && file.size <= 2 * 1024 * 1024 && file.type.startsWith("image/")){
+            params.setValue(file.name);
+    
+            /* Jika mau disave jadi file beneran */
+            /* params.node.data.file = file;
+                    params.api.refreshCells({ rowNodes: [params.node] }); */
+    
+            /* Disimpan sebagai base64 */
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              params.node.data[params.column.colId] = reader.result;
+            };
+            reader.readAsDataURL(file);
+            params.api.refreshCells({ rowNodes: [params.node] });
+          } else {
+            alert(
+              `${file.name} exceeds the 2 MB size limit or file should be valid image format`
+            );
+          }
+        };
+    
+        return (
+            <FileInput
+                accept="image/*"
+                name={params.column.colid}
+                onChange={handleFileChange}
+            />
+        );
+    };
+
     const DeleteButtonRenderer = (params, formChangeHandler, name) => {
         const handleDelete = () => {
             params.api.applyTransaction({ remove: [params.node.data] });
@@ -27,6 +61,23 @@ const QuickLinkForm = ({formChangeHandler, payload}) => {
     };
     
     const columnDefs = [
+        {
+            headerName: "Logo",
+            field: "logo",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: "cell-center",
+            cellStyle: { textAlign: "left" },
+            width: "140vw",
+            editable: true,
+            cellRenderer: (p) => LogoFileInputRenderer(p),
+        },
         {
             headerName: "Name",
             field: "name",
