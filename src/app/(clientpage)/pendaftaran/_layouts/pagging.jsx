@@ -57,6 +57,18 @@ const PaggingLayouts = ({
                   {pendaftaranData[language]?.pagingHeader?.url[2]?.title}
                 </div>
               </li>
+              <li className="px-10 sm:px-4 md:px-2 lg:px-4 xl:px-[100px]">
+                <div
+                  className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
+                    activeTab === "onlineregistration"
+                      ? "bg-white text-black underline"
+                      : "bg-white"
+                  }`}
+                  onClick={() => window.location.href = `${pendaftaranData[language]?.pagingHeader?.url[3]?.url}`}
+                >
+                  {pendaftaranData[language]?.pagingHeader?.url[3]?.title}
+                </div>
+              </li>
             </ul>
           </div>
         </div>

@@ -264,14 +264,14 @@ const NavBar = () => {
                 <ul className="hidden md:block list-none hover:text-[#EF802B] text-white font-sans font-medium rounded-full text-sm px-5 py-1.5 text-center cursor-pointer">
                   <li className="relative group">
                     Quick Link
-                    <ul className="absolute right-0 -left-full hidden group-hover:block bg-[#EF802B] text-white min-w-[160px] shadow-lg rounded-lg z-10 flex flex-col">
+                    <ul className="absolute right-0 -left-full hidden group-hover:block bg-[#EF802B] text-white min-w-[200px] shadow-lg rounded-lg z-10 flex flex-col">
                       {payload?.quicklink?.map((val, idx) => {
                         return (
                           <li key={idx}>
                             <a href={val?.link || "#"} className="block px-4 py-2 hover:bg-gray-200 text-center" target="_blank">
                               <div className="flex items-center justify-center space-x-2">
                                 {val?.logo && (<img src={val?.logo} alt="icon" className="w-8 h-8" />)}
-                                <span className="flex items-center">{val?.name}</span>
+                                <span className="flex items-center whitespace-nowrap overflow-hidden text-ellipsis">{val?.name}</span>
                               </div>
                             </a>
                           </li>

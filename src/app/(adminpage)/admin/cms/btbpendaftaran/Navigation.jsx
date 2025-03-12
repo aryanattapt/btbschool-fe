@@ -15,7 +15,7 @@ const Navigation = () => {
     (state) => state.setNavigationTitle
   );
 
-  const template = ["Enrollment", "Beasiswa", "Tur Sekolah"];
+  const template = ["Enrollment", "Beasiswa", "Tur Sekolah", "Pendaftaran Online"];
 
   return (
     <>

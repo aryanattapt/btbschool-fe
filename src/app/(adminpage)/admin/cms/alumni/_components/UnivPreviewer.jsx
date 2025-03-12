@@ -5,7 +5,7 @@ const UnivPreviewer = ({ file, onDelete }) => {
   const [preview, setPreview] = useState(null);
 
   useEffect(() => {
-    if (typeof file === "object") {
+    if (file instanceof File && file.name && file.size) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result); // Simpan URL gambar untuk preview
