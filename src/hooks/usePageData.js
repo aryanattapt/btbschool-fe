@@ -489,6 +489,35 @@ export const usePageData = create((set, get) => ({
     }
   },
 
+  getBTBKnightPageData: async () => {
+    try {
+      set({
+        isLoading: true,
+        language: localStorage.getItem(LANGUAGEKEY) || initialData.language,
+      });
+      const mainData = await GetConfig(configName, {
+        type: {
+          $in: ["generalsetting", "btbknight"],
+        },
+      });
+
+      set({
+        result: {
+          btbknight: mainData?.find((val) => val?.type == "btbknight") || {},
+          generalPayload:
+            mainData?.find((val) => val?.type == "generalsetting") || {},
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      set({ isError: true, error: { error } });
+    } finally {
+      setTimeout(() => {
+        set({ isLoading: false });
+      }, 1000);
+    }
+  },
+
   getNavigationLayout: async () => {
     try {
       set({
