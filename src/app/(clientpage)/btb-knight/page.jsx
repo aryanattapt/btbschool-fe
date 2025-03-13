@@ -25,7 +25,7 @@ const BTBKnight = () => {
       <div className="overflow-hidden">
         <BTBKnightBanner btbKnightData={btbKnightData} />
         <BtbKnightPaging btbKnightData={btbKnightData} language={language} />
-        <div className="flex flex-col gap-y-24 px-10 md:px-10 lg:px-32">
+        <div className="flex flex-col gap-y-12 md:gap-y-24 px-10 md:px-10 lg:px-32">
           <BtbKnightOpening btbKnightData={btbKnightData} language={language} />
           <BtbKnightPurpose btbKnightData={btbKnightData} language={language} />
           <BtbKnightClosing btbKnightData={btbKnightData} language={language} />
