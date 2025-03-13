@@ -60,7 +60,9 @@ const TurSekolahPage = ({ data, language, generalSetting }) => {
                       <HiMail className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
                       <a
                         className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg"
-                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${emailAdmission}`} target="_blank" rel="noopener noreferrer"
+                        /* href={`https://mail.google.com/mail/?view=cm&fs=1&to=${emailAdmission}`}  */
+                        href={`mailto:${emailAdmission}`}
+                        target="_blank" rel="noopener noreferrer"
                       >
                         {`admission@btbschool.org`}
                       </a>
