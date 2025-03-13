@@ -2,6 +2,16 @@ import React from "react";
 import { HiPhone, HiMail } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 
+const convertPhoneNumber = (input) => {
+  try {
+    const cleaned = input.replace(/[\s()]+/g, "").replace("+", "");
+    const formatted = `+${cleaned.slice(0, 2)}${cleaned.slice(2)}`;
+    return formatted;
+  } catch (error) {
+    return "";
+  }
+};
+
 const TurSekolahPage = ({ data, language, generalSetting }) => {
   const emailAdmission = data[language]?.beasiswaPagedata?.detailschool?.[0]?.schoolemail;
   return (
@@ -39,7 +49,9 @@ const TurSekolahPage = ({ data, language, generalSetting }) => {
                     <div className="flex items-center mt-2">
                       <AiOutlineWhatsApp className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
                       <a
-                        href={`https://api.whatsapp.com/send/?phone=${val?.whatsAppNo1}`}
+                        href = {`https://wa.me/${convertPhoneNumber(
+                          val?.whatsAppNo1
+                        )}`}
                         className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg"
                       >
                         {val?.whatsAppNo1}
@@ -49,7 +61,9 @@ const TurSekolahPage = ({ data, language, generalSetting }) => {
                     <div className="flex items-center mt-2">
                       <AiOutlineWhatsApp className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
                       <a
-                        href={`https://api.whatsapp.com/send/?phone=${val?.whatsAppNo2}`}
+                        href = {`https://wa.me/${convertPhoneNumber(
+                          val?.whatsAppNo2
+                        )}`}
                         className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg"
                       >
                         {val?.whatsAppNo2}
