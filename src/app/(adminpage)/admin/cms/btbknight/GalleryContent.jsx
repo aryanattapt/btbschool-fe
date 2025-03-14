@@ -23,7 +23,7 @@ const CMSBtbKnightGalleryContent = ({ gallery, setAttachment }) => {
   const onDeleteAttachment = (attIdx) => {
     const updatedGallery = [...gallery];
     updatedGallery.splice(attIdx, 1);
-    setAlumniPayload((prev) => ({ ...prev, gallery: updatedGallery }));
+    setAttachment((prev) => ({ ...prev, gallery: updatedGallery }));
   };
 
   return (
