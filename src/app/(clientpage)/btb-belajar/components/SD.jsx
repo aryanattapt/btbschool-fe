@@ -1,28 +1,28 @@
-const SD = ({btbBelajarData, language}) => {
+const SD = ({ btbBelajarData, language }) => {
   return (
     <>
       <div className="relative">
         <div className="mt-10 mb-5">
-          <h1 className="text-[25px] md:text-[35px] xl:text-[35px] text-[30px] font-semibold pl-10 md:pl-32 text-[#00305E]">
+          <h1 className="md:text-[35px] xl:text-[35px] text-[30px] font-semibold pl-10 md:pl-32 text-[#00305E]">
             {btbBelajarData[language]?.sd?.title}
           </h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex">
-            {
-              btbBelajarData?.image1 && <img
+            {btbBelajarData?.image1 && (
+              <img
                 src={`${btbBelajarData?.image1}`}
                 alt="SD"
                 className="h-full w-full object-cover"
               />
-            }
+            )}
           </div>
           <div className="content-center bg-[#EF802B] p-5">
             <h1 className="text-center md:text-center lg:text-center xl:text-justify text-[14px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty font-semibold">
               {/* Fundamental yang Menyenangkan */}
               {btbBelajarData[language]?.sd?.text1}
             </h1>
-            <div className="text-center md:text-center lg:text-center xl:text-justify text-[14px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty">
+            <div className="text-justify text-[14px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty whitespace-pre-line">
               {/* Anak anda akan melanjutkan perjalanan edukatifnya melalui fase pembelajaran yang memotivasi 
               mereka untuk menemukan dan menyadari hal terbaik yang ada pada dirinya dan orang lain. */}
               {btbBelajarData[language]?.sd?.text2}
@@ -85,20 +85,20 @@ const SD = ({btbBelajarData, language}) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-5 text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
             <div className="flex">
               <div className="flex flex-wrap content-center justify-center h-full">
-                <div className="pr-0 lg:pr-10 text-justify text-balance text-[#000000] xl:leading-loose">
+                <div className="pr-0 lg:pr-10 text-justify text-balance text-[#000000] xl:leading-loose whitespace-pre-line">
                   {btbBelajarData[language]?.sd?.text6}
                 </div>
               </div>
             </div>
             <div className="flex">
               <div className="w-full h-full">
-                {
-                  btbBelajarData?.image2 && <img
+                {btbBelajarData?.image2 && (
+                  <img
                     src={`${btbBelajarData?.image2}`}
                     alt="SMP"
                     className="w-full h-full object-cover"
                   />
-                }
+                )}
               </div>
             </div>
           </div>
@@ -106,13 +106,13 @@ const SD = ({btbBelajarData, language}) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-10 text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
             <div className="flex">
               <div className="w-full h-full">
-                {
-                  btbBelajarData?.image3 && <img
+                {btbBelajarData?.image3 && (
+                  <img
                     src={`${btbBelajarData?.image3}`}
                     alt="SMP"
                     className="w-full h-full object-cover"
                   />
-                }
+                )}
               </div>
             </div>
             <div className="flex">
@@ -152,13 +152,13 @@ const SD = ({btbBelajarData, language}) => {
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-10">
         <div className="flex">
           <div className="w-full h-full">
-            {
-              btbBelajarData?.image4 && <img
+            {btbBelajarData?.image4 && (
+              <img
                 src={`${btbBelajarData?.image4}`}
                 alt="SMP"
                 className="w-full h-full object-cover"
               />
-            }
+            )}
           </div>
         </div>
         <div className="flex">
@@ -169,7 +169,7 @@ const SD = ({btbBelajarData, language}) => {
                   {btbBelajarData[language]?.sd?.text9}
                 </h1>
               </div>
-              <div className="text-left text-justify">
+              <div className="text-justify whitespace-pre-line">
                 {btbBelajarData[language]?.sd?.text10}
               </div>
             </div>

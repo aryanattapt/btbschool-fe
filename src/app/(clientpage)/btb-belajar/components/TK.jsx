@@ -1,4 +1,4 @@
-const TK = ({btbBelajarData, language}) => {
+const TK = ({ btbBelajarData, language }) => {
   return (
     <>
       <div className="relative">
@@ -16,7 +16,7 @@ const TK = ({btbBelajarData, language}) => {
             />
           </div>
           <div className="content-center bg-[#EF802B] p-5">
-            <div className="text-center md:text-center lg:text-center xl:text-justify text-[14px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty">
+            <div className="text-center md:text-center lg:text-center xl:text-justify text-[14px] md:text-[20px] lg:text-[25px] xl:text-[20px] text-[#000000] text-pretty whitespace-pre-line">
               {btbBelajarData[language]?.tk?.introduction?.paragraph}
             </div>
           </div>
@@ -31,7 +31,9 @@ const TK = ({btbBelajarData, language}) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 px-10 md:px-10 lg:px-32 xl:px-32 mt-5 gap-12">
           <div className="text-[#000000] text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
-            <h1 className="text-balance text-[25px] lg:text-[30px]">{btbBelajarData[language]?.tk?.curriculum?.subtitle}</h1>
+            <h1 className="text-balance text-[25px] lg:text-[30px]">
+              {btbBelajarData[language]?.tk?.curriculum?.subtitle}
+            </h1>
             <div className="ml-5">
               <ul className="list-disc">
                 {btbBelajarData[language]?.tk?.curriculum?.components1?.map(
@@ -41,12 +43,14 @@ const TK = ({btbBelajarData, language}) => {
                 )}
               </ul>
             </div>
-            <div className="mt-2 text-pretty">
+            <div className="mt-2 text-pretty whitespace-pre-line">
               {btbBelajarData[language]?.tk?.curriculum?.desc1}
             </div>
           </div>
           <div className="text-[#000000] text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
-            <h1 className="text-balance text-[25px] lg:text-[30px]">{btbBelajarData[language]?.tk?.curriculum?.subtitle2}</h1>
+            <h1 className="text-balance text-[25px] lg:text-[30px]">
+              {btbBelajarData[language]?.tk?.curriculum?.subtitle2}
+            </h1>
             <div className="ml-5">
               <ul className="list-disc">
                 {btbBelajarData[language]?.tk?.curriculum?.components2.map(
@@ -71,22 +75,20 @@ const TK = ({btbBelajarData, language}) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-5 text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
           <div className="flex">
             <div className="flex flex-wrap content-center justify-center h-full">
-              <div
-                className="pr-0 lg:pr-10 text-left text-balance text-[#000000] xl:leading-loose"
-              >
+              <div className="pr-0 lg:pr-10 text-balance text-[#000000] xl:leading-loose whitespace-pre-line text-justify">
                 {btbBelajarData[language]?.tk?.activity?.content}
               </div>
             </div>
           </div>
           <div className="flex">
             <div className="w-full h-full">
-              {
-                btbBelajarData?.image14 && <img
+              {btbBelajarData?.image14 && (
+                <img
                   src={`${btbBelajarData.image14}`}
                   alt="SMP"
                   className="w-full h-full object-cover"
                 />
-              }
+              )}
             </div>
           </div>
         </div>
@@ -94,13 +96,13 @@ const TK = ({btbBelajarData, language}) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-10 text-[14px] md:text-[20px] lg:text-[25px] xl:text-[18px]">
           <div className="flex">
             <div className="w-full h-full">
-              {
-                btbBelajarData?.image15 && <img
+              {btbBelajarData?.image15 && (
+                <img
                   src={`${btbBelajarData.image15}`}
                   alt="SMP"
                   className="w-full h-full object-cover"
                 />
-              }
+              )}
             </div>
           </div>
           <div className="flex">
@@ -124,7 +126,7 @@ const TK = ({btbBelajarData, language}) => {
                         }
                       )}
                     </ul>
-                    <div className="pt-1">
+                    <div className="pt-1 whitespace-pre-line">
                       {btbBelajarData[language]?.tk?.programs?.desc}
                     </div>
                   </div>
@@ -155,13 +157,13 @@ const TK = ({btbBelajarData, language}) => {
             </div>
             <div className="flex">
               <div className="flex flex-wrap content-center justify-center h-full">
-                <div className="pl-0 xl:pl-5 text-left md:text-justify lg:text-justify xl:text-justify md:text-left lg:text-left xl:text-left">
+                <div className="pl-0 xl:pl-5 text-justify">
                   <div>
                     <h1 className="font-semibold text-[16px] lg:text-[30px] xl:text-[20px]">
                       {btbBelajarData[language]?.tk?.outdoor?.text}
                     </h1>
                   </div>
-                  <div className="text-justify text-[14px] md:text-[16px]">
+                  <div className="text-justify text-[14px] md:text-[16px] whitespace-pre-line">
                     {btbBelajarData[language]?.tk?.outdoor?.paragraph}
                   </div>
                 </div>
