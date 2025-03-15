@@ -166,7 +166,10 @@ const NavBar = () => {
                           return (
                             <li key={idx}>
                               <a href={val?.link || "#"} className="block px-4 py-2 hover:bg-gray-200 text-center" target="_blank">
-                                <div className="flex items-center justify-center space-x-2">
+                                <div 
+                                  /* className="flex items-center justify-center space-x-2" */
+                                  className="flex space-x-2"
+                                >
                                   {val?.logo && (<img src={val?.logo} alt="icon" className="w-8 h-8" />)}
                                   <span className="flex items-center">{val?.name}</span>
                                 </div>
@@ -269,7 +272,10 @@ const NavBar = () => {
                         return (
                           <li key={idx}>
                             <a href={val?.link || "#"} className="block px-4 py-2 hover:bg-gray-200 text-center" target="_blank">
-                              <div className="flex items-center justify-center space-x-2">
+                              <div 
+                                /* className="flex items-center justify-center space-x-2" */
+                                className="flex space-x-2"
+                              >
                                 {val?.logo && (<img src={val?.logo} alt="icon" className="w-8 h-8" />)}
                                 <span className="flex items-center whitespace-nowrap overflow-hidden text-ellipsis">{val?.name}</span>
                               </div>
