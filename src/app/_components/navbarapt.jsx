@@ -161,7 +161,7 @@ const NavBar = () => {
                   <ul className="list-none text-white font-sans font-medium rounded-full text-lg px-6 py-2 text-center cursor-pointer">
                     <li className="relative group hover:text-[#EF802B]">
                       Quick Link
-                      <ul className="absolute left-0 hidden group-hover:block bg-white text-black mt-2 min-w-[200px] shadow-lg rounded-lg z-10 flex flex-col">
+                      <ul className="absolute left-0 hidden group-hover:block bg-[#EF802B] text-white mt-2 min-w-[200px] shadow-lg rounded-lg z-10 flex flex-col">
                         {payload?.quicklink?.map((val, idx) => {
                           return (
                             <li key={idx}>
