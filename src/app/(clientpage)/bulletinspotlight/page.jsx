@@ -36,7 +36,7 @@ const BulletinSpotlightPage = () => {
 
         // Urutkan dari yang terlama ke terbaru dan ambil hanya 4 data terakhir
         acc[school][type] = acc[school][type]
-          .sort((a, b) => new Date(a.date) - new Date(b.date))
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
           .slice(-4);
       }
 
@@ -70,7 +70,10 @@ const BulletinSpotlightPage = () => {
               <h1 className="md:text-[35px] text-[25px] font-semibold text-[#00305E]">
                 {school}
               </h1>
-              {Object.keys(display[school]).map((type) => (
+              
+              {Object.keys(display[school]).filter((val) => {
+                return (school == 'BTB SCHOOL PLUIT PUTRI' && val == 'Bulletin') || (school == 'BTB SCHOOL PLUIT TIMUR');
+              }).map((type) => (
                 <div>
                   <h1 className="md:text-[28px] text-[20px] text-[#275d90]">
                     {type}

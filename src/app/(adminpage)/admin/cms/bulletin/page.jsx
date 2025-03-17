@@ -54,6 +54,7 @@ const BannerForm = () => {
 		try {
 			const data = await GetConfig(configName, { type: type });
 			setPayload(data[0]);
+			console.log(data[0]);
 		} catch (error) {
 			Swal.fire({
 				allowOutsideClick: false,
@@ -177,6 +178,19 @@ const BannerForm = () => {
 		setPayload({ ...payload });
 	};
 
+	const onChangeTitleTampilkanSorotan = (val) => {
+		if(payload[language]["pagingHeader"]["url"] && Array.isArray(payload[language]["pagingHeader"]["url"]) && payload[language]["pagingHeader"]["url"].length > 0){
+			payload[language]["pagingHeader"]["url"][0]["title"] = val;
+		} else{
+			payload[language]["pagingHeader"]["url"] = [];
+			payload[language]["pagingHeader"]["url"].push({
+				"title": val,
+				"url": "#"
+			})
+		}
+		setPayload({ ...payload });
+	};
+
 	if (isLoadingPage) {
 		return <Loader />;
 	} else
@@ -229,6 +243,14 @@ const BannerForm = () => {
 							value={payload[language]["pagingHeader"]["title"]}
 							onChange={(e) => {
 								onChangePagingTitle(e.target.value);
+							}}
+						/>
+
+						<FieldTitle>Subtitle Tampilkan Sorotan</FieldTitle>
+						<TextInput
+							value={payload[language]["pagingHeader"]["url"].length > 0 ? payload[language]["pagingHeader"]["url"][0]["title"] : ''}
+							onChange={(e) => {
+								onChangeTitleTampilkanSorotan(e.target.value);
 							}}
 						/>
 

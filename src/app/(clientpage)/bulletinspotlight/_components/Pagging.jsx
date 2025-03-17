@@ -9,7 +9,7 @@ const Pagging = ({ language, bulletinSpotlightData }) => {
 					<div className="border-r-2">
 						<div className="px-4 lg:px-10 md:pl-32">
 							<h1 className="text-[25px] text-center font-semibold py-6 lg:py-10">
-								{bulletinSpotlightData[language].pagingHeader.title}
+								{bulletinSpotlightData[language].pagingHeader.title} a
 							</h1>
 						</div>
 					</div>

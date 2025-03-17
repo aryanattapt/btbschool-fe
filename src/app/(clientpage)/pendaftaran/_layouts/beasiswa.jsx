@@ -78,15 +78,15 @@ const BeasiswaPage = ({ data, language, generalSetting }) => {
           })}
         </div> */}
 
-      <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 2xl:gap-4 xl:gap-4 lg:gap-0 sm:gap-0 md:gap-0 sm:gap-0">
+      <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 2xl:gap-4 xl:gap-4 lg:gap-0 sm:gap-0 md:gap-0 sm:gap-0 item-center">
         {data[language]?.beasiswaPagedata?.detailschool?.map((val, idx) => (
           <div key={idx}>
-            <div className="bg-[#EF802B] text-white rounded-xl my-5 px-4 py-7 sm:w-auto w-auto">
-              <h1 className="font-bold text-base sm:text-xs md:text-[13px] lg:text-base xl:text-xl 2xl:text-2xl">
+            <div className="bg-[#EF802B] text-white rounded-xl my-5 px-4 py-7 sm:w-auto w-auto flex-col items-center justify-center">
+              <h1 className="font-bold text-base sm:text-xs md:text-[13px] lg:text-base xl:text-xl 2xl:text-2xl text-center">
                 {val?.schoolName}
               </h1>
 
-              <div className="flex items-center mt-2">
+              <div className="flex items-center mt-2 justify-center">
                 <FaMapMarkerAlt  className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
                 <p className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg">
                   {val?.schoolAddress}
@@ -94,7 +94,7 @@ const BeasiswaPage = ({ data, language, generalSetting }) => {
               </div>
 
               {val?.schooltlp?.map((val1, idx1) => (
-                <div className="flex items-center mt-2" key={idx1}>
+                <div className="flex items-center mt-2 justify-center" key={idx1}>
                   <HiPhone className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
                   <p className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg">
                     {val1}
@@ -103,7 +103,7 @@ const BeasiswaPage = ({ data, language, generalSetting }) => {
               ))}
 
               {val?.schoolhp?.map((val2, idx2) => (
-                <div className="flex items-center mt-2" key={idx2}>
+                <div className="flex items-center mt-2 justify-center" key={idx2}>
                   <AiOutlineWhatsApp className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
                   <a
                     href = {`https://wa.me/${convertPhoneNumber(
@@ -116,7 +116,7 @@ const BeasiswaPage = ({ data, language, generalSetting }) => {
                 </div>
               ))}
 
-              <div className="flex items-center mt-2">
+              <div className="flex items-center mt-2 justify-center">
                 <HiMail className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
                 <a
                   className="ml-2 text-sm sm:text-sm md:text-[11px] lg:text-base xl:text-lg"
