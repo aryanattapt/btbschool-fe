@@ -139,26 +139,28 @@ const CMSAlumni = () => {
 
   const uploadAttachRegionUniv = async () => {
     for (const region of alumniPayload.regionMap) {
-      const uploadedAttachments = await Promise.all(
-        region.attachment.map(async (att) => {
-          if (typeof att === "string") {
-            return att; // Jika string, langsung return tanpa upload
-          }
+      if (region?.title) {
+        const uploadedAttachments = await Promise.all(
+          region.attachment.map(async (att) => {
+            if (typeof att === "string") {
+              return att; // Jika string, langsung return tanpa upload
+            }
 
-          let formData = new FormData();
-          formData.append(region.title, att); // Gunakan title sebagai key
+            let formData = new FormData();
+            formData.append(region.title, att); // Gunakan title sebagai key
 
-          try {
-            const res = await UploadAttachment("assets", formData);
-            return res?.data[0]?.fileURL; // Pastikan ini mengembalikan URL
-          } catch (error) {
-            console.log({ error });
-            return null; // Jika gagal, bisa dikasih handling lebih lanjut
-          }
-        })
-      );
+            try {
+              const res = await UploadAttachment("assets", formData);
+              return res?.data[0]?.fileURL; // Pastikan ini mengembalikan URL
+            } catch (error) {
+              console.log({ error });
+              return null; // Jika gagal, bisa dikasih handling lebih lanjut
+            }
+          })
+        );
 
-      region.attachment = uploadedAttachments; // Update attachment dengan URL hasil upload
+        region.attachment = uploadedAttachments; // Update attachment dengan URL hasil upload
+      }
     }
     return alumniPayload;
   };
@@ -170,7 +172,6 @@ const CMSAlumni = () => {
         if (alumniPayload?.bannerimage) {
           let formData = new FormData();
           formData.append("image", alumniPayload?.bannerimage[0]);
-
           var resultAssets = await UploadAttachment("assets", formData);
           resultAssets = resultAssets?.data[0]?.fileURL;
           if (resultAssets) {
@@ -252,12 +253,27 @@ const CMSAlumni = () => {
             {/* Show Instagram Feed */}
             <div className="my-6">
               <FieldTitle>Show Instagram Feed</FieldTitle>
-                <div className="flex flex-wrap gap-2">
-                    <Radio checked={alumniPayload?.showigfeed == 'true'} id="showigfeedtrue" name="showigfeed" value="true" onChange={formChangeHandler}/>
-                    <Label className="mr-4">True</Label>
-                    <Radio checked={alumniPayload?.showigfeed == 'false' || !alumniPayload?.showigfeed} id="showigfeedfalse" name="showigfeed" value="false" onChange={formChangeHandler}/>
-                    <Label className="mr-4">False</Label>
-                </div>
+              <div className="flex flex-wrap gap-2">
+                <Radio
+                  checked={alumniPayload?.showigfeed == "true"}
+                  id="showigfeedtrue"
+                  name="showigfeed"
+                  value="true"
+                  onChange={formChangeHandler}
+                />
+                <Label className="mr-4">True</Label>
+                <Radio
+                  checked={
+                    alumniPayload?.showigfeed == "false" ||
+                    !alumniPayload?.showigfeed
+                  }
+                  id="showigfeedfalse"
+                  name="showigfeed"
+                  value="false"
+                  onChange={formChangeHandler}
+                />
+                <Label className="mr-4">False</Label>
+              </div>
             </div>
 
             {/* Alumni Submission Mail Setting */}
@@ -327,7 +343,10 @@ const CMSAlumni = () => {
                   <Tabs.Item active title="Indonesia">
                     <div>
                       <div className="mb-2 block">
-                        <Label htmlFor="instagramfeedtitle" value="Instagram Feed Title" />
+                        <Label
+                          htmlFor="instagramfeedtitle"
+                          value="Instagram Feed Title"
+                        />
                       </div>
                       <Textarea
                         value={alumniPayload[`instagramfeedtitle[ID]`]}
@@ -368,7 +387,10 @@ const CMSAlumni = () => {
                   <Tabs.Item active title="English">
                     <div>
                       <div className="mb-2 block">
-                        <Label htmlFor="instagramfeedtitle" value="Instagram Feed Title" />
+                        <Label
+                          htmlFor="instagramfeedtitle"
+                          value="Instagram Feed Title"
+                        />
                       </div>
                       <Textarea
                         value={alumniPayload[`instagramfeedtitle[EN]`]}

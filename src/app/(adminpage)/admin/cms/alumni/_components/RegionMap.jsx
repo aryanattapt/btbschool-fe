@@ -69,7 +69,11 @@ const CMSRegionMap = ({ alumniPayload, setAlumniPayload }) => {
         <tbody>
           {alumniPayload?.regionMap?.map((res, index) => (
             <tr key={index}>
-              <TD className="w-80 flex border-none">
+              <TD
+                className={`w-80 flex ${
+                  index > 0 ? "border-t-[1px]" : "border-t-0"
+                } border-b-0 border-r-0 border-l-0 border`}
+              >
                 <AlumniAutocomplete
                   options={countries}
                   onChange={(val) => onChangeRegion(val, index)}
