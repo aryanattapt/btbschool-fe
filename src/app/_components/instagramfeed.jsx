@@ -13,7 +13,7 @@ const InstagramFeed = ({ payload, title, url }) => {
                 <div key={idx}>
                 <img
                     /* className="cursor-pointer md-h-[400px] md:w-[300px] md:h-[500px] lg:w-[300px] lg:h-[400px] xl:w-[300px] xl:h-[400px] object-cover" */
-                    className="cursor-pointer sm:max-w-[400px] sm:max-h-[500px] md:max-w-[300px] md:max-h-[400px] lg:max-w-[300px] lg:max-h-[400px] xl:max-w-[300px] xl:max-h-[400px]  object-cover"
+                    className="object-contain h-[auto] w-[60%]"
                     src={`${val.thumbnail_url || val.media_url}`}
                     alt={`${val.caption}`}
                     onClick={() => window.open(val.permalink)}
