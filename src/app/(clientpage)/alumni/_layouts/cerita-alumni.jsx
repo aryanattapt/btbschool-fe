@@ -187,7 +187,7 @@ const CeritaAlumni = ({
         <div
           style={{
             display: 'flex',
-            animation: 'marquee 30s linear infinite',
+            animation: 'marquee 40s linear infinite',
             width: 'max-content', // Make sure the container only fits the content width
           }}
         >
