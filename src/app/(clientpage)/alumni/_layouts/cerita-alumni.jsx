@@ -68,7 +68,7 @@ const CeritaAlumni = ({
   //     ],
   // };
 
-  const settingsFlag = {
+  /* const settingsFlag = {
     dots: false,
     infinite: true,
     autoplay: true,
@@ -77,7 +77,21 @@ const CeritaAlumni = ({
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: false,
-  };
+  }; */
+
+  const settingsFlag = {
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 0,  // Slower speed for smoother transition
+    speed: 1000,          // Increased speed for smoother effect
+    slidesToShow: 8,
+    slidesToScroll: 1,
+    arrows: false,  // Make the transition smoother
+    rtl: false,  // To make it go right to left
+    fade: false,
+    lazyLoad: 'progressive'
+  };  
 
   return (
     <div className="px-12 pb-12">
@@ -151,7 +165,7 @@ const CeritaAlumni = ({
           onClose={() => setSelectedRegion("")}
         />
       </div>
-      <div className="slider-container">
+      {/* <div className="slider-container">
         <Slider {...settingsFlag}>
           {alumniUniversityPayload?.map((val, idx) => {
             return (
@@ -163,13 +177,63 @@ const CeritaAlumni = ({
                     className="w-[400px] h-[200px] object-contain"
                   />
                 )}
-                {/* <span className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50">
-                    {val?.caption}
-                  </span> */}
               </div>
             );
           })}
         </Slider>
+      </div> */}
+
+      <div className="slider-container" style={{ overflow: 'hidden', width: '100%' }}>
+        <div
+          style={{
+            display: 'flex',
+            animation: 'marquee 30s linear infinite',
+            width: 'max-content', // Make sure the container only fits the content width
+          }}
+        >
+          {/* First set of images */}
+          {alumniUniversityPayload?.map((val, idx) => {
+            return (
+              <React.Fragment key={`first-set-${idx}`}>
+                {val?.image && (
+                  <img
+                    src={val.image}
+                    alt="alumni"
+                    className="w-[400px] h-[200px] object-contain"
+                    style={{ marginRight: '20px' }} // Optional: Add spacing between images
+                  />
+                )}
+              </React.Fragment>
+            );
+          })}
+
+          {/* Second set of images (duplicate the set to make it loop seamlessly) */}
+          {alumniUniversityPayload?.map((val, idx) => {
+            return (
+              <React.Fragment key={`second-set-${idx}`}>
+                {val?.image && (
+                  <img
+                    src={val.image}
+                    alt="alumni"
+                    className="w-[400px] h-[200px] object-contain"
+                    style={{ marginRight: '20px' }} // Optional: Add spacing between images
+                  />
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+
+        <style jsx="true">{`
+          @keyframes marquee {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+        `}</style>
       </div>
 
       {
