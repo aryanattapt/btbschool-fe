@@ -13,6 +13,7 @@ import Loader from "../../../../_components/loader";
 import { checkPermission } from "../../../../../../services/auth.service";
 import Swal from "sweetalert2";
 import LoadingModal from "../../../../../components/LoadingModal";
+import CMSSubTitle from "../_components/CMSSubtitle";
 
 const CMSAboutUs = () => {
   const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -28,6 +29,10 @@ const CMSAboutUs = () => {
   const addVisiMisi = useCmsAboutUsStore((state) => state.addVisiMisi);
   const setSmallParagraph = useCmsAboutUsStore(
     (state) => state.setSmallParagraph
+  );
+  const setPagingHeader = useCmsAboutUsStore((state) => state.setPagingHeader);
+  const setPagingNavigation = useCmsAboutUsStore(
+    (state) => state.setPagingNavigation
   );
   const setMotto = useCmsAboutUsStore((state) => state.setMotto);
   const data = useCmsAboutUsStore((state) => state.data);
@@ -136,24 +141,32 @@ const CMSAboutUs = () => {
                   id="image2"
                   onChange={(e) => onChangeAttachment(e.target.files, "image2")}
                 />
-
-                {/* <FieldTitle>List Grade</FieldTitle>
-						{data["ID"]["gradelists"].map((res, index) => (
-							<div className="mb-3" key={index}>
-								<h6>{res.title}</h6>
-								<ImageAttachment
-									id={`image${index + 3}`}
-									onChange={(e) =>
-										onChangeAttachment(e.target.files, `image${index + 3}`)
-									}
-								/>
-							</div>
-						))} */}
                 <div className="mt-6">
                   <LanguageChanger
                     onChange={(val) => setState(val, "language")}
                     value={language}
                   />
+                  {/* Paging Section */}
+                  <CMSSubTitle>Paging Content</CMSSubTitle>
+                  <FieldTitle>Judul Navigasi Utama</FieldTitle>
+                  <TextInput
+                    value={data[language]["pagingHeader"]["title"]}
+                    onChange={(e) => {
+                      setPagingHeader(e.target.value);
+                    }}
+                  />
+                  <FieldTitle>List Judul Navigasi</FieldTitle>
+                  <div className="flex flex-col gap-y-2">
+                    {data[language]["pagingHeader"]["url"].map((res, idx) => (
+                      <TextInput
+                        key={idx}
+                        value={res?.title}
+                        onChange={(e) =>
+                          setPagingNavigation(e.target.value, idx)
+                        }
+                      />
+                    ))}
+                  </div>
                   <FieldTitle>Pengenalan</FieldTitle>
                   <Textarea
                     rows={4}
@@ -162,13 +175,7 @@ const CMSAboutUs = () => {
                       setDescription(e.target.value);
                     }}
                   />
-                  <FieldTitle>Motto</FieldTitle>
-                  <TextInput
-                    value={data[language]?.["motto"]}
-                    onChange={(e) => {
-                      setMotto(e.target.value);
-                    }}
-                  />
+
                   <FieldTitle>Deskripsi Visi</FieldTitle>
                   <TextInput
                     value={data[language]["visimisi"]["descvisi"]}
@@ -213,6 +220,13 @@ const CMSAboutUs = () => {
                   >
                     Add
                   </Button>
+                  <FieldTitle>Motto</FieldTitle>
+                  <TextInput
+                    value={data[language]?.["motto"]}
+                    onChange={(e) => {
+                      setMotto(e.target.value);
+                    }}
+                  />
                   <FieldTitle>Catatan Kaki</FieldTitle>
                   <Textarea
                     rows={4}

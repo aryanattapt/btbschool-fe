@@ -57,6 +57,16 @@ export const useCmsAboutUsStore = create((set, get) => ({
     data[language]["smallparagraph"] = value;
     set({ data: data });
   },
+  setPagingHeader: (val) => {
+    const { data, language } = template(get);
+    data[language]["pagingHeader"]["title"] = val;
+    set({ data: data });
+  },
+  setPagingNavigation: (val, index) => {
+    const { data, language } = template(get);
+    data[language]["pagingHeader"]["url"][index]["title"] = val;
+    set({ data: data });
+  },
   setMotto: (val) => {
     const { data, language } = template(get);
     data[language]["motto"] = val;
@@ -107,9 +117,7 @@ export const useCmsAboutUsStore = create((set, get) => ({
     try {
       await SubmitConfig(configName, [{ type: type, ...payload }]);
       set({ loading: false });
-      Swal.fire("Success", "Success to submit data!", "success").then((res) => {
-        if (res.isConfirmed) window.location.reload();
-      });
+      Swal.fire("Success", "Success to submit data!", "success");
     } catch (error) {
       console.log(error);
     } finally {

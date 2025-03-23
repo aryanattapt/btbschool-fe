@@ -5,11 +5,6 @@ const VisiMisiPage = ({ data, language }) => {
         <div>
           <h2 className="md:text-[25px] text-[28px] mb-[10px] font-semibold">
             {/* Visi */}
-            Motto
-          </h2>
-          <Justified>{data[language]["motto"]}</Justified>
-          <h2 className="md:text-[25px] text-[28px] mb-[10px] font-semibold">
-            {/* Visi */}
             {data[language]?.visimisi?.titlevisi}
           </h2>
           <Justified>
@@ -35,14 +30,13 @@ const VisiMisiPage = ({ data, language }) => {
                 </li>
               );
             })}
-            {/* <li>Menanamkan nilai moral dan budi pekerti
-            yang baik kepada siswa agar bertanggung jawab atas tindakannya.</li>
-            <li>Mengembangkan Profil Pelajar BTB dengan menerapkan praktik
-            pendidikan terbaik dan mempromosikan literasi digital.</li>
-            <li>Menyediakan
-            lingkungan belajar yang aman dan nyaman di mana rasa hormat,
-            kejujuran, dan penghargaan terhadap perbedaan individu dipupuk.</li> */}
           </ul>
+
+          <h2 className="md:text-[25px] text-[28px] mb-[10px] font-semibold mt-3">
+            {/* Visi */}
+            Motto
+          </h2>
+          <Justified>{data[language]["motto"]}</Justified>
         </div>
         <div className="pl-[0px] md:pl-[50px] py-5 md:py-5 xl:py-0">
           {data?.image2 && (
