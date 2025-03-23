@@ -15,11 +15,15 @@ const RegionModal = ({ selectedRegion, onClose, attachment }) => {
             ✕
           </button>
         </div>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
           {attachment &&
             attachment.map((res) => (
               <div className="relative w-48 h-20 flex items-center justify-center">
-                <img src={res} alt="Preview" />
+                <img
+                  src={res}
+                  alt="Preview"
+                  className="w-full h-full object-contain rounded-lg"
+                />
               </div>
             ))}
         </div>

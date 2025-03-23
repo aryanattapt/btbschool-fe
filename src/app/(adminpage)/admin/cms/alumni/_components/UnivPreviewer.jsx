@@ -21,9 +21,7 @@ const UnivPreviewer = ({ file, onDelete }) => {
       <img
         src={preview}
         alt="Preview"
-        layout="fill"
-        objectFit="contain"
-        className="rounded-lg"
+        className="w-full h-full object-contain rounded-lg"
       />
       <div className="text-red-600 hover:text-red-800 absolute -right-4 -top-2 cursor-pointer">
         <FaCircleXmark onClick={onDelete} />
