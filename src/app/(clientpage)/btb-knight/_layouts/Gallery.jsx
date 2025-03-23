@@ -18,7 +18,7 @@ const BtbKnightGallery = ({ images }) => {
     }
   };
   return (
-    <div>
+    <div id="gallery">
       <div className="w-full mx-auto">
         <div className="flex items-center justify-end mb-4">
           <h1 className="md:text-[35px] text-[25px] font-semibold text-[#00305E] mr-4">
