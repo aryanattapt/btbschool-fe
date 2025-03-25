@@ -222,7 +222,7 @@ const CMSAboutUs = () => {
                   </Button>
                   <FieldTitle>Motto</FieldTitle>
                   <TextInput
-                    value={data[language]?.["motto"]}
+                    value={data[language]["motto"]}
                     onChange={(e) => {
                       setMotto(e.target.value);
                     }}
