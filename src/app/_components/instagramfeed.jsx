@@ -7,10 +7,10 @@ const InstagramFeed = ({ payload, title, url }) => {
         <div className="text-[25px] md:text-[60px] md:text-start text-center font-semibold">
           <h1>{title}</h1>
         </div>
-        <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-2 mt-4 ">
+        <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-2 mt-4">
             {payload.map((val, idx) => {
             return (
-                <div key={idx}>
+                <div key={idx} className="flex justify-center">
                 <img
                     /* className="cursor-pointer md-h-[400px] md:w-[300px] md:h-[500px] lg:w-[300px] lg:h-[400px] xl:w-[300px] xl:h-[400px] object-cover" */
                     className="object-contain h-[auto] w-[60%]"
