@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./sliderStyles.css";
 import useComponentWidth from "../../../../hooks/useComponentWidth";
 import RegionModal from "./RegionModal";
-import InstagramFeedsComponent from '../../../_components/instagramfeed';
+import InstagramFeedsComponent from "../../../_components/instagramfeed";
 
 const CustomPrevArrow = (props) => {
   const { onClick } = props;
@@ -32,7 +32,7 @@ const CeritaAlumni = ({
   alumniStoryPayload,
   alumniUniversityPayload,
   language,
-  instagramFeed
+  instagramFeed,
 }) => {
   const [ref, width] = useComponentWidth();
   const settingsTestimonies = {
@@ -43,6 +43,7 @@ const CeritaAlumni = ({
     slidesToScroll: 1,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
+    adaptiveHeight: true,
   };
   const [selectedRegion, setSelectedRegion] = useState();
 
@@ -83,16 +84,15 @@ const CeritaAlumni = ({
     dots: false,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 0,  // Slower speed for smoother transition
-    speed: 1000,          // Increased speed for smoother effect
+    autoplaySpeed: 0, // Slower speed for smoother transition
+    speed: 1000, // Increased speed for smoother effect
     slidesToShow: 8,
     slidesToScroll: 1,
-    arrows: false,  // Make the transition smoother
-    rtl: false,  // To make it go right to left
+    arrows: false, // Make the transition smoother
+    rtl: false, // To make it go right to left
     fade: false,
-    lazyLoad: 'progressive'
-  };  
-
+    lazyLoad: "progressive",
+  };
   return (
     <div className="px-12 pb-12">
       <div className="flex flex-col items-start">
@@ -107,7 +107,7 @@ const CeritaAlumni = ({
             {Array.isArray(alumniStoryPayload) &&
               alumniStoryPayload.map((val, idx) => {
                 return (
-                  <div key={val?.id || idx}>
+                  <div key={val?.id || idx} className="h-fit">
                     <div className="dataAlumni p-10 flex flex-col md:flex-row items-center">
                       {val?.image && (
                         <div className="basis-full xl:basis-1/2 flex justify-center mb-5 md:mb-0 md:mx-10 xl:mx-0">
@@ -127,11 +127,11 @@ const CeritaAlumni = ({
                             {val?.class}
                           </h1>
                         </div>
-                        <div className="mr-10">
+                        <div className="md:mr-10">
                           <p className="font-semibold">
                             {val?.university}, {val?.major}
                           </p>
-                          <p>{val?.testimonies}</p>
+                          <p className="text-justify">{val?.testimonies}</p>
                         </div>
                       </div>
                     </div>
@@ -146,7 +146,7 @@ const CeritaAlumni = ({
         <h2 className="text-[#00305E] text-[25px] md:text-[50px] mx-5">
           {alumniPayload[language]?.universitytitle}
         </h2>
-        <p className="mx-5 mb-5">
+        <p className="mx-5 mb-5 text-justify">
           {alumniPayload[language]?.universitycontent}
         </p>
       </div>
@@ -183,12 +183,15 @@ const CeritaAlumni = ({
         </Slider>
       </div> */}
 
-      <div className="slider-container" style={{ overflow: 'hidden', width: '100%' }}>
+      <div
+        className="slider-container"
+        style={{ overflow: "hidden", width: "100%" }}
+      >
         <div
           style={{
-            display: 'flex',
-            animation: 'marquee 40s linear infinite',
-            width: 'max-content', // Make sure the container only fits the content width
+            display: "flex",
+            animation: "marquee 40s linear infinite",
+            width: "max-content", // Make sure the container only fits the content width
           }}
         >
           {/* First set of images */}
@@ -200,7 +203,7 @@ const CeritaAlumni = ({
                     src={val.image}
                     alt="alumni"
                     className="w-[400px] h-[200px] object-contain"
-                    style={{ marginRight: '20px' }} // Optional: Add spacing between images
+                    style={{ marginRight: "20px" }} // Optional: Add spacing between images
                   />
                 )}
               </React.Fragment>
@@ -216,7 +219,7 @@ const CeritaAlumni = ({
                     src={val.image}
                     alt="alumni"
                     className="w-[400px] h-[200px] object-contain"
-                    style={{ marginRight: '20px' }} // Optional: Add spacing between images
+                    style={{ marginRight: "20px" }} // Optional: Add spacing between images
                   />
                 )}
               </React.Fragment>
@@ -236,9 +239,15 @@ const CeritaAlumni = ({
         `}</style>
       </div>
 
-      {
-        alumniPayload?.showigfeed == 'true' ? <InstagramFeedsComponent payload={instagramFeed || []} title={alumniPayload[language]?.instagramfeedtitle} url={'https://www.instagram.com/btb_school_alumni'}/>:<></>
-      }
+      {alumniPayload?.showigfeed == "true" ? (
+        <InstagramFeedsComponent
+          payload={instagramFeed || []}
+          title={alumniPayload[language]?.instagramfeedtitle}
+          url={"https://www.instagram.com/btb_school_alumni"}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

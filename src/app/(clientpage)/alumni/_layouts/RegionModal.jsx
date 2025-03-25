@@ -15,7 +15,7 @@ const RegionModal = ({ selectedRegion, onClose, attachment }) => {
             ✕
           </button>
         </div>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-4 max-h-[600px] overflow-auto">
           {attachment &&
             attachment.map((res) => (
               <div className="relative w-48 h-20 flex items-center justify-center">

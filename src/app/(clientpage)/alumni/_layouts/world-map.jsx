@@ -109,7 +109,10 @@ const WorldMapChart = ({ markers, width, onSelect }) => {
   return (
     <div
       id="chartdiv"
-      style={{ width: `${width}px`, height: `${(width / 3) * 1}px` }}
+      style={{
+        width: `${width}px`,
+        height: `${(width / (width > 639 ? 3 : 1)) * 1}px`,
+      }}
     ></div>
   );
 };
