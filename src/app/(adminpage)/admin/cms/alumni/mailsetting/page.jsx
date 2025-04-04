@@ -93,6 +93,7 @@ const MailForm = () => {
 
     const validateData = (str) => {
         const matches = str.match(/%s/g);
+        console.log(matches.length);
         return matches && matches.length === 13;
     }
 
@@ -121,7 +122,7 @@ const MailForm = () => {
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
-                    text: "Mail Content should have 3 %s character. First %s is First name. Second %s is Last Name. Last %s is Message.",
+                    text: "Mail Content should have 13 %s character which represent data from alumni. You can check the rule on the notes below.",
                     icon: 'error',
                 });
                 return;
@@ -174,22 +175,36 @@ const MailForm = () => {
                 </div>
                 <div>
                     <CustomEditor name='content' onChange={formChangeHandler} value={payload.content || ''} />
-                    <p className="mt-1 text-sm text-gray-500">Mail Content should have %s ordered Rules As Follows:</p>
+                    <p className="mt-1 text-sm text-gray-500">Notes:</p>
+                    <p className="mt-1 text-sm text-gray-500">
+                        a. It represent the mail content that will be send to email Recepient after user submit data from pendaftaran alumni form (/alumni). <br/> 
+                        You can customize the mail content (non %s variable). <br/>
+                        The %s variable is mandatory variable which represent data/value from pendaftaran alumni form. <br/>
+                        After email is sent to email Recepient the %s variabel will be replaced by value from pendaftaran alumni form.
+                    </p>
+                    <p className="mt-1 text-sm text-gray-500">
+                        b. Variable %s Explanation<br/>
+                        Mail Content should have 13 %s character which represent value from pendaftaran alumni form as follows:</p>
                     <ol class="space-y-1 list-decimal pl-5 text-sm text-gray-500">
-                        <li>Name</li>
-                        <li>Email</li>
-                        <li>Phone Number</li>
-                        <li>Address</li>
-                        <li>Gender</li>
-                        <li>Undergraduate University</li>
-                        <li>Postgraduate University</li>
-                        <li>Major</li>
-                        <li>Year of Graduation</li>
-                        <li>Career Pathway & Activities Now</li>
-                        <li>Moments in BTB</li>
-                        <li>Social Media</li>
-                        <li>Photo</li>
+                        <li>%s (Name) - Replaced with the first name of the alumni who filled out the form.</li>
+                        <li>%s (Email) - Replaced with the alumni's email address.</li>
+                        <li>%s (Phone Number) - Replaced with the alumni's phone number.</li>
+                        <li>%s (Address) - Replaced with the alumni's address.</li>
+                        <li>%s (Gender) - Replaced with the alumni's gender (Male/Female).</li>
+                        <li>%s (Undergraduate University) - Replaced with the name of the alumni’s undergraduate university.</li>
+                        <li>%s (Postgraduate University) - Replaced with the name of the alumni’s postgraduate university (if applicable).</li>
+                        <li>%s (Major) - Replaced with the alumni's major/field of study.</li>
+                        <li>%s (Year of Graduation) - Replaced with the year the alumni graduated.</li>
+                        <li>%s (Career Pathway & Current Activities) - Replaced with the alumni’s current career pathway and activities.</li>
+                        <li>%s (Moments in BTB) - Replaced with the most memorable moments the alumni had during their time at BTB.</li>
+                        <li>%s (Social Media) - Replaced with the alumni's social media account information.</li>
+                        <li>%s (Photo Link) - Replaced with the link to the alumni’s uploaded photo.</li>
                     </ol>
+                    <p className="mt-1 text-sm text-gray-500">c. Example:</p>
+                    <p className="mt-1 text-sm text-gray-500">--- Rule ---</p>
+                    <p className="mt-1 text-sm text-gray-500">Dear Mr/Mrs. %s,</p>
+                    <p className="mt-1 text-sm text-gray-500">--- Mail content received ---</p>
+                    <p className="mt-1 text-sm text-gray-500">Dear Mr/Mrs. Name,</p>
                 </div>
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">
