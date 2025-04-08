@@ -212,7 +212,7 @@ const NavBar = () => {
                         {val.submenu.map((val2, idx2) => (
                           <li key={idx2}>
                             <a
-                              href={val2.url}
+                              href={val2.url || val.url || '#'}
                               className="block px-4 py-3 hover:bg-orange-400"
                             >
                               {val2.content}
@@ -305,7 +305,7 @@ const NavBar = () => {
                         {val.submenu.map((val2, idx2) => (
                           <li key={idx2}>
                             <a
-                              href={val2.url}
+                              href={val2.url || val.url || '#'}
                               className="block px-4 py-2 hover:bg-orange-400"
                             >
                               {val2.content}
