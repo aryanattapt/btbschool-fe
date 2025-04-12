@@ -43,13 +43,27 @@ export const useNavigationStore = create((set, get) => ({
     data["navbar"][language]["navbarlink"][idx]["content"] = val;
     set({ data: data });
   },
-  setNavbarSubmenuContent: (val, parentIdx, idx) => {
+  /* setNavbarSubmenuContent: (val, parentIdx, idx) => {
     const { data, language } = template(get);
     data["navbar"][language]["navbarlink"][parentIdx]["submenu"][idx][
       "content"
     ] = val;
     set({ data: data });
+  }, */
+  setNavbarSubmenuContent: (val, parentIdx, idx) => {
+    const { data, language } = template(get);
+    if (data?.navbar?.[language]?.navbarlink?.[parentIdx]?.submenu?.[idx]) {
+      data["navbar"][language]["navbarlink"][parentIdx]["submenu"][idx]["content"] = val;
+    } else {
+      if (!data["navbar"][language]["navbarlink"][parentIdx]["submenu"]) {
+        data["navbar"][language]["navbarlink"][parentIdx]["submenu"] = [];
+      }
+      data["navbar"][language]["navbarlink"][parentIdx]["submenu"][idx] = data["navbar"][language]["navbarlink"][parentIdx]["submenu"][idx] || {};
+      data["navbar"][language]["navbarlink"][parentIdx]["submenu"][idx]["content"] = val;      
+    }
+    set({ data: data });
   },
+  
   submitData: async () => {
     const { data } = template(get);
     Swal.fire(

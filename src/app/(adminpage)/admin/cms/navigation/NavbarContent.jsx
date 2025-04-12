@@ -22,6 +22,16 @@ const NavbarContent = ({ navItems }) => {
 
   const submenuDuniaBtb = ["Buletin Sekolah", "Kalender Akademis", "Bantuan"];
 
+  const submenuAboutUs = ["Pengenalan", "Visi Misi", "Jenjang Pendidikan"];
+  
+  const submenuAlumni = ["Cerita Alumni", "Pendaftaran Alumni"];
+
+  const submenuPendaftaran = ["Enrolment", "Beasiswa", "Tur Sekolah", "Pendaftaran Online"];
+
+  const submenuContactUs = ["Hubungi Kami", "Lokasi Kami"];
+
+  const submenuBTBCare = ["BTB Peduli Lingkungan", "Sukarelawan BTB", "BTB Tangan Penolong"];
+
   return (
     <div>
       <CMSSubtitle>Navigation Bar</CMSSubtitle>
@@ -40,6 +50,7 @@ const NavbarContent = ({ navItems }) => {
         index={0}
       />
       <CMSDivider />
+
       <FieldTitle>Dunia BTB</FieldTitle>
       <TextInput
         value={navItems[1]["content"]}
@@ -55,6 +66,7 @@ const NavbarContent = ({ navItems }) => {
         index={1}
       />
       <CMSDivider />
+
       <FieldTitle>Tentang Kami</FieldTitle>
       <TextInput
         value={navItems[2]["content"]}
@@ -62,8 +74,16 @@ const NavbarContent = ({ navItems }) => {
           setParentContent(e.target.value, 2);
         }}
       />
+      <FieldTitle>Submenu</FieldTitle>
+      <TableSubMenu
+        menus={submenuAboutUs}
+        navItems={navItems}
+        onChange={setNavbarSubmenuContent}
+        index={2}
+      />
       <CMSDivider />
-      <FieldTitle>Karir</FieldTitle>
+
+      <FieldTitle>BTB Knight United</FieldTitle>
       <TextInput
         value={navItems[3]["content"]}
         onChange={(e) => {
@@ -71,31 +91,56 @@ const NavbarContent = ({ navItems }) => {
         }}
       />
       <CMSDivider />
-      <FieldTitle>Alumni</FieldTitle>
+
+      <FieldTitle>BTB Cares</FieldTitle>
       <TextInput
         value={navItems[4]["content"]}
         onChange={(e) => {
           setParentContent(e.target.value, 4);
         }}
       />
+      <FieldTitle>Submenu</FieldTitle>
+      <TableSubMenu
+        menus={submenuBTBCare}
+        navItems={navItems}
+        onChange={setNavbarSubmenuContent}
+        index={4}
+      />
       <CMSDivider />
-      <FieldTitle>Pendaftaran</FieldTitle>
+
+      <FieldTitle>Alumni</FieldTitle>
       <TextInput
         value={navItems[5]["content"]}
         onChange={(e) => {
           setParentContent(e.target.value, 5);
         }}
       />
+      <FieldTitle>Submenu</FieldTitle>
+      <TableSubMenu
+        menus={submenuAlumni}
+        navItems={navItems}
+        onChange={setNavbarSubmenuContent}
+        index={5}
+      />
       <CMSDivider />
-      <FieldTitle>BTB Cares</FieldTitle>
+
+      <FieldTitle>Pendaftaran</FieldTitle>
       <TextInput
         value={navItems[6]["content"]}
         onChange={(e) => {
           setParentContent(e.target.value, 6);
         }}
       />
+      <FieldTitle>Submenu</FieldTitle>
+      <TableSubMenu
+        menus={submenuPendaftaran}
+        navItems={navItems}
+        onChange={setNavbarSubmenuContent}
+        index={6}
+      />
       <CMSDivider />
-      <FieldTitle>Kontak</FieldTitle>
+
+      <FieldTitle>Karir</FieldTitle>
       <TextInput
         value={navItems[7]["content"]}
         onChange={(e) => {
@@ -103,11 +148,29 @@ const NavbarContent = ({ navItems }) => {
         }}
       />
       <CMSDivider />
+      
+      <FieldTitle>Kontak</FieldTitle>
+      <TextInput
+        value={navItems[8]["content"]}
+        onChange={(e) => {
+          setParentContent(e.target.value, 8);
+        }}
+      />
+      <FieldTitle>Submenu</FieldTitle>
+      <TableSubMenu
+        menus={submenuContactUs}
+        navItems={navItems}
+        onChange={setNavbarSubmenuContent}
+        index={8}
+      />
+      <CMSDivider />
     </div>
   );
 };
 
 const TableSubMenu = ({ menus, navItems, index, onChange }) => {
+  const submenu = navItems[index]?.submenu || [];
+
   return (
     <Table>
       <Table.Head>
@@ -115,23 +178,27 @@ const TableSubMenu = ({ menus, navItems, index, onChange }) => {
         <Table.HeadCell className="w-[50%]">Value</Table.HeadCell>
       </Table.Head>
       <Table.Body className="divide-y">
-        {menus.map((res, idx) => (
-          <Table.Row
-            key={idx}
-            className="bg-white dark:border-gray-700 dark:bg-gray-800"
-          >
-            <Table.Cell className="py-2">{res}</Table.Cell>
-            <Table.Cell className="py-2">
-              <input
-                onChange={(e) => {
-                  onChange(e.target.value, index, idx);
-                }}
-                value={navItems[index]["submenu"][idx]["content"]}
-                className="border-b-[1px] border-gray-300 text-black"
-              />
-            </Table.Cell>
-          </Table.Row>
-        ))}
+        {menus.map((res, idx) => {
+          const content = submenu[idx]?.content || "";
+
+          return (
+            <Table.Row
+              key={idx}
+              className="bg-white dark:border-gray-700 dark:bg-gray-800"
+            >
+              <Table.Cell className="py-2">{res}</Table.Cell>
+              <Table.Cell className="py-2">
+                <input
+                  onChange={(e) => {
+                    onChange(e.target.value, index, idx);
+                  }}
+                  value={content}
+                  className="border-b-[1px] border-gray-300 text-black"
+                />
+              </Table.Cell>
+            </Table.Row>
+          );
+        })}
       </Table.Body>
     </Table>
   );
