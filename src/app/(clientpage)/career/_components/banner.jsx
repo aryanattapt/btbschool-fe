@@ -3,9 +3,9 @@ const BannerLayouts = ({payload}) => {
       <>
         <div className="relative w-100% xl:h-[475px]">
           {
-            payload?.bannerimage &&
+            payload?.image &&
             <img
-              src={payload?.bannerimage}
+              src={payload?.image}
               alt="banneraboutus"
               className="md:h-full md:w-screen object-cover xl:w-full xl:h-s"
             />
