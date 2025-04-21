@@ -43,6 +43,11 @@ export const useBtbKnightStore = create((set, get) => ({
     data[language][prop][innerProp] = val;
     set({ data: data });
   },
+  onQuoteChange: (val) => {
+    const { data, language } = template(get);
+    data[language]["quote"] = val;
+    set({ data: data });
+  },
   submitData: async (attachment) => {
     const { data } = template(get);
     Swal.fire(
