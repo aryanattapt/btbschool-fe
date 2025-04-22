@@ -1,15 +1,14 @@
 'use client'
 import {
-    Label,
     Button,
     Spinner,
     TextInput,
+    Textarea,
 } from "flowbite-react";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import NavbarSidebarLayout from '../../../_layouts/navigation';
 import Swal from "sweetalert2";
 import AdminHeader from '../../../_components/header'
-import CustomEditor from '../../../../../_components/customformeditor';
 import { GetConfig, SubmitConfig } from "../../../../../../../services/config.service";
 import { detransformJsonLanguage, transformJsonLanguage } from "../../../../../../../helpers/jsontransform.helper";
 import Loader from '../../../../../_components/loader';
@@ -22,7 +21,30 @@ const MailForm = () => {
     const type = 'admincms.alumnisubmission.mailcontent'
     const configName = 'general';
     const [isLoading, setIsLoading] = useState(false);
-    const [payload, setPayload] = useState({})
+    const [payload, setPayload] = useState({});
+
+    const mappingButtonValue = [
+        { "key": "firstname", "text": "First Name" },
+        { "key": "lastname", "text": "Last Name" },
+        { "key": "birthdate", "text": "Birth Date" },
+        { "key": "gender", "text": "Gender" },
+        { "key": "laststudentyear", "text": "Last Year At BTB" },
+        { "key": "edukasiOptions", "text": "Education" },
+        { "key": "undergraduateuniversityname", "text": "Undergraduate University Name" },
+        { "key": "postgraduateuniversityname", "text": "Postgraduate University Name" },
+        { "key": "major", "text": "Major" },
+        { "key": "yeargraduation", "text": "Year Of Graduation" },
+        { "key": "statusKerjaOptions", "text": "Working Status" },
+        { "key": "professionname", "text": "Profession Name" },
+        { "key": "currentlocation", "text": "Current Location" },
+        { "key": "phoneno", "text": "Phone No" },
+        { "key": "email", "text": "Email" },
+        { "key": "address", "text": "Address" },
+        { "key": "careerpathwayandactivities", "text": "Career Pathway & what is your Activities now?" },
+        { "key": "momentatbtb", "text": "Moments at BTB" },
+        { "key": "socialmedia", "text": "Social Media" }
+    ];    
+    const editorRef = useRef(null);
 
     useEffect(() => {
         fetchData(fetchMailContent);
@@ -118,7 +140,8 @@ const MailForm = () => {
                 });
                 return;
             }
-            if(!validateData(payload?.content || '')){
+
+            /* if(!validateData(payload?.content || '')){
                 Swal.fire({
                     allowOutsideClick: false,
                     title: 'Submit Notification!',
@@ -126,7 +149,7 @@ const MailForm = () => {
                     icon: 'error',
                 });
                 return;
-            }
+            } */
 
             setIsLoading(true);
             const finalPayload = {...payload, "type": type};
@@ -152,6 +175,26 @@ const MailForm = () => {
         }
     };
 
+    const insertTextAtCursor = (textToInsert) => {
+        const textarea = editorRef.current;
+        if (textarea) {
+            const cursorPosition = textarea.selectionStart;
+            const currentValue = textarea.value;
+
+            const newValue = currentValue.slice(0, cursorPosition) + textToInsert + currentValue.slice(cursorPosition);
+
+            setPayload((prevState) => ({
+                ...prevState,
+                content: newValue,
+            }));
+
+            setTimeout(() => {
+                textarea.selectionStart = textarea.selectionEnd = cursorPosition + textToInsert.length;
+                textarea.focus();
+            }, 0);
+        }
+    };
+    
     if(isLoadingPage){
         return <Loader/>
     } else
@@ -174,37 +217,32 @@ const MailForm = () => {
                     Mail Content
                 </div>
                 <div>
-                    <CustomEditor name='content' onChange={formChangeHandler} value={payload.content || ''} />
+                    <div>
+                        <Textarea ref={editorRef} rows={4} cols={4} name="content" onChange={formChangeHandler} value={payload.content || ''} />
+                    </div>
+
+                    <div className="mt-4">
+                        <div className="mt-4 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                            Insert value from the alumni page Using This Button
+                        </div>
+                        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            {
+                                mappingButtonValue.map((val) => {
+                                    return <Button onClick={() => insertTextAtCursor(`{${val.key}}`)} className="w-full">
+                                        {val.text}
+                                    </Button>
+                                })
+                            }
+                        </div>
+                    </div>
+
                     <p className="mt-1 text-sm text-gray-500">Notes:</p>
                     <p className="mt-1 text-sm text-gray-500">
                         a. It represent the mail content that will be send to email Recepient after user submit data from pendaftaran alumni form (/alumni). <br/> 
-                        You can customize the mail content (non %s variable). <br/>
-                        The %s variable is mandatory variable which represent data/value from pendaftaran alumni form. <br/>
-                        After email is sent to email Recepient the %s variabel will be replaced by value from pendaftaran alumni form.
+                        You can customize the mail content. To Insert Value From Alumni Page Please Use The Button Above <br/>
+                        b. If you want to remove the value from mail content just delete this pattern {"{...any}"} <br/>
+                        Example: {"test {nama} -> test"}
                     </p>
-                    <p className="mt-1 text-sm text-gray-500">
-                        b. Variable %s Explanation<br/>
-                        Mail Content should have 13 %s character which represent value from pendaftaran alumni form as follows:</p>
-                    <ol class="space-y-1 list-decimal pl-5 text-sm text-gray-500">
-                        <li>%s (Name) - Replaced with the first name of the alumni who filled out the form.</li>
-                        <li>%s (Email) - Replaced with the alumni's email address.</li>
-                        <li>%s (Phone Number) - Replaced with the alumni's phone number.</li>
-                        <li>%s (Address) - Replaced with the alumni's address.</li>
-                        <li>%s (Gender) - Replaced with the alumni's gender (Male/Female).</li>
-                        <li>%s (Undergraduate University) - Replaced with the name of the alumni’s undergraduate university.</li>
-                        <li>%s (Postgraduate University) - Replaced with the name of the alumni’s postgraduate university (if applicable).</li>
-                        <li>%s (Major) - Replaced with the alumni's major/field of study.</li>
-                        <li>%s (Year of Graduation) - Replaced with the year the alumni graduated.</li>
-                        <li>%s (Career Pathway & Current Activities) - Replaced with the alumni’s current career pathway and activities.</li>
-                        <li>%s (Moments in BTB) - Replaced with the most memorable moments the alumni had during their time at BTB.</li>
-                        <li>%s (Social Media) - Replaced with the alumni's social media account information.</li>
-                        <li>%s (Photo Link) - Replaced with the link to the alumni’s uploaded photo.</li>
-                    </ol>
-                    <p className="mt-1 text-sm text-gray-500">c. Example:</p>
-                    <p className="mt-1 text-sm text-gray-500">--- Rule ---</p>
-                    <p className="mt-1 text-sm text-gray-500">Dear Mr/Mrs. %s,</p>
-                    <p className="mt-1 text-sm text-gray-500">--- Mail content received ---</p>
-                    <p className="mt-1 text-sm text-gray-500">Dear Mr/Mrs. Name,</p>
                 </div>
                 <div className="mt-1 grid grid-cols-1 font-sm gap-[0.625rem] md:grid-cols-3 md:gap-x-0.75">
                     <div className="flex">
