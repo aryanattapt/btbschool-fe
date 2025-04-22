@@ -9,6 +9,8 @@ const CareerPage = () => {
 	const { language, getCareerPageData, isLoading } = usePageData();
 	const careerPagePayload = usePageData((state) => state.result.careerPayload);
 
+	const [activeTab, setActiveTab] = useState("");
+
 	useEffect(() => {
 		(async () => {
 			try {
@@ -24,6 +26,8 @@ const CareerPage = () => {
 			<>
 				<Banner payload={careerPagePayload}/>
 				<Pagging
+					setActiveTab={setActiveTab}
+					activeTab={activeTab}
 					careerPagePayload={careerPagePayload}
 					language={language}
 				/>
