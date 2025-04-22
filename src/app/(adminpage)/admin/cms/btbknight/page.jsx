@@ -13,6 +13,7 @@ import CMSBtbKnightOpeningContent from "./OpeningContent";
 import CMSBtbKnightPurposeContent from "./PurposeContent";
 import CMSBtbKnightClosingContent from "./ClosingContent";
 import CMSBtbKnightGalleryContent from "./GalleryContent";
+import CMSBtbKnightQuoteContent from "./QuoteContent";
 
 const CMSBtbKnight = () => {
   const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -110,10 +111,11 @@ const CMSBtbKnight = () => {
                   gallery={attachment.gallery}
                   setAttachment={setAttachment}
                 />
+                <CMSBtbKnightQuoteContent data={data} language={language} />
                 <Button
                   id="btnSaveAndSend"
                   name="btnSaveAndSend"
-                  className="w-full md:w-auto "
+                  className="w-full md:w-auto mt-6"
                   onClick={() => submitData(attachment)}
                 >
                   Save

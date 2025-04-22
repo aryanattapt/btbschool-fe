@@ -9,7 +9,7 @@ import FieldTitle from "../_components/FieldTitle";
 import LanguageChanger from "../_components/LanguageChanger";
 import ImageAttachment from "../_components/ImageAttachment";
 import Loader from "../../../../_components/loader";
-import { Button, TextInput } from "flowbite-react";
+import { Button, Textarea, TextInput } from "flowbite-react";
 import Swal from "sweetalert2";
 import LoadingModal from "../../../../../components/LoadingModal";
 
@@ -116,8 +116,9 @@ const page = () => {
 											setStateLanguage(e.target.value, "title");
 										}}
 									/>
-									<FieldTitle>Subtitle</FieldTitle>
-									<TextInput
+									<FieldTitle>Main Content</FieldTitle>
+									<Textarea
+										rows={6}
 										value={data[language]["subtitle"]}
 										onChange={(e) => {
 											setStateLanguage(e.target.value, "subtitle");
