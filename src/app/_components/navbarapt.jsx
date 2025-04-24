@@ -221,7 +221,7 @@ const NavBar = () => {
                     </>
                     {val.submenu && (
                       <ul className="absolute left-0 hidden group-hover:block bg-[#EF802B] text-white mt-2 min-w-[200px] shadow-lg rounded-lg z-50">
-                        {val.submenu.map((val2, idx2) => (
+                        {val.submenu.filter((val) => val.isactive == true).map((val2, idx2) => (
                           <li key={idx2}>
                             <a
                               href={val2.url || val.url || "#"}
@@ -326,7 +326,7 @@ const NavBar = () => {
                     </a>
                     {val.submenu && (
                       <ul className="text-center absolute hidden group-hover:block bg-[#EF802B] text-white mt-0 min-w-[260px] shadow-lg rounded-lg">
-                        {val.submenu.map((val2, idx2) => (
+                        {val.submenu.filter((val) => val.isactive == true).map((val2, idx2) => (
                           <li key={idx2}>
                             <a
                               href={val2.url || val.url || "#"}
