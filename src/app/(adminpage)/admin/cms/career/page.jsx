@@ -109,6 +109,20 @@ const page = () => {
 										onChange={(val) => setState(val, "language")}
 										value={language}
 									/>
+									<FieldTitle>Paging Title</FieldTitle>
+									<TextInput
+										value={data[language]["pagingtitle"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "pagingtitle");
+										}}
+									/>
+									<FieldTitle>Paging Content</FieldTitle>
+									<TextInput
+										value={data[language]["pagingcontent"]}
+										onChange={(e) => {
+											setStateLanguage(e.target.value, "pagingcontent");
+										}}
+									/>
 									<FieldTitle>Title</FieldTitle>
 									<TextInput
 										value={data[language]["title"]}

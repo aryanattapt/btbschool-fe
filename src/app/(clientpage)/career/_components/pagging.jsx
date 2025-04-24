@@ -12,7 +12,7 @@ const Pagging = ({ language, careerPagePayload, activeTab, setActiveTab }) => {
                     }`}
                     onClick={() => setActiveTab("career")}
                   >
-                    Career
+                    {careerPagePayload[language]?.pagingtitle}
                   </div>
                 </h1>
               </div>
@@ -29,7 +29,7 @@ const Pagging = ({ language, careerPagePayload, activeTab, setActiveTab }) => {
                     onClick={() => setActiveTab("career")}
                   >
                     {/* Pengenalan */}
-                    Career
+                    {careerPagePayload[language]?.pagingcontent}
                   </div>
                 </li>
               </ul>
