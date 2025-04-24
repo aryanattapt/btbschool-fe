@@ -101,19 +101,56 @@ export const useCmsAboutUsStore = create((set, get) => ({
     const tempAtt = {};
     if (!isObjectEmpty(attachments)) {
       const promises = await Promise.all(
-        Object.keys(attachments).map((key) => {
-          let formData = new FormData();
-          const theFile = attachments[key];
-          formData.append(key, theFile);
-          return UploadAttachment("assets", formData);
+        Object.keys(attachments).map(async (key) => {
+          if (key === "bannerimage") {
+            return await Promise.all(
+              attachments[key].map((res) => {
+                if (res.url) {
+                  return res;
+                } else {
+                  let formData = new FormData();
+                  const theFile = res;
+                  formData.append(key, theFile);
+                  return UploadAttachment("assets", formData).then(
+                    (uploaded) => {
+                      uploaded.data[0]["fileName"] = theFile.name;
+                      uploaded.data[0]["type"] = theFile.type;
+                      return uploaded;
+                    }
+                  );
+                }
+              })
+            );
+          } else {
+            let formData = new FormData();
+            const theFile = attachments[key];
+            formData.append(key, theFile);
+            return UploadAttachment("assets", formData);
+          }
         })
       );
-      promises.forEach((res) => {
-        const type = res.data[0].type;
-        tempAtt[type] = res.data[0].fileURL;
+      promises.forEach((promise) => {
+        if (promise?.data) {
+          const type = promise.data[0].type;
+          tempAtt[type] = promise.data[0].fileURL;
+        } else if (Array.isArray(promise)) {
+          // Banner Image
+          tempAtt["bannerimage"] = promise.map((res) => {
+            if (res.data) {
+              return {
+                url: res.data[0].fileURL,
+                name: res.data[0].fileName,
+                type: res.data[0].type,
+              };
+            } else return res;
+          });
+        }
       });
     }
-    const payload = { ...get().data, ...tempAtt };
+    const payload = {
+      ...get().data,
+      ...tempAtt,
+    };
     try {
       await SubmitConfig(configName, [{ type: type, ...payload }]);
       set({ loading: false });

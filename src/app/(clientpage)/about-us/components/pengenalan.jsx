@@ -9,18 +9,31 @@ const PengenalanPage = ({ data, language }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
-            {
-              data?.image1 && <img
+            {data?.image1 && (
+              <img
                 src={`${data?.image1}`}
                 alt="PAUD"
                 className="h-full w-full object-cover"
               />
-            }
+            )}
           </div>
           <div className="content-center bg-[#EF802B]">
             <div className="p-5 text-left xl:text-[25px] 2xl:text-[25px] text-[14px] md:text-[20px] text-[#000000] text-pretty">
               {data[language]?.desc}
             </div>
+          </div>
+        </div>
+        <div>
+          <div className="mt-10 mb-5 pl-10 md:pl-32 text-[#00305E] sm:justify-center">
+            <h1 className="md:text-[35px] text-[25px] font-semibold">
+              Profile Learner
+            </h1>
+          </div>
+          <div className="flex justify-center">
+            <img
+              src={data?.profileLearnerImage}
+              className="h-full w-[50%] object-cover"
+            />
           </div>
         </div>
       </div>

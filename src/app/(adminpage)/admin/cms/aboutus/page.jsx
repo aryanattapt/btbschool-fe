@@ -14,6 +14,7 @@ import { checkPermission } from "../../../../../../services/auth.service";
 import Swal from "sweetalert2";
 import LoadingModal from "../../../../../components/LoadingModal";
 import CMSSubTitle from "../_components/CMSSubtitle";
+import CMSAboutUsBannerContent from "./BannerContent";
 
 const CMSAboutUs = () => {
   const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -81,6 +82,7 @@ const CMSAboutUs = () => {
   useEffect(() => {
     if (!isObjectEmpty(rawData)) {
       setAttachment({
+        bannerimage: rawData["bannerimage"],
         image1: rawData["image1"],
         image2: rawData["image2"],
         image3: rawData["image3"],
@@ -120,13 +122,17 @@ const CMSAboutUs = () => {
               <div>
                 <AdminHeader title="About Us Content Settings Form" />
                 <FieldTitle>Gambar Banner</FieldTitle>
-                <ImageAttachment
+                <CMSAboutUsBannerContent
+                  attachment={attachment}
+                  setAttachment={setAttachment}
+                />
+                {/* <ImageAttachment
                   resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
                   id="image1"
                   onChange={(e) =>
                     onChangeAttachment(e.target.files, "bannerimage")
                   }
-                />
+                /> */}
 
                 {/* Pengenanlan */}
                 <FieldTitle>Gambar Pengenalan</FieldTitle>
@@ -140,6 +146,14 @@ const CMSAboutUs = () => {
                   resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
                   id="image2"
                   onChange={(e) => onChangeAttachment(e.target.files, "image2")}
+                />
+                <FieldTitle>Gambar Profile Learner</FieldTitle>
+                <ImageAttachment
+                  resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
+                  id="image2"
+                  onChange={(e) =>
+                    onChangeAttachment(e.target.files, "profileLearnerImage")
+                  }
                 />
                 <div className="mt-6">
                   <LanguageChanger
