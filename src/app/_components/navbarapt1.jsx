@@ -158,38 +158,38 @@ const NavBar = () => {
 
                 {/* Login Dropdown */}
                 <div className="relative inline-block group">
-                  <ul className="list-none text-white font-sans font-medium rounded-full text-lg px-6 py-2 text-center cursor-pointer">
+                  <ul className="list-none text-white font-sans font-medium rounded-full text-lg px-6 py-2 cursor-pointer">
                     <li className="relative group hover:text-[#EF802B]">
                       Quick Link
-                      <ul className="absolute left-0 hidden group-hover:block bg-[#EF802B] text-white mt-2 min-w-[200px] shadow-lg rounded-lg z-10 flex flex-col">
-                        {payload?.quicklink?.map((val, idx) => {
-                          return (
-                            <li key={idx}>
-                              <a
-                                href={val?.link || "#"}
-                                className="block px-4 py-2 hover:bg-gray-200 text-center"
-                                target="_blank"
-                              >
-                                <div
-                                  /* className="flex items-center justify-center space-x-2" */
-                                  className="flex space-x-2"
-                                >
-                                  {val?.logo && (
-                                    <img
-                                      src={val?.logo}
-                                      alt="icon"
-                                      className="w-8 h-8"
-                                    />
-                                  )}
-                                  <span className="flex items-center">
-                                    {val?.name}
-                                  </span>
-                                </div>
-                              </a>
-                            </li>
-                          );
-                        })}
-                      </ul>
+                      <ul className="absolute -right-full hidden group-hover:flex flex-col bg-[#EF802B] text-white min-w-[220px] max-w-[300px] p-2 shadow-xl rounded-xl z-10">
+                    {payload?.quicklink?.map((val, idx) => {
+                      const isDisabled = val?.disabled;
+                      return (
+                        <li key={idx}>
+                          <a
+                          href={isDisabled ? "#" : val?.link || "#"}
+                          className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-150 break-words ${
+                            isDisabled
+                              ? "opacity-50 cursor-default pointer-events-none"
+                              : "hover:bg-white hover:text-[#EF802B]"
+                          }`}
+                          target="_blank"
+                        >
+                          {val?.logo && (
+                            <img
+                              src={val?.logo}
+                              alt="icon"
+                              className={`w-6 h-6 object-contain shrink-0 ${
+                                !isDisabled ? "group-hover:invert" : ""
+                              }`}
+                            />
+                          )}
+                          <span className="whitespace-normal">{val?.name}</span>
+                        </a>
+                    </li>
+                  );
+                })}
+              </ul>
                     </li>
                   </ul>
                 </div>
@@ -276,40 +276,41 @@ const NavBar = () => {
               </label>
               <div className="lg:h-7 md:w-0.5 bg-slate-400 mr-2"></div>
               <div className="relative inline-block group">
-                <ul className="hidden md:block list-none hover:text-[#EF802B] text-white font-sans font-medium rounded-full text-sm px-5 py-1.5 text-center cursor-pointer">
-                  <li className="relative group">
-                    Quick Link
-                    <ul className="absolute -right-full hidden group-hover:block bg-[#EF802B] text-white min-w-[200px] w-fit shadow-lg rounded-lg z-10 flex flex-col">
-                      {payload?.quicklink?.map((val, idx) => {
-                        return (
-                          <li key={idx}>
-                            <a
-                              href={val?.link || "#"}
-                              className="block px-4 py-2 hover:bg-gray-200 text-center"
-                              target="_blank"
-                            >
-                              <div
-                                /* className="flex items-center justify-center space-x-2" */
-                                className="flex space-x-2"
-                              >
-                                {val?.logo && (
-                                  <img
-                                    src={val?.logo}
-                                    alt="icon"
-                                    className="w-8 h-8"
-                                  />
-                                )}
-                                <span className="flex items-center whitespace-nowrap  text-ellipsis">
-                                  {val?.name}
-                                </span>
-                              </div>
-                            </a>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </li>
-                </ul>
+              <ul className="hidden md:block list-none text-white font-sans font-medium text-sm cursor-pointer">
+                <li className="relative group">
+                  Quick Link
+                  <ul className="absolute -right-full hidden group-hover:flex flex-col bg-[#EF802B] text-white min-w-[220px] max-w-[300px] p-2 shadow-xl rounded-xl z-10">
+                    {payload?.quicklink?.map((val, idx) => {
+                      const isDisabled = val?.disabled;
+                      return (
+                        <li key={idx}>
+                          <a
+                          href={isDisabled ? "#" : val?.link || "#"}
+                          className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-150 break-words ${
+                            isDisabled
+                              ? "opacity-50 cursor-default pointer-events-none"
+                              : "hover:bg-white hover:text-[#EF802B]"
+                          }`}
+                          target="_blank"
+                        >
+                          {val?.logo && (
+                            <img
+                              src={val?.logo}
+                              alt="icon"
+                              className={`w-6 h-6 object-contain shrink-0 ${
+                                !isDisabled ? "group-hover:invert" : ""
+                              }`}
+                            />
+                          )}
+                          <span className="whitespace-normal">{val?.name}</span>
+                        </a>
+                    </li>
+                  );
+                })}
+              </ul>
+          </li>
+      </ul>
+
               </div>
             </div>
 
