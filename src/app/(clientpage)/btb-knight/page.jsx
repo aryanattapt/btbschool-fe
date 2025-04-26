@@ -18,11 +18,27 @@ const BTBKnight = () => {
     getBTBKnightPageData();
   }, []);
 
+  const ScrollToHash = () => {
+    useEffect(() => {
+      const hash = window.location.hash; // contoh: #gallery
+      if (hash) {
+        const id = hash.replace("#", "");
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, []);
+
+    return null; // ini hanya logic, gak render apapun
+  };
+
   if (isLoading) {
     return <Loader />;
   } else if (btbKnightData)
     return (
       <div className="overflow-hidden">
+        <ScrollToHash />
         <BTBKnightBanner btbKnightData={btbKnightData} />
         <BtbKnightPaging btbKnightData={btbKnightData} language={language} />
         <div className="flex flex-col gap-y-12 md:gap-y-24 px-10 lg:px-32">

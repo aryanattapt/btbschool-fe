@@ -1,4 +1,15 @@
 const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
+  const onClickPagination = (selectedTab) => {
+    const hashId = {
+      introduction: "introduction",
+      "peduli-lingkungan": "care-environment",
+      sukarelawan: "volunteers",
+      "tangan-penolong": "environment",
+    };
+    window.location.hash = hashId[selectedTab];
+    setActiveTab(selectedTab);
+  };
+
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
@@ -12,7 +23,8 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                       ? "bg-white text-black"
                       : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("introduction")}
+                  // onClick={() => setActiveTab("introduction")}
+                  onClick={() => onClickPagination("introduction")}
                 >
                   {btbPeduliData[language]?.btbpedulititle}
                 </div>
@@ -28,7 +40,8 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                       ? "bg-white text-black underline"
                       : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("peduli-lingkungan")}
+                  // onClick={() => setActiveTab("peduli-lingkungan")}
+                  onClick={() => onClickPagination("peduli-lingkungan")}
                 >
                   {/* Peduli Lingkungan */}
                   {btbPeduliData[language]?.pedulilingkungantitle}
@@ -41,7 +54,8 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                       ? "bg-white text-black underline"
                       : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("sukarelawan")}
+                  // onClick={() => setActiveTab("sukarelawan")}
+                  onClick={() => onClickPagination("sukarelawan")}
                 >
                   {/* Sukarelawan */}
                   {btbPeduliData[language]?.sukarelawantitle}
@@ -54,7 +68,8 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
                       ? "bg-white text-black underline"
                       : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("tangan-penolong")}
+                  // onClick={() => setActiveTab("tangan-penolong")}
+                  onClick={() => onClickPagination("tangan-penolong")}
                 >
                   {/* Environment */}
                   {btbPeduliData[language]?.tanganpenolongtitle}

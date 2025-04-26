@@ -4,6 +4,16 @@ const PaggingLayouts = ({
   activeTab,
   setActiveTab,
 }) => {
+  const onClickPagination = (selectedTab) => {
+    const hashId = {
+      enrolment: "enrolment",
+      beasiswa: "scholarship",
+      "tur-sekolah": "school-tour",
+    };
+    window.location.hash = hashId[selectedTab];
+    setActiveTab(selectedTab);
+  };
+
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
@@ -28,7 +38,8 @@ const PaggingLayouts = ({
                       ? "bg-white text-black underline"
                       : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("enrolment")}
+                  // onClick={() => setActiveTab("enrolment")}
+                  onClick={() => onClickPagination("enrolment")}
                 >
                   {pendaftaranData[language]?.pagingHeader?.url[0]?.title}
                 </div>
@@ -40,7 +51,8 @@ const PaggingLayouts = ({
                       ? "bg-white text-black underline"
                       : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("beasiswa")}
+                  // onClick={() => setActiveTab("beasiswa")}
+                  onClick={() => onClickPagination("beasiswa")}
                 >
                   {pendaftaranData[language]?.pagingHeader?.url[1]?.title}
                 </div>
@@ -52,7 +64,8 @@ const PaggingLayouts = ({
                       ? "bg-white text-black underline"
                       : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("tur-sekolah")}
+                  // onClick={() => setActiveTab("tur-sekolah")}
+                  onClick={() => onClickPagination("tur-sekolah")}
                 >
                   {pendaftaranData[language]?.pagingHeader?.url[2]?.title}
                 </div>
@@ -64,7 +77,9 @@ const PaggingLayouts = ({
                       ? "bg-white text-black underline"
                       : "bg-white"
                   }`}
-                  onClick={() => window.location.href = `${pendaftaranData[language]?.pagingHeader?.url[3]?.url}`}
+                  onClick={() =>
+                    (window.location.href = `${pendaftaranData[language]?.pagingHeader?.url[3]?.url}`)
+                  }
                 >
                   {pendaftaranData[language]?.pagingHeader?.url[3]?.title}
                 </div>

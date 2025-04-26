@@ -4,6 +4,15 @@ const PaggingLayouts = ({
   activeTab,
   setActiveTab,
 }) => {
+  const onClickPagination = (selectedTab) => {
+    const hashId = {
+      "cerita-alumni": "story",
+      "pendaftaran-alumni": "registration",
+    };
+    window.location.hash = hashId[selectedTab];
+    setActiveTab(selectedTab);
+  };
+
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
@@ -19,22 +28,26 @@ const PaggingLayouts = ({
           </div>
           <div className="inline-flex text-[20px] md:text-[20px] text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
             <ul className="flex flex-wrap -mb-px py-8 md:py-10">
-              {
-                alumniPayload?.pagingHeader?.map((val, idx) => {
-                  return <li className="px-10 sm:px-5 md:px-20 lg:px-4 border-b-2" key={idx}>
+              {alumniPayload?.pagingHeader?.map((val, idx) => {
+                return (
+                  <li
+                    className="px-10 sm:px-5 md:px-20 lg:px-4 border-b-2"
+                    key={idx}
+                  >
                     <div
                       className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                         activeTab == val?.control
                           ? "bg-white text-black underline"
                           : "bg-white"
                       }`}
-                      onClick={() => setActiveTab(val?.control)}
+                      // onClick={() => setActiveTab(val?.control)}
+                      onClick={() => onClickPagination(val?.control)}
                     >
                       {val[language]?.title}
                     </div>
                   </li>
-                })
-              }
+                );
+              })}
 
               {/*  <li className="px-10 sm:px-5 md:px-20 lg:px-4 border-b-2">
                   <div

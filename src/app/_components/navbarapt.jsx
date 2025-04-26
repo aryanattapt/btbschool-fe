@@ -221,16 +221,18 @@ const NavBar = () => {
                     </>
                     {val.submenu && (
                       <ul className="absolute left-0 hidden group-hover:block bg-[#EF802B] text-white mt-2 min-w-[200px] shadow-lg rounded-lg z-50">
-                        {val.submenu.filter((val) => val.isactive == true).map((val2, idx2) => (
-                          <li key={idx2}>
-                            <a
-                              href={val2.url || val.url || "#"}
-                              className="block px-4 py-3 hover:bg-orange-400"
-                            >
-                              {val2.content}
-                            </a>
-                          </li>
-                        ))}
+                        {val.submenu
+                          .filter((val) => val.isactive == true)
+                          .map((val2, idx2) => (
+                            <li key={idx2}>
+                              <a
+                                href={val2.url || val.url || "#"}
+                                className="block px-4 py-3 hover:bg-orange-400"
+                              >
+                                {val2.content}
+                              </a>
+                            </li>
+                          ))}
                       </ul>
                     )}
                   </li>
@@ -325,17 +327,28 @@ const NavBar = () => {
                       {val.content}
                     </a>
                     {val.submenu && (
-                      <ul className="text-center absolute hidden group-hover:block bg-[#EF802B] text-white mt-0 min-w-[260px] shadow-lg rounded-lg">
-                        {val.submenu.filter((val) => val.isactive == true).map((val2, idx2) => (
-                          <li key={idx2}>
-                            <a
-                              href={val2.url || val.url || "#"}
-                              className="block px-4 py-2 hover:bg-orange-400"
-                            >
-                              {val2.content}
-                            </a>
-                          </li>
-                        ))}
+                      <ul
+                        className={`text-center absolute 
+                      ${
+                        idx + 1 ===
+                        navigation?.["navbar"][language].navbarlink.length
+                          ? "right-0"
+                          : ""
+                      }
+                      hidden group-hover:block bg-[#EF802B] text-white mt-0 min-w-[260px] shadow-lg rounded-lg`}
+                      >
+                        {val.submenu
+                          .filter((val) => val.isactive == true)
+                          .map((val2, idx2) => (
+                            <li key={idx2}>
+                              <a
+                                href={val2.url || val.url || "#"}
+                                className="block px-4 py-2 hover:bg-orange-400"
+                              >
+                                {val2.content}
+                              </a>
+                            </li>
+                          ))}
                       </ul>
                     )}
                   </li>

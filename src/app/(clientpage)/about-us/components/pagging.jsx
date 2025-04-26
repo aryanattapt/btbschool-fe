@@ -1,4 +1,14 @@
 const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
+  const onClickPagination = (selectedTab) => {
+    const hashId = {
+      pengenalan: "introduction",
+      "visi-misi": "vision-mission",
+      "jenjang-pendidikan": "education",
+    };
+    window.location.hash = hashId[selectedTab];
+    setActiveTab(selectedTab);
+  };
+
   return (
     <>
       <header className="flex flex-row items-start justify-between text-[#00305E] border-b">
@@ -10,7 +20,8 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
                   className={`inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "pengenalan" ? "bg-white" : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("pengenalan")}
+                  // onClick={() => setActiveTab("pengenalan")}
+                  onClick={() => onClickPagination("pengenalan")}
                 >
                   {aboutUsData[language]?.pagingHeader?.title}
                 </div>
@@ -26,7 +37,8 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
                       ? "bg-white text-black underline"
                       : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("pengenalan")}
+                  // onClick={() => setActiveTab("pengenalan")}
+                  onClick={() => onClickPagination("pengenalan")}
                 >
                   {/* Pengenalan */}
                   {aboutUsData[language]?.pagingHeader?.url[0]?.title}
@@ -39,7 +51,8 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
                       ? "bg-white text-black underline"
                       : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("visi-misi")}
+                  // onClick={() => setActiveTab("visi-misi")}
+                  onClick={() => onClickPagination("visi-misi")}
                 >
                   {/* Visi Misi */}
                   {aboutUsData[language]?.pagingHeader?.url[1]?.title}
@@ -52,7 +65,8 @@ const Pagging = ({ language, aboutUsData, activeTab, setActiveTab }) => {
                       ? "bg-white text-black underline"
                       : "bg-white"
                   }`}
-                  onClick={() => setActiveTab("jenjang-pendidikan")}
+                  // onClick={() => setActiveTab("jenjang-pendidikan")}
+                  onClick={() => onClickPagination("jenjang-pendidikan")}
                 >
                   {/* Jenjang Pendidikan */}
                   {aboutUsData[language]?.pagingHeader?.url[2]?.title}

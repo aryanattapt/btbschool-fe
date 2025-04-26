@@ -5,27 +5,39 @@ import { useEffect, useState } from "react";
 import Enrolment from "./_layouts/enrolment";
 import Beasiswa from "./_layouts/beasiswa";
 import TurSekolah from "./_layouts/tur-sekolah";
-import { usePageData } from '../../../hooks/usePageData';
+import { usePageData } from "../../../hooks/usePageData";
 import Loader from "../../_components/loader";
 
 const PendaftaranPage = () => {
   const [activeTab, setActiveTab] = useState("enrolment");
 
-  const {language, getPendaftaranPageData, isLoading} = usePageData();
+  const { language, getPendaftaranPageData, isLoading } = usePageData();
   const pendaftaranData = usePageData((state) => state.result.pendaftaranData);
   const generalSetting = usePageData((state) => state.result.generalPayload);
 
   useEffect(() => {
+    // get data
     getPendaftaranPageData();
-  }, [])
 
-  if(isLoading) {
-    return <Loader/>;
-  }
-  else if(pendaftaranData)
+    // url navigation
+    const hash = window.location.hash?.substring(1);
+    if (!hash) setActiveTab("enrolment");
+    else {
+      const hashId = {
+        enrolment: "enrolment",
+        scholarship: "beasiswa",
+        "school-tour": "tur-sekolah",
+      };
+      setActiveTab(hashId[hash]);
+    }
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  } else if (pendaftaranData)
     return (
       <>
-        <Banner payload={pendaftaranData}/>
+        <Banner payload={pendaftaranData} />
         <Pagging
           pendaftaranData={pendaftaranData}
           language={language}
@@ -38,10 +50,18 @@ const PendaftaranPage = () => {
           <Enrolment data={pendaftaranData} language={language} />
         )}
         {activeTab === "beasiswa" && (
-          <Beasiswa data={pendaftaranData} language={language} generalSetting={generalSetting}/>
+          <Beasiswa
+            data={pendaftaranData}
+            language={language}
+            generalSetting={generalSetting}
+          />
         )}
         {activeTab === "tur-sekolah" && (
-          <TurSekolah data={pendaftaranData} language={language} generalSetting={generalSetting}/>
+          <TurSekolah
+            data={pendaftaranData}
+            language={language}
+            generalSetting={generalSetting}
+          />
         )}
       </>
     );
