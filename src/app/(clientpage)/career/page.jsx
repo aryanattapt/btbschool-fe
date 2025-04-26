@@ -37,7 +37,7 @@ const CareerPage = () => {
 						{careerPagePayload[language]?.title}
 					</h1>
 					</div>
-					<div className="px-10 mb-5 md:pl-32 sm:justify-center" style={{ whiteSpace: 'pre-line' }}>
+					<div className="px-10 mb-5 md:px-32 text-justify" style={{ whiteSpace: 'pre-line' }}>
 						{careerPagePayload[language]?.subtitle}
 					</div>
 					<div className="my-10 flex justify-center items-center">
