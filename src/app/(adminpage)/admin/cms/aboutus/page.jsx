@@ -44,6 +44,7 @@ const CMSAboutUs = () => {
   // );
 
   const [attachment, setAttachment] = useState({});
+  const setProfileLearnerTitle = useCmsAboutUsStore((state) => state.setProfileLearnerTitle);
 
   useEffect(() => {
     fetchData(getInitialData);
@@ -239,6 +240,14 @@ const CMSAboutUs = () => {
                     value={data[language]["motto"]}
                     onChange={(e) => {
                       setMotto(e.target.value);
+                    }}
+                  />
+                  <FieldTitle>Profile Learner Title</FieldTitle>
+                  <Textarea
+                    rows={4}
+                    value={data[language]["profileLearnerTitle"]}
+                    onChange={(e) => {
+                      setProfileLearnerTitle(e.target.value, "profileLearnerTitle");
                     }}
                   />
                   <FieldTitle>Catatan Kaki</FieldTitle>

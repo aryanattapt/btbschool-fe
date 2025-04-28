@@ -26,7 +26,7 @@ const PengenalanPage = ({ data, language }) => {
         <div>
           <div className="mt-10 mb-5 pl-10 md:pl-32 text-[#00305E] sm:justify-center">
             <h1 className="md:text-[35px] text-[25px] font-semibold">
-              Profile Learner
+              {data[language].profileLearnerTitle}
             </h1>
           </div>
           <div className="flex justify-center">

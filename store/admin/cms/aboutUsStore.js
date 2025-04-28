@@ -161,4 +161,9 @@ export const useCmsAboutUsStore = create((set, get) => ({
       set({ loading: false });
     }
   },
+  setProfileLearnerTitle: (val) => {
+    const { data, language } = template(get);
+    data[language]["profileLearnerTitle"] = val;
+    set({ data: data });
+  },
 }));
