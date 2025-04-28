@@ -32,7 +32,7 @@ const PengenalanPage = ({ data, language }) => {
           <div className="flex justify-center">
             <img
               src={data?.profileLearnerImage}
-              className="h-full w-[50%] object-cover"
+              className="h-full w-[100%] 2xl:w-[75%] object-cover"
             />
           </div>
         </div>
