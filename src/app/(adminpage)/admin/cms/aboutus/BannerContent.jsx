@@ -1,6 +1,7 @@
 import { Button, FileInput, Label, Radio, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { FaMinusCircle } from "react-icons/fa";
+import CMSDivider from "../_components/CMSDivider";
 
 const CMSAboutUsBannerContent = ({ attachment, setAttachment }) => {
   const [type, setType] = useState("image");
@@ -91,7 +92,9 @@ const CMSAboutUsBannerContent = ({ attachment, setAttachment }) => {
           </div>
         ))}
 
-        <div className="flex max-w-md flex-col gap-4">
+        <CMSDivider />
+
+        <div className="mt-4 flex max-w-md flex-col gap-4">
           <div className="flex items-center gap-2">
             <Radio
               checked={type === "image"}
