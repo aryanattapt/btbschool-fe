@@ -106,6 +106,7 @@ export const useCmsAboutUsStore = create((set, get) => ({
             return await Promise.all(
               attachments[key].map((res) => {
                 if (res.url) {
+                  delete res.isNew;
                   return res;
                 } else {
                   let formData = new FormData();

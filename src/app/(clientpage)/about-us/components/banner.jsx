@@ -8,12 +8,12 @@ const BannerLayouts = ({ payload }) => {
 
   const datas = [
     // {
-    //   url: "https://www.youtube.com/embed/7BgRbv59hio?si=lAgKpGUVWqG3yWMP",
+    //   url: "https://www.youtube.com/watch?v=RQorrnJIc2Q&ab_channel=AlexWarren",
     //   type: "video",
     //   name: "youtube",
     // },
     // {
-    //   url: "https://www.youtube.com/embed/7BgRbv59hio?si=lAgKpGUVWqG3yWMP",
+    //   url: "https://www.youtube.com/watch?v=RQorrnJIc2Q&ab_channel=AlexWarren",
     //   type: "video",
     //   name: "youtube",
     // },
@@ -29,22 +29,26 @@ const BannerLayouts = ({ payload }) => {
     setActiveIndex(index);
   };
 
+  const extractYouTubeVideoId = (url) => {
+    const regExp = /(?:\?v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regExp);
+    return match ? match[1] : null;
+  };
+
   useEffect(() => {
-    if (slides.length > 0) {
-      slides.forEach((slide, i) => {
-        if (slide.type === "video" && iframeRefs.current[i]?.contentWindow) {
-          const command = i === activeIndex ? "playVideo" : "pauseVideo";
-          iframeRefs.current[i].contentWindow.postMessage(
-            JSON.stringify({
-              event: "command",
-              func: command,
-              args: [],
-            }),
-            "*"
-          );
-        }
-      });
-    }
+    slides.forEach((slide, i) => {
+      if (slide.type === "video" && iframeRefs.current[i]?.contentWindow) {
+        const command = i === activeIndex ? "playVideo" : "pauseVideo";
+        iframeRefs.current[i].contentWindow.postMessage(
+          JSON.stringify({
+            event: "command",
+            func: command,
+            args: [],
+          }),
+          "*"
+        );
+      }
+    });
   }, [slides, activeIndex]);
 
   return (
@@ -55,23 +59,6 @@ const BannerLayouts = ({ payload }) => {
           className="relative w-full h-[600px] lg:h-[700px] 2xl:h-[800px]"
           onSlideChange={handleSlideChange}
         >
-          {/* {payload.bannerimage.map((res) => (
-          <img
-            src={res.url}
-            alt={res.name}
-            className="md:h-full md:w-screen object-cover xl:w-full xl:h-s"
-          />
-        ))} */}
-          {/* <iframe
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/7BgRbv59hio?si=lAgKpGUVWqG3yWMP"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe> */}
           {slides.map((res, i) =>
             res.type.includes("image") ? (
               <img
@@ -85,11 +72,13 @@ const BannerLayouts = ({ payload }) => {
                 ref={(el) => (iframeRefs.current[i] = el)}
                 id={`youtube-player-${i}`}
                 className="w-full h-full"
-                src={`https://www.youtube.com/embed/${res.url}?enablejsapi=1&autoplay=1&mute=1&rel=0`}
+                src={`https://www.youtube.com/embed/${extractYouTubeVideoId(
+                  res.url
+                )}?enablejsapi=1&mute=1&rel=0`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 title={`YouTube video ${i}`}
-              ></iframe>
+              />
             )
           )}
         </Carousel>

@@ -1,8 +1,10 @@
-import { Button, FileInput } from "flowbite-react";
-import React from "react";
+import { Button, FileInput, Label, Radio, TextInput } from "flowbite-react";
+import React, { useState } from "react";
 import { FaMinusCircle } from "react-icons/fa";
 
 const CMSAboutUsBannerContent = ({ attachment, setAttachment }) => {
+  const [type, setType] = useState("image");
+
   const onChangeAttachment = (file, index) => {
     if (file.length > 0) {
       attachment["bannerimage"][index] = file[0];
@@ -13,13 +15,35 @@ const CMSAboutUsBannerContent = ({ attachment, setAttachment }) => {
   };
 
   const addAttachment = () => {
-    attachment["bannerimage"].push({});
+    if (type === "image") {
+      attachment["bannerimage"].push({
+        url: "",
+        type: "image",
+        name: "",
+      });
+    } else if (type === "video") {
+      attachment["bannerimage"].push({
+        url: "",
+        type: "video",
+        name: "youtube",
+        isNew: true,
+      });
+    }
+    setAttachment({ ...attachment });
+  };
+
+  const onChangeVideo = (value, index) => {
+    attachment["bannerimage"][index]["url"] = value;
     setAttachment({ ...attachment });
   };
 
   const onDelete = (index) => {
     attachment["bannerimage"].splice(index, 1);
     setAttachment({ ...attachment });
+  };
+
+  const onTypeChange = (e) => {
+    setType(e.target.value);
   };
 
   return (
@@ -34,7 +58,7 @@ const CMSAboutUsBannerContent = ({ attachment, setAttachment }) => {
               <FaMinusCircle />
             </div>
             <div className="w-full">
-              {res.url ? (
+              {res.url && !res.isNew && !res.size ? (
                 <a
                   href={res.url}
                   target="_blank"
@@ -43,17 +67,50 @@ const CMSAboutUsBannerContent = ({ attachment, setAttachment }) => {
                   {res.name}
                 </a>
               ) : (
-                <FileInput
-                  accept="image/*"
-                  multiple={false}
-                  helperText={``}
-                  onChange={(e) => onChangeAttachment(e.target.files, index)}
-                />
+                <>
+                  {res.type.includes("image") ? (
+                    <FileInput
+                      accept="image/*"
+                      multiple={false}
+                      helperText={``}
+                      onChange={(e) =>
+                        onChangeAttachment(e.target.files, index)
+                      }
+                    />
+                  ) : (
+                    <TextInput
+                      value={res.url}
+                      onChange={(e) => {
+                        onChangeVideo(e.target.value, index);
+                      }}
+                    />
+                  )}
+                </>
               )}
             </div>
           </div>
         ))}
 
+        <div className="flex max-w-md flex-col gap-4">
+          <div className="flex items-center gap-2">
+            <Radio
+              checked={type === "image"}
+              id="image"
+              value="image"
+              onChange={onTypeChange}
+            />
+            <Label htmlFor="image">Image</Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Radio
+              checked={type === "video"}
+              id="video"
+              value="video"
+              onChange={onTypeChange}
+            />
+            <Label htmlFor="video">Video</Label>
+          </div>
+        </div>
         <Button className="mt-2 ml-9" onClick={addAttachment} size={"sm"}>
           Add
         </Button>
