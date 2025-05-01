@@ -3,13 +3,17 @@ import am4geodataWorldLow from "@amcharts/amcharts4-geodata/worldLow";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4themesAnimated from "@amcharts/amcharts4/themes/animated";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 am4core.useTheme(am4themesAnimated);
 
 const WorldMapChart = ({ markers, width, onSelect }) => {
+  const chartRef = useRef(null);
+
   useEffect(() => {
     let chart = am4core.create("chartdiv", am4maps.MapChart);
+    chartRef.current = chart;
+
     chart.geodata = am4geodataWorldLow;
     chart.projection = new am4maps.projections.Miller();
     chart.responsive = new am4core.Responsive();
@@ -102,18 +106,35 @@ const WorldMapChart = ({ markers, width, onSelect }) => {
 
     return () => {
       chart.dispose();
+      chartRef.current = null;
       window.removeEventListener("resize", detectResolution);
     };
   }, [markers]);
 
   return (
-    <div
-      id="chartdiv"
-      style={{
-        width: `${width}px`,
-        height: `${(width / (width > 639 ? 3 : 1)) * 1}px`,
-      }}
-    ></div>
+    <div>
+      <div className="absolute right-0 bottom-0 z-10 flex gap-2 mb-4">
+        <button
+          onClick={() => chartRef.current?.zoomIn()}
+          className="w-8 h-8 bg-gray-300 text-gray-700 rounded"
+        >
+          +
+        </button>
+        <button
+          onClick={() => chartRef.current?.zoomOut()}
+          className="w-8 h-8 bg-gray-300 text-gray-700 rounded"
+        >
+          -
+        </button>
+      </div>
+      <div
+        id="chartdiv"
+        style={{
+          width: `${width}px`,
+          height: `${(width / (width > 639 ? 3 : 1)) * 1}px`,
+        }}
+      ></div>
+    </div>
   );
 };
 
