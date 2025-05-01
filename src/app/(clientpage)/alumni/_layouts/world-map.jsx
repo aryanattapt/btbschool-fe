@@ -16,9 +16,9 @@ const WorldMapChart = ({ markers, width, onSelect }) => {
     chart.responsive.enabled = true;
 
     // Disable zooming
-    chart.chartContainer.wheelable = false;
-    chart.maxZoomLevel = 1;
-    chart.seriesContainer.draggable = false;
+    chart.chartContainer.wheelable = true;
+    chart.maxZoomLevel = 16;
+    chart.seriesContainer.draggable = true;
     chart.seriesContainer.resizable = false;
 
     // Detect screen size
