@@ -1,16 +1,14 @@
 import React from "react";
+import ImageContainer from "../../../_components/Banner/ImageContainer";
+import BannerImage from "../../../_components/Banner/BannerImage";
 
 const BTBKnightBanner = ({ btbKnightData }) => {
   return (
-    <div className="relative w-100% md:h-[475px]">
+    <ImageContainer>
       {btbKnightData?.bannerImage && (
-        <img
-          src={btbKnightData?.bannerImage}
-          alt="Banner BTB Knight"
-          className="md:h-full md:w-screen object-cover xl:w-full xl:h-s"
-        />
+        <BannerImage src={btbKnightData?.bannerImage} alt="Banner BTB Knight" />
       )}
-    </div>
+    </ImageContainer>
   );
 };
 

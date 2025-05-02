@@ -1,14 +1,14 @@
-const BannerLayouts = ({contactUsData}) => {
+import BannerImage from "../../../_components/Banner/BannerImage";
+import ImageContainer from "../../../_components/Banner/ImageContainer";
+
+const BannerLayouts = ({ contactUsData }) => {
   return (
-    <>
-      <div className="relative h-[475px] w-full">
-        <img
-          src = {`${contactUsData.bannerimageurl}`}
-          alt="bannercontact"
-          className="h-[475px] w-full object-cover"
-        />
-      </div>
-    </>
+    <ImageContainer>
+      <BannerImage
+        src={`${contactUsData.bannerimageurl}`}
+        alt="bannercontact"
+      />
+    </ImageContainer>
   );
 };
 

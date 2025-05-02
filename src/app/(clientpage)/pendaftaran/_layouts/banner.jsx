@@ -1,17 +1,13 @@
-const BannerLayouts = ({payload}) => {
+import BannerImage from "../../../_components/Banner/BannerImage";
+import ImageContainer from "../../../_components/Banner/ImageContainer";
+
+const BannerLayouts = ({ payload }) => {
   return (
-    <>
-      <div className="relative w-100% md:h-[475px]">
-        {
-          payload?.bannerimageurl &&
-          <img
-            src={payload?.bannerimageurl}
-            alt="bannercontact"
-            className="md:h-full md:w-screen object-cover xl:w-full xl:h-s"
-          />
-        }
-      </div>
-    </>
+    <ImageContainer>
+      {payload?.bannerimageurl && (
+        <BannerImage src={payload?.bannerimageurl} alt="bannercontact" />
+      )}
+    </ImageContainer>
   );
 };
 

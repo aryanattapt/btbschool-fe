@@ -1,14 +1,14 @@
-const Banner = ({bulletinSpotlightData}) => {
+import ImageContainer from "../../../_components/Banner/ImageContainer";
+import BannerImage from "../../../_components/Banner/BannerImage";
+
+const Banner = ({ bulletinSpotlightData }) => {
   return (
-    <>
-      <div className="relative h-[475px] w-full">
-        <img
-          src = {`${bulletinSpotlightData.bannerimageurl}`}
-          alt="/bulletinSpotlight.jpg"
-          className="h-[475px] w-full object-cover"
-        />
-      </div>
-    </>
+    <ImageContainer>
+      <BannerImage
+        alt={"/bulletinSpotlight.jpg"}
+        src={`${bulletinSpotlightData.bannerimageurl}`}
+      />
+    </ImageContainer>
   );
 };
 

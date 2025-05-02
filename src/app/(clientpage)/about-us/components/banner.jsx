@@ -1,27 +1,15 @@
 import { Carousel } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
+import StandartCarousel from "../../../_components/Banner/StandartCarousel";
 
 const BannerLayouts = ({ payload }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [slides, setSlides] = useState([]);
   const iframeRefs = useRef([]);
 
-  const datas = [
-    // {
-    //   url: "https://www.youtube.com/watch?v=RQorrnJIc2Q&ab_channel=AlexWarren",
-    //   type: "video",
-    //   name: "youtube",
-    // },
-    // {
-    //   url: "https://www.youtube.com/watch?v=RQorrnJIc2Q&ab_channel=AlexWarren",
-    //   type: "video",
-    //   name: "youtube",
-    // },
-  ];
-
   useEffect(() => {
     if (payload.bannerimage.length > 0) {
-      setSlides([...payload.bannerimage, ...datas]);
+      setSlides([...payload.bannerimage]);
     }
   }, [payload]);
 
@@ -54,11 +42,15 @@ const BannerLayouts = ({ payload }) => {
   return (
     <>
       {slides.length > 0 && (
-        <Carousel
+        <StandartCarousel
+          slideInterval={5000}
+          onSlideChange={handleSlideChange}
+        >
+          {/* <Carousel
           slideInterval={5000}
           className="relative w-full h-[600px] lg:h-[700px] 2xl:h-[800px]"
           onSlideChange={handleSlideChange}
-        >
+        > */}
           {slides.map((res, i) =>
             res.type.includes("image") ? (
               <img
@@ -81,7 +73,7 @@ const BannerLayouts = ({ payload }) => {
               />
             )
           )}
-        </Carousel>
+        </StandartCarousel>
       )}
     </>
   );

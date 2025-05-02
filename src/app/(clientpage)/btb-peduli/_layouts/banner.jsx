@@ -1,14 +1,11 @@
-const BannerLayouts = ({btbPeduliData, language}) => {
+import BannerImage from "../../../_components/Banner/BannerImage";
+import ImageContainer from "../../../_components/Banner/ImageContainer";
+
+const BannerLayouts = ({ btbPeduliData, language }) => {
   return (
-    <>
-      <div className="w-100% md:h-[475px]">
-        <img
-          src={`${btbPeduliData.bannerimage}`}
-          alt="bannerbtbpeduli"
-          className="md:h-full md:w-full object-cover"
-        />
-      </div>
-    </>
+    <ImageContainer>
+      <BannerImage src={`${btbPeduliData.bannerimage}`} alt="bannerbtbpeduli" />
+    </ImageContainer>
   );
 };
 
