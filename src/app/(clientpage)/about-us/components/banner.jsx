@@ -46,11 +46,6 @@ const BannerLayouts = ({ payload }) => {
           slideInterval={5000}
           onSlideChange={handleSlideChange}
         >
-          {/* <Carousel
-          slideInterval={5000}
-          className="relative w-full h-[600px] lg:h-[700px] 2xl:h-[800px]"
-          onSlideChange={handleSlideChange}
-        > */}
           {slides.map((res, i) =>
             res.type.includes("image") ? (
               <img
@@ -67,6 +62,19 @@ const BannerLayouts = ({ payload }) => {
                 src={`https://www.youtube.com/embed/${extractYouTubeVideoId(
                   res.url
                 )}?enablejsapi=1&mute=1&rel=0`}
+                onLoad={() => {
+                  if (i === 0) {
+                    // Play video saat iframe pertama sudah siap
+                    iframeRefs.current[i]?.contentWindow?.postMessage(
+                      JSON.stringify({
+                        event: "command",
+                        func: "playVideo",
+                        args: [],
+                      }),
+                      "*"
+                    );
+                  }
+                }}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 title={`YouTube video ${i}`}
