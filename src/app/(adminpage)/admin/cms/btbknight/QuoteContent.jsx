@@ -7,7 +7,6 @@ import CMSDivider from "../_components/CMSDivider";
 
 const CMSBtbKnightQuoteContent = ({ data, language }) => {
   const onQuoteChange = useBtbKnightStore((state) => state.onQuoteChange);
-  console.log({ data });
 
   return (
     <div className="pt-4">

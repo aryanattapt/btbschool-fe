@@ -1,16 +1,29 @@
 import React from "react";
+import { extractYouTubeVideoId } from "../../../../utils/youtubeExractor";
 
 const BtbKnightOpening = ({ btbKnightData, language }) => {
   const ImageComponent = ({ className = "" }) => {
     return (
       <div className={className}>
         <div className="relative md:h-[350px] h-[200px]">
-          {btbKnightData?.closingImage && (
+          {btbKnightData?.closingImage?.type?.includes("image") ? (
             <img
-              src={btbKnightData?.closingImage}
+              src={btbKnightData?.closingImage?.url}
               alt="Banner BTB Knight"
               className="h-full w-full object-cover"
             />
+          ) : (
+            <iframe
+              className="h-full w-full"
+              src={`https://www.youtube.com/embed/${extractYouTubeVideoId(
+                btbKnightData?.closingImage?.url
+              )}`}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
           )}
         </div>
       </div>

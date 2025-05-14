@@ -1,4 +1,5 @@
 import React from "react";
+import { extractYouTubeVideoId } from "../../../../utils/youtubeExractor";
 
 const BtbKnightOpening = ({ btbKnightData, language }) => {
   // Image Component
@@ -6,12 +7,26 @@ const BtbKnightOpening = ({ btbKnightData, language }) => {
     return (
       <div className={`${className}`}>
         <div className="relative w-100% md:h-[350px]">
-          {btbKnightData?.openingImage && (
+          {btbKnightData?.openingImage?.type?.includes("image") ? (
             <img
-              src={btbKnightData?.openingImage}
+              src={btbKnightData?.openingImage?.url}
               alt="Banner BTB Knight"
               className="md:h-full md:w-screen object-cover xl:w-full xl:h-s"
             />
+          ) : (
+            <>
+              <iframe
+                className="md:h-full md:w-screen xl:w-full xl:h-s"
+                src={`https://www.youtube.com/embed/${extractYouTubeVideoId(
+                  btbKnightData?.openingImage?.url
+                )}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </>
           )}
         </div>
       </div>

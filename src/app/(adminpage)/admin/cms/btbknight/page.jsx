@@ -1,5 +1,5 @@
 "use client";
-import { Button, Textarea, TextInput } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useBtbKnightStore } from "../../../../../../store/admin/cms/btbKnightStore";
 import LoadingModal from "../../../../../components/LoadingModal";
@@ -7,12 +7,14 @@ import { isObjectEmpty } from "../../../../../utils/checker";
 import Loader from "../../../../_components/loader";
 import AdminHeader from "../../_components/header";
 import NavbarSidebarLayout from "../../_layouts/navigation";
+import CMSSubTitle from "../_components/CMSSubtitle";
+import FieldTitle from "../_components/FieldTitle";
 import LanguageChanger from "../_components/LanguageChanger";
 import CMSBtbKnightBannerContent from "./BannerContent";
-import CMSBtbKnightOpeningContent from "./OpeningContent";
-import CMSBtbKnightPurposeContent from "./PurposeContent";
 import CMSBtbKnightClosingContent from "./ClosingContent";
 import CMSBtbKnightGalleryContent from "./GalleryContent";
+import CMSBtbKnightOpeningContent from "./OpeningContent";
+import CMSBtbKnightPurposeContent from "./PurposeContent";
 import CMSBtbKnightQuoteContent from "./QuoteContent";
 
 const CMSBtbKnight = () => {
@@ -54,7 +56,7 @@ const CMSBtbKnight = () => {
   useEffect(() => {
     if (!isObjectEmpty(data)) {
       setAttachment({
-        bannerImage: data.bannerImage,
+        bannerimage: data.bannerimage,
         openingImage: data.openingImage,
         purposeImage: data.purposeImage,
         closingImage: data.closingImage,
@@ -63,15 +65,15 @@ const CMSBtbKnight = () => {
     }
   }, [data]);
 
-  const onChangeAttachment = (file, prop) => {
-    if (file.length > 0) {
-      attachment[prop] = file[0];
-    } else {
-      // setState("", prop);
-      attachment[prop] = rawData[prop];
-    }
-    setAttachment({ ...attachment });
-  };
+  // const onChangeAttachment = (file, prop) => {
+  //   if (file.length > 0) {
+  //     attachment[prop] = file[0];
+  //   } else {
+  //     // setState("", prop);
+  //     attachment[prop] = rawData[prop];
+  //   }
+  //   setAttachment({ ...attachment });
+  // };
 
   if (isLoadingPage) {
     return <Loader />;
@@ -89,26 +91,32 @@ const CMSBtbKnight = () => {
                     value={language}
                   />
                 </div>
+                <CMSSubTitle>Carousel Content</CMSSubTitle>
+                <FieldTitle>Carousel Content</FieldTitle>
                 <CMSBtbKnightBannerContent
-                  onChangeAttachment={onChangeAttachment}
+                  attachment={attachment}
+                  setAttachment={setAttachment}
                 />
                 <CMSBtbKnightOpeningContent
                   data={data}
                   language={language}
-                  onChangeAttachment={onChangeAttachment}
+                  attachment={attachment}
+                  setAttachment={setAttachment}
                 />
                 <CMSBtbKnightPurposeContent
                   data={data}
                   language={language}
-                  onChangeAttachment={onChangeAttachment}
+                  attachment={attachment}
+                  setAttachment={setAttachment}
                 />
                 <CMSBtbKnightClosingContent
                   data={data}
                   language={language}
-                  onChangeAttachment={onChangeAttachment}
+                  attachment={attachment}
+                  setAttachment={setAttachment}
                 />
                 <CMSBtbKnightGalleryContent
-                  gallery={attachment.gallery}
+                  attachment={attachment}
                   setAttachment={setAttachment}
                 />
                 <CMSBtbKnightQuoteContent data={data} language={language} />

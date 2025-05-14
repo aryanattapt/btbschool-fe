@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { extractYouTubeVideoId } from "../../../../utils/youtubeExractor";
 
 const BtbKnightGallery = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -54,13 +55,27 @@ const BtbKnightGallery = ({ images }) => {
         <div className="flex gap-4 overflow-hidden">
           {images
             .slice(currentIndex, currentIndex + imagesPerPage)
-            .map((img, index) => (
+            .map((att, index) => (
               <div key={index} className="w-1/3">
-                <img
-                  src={img}
-                  alt={`Gallery ${index}`}
-                  className="w-full h-[150px] md:h-[275px] object-cover rounded-lg shadow"
-                />
+                {att.type.includes("image") ? (
+                  <img
+                    src={att.url}
+                    alt={`Gallery ${index}`}
+                    className="w-full h-[150px] md:h-[275px] object-cover rounded-lg shadow"
+                  />
+                ) : (
+                  <iframe
+                    className="w-full h-[150px] md:h-[275px] object-cover rounded-lg shadow"
+                    src={`https://www.youtube.com/embed/${extractYouTubeVideoId(
+                      att.url
+                    )}`}
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                )}
               </div>
             ))}
         </div>

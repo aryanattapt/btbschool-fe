@@ -1,12 +1,16 @@
-import React from "react";
-import FieldTitle from "../_components/FieldTitle";
-import CMSSubTitle from "../_components/CMSSubtitle";
 import { Textarea, TextInput } from "flowbite-react";
 import { useBtbKnightStore } from "../../../../../../store/admin/cms/btbKnightStore";
 import CMSDivider from "../_components/CMSDivider";
-import ImageAttachment from "../_components/ImageAttachment";
+import CMSSubTitle from "../_components/CMSSubtitle";
+import ContentAttachment from "../_components/ContentAttachment";
+import FieldTitle from "../_components/FieldTitle";
 
-const CMSBtbKnightOpeningContent = ({ data, language, onChangeAttachment }) => {
+const CMSBtbKnightOpeningContent = ({
+  data,
+  language,
+  attachment,
+  setAttachment,
+}) => {
   const onContentChange = useBtbKnightStore((state) => state.onContentChange);
   return (
     <div>
@@ -33,10 +37,13 @@ const CMSBtbKnightOpeningContent = ({ data, language, onChangeAttachment }) => {
           onContentChange(e.target.value, "openingContent", "content");
         }}
       />
-      <FieldTitle>Image</FieldTitle>
-      <ImageAttachment
+
+      <ContentAttachment
+        data={data}
+        property={"openingImage"}
+        attachment={attachment}
+        setAttachment={setAttachment}
         resolution="dengan menggunakan aspect ratio 1:1 Misal 1080x1080px."
-        onChange={(e) => onChangeAttachment(e.target.files, "openingImage")}
       />
       <CMSDivider />
     </div>
