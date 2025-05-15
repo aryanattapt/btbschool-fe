@@ -47,6 +47,7 @@ const CMSBtbBelajar = () => {
     deleteSmaProgramList,
     submitData,
     loading,
+    setPagingNavigation
   } = useCmsBtbBelajarStore((state) => ({
     data: state.data,
     language: state.language,
@@ -72,6 +73,7 @@ const CMSBtbBelajar = () => {
     deleteSmaProgramList: state.deleteSmaProgramList,
     submitData: state.submitData,
     loading: state.loading,
+    setPagingNavigation: state.setPagingNavigation
   }));
 
   const [attachments, setAttachments] = useState({
@@ -159,6 +161,18 @@ const CMSBtbBelajar = () => {
                   onChange={(val) => setState(val, "language")}
                   value={language}
                 />
+                 <FieldTitle>List Judul Navigasi</FieldTitle>
+                <div className="flex flex-col gap-y-2">
+                  {data[language]["paging"]["url"].map((res, idx) => (
+                    <TextInput
+                      key={idx}
+                      value={res?.title}
+                      onChange={(e) =>
+                        setPagingNavigation(e.target.value, idx)
+                      }
+                    />
+                  ))}
+                </div>
                 <CmsTK
                   data={data}
                   language={language}

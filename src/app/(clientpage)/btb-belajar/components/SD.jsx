@@ -36,8 +36,7 @@ const SD = ({ btbBelajarData, language }) => {
             </h1>
           </div>
           <h1 className="text-balance text-[25px] md:text-[30px] text-[#000000] mt-5">
-            {/* Fokus: */}
-            Fokus:
+            {btbBelajarData[language]?.sd?.text4}
           </h1>
         </div>
         {/* kurikulum */}

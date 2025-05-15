@@ -161,7 +161,7 @@ const ContactPage = () => {
                         </h3>
                         {val?.mapsLocationEmbeded && (
                           <iframe
-                            src={val?.mapsLocationEmbeded}
+                            src={val[`mapsLocationEmbeded${language}`]}
                             className="w-full h-500 md:w-full md:h-64 lg:w-86 lg:h-70"
                             allowFullScreen
                             loading="lazy"

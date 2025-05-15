@@ -249,7 +249,7 @@ const BulletinSpotlightForm = () => {
                     value="News Letter"
                     checked={payload?.["type"] === "News Letter"}
                   />
-                  <Label htmlFor="newsLetter">News Letter</Label>
+                  <Label htmlFor="newsLetter">Newsletter</Label>
                 </div>
               </fieldset>
             </div>

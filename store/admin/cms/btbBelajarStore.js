@@ -154,6 +154,12 @@ export const useCmsBtbBelajarStore = create((set, get) => ({
     }
   },
 
+  setPagingNavigation: (val, index) => {
+    const { data, language } = template(get);
+    data[language]["paging"]["url"][index]["title"] = val;
+    set({ data: data });
+  },
+
   submitData: async (attachments) => {
     const container = [];
     Object.keys(attachments).forEach((grade) => {

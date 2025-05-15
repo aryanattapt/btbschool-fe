@@ -621,7 +621,7 @@ const OnlineRegistrationForm = () => {
             <>
               {/* Form Opsi Punya Regis Code atau tidak */}
               <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                Have you registered before or already have registration code?
+                Have you registered before and already have registration code?
               </div>
               <div>
                 <div>

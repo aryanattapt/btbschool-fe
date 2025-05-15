@@ -141,8 +141,24 @@ const ContactForm = ({formChangeHandler, payload}) => {
             editable: true
         },
         {
-            headerName: "Maps Location (Embeded)",
-            field: "mapsLocationEmbeded",
+            headerName: "Maps Location (Embeded ID)",
+            field: "mapsLocationEmbededID",
+            filter: false,
+            sortable: false,
+            resizable: false,
+            suppressHeaderMenuButton: true,
+            suppressMovable: true,
+            enableRowGroup: false,
+            suppressAutoSize: true,
+            suppressSizeToFit: true,
+            headerClass: 'cell-center',
+            cellStyle: { textAlign: 'left' },
+            width: "200vw",
+            editable: true
+        },
+                {
+            headerName: "Maps Location (Embeded EN)",
+            field: "mapsLocationEmbededEN",
             filter: false,
             sortable: false,
             resizable: false,

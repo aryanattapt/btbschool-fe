@@ -11,7 +11,7 @@ const DraftNoForm = forwardRef(({ registrationcode, onChange, onPaste, errorPayl
     return (
         <>
             <div className="mt-10 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
-                Draft Registration No
+                Draft Registration Code
             </div>
             <div className="md:inline-flex">
                 <div className="mb-2 block w-72">

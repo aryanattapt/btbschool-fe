@@ -27,7 +27,7 @@ const BulletinSpotlightPage = () => {
 
       // Jika sekolah belum ada dalam objek, buat struktur awal
       if (!acc[school]) {
-        acc[school] = { Bulletin: [], "News Letter": [] };
+        acc[school] = { Bulletin: [], "Newsletter": [] };
       }
 
       // Masukkan data ke kategori tipe yang sesuai
