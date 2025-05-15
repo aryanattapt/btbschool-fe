@@ -9,6 +9,7 @@ const ContentAttachment = ({
   attachment,
   setAttachment,
   resolution = "",
+  title = true,
 }) => {
   const [isChange, setIsChange] = useState(false);
   const [newType, setNewType] = useState("image");
@@ -47,7 +48,7 @@ const ContentAttachment = ({
 
   return (
     <div>
-      <FieldTitle>Content Attachment</FieldTitle>
+      {title && <FieldTitle>Content Attachment</FieldTitle>}
       <div>
         <span className="text-sm">Currently displaying : </span>
         <a

@@ -1,9 +1,8 @@
-import { create } from "zustand";
-import { deepCopy } from "../../../src/utils/object";
-import { GetConfig, SubmitConfig } from "../../../services/config.service";
-import { isObjectEmpty } from "../../../src/utils/checker";
-import { UploadAttachment } from "../../../services/attachment.service";
 import Swal from "sweetalert2";
+import { create } from "zustand";
+import { GetConfig, SubmitConfig } from "../../../services/config.service";
+import { deepCopy } from "../../../src/utils/object";
+import { onUploadAtt } from "./aboutUsAction";
 
 const initialData = {
   rawData: {},
@@ -97,63 +96,15 @@ export const useCmsAboutUsStore = create((set, get) => ({
   // 	data[language]["gradelists"][index][prop] = value;
   // 	set({ data: data });
   // },
-  submitData: async (attachments) => {
-    const tempAtt = {};
-    if (!isObjectEmpty(attachments)) {
-      const promises = await Promise.all(
-        Object.keys(attachments).map(async (key) => {
-          if (key === "bannerimage") {
-            return await Promise.all(
-              attachments[key].map((res) => {
-                if (res.url) {
-                  delete res.isNew;
-                  return res;
-                } else {
-                  let formData = new FormData();
-                  const theFile = res;
-                  formData.append(key, theFile);
-                  return UploadAttachment("assets", formData).then(
-                    (uploaded) => {
-                      uploaded.data[0]["fileName"] = theFile.name;
-                      uploaded.data[0]["type"] = theFile.type;
-                      return uploaded;
-                    }
-                  );
-                }
-              })
-            );
-          } else {
-            let formData = new FormData();
-            const theFile = attachments[key];
-            formData.append(key, theFile);
-            return UploadAttachment("assets", formData);
-          }
-        })
-      );
-      promises.forEach((promise) => {
-        if (promise?.data) {
-          const type = promise.data[0].type;
-          tempAtt[type] = promise.data[0].fileURL;
-        } else if (Array.isArray(promise)) {
-          // Banner Image
-          tempAtt["bannerimage"] = promise.map((res) => {
-            if (res.data) {
-              return {
-                url: res.data[0].fileURL,
-                name: res.data[0].fileName,
-                type: res.data[0].type,
-              };
-            } else return res;
-          });
-        }
-      });
-    }
-    const payload = {
-      ...get().data,
-      ...tempAtt,
-    };
+  submitData: async (attachment) => {
+    const { data } = template(get);
+    data["bannerimage"] = await Promise.all(
+      attachment["bannerimage"].map((res) => onUploadAtt(res))
+    );
+    data["image1"] = await onUploadAtt(attachment["image1"]);
+    data["image2"] = await onUploadAtt(attachment["image2"]);
     try {
-      await SubmitConfig(configName, [{ type: type, ...payload }]);
+      await SubmitConfig(configName, [{ type: type, ...data }]);
       set({ loading: false });
       Swal.fire("Success", "Success to submit data!", "success");
     } catch (error) {

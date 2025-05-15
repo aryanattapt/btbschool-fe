@@ -1,3 +1,5 @@
+import { extractYouTubeVideoId } from "../../../../utils/youtubeExractor";
+
 const PengenalanPage = ({ data, language }) => {
   return (
     <>
@@ -9,12 +11,24 @@ const PengenalanPage = ({ data, language }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div>
-            {data?.image1 && (
+            {data?.image1?.type?.includes("image") ? (
               <img
-                src={`${data?.image1}`}
+                src={`${data?.image1?.url}`}
                 alt="PAUD"
                 className="h-full w-full object-cover"
               />
+            ) : (
+              <iframe
+                className="h-full w-full"
+                src={`https://www.youtube.com/embed/${extractYouTubeVideoId(
+                  data?.image1?.url
+                )}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
             )}
           </div>
           <div className="content-center bg-[#EF802B]">

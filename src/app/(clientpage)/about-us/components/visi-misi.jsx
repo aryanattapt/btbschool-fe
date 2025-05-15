@@ -1,3 +1,5 @@
+import { extractYouTubeVideoId } from "../../../../utils/youtubeExractor";
+
 const VisiMisiPage = ({ data, language }) => {
   return (
     <>
@@ -39,13 +41,25 @@ const VisiMisiPage = ({ data, language }) => {
           <Justified>{data[language]["motto"]}</Justified>
         </div>
         <div className="pl-[0px] md:pl-[50px] py-5 md:py-5 xl:py-0">
-          {data?.image2 && (
+          {data?.image2?.type?.includes("image") ? (
             <img
               // src="https://w6i8.c1.e2-7.dev/assets/btbschool/images/bannercontact.jpeg"
-              src={`${data?.image2}`}
+              src={`${data?.image2?.url}`}
               alt="aboutus2"
               className="md:h-[500px] md:w-[546px] px-4 object-cover"
             />
+          ) : (
+            <iframe
+              className="md:h-[500px] md:w-[546px] "
+              src={`https://www.youtube.com/embed/${extractYouTubeVideoId(
+                data?.image2?.url
+              )}`}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
           )}
         </div>
       </div>

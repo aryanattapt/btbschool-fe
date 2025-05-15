@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 import LoadingModal from "../../../../../components/LoadingModal";
 import CMSSubTitle from "../_components/CMSSubtitle";
 import CMSAboutUsBannerContent from "./BannerContent";
+import ContentAttachment from "../_components/ContentAttachment";
 
 const CMSAboutUs = () => {
   const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -44,7 +45,9 @@ const CMSAboutUs = () => {
   // );
 
   const [attachment, setAttachment] = useState({});
-  const setProfileLearnerTitle = useCmsAboutUsStore((state) => state.setProfileLearnerTitle);
+  const setProfileLearnerTitle = useCmsAboutUsStore(
+    (state) => state.setProfileLearnerTitle
+  );
 
   useEffect(() => {
     fetchData(getInitialData);
@@ -127,26 +130,26 @@ const CMSAboutUs = () => {
                   attachment={attachment}
                   setAttachment={setAttachment}
                 />
-                {/* <ImageAttachment
-                  resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
-                  id="image1"
-                  onChange={(e) =>
-                    onChangeAttachment(e.target.files, "bannerimage")
-                  }
-                /> */}
 
                 {/* Pengenanlan */}
-                <FieldTitle>Gambar Pengenalan</FieldTitle>
-                <ImageAttachment
-                  resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
-                  id="image1"
-                  onChange={(e) => onChangeAttachment(e.target.files, "image1")}
+                <FieldTitle>Media Pengenalan</FieldTitle>
+                <ContentAttachment
+                  data={data}
+                  property={"image1"}
+                  attachment={attachment}
+                  setAttachment={setAttachment}
+                  resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px."
+                  title={false}
                 />
-                <FieldTitle>Gambar Visi Misi</FieldTitle>
-                <ImageAttachment
-                  resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px"
-                  id="image2"
-                  onChange={(e) => onChangeAttachment(e.target.files, "image2")}
+
+                <FieldTitle>Media Visi Misi</FieldTitle>
+                <ContentAttachment
+                  data={data}
+                  property={"image2"}
+                  attachment={attachment}
+                  setAttachment={setAttachment}
+                  resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px."
+                  title={false}
                 />
                 <FieldTitle>Gambar Profile Learner</FieldTitle>
                 <ImageAttachment
@@ -247,7 +250,10 @@ const CMSAboutUs = () => {
                     rows={4}
                     value={data[language]["profileLearnerTitle"]}
                     onChange={(e) => {
-                      setProfileLearnerTitle(e.target.value, "profileLearnerTitle");
+                      setProfileLearnerTitle(
+                        e.target.value,
+                        "profileLearnerTitle"
+                      );
                     }}
                   />
                   <FieldTitle>Catatan Kaki</FieldTitle>
@@ -258,14 +264,6 @@ const CMSAboutUs = () => {
                       setSmallParagraph(e.target.value, "smallparagraph");
                     }}
                   />
-                  {/* <FieldTitle>List Jenjang Pendidikan</FieldTitle>
-									<Textarea
-										rows={4}
-										value={data[language]["smallparagraph"]}
-										onChange={(e) => {
-											setVisiMisi(e.target.value, "smallparagraph");
-										}}
-									/> */}
                   <Button
                     id="btnSaveAndSend"
                     name="btnSaveAndSend"
