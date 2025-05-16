@@ -3,6 +3,7 @@ import { deepCopy } from "../../../src/utils/object";
 import { UploadAttachment } from "../../../services/attachment.service";
 import { GetConfig, SubmitConfig } from "../../../services/config.service";
 import Swal from "sweetalert2";
+import { uploadImgBtbBelajar } from "./btbBelajarAction";
 
 const initialData = {
   rawData: {},
@@ -160,7 +161,7 @@ export const useCmsBtbBelajarStore = create((set, get) => ({
     set({ data: data });
   },
 
-  submitData: async (attachments) => {
+  submitData: async (attachments, images) => {
     const container = [];
     Object.keys(attachments).forEach((grade) => {
       attachments[grade].forEach((res) => {
@@ -188,6 +189,22 @@ export const useCmsBtbBelajarStore = create((set, get) => ({
       finalBanner[grade].push(res[grade]);
     });
     const payload = { ...get().data };
+    payload["image1"] = await uploadImgBtbBelajar(images["image1"]);
+    payload["image2"] = await uploadImgBtbBelajar(images["image2"]);
+    payload["image3"] = await uploadImgBtbBelajar(images["image3"]);
+    payload["image4"] = await uploadImgBtbBelajar(images["image4"]);
+    payload["image5"] = await uploadImgBtbBelajar(images["image5"]);
+    payload["image6"] = await uploadImgBtbBelajar(images["image6"]);
+    payload["image7"] = await uploadImgBtbBelajar(images["image7"]);
+    payload["image8"] = await uploadImgBtbBelajar(images["image8"]);
+    payload["image9"] = await uploadImgBtbBelajar(images["image9"]);
+    payload["image10"] = await uploadImgBtbBelajar(images["image10"]);
+    payload["image11"] = await uploadImgBtbBelajar(images["image11"]);
+    payload["image12"] = await uploadImgBtbBelajar(images["image12"]);
+    payload["image13"] = await uploadImgBtbBelajar(images["image13"]);
+    payload["image14"] = await uploadImgBtbBelajar(images["image14"]);
+    payload["image15"] = await uploadImgBtbBelajar(images["image15"]);
+    payload["image16"] = await uploadImgBtbBelajar(images["image16"]);
     ["ID", "EN"].forEach((lang) => {
       ["tk", "sd", "smp", "sma"].forEach((grade) => {
         payload[lang][grade]["bannerImages"] = finalBanner[grade];

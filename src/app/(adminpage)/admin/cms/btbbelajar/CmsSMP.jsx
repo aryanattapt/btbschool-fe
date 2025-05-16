@@ -6,6 +6,7 @@ import FieldTitle from "../_components/FieldTitle";
 import BannerAttachment from "./_components/BannerAttachment/BannerAttachment";
 import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import { FaMinusCircle } from "react-icons/fa";
+import ImageAttachment from "../_components/ImageAttachment";
 
 const CmsSMP = ({
   data,
@@ -19,6 +20,7 @@ const CmsSMP = ({
   setContentState,
   setSmpContentList,
   addSmpContentList,
+  onChangeImage,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -75,6 +77,11 @@ const CmsSMP = ({
                 "paragraph"
               );
             }}
+          />
+          <FieldTitle>Introduction Image</FieldTitle>
+          <ImageAttachment
+            onChange={(e) => onChangeImage(e.target.files, "image9")}
+            url={data["image9"]}
           />
           <FieldTitle>Curriculum Title</FieldTitle>
           <TextInput
@@ -220,6 +227,11 @@ const CmsSMP = ({
               setContentState(e.target.value, "smp", "activity", "content");
             }}
           />
+          <FieldTitle>Activity Image</FieldTitle>
+          <ImageAttachment
+            onChange={(e) => onChangeImage(e.target.files, "image10")}
+            url={data["image10"]}
+          />
           <FieldTitle>Programs Title</FieldTitle>
           <TextInput
             value={data[language]["smp"]["programs"]["title"]}
@@ -296,6 +308,11 @@ const CmsSMP = ({
               </Button>
             </div>
           </div>
+          <FieldTitle>Program Image</FieldTitle>
+          <ImageAttachment
+            onChange={(e) => onChangeImage(e.target.files, "image11")}
+            url={data["image11"]}
+          />
           <FieldTitle>Outdoor Activity Title</FieldTitle>
           <TextInput
             value={data[language]["smp"]["outdoor"]["title"]}
@@ -317,6 +334,11 @@ const CmsSMP = ({
             onChange={(e) => {
               setContentState(e.target.value, "smp", "outdoor", "paragraph");
             }}
+          />
+          <FieldTitle>Outdoor Image</FieldTitle>
+          <ImageAttachment
+            onChange={(e) => onChangeImage(e.target.files, "image12")}
+            url={data["image12"]}
           />
         </div>
       )}

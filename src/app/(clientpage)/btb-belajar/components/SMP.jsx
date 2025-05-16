@@ -166,11 +166,13 @@ const SMP = ({ btbBelajarData, language }) => {
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-4 px-10 md:px-10 lg:px-32 xl:px-32 mt-10">
             <div className="flex">
               <div className="w-full h-full">
-                <img
-                  src={`${btbBelajarData.image10}`}
-                  alt="SMP"
-                  className="w-full h-full object-cover"
-                />
+                {btbBelajarData?.image12 && (
+                  <img
+                    src={`${btbBelajarData.image12}`}
+                    alt="SMP"
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </div>
             </div>
             <div className="flex">

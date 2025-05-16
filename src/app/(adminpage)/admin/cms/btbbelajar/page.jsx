@@ -1,22 +1,20 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import NavbarSidebarLayout from "../../_layouts/navigation";
-import { useCmsBtbBelajarStore } from "../../../../../../store/admin/cms/btbBelajarStore";
-import LanguageChanger from "../_components/LanguageChanger";
-import AdminHeader from "../../_components/header";
-import { isObjectEmpty } from "../../../../../utils/checker";
-import FieldTitle from "../_components/FieldTitle";
-import { Button, Label, Textarea, TextInput } from "flowbite-react";
-import Loader from "../../../../_components/loader";
-import { checkPermission } from "../../../../../../services/auth.service";
-import BannerAttachment from "./_components/BannerAttachment/BannerAttachment";
+import { Button, TextInput } from "flowbite-react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { checkPermission } from "../../../../../../services/auth.service";
+import { useCmsBtbBelajarStore } from "../../../../../../store/admin/cms/btbBelajarStore";
 import LoadingModal from "../../../../../components/LoadingModal";
-import CMSSubTitle from "../_components/CMSSubtitle";
-import CmsTK from "./CmsTK";
+import { isObjectEmpty } from "../../../../../utils/checker";
+import Loader from "../../../../_components/loader";
+import AdminHeader from "../../_components/header";
+import NavbarSidebarLayout from "../../_layouts/navigation";
+import FieldTitle from "../_components/FieldTitle";
+import LanguageChanger from "../_components/LanguageChanger";
 import CmsSD from "./CmsSD";
-import CmsSMP from "./CmsSMP";
 import CmsSMA from "./CmsSMA";
+import CmsSMP from "./CmsSMP";
+import CmsTK from "./CmsTK";
 
 const CMSBtbBelajar = () => {
   const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -47,7 +45,7 @@ const CMSBtbBelajar = () => {
     deleteSmaProgramList,
     submitData,
     loading,
-    setPagingNavigation
+    setPagingNavigation,
   } = useCmsBtbBelajarStore((state) => ({
     data: state.data,
     language: state.language,
@@ -73,7 +71,7 @@ const CMSBtbBelajar = () => {
     deleteSmaProgramList: state.deleteSmaProgramList,
     submitData: state.submitData,
     loading: state.loading,
-    setPagingNavigation: state.setPagingNavigation
+    setPagingNavigation: state.setPagingNavigation,
   }));
 
   const [attachments, setAttachments] = useState({
@@ -82,6 +80,7 @@ const CMSBtbBelajar = () => {
     smp: [],
     sma: [],
   });
+  const [images, setImages] = useState({});
 
   useEffect(() => {
     fetchData(getInitialData);
@@ -93,6 +92,24 @@ const CMSBtbBelajar = () => {
         attachments[grade] = [...data["ID"][grade]["bannerImages"]];
       });
       setAttachments(JSON.parse(JSON.stringify(attachments)));
+      setImages({
+        image1: data["image1"],
+        image2: data["image2"],
+        image3: data["image3"],
+        image4: data["image4"],
+        image5: data["image5"],
+        image6: data["image6"],
+        image7: data["image7"],
+        image8: data["image8"],
+        image9: data["image9"],
+        image10: data["image10"],
+        image11: data["image11"],
+        image12: data["image12"],
+        image13: data["image13"],
+        image14: data["image14"],
+        image15: data["image15"],
+        image16: data["image16"],
+      });
       if (!isDeclaredAtt) setIsDeclaredAtt(true);
     }
   }, [data]);
@@ -133,6 +150,13 @@ const CMSBtbBelajar = () => {
     setAttachments((prev) => ({ ...prev, [grade]: [...prev[grade], {}] }));
   };
 
+  const onChangeImage = (file, prop) => {
+    if (file.length > 0) {
+      images[prop] = file[0];
+    }
+    setImages({ ...images });
+  };
+
   const onSubmit = async () => {
     Swal.fire(
       "Are you sure?",
@@ -142,7 +166,7 @@ const CMSBtbBelajar = () => {
       if (res.isConfirmed) {
         setState(true, "loading");
         // setIsLoadingPage(true)
-        submitData(attachments);
+        submitData(attachments, images);
       }
     });
   };
@@ -161,15 +185,13 @@ const CMSBtbBelajar = () => {
                   onChange={(val) => setState(val, "language")}
                   value={language}
                 />
-                 <FieldTitle>List Judul Navigasi</FieldTitle>
+                <FieldTitle>List Judul Navigasi</FieldTitle>
                 <div className="flex flex-col gap-y-2">
                   {data[language]["paging"]["url"].map((res, idx) => (
                     <TextInput
                       key={idx}
                       value={res?.title}
-                      onChange={(e) =>
-                        setPagingNavigation(e.target.value, idx)
-                      }
+                      onChange={(e) => setPagingNavigation(e.target.value, idx)}
                     />
                   ))}
                 </div>
@@ -187,6 +209,7 @@ const CMSBtbBelajar = () => {
                   addTkCurriculumContent={addTkCurriculumContent}
                   setProgramContent={setProgramContent}
                   addProgramContent={addProgramContent}
+                  onChangeImage={onChangeImage}
                 />
                 {/* CONTENT GRADE SD */}
                 <CmsSD
@@ -200,6 +223,7 @@ const CMSBtbBelajar = () => {
                   setContentState={setContentState}
                   setSdContentList={setSdContentList}
                   addSdContentList={addSdContentList}
+                  onChangeImage={onChangeImage}
                 />
                 {/* CONTENT GRADE SMP */}
                 <CmsSMP
@@ -214,6 +238,7 @@ const CMSBtbBelajar = () => {
                   setSmpContentList={setSmpContentList}
                   addSmpContentList={addSmpContentList}
                   deleteSmpProgramList={deleteSmpProgramList}
+                  onChangeImage={onChangeImage}
                 />
 
                 {/* CONTENT GRADE SMA */}
@@ -229,6 +254,7 @@ const CMSBtbBelajar = () => {
                   setContentState={setContentState}
                   setSmaContentList={setSmaContentList}
                   addSmaContentList={addSmaContentList}
+                  onChangeImage={onChangeImage}
                 />
                 <Button className="mt-4" onClick={onSubmit}>
                   Save

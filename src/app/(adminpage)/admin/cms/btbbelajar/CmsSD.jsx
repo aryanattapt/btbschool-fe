@@ -6,6 +6,7 @@ import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import CMSDivider from "../_components/CMSDivider";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { FaMinusCircle } from "react-icons/fa";
+import ImageAttachment from "../_components/ImageAttachment";
 
 const CmsSD = ({
   data,
@@ -18,6 +19,7 @@ const CmsSD = ({
   setContentState,
   setSdContentList,
   addSdContentList,
+  onChangeImage,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -69,6 +71,11 @@ const CmsSD = ({
             onChange={(e) => {
               setContentState(e.target.value, "sd", "text2");
             }}
+          />
+          <FieldTitle>Content Image</FieldTitle>
+          <ImageAttachment
+            onChange={(e) => onChangeImage(e.target.files, "image1")}
+            url={data["image1"]}
           />
           <FieldTitle>Curriculum Title</FieldTitle>
           <TextInput
@@ -209,6 +216,11 @@ const CmsSD = ({
               setContentState(e.target.value, "sd", "text6");
             }}
           />
+          <FieldTitle>Activity Image</FieldTitle>
+          <ImageAttachment
+            onChange={(e) => onChangeImage(e.target.files, "image2")}
+            url={data["image2"]}
+          />
           <FieldTitle>Activity Program List</FieldTitle>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
@@ -265,6 +277,11 @@ const CmsSD = ({
               </Button>
             </div>
           </div>
+          <FieldTitle>Activity List Image</FieldTitle>
+          <ImageAttachment
+            onChange={(e) => onChangeImage(e.target.files, "image3")}
+            url={data["image3"]}
+          />
 
           <FieldTitle>Outdoor Activity Title</FieldTitle>
           <TextInput
@@ -287,6 +304,11 @@ const CmsSD = ({
             onChange={(e) => {
               setContentState(e.target.value, "sd", "text10");
             }}
+          />
+          <FieldTitle>Outdoor Image</FieldTitle>
+          <ImageAttachment
+            onChange={(e) => onChangeImage(e.target.files, "image4")}
+            url={data["image4"]}
           />
         </div>
       )}

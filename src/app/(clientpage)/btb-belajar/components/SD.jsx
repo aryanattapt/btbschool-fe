@@ -115,8 +115,8 @@ const SD = ({ btbBelajarData, language }) => {
               </div>
             </div>
             <div className="flex">
-              <div className="flex flex-wrap content-center justify-center h-full">
-                <div className="pl-5 lg:pl-10 text-left text-balance text-[#000000]">
+              <div className="w-full h-full">
+                <div className="pl-5 lg:pl-10 grid grid-cols-2 text-left text-balance text-[#000000]">
                   <div>
                     <ul className="list-disc">
                       {btbBelajarData[language]?.sd?.programlist1?.map(
