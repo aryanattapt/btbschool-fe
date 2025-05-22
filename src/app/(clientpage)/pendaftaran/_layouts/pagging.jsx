@@ -42,7 +42,7 @@ const PaggingLayouts = ({
                   title={res?.title}
                   isActive={activeTab === paginationClick[idx]}
                   onClick={() =>
-                    idx < 3
+                    idx < pendaftaranData[language]?.pagingHeader?.url?.filter((val) => val.isactive == true).length - 1
                       ? onClickPagination(paginationClick[idx])
                       : goToOnlineRegistration()
                   }

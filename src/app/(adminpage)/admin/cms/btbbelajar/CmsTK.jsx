@@ -55,6 +55,13 @@ const CmsTK = ({
             onChangeAttachment={onChangeAttachment}
             addAttachment={addAttachment}
           />
+          <FieldTitle>Title</FieldTitle>
+          <TextInput
+            value={data[language]["tk"]["title"]}
+            onChange={(e) => {
+              setContentState(e.target.value, "tk", "title");
+            }}
+          />
           <FieldTitle>Introduction Title</FieldTitle>
           <TextInput
             value={data[language]["tk"]["introduction"]["title"]}
@@ -92,6 +99,13 @@ const CmsTK = ({
             value={data[language]["tk"]["curriculum"]["subtitle"]}
             onChange={(e) => {
               setContentState(e.target.value, "tk", "curriculum", "subtitle");
+            }}
+          />
+          <FieldTitle>Curriculum Subtitle 2</FieldTitle>
+          <TextInput
+            value={data[language]["tk"]["curriculum"]["subtitle2"]}
+            onChange={(e) => {
+              setContentState(e.target.value, "tk", "curriculum", "subtitle2");
             }}
           />
           <FieldTitle>Curriculum Content 1</FieldTitle>
