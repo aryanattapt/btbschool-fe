@@ -1,7 +1,7 @@
 "use client";
 import ContactForm from "./_layouts/form";
 import Banner from "./_layouts/banner";
-import Pagging from "./_layouts/pagging";
+import Pagging from "./../../_components/paging";
 import { HiPhone, HiMail } from "react-icons/hi";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { useEffect, useState } from "react";
@@ -19,7 +19,7 @@ const convertPhoneNumber = (input) => {
 };
 
 const ContactPage = () => {
-  const { language, getContactPageData, isLoading } = usePageData();
+  const { language, getContactPageData, isLoading, navigation } = usePageData();
   const payload = usePageData((state) => state.result.contact);
   const contactUsData = usePageData((state) => state.result.ContactPageData);
 
@@ -33,12 +33,20 @@ const ContactPage = () => {
     const hash = window.location.hash?.substring(1);
     if (!hash) setActiveTab("contact");
     else {
-      const hashId = {
-        contact: "contact",
-        location: "location",
-      };
-      setActiveTab(hashId[hash]);
+      setActiveTab(hash);
     }
+
+    // Optionally listen to hash changes dynamically
+    const onHashChange = () => {
+      const newHash = window.location.hash ? window.location.hash.substring(1) : '';
+      setActiveTab(newHash || 'contact');
+    };
+
+    window.addEventListener('hashchange', onHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', onHashChange);
+    };
   }, []);
 
   if (isLoading) {
@@ -48,8 +56,7 @@ const ContactPage = () => {
       <>
         <Banner contactUsData={contactUsData} />
         <Pagging
-          contactUsData={contactUsData}
-          language={language}
+          navbardata={navigation.navbar[language].navbarlink.find(x => x.id == "contact")}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />

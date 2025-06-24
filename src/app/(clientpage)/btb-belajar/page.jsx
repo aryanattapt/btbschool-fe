@@ -1,13 +1,13 @@
 'use client'
 import { useEffect } from "react";
 import Banner from "./components/Banner";
-import Pagging from "./components/Pagging";
+import Pagging from "./../../_components/paging";
 import TK from "./components/TK";
 import { usePageData } from '../../../hooks/usePageData';
 import Loader from "../../_components/loader";
 
 const BTBBelajarPage = () => {
-  const {language, getBTBBelajarPageData, isLoading} = usePageData();
+  const {language, getBTBBelajarPageData, isLoading, navigation} = usePageData();
   const btbBelajarData = usePageData((state) => state.result.btbbelajar);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const BTBBelajarPage = () => {
     return (
       <>
           <Banner btbBelajarData={btbBelajarData}/>
-          <Pagging btbBelajarData={btbBelajarData} language={language}/>
+          <Pagging navbardata={navigation.navbar[language].navbarlink.find(x => x.id == "learnatbtb")}/>
           <TK btbBelajarData={btbBelajarData} language={language}/>
       </>
     );

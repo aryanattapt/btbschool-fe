@@ -2,14 +2,14 @@
 import CeritaAlumni from "./_layouts/cerita-alumni";
 import PendaftaranAlumni from "./_layouts/pendaftaran-alumni";
 import Banner from "./_layouts/banner";
-import Pagging from "./_layouts/pagging";
+import Pagging from "./../../_components/paging";
 import { useEffect, useState } from "react";
 import { usePageData } from "../../../hooks/usePageData";
 import Loader from "../../_components/loader";
 
 const AlumniPage = () => {
-  const [activeTab, setActiveTab] = useState("cerita-alumni");
-  const { language, getAlumniPageData, isLoading } = usePageData();
+  const [activeTab, setActiveTab] = useState("story");
+  const { language, getAlumniPageData, isLoading, navigation } = usePageData();
   const alumniPayload = usePageData((state) => state.result.alumni);
   const alumniStoryPayload = usePageData((state) => state.result.alumniStory);
   const alumniUniversityPayload = usePageData(
@@ -23,14 +23,22 @@ const AlumniPage = () => {
 
     // url navigation
     const hash = window.location.hash?.substring(1);
-    if (!hash) setActiveTab("cerita-alumni");
+    if (!hash) setActiveTab("story");
     else {
-      const hashId = {
-        story: "cerita-alumni",
-        registration: "pendaftaran-alumni",
-      };
-      setActiveTab(hashId[hash]);
+      setActiveTab(hash);
     }
+
+    // Optionally listen to hash changes dynamically
+    const onHashChange = () => {
+      const newHash = window.location.hash ? window.location.hash.substring(1) : '';
+      setActiveTab(newHash || 'story');
+    };
+
+    window.addEventListener('hashchange', onHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', onHashChange);
+    };
   }, []);
 
   if (isLoading) {
@@ -39,14 +47,14 @@ const AlumniPage = () => {
     return (
       <>
         <Banner alumniPayload={alumniPayload} />
+        
         <Pagging
-          alumniPayload={alumniPayload}
-          language={language}
+          navbardata={navigation.navbar[language].navbarlink.find(x => x.id == "alumni")}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
 
-        {activeTab === "cerita-alumni" && (
+        {activeTab === "story" && (
           <CeritaAlumni
             alumniPayload={alumniPayload}
             alumniStoryPayload={alumniStoryPayload}
@@ -56,7 +64,7 @@ const AlumniPage = () => {
           />
         )}
 
-        {activeTab === "pendaftaran-alumni" && (
+        {activeTab === "registration" && (
           <PendaftaranAlumni
             alumniPayload={alumniPayload}
             language={language}

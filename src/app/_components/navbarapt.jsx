@@ -304,7 +304,7 @@ const NavBar = () => {
                                   }`}
                                 />
                               )}
-                              <span className="whitespace-normal">{val?.name}</span>
+                              <span className="whitespace-nowrap">{val?.name}</span>
                             </a>
                           </li>
                         );
@@ -317,9 +317,9 @@ const NavBar = () => {
 
             <div className="hidden lg:flex lg:items-center justify-end lg:space-x-8">
               {/* Navbar Links */}
-              <ul className="flex">
+              <ul className="flex whitespace-nowrap">
                 {navigation?.["navbar"][language].navbarlink.map((val, idx) => (
-                  <li key={idx} className="relative group ">
+                  <li key={idx} className="relative group text-xs xl:text-base">
                     <a
                       href={val.url}
                       className="text-white hover:text-[#EF802B] py-2 px-4 block"
@@ -355,6 +355,7 @@ const NavBar = () => {
                 ))}
               </ul>
             </div>
+            
           </div>
         </div>
       </nav>

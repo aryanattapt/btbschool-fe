@@ -1,6 +1,6 @@
 "use client";
 import Banner from "./_layouts/banner";
-import Pagging from "./_layouts/pagging";
+import Pagging from "./../../_components/paging";
 import { useEffect, useState } from "react";
 import Enrolment from "./_layouts/enrolment";
 import Beasiswa from "./_layouts/beasiswa";
@@ -11,7 +11,7 @@ import Loader from "../../_components/loader";
 const PendaftaranPage = () => {
   const [activeTab, setActiveTab] = useState("enrolment");
 
-  const { language, getPendaftaranPageData, isLoading } = usePageData();
+  const { language, getPendaftaranPageData, isLoading, navigation } = usePageData();
   const pendaftaranData = usePageData((state) => state.result.pendaftaranData);
   const generalSetting = usePageData((state) => state.result.generalPayload);
 
@@ -23,13 +23,20 @@ const PendaftaranPage = () => {
     const hash = window.location.hash?.substring(1);
     if (!hash) setActiveTab("enrolment");
     else {
-      const hashId = {
-        enrolment: "enrolment",
-        scholarship: "beasiswa",
-        "school-tour": "tur-sekolah",
-      };
-      setActiveTab(hashId[hash]);
+      setActiveTab(hash);
     }
+
+    // Optionally listen to hash changes dynamically
+    const onHashChange = () => {
+      const newHash = window.location.hash ? window.location.hash.substring(1) : '';
+      setActiveTab(newHash || 'enrolment');
+    };
+
+    window.addEventListener('hashchange', onHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', onHashChange);
+    };
   }, []);
 
   if (isLoading) {
@@ -39,24 +46,22 @@ const PendaftaranPage = () => {
       <>
         <Banner payload={pendaftaranData} />
         <Pagging
-          pendaftaranData={pendaftaranData}
-          language={language}
+          navbardata={navigation.navbar[language].navbarlink.find(x => x.id == "registration")}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
 
-        {activeTab === "pendaftaran"}
         {activeTab === "enrolment" && (
           <Enrolment data={pendaftaranData} language={language} />
         )}
-        {activeTab === "beasiswa" && (
+        {activeTab === "scholarship" && (
           <Beasiswa
             data={pendaftaranData}
             language={language}
             generalSetting={generalSetting}
           />
         )}
-        {activeTab === "tur-sekolah" && (
+        {activeTab === "school-tour" && (
           <TurSekolah
             data={pendaftaranData}
             language={language}

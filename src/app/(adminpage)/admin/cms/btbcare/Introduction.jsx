@@ -13,6 +13,14 @@ const Introduction = () => {
 
   return (
     <>
+      <CMSSubTitle>Judul Introduction</CMSSubTitle>
+      <FieldTitle>Judul Introduction</FieldTitle>
+      <TextInput
+        value={data[language]["introductiontitle"]}
+        onChange={(e) => {
+          setStateLanguage(e.target.value, "introductiontitle");
+        }}
+      />
       <CMSSubTitle>BTB Care</CMSSubTitle>
       <FieldTitle>Judul Navigasi</FieldTitle>
       <TextInput

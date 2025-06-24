@@ -76,7 +76,7 @@ const BulletinSpotlightPage = () => {
               }).map((type) => (
                 <div>
                   <h1 className="md:text-[28px] text-[20px] text-[#275d90]">
-                    {type}
+                    {type == 'Bulletin' ? bulletinSpotlightPageData[language].subtitlebulletin : type == 'Newsletter' ? bulletinSpotlightPageData[language].subtitlenewsletter : ''}
                   </h1>
                   <div className="py-6 sm:grid sm:grid-cols-2 sm:gap-y-12 sm:gap-x-6 md:gap-12 lg:grid-cols-4 lg:gap-8">
                     {display[school][type].map((res, idx) => (

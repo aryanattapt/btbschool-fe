@@ -1,6 +1,7 @@
 "use client";
 import Banner from "./components/banner";
-import Pagging from "./components/pagging";
+// import Pagging from "./components/pagging";
+import Pagging from "./../../_components/paging";
 import { useEffect, useState } from "react";
 import Pengenalan from "./components/pengenalan";
 import VisiMisi from "./components/visi-misi";
@@ -9,8 +10,8 @@ import { usePageData } from "../../../hooks/usePageData";
 import Loader from "../../_components/loader";
 
 const AboutUsPage = () => {
-  const [activeTab, setActiveTab] = useState("pengenalan");
-  const { language, getAboutUsPageData, isLoading } = usePageData();
+  const [activeTab, setActiveTab] = useState("introduction");
+  const { language, getAboutUsPageData, isLoading, navigation } = usePageData();
   const aboutUsData = usePageData((state) => state.result.aboutus);
   const gradelistData = usePageData((state) => state.result.gradelist);
 
@@ -20,15 +21,22 @@ const AboutUsPage = () => {
 
     // url navigation
     const hash = window.location.hash?.substring(1);
-    if (!hash) setActiveTab("pengenalan");
+    if (!hash) setActiveTab("introduction");
     else {
-      const hashId = {
-        introduction: "pengenalan",
-        "vision-mission": "visi-misi",
-        education: "jenjang-pendidikan",
-      };
-      setActiveTab(hashId[hash]);
+      setActiveTab(hash);
     }
+
+    // Optionally listen to hash changes dynamically
+    const onHashChange = () => {
+      const newHash = window.location.hash ? window.location.hash.substring(1) : '';
+      setActiveTab(newHash || 'introduction');
+    };
+
+    window.addEventListener('hashchange', onHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', onHashChange);
+    };
   }, []);
 
   if (isLoading) {
@@ -36,21 +44,21 @@ const AboutUsPage = () => {
   } else if (aboutUsData)
     return (
       <>
+        {console.log(activeTab, 'activetab')}
         <Banner payload={aboutUsData} />
         <Pagging
-          aboutUsData={aboutUsData}
-          language={language}
+          navbardata={navigation.navbar[language].navbarlink.find(x => x.id == "about-us")}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
 
-        {activeTab === "pengenalan" && (
+        {activeTab === "about-us" || activeTab === 'introduction' && (
           <Pengenalan data={aboutUsData} language={language} />
         )}
-        {activeTab === "visi-misi" && (
+        {activeTab === "vision-mission" && (
           <VisiMisi data={aboutUsData} language={language} />
         )}
-        {activeTab === "jenjang-pendidikan" && (
+        {activeTab === "education" && (
           <JenjangPendidikan data={gradelistData} language={language} />
         )}
 

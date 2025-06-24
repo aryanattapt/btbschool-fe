@@ -191,6 +191,16 @@ const BannerForm = () => {
 		setPayload({ ...payload });
 	};
 
+	const onChangeSubTitleBulletin = (val) => {
+		payload[language]["subtitlebulletin"] = val;
+		setPayload({ ...payload });
+	};
+
+	const onChangeSubTitleNewsLetter = (val) => {
+		payload[language]["subtitlenewsletter"] = val;
+		setPayload({ ...payload });
+	};
+
 	if (isLoadingPage) {
 		return <Loader />;
 	} else
@@ -251,6 +261,22 @@ const BannerForm = () => {
 							value={payload[language]["pagingHeader"]["url"].length > 0 ? payload[language]["pagingHeader"]["url"][0]["title"] : ''}
 							onChange={(e) => {
 								onChangeTitleTampilkanSorotan(e.target.value);
+							}}
+						/>
+
+						<FieldTitle>Subtitle Bulletin Sekolah</FieldTitle>
+						<TextInput
+							value={payload[language]["subtitlebulletin"] || ''}
+							onChange={(e) => {
+								onChangeSubTitleBulletin(e.target.value);
+							}}
+						/>
+
+						<FieldTitle>Subtitle News Letter Sekolah</FieldTitle>
+						<TextInput
+							value={payload[language]["subtitlenewsletter"] || ''}
+							onChange={(e) => {
+								onChangeSubTitleNewsLetter(e.target.value);
 							}}
 						/>
 

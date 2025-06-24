@@ -69,6 +69,7 @@ export const useCmsBtbBelajarStore = create((set, get) => ({
   addProgramContent: (grade, prop) => {
     const { data, language } = template(get);
     data[language][grade]["programs"][prop].push("");
+    set({ data: data });
   },
   setSdContentList: (val, prop, index, key) => {
     const { data, language } = template(get);

@@ -525,7 +525,7 @@ export const usePageData = create((set, get) => ({
         language: localStorage.getItem(LANGUAGEKEY) || initialData.language,
       });
       const results = await Promise.allSettled([
-        GetConfig(configName, { type: "navigation" }),
+        GetConfig(configName, { type: "navigation1" }),
       ]);
 
       set({

@@ -30,7 +30,9 @@ const NavbarContent = ({ navItems }) => {
 
   const submenuContactUs = ["Hubungi Kami", "Lokasi Kami"];
 
-  const submenuBTBCare = ["BTB Peduli Lingkungan", "Sukarelawan BTB", "BTB Tangan Penolong"];
+  const submenuBTBCare = ["Pengenalan", "BTB Peduli Lingkungan", "Sukarelawan BTB", "BTB Tangan Penolong"];
+
+  const submenuBTBKnights = ["Pengenalan", "Tujuan Kami", "Galeri"];
 
   return (
     <div>
@@ -89,6 +91,13 @@ const NavbarContent = ({ navItems }) => {
         onChange={(e) => {
           setParentContent(e.target.value, 3);
         }}
+      />
+      <FieldTitle>Submenu</FieldTitle>
+      <TableSubMenu
+        menus={submenuBTBKnights}
+        navItems={navItems}
+        onChange={setNavbarSubmenuContent}
+        index={3}
       />
       <CMSDivider />
 

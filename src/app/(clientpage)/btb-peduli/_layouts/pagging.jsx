@@ -36,6 +36,19 @@ const Pagging = ({ language, btbPeduliData, activeTab, setActiveTab }) => {
               <li className="px-10 sm:px-5 md:px-20 lg:px-4">
                 <div
                   className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
+                    activeTab === "introduction"
+                      ? "bg-white text-black underline"
+                      : "bg-white"
+                  }`}
+                  onClick={() => onClickPagination("introduction")}
+                >
+                  {/* Peduli Lingkungan */}
+                  {btbPeduliData[language]?.introductiontitle}
+                </div>
+              </li>
+              <li className="px-10 sm:px-5 md:px-20 lg:px-4">
+                <div
+                  className={`cursor-pointer inline-block border-transparent rounded-t-lg hover:text-blue-600 dark:hover:text-blue-600 ${
                     activeTab === "peduli-lingkungan"
                       ? "bg-white text-black underline"
                       : "bg-white"

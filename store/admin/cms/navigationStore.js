@@ -18,7 +18,7 @@ const template = (get) => {
   };
 };
 
-const type = "navigation";
+const type = "navigation1";
 const configName = "general";
 
 export const useNavigationStore = create((set, get) => ({
