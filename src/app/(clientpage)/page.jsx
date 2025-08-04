@@ -78,8 +78,8 @@ const HomePage = () => {
                           </div>
                         </div>
                         <div className="md:my-[10px] text-[#00305E]">
-                          <div className="flex gap-2 justify-center">
-                            <p className="text-[14px] md:text-[20px] leading-tight text-center font-semibold">
+                          <div className="flex justify-center">
+                            <p className="text-[14px] md:text-[20px] leading-tight font-semibold whitespace-nowrap">
                               {val[`${language}`]?.title}
                             </p>
                           </div>
@@ -112,7 +112,7 @@ const HomePage = () => {
               })}
             </div> */}
 
-            <InstagramFeedsComponent payload={instagramFeed} title={homePagePayload[language].instagramtitle} url={'https://www.instagram.com/btb_school'}/>
+            <InstagramFeedsComponent payload={instagramFeed} title={payload[language].instagramtitle} url={payload.instagramlink}/>
             
             {/* <div className="m-10 flex justify-center">
               <button

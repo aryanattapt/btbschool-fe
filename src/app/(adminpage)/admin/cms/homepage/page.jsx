@@ -3,7 +3,8 @@ import {
     Button,
     Label,
     Spinner,
-    Tabs
+    Tabs,
+    Textarea
 } from "flowbite-react";
 import { useEffect, useState } from "react";
 import NavbarSidebarLayout from '../../_layouts/navigation';
@@ -24,6 +25,7 @@ import GradeForm from './_components/grade.form';
 import GradeListForm from './_components/gradelist.form';
 import Loader from '../../../../_components/loader';
 import { checkPermission } from '../../../../../../services/auth.service';
+import InstagramForm from './_components/instagram.form';
 
 const HomepageSettingsMainForm = () => {
     const [isLoadingPage, setIsLoadingPage] = useState(true);
@@ -160,6 +162,26 @@ const HomepageSettingsMainForm = () => {
                     </div>
                     {/* <GradeListForm formChangeHandler={formChangeHandler} payload={payload}/> */}
                     <Button color="blue" onClick={() => window.location.href="/admin/cms/homepage/edulevel"}>Settings</Button>
+                </div>
+
+                <div className="mt-4 mb-4">
+                    <div className="mt-4 mb-2 w-fit font-semibold text-[15px] text-[#00305E] border-b-8 border-b border-[#EF802B]">
+                        Berita Terbaru
+                    </div>
+                    <div>
+                        <div className="mb-2 block">
+                            <Label htmlFor="instagramlink" value={`Link`} />
+                        </div>
+                        <Textarea value={payload[`instagramlink`]} id="instagramlink" name={`instagramlink`} required rows={4} onChange={formChangeHandler}/>
+                    </div>
+                    <Tabs aria-label="Default tabs" variant="default">
+                        <Tabs.Item title="Indonesia">
+                            <InstagramForm formChangeHandler={formChangeHandler} language={"ID"} payload={payload}/>
+                        </Tabs.Item>
+                        <Tabs.Item title="English">
+                            <InstagramForm formChangeHandler={formChangeHandler} language={"EN"} payload={payload}/>
+                        </Tabs.Item>
+                    </Tabs>
                 </div>
 
                 <div className="mt-10 space-y-4">

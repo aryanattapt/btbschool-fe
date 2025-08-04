@@ -120,7 +120,7 @@ const FooterComponent = () => {
                   );
                 })}
                 <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 md:mt-[15px] md:gap-6 xl:gap-12">
-                  {payload?.floatingbuttons?.map((val, idx) => {
+                  {payload?.floatingbuttons?.filter((val) => val.isactive).map((val, idx) => {
                     return (
                       <div
                         className="md:mt-2 mt-10 justify-self-center flex flex-col items-center"

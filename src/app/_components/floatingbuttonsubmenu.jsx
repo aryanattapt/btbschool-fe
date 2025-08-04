@@ -2,7 +2,7 @@
 import { MdAppRegistration } from "react-icons/md"; */
 
 const renderFloatingButtonSubMenu = ({payload}) => {
-    return payload?.map((val, idx) => {
+    return payload?.filter((val) => val.isactive).map((val, idx) => {
         return <div className="relative group flex items-center" key={idx}>
             <a href={val?.link}>
             <button className="w-[54.21px] h-[54.21px] bg-[#EF802B] flex justify-center items-center transform rotate-45 mb-4 transition-transform duration-300 group-hover:scale-110">

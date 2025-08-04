@@ -1,0 +1,18 @@
+BTB Alumni Story
+
+BTB School is developing the networking platform for our Alumni. BTB School is hoping that it can help to connect, support, adding business opportunities and expand the professional network for our Alumni Community. 
+We would love to hear your story - about your journey after BTB School, the path you’ve taken, your career or business right now, and what you want to achieve in the future.
+
+Name: %s
+Email: %s
+Phone Number: %s
+Address %s
+Gender: %s
+Undergraduate University: %s
+Postgraduate University: %s
+Major:  %s
+Year of Graduation: %s
+Career Pathway & what is your Activities now: %s
+Moments in BTB: %s
+Social Media: %s
+Photo: %s

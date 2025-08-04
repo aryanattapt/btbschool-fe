@@ -10,7 +10,8 @@ const PeduliLingkungan = ({ data, language }) => {
 				<img
 					src={`${data?.btbpedulilingkunganimage1}`}
 					alt="btb-peduli2"
-					className="xl:w-[1460.8px] xl:h-[308px] md:w-screen md:h-auto md:mb-[25px] mb-[10px] lg:h-auto"
+					// className="xl:w-[1460.8px] xl:h-[308px] md:w-screen md:h-auto md:mb-[25px] mb-[10px] lg:h-auto"
+					className="w-full xl:h-[290px] md:h-auto object-cover mb-4"
 				/>
 				<p className="text-[#00305E] md:text-[30px] md:mb-[25px] text-[19px] mb-[15px]">
 					{data[language]?.text4}

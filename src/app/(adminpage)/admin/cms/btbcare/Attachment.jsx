@@ -63,6 +63,13 @@ const Attachment = ({ onChangeAttachment }) => {
 					onChangeAttachment(e.target.files, "tanganpenolongimage1")
 				}
 			/>
+			<FieldTitle>Gambar BTB Peduli Tangan Penolong 1</FieldTitle>
+			<ImageAttachment
+				resolution="dengan menggunakan aspect ratio wide Misal 1920x1080px."
+				onChange={(e) =>
+					onChangeAttachment(e.target.files, "tanganpenolongimage2")
+				}
+			/>
 		</>
 	);
 };

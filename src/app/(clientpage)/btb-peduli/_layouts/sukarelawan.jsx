@@ -7,7 +7,10 @@ const Sukarelawan = ({ data, language }) => {
 				<h2 className="text-[#00305E] text-[25px] md:text-[50px] font-semibold mx-5 my-5 md:mx-32 md:my-[35px] mb-5">
 					{data[language]?.sukarelawansubtitle}
 				</h2>
-				<div className="md:mx-32 lg:mx-32 xl:mx-0 grid justify-items-center grid-cols-1 xl:grid-cols-3 md:grid-cols-1 gap-2 md:gap-4">
+				<div 
+					/* className="md:mx-32 lg:mx-32 xl:mx-0 grid justify-items-center grid-cols-1 xl:grid-cols-3 md:grid-cols-1 gap-2 md:gap-3" */
+					className="w-full max-w-7xl mx-auto grid justify-items-center grid-cols-1 xl:grid-cols-3 md:grid-cols-1 gap-2 md:gap-3"
+				>
 					{data?.sukarelawanbtbimage1 && (
 						<img
 							src={`${data?.sukarelawanbtbimage1}`}
@@ -40,7 +43,8 @@ const Sukarelawan = ({ data, language }) => {
 					<img
 						src={`${data?.sukarelawanbtbimage4}`}
 						alt="btb-peduli7"
-						className="w-full xl:w-[1460.8px] xl:h-[308px] object-cover mb-5"
+						// className="w-full xl:w-[1460.8px] xl:h-[308px] object-cover mb-5"
+						className="w-full xl:h-[290px] md:h-auto object-cover mb-4"
 					/>
 				)}
 			</div>
